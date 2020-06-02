@@ -298,6 +298,24 @@
                           <span class="n">secondary</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">secondary</span><span class="p">))</span></div>
 
 
+<div class="viewcode-block" id="fixed_negative_float"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.fixed_negative_float">[docs]</a><span class="k">def</span> <span class="nf">fixed_negative_float</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Keysight sometimes responds for ex. &#39;-0.-1&#39; as an output when you input</span>
+<span class="sd">    &#39;-0.1&#39;. This function can convert such strings also to float.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;String must of format `a` or `a.b`&#39;</span><span class="p">)</span>
+
+    <span class="n">parts</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">decimal</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s1">&#39;0&#39;</span>
+
+    <span class="n">decimal</span> <span class="o">=</span> <span class="n">decimal</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">number</span><span class="p">,</span> <span class="n">decimal</span><span class="p">])</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">output</span><span class="p">)</span></div>
+
+
 <span class="n">_dcorr_labels_units_map</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">constants</span><span class="o">.</span><span class="n">DCORR</span><span class="o">.</span><span class="n">Mode</span><span class="o">.</span><span class="n">Cp_G</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">primary</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cp&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">),</span>

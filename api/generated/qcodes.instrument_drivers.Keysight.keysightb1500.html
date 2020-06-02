@@ -1101,6 +1101,13 @@ calibration values.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.fixed_negative_float">
+<code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.</code><code class="sig-name descname">fixed_negative_float</code><span class="sig-paren">(</span><em class="sig-param">response: str</em><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_module.html#fixed_negative_float"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.fixed_negative_float" title="Permalink to this definition">¶</a></dt>
+<dd><p>Keysight sometimes responds for ex. ‘-0.-1’ as an output when you input
+‘-0.1’. This function can convert such strings also to float.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.format_dcorr_response">
 <code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.</code><code class="sig-name descname">format_dcorr_response</code><span class="sig-paren">(</span><em class="sig-param">r: qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module._DCORRResponse</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_module.html#format_dcorr_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.format_dcorr_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Format a given response tuple <code class="docutils literal notranslate"><span class="pre">_DCORRResponse</span></code> from

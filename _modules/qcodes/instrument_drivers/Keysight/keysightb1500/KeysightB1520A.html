@@ -168,7 +168,7 @@
 
 <span class="kn">from</span> <span class="nn">.KeysightB1500_module</span> <span class="kn">import</span> <span class="n">B1500Module</span><span class="p">,</span> <span class="n">parse_dcorr_query_response</span><span class="p">,</span> \
     <span class="n">format_dcorr_response</span><span class="p">,</span> <span class="n">_DCORRResponse</span><span class="p">,</span> <span class="n">parse_dcv_measurement_response</span><span class="p">,</span> \
-    <span class="n">_FMTResponse</span><span class="p">,</span> <span class="n">parse_fmt_1_0_response</span>
+    <span class="n">_FMTResponse</span><span class="p">,</span> <span class="n">parse_fmt_1_0_response</span><span class="p">,</span> <span class="n">fixed_negative_float</span>
 <span class="kn">from</span> <span class="nn">.message_builder</span> <span class="kn">import</span> <span class="n">MessageBuilder</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">constants</span>
 <span class="kn">from</span> <span class="nn">.constants</span> <span class="kn">import</span> <span class="n">ModuleKind</span><span class="p">,</span> <span class="n">ChNr</span><span class="p">,</span> <span class="n">MM</span>
@@ -750,13 +750,15 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Sweep steps (WDCV) not found.&#39;</span><span class="p">)</span>
 
-        <span class="n">out_str</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
-        <span class="n">out_dict</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span> <span class="n">out_str</span><span class="p">)</span>
-        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;chan&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;chan&#39;</span><span class="p">])</span>
-        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_mode&#39;</span><span class="p">])</span>
-        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_start&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_start&#39;</span><span class="p">])</span>
-        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_end&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_end&#39;</span><span class="p">])</span>
-        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_steps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_steps&#39;</span><span class="p">])</span>
+        <span class="n">resp_dict</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+
+        <span class="n">out_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;chan&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;chan&#39;</span><span class="p">])</span>
+        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;sweep_mode&#39;</span><span class="p">])</span>
+        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_start&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fixed_negative_float</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;sweep_start&#39;</span><span class="p">])</span>
+        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_end&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fixed_negative_float</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;sweep_end&#39;</span><span class="p">])</span>
+        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_steps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;sweep_steps&#39;</span><span class="p">])</span>
+
         <span class="k">return</span> <span class="n">out_dict</span>
 
     <span class="nd">@staticmethod</span>
