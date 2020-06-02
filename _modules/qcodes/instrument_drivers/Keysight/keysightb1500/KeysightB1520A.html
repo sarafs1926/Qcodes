@@ -970,11 +970,18 @@
             <span class="n">setpoint_units</span><span class="o">=</span><span class="p">((</span><span class="s1">&#39;V&#39;</span><span class="p">,),)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span> <span class="o">=</span> <span class="n">instrument</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">_FMTResponse</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="c1">#: Data, statuses, etc. of the first measured parameter</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">param1</span> <span class="o">=</span> <span class="n">_FMTResponse</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="c1">#: Data, statuses, etc. of the second measured parameter</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">param2</span> <span class="o">=</span> <span class="n">_FMTResponse</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="c1">#: Data, statuses, etc. of the AC voltage that the measured parameters</span>
+        <span class="c1">#: were measured for</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ac_voltage</span> <span class="o">=</span> <span class="n">_FMTResponse</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="c1">#: Data, statuses, etc. of the AC voltage that the measured parameters</span>
+        <span class="c1">#: were measured for</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dc_voltage</span> <span class="o">=</span> <span class="n">_FMTResponse</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">power_line_frequency</span> <span class="o">=</span> <span class="mi">50</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_fudge</span> <span class="o">=</span> <span class="mf">1.5</span> <span class="c1"># fudge factor for setting timeout</span>
 
