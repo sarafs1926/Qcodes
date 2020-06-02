@@ -240,7 +240,8 @@
                          <span class="n">setpoint_units</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Hz&#39;</span><span class="p">,),</span>
                          <span class="n">setpoint_labels</span><span class="o">=</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">instrument</span><span class="o">.</span><span class="n">short_name</span><span class="si">}</span><span class="s1">&#39;</span>
                                           <span class="s1">&#39; frequency&#39;</span><span class="p">,),</span>
-                         <span class="n">setpoint_names</span><span class="o">=</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">instrument</span><span class="o">.</span><span class="n">short_name</span><span class="si">}</span><span class="s1">_frequency&#39;</span><span class="p">,))</span>
+                         <span class="n">setpoint_names</span><span class="o">=</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">instrument</span><span class="o">.</span><span class="n">short_name</span><span class="si">}</span><span class="s1">_frequency&#39;</span><span class="p">,)</span>
+                         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_sweep</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">npts</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="n">channel</span>
 
@@ -293,7 +294,7 @@
         <span class="k">if</span> <span class="n">existing_trace_to_bind_to</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_tracename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Trc</span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">traces</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CONFigure:TRACe:CATalog?&quot;</span><span class="p">)</span>
+            <span class="n">traces</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">&quot;CONFigure:TRACe:CATalog?&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">existing_trace_to_bind_to</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">traces</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trying to bind to&quot;</span>
                                    <span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="n">existing_trace_to_bind_to</span><span class="si">}</span><span class="s2"> &quot;</span>
@@ -315,7 +316,7 @@
             <span class="n">model</span> <span class="o">=</span> <span class="n">full_modelname</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Could not determine ZNB model&quot;</span><span class="p">)</span>
-        <span class="n">mSourcePower</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ZNB4&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="s1">&#39;ZNB8&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="s1">&#39;ZNB20&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">60</span><span class="p">}</span>
+        <span class="n">mSourcePower</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ZNB4&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="s1">&#39;ZNB8&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="s1">&#39;ZNB20&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="s1">&#39;ZNB40&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">60</span><span class="p">}</span>
         <span class="k">if</span> <span class="n">model</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mSourcePower</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported ZNB model: </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_min_source_power</span><span class="p">:</span> <span class="nb">float</span>
@@ -549,9 +550,9 @@
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">set_to</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="o">.</span><span class="n">cont_meas_off</span><span class="p">()</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="c1"># if force polar is set, the SDAT data format will be used. Here</span>
-                <span class="c1"># the data will be transferred as a complex number independent</span>
-                <span class="c1"># of the set format in the instrument.</span>
+                <span class="c1"># if force polar is set, the SDAT data format will be used.</span>
+                <span class="c1"># Here the data will be transferred as a complex number</span>
+                <span class="c1"># independent of the set format in the instrument.</span>
                 <span class="k">if</span> <span class="n">force_polar</span><span class="p">:</span>
                     <span class="n">data_format_command</span> <span class="o">=</span> <span class="s1">&#39;SDAT&#39;</span>
                 <span class="k">else</span><span class="p">:</span>
@@ -560,7 +561,7 @@
                 <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="o">.</span><span class="n">timeout</span><span class="o">.</span><span class="n">set_to</span><span class="p">(</span><span class="n">timeout</span><span class="p">):</span>
                     <span class="c1"># instrument averages over its last &#39;avg&#39; number of sweeps</span>
                     <span class="c1"># need to ensure averaged result is returned</span>
-                    <span class="k">for</span> <span class="n">avgcount</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">avg</span><span class="p">()):</span>
+                    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">avg</span><span class="p">()):</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;INIT</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_instrument_channel</span><span class="si">}</span><span class="s1">:IMM; *WAI&#39;</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CALC</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_instrument_channel</span><span class="si">}</span><span class="s2">:PAR:SEL &quot;</span>
                                <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_tracename</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
@@ -617,7 +618,7 @@
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Could not determine ZNB model&quot;</span><span class="p">)</span>
         <span class="c1"># format seems to be ZNB8-4Port</span>
         <span class="n">m_frequency</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ZNB4&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">9e3</span><span class="p">,</span> <span class="mf">4.5e9</span><span class="p">),</span> <span class="s1">&#39;ZNB8&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">9e3</span><span class="p">,</span> <span class="mf">8.5e9</span><span class="p">),</span>
-                       <span class="s1">&#39;ZNB20&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">100e3</span><span class="p">,</span> <span class="mf">20e9</span><span class="p">)}</span>
+                       <span class="s1">&#39;ZNB20&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">100e3</span><span class="p">,</span> <span class="mf">20e9</span><span class="p">),</span> <span class="s1">&#39;ZNB40&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">10e6</span><span class="p">,</span> <span class="mf">40e9</span><span class="p">)}</span>
         <span class="k">if</span> <span class="n">model</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">m_frequency</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported ZNB model </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_min_freq</span><span class="p">:</span> <span class="nb">float</span>
