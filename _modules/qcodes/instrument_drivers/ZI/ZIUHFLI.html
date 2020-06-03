@@ -180,6 +180,8 @@
 <span class="kn">from</span> <span class="nn">qcodes.instrument.channel</span> <span class="kn">import</span> <span class="n">InstrumentChannel</span><span class="p">,</span> <span class="n">ChannelList</span>
 <span class="kn">from</span> <span class="nn">qcodes.utils</span> <span class="kn">import</span> <span class="n">validators</span> <span class="k">as</span> <span class="n">vals</span>
 
+<span class="kn">from</span> <span class="nn">qcodes.utils.deprecate</span> <span class="kn">import</span> <span class="n">deprecate</span>
+
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 <div class="viewcode-block" id="AUXOutputChannel"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.ZI.html#qcodes.instrument_drivers.ZI.ZIUHFLI.AUXOutputChannel">[docs]</a><span class="k">class</span> <span class="nc">AUXOutputChannel</span><span class="p">(</span><span class="n">InstrumentChannel</span><span class="p">):</span>
@@ -832,6 +834,8 @@
 <span class="sd">        * Add zoom-FFT</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="nd">@deprecate</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s2">&quot;There is a new UHFLI driver from Zurich Instruments&quot;</span><span class="p">,</span>
+               <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;instrument_drivers.zurich_instruments.uhfli.UHFLI&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">device_ID</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an instance of the instrument.</span>
