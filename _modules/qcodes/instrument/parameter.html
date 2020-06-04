@@ -241,6 +241,7 @@
 <span class="kn">import</span> <span class="nn">enum</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> \
     <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Sized</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Iterator</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Protocol</span>
 <span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">TracebackType</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
 
@@ -445,7 +446,7 @@
 
         <span class="c1"># ``_Cache`` stores &quot;latest&quot; value (and raw value) and timestamp</span>
         <span class="c1"># when it was set or measured</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="n">_Cache</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_val_age</span><span class="o">=</span><span class="n">max_val_age</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span> <span class="n">_CacheProtocol</span> <span class="o">=</span> <span class="n">_Cache</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_val_age</span><span class="o">=</span><span class="n">max_val_age</span><span class="p">)</span>
         <span class="c1"># ``GetLatest`` is left from previous versions where it would</span>
         <span class="c1"># implement a subset of features which ``_Cache`` has.</span>
         <span class="c1"># It is left for now for backwards compatibility reasons and shall</span>
@@ -579,7 +580,7 @@
 <span class="sd">            params_to_skip_update: No effect but may be passed from superclass</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            dict: base snapshot</span>
+<span class="sd">            base snapshot</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">snapshot_exclude</span><span class="p">:</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
@@ -626,6 +627,13 @@
                         <span class="n">state</span><span class="p">[</span><span class="n">attr_strip</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
 
         <span class="k">return</span> <span class="n">state</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">snapshot_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If True the value of the parameter will be included in the snapshot.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_snapshot_value</span>
 
     <span class="k">def</span> <span class="nf">_from_value_to_raw_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">ParamDataType</span>
                                  <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParamRawDataType</span><span class="p">:</span>
@@ -1061,18 +1069,18 @@
 <span class="sd">       d. False, in which case trying to get/set will raise an error.</span>
 
 <span class="sd">    2. Creating a subclass with an explicit :meth:`get_raw`/:meth:`set_raw`</span>
-<span class="sd">        method.</span>
+<span class="sd">       method.</span>
 
 <span class="sd">       This enables more advanced functionality. The :meth:`get_raw` and</span>
 <span class="sd">       :meth:`set_raw` methods are automatically wrapped to provide ``get`` and</span>
 <span class="sd">       ``set``.</span>
 
 <span class="sd">    It is an error to do both 1 and 2. E.g supply a ``get_cmd``/``set_cmd``</span>
-<span class="sd">     and implement ``get_raw``/``set_raw``</span>
+<span class="sd">    and implement ``get_raw``/``set_raw``</span>
 
 
 <span class="sd">    To detect if a parameter is gettable or settable check the attributes</span>
-<span class="sd">    ``gettable`` and ``settable`` on the parameter.</span>
+<span class="sd">    :py:attr:`~gettable` and :py:attr:`~settable` on the parameter.</span>
 
 <span class="sd">    Parameters have a ``cache`` object that stores internally the current</span>
 <span class="sd">    ``value`` and ``raw_value`` of the parameter. Calling ``cache.get()``</span>
@@ -1101,8 +1109,8 @@
 <span class="sd">        snapshot_get: ``False`` prevents any update to the</span>
 <span class="sd">            parameter during a snapshot, even if the snapshot was called with</span>
 <span class="sd">            ``update=True``, for example, if it takes too long to update,</span>
-<span class="sd">            or if the parameter is only meant for measurements hence its value</span>
-<span class="sd">            in the snapshot may not always make sense. Default True.</span>
+<span class="sd">            or if the parameter is only meant for measurements hence calling</span>
+<span class="sd">            get on it during snapshot may be an error. Default True.</span>
 
 <span class="sd">        snapshot_value: ``False`` prevents parameter value to be</span>
 <span class="sd">            stored in the snapshot. Useful if the value is large.</span>
@@ -1241,7 +1249,9 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_meta_attrs</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;unit&#39;</span><span class="p">,</span> <span class="s1">&#39;vals&#39;</span><span class="p">])</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">name</span> <span class="k">if</span> <span class="n">label</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">label</span>
+        <span class="c1">#: Label of the data used for plots etc.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">name</span> <span class="k">if</span> <span class="n">label</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">label</span>
+        <span class="c1">#: The unit of measure. Use ``&#39;&#39;`` for unitless.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">unit</span> <span class="k">if</span> <span class="n">unit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
 
         <span class="k">if</span> <span class="n">initial_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">initial_cache_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1430,7 +1440,7 @@
 
 <div class="viewcode-block" id="DelegateParameter"><a class="viewcode-back" href="../../../api/parameters/parameter.html#qcodes.instrument_drivers.devices.DelegateParameter">[docs]</a><span class="k">class</span> <span class="nc">DelegateParameter</span><span class="p">(</span><span class="n">Parameter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The :class:`.DelegateParameter` wraps a given `source`-parameter.</span>
+<span class="sd">    The :class:`.DelegateParameter` wraps a given `source` :class:`Parameter`.</span>
 <span class="sd">    Setting/getting it results in a set/get of the source parameter with</span>
 <span class="sd">    the provided arguments.</span>
 
@@ -1438,7 +1448,20 @@
 <span class="sd">    source parameter is to provide all the functionality of the Parameter</span>
 <span class="sd">    base class without overwriting properties of the source: for example to</span>
 <span class="sd">    set a different scaling factor and unit on the :class:`.DelegateParameter`</span>
-<span class="sd">    without changing those in the source parameter</span>
+<span class="sd">    without changing those in the source parameter.</span>
+
+<span class="sd">    The :class:`DelegateParameter` supports changing the `source`</span>
+<span class="sd">    :class:`Parameter`. :py:attr:`~gettable`, :py:attr:`~settable` and</span>
+<span class="sd">    :py:attr:`snapshot_value` properties automatically follow the source</span>
+<span class="sd">    parameter. If source is set to ``None`` :py:attr:`~gettable` and</span>
+<span class="sd">    :py:attr:`~settable` will always be ``False``. It is therefore an error</span>
+<span class="sd">    to call get and set on a :class:`DelegateParameter` without a `source`.</span>
+<span class="sd">    Note that a parameter without a source can be snapshotted correctly.</span>
+
+<span class="sd">    :py:attr:`.unit` and :py:attr:`.label` can either be set when constructing</span>
+<span class="sd">    a :class:`DelegateParameter` or inherited from the source</span>
+<span class="sd">    :class:`Parameter`. If inherited they will automatically change when</span>
+<span class="sd">    changing the source. Otherwise they will remain fixed.</span>
 
 <span class="sd">    Note:</span>
 <span class="sd">        DelegateParameter only supports mappings between the</span>
@@ -1466,28 +1489,43 @@
 <span class="sd">            This bug will not be fixed since the `raw_value` property will be</span>
 <span class="sd">            removed soon.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">_value</span>
-
-        <span class="nd">@property</span>
-        <span class="k">def</span> <span class="nf">_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParamDataType</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">_from_raw_value_to_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_value</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Cannot get the raw value of a &quot;</span>
+                                <span class="s2">&quot;DelegateParameter that delegates to None&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">get_if_invalid</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="nd">@property</span>
         <span class="k">def</span> <span class="nf">max_val_age</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">max_val_age</span>
 
         <span class="nd">@property</span>
         <span class="k">def</span> <span class="nf">timestamp</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">timestamp</span>
 
         <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">get_if_invalid</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParamDataType</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Cannot get the cache of a &quot;</span>
+                                <span class="s2">&quot;DelegateParameter that delegates to None&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">_from_raw_value_to_value</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">get_if_invalid</span><span class="o">=</span><span class="n">get_if_invalid</span><span class="p">))</span>
 
         <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">ParamDataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Cannot set the cache of a DelegateParameter &quot;</span>
+                                <span class="s2">&quot;that delegates to None&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">_from_value_to_raw_value</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+
+        <span class="k">def</span> <span class="nf">_set_from_raw_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">ParamRawDataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Cannot set the cache of a DelegateParameter &quot;</span>
+                                <span class="s2">&quot;that delegates to None&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">_update_with</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
                          <span class="n">value</span><span class="p">:</span> <span class="n">ParamDataType</span><span class="p">,</span>
@@ -1507,35 +1545,90 @@
         <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParamDataType</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">get_if_invalid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Parameter</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
                  <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">source</span>
 
-        <span class="k">for</span> <span class="n">ka</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">((</span><span class="s1">&#39;unit&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;snapshot_value&#39;</span><span class="p">),</span>
-                             <span class="p">(</span><span class="s1">&#39;unit&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;_snapshot_value&#39;</span><span class="p">)):</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="n">ka</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ka</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="n">param</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_attr_inherit</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;fixed&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                                        <span class="s2">&quot;value_when_without_source&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">},</span>
+                              <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;fixed&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                                       <span class="s2">&quot;value_when_without_source&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}}</span>
+
+        <span class="k">for</span> <span class="n">attr</span><span class="p">,</span> <span class="n">attr_props</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_attr_inherit</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">attr_props</span><span class="p">[</span><span class="s2">&quot;fixed&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">attr_props</span><span class="p">[</span><span class="s2">&quot;fixed&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">source_attr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span>
+                                  <span class="n">attr_props</span><span class="p">[</span><span class="s2">&quot;value_when_without_source&quot;</span><span class="p">])</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">source_attr</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">cmd</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;set_cmd&#39;</span><span class="p">,</span> <span class="s1">&#39;get_cmd&#39;</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">cmd</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;It is not allowed to set &quot;</span><span class="si">{</span><span class="n">cmd</span><span class="si">}</span><span class="s1">&quot; of a &#39;</span>
                                <span class="sa">f</span><span class="s1">&#39;DelegateParameter because the one of the &#39;</span>
                                <span class="sa">f</span><span class="s1">&#39;source parameter is supposed to be used.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;initial_cache_value&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span>
+                               <span class="ow">or</span> <span class="s2">&quot;initial_value&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;It is not allowed to supply &#39;initial_value&#39;&quot;</span>
+                           <span class="s2">&quot; or &#39;initial_cache_value&#39; &quot;</span>
+                           <span class="s2">&quot;without a source.&quot;</span><span class="p">)</span>
+
         <span class="n">initial_cache_value</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;initial_cache_value&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">source</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">delegate_cache</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_DelegateCache</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">_Cache</span><span class="p">,</span> <span class="n">delegate_cache</span><span class="p">)</span>
+        <span class="c1"># explicitly set the source properties as</span>
+        <span class="c1"># init will overwrite the ones set when assigning source</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_properties_from_source</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_DelegateCache</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">initial_cache_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">initial_cache_value</span><span class="p">)</span>
 
-    <span class="c1"># Disable the warnings until MultiParameter has been</span>
-    <span class="c1"># replaced and name/label/unit can live in _BaseParameter</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">source</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Parameter</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The source parameter that this :class:`DelegateParameter` is bound to</span>
+<span class="sd">        or ``None`` if this  :class:`DelegateParameter` is unbound.</span>
+
+<span class="sd">        :getter: Returns the current source.</span>
+<span class="sd">        :setter: Sets the source.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_source</span>
+
+    <span class="nd">@source</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Parameter</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_properties_from_source</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_source</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Parameter</span><span class="p">]</span> <span class="o">=</span> <span class="n">source</span>
+
+    <span class="k">def</span> <span class="nf">_set_properties_from_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Parameter</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_gettable</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_settable</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_snapshot_value</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_gettable</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">gettable</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_settable</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">settable</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_snapshot_value</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">_snapshot_value</span>
+
+        <span class="k">for</span> <span class="n">attr</span><span class="p">,</span> <span class="n">attr_props</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_attr_inherit</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">attr_props</span><span class="p">[</span><span class="s2">&quot;fixed&quot;</span><span class="p">]:</span>
+                <span class="n">attr_val</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">source</span><span class="p">,</span>
+                                   <span class="n">attr</span><span class="p">,</span>
+                                   <span class="n">attr_props</span><span class="p">[</span><span class="s2">&quot;value_when_without_source&quot;</span><span class="p">])</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">attr_val</span><span class="p">)</span>
+
     <span class="c1"># pylint: disable=method-hidden</span>
 <div class="viewcode-block" id="DelegateParameter.get_raw"><a class="viewcode-back" href="../../../api/parameters/parameter.html#qcodes.instrument_drivers.devices.DelegateParameter.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Cannot get the value of a DelegateParameter &quot;</span>
+                            <span class="s2">&quot;that delegates to a None source.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">get</span><span class="p">()</span></div>
 
-    <span class="c1"># same as for `get_raw`</span>
     <span class="c1"># pylint: disable=method-hidden</span>
 <div class="viewcode-block" id="DelegateParameter.set_raw"><a class="viewcode-back" href="../../../api/parameters/parameter.html#qcodes.instrument_drivers.devices.DelegateParameter.set_raw">[docs]</a>    <span class="k">def</span> <span class="nf">set_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Cannot set the value of a DelegateParameter &quot;</span>
+                            <span class="s2">&quot;that delegates to a None source.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DelegateParameter.snapshot_base"><a class="viewcode-back" href="../../../api/parameters/parameter.html#qcodes.instrument_drivers.devices.DelegateParameter.snapshot_base">[docs]</a>    <span class="k">def</span> <span class="nf">snapshot_base</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -1545,8 +1638,10 @@
             <span class="n">update</span><span class="o">=</span><span class="n">update</span><span class="p">,</span>
             <span class="n">params_to_skip_update</span><span class="o">=</span><span class="n">params_to_skip_update</span>
         <span class="p">)</span>
+        <span class="n">source_parameter_snapshot</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span> \
+            <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">snapshot</span><span class="p">(</span><span class="n">update</span><span class="o">=</span><span class="n">update</span><span class="p">)</span>
         <span class="n">snapshot</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-            <span class="p">{</span><span class="s1">&#39;source_parameter&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">snapshot</span><span class="p">(</span><span class="n">update</span><span class="o">=</span><span class="n">update</span><span class="p">)}</span>
+            <span class="p">{</span><span class="s1">&#39;source_parameter&#39;</span><span class="p">:</span> <span class="n">source_parameter_snapshot</span><span class="p">}</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">snapshot</span></div></div>
 
@@ -1969,6 +2064,44 @@
             <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">full_sp_names</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">setpoint_names</span></div>
+
+
+<span class="k">class</span> <span class="nc">_CacheProtocol</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This protocol defines the interface that a Parameter Cache implementation</span>
+<span class="sd">    must implement. This is currently used for 2 implementations, one in</span>
+<span class="sd">    _BaseParameter and a specialized one in DelegateParameter.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">raw_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParamRawDataType</span><span class="p">:</span>
+        <span class="o">...</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">timestamp</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]:</span>
+        <span class="o">...</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">max_val_age</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">ParamDataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">_set_from_raw_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_value</span><span class="p">:</span> <span class="n">ParamRawDataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">get_if_invalid</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParamDataType</span><span class="p">:</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">_update_with</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+                     <span class="n">value</span><span class="p">:</span> <span class="n">ParamDataType</span><span class="p">,</span>
+                     <span class="n">raw_value</span><span class="p">:</span> <span class="n">ParamRawDataType</span><span class="p">,</span>
+                     <span class="n">timestamp</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParamDataType</span><span class="p">:</span>
+        <span class="o">...</span>
 
 
 <span class="k">class</span> <span class="nc">_Cache</span><span class="p">:</span>

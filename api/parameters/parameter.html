@@ -306,21 +306,17 @@ and stores a value for <code class="docutils literal notranslate"><span class="p
 <li><p>False, in which case trying to get/set will raise an error.</p></li>
 </ol>
 </li>
-<li><dl class="simple">
-<dt>Creating a subclass with an explicit <a class="reference internal" href="#qcodes.instrument.parameter.Parameter.get_raw" title="qcodes.instrument.parameter.Parameter.get_raw"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_raw()</span></code></a>/<a class="reference internal" href="#qcodes.instrument.parameter.Parameter.set_raw" title="qcodes.instrument.parameter.Parameter.set_raw"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_raw()</span></code></a></dt><dd><p>method.</p>
-</dd>
-</dl>
+<li><p>Creating a subclass with an explicit <a class="reference internal" href="#qcodes.instrument.parameter.Parameter.get_raw" title="qcodes.instrument.parameter.Parameter.get_raw"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_raw()</span></code></a>/<a class="reference internal" href="#qcodes.instrument.parameter.Parameter.set_raw" title="qcodes.instrument.parameter.Parameter.set_raw"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_raw()</span></code></a>
+method.</p>
 <p>This enables more advanced functionality. The <a class="reference internal" href="#qcodes.instrument.parameter.Parameter.get_raw" title="qcodes.instrument.parameter.Parameter.get_raw"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_raw()</span></code></a> and
 <a class="reference internal" href="#qcodes.instrument.parameter.Parameter.set_raw" title="qcodes.instrument.parameter.Parameter.set_raw"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_raw()</span></code></a> methods are automatically wrapped to provide <code class="docutils literal notranslate"><span class="pre">get</span></code> and
 <code class="docutils literal notranslate"><span class="pre">set</span></code>.</p>
 </li>
 </ol>
-<dl class="simple">
-<dt>It is an error to do both 1 and 2. E.g supply a <code class="docutils literal notranslate"><span class="pre">get_cmd</span></code>/<code class="docutils literal notranslate"><span class="pre">set_cmd</span></code></dt><dd><p>and implement <code class="docutils literal notranslate"><span class="pre">get_raw</span></code>/<code class="docutils literal notranslate"><span class="pre">set_raw</span></code></p>
-</dd>
-</dl>
+<p>It is an error to do both 1 and 2. E.g supply a <code class="docutils literal notranslate"><span class="pre">get_cmd</span></code>/<code class="docutils literal notranslate"><span class="pre">set_cmd</span></code>
+and implement <code class="docutils literal notranslate"><span class="pre">get_raw</span></code>/<code class="docutils literal notranslate"><span class="pre">set_raw</span></code></p>
 <p>To detect if a parameter is gettable or settable check the attributes
-<code class="docutils literal notranslate"><span class="pre">gettable</span></code> and <code class="docutils literal notranslate"><span class="pre">settable</span></code> on the parameter.</p>
+<a class="reference internal" href="#qcodes.instrument.parameter.Parameter.gettable" title="qcodes.instrument.parameter.Parameter.gettable"><code class="xref py py-attr docutils literal notranslate"><span class="pre">gettable</span></code></a> and <a class="reference internal" href="#qcodes.instrument.parameter.Parameter.settable" title="qcodes.instrument.parameter.Parameter.settable"><code class="xref py py-attr docutils literal notranslate"><span class="pre">settable</span></code></a> on the parameter.</p>
 <p>Parameters have a <code class="docutils literal notranslate"><span class="pre">cache</span></code> object that stores internally the current
 <code class="docutils literal notranslate"><span class="pre">value</span></code> and <code class="docutils literal notranslate"><span class="pre">raw_value</span></code> of the parameter. Calling <code class="docutils literal notranslate"><span class="pre">cache.get()</span></code>
 (or <code class="docutils literal notranslate"><span class="pre">cache()</span></code>) simply returns the most recent set or measured value of
@@ -344,8 +340,8 @@ parameter is graphed, along with <code class="docutils literal notranslate"><spa
 <li><p><strong>snapshot_get</strong> – <code class="docutils literal notranslate"><span class="pre">False</span></code> prevents any update to the
 parameter during a snapshot, even if the snapshot was called with
 <code class="docutils literal notranslate"><span class="pre">update=True</span></code>, for example, if it takes too long to update,
-or if the parameter is only meant for measurements hence its value
-in the snapshot may not always make sense. Default True.</p></li>
+or if the parameter is only meant for measurements hence calling
+get on it during snapshot may be an error. Default True.</p></li>
 <li><p><strong>snapshot_value</strong> – <code class="docutils literal notranslate"><span class="pre">False</span></code> prevents parameter value to be
 stored in the snapshot. Useful if the value is large.</p></li>
 <li><p><strong>snapshot_exclude</strong> – <code class="docutils literal notranslate"><span class="pre">True</span></code> prevents parameter to be
@@ -425,6 +421,18 @@ desired operation or alternatively for <a class="reference internal" href="#qcod
 suitable method is automatically generated if <code class="docutils literal notranslate"><span class="pre">set_cmd</span></code> is supplied
 to the parameter constructor. The method is automatically wrapped to
 provide a <code class="docutils literal notranslate"><span class="pre">set</span></code> method on the parameter instance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument.parameter.Parameter.label">
+<code class="sig-name descname">label</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#qcodes.instrument.parameter.Parameter.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label of the data used for plots etc.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument.parameter.Parameter.unit">
+<code class="sig-name descname">unit</code><em class="property"> = None</em><a class="headerlink" href="#qcodes.instrument.parameter.Parameter.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit of measure. Use <code class="docutils literal notranslate"><span class="pre">''</span></code> for unitless.</p>
 </dd></dl>
 
 <dl class="method">
@@ -692,10 +700,13 @@ If <code class="docutils literal notranslate"><span class="pre">update</span></c
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>base snapshot</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)">dict</a></p>
-</dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument.parameter.Parameter.snapshot_value">
+<em class="property">property </em><code class="sig-name descname">snapshot_value</code><a class="headerlink" href="#qcodes.instrument.parameter.Parameter.snapshot_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>If True the value of the parameter will be included in the snapshot.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1048,10 +1059,13 @@ If <code class="docutils literal notranslate"><span class="pre">update</span></c
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>base snapshot</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)">dict</a></p>
-</dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument.parameter.ParameterWithSetpoints.snapshot_value">
+<em class="property">property </em><code class="sig-name descname">snapshot_value</code><a class="headerlink" href="#qcodes.instrument.parameter.ParameterWithSetpoints.snapshot_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>If True the value of the parameter will be included in the snapshot.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1121,16 +1135,27 @@ iterated over.</p>
 
 <dl class="class">
 <dt id="qcodes.instrument.parameter.DelegateParameter">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument.parameter.</code><code class="sig-name descname">DelegateParameter</code><span class="sig-paren">(</span><em class="sig-param">name: str</em>, <em class="sig-param">source: qcodes.instrument.parameter.Parameter</em>, <em class="sig-param">*args: Any</em>, <em class="sig-param">**kwargs: Any</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument/parameter.html#DelegateParameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument.parameter.DelegateParameter" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument.parameter.</code><code class="sig-name descname">DelegateParameter</code><span class="sig-paren">(</span><em class="sig-param">name: str, source: Optional[qcodes.instrument.parameter.Parameter], *args: Any, **kwargs: Any</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument/parameter.html#DelegateParameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument.parameter.DelegateParameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#qcodes.instrument.parameter.Parameter" title="qcodes.instrument.parameter.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument.parameter.Parameter</span></code></a></p>
-<p>The <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter" title="qcodes.instrument.parameter.DelegateParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelegateParameter</span></code></a> wraps a given <cite>source</cite>-parameter.
+<p>The <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter" title="qcodes.instrument.parameter.DelegateParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelegateParameter</span></code></a> wraps a given <cite>source</cite> <a class="reference internal" href="#qcodes.instrument.parameter.Parameter" title="qcodes.instrument.parameter.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parameter</span></code></a>.
 Setting/getting it results in a set/get of the source parameter with
 the provided arguments.</p>
 <p>The reason for using a <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter" title="qcodes.instrument.parameter.DelegateParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelegateParameter</span></code></a> instead of the
 source parameter is to provide all the functionality of the Parameter
 base class without overwriting properties of the source: for example to
 set a different scaling factor and unit on the <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter" title="qcodes.instrument.parameter.DelegateParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelegateParameter</span></code></a>
-without changing those in the source parameter</p>
+without changing those in the source parameter.</p>
+<p>The <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter" title="qcodes.instrument.parameter.DelegateParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelegateParameter</span></code></a> supports changing the <cite>source</cite>
+<a class="reference internal" href="#qcodes.instrument.parameter.Parameter" title="qcodes.instrument.parameter.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parameter</span></code></a>. <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter.gettable" title="qcodes.instrument.parameter.DelegateParameter.gettable"><code class="xref py py-attr docutils literal notranslate"><span class="pre">gettable</span></code></a>, <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter.settable" title="qcodes.instrument.parameter.DelegateParameter.settable"><code class="xref py py-attr docutils literal notranslate"><span class="pre">settable</span></code></a> and
+<a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter.snapshot_value" title="qcodes.instrument.parameter.DelegateParameter.snapshot_value"><code class="xref py py-attr docutils literal notranslate"><span class="pre">snapshot_value</span></code></a> properties automatically follow the source
+parameter. If source is set to <code class="docutils literal notranslate"><span class="pre">None</span></code> <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter.gettable" title="qcodes.instrument.parameter.DelegateParameter.gettable"><code class="xref py py-attr docutils literal notranslate"><span class="pre">gettable</span></code></a> and
+<a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter.settable" title="qcodes.instrument.parameter.DelegateParameter.settable"><code class="xref py py-attr docutils literal notranslate"><span class="pre">settable</span></code></a> will always be <code class="docutils literal notranslate"><span class="pre">False</span></code>. It is therefore an error
+to call get and set on a <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter" title="qcodes.instrument.parameter.DelegateParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelegateParameter</span></code></a> without a <cite>source</cite>.
+Note that a parameter without a source can be snapshotted correctly.</p>
+<p><a class="reference internal" href="#qcodes.instrument.parameter.Parameter.unit" title="qcodes.instrument.parameter.Parameter.unit"><code class="xref py py-attr docutils literal notranslate"><span class="pre">unit</span></code></a> and <a class="reference internal" href="#qcodes.instrument.parameter.Parameter.label" title="qcodes.instrument.parameter.Parameter.label"><code class="xref py py-attr docutils literal notranslate"><span class="pre">label</span></code></a> can either be set when constructing
+a <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter" title="qcodes.instrument.parameter.DelegateParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelegateParameter</span></code></a> or inherited from the source
+<a class="reference internal" href="#qcodes.instrument.parameter.Parameter" title="qcodes.instrument.parameter.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parameter</span></code></a>. If inherited they will automatically change when
+changing the source. Otherwise they will remain fixed.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>DelegateParameter only supports mappings between the
@@ -1139,6 +1164,21 @@ without changing those in the source parameter</p>
 <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter" title="qcodes.instrument.parameter.DelegateParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelegateParameter</span></code></a> that performs non invertible
 transforms in its <code class="docutils literal notranslate"><span class="pre">get_raw</span></code> method.</p>
 </div>
+<dl class="method">
+<dt id="qcodes.instrument.parameter.DelegateParameter.source">
+<em class="property">property </em><code class="sig-name descname">source</code><a class="headerlink" href="#qcodes.instrument.parameter.DelegateParameter.source" title="Permalink to this definition">¶</a></dt>
+<dd><p>The source parameter that this <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter" title="qcodes.instrument.parameter.DelegateParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelegateParameter</span></code></a> is bound to
+or <code class="docutils literal notranslate"><span class="pre">None</span></code> if this  <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter" title="qcodes.instrument.parameter.DelegateParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelegateParameter</span></code></a> is unbound.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter</dt>
+<dd class="field-odd"><p>Returns the current source.</p>
+</dd>
+<dt class="field-even">Setter</dt>
+<dd class="field-even"><p>Sets the source.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="method">
 <dt id="qcodes.instrument.parameter.DelegateParameter.get_raw">
 <code class="sig-name descname">get_raw</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Any<a class="reference internal" href="../../_modules/qcodes/instrument/parameter.html#DelegateParameter.get_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument.parameter.DelegateParameter.get_raw" title="Permalink to this definition">¶</a></dt>
@@ -1183,9 +1223,6 @@ If <code class="docutils literal notranslate"><span class="pre">update</span></c
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>base snapshot</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1396,6 +1433,12 @@ instead, override <a class="reference internal" href="#qcodes.instrument.paramet
 <dd class="field-even"><p>Base snapshot.</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument.parameter.DelegateParameter.snapshot_value">
+<em class="property">property </em><code class="sig-name descname">snapshot_value</code><a class="headerlink" href="#qcodes.instrument.parameter.DelegateParameter.snapshot_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>If True the value of the parameter will be included in the snapshot.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1793,10 +1836,13 @@ If <code class="docutils literal notranslate"><span class="pre">update</span></c
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>base snapshot</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)">dict</a></p>
-</dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument.parameter.ArrayParameter.snapshot_value">
+<em class="property">property </em><code class="sig-name descname">snapshot_value</code><a class="headerlink" href="#qcodes.instrument.parameter.ArrayParameter.snapshot_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>If True the value of the parameter will be included in the snapshot.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2178,10 +2224,13 @@ If <code class="docutils literal notranslate"><span class="pre">update</span></c
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>base snapshot</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)">dict</a></p>
-</dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument.parameter.MultiParameter.snapshot_value">
+<em class="property">property </em><code class="sig-name descname">snapshot_value</code><a class="headerlink" href="#qcodes.instrument.parameter.MultiParameter.snapshot_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>If True the value of the parameter will be included in the snapshot.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2457,13 +2506,6 @@ and cannot be set after initiation.</p></li>
 </dd>
 </dl>
 <dl class="method">
-<dt id="qcodes.instrument.parameter.InstrumentRefParameter.get_instr">
-<code class="sig-name descname">get_instr</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; InstrumentBase<a class="reference internal" href="../../_modules/qcodes/instrument/parameter.html#InstrumentRefParameter.get_instr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument.parameter.InstrumentRefParameter.get_instr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the instance of the instrument with the name equal to the
-value of this parameter.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="qcodes.instrument.parameter.InstrumentRefParameter.__getitem__">
 <code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param">keys: Any</em><span class="sig-paren">)</span> &#x2192; qcodes.instrument.sweep_values.SweepFixedValues<a class="headerlink" href="#qcodes.instrument.parameter.InstrumentRefParameter.__getitem__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Slice a Parameter to get a SweepValues object
@@ -2716,10 +2758,13 @@ If <code class="docutils literal notranslate"><span class="pre">update</span></c
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>base snapshot</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)">dict</a></p>
-</dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument.parameter.InstrumentRefParameter.snapshot_value">
+<em class="property">property </em><code class="sig-name descname">snapshot_value</code><a class="headerlink" href="#qcodes.instrument.parameter.InstrumentRefParameter.snapshot_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>If True the value of the parameter will be included in the snapshot.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2801,6 +2846,13 @@ iterated over.</p>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument.parameter.InstrumentRefParameter.get_instr">
+<code class="sig-name descname">get_instr</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; InstrumentBase<a class="reference internal" href="../../_modules/qcodes/instrument/parameter.html#InstrumentRefParameter.get_instr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument.parameter.InstrumentRefParameter.get_instr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the instance of the instrument with the name equal to the
+value of this parameter.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3065,10 +3117,13 @@ If <code class="docutils literal notranslate"><span class="pre">update</span></c
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>base snapshot</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)">dict</a></p>
-</dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument.parameter.ManualParameter.snapshot_value">
+<em class="property">property </em><code class="sig-name descname">snapshot_value</code><a class="headerlink" href="#qcodes.instrument.parameter.ManualParameter.snapshot_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>If True the value of the parameter will be included in the snapshot.</p>
 </dd></dl>
 
 <dl class="method">
@@ -3421,10 +3476,13 @@ If <code class="docutils literal notranslate"><span class="pre">update</span></c
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>base snapshot</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)">dict</a></p>
-</dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument.parameter.ScaledParameter.snapshot_value">
+<em class="property">property </em><code class="sig-name descname">snapshot_value</code><a class="headerlink" href="#qcodes.instrument.parameter.ScaledParameter.snapshot_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>If True the value of the parameter will be included in the snapshot.</p>
 </dd></dl>
 
 <dl class="method">
