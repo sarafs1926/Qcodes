@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Changelog for QCoDeS 0.1.7 &mdash; QCoDeS 0.14.0 documentation</title>
+  <title>Changelog for QCoDeS 0.15.0 (Unreleased) &mdash; QCoDeS 0.14.0 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Changelog for QCoDeS 0.1.9" href="0.1.9.html" />
-    <link rel="prev" title="Changelog for QCoDeS 0.1.6" href="0.1.6.html" />
+    <link rel="next" title="Examples of using QCoDeS" href="../examples/index.html" />
+    <link rel="prev" title="Changelog for QCoDeS 0.14.0" href="0.14.0.html" />
     <link href="../_static/style.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -100,10 +100,7 @@
 <li class="toctree-l2"><a class="reference internal" href="0.1.4.html">0.1.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.1.5.html">0.1.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.1.6.html">0.1.6</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">0.1.7</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#new-improved">New &amp; Improved</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="0.1.7.html">0.1.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.1.9.html">0.1.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.1.10.html">0.1.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.1.11.html">0.1.11</a></li>
@@ -125,7 +122,13 @@
 <li class="toctree-l2"><a class="reference internal" href="0.12.1.html">0.12.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.13.0.html">0.13.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.14.0.html">0.14.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="0.15.0.html">0.15.0</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">0.15.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#breaking-changes">Breaking Changes:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#improved-drivers">Improved drivers:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#improved">Improved:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#under-the-hood">Under the hood:</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples of using QCoDeS</a></li>
@@ -176,13 +179,13 @@
         
           <li><a href="index.html">Changelogs</a> &raquo;</li>
         
-      <li>Changelog for QCoDeS 0.1.7</li>
+      <li>Changelog for QCoDeS 0.15.0 (Unreleased)</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/changes/0.1.7.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/changes/0.15.0.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -219,44 +222,32 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="changelog-for-qcodes-0-1-7">
-<h1>Changelog for QCoDeS 0.1.7<a class="headerlink" href="#changelog-for-qcodes-0-1-7" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="new-improved">
-<h2>New &amp; Improved<a class="headerlink" href="#new-improved" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p>New and Improved drivers:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Fixes to DecaDac driver (#713)</p></li>
-<li><p>Driver for Oxford Kelvinox (#707)</p></li>
-<li><p>Driver for Oxford ILM 200 Helium Level Meter (#706)</p></li>
-<li><p>IPS120 Magnet driver (#660)</p></li>
-<li><p>New AMI430 driver  (#700)</p></li>
-<li><p>Driver for tektronics awg5200 (#724)</p></li>
-<li><p>Benchmark Keysight DMM software trigger (#729)</p></li>
-<li><p>Faster qdac (#730, #737)</p></li>
-<li><p>Ivvi triggers (#739)</p></li>
+<div class="section" id="changelog-for-qcodes-0-15-0-unreleased">
+<h1>Changelog for QCoDeS 0.15.0 (Unreleased)<a class="headerlink" href="#changelog-for-qcodes-0-15-0-unreleased" title="Permalink to this headline">¶</a></h1>
+<p>The June 2020 release of QCoDeS</p>
+<div class="section" id="breaking-changes">
+<h2>Breaking Changes:<a class="headerlink" href="#breaking-changes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GroupParameter.group</span></code>, <code class="docutils literal notranslate"><span class="pre">Group.parameters</span></code> and <code class="docutils literal notranslate"><span class="pre">Group.instrument</span></code> are now
+all read only properties (#2031).</p></li>
+<li><p>The public attributes <code class="docutils literal notranslate"><span class="pre">Group.get_cmd</span></code> and <cite>Group.get_cmd`</cite> have
+been removed (#2031).</p></li>
 </ul>
-</div></blockquote>
-</li>
-<li><p>Features:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Improved PyQtGraph performance (#712)</p></li>
-<li><p>Improve default_parameter_name (#714)</p></li>
-<li><p>Function to Close all instruments (#715)</p></li>
-<li><dl class="simple">
-<dt>Automatic Foreground qt window (#716) Requires pywin32 on windows not</dt><dd><p>installed by default</p>
-</dd>
-</dl>
-</li>
-<li><p>Handle snapshot update failing better (#717)</p></li>
-<li><p>Cleanup dependencies for easier install (#721)</p></li>
-<li><p>Update Slack contact information (#727)</p></li>
+</div>
+<div class="section" id="improved-drivers">
+<h2>Improved drivers:<a class="headerlink" href="#improved-drivers" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="improved">
+<h2>Improved:<a class="headerlink" href="#improved" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>GroupParameter now correctly update their cache when a single parameter in
+the group has been set or captured (#2031)</p></li>
+<li><p>GroupParameter now correctly implements mappings between
+<code class="docutils literal notranslate"><span class="pre">value</span></code> and <code class="docutils literal notranslate"><span class="pre">raw_value</span></code> e.g. <code class="docutils literal notranslate"><span class="pre">scale</span></code> and <code class="docutils literal notranslate"><span class="pre">offset</span></code> (#2031)</p></li>
 </ul>
-</div></blockquote>
-</li>
-</ul>
+</div>
+<div class="section" id="under-the-hood">
+<h2>Under the hood:<a class="headerlink" href="#under-the-hood" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -268,10 +259,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="0.1.9.html" class="btn btn-neutral float-right" title="Changelog for QCoDeS 0.1.9" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Examples of using QCoDeS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="0.1.6.html" class="btn btn-neutral float-left" title="Changelog for QCoDeS 0.1.6" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="0.14.0.html" class="btn btn-neutral float-left" title="Changelog for QCoDeS 0.14.0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -221,7 +221,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">post_sweep_voltage_condition</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="o">.</span><span class="n">START</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;hold&#39;</span><span class="p">,</span>
-                           <span class="n">initial_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                           <span class="n">initial_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">655.35</span><span class="p">),</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
@@ -234,7 +234,7 @@
 <span class="s2">                          &quot;&quot;&quot;</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;delay&#39;</span><span class="p">,</span>
-                           <span class="n">initial_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                           <span class="n">initial_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">65.535</span><span class="p">),</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
@@ -246,7 +246,7 @@
 <span class="s2">                            &quot;&quot;&quot;</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;step_delay&#39;</span><span class="p">,</span>
-                           <span class="n">initial_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                           <span class="n">initial_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
@@ -262,7 +262,7 @@
 <span class="s2">                            &quot;&quot;&quot;</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;trigger_delay&#39;</span><span class="p">,</span>
-                           <span class="n">initial_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                           <span class="n">initial_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
@@ -275,7 +275,7 @@
 <span class="s2">                            &quot;&quot;&quot;</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;measure_delay&#39;</span><span class="p">,</span>
-                           <span class="n">initial_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                           <span class="n">initial_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">65.535</span><span class="p">),</span>
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
@@ -419,7 +419,7 @@
 <span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;sweep_start&#39;</span><span class="p">,</span>
-                           <span class="n">initial_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                           <span class="n">initial_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span>
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
@@ -429,7 +429,7 @@
 <span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;sweep_end&#39;</span><span class="p">,</span>
-                           <span class="n">initial_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                           <span class="n">initial_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span>
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
