@@ -157,7 +157,7 @@
             
   <h1>Source code for qcodes.instrument_drivers.Keysight.keysightb1500.constants</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">IntEnum</span><span class="p">,</span> <span class="n">IntFlag</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Sequence</span>
 
 
 <div class="viewcode-block" id="StrEnum"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.StrEnum">[docs]</a><span class="k">class</span> <span class="nc">StrEnum</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
@@ -278,7 +278,7 @@
     <span class="n">SLOT_10_CH2</span> <span class="o">=</span> <span class="mi">1002</span></div>
 
 
-<span class="n">ChannelList</span> <span class="o">=</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ChNr</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span>
+<span class="n">ChannelList</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ChNr</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span>
 
 
 <div class="viewcode-block" id="Abort"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.Abort">[docs]</a><span class="k">class</span> <span class="nc">Abort</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
@@ -414,6 +414,9 @@
     <span class="n">MIN_2A</span> <span class="o">=</span> <span class="mi">21</span>
     <span class="n">MIN_20A</span> <span class="o">=</span> <span class="mi">22</span>
     <span class="n">MIN_40A</span> <span class="o">=</span> <span class="mi">23</span>
+
+    <span class="n">MIN_500A</span> <span class="o">=</span> <span class="mi">26</span>
+    <span class="n">MIN_2000A</span> <span class="o">=</span> <span class="mi">28</span>
 
     <span class="n">FIX_1pA</span> <span class="o">=</span> <span class="o">-</span><span class="mi">8</span>
     <span class="n">FIX_10pA</span> <span class="o">=</span> <span class="o">-</span><span class="mi">9</span>

@@ -159,7 +159,7 @@
 <span></span><span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">textwrap</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
 
 <span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">MultiParameter</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.group_parameter</span> <span class="kn">import</span> <span class="n">GroupParameter</span><span class="p">,</span> <span class="n">Group</span>
@@ -168,7 +168,7 @@
 
 <span class="kn">from</span> <span class="nn">.KeysightB1500_module</span> <span class="kn">import</span> <span class="n">B1500Module</span><span class="p">,</span> <span class="n">parse_dcorr_query_response</span><span class="p">,</span> \
     <span class="n">format_dcorr_response</span><span class="p">,</span> <span class="n">_DCORRResponse</span><span class="p">,</span> <span class="n">parse_dcv_measurement_response</span><span class="p">,</span> \
-    <span class="n">_FMTResponse</span><span class="p">,</span> <span class="n">parse_fmt_1_0_response</span><span class="p">,</span> <span class="n">fixed_negative_float</span>
+    <span class="n">_FMTResponse</span><span class="p">,</span> <span class="n">fmt_response_base_parser</span><span class="p">,</span> <span class="n">fixed_negative_float</span>
 <span class="kn">from</span> <span class="nn">.message_builder</span> <span class="kn">import</span> <span class="n">MessageBuilder</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">constants</span>
 <span class="kn">from</span> <span class="nn">.constants</span> <span class="kn">import</span> <span class="n">ModuleKind</span><span class="p">,</span> <span class="n">ChNr</span><span class="p">,</span> <span class="n">MM</span>
@@ -189,6 +189,7 @@
                            <span class="n">set_parser</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="p">,</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Enum</span><span class="p">(</span><span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="p">)),</span>
                            <span class="n">get_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                           <span class="n">initial_cache_value</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="o">.</span><span class="n">ENABLED</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                           enables or disables the automatic abort function </span>
 <span class="s2">                           for the CV (DC bias) sweep measurement (MM18) and </span>
@@ -199,13 +200,13 @@
 <span class="s2">                               - IV amplifier saturation condition</span>
 <span class="s2">                               - Overflow on the AD converter</span>
 <span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sweep_auto_abort</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="o">.</span><span class="n">ENABLED</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;post_sweep_voltage_condition&#39;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_post_sweep_voltage_condition</span><span class="p">,</span>
                            <span class="n">set_parser</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="p">,</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Enum</span><span class="p">(</span><span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="p">)),</span>
                            <span class="n">get_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                           <span class="n">initial_cache_value</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="o">.</span><span class="n">START</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                           This command also sets the post measurement </span>
 <span class="s2">                           condition of the MFCMU. After the measurement is </span>
@@ -218,9 +219,8 @@
 <span class="s2">                           the start value, and the pulsed bias sweep source </span>
 <span class="s2">                           forces the pulse base value after sweep.</span>
 <span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">post_sweep_voltage_condition</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="o">.</span><span class="n">START</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;hold&#39;</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;hold_time&#39;</span><span class="p">,</span>
                            <span class="n">initial_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">655.35</span><span class="p">),</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
@@ -288,13 +288,13 @@
 <span class="s2">                           measure delay will be 0.</span>
 <span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_sweep_delays_group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">hold</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_sweep_delays_group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">hold_time</span><span class="p">,</span>
                                        <span class="bp">self</span><span class="o">.</span><span class="n">delay</span><span class="p">,</span>
                                        <span class="bp">self</span><span class="o">.</span><span class="n">step_delay</span><span class="p">,</span>
                                        <span class="bp">self</span><span class="o">.</span><span class="n">trigger_delay</span><span class="p">,</span>
                                        <span class="bp">self</span><span class="o">.</span><span class="n">measure_delay</span><span class="p">],</span>
                                       <span class="n">set_cmd</span><span class="o">=</span><span class="s1">&#39;WTDCV &#39;</span>
-                                              <span class="s1">&#39;</span><span class="si">{hold}</span><span class="s1">,&#39;</span>
+                                              <span class="s1">&#39;</span><span class="si">{hold_time}</span><span class="s1">,&#39;</span>
                                               <span class="s1">&#39;</span><span class="si">{delay}</span><span class="s1">,&#39;</span>
                                               <span class="s1">&#39;</span><span class="si">{step_delay}</span><span class="s1">,&#39;</span>
                                               <span class="s1">&#39;</span><span class="si">{trigger_delay}</span><span class="s1">,&#39;</span>
@@ -312,7 +312,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_get_sweep_delays_parser</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;WTDCV(?P&lt;hold&gt;.+?),(?P&lt;delay&gt;.+?),&#39;</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;WTDCV(?P&lt;hold_time&gt;.+?),(?P&lt;delay&gt;.+?),&#39;</span>
                           <span class="s1">&#39;(?P&lt;step_delay&gt;.+?),(?P&lt;trigger_delay&gt;.+?),&#39;</span>
                           <span class="s1">&#39;(?P&lt;measure_delay&gt;.+?)(;|$)&#39;</span><span class="p">,</span>
                           <span class="n">response</span><span class="p">)</span>
@@ -323,12 +323,12 @@
         <span class="n">out_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">out_str</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
         <span class="k">return</span> <span class="n">out_dict</span>
 
-    <span class="k">def</span> <span class="nf">_set_sweep_auto_abort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="nf">_set_sweep_auto_abort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">wmdcv</span><span class="p">(</span><span class="n">abort</span><span class="o">=</span><span class="n">val</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_set_post_sweep_voltage_condition</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="p">,</span> <span class="nb">int</span><span class="p">]):</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">wmdcv</span><span class="p">(</span><span class="n">abort</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sweep_auto_abort</span><span class="p">(),</span> <span class="n">post</span><span class="o">=</span><span class="n">val</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></div>
 
@@ -348,32 +348,34 @@
     <span class="n">phase_compensation_timeout</span> <span class="o">=</span> <span class="mi">60</span>  <span class="c1"># manual says around 30 seconds</span>
     <span class="n">MODULE_KIND</span> <span class="o">=</span> <span class="n">ModuleKind</span><span class="o">.</span><span class="n">CMU</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="s1">&#39;KeysightB1500&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">slot_nr</span><span class="p">,</span>
-                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="s1">&#39;KeysightB1500&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+                 <span class="n">slot_nr</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">slot_nr</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">channels</span> <span class="o">=</span> <span class="p">(</span><span class="n">ChNr</span><span class="p">(</span><span class="n">slot_nr</span><span class="p">),)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setup_fnc_already_run</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_ranging_mode</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">RangingMode</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> \
-            <span class="n">constants</span><span class="o">.</span><span class="n">RangingMode</span><span class="o">.</span><span class="n">AUTO</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ranging_mode</span><span class="p">:</span> <span class="n">constants</span><span class="o">.</span><span class="n">RangingMode</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">RangingMode</span><span class="o">.</span><span class="n">AUTO</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_measurement_range_for_non_auto</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;voltage_dc&quot;</span><span class="p">,</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;V&quot;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_voltage_dc</span><span class="p">,</span>
-                           <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_voltage_dc</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_voltage_dc</span><span class="p">,</span>
+                           <span class="n">snapshot_get</span><span class="o">=</span><span class="kc">False</span>
                            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;voltage_ac&quot;</span><span class="p">,</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;V&quot;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_voltage_ac</span><span class="p">,</span>
-                           <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_voltage_ac</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_voltage_ac</span><span class="p">,</span>
+                           <span class="n">snapshot_get</span><span class="o">=</span><span class="kc">False</span>
                            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;frequency&quot;</span><span class="p">,</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;Hz&quot;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_frequency</span><span class="p">,</span>
-                           <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_frequency</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_frequency</span><span class="p">,</span>
+                           <span class="n">snapshot_get</span><span class="o">=</span><span class="kc">False</span>
                            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;capacitance&quot;</span><span class="p">,</span>
@@ -446,17 +448,17 @@
 <span class="s2">            Number of steps for staircase sweep. Possible  values from 1 to </span>
 <span class="s2">            1001&quot;&quot;&quot;</span><span class="p">))</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;chan&#39;</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_chan&#39;</span><span class="p">,</span>
                            <span class="n">initial_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_sweep_steps_group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">chan</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_sweep_steps_group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_chan</span><span class="p">,</span>
                                       <span class="bp">self</span><span class="o">.</span><span class="n">sweep_mode</span><span class="p">,</span>
                                       <span class="bp">self</span><span class="o">.</span><span class="n">sweep_start</span><span class="p">,</span>
                                       <span class="bp">self</span><span class="o">.</span><span class="n">sweep_end</span><span class="p">,</span>
                                       <span class="bp">self</span><span class="o">.</span><span class="n">sweep_steps</span><span class="p">],</span>
                                      <span class="n">set_cmd</span><span class="o">=</span><span class="s1">&#39;WDCV &#39;</span>
-                                             <span class="s1">&#39;</span><span class="si">{chan}</span><span class="s1">,&#39;</span>
+                                             <span class="s1">&#39;</span><span class="si">{_chan}</span><span class="s1">,&#39;</span>
                                              <span class="s1">&#39;</span><span class="si">{sweep_mode}</span><span class="s1">,&#39;</span>
                                              <span class="s1">&#39;</span><span class="si">{sweep_start}</span><span class="s1">,&#39;</span>
                                              <span class="s1">&#39;</span><span class="si">{sweep_end}</span><span class="s1">,&#39;</span>
@@ -520,12 +522,11 @@
                            <span class="n">get_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">            Measurement range. Needs to set when ``ranging_mode`` is set to </span>
-<span class="s2">            PLC. The value shoudl be integer 0 or more. 50 ohm, 100 ohm, </span>
+<span class="s2">            PLC. The value should be integer 0 or more. 50 ohm, 100 ohm, </span>
 <span class="s2">            300 ohm, 1 kilo ohm, 3 kilo ohm, 10 kilo ohm, 30 kilo ohm, </span>
 <span class="s2">            100 kilo ohm, and 300 kilo ohm are selectable. Available </span>
 <span class="s2">            measurement ranges depend on the output signal frequency set by </span>
-<span class="s2">            the FC command.</span>
-<span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
+<span class="s2">            the FC command.&quot;&quot;&quot;</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;measurement_mode&quot;</span><span class="p">,</span>
                            <span class="n">get_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -590,7 +591,7 @@
 <span class="s2">            case is Capacitance and Dissipation.</span>
 <span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">_cv_sweep_voltages</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_cv_sweep_voltages</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="n">sign</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span> <span class="ow">and</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="n">s</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
         <span class="n">start_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_start</span><span class="p">()</span>
         <span class="n">end_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_end</span><span class="p">()</span>
@@ -605,15 +606,18 @@
                     <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;Polarity of start and end is not &quot;</span>
                                          <span class="s2">&quot;same.&quot;</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">linear_sweep</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">linear_sweep</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">steps</span><span class="p">:</span> <span class="nb">int</span>
+                         <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
             <span class="n">sweep_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">steps</span><span class="p">)</span>
             <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">sweep_val</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">log_sweep</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">log_sweep</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">steps</span><span class="p">:</span> <span class="nb">int</span>
+                      <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
             <span class="n">sweep_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">start</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">end</span><span class="p">),</span> <span class="n">steps</span><span class="p">)</span>
             <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">sweep_val</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">linear_2way_sweep</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">linear_2way_sweep</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">steps</span><span class="p">:</span> <span class="nb">int</span>
+                              <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
             <span class="k">if</span> <span class="n">steps</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">half_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">steps</span> <span class="o">//</span> <span class="mi">2</span><span class="p">))</span>
                 <span class="n">sweep_val</span> <span class="o">=</span> <span class="n">half_list</span> <span class="o">+</span> <span class="n">half_list</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -623,7 +627,8 @@
                 <span class="n">sweep_val</span> <span class="o">=</span> <span class="n">half_list</span> <span class="o">+</span> <span class="p">[</span><span class="n">end</span><span class="p">]</span> <span class="o">+</span> <span class="n">half_list</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
             <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">sweep_val</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">log_2way_sweep</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">log_2way_sweep</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">steps</span><span class="p">:</span> <span class="nb">int</span>
+                           <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
             <span class="k">if</span> <span class="n">steps</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">half_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">start</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">end</span><span class="p">),</span>
                                              <span class="n">steps</span> <span class="o">//</span> <span class="mi">2</span><span class="p">))</span>
@@ -734,7 +739,7 @@
         <span class="k">return</span> <span class="n">constants</span><span class="o">.</span><span class="n">ADJQuery</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">))</span></div>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_get_sweep_steps</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">_get_sweep_steps</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">lrn_query</span><span class="p">(</span>
             <span class="n">type_id</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">LRN</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">CV_DC_BIAS_SWEEP_MEASUREMENT_SETTINGS</span>
         <span class="p">)</span>
@@ -743,7 +748,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_get_sweep_steps_parser</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
-        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;WDCV(?P&lt;chan&gt;.+?),(?P&lt;sweep_mode&gt;.+?),&#39;</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;WDCV(?P&lt;_chan&gt;.+?),(?P&lt;sweep_mode&gt;.+?),&#39;</span>
                           <span class="sa">r</span><span class="s1">&#39;(?P&lt;sweep_start&gt;.+?),(?P&lt;sweep_end&gt;.+?),&#39;</span>
                           <span class="sa">r</span><span class="s1">&#39;(?P&lt;sweep_steps&gt;.+?)(;|$)&#39;</span><span class="p">,</span>
                           <span class="n">response</span><span class="p">)</span>
@@ -753,7 +758,7 @@
         <span class="n">resp_dict</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
 
         <span class="n">out_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;chan&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;chan&#39;</span><span class="p">])</span>
+        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;_chan&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;_chan&#39;</span><span class="p">])</span>
         <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;sweep_mode&#39;</span><span class="p">])</span>
         <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_start&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fixed_negative_float</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;sweep_start&#39;</span><span class="p">])</span>
         <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_end&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fixed_negative_float</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;sweep_end&#39;</span><span class="p">])</span>
@@ -789,8 +794,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_set_measurement_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">MM</span><span class="o">.</span><span class="n">Mode</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">channels</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="o">.</span><span class="n">set_measurement_mode</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+                                                  <span class="n">channels</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],))</span>
 
     <span class="k">def</span> <span class="nf">_set_impedance_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">IMP</span><span class="o">.</span><span class="n">MeasurementMode</span><span class="p">,</span>
                                               <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -802,7 +807,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_set_ranging_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">RangingMode</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_ranging_mode</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ranging_mode</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">RangingMode</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="n">constants</span><span class="o">.</span><span class="n">RangingMode</span><span class="o">.</span><span class="n">AUTO</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_measurement_range_for_non_auto</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span>
@@ -828,18 +833,24 @@
             <span class="n">n_steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
             <span class="n">freq</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
             <span class="n">ac_rms</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-            <span class="n">post_sweep_voltage_condition</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="o">.</span><span class="n">STOP</span><span class="p">,</span>
-            <span class="n">adc_mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">ACT</span><span class="o">.</span><span class="n">Mode</span><span class="o">.</span><span class="n">PLC</span><span class="p">,</span> <span class="n">adc_coef</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
-            <span class="n">imp_model</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">IMP</span><span class="o">.</span><span class="n">MeasurementMode</span><span class="o">.</span><span class="n">Cp_D</span><span class="p">,</span>
-            <span class="n">ranging_mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">RangingMode</span><span class="o">.</span><span class="n">AUTO</span><span class="p">,</span>
-            <span class="n">fixed_range_val</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">post_sweep_voltage_condition</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span>
+                <span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="o">.</span><span class="n">STOP</span><span class="p">,</span>
+            <span class="n">adc_mode</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">ACT</span><span class="o">.</span><span class="n">Mode</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">ACT</span><span class="o">.</span><span class="n">Mode</span><span class="o">.</span><span class="n">PLC</span><span class="p">,</span>
+            <span class="n">adc_coef</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="n">imp_model</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">IMP</span><span class="o">.</span><span class="n">MeasurementMode</span><span class="p">,</span>
+                             <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">IMP</span><span class="o">.</span><span class="n">MeasurementMode</span><span class="o">.</span><span class="n">Cp_D</span><span class="p">,</span>
+            <span class="n">ranging_mode</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">RangingMode</span><span class="p">,</span>
+                                <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">RangingMode</span><span class="o">.</span><span class="n">AUTO</span><span class="p">,</span>
+            <span class="n">fixed_range_val</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">hold_delay</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
             <span class="n">delay</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
             <span class="n">step_delay</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
             <span class="n">trigger_delay</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
             <span class="n">measure_delay</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-            <span class="n">abort_enabled</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="o">.</span><span class="n">ENABLED</span><span class="p">,</span>
-            <span class="n">sweep_mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">SweepMode</span><span class="o">.</span><span class="n">LINEAR</span><span class="p">,</span>
+            <span class="n">abort_enabled</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="p">,</span>
+                                 <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="o">.</span><span class="n">ENABLED</span><span class="p">,</span>
+            <span class="n">sweep_mode</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">SweepMode</span><span class="p">,</span>
+                              <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">SweepMode</span><span class="o">.</span><span class="n">LINEAR</span><span class="p">,</span>
             <span class="n">volt_monitor</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -875,6 +886,7 @@
 
 <span class="sd">            fixed_range_val: Integer 0 or more. Available measurement ranges</span>
 <span class="sd">                depend on the output signal frequency.</span>
+<span class="sd">                See ``measurement_range_for_non_auto`` parameter for more info.</span>
 
 <span class="sd">            hold_delay: Hold time (in seconds) that is the wait time after</span>
 <span class="sd">                starting measurement and before starting delay time for the</span>
@@ -912,7 +924,6 @@
 <span class="sd">                secondary parameter(for ex Dissipation), ac source voltage</span>
 <span class="sd">                and dc source voltage. If False, the measurement only</span>
 <span class="sd">                outputs primary and secondary parameter.</span>
-
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">adc_mode</span><span class="p">(</span><span class="n">adc_mode</span><span class="p">)</span>
@@ -922,7 +933,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">sweep_auto_abort</span><span class="p">(</span><span class="n">abort_enabled</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">post_sweep_voltage_condition</span><span class="p">(</span>
             <span class="n">post_sweep_voltage_condition</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">hold</span><span class="p">(</span><span class="n">hold_delay</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">hold_time</span><span class="p">(</span><span class="n">hold_delay</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">step_delay</span><span class="p">(</span><span class="n">step_delay</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">trigger_delay</span><span class="p">(</span><span class="n">trigger_delay</span><span class="p">)</span>
@@ -960,7 +971,7 @@
 <span class="sd">        instrument: Instrument to which this parameter communicates to.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">instrument</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">instrument</span><span class="p">:</span> <span class="n">B1520A</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">name</span><span class="p">,</span>
             <span class="n">names</span><span class="o">=</span><span class="nb">tuple</span><span class="p">([</span><span class="s1">&#39;Capacitance&#39;</span><span class="p">,</span> <span class="s1">&#39;Dissipation&#39;</span><span class="p">]),</span>
@@ -970,8 +981,11 @@
             <span class="n">setpoint_names</span><span class="o">=</span><span class="p">((</span><span class="s1">&#39;Voltage&#39;</span><span class="p">,),)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
             <span class="n">setpoint_labels</span><span class="o">=</span><span class="p">((</span><span class="s1">&#39;Voltage&#39;</span><span class="p">,),)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
             <span class="n">setpoint_units</span><span class="o">=</span><span class="p">((</span><span class="s1">&#39;V&#39;</span><span class="p">,),)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="n">instrument</span><span class="o">=</span><span class="n">instrument</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span> <span class="o">=</span> <span class="n">instrument</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">:</span> <span class="s2">&quot;B1520A&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="p">:</span> <span class="s2">&quot;KeysightB1500&quot;</span>
 
         <span class="c1">#: Data, statuses, etc. of the first measured parameter</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">param1</span> <span class="o">=</span> <span class="n">_FMTResponse</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -984,21 +998,21 @@
         <span class="c1">#: were measured for</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dc_voltage</span> <span class="o">=</span> <span class="n">_FMTResponse</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">power_line_frequency</span> <span class="o">=</span> <span class="mi">50</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_fudge</span> <span class="o">=</span> <span class="mf">1.5</span> <span class="c1"># fudge factor for setting timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">power_line_frequency</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fudge</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span> <span class="c1"># fudge factor for setting timeout</span>
 
-<div class="viewcode-block" id="CVSweepMeasurement.get_raw"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.CVSweepMeasurement.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">impedance_model</span><span class="p">()</span>
+<div class="viewcode-block" id="CVSweepMeasurement.get_raw"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.CVSweepMeasurement.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">]]:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">impedance_model</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">model</span> <span class="o">!=</span> <span class="n">constants</span><span class="o">.</span><span class="n">IMP</span><span class="o">.</span><span class="n">MeasurementMode</span><span class="o">.</span><span class="n">Cp_D</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Run sweep only supports Cp_D impedance model&#39;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">setup_fnc_already_run</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">setup_fnc_already_run</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Sweep setup has not yet been run successfully&#39;</span><span class="p">)</span>
 
-        <span class="n">delay_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">step_delay</span><span class="p">()</span>
+        <span class="n">delay_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">step_delay</span><span class="p">()</span>
 
-        <span class="n">nplc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">adc_coef</span><span class="p">()</span>
-        <span class="n">num_steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">sweep_steps</span><span class="p">()</span>
+        <span class="n">nplc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">adc_coef</span><span class="p">()</span>
+        <span class="n">num_steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">sweep_steps</span><span class="p">()</span>
         <span class="n">power_line_time_period</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">power_line_frequency</span>
         <span class="n">calculated_time</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">nplc</span> <span class="o">*</span> <span class="n">power_line_time_period</span> <span class="o">*</span> <span class="n">num_steps</span>
 
@@ -1006,8 +1020,8 @@
         <span class="n">new_timeout</span> <span class="o">=</span> <span class="n">estimated_timeout</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fudge</span>
 
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="o">.</span><span class="n">timeout</span><span class="o">.</span><span class="n">set_to</span><span class="p">(</span><span class="n">new_timeout</span><span class="p">):</span>
-            <span class="n">raw_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">xe</span><span class="p">()</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
-            <span class="n">parsed_data</span> <span class="o">=</span> <span class="n">parse_fmt_1_0_response</span><span class="p">(</span><span class="n">raw_data</span><span class="p">)</span>
+            <span class="n">raw_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">xe</span><span class="p">()</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+            <span class="n">parsed_data</span> <span class="o">=</span> <span class="n">fmt_response_base_parser</span><span class="p">(</span><span class="n">raw_data</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">parsed_data</span><span class="o">.</span><span class="n">type</span><span class="p">))</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">param1</span> <span class="o">=</span> <span class="n">_FMTResponse</span><span class="p">(</span>
@@ -1016,7 +1030,7 @@
                 <span class="o">*</span><span class="p">[</span><span class="n">parsed_data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)])</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">shapes</span> <span class="o">=</span> <span class="p">((</span><span class="n">num_steps</span><span class="p">,),)</span> <span class="o">*</span> <span class="mi">2</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">setpoints</span> <span class="o">=</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">cv_sweep_voltages</span><span class="p">(),),)</span> <span class="o">*</span> <span class="mi">2</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setpoints</span> <span class="o">=</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">cv_sweep_voltages</span><span class="p">(),),)</span> <span class="o">*</span> <span class="mi">2</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">param1</span> <span class="o">=</span> <span class="n">_FMTResponse</span><span class="p">(</span>
                 <span class="o">*</span><span class="p">[</span><span class="n">parsed_data</span><span class="p">[</span><span class="n">i</span><span class="p">][::</span><span class="mi">4</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)])</span>
@@ -1188,8 +1202,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">enable</span><span class="p">(</span><span class="n">corr</span><span class="o">=</span><span class="n">corr</span><span class="p">)</span>
 
         <span class="n">is_enabled</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">(</span><span class="n">corr</span><span class="o">=</span><span class="n">corr</span><span class="p">)</span>
-        <span class="n">response_out</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Correction status </span><span class="si">{</span><span class="n">correction_status</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> and Enable&#39;</span> \
-                       <span class="sa">f</span><span class="s1">&#39; </span><span class="si">{</span><span class="n">is_enabled</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">response_out</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Correction status </span><span class="si">{</span><span class="n">correction_status</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> and &#39;</span> \
+                       <span class="sa">f</span><span class="s1">&#39;Enable </span><span class="si">{</span><span class="n">is_enabled</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span>
         <span class="k">return</span> <span class="n">response_out</span></div></div>
 
 

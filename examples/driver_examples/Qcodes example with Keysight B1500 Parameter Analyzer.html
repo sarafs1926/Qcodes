@@ -553,8 +553,8 @@ alt="Binder badge"
 <h2>Programming Examples<a class="headerlink" href="#Programming-Examples" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="Initializing-the-instrument">
 <h3>Initializing the instrument<a class="headerlink" href="#Initializing-the-instrument" title="Permalink to this headline">¶</a></h3>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -574,8 +574,25 @@ alt="Binder badge"
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Logging hadn&#39;t been started.
+Activating auto-logging. Current session state plus future input saved.
+Filename       : C:\Users\CryoProbeusr\.qcodes\logs\command_history.log
+Mode           : append
+Output logging : True
+Raw input log  : False
+Timestamping   : True
+State          : active
+Qcodes Logfile : C:\Users\CryoProbeusr\.qcodes\logs\200604-12040-qcodes.log
+pyqtgraph plotting not supported, try &#34;from qcodes.plots.pyqtgraph import QtPlot&#34; to see the full error
+</pre></div></div>
+</div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -583,8 +600,8 @@ alt="Binder badge"
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -607,6 +624,21 @@ alt="Binder badge"
                           <span class="n">visalib</span><span class="o">=</span><span class="n">path_to_yaml</span> <span class="o">+</span> <span class="s1">&#39;@sim&#39;</span><span class="p">)</span>
     <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;**Note: using simulated instrument. Functionality will be limited.**&quot;</span><span class="p">))</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Connected to: Agilent Technologies B1500A (serial:0, firmware:A.06.01.2016.0401) in 0.35s
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<p><strong>Note: using physical instrument.</strong></p>
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -636,8 +668,8 @@ alt="Binder badge"
 <h3>Identifying and selecting installed modules<a class="headerlink" href="#Identifying-and-selecting-installed-modules" title="Permalink to this headline">¶</a></h3>
 <p>As mentioned above, the B1500 is a modular instrument, and contains multiple cards. When initializing the driver, the driver requests the installed modules from the B1500 and exposes them to the user via multiple ways.</p>
 <p>The first way to address a certain module is e.g. as follows:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -647,17 +679,8 @@ alt="Binder badge"
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;B1517A: spa_smu2 of KeysightB1500: spa&gt;
-</pre></div></div>
-</div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -669,8 +692,8 @@ alt="Binder badge"
 <p>Next to this direct access - which is simple and good for direct user interaction - the modules are also exposed via multiple data structures through which they can be adressed: - by slot number - by module kind (such as SMU, or CMU) - by channel number</p>
 <p>This can be more convenient for programmatic selection of the modules.</p>
 <p>Instrument modules are installed in slots (numbered 1-11) and can be selected by the slot number:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -678,20 +701,9 @@ alt="Binder badge"
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-{&lt;SlotNr.SLOT01: 1&gt;: &lt;B1517A: spa_smu1 of KeysightB1500: spa&gt;,
- &lt;SlotNr.SLOT02: 2&gt;: &lt;B1517A: spa_smu2 of KeysightB1500: spa&gt;,
- &lt;SlotNr.SLOT03: 3&gt;: &lt;B1520A: spa_cmu1 of KeysightB1500: spa&gt;}
-</pre></div></div>
-</div>
 <p>All modules are also grouped by module kind (see <code class="docutils literal notranslate"><span class="pre">constants.ModuleKind</span></code> for list of known kinds of modules):</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -699,21 +711,9 @@ alt="Binder badge"
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-defaultdict(list,
-            {&lt;ModuleKind.SMU: &#39;SMU&#39;&gt;: [&lt;B1517A: spa_smu1 of KeysightB1500: spa&gt;,
-              &lt;B1517A: spa_smu2 of KeysightB1500: spa&gt;],
-             &lt;ModuleKind.CMU: &#39;CMU&#39;&gt;: [&lt;B1520A: spa_cmu1 of KeysightB1500: spa&gt;]})
-</pre></div></div>
-</div>
 <p>For example, let’s list all SMU modules:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -721,19 +721,9 @@ defaultdict(list,
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[&lt;B1517A: spa_smu1 of KeysightB1500: spa&gt;,
- &lt;B1517A: spa_smu2 of KeysightB1500: spa&gt;]
-</pre></div></div>
-</div>
 <p>Lastly, there is dictionary of all module channels:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -745,22 +735,11 @@ defaultdict(list,
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-{&lt;ChNr.SLOT_01_CH1: 1&gt;: &lt;B1517A: spa_smu1 of KeysightB1500: spa&gt;,
- &lt;ChNr.SLOT_02_CH1: 2&gt;: &lt;B1517A: spa_smu2 of KeysightB1500: spa&gt;,
- &lt;ChNr.SLOT_03_CH1: 3&gt;: &lt;B1520A: spa_cmu1 of KeysightB1500: spa&gt;}
-</pre></div></div>
-</div>
 <p><strong>Note: For instruments with only one channel, channel number is the same as the slot number. However there are instruments with 2 channels per card. For these instruments the second channel number will differ from the slot number.</strong></p>
 <p><strong>Note for the simulated instrument: The simulation driver will list a B1530A module with 2 channels as example.</strong></p>
 <p>In general, the slot- and channel numbers can be passed as integers. However (especially in the case of the channel numbers for multi-channel instruments) it is recommended to use the Python enums defined in <code class="docutils literal notranslate"><span class="pre">qcodes.instrument_drivers.Keysight.keysightb1500.constants</span></code>:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -781,7 +760,7 @@ defaultdict(list,
 <p>Before sourcing or doing a measurement, the respective channel has to be enabled. There are two ways to enable/disable a channel: - By directly addressing the module - By addressing the mainframe and specifying which channel(s) to be enabled</p>
 <p>The second method is useful if multiple channels shall be enabled, or for programmatic en-/disabling of channels. It also allows to en-/disable all channels with one call.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -792,7 +771,7 @@ defaultdict(list,
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -816,8 +795,8 @@ defaultdict(list,
 <div class="section" id="Perform-self-calibration">
 <h3>Perform self calibration<a class="headerlink" href="#Perform-self-calibration" title="Permalink to this headline">¶</a></h3>
 <p>Calibration takes about 30 seconds (the visa timeout for it is controlled by <code class="docutils literal notranslate"><span class="pre">b1500.calibration_time_out</span></code> attribute).</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -825,22 +804,13 @@ defaultdict(list,
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;CALResponse.PASSED: 0&gt;
-</pre></div></div>
-</div>
 </div>
 <div class="section" id="Performing-sampling-measurements">
 <h3>Performing sampling measurements<a class="headerlink" href="#Performing-sampling-measurements" title="Permalink to this headline">¶</a></h3>
 <p>This section outlines steps to perform sampling measurement.</p>
 <p>Set a sample rate and number of samples.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -853,7 +823,7 @@ defaultdict(list,
 </div>
 <p>Assign timing parameters to SMU.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -863,7 +833,7 @@ defaultdict(list,
 </div>
 <p>Autozero is generally disabled for sampling measurement.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -873,7 +843,7 @@ defaultdict(list,
 </div>
 <p>Set SMU to sampling mode.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -883,7 +853,7 @@ defaultdict(list,
 </div>
 <p>SMU is configured with by assigning voltage output range, input output range and compliance. While forcing voltage, current should be the compliance and vice versa.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -897,7 +867,7 @@ defaultdict(list,
 </div>
 <p>Set the averaging to 1 otherwise the measurement takes 10 times more time.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -907,7 +877,7 @@ defaultdict(list,
 </div>
 <p>Set the voltage</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -919,7 +889,7 @@ defaultdict(list,
 <p>We are now ready to start the sampling measurement. We first initialize the database and create-new/load-old experiment. Then we register our dependent and independent parameters and start the measurement.</p>
 <p><strong>Note</strong> that the default values of label and units are not defined for the parameter sampling measurement trace. Hence we first set them according to what is being measured: in this case we will measure current in A. It is important to set the label and the unit before the measurement in order to have this information when looking at the acquired data, for example when plotting it with <code class="docutils literal notranslate"><span class="pre">plot_dataset</span></code> as shown below.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -931,8 +901,8 @@ defaultdict(list,
 </pre></div>
 </div>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -947,17 +917,9 @@ defaultdict(list,
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Starting experimental run with id: 2218.
-</pre></div></div>
-</div>
 <p>Thanks to the <code class="docutils literal notranslate"><span class="pre">label</span></code> and <code class="docutils literal notranslate"><span class="pre">unit</span></code> set above for the <code class="docutils literal notranslate"><span class="pre">sampling_measurement_trace</span></code> parameter, the <code class="docutils literal notranslate"><span class="pre">plot_dataset</span></code> function is able to produce a plot with a useful label for the vertical axis, see below:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -965,25 +927,9 @@ Starting experimental run with id: 2218.
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-([&lt;matplotlib.axes._subplots.AxesSubplot at 0x24a82b287f0&gt;], [None])
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_49_1.png" src="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_49_1.png" />
-</div>
-</div>
 <p>Check compliance: For the values which are compliant the output is one and for others it is zero. A quick to visualize of your measurements are compliant is to plot the compliance data and look if any value of zero.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -991,16 +937,8 @@ Starting experimental run with id: 2218.
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-All measurements are normal
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1010,16 +948,9 @@ All measurements are normal
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_52_0.png" src="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_52_0.png" />
-</div>
-</div>
 <p>The channel number of the measured data can be obtained in the following way.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1028,18 +959,9 @@ All measurements are normal
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[&#39;CH1&#39;, &#39;CH1&#39;, &#39;CH1&#39;, &#39;CH1&#39;, &#39;CH1&#39;]
-</pre></div></div>
-</div>
 <p>If you want to know the type of the measured data, for ex ‘I’ or ‘V’ the following method can be used.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1048,18 +970,9 @@ All measurements are normal
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[&#39;I&#39;, &#39;I&#39;, &#39;I&#39;, &#39;I&#39;, &#39;I&#39;]
-</pre></div></div>
-</div>
 <p>The measurement status can be obtained using:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1068,18 +981,9 @@ All measurements are normal
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[&#39;N&#39;, &#39;N&#39;, &#39;N&#39;, &#39;N&#39;, &#39;N&#39;]
-</pre></div></div>
-</div>
 <p>The variable ‘data_status’ is a list of strings of measurement status for each data point. One can look at the meaning of the statuses in <code class="docutils literal notranslate"><span class="pre">constants.ComplianceStatus</span></code> class. It enlists meaning of all possible measurement status. For example: in case the measurement status is ‘C’ its meaning can be found as following.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1087,32 +991,14 @@ All measurements are normal
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;ComplianceStatus.N: &#39;No status error occurred.&#39;&gt;
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">constants</span><span class="o">.</span><span class="n">ComplianceStatus</span><span class="o">.</span><span class="n">C</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;ComplianceStatus.C: &#39;Reached compliance limit.&#39;&gt;
-</pre></div></div>
 </div>
 </div>
 <div class="section" id="CV-Sweep">
@@ -1124,21 +1010,21 @@ All measurements are normal
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">b1500</span><span class="o">.</span><span class="n">enable_channels</span><span class="p">()</span>
+<span></span><span class="n">b1500</span><span class="o">.</span><span class="n">cmu</span><span class="o">.</span><span class="n">enable_outputs</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">b1500</span><span class="o">.</span><span class="n">cmu1</span><span class="o">.</span><span class="n">setup_staircase_cv</span><span class="p">(</span>
-    <span class="n">v_start</span><span class="o">=-</span><span class="mi">3</span><span class="p">,</span>
-    <span class="n">v_end</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">v_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">v_end</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">n_steps</span><span class="o">=</span><span class="mi">201</span><span class="p">,</span>
-    <span class="n">freq</span><span class="o">=</span><span class="mf">100e3</span><span class="p">,</span>
-    <span class="n">ac_rms</span><span class="o">=</span><span class="mf">30e-3</span><span class="p">,</span>
+    <span class="n">freq</span><span class="o">=</span><span class="mf">1e3</span><span class="p">,</span>
+    <span class="n">ac_rms</span><span class="o">=</span><span class="mf">250e-3</span><span class="p">,</span>
     <span class="n">post_sweep_voltage_condition</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="o">.</span><span class="n">STOP</span><span class="p">,</span>
     <span class="n">adc_mode</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">ACT</span><span class="o">.</span><span class="n">Mode</span><span class="o">.</span><span class="n">PLC</span><span class="p">,</span>
     <span class="n">adc_coef</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
@@ -1152,31 +1038,24 @@ All measurements are normal
     <span class="n">measure_delay</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="n">abort_enabled</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="o">.</span><span class="n">ENABLED</span><span class="p">,</span>
     <span class="n">sweep_mode</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">SweepMode</span><span class="o">.</span><span class="n">LINEAR</span><span class="p">,</span>
-    <span class="n">volt_monitor</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">volt_monitor</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[&#39;+0,&#34;No Error.&#34;&#39;]
-</pre></div></div>
 </div>
 <p>If the setup function does not output any error then we are ready for the measurement.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">initialise_database</span><span class="p">()</span>
-<span class="n">exp</span> <span class="o">=</span> <span class="n">load_or_create_experiment</span><span class="p">(</span><span class="n">experiment_name</span><span class="o">=</span><span class="s1">&#39;dummy_capacitance_measurement&#39;</span><span class="p">,</span>
-                          <span class="n">sample_name</span><span class="o">=</span><span class="s2">&quot;no sample&quot;</span><span class="p">)</span>
-<span class="n">meas</span>  <span class="o">=</span> <span class="n">Measurement</span><span class="p">(</span><span class="n">exp</span><span class="o">=</span><span class="n">exp</span><span class="p">)</span>
-<span class="n">meas</span><span class="o">.</span><span class="n">register_parameter</span><span class="p">(</span><span class="n">b1500</span><span class="o">.</span><span class="n">cmu1</span><span class="o">.</span><span class="n">run_sweep</span><span class="p">)</span>
+<span class="n">exp</span> <span class="o">=</span> <span class="n">load_or_create_experiment</span><span class="p">(</span>
+    <span class="n">experiment_name</span><span class="o">=</span><span class="s1">&#39;dummy_capacitance_measurement&#39;</span><span class="p">,</span>
+    <span class="n">sample_name</span><span class="o">=</span><span class="s2">&quot;no sample&quot;</span>
+<span class="p">)</span>
+<span class="n">meas</span> <span class="o">=</span> <span class="n">Measurement</span><span class="p">(</span><span class="n">exp</span><span class="o">=</span><span class="n">exp</span><span class="p">)</span>
 
+<span class="n">meas</span><span class="o">.</span><span class="n">register_parameter</span><span class="p">(</span><span class="n">b1500</span><span class="o">.</span><span class="n">cmu1</span><span class="o">.</span><span class="n">run_sweep</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="n">meas</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="k">as</span> <span class="n">datasaver</span><span class="p">:</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">b1500</span><span class="o">.</span><span class="n">cmu1</span><span class="o">.</span><span class="n">run_sweep</span><span class="p">()</span>
@@ -1189,12 +1068,12 @@ All measurements are normal
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Starting experimental run with id: 2227.
+Starting experimental run with id: 2282.
 </pre></div></div>
 </div>
 <p>The ouput of the <code class="docutils literal notranslate"><span class="pre">run_sweep</span></code> is a primary parameter (Capacitance) and a secondary parameter (Dissipation). The type of primary and secondary parameter depends on the impedance model set in the <code class="docutils literal notranslate"><span class="pre">setup_staircase_cv</span></code> function (or via the corresponding <code class="docutils literal notranslate"><span class="pre">impedance_model</span></code> parameter). The setpoints of both the parameters are the same voltage values as defined by <code class="docutils literal notranslate"><span class="pre">setup_staircase_cv</span></code> (behind the scenes, those values are available in the <code class="docutils literal notranslate"><span class="pre">cv_sweep_voltages</span></code> parameter).</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1203,13 +1082,13 @@ Starting experimental run with id: 2227.
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-([&lt;matplotlib.axes._subplots.AxesSubplot at 0x172093df518&gt;,
-  &lt;matplotlib.axes._subplots.AxesSubplot at 0x172094f4eb8&gt;],
+([&lt;matplotlib.axes._subplots.AxesSubplot at 0x270ca3ca5c0&gt;,
+  &lt;matplotlib.axes._subplots.AxesSubplot at 0x270ca27a8d0&gt;],
  [None, None])
 </pre></div></div>
 </div>
@@ -1228,12 +1107,162 @@ Starting experimental run with id: 2227.
 </div>
 </div>
 </div>
+<div class="section" id="IV-Sweep">
+<h3>IV Sweep<a class="headerlink" href="#IV-Sweep" title="Permalink to this headline">¶</a></h3>
+<p>This section explains the IV Staircase sweep measurements.</p>
+<p>Enable the channels.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">b1500</span><span class="o">.</span><span class="n">smu1</span><span class="o">.</span><span class="n">enable_outputs</span><span class="p">()</span>
+<span class="n">b1500</span><span class="o">.</span><span class="n">smu2</span><span class="o">.</span><span class="n">enable_outputs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Always good to do for the safety of the measured sample</span>
+<span class="n">b1500</span><span class="o">.</span><span class="n">smu2</span><span class="o">.</span><span class="n">voltage</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">b1500</span><span class="o">.</span><span class="n">smu1</span><span class="o">.</span><span class="n">voltage</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Setting up smu1 and smu2 for running the staircase sweep. One of the smu’s is used for sweep. Both the smu’s are used for acquiring data. In the setup below, smu1 is used to sweep over the sweep voltages -3 to 3 in 201 steps.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">b1500</span><span class="o">.</span><span class="n">smu1</span><span class="o">.</span><span class="n">setup_staircase_sweep</span><span class="p">(</span>
+    <span class="n">v_src_range</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">VOutputRange</span><span class="o">.</span><span class="n">AUTO</span><span class="p">,</span>
+    <span class="n">v_start</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">v_end</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">n_steps</span> <span class="o">=</span> <span class="mi">201</span><span class="p">,</span>
+    <span class="n">av_coef</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">step_delay</span> <span class="o">=</span> <span class="mf">0.225</span><span class="p">,</span>
+    <span class="n">abort_enabled</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="o">.</span><span class="n">ENABLED</span><span class="p">,</span>
+    <span class="n">i_meas_range</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">IMeasRange</span><span class="o">.</span><span class="n">FIX_10nA</span><span class="p">,</span>
+    <span class="n">i_comp</span> <span class="o">=</span> <span class="mf">1e-8</span><span class="p">,</span>
+    <span class="n">sweep_mode</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">SweepMode</span><span class="o">.</span><span class="n">LINEAR</span><span class="p">,</span>
+    <span class="c1"># and there are more arguments with default values</span>
+    <span class="c1"># that might need to be changed for your</span>
+    <span class="c1"># particular measurement situation</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">smu2</span></code> is kept at constant voltage and at different compliance and measurement range settings.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">b1500</span><span class="o">.</span><span class="n">smu2</span><span class="o">.</span><span class="n">voltage</span><span class="p">(</span><span class="mf">10e-3</span><span class="p">)</span>
+<span class="n">b1500</span><span class="o">.</span><span class="n">smu2</span><span class="o">.</span><span class="n">enable_filter</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">b1500</span><span class="o">.</span><span class="n">smu2</span><span class="o">.</span><span class="n">measurement_operation_mode</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">CMM</span><span class="o">.</span><span class="n">Mode</span><span class="o">.</span><span class="n">COMPLIANCE_SIDE</span><span class="p">)</span>
+<span class="n">b1500</span><span class="o">.</span><span class="n">smu2</span><span class="o">.</span><span class="n">current_measurement_range</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">IMeasRange</span><span class="o">.</span><span class="n">FIX_10uA</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">b1500.set_measurement_mode</span></code> is used to define measurement mode and the channels from which data is extracted from. Here, channels correspond to SMU1 and SMU2 respectively - the SMU which is setup to run the sweep needs to go <strong>FIRST</strong>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">b1500</span><span class="o">.</span><span class="n">set_measurement_mode</span><span class="p">(</span>
+    <span class="n">mode</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">MM</span><span class="o">.</span><span class="n">Mode</span><span class="o">.</span><span class="n">STAIRCASE_SWEEP</span><span class="p">,</span>
+    <span class="n">channels</span><span class="o">=</span><span class="p">(</span><span class="n">b1500</span><span class="o">.</span><span class="n">smu1</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">b1500</span><span class="o">.</span><span class="n">smu2</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="p">)</span>
+<span class="c1"># SMUs have only one channel so using `channels[0]` is enough</span>
+<span class="c1"># This might be improved in the future for better clarity and user convenience.</span>
+</pre></div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">run_iv_staircase_sweep</span></code> is used to run the sweep</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">initialise_database</span><span class="p">()</span>
+<span class="n">exp</span> <span class="o">=</span> <span class="n">load_or_create_experiment</span><span class="p">(</span>
+    <span class="n">experiment_name</span><span class="o">=</span><span class="s1">&#39;dummy_iv_sweep_measurement&#39;</span><span class="p">,</span>
+    <span class="n">sample_name</span><span class="o">=</span><span class="s2">&quot;no sample&quot;</span>
+<span class="p">)</span>
+<span class="n">meas</span> <span class="o">=</span> <span class="n">Measurement</span><span class="p">(</span><span class="n">exp</span><span class="o">=</span><span class="n">exp</span><span class="p">)</span>
+
+<span class="c1"># As per user needs, names and labels of the parameters inside the</span>
+<span class="c1"># MultiParameter can be adjusted to reflect what is actually being</span>
+<span class="c1"># measured, here we do that in order to provide an example:</span>
+<span class="n">b1500</span><span class="o">.</span><span class="n">run_iv_staircase_sweep</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;gate_current&#39;</span><span class="p">,</span> <span class="s1">&#39;source_drain_current&#39;</span><span class="p">)</span>
+<span class="n">b1500</span><span class="o">.</span><span class="n">run_iv_staircase_sweep</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Gate current&#39;</span><span class="p">,</span> <span class="s1">&#39;Source-drain current&#39;</span><span class="p">)</span>
+
+<span class="n">meas</span><span class="o">.</span><span class="n">register_parameter</span><span class="p">(</span><span class="n">b1500</span><span class="o">.</span><span class="n">run_iv_staircase_sweep</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">meas</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="k">as</span> <span class="n">datasaver</span><span class="p">:</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">b1500</span><span class="o">.</span><span class="n">run_iv_staircase_sweep</span><span class="p">()</span>
+    <span class="n">datasaver</span><span class="o">.</span><span class="n">add_result</span><span class="p">((</span><span class="n">b1500</span><span class="o">.</span><span class="n">run_iv_staircase_sweep</span><span class="p">,</span> <span class="n">res</span><span class="p">))</span>
+
+<span class="c1"># In production code, remeber to revert the names/labels of the</span>
+<span class="c1"># run_iv_staircase_sweep MultiParameter in order to avoid confusion.</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Starting experimental run with id: 2307.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plot_dataset</span><span class="p">(</span><span class="n">datasaver</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+([&lt;matplotlib.axes._subplots.AxesSubplot at 0x2519c477ac8&gt;,
+  &lt;matplotlib.axes._subplots.AxesSubplot at 0x2519c4a45c0&gt;],
+ [None, None])
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_83_1.png" src="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_83_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_83_2.png" src="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_83_2.png" />
+</div>
+</div>
+</div>
 <div class="section" id="Performing-phase-compensation">
 <h3>Performing phase compensation<a class="headerlink" href="#Performing-phase-compensation" title="Permalink to this headline">¶</a></h3>
 <p>The phase compensation is performed to adjust the phase zero.</p>
 <p>One must take care of two things before executing the phase compensation. First, make sure that all the channel outputs are enabled else instrument throws an error.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1243,7 +1272,7 @@ Starting experimental run with id: 2227.
 </div>
 <p>Second, the phase compensation mode must be set to manual.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1252,8 +1281,8 @@ Starting experimental run with id: 2227.
 </div>
 </div>
 <p>Now the phase compensation can be performed as follows. This operation takes about 30 seconds (the visa timeout for this operation is set via <code class="docutils literal notranslate"><span class="pre">b1500.cmu1.phase_compensation_timeout</span></code> attribute).</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1261,33 +1290,15 @@ Starting experimental run with id: 2227.
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;Response.PASSED: 0&gt;
-</pre></div></div>
-</div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">phase_compensation</span></code> method also supports loading data of previously performed phase compensation. To use that, explicitly pass the operation mode argument:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">b1500</span><span class="o">.</span><span class="n">cmu1</span><span class="o">.</span><span class="n">phase_compensation</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">ADJQuery</span><span class="o">.</span><span class="n">Mode</span><span class="o">.</span><span class="n">USE_LAST</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;Response.PASSED: 0&gt;
-</pre></div></div>
 </div>
 </div>
 <div class="section" id="Performing-Open/Short/Load-correction">
@@ -1296,7 +1307,7 @@ Starting experimental run with id: 2227.
 <h4>Set and get reference values<a class="headerlink" href="#Set-and-get-reference-values" title="Permalink to this headline">¶</a></h4>
 <p>Use the following method to set the calibration values or reference values of the open/short/load standard. Here, we are using open correction with Cp-G mode. The primary reference value, which is the value for Cp (in F), is set to 0.00001, and the secondary reference value, which is the value of G (in S), is set to 0.00002. These values are completely arbitrary, so please change them according to your experiments.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1308,8 +1319,8 @@ Starting experimental run with id: 2227.
 </div>
 </div>
 <p>You can retrieve the values you have set for calibration or the reference values of the open/short/load standard in the following way:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1317,21 +1328,12 @@ Starting experimental run with id: 2227.
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&#39;Mode: Cp_G, Primary Cp: 1e-05 F, Secondary G: 2e-05 S&#39;
-</pre></div></div>
-</div>
 </div>
 <div class="section" id="Add-CMU-output-frequency-to-the-list-for-correction">
 <h4>Add CMU output frequency to the list for correction<a class="headerlink" href="#Add-CMU-output-frequency-to-the-list-for-correction" title="Permalink to this headline">¶</a></h4>
 <p>You can add to the list of frequencies supported by the instrument to be used for the data correction. The frequency value can be given with a certain resolution as per Table 4-18 in the programming manual.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1345,7 +1347,7 @@ Starting experimental run with id: 2227.
 <p>Clear the frequency list for the correction data measurement using the following methods. Correction data will be invalid after calls to these methods, so you will have to again perform the open/short/load correction.</p>
 <p>There are two modes in which you can clear the frequency list. First is clearing the list of frequencies:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1355,7 +1357,7 @@ Starting experimental run with id: 2227.
 </div>
 <p>Second is clearing the list of frequencies and also setting it to a default list of frequencies (for the list of default frequencies, refer to the documentation of the <code class="docutils literal notranslate"><span class="pre">CLCORR</span></code> command in the programming manual):</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1367,8 +1369,8 @@ Starting experimental run with id: 2227.
 <div class="section" id="Query-CMU-output-frequency-list">
 <h4>Query CMU output frequency list<a class="headerlink" href="#Query-CMU-output-frequency-list" title="Permalink to this headline">¶</a></h4>
 <p>It is possible to query the total number of frequencies in the list:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1376,18 +1378,9 @@ Starting experimental run with id: 2227.
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-23.0
-</pre></div></div>
-</div>
 <p>It is also possible to query the values of specific frequencies using the same method by specifying an index within the frequency list:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1395,21 +1388,12 @@ Starting experimental run with id: 2227.
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-2000.0
-</pre></div></div>
-</div>
 </div>
 <div class="section" id="Open/Short/Load-Correction">
 <h4>Open/Short/Load Correction<a class="headerlink" href="#Open/Short/Load-Correction" title="Permalink to this headline">¶</a></h4>
 <p>As per description in the programming guide, we first set the oscillator level of the CMU output signal.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1419,8 +1403,8 @@ Starting experimental run with id: 2227.
 </div>
 </div>
 <p>To perform open/short/load correction connect the open/short/load standard and execute the following command to perform and enable the correction.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1430,19 +1414,10 @@ Starting experimental run with id: 2227.
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&#39;Correction status SUCCESSFUL and Enable ON&#39;
-</pre></div></div>
-</div>
 <p>In case you would only like to perform the correction but not enable it, you can use separate methods <code class="docutils literal notranslate"><span class="pre">perform</span></code> and <code class="docutils literal notranslate"><span class="pre">enable</span></code>.</p>
 <p>To check whether a correction is enabled, use the following method:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1450,18 +1425,9 @@ Starting experimental run with id: 2227.
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;Response.ON: 1&gt;
-</pre></div></div>
-</div>
 <p>To disable a performed correction, use the following method:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1478,7 +1444,7 @@ Starting experimental run with id: 2227.
 <p>To source a voltage/current do the following: 1. Configure source range, and (optionally) compliance settings 2. Enable the channel 3. Force the desired voltage 4. (optionally) Disable the channel</p>
 <p><strong>Note: The source settings (Step 1) are persistent until changed again. So for sucessive measurements the configuration can be omitted.</strong></p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1494,7 +1460,7 @@ Starting experimental run with id: 2227.
 <p>To measure do the following: 1. Configure the measure range 2. Enable the channel (if not yet enabled) 3. Do the measurement 4. (optionally) Disable the channel</p>
 <p><strong>Note: The measure settings (Step 1) are persistent until changed again. So for sucessive measurements the configuration can be omitted.</strong></p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1514,7 +1480,7 @@ Starting experimental run with id: 2227.
 <p>Both the mainframe driver and SMU driver implement convenience methods for controlling integration time of the <em>High Speed Spot</em> measurement, which allow setting ADC type, and setting the frequenty used NPLC mode.</p>
 <p>Use the following methods on the mainframe instance to set up the ADCs to NPLC mode:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1532,7 +1498,7 @@ Starting experimental run with id: 2227.
 </div>
 <p>And then use the following methods on the SMU instances to use particular ADC for the particular SMU:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1553,23 +1519,14 @@ Starting experimental run with id: 2227.
 <div class="section" id="Error-Message">
 <h2>Error Message<a class="headerlink" href="#Error-Message" title="Permalink to this headline">¶</a></h2>
 <p>The error messages from the instrument can be read using the following method. This method reads one error code from the head of the error queue and removes that code from the queue. The read error is returned as the response of this method.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">b1500</span><span class="o">.</span><span class="n">error_message</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&#39;+0,&#34;No Error.&#34;&#39;
-</pre></div></div>
 </div>
 <p>Here, the response message contains an error number and an error message. In some cases the error message may also contain the additional information such as the slot number. They are separated by a semicolon (;). For example, if the error 305 occurs on the slot 1, this method returns the following response. 305,“Excess current in HPSMU.; SLOT1”</p>
 <p>If no error occurred, this command returns 0,“No Error”.</p>
@@ -1580,7 +1537,7 @@ Starting experimental run with id: 2227.
 <p>Only some very minimal checks are done to the command string. For example some commands have to be the <em>last</em> command in a sequence of commands because the fill the output queue. Adding additional commands after that is not allowed.</p>
 <p>As an example, a “voltage source + current measurement” is done, similar as was done above with the high level interface.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1600,8 +1557,8 @@ Starting experimental run with id: 2227.
 </pre></div>
 </div>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1609,18 +1566,10 @@ Starting experimental run with id: 2227.
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-CN 1;DV 1,0,1.5,0.1;TI 1,-16;CL 1
-</pre></div></div>
-</div>
 <p>The message string can be sent to the instrument. To parse the response of this spot measurement command, use the <code class="docutils literal notranslate"><span class="pre">KeysightB1500.parse_spot_measurement_response</span></code> static method.</p>
 <p><code class="docutils literal notranslate"><span class="pre">parse_spot_measurement_response</span></code> will return a <code class="docutils literal notranslate"><span class="pre">dict</span></code> that contains the measurement value together with the measurement channel, info on what was measured (current, voltage, capacitance, …), and status information. For a detailed description, see the user manual.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1630,18 +1579,9 @@ CN 1;DV 1,0,1.5,0.1;TI 1,-16;CL 1
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-{&#39;status&#39;: &#39;N&#39;, &#39;chnr&#39;: &#39;A&#39;, &#39;dtype&#39;: &#39;I&#39;, &#39;value&#39;: 0.0}
-</pre></div></div>
-</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">MessageBuilder</span></code> object can be cleared, which allows the object to be reused to generate a new message string.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1651,19 +1591,10 @@ CN 1;DV 1,0,1.5,0.1;TI 1,-16;CL 1
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&#39;&#39;
-</pre></div></div>
-</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">MessageBuilder</span></code> provides a <em>fluent</em> interface, which means every call on the <code class="docutils literal notranslate"><span class="pre">MessageBuilder</span></code> object always returns the object itself, with the exeption of <code class="docutils literal notranslate"><span class="pre">MessageBuilder.message</span></code> which <strong>returns the compiled message string</strong>.</p>
 <p>This means that the same message as in the first example could’ve been assembled like this:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1684,15 +1615,6 @@ CN 1;DV 1,0,1.5,0.1;TI 1,-16;CL 1
 <span class="n">KeysightB1500</span><span class="o">.</span><span class="n">parse_spot_measurement_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-{&#39;status&#39;: &#39;N&#39;, &#39;chnr&#39;: &#39;A&#39;, &#39;dtype&#39;: &#39;I&#39;, &#39;value&#39;: 0.0}
-</pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:

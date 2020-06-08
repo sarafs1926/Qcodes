@@ -171,12 +171,13 @@
 <span class="n">_FMTResponse</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;FMTResponse&#39;</span><span class="p">,</span> <span class="s1">&#39;value status channel type&#39;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="parse_fmt_1_0_response"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.parse_fmt_1_0_response">[docs]</a><span class="k">def</span> <span class="nf">parse_fmt_1_0_response</span><span class="p">(</span><span class="n">raw_data_val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_FMTResponse</span><span class="p">:</span>
+<div class="viewcode-block" id="fmt_response_base_parser"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.fmt_response_base_parser">[docs]</a><span class="k">def</span> <span class="nf">fmt_response_base_parser</span><span class="p">(</span><span class="n">raw_data_val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_FMTResponse</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parse the response from SPA for `FMT 1,0` format  into a named tuple</span>
 <span class="sd">    with names, value (value of the data), status (Normal or with compliance</span>
 <span class="sd">    error such as C, T, V), channel (channel number of the output data such</span>
-<span class="sd">    as CH1,CH2), type (current &#39;I&#39; or voltage &#39;V&#39;).</span>
+<span class="sd">    as CH1,CH2), type (current &#39;I&#39; or voltage &#39;V&#39;). This parser is tested</span>
+<span class="sd">    for FMT1,0 and FMT1,1 response.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        raw_data_val: Unparsed (raw) data for the instrument.</span>
@@ -427,7 +428,16 @@
         <span class="n">is_enabled</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">)</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span>
             <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">activated_channels</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="n">is_enabled</span></div></div>
+        <span class="k">return</span> <span class="n">is_enabled</span></div>
+
+<div class="viewcode-block" id="B1500Module.clear_timer_count"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.B1500Module.clear_timer_count">[docs]</a>    <span class="k">def</span> <span class="nf">clear_timer_count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This command clears the timer count. This command is effective for</span>
+<span class="sd">        all measurement modes, regardless of the TSC setting. This command</span>
+<span class="sd">        is not effective for the 4 byte binary data output format</span>
+<span class="sd">        (FMT3 and FMT4).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="o">.</span><span class="n">clear_timer_count</span><span class="p">(</span><span class="n">chnum</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

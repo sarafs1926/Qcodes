@@ -157,13 +157,21 @@
             
   <h1>Source code for qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span>
 
 <span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">ParameterWithSetpoints</span>
 <span class="kn">from</span> <span class="nn">.message_builder</span> <span class="kn">import</span> <span class="n">MessageBuilder</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">constants</span>
-<span class="kn">from</span> <span class="nn">.KeysightB1500_module</span> <span class="kn">import</span> <span class="n">parse_fmt_1_0_response</span><span class="p">,</span> <span class="n">_FMTResponse</span>
+<span class="kn">from</span> <span class="nn">.KeysightB1500_module</span> <span class="kn">import</span> <span class="n">fmt_response_base_parser</span><span class="p">,</span> <span class="n">_FMTResponse</span>
+
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A</span> \
+        <span class="kn">import</span> <span class="nn">B1517A</span>
+    <span class="kn">from</span> <span class="nn">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base</span> \
+        <span class="kn">import</span> <span class="nn">KeysightB1500</span>
 
 
 <div class="viewcode-block" id="MeasurementNotTaken"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement.MeasurementNotTaken">[docs]</a><span class="k">class</span> <span class="nc">MeasurementNotTaken</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
@@ -183,9 +191,13 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">:</span> <span class="s2">&quot;B1517A&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="p">:</span> <span class="s2">&quot;KeysightB1500&quot;</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">_FMTResponse</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SamplingMeasurement.get_raw"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement.SamplingMeasurement.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SamplingMeasurement.get_raw"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement.SamplingMeasurement.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This performs sampling  measurements. However since the measurement</span>
 <span class="sd">        time can vary from few seconds to hundreds of minutes we first set</span>
@@ -217,7 +229,7 @@
             <span class="n">raw_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span>
                 <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">xe</span><span class="p">()</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">parse_fmt_1_0_response</span><span class="p">(</span><span class="n">raw_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">fmt_response_base_parser</span><span class="p">(</span><span class="n">raw_data</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SamplingMeasurement.compliance"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement.SamplingMeasurement.compliance">[docs]</a>    <span class="k">def</span> <span class="nf">compliance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
