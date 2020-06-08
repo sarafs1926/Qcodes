@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>qcodes.configuration.config &mdash; QCoDeS 0.14.0 documentation</title>
+  <title>qcodes.configuration.config &mdash; QCoDeS 0.15.0a1 documentation</title>
   
 
   
@@ -228,14 +228,14 @@
                                                  <span class="n">schema_file_name</span><span class="p">)</span>
     <span class="sd">&quot;&quot;&quot;Filename of cwd schema&quot;&quot;&quot;</span>
 
-    <span class="n">current_schema</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">current_schema</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;DotDict&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="sd">&quot;&quot;&quot;Validators and descriptions of config values&quot;&quot;&quot;</span>
-    <span class="n">current_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">current_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;DotDict&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="sd">&quot;&quot;&quot;Valid config values&quot;&quot;&quot;</span>
 
-    <span class="n">defaults</span><span class="p">:</span> <span class="nb">dict</span>
+    <span class="n">defaults</span><span class="p">:</span> <span class="s1">&#39;DotDict&#39;</span>
     <span class="sd">&quot;&quot;&quot;The default configuration&quot;&quot;&quot;</span>
-    <span class="n">defaults_schema</span><span class="p">:</span> <span class="nb">dict</span>
+    <span class="n">defaults_schema</span><span class="p">:</span> <span class="s1">&#39;DotDict&#39;</span>
     <span class="sd">&quot;&quot;&quot;The default schema&quot;&quot;&quot;</span>
 
     <span class="n">_diff_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
@@ -251,7 +251,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">defaults</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">defaults_schema</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_default</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_config</span><span class="p">()</span>
 
-<div class="viewcode-block" id="Config.load_default"><a class="viewcode-back" href="../../../api/configuration/config.html#qcodes.configuration.config.Config.load_default">[docs]</a>    <span class="k">def</span> <span class="nf">load_default</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
+<div class="viewcode-block" id="Config.load_default"><a class="viewcode-back" href="../../../api/configuration/config.html#qcodes.configuration.config.Config.load_default">[docs]</a>    <span class="k">def</span> <span class="nf">load_default</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="s1">&#39;DotDict&#39;</span><span class="p">,</span> <span class="s1">&#39;DotDict&#39;</span><span class="p">]:</span>
         <span class="n">defaults</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_config</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_file_name</span><span class="p">)</span>
         <span class="n">defaults_schema</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_config</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema_default_file_name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">defaults</span><span class="p">,</span> <span class="n">defaults_schema</span><span class="p">)</span>
