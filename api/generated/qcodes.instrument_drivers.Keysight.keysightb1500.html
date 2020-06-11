@@ -267,6 +267,13 @@
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.KeysightB1500.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param">cmd</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_base.html#KeysightB1500.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.KeysightB1500.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend write method from the super to ask for error message each
+time a write command is called.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.KeysightB1500.add_module">
 <code class="sig-name descname">add_module</code><span class="sig-paren">(</span><em class="sig-param">name: str</em>, <em class="sig-param">module: qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.B1500Module</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_base.html#KeysightB1500.add_module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.KeysightB1500.add_module" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1075,24 +1082,6 @@ set method.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>verbose</strong> – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then information about the
 parameters that are being check is printed.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.KeysightB1500.write">
-<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param">cmd: str</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.KeysightB1500.write" title="Permalink to this definition">¶</a></dt>
-<dd><p>Write a command string with NO response to the hardware.</p>
-<p>Subclasses that transform <code class="docutils literal notranslate"><span class="pre">cmd</span></code> should override this method, and in
-it call <code class="docutils literal notranslate"><span class="pre">super().write(new_cmd)</span></code>. Subclasses that define a new
-hardware communication should instead override <code class="docutils literal notranslate"><span class="pre">write_raw</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cmd</strong> – The string to send to the instrument.</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#Exception" title="(in Python v3.6)"><strong>Exception</strong></a> – Wraps any underlying exception with extra context,
-    including the command and the instrument.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -14678,6 +14667,13 @@ If this parameter is not set, the MFCMU forces the start value.</p></li>
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param">cmd</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_base.html#KeysightB1500.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend write method from the super to ask for error message each
+time a write command is called.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500.add_module">
 <code class="sig-name descname">add_module</code><span class="sig-paren">(</span><em class="sig-param">name: str</em>, <em class="sig-param">module: qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.B1500Module</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_base.html#KeysightB1500.add_module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500.add_module" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -15486,24 +15482,6 @@ set method.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>verbose</strong> – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then information about the
 parameters that are being check is printed.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500.write">
-<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param">cmd: str</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500.write" title="Permalink to this definition">¶</a></dt>
-<dd><p>Write a command string with NO response to the hardware.</p>
-<p>Subclasses that transform <code class="docutils literal notranslate"><span class="pre">cmd</span></code> should override this method, and in
-it call <code class="docutils literal notranslate"><span class="pre">super().write(new_cmd)</span></code>. Subclasses that define a new
-hardware communication should instead override <code class="docutils literal notranslate"><span class="pre">write_raw</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cmd</strong> – The string to send to the instrument.</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#Exception" title="(in Python v3.6)"><strong>Exception</strong></a> – Wraps any underlying exception with extra context,
-    including the command and the instrument.</p>
 </dd>
 </dl>
 </dd></dl>
