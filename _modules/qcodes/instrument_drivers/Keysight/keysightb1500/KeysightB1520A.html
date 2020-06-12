@@ -269,8 +269,8 @@
 <span class="s2">                            Step source trigger delay time (in seconds) that</span>
 <span class="s2">                            is the wait time after completing a step output </span>
 <span class="s2">                            setup and before sending a step output setup </span>
-<span class="s2">                            completion trigger. 0 to the value of ``delay``, with 0.1 ms </span>
-<span class="s2">                            resolution. Numeric expression. If this</span>
+<span class="s2">                            completion trigger. 0 to the value of ``delay``, </span>
+<span class="s2">                            with 0.1 ms resolution. Numeric expression. If this</span>
 <span class="s2">                            parameter is not set, trigger delay will be 0.</span>
 <span class="s2">                            &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -302,6 +302,67 @@
                                       <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_sweep_delays</span><span class="p">(),</span>
                                       <span class="n">get_parser</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_sweep_delays_parser</span><span class="p">)</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;sweep_mode&#39;</span><span class="p">,</span>
+                           <span class="n">initial_value</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">SweepMode</span><span class="o">.</span><span class="n">LINEAR</span><span class="p">,</span>
+                           <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Enum</span><span class="p">(</span><span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">SweepMode</span><span class="p">)),</span>
+                           <span class="n">set_parser</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">SweepMode</span><span class="p">,</span>
+                           <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
+                           <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                   Sweep mode. </span>
+<span class="s2">                       1: Linear sweep (single stair, start to stop.)</span>
+<span class="s2">                       2: Log sweep (single stair, start to stop.)</span>
+<span class="s2">                       3: Linear sweep (double stair, start to stop to start.)</span>
+<span class="s2">                       4: Log sweep (double stair, start to stop to start.)</span>
+<span class="s2">                                  &quot;&quot;&quot;</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;sweep_start&#39;</span><span class="p">,</span>
+                           <span class="n">initial_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                           <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span>
+                           <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span>
+                           <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
+                           <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                   Start value of the DC bias sweep (in V). For the log  sweep, </span>
+<span class="s2">                   start and stop must have the same polarity.</span>
+<span class="s2">                                  &quot;&quot;&quot;</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;sweep_end&#39;</span><span class="p">,</span>
+                           <span class="n">initial_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                           <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span>
+                           <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span>
+                           <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
+                           <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                   Stop value of the DC bias sweep (in V). For the log sweep, </span>
+<span class="s2">                   start and stop must have the same polarity.</span>
+<span class="s2">                                  &quot;&quot;&quot;</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;sweep_steps&#39;</span><span class="p">,</span>
+                           <span class="n">initial_value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                           <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Ints</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1001</span><span class="p">),</span>
+                           <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
+                           <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                   Number of steps for staircase sweep. Possible  values from 1 to </span>
+<span class="s2">                   1001&quot;&quot;&quot;</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_chan&#39;</span><span class="p">,</span>
+                           <span class="n">initial_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                           <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_sweep_steps_group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_chan</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">sweep_mode</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">sweep_start</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">sweep_end</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">sweep_steps</span><span class="p">],</span>
+            <span class="n">set_cmd</span><span class="o">=</span><span class="s1">&#39;WDCV &#39;</span>
+                    <span class="s1">&#39;</span><span class="si">{_chan}</span><span class="s1">,&#39;</span>
+                    <span class="s1">&#39;</span><span class="si">{sweep_mode}</span><span class="s1">,&#39;</span>
+                    <span class="s1">&#39;</span><span class="si">{sweep_start}</span><span class="s1">,&#39;</span>
+                    <span class="s1">&#39;</span><span class="si">{sweep_end}</span><span class="s1">,&#39;</span>
+                    <span class="s1">&#39;</span><span class="si">{sweep_steps}</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_sweep_steps</span><span class="p">(),</span>
+            <span class="n">get_parser</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_sweep_steps_parser</span>
+        <span class="p">)</span>
+
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_get_sweep_delays</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">lrn_query</span><span class="p">(</span>
@@ -321,6 +382,35 @@
 
         <span class="n">out_str</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
         <span class="n">out_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">out_str</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="k">return</span> <span class="n">out_dict</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_sweep_steps</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">lrn_query</span><span class="p">(</span>
+            <span class="n">type_id</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">LRN</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">CV_DC_BIAS_SWEEP_MEASUREMENT_SETTINGS</span>
+        <span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">message</span>
+        <span class="k">return</span> <span class="n">cmd</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_sweep_steps_parser</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;WDCV(?P&lt;_chan&gt;.+?),(?P&lt;sweep_mode&gt;.+?),&#39;</span>
+                          <span class="sa">r</span><span class="s1">&#39;(?P&lt;sweep_start&gt;.+?),(?P&lt;sweep_end&gt;.+?),&#39;</span>
+                          <span class="sa">r</span><span class="s1">&#39;(?P&lt;sweep_steps&gt;.+?)(;|$)&#39;</span><span class="p">,</span>
+                          <span class="n">response</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Sweep steps (WDCV) not found.&#39;</span><span class="p">)</span>
+
+        <span class="n">resp_dict</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+
+        <span class="n">out_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;_chan&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;_chan&#39;</span><span class="p">])</span>
+        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;sweep_mode&#39;</span><span class="p">])</span>
+        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_start&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fixed_negative_float</span><span class="p">(</span>
+            <span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;sweep_start&#39;</span><span class="p">])</span>
+        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_end&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fixed_negative_float</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;sweep_end&#39;</span><span class="p">])</span>
+        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_steps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;sweep_steps&#39;</span><span class="p">])</span>
+
         <span class="k">return</span> <span class="n">out_dict</span>
 
     <span class="k">def</span> <span class="nf">_set_sweep_auto_abort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -406,65 +496,6 @@
 <span class="s2">            fluctuations by changing the bias and so on.&quot;&quot;&quot;</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="s1">&#39;cv_sweep&#39;</span><span class="p">,</span> <span class="n">CVSweeper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;cv_sweep&#39;</span><span class="p">))</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;sweep_mode&#39;</span><span class="p">,</span>
-                           <span class="n">initial_value</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">SweepMode</span><span class="o">.</span><span class="n">LINEAR</span><span class="p">,</span>
-                           <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Enum</span><span class="p">(</span><span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">SweepMode</span><span class="p">)),</span>
-                           <span class="n">set_parser</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">SweepMode</span><span class="p">,</span>
-                           <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
-                           <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            Sweep mode. </span>
-<span class="s2">                1: Linear sweep (single stair, start to stop.)</span>
-<span class="s2">                2: Log sweep (single stair, start to stop.)</span>
-<span class="s2">                3: Linear sweep (double stair, start to stop to start.)</span>
-<span class="s2">                4: Log sweep (double stair, start to stop to start.)</span>
-<span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;sweep_start&#39;</span><span class="p">,</span>
-                           <span class="n">initial_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-                           <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span>
-                           <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span>
-                           <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
-                           <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            Start value of the DC bias sweep (in V). For the log  sweep, </span>
-<span class="s2">            start and stop must have the same polarity.</span>
-<span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;sweep_end&#39;</span><span class="p">,</span>
-                           <span class="n">initial_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-                           <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span>
-                           <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span>
-                           <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
-                           <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            Stop value of the DC bias sweep (in V). For the log sweep, </span>
-<span class="s2">            start and stop must have the same polarity.</span>
-<span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;sweep_steps&#39;</span><span class="p">,</span>
-                           <span class="n">initial_value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                           <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Ints</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1001</span><span class="p">),</span>
-                           <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
-                           <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            Number of steps for staircase sweep. Possible  values from 1 to </span>
-<span class="s2">            1001&quot;&quot;&quot;</span><span class="p">))</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_chan&#39;</span><span class="p">,</span>
-                           <span class="n">initial_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                           <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_sweep_steps_group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_chan</span><span class="p">,</span>
-                                      <span class="bp">self</span><span class="o">.</span><span class="n">sweep_mode</span><span class="p">,</span>
-                                      <span class="bp">self</span><span class="o">.</span><span class="n">sweep_start</span><span class="p">,</span>
-                                      <span class="bp">self</span><span class="o">.</span><span class="n">sweep_end</span><span class="p">,</span>
-                                      <span class="bp">self</span><span class="o">.</span><span class="n">sweep_steps</span><span class="p">],</span>
-                                     <span class="n">set_cmd</span><span class="o">=</span><span class="s1">&#39;WDCV &#39;</span>
-                                             <span class="s1">&#39;</span><span class="si">{_chan}</span><span class="s1">,&#39;</span>
-                                             <span class="s1">&#39;</span><span class="si">{sweep_mode}</span><span class="s1">,&#39;</span>
-                                             <span class="s1">&#39;</span><span class="si">{sweep_start}</span><span class="s1">,&#39;</span>
-                                             <span class="s1">&#39;</span><span class="si">{sweep_end}</span><span class="s1">,&#39;</span>
-                                             <span class="s1">&#39;</span><span class="si">{sweep_steps}</span><span class="s1">&#39;</span><span class="p">,</span>
-                                     <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_sweep_steps</span><span class="p">(),</span>
-                                     <span class="n">get_parser</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_sweep_steps_parser</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;adc_coef&#39;</span><span class="p">,</span>
                            <span class="n">initial_value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -593,11 +624,12 @@
 
     <span class="k">def</span> <span class="nf">_cv_sweep_voltages</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="n">sign</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span> <span class="ow">and</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="n">s</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
-        <span class="n">start_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_start</span><span class="p">()</span>
-        <span class="n">end_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_end</span><span class="p">()</span>
-        <span class="n">step_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_steps</span><span class="p">()</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_mode</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_mode</span><span class="p">()</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">sign</span><span class="p">(</span><span class="n">start_value</span><span class="p">)</span> <span class="o">==</span> <span class="n">sign</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sweep_end</span><span class="p">()):</span>
+        <span class="n">start_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">sweep_start</span><span class="p">()</span>
+        <span class="n">end_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">sweep_end</span><span class="p">()</span>
+        <span class="n">step_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">sweep_steps</span><span class="p">()</span>
+        <span class="n">mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">sweep_mode</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">sign</span><span class="p">(</span><span class="n">start_value</span><span class="p">)</span> <span class="o">==</span> <span class="n">sign</span><span class="p">(</span><span class="n">end_value</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">sign</span><span class="p">(</span><span class="n">start_value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="n">start_value</span> <span class="o">=</span> <span class="n">sign</span><span class="p">(</span><span class="n">start_value</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.005</span>  <span class="c1"># resolution</span>
                 <span class="k">elif</span> <span class="n">sign</span><span class="p">(</span><span class="n">end_value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -644,7 +676,7 @@
                  <span class="mi">3</span><span class="p">:</span> <span class="n">linear_2way_sweep</span><span class="p">,</span>
                  <span class="mi">4</span><span class="p">:</span> <span class="n">log_2way_sweep</span><span class="p">}</span>
 
-        <span class="k">return</span> <span class="n">modes</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sweep_mode</span><span class="p">()](</span><span class="n">start_value</span><span class="p">,</span> <span class="n">end_value</span><span class="p">,</span> <span class="n">step_value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">modes</span><span class="p">[</span><span class="n">mode</span><span class="p">](</span><span class="n">start_value</span><span class="p">,</span> <span class="n">end_value</span><span class="p">,</span> <span class="n">step_value</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_set_voltage_dc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">dcv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">value</span><span class="p">)</span>
@@ -738,33 +770,7 @@
             <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">constants</span><span class="o">.</span><span class="n">ADJQuery</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">))</span></div>
 
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_get_sweep_steps</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">lrn_query</span><span class="p">(</span>
-            <span class="n">type_id</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">LRN</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">CV_DC_BIAS_SWEEP_MEASUREMENT_SETTINGS</span>
-        <span class="p">)</span>
-        <span class="n">cmd</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">message</span>
-        <span class="k">return</span> <span class="n">cmd</span>
 
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_get_sweep_steps_parser</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
-        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;WDCV(?P&lt;_chan&gt;.+?),(?P&lt;sweep_mode&gt;.+?),&#39;</span>
-                          <span class="sa">r</span><span class="s1">&#39;(?P&lt;sweep_start&gt;.+?),(?P&lt;sweep_end&gt;.+?),&#39;</span>
-                          <span class="sa">r</span><span class="s1">&#39;(?P&lt;sweep_steps&gt;.+?)(;|$)&#39;</span><span class="p">,</span>
-                          <span class="n">response</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Sweep steps (WDCV) not found.&#39;</span><span class="p">)</span>
-
-        <span class="n">resp_dict</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
-
-        <span class="n">out_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;_chan&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;_chan&#39;</span><span class="p">])</span>
-        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;sweep_mode&#39;</span><span class="p">])</span>
-        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_start&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fixed_negative_float</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;sweep_start&#39;</span><span class="p">])</span>
-        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_end&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fixed_negative_float</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;sweep_end&#39;</span><span class="p">])</span>
-        <span class="n">out_dict</span><span class="p">[</span><span class="s1">&#39;sweep_steps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;sweep_steps&#39;</span><span class="p">])</span>
-
-        <span class="k">return</span> <span class="n">out_dict</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_get_adc_mode</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -938,10 +944,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">step_delay</span><span class="p">(</span><span class="n">step_delay</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">trigger_delay</span><span class="p">(</span><span class="n">trigger_delay</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">measure_delay</span><span class="p">(</span><span class="n">measure_delay</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sweep_mode</span><span class="p">(</span><span class="n">sweep_mode</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sweep_start</span><span class="p">(</span><span class="n">v_start</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sweep_end</span><span class="p">(</span><span class="n">v_end</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sweep_steps</span><span class="p">(</span><span class="n">n_steps</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">sweep_mode</span><span class="p">(</span><span class="n">sweep_mode</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">sweep_start</span><span class="p">(</span><span class="n">v_start</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">sweep_end</span><span class="p">(</span><span class="n">v_end</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">sweep_steps</span><span class="p">(</span><span class="n">n_steps</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">measurement_mode</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">MM</span><span class="o">.</span><span class="n">Mode</span><span class="o">.</span><span class="n">CV_DC_SWEEP</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">impedance_model</span><span class="p">(</span><span class="n">imp_model</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ac_dc_volt_monitor</span><span class="p">(</span><span class="n">volt_monitor</span><span class="p">)</span>
@@ -1002,7 +1008,7 @@
         <span class="n">delay_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">step_delay</span><span class="p">()</span>
 
         <span class="n">nplc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">adc_coef</span><span class="p">()</span>
-        <span class="n">num_steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">sweep_steps</span><span class="p">()</span>
+        <span class="n">num_steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">cv_sweep</span><span class="o">.</span><span class="n">sweep_steps</span><span class="p">()</span>
         <span class="n">power_line_time_period</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">power_line_frequency</span>
         <span class="n">calculated_time</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">nplc</span> <span class="o">*</span> <span class="n">power_line_time_period</span> <span class="o">*</span> <span class="n">num_steps</span>
 
