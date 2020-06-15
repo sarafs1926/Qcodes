@@ -1511,6 +1511,11 @@ calibration values.</p>
 <code class="docutils literal notranslate"><span class="pre">DCORR?</span></code> command as a human-readable string.</p>
 </dd></dl>
 
+<dl class="function">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.get_name_label_unit_of_impedance_model">
+<code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.</code><code class="sig-name descname">get_name_label_unit_of_impedance_model</code><span class="sig-paren">(</span><em class="sig-param">mode: qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.MeasurementMode</em><span class="sig-paren">)</span> &#x2192; Tuple[Tuple[str, str], Tuple[str, str], Tuple[str, str]]<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_module.html#get_name_label_unit_of_impedance_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.get_name_label_unit_of_impedance_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="class">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.B1500Module">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.</code><code class="sig-name descname">B1500Module</code><span class="sig-paren">(</span><em class="sig-param">parent: KeysightB1500, name: Optional[str], slot_nr, **kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_module.html#B1500Module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.B1500Module" title="Permalink to this definition">¶</a></dt>
@@ -4232,6 +4237,11 @@ suitable method is automatically generated if <code class="docutils literal notr
 to the parameter constructor. The method is automatically wrapped to
 provide a <code class="docutils literal notranslate"><span class="pre">get</span></code> method on the parameter instance.</p>
 </dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.CVSweepMeasurement.update_name_label_unit_from_impedance_model">
+<code class="sig-name descname">update_name_label_unit_from_impedance_model</code><span class="sig-paren">(</span><em class="sig-param">model: Optional[qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.MeasurementMode] = None</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1520A.html#CVSweepMeasurement.update_name_label_unit_from_impedance_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.CVSweepMeasurement.update_name_label_unit_from_impedance_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.CVSweepMeasurement.__str__">
@@ -8152,6 +8162,180 @@ them (hence the <cite>StrEnum</cite>).</p>
 <dl class="attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.MeasurementMode.Ls_Q">
 <code class="sig-name descname">Ls_Q</code><em class="property"> = 402</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.MeasurementMode.Ls_Q" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name">
+<em class="property">class </em><code class="sig-name descname">Name</code><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/constants.html#IMP.Name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.StrEnum" title="qcodes.instrument_drivers.Keysight.keysightb1500.constants.StrEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument_drivers.Keysight.keysightb1500.constants.StrEnum</span></code></a></p>
+<p>An enumeration.</p>
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.R">
+<code class="sig-name descname">R</code><em class="property"> = 'Resistance'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.R" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.G">
+<code class="sig-name descname">G</code><em class="property"> = 'Conductance'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.G" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Z">
+<code class="sig-name descname">Z</code><em class="property"> = 'Impedance'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Z" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Y">
+<code class="sig-name descname">Y</code><em class="property"> = 'Admittance'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Y" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Cp">
+<code class="sig-name descname">Cp</code><em class="property"> = 'Parallel Capacitance'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Cp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Cs">
+<code class="sig-name descname">Cs</code><em class="property"> = 'Series Capacitance'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Cs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Lp">
+<code class="sig-name descname">Lp</code><em class="property"> = 'Parallel Inductance'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Lp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Ls">
+<code class="sig-name descname">Ls</code><em class="property"> = 'Series Inductance'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Ls" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.X">
+<code class="sig-name descname">X</code><em class="property"> = 'Reactance'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.X" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.B">
+<code class="sig-name descname">B</code><em class="property"> = 'Susceptance'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.B" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.THETA_RAD">
+<code class="sig-name descname">THETA_RAD</code><em class="property"> = 'Phase'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.THETA_RAD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.THETA_DEG">
+<code class="sig-name descname">THETA_DEG</code><em class="property"> = 'Phase'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.THETA_DEG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.D">
+<code class="sig-name descname">D</code><em class="property"> = 'Dissipation Factor'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.D" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Q">
+<code class="sig-name descname">Q</code><em class="property"> = 'Quality Factor'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Q" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Rp">
+<code class="sig-name descname">Rp</code><em class="property"> = 'Parallel Resistance'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Rp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Rs">
+<code class="sig-name descname">Rs</code><em class="property"> = 'Series Resistance'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Name.Rs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit">
+<em class="property">class </em><code class="sig-name descname">Unit</code><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/constants.html#IMP.Unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.StrEnum" title="qcodes.instrument_drivers.Keysight.keysightb1500.constants.StrEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument_drivers.Keysight.keysightb1500.constants.StrEnum</span></code></a></p>
+<p>An enumeration.</p>
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.R">
+<code class="sig-name descname">R</code><em class="property"> = 'ohms'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.R" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.G">
+<code class="sig-name descname">G</code><em class="property"> = 'S'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.G" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Z">
+<code class="sig-name descname">Z</code><em class="property"> = 'ohms'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Z" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Y">
+<code class="sig-name descname">Y</code><em class="property"> = 'S'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Y" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Cp">
+<code class="sig-name descname">Cp</code><em class="property"> = 'F'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Cp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Cs">
+<code class="sig-name descname">Cs</code><em class="property"> = 'F'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Cs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Lp">
+<code class="sig-name descname">Lp</code><em class="property"> = 'H'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Lp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Ls">
+<code class="sig-name descname">Ls</code><em class="property"> = 'H'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Ls" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.X">
+<code class="sig-name descname">X</code><em class="property"> = 'ohms'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.X" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.B">
+<code class="sig-name descname">B</code><em class="property"> = 'S'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.B" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.THETA_RAD">
+<code class="sig-name descname">THETA_RAD</code><em class="property"> = 'radian'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.THETA_RAD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.THETA_DEG">
+<code class="sig-name descname">THETA_DEG</code><em class="property"> = 'degree'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.THETA_DEG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.D">
+<code class="sig-name descname">D</code><em class="property"> = ''</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.D" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Q">
+<code class="sig-name descname">Q</code><em class="property"> = ''</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Q" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Rp">
+<code class="sig-name descname">Rp</code><em class="property"> = 'ohms'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Rp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Rs">
+<code class="sig-name descname">Rs</code><em class="property"> = 'ohms'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.Unit.Rs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

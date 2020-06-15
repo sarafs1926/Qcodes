@@ -345,6 +345,26 @@
     <span class="k">return</span> <span class="n">result_str</span></div>
 
 
+<div class="viewcode-block" id="get_name_label_unit_of_impedance_model"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.get_name_label_unit_of_impedance_model">[docs]</a><span class="k">def</span> <span class="nf">get_name_label_unit_of_impedance_model</span><span class="p">(</span>
+        <span class="n">mode</span><span class="p">:</span> <span class="n">constants</span><span class="o">.</span><span class="n">IMP</span><span class="o">.</span><span class="n">MeasurementMode</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">mode</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+
+    <span class="n">param1</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">param2</span> <span class="o">=</span> <span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+    <span class="n">label</span> <span class="o">=</span> <span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">IMP</span><span class="o">.</span><span class="n">Name</span><span class="p">[</span><span class="n">param1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+             <span class="n">constants</span><span class="o">.</span><span class="n">IMP</span><span class="o">.</span><span class="n">Name</span><span class="p">[</span><span class="n">param2</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="n">unit</span> <span class="o">=</span> <span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">IMP</span><span class="o">.</span><span class="n">Unit</span><span class="p">[</span><span class="n">param1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">constants</span><span class="o">.</span><span class="n">IMP</span><span class="o">.</span><span class="n">Unit</span><span class="p">[</span><span class="n">param2</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="p">(</span><span class="n">label</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">),</span>
+            <span class="n">label</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">name</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">unit</span></div>
+
+
 <span class="c1"># TODO notes:</span>
 <span class="c1"># - [ ] Instead of generating a Qcodes InstrumentChannel for each **module**,</span>
 <span class="c1">#   it might make more sense to generate one for each **channel**</span>

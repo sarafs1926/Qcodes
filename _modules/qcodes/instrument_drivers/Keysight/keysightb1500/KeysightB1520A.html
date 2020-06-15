@@ -168,7 +168,8 @@
 
 <span class="kn">from</span> <span class="nn">.KeysightB1500_module</span> <span class="kn">import</span> <span class="n">B1500Module</span><span class="p">,</span> <span class="n">parse_dcorr_query_response</span><span class="p">,</span> \
     <span class="n">format_dcorr_response</span><span class="p">,</span> <span class="n">_DCORRResponse</span><span class="p">,</span> <span class="n">parse_dcv_measurement_response</span><span class="p">,</span> \
-    <span class="n">_FMTResponse</span><span class="p">,</span> <span class="n">fmt_response_base_parser</span><span class="p">,</span> <span class="n">fixed_negative_float</span>
+    <span class="n">_FMTResponse</span><span class="p">,</span> <span class="n">fmt_response_base_parser</span><span class="p">,</span> <span class="n">fixed_negative_float</span><span class="p">,</span> \
+    <span class="n">get_name_label_unit_of_impedance_model</span>
 <span class="kn">from</span> <span class="nn">.message_builder</span> <span class="kn">import</span> <span class="n">MessageBuilder</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">constants</span>
 <span class="kn">from</span> <span class="nn">.constants</span> <span class="kn">import</span> <span class="n">ModuleKind</span><span class="p">,</span> <span class="n">ChNr</span><span class="p">,</span> <span class="n">MM</span>
@@ -807,6 +808,9 @@
                                               <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">imp</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">val</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;run_sweep&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">run_sweep</span><span class="o">.</span><span class="n">update_name_label_unit_from_impedance_model</span><span class="p">(</span>
+                <span class="n">model</span><span class="o">=</span><span class="n">val</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_set_ac_dc_volt_monitor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">lmn</span><span class="p">(</span><span class="n">enable_data_monitor</span><span class="o">=</span><span class="n">val</span><span class="p">)</span>
@@ -970,9 +974,9 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">instrument</span><span class="p">:</span> <span class="n">B1520A</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">name</span><span class="p">,</span>
-            <span class="n">names</span><span class="o">=</span><span class="nb">tuple</span><span class="p">([</span><span class="s1">&#39;Capacitance&#39;</span><span class="p">,</span> <span class="s1">&#39;Dissipation&#39;</span><span class="p">]),</span>
-            <span class="n">units</span><span class="o">=</span><span class="nb">tuple</span><span class="p">([</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;unit&#39;</span><span class="p">]),</span>
-            <span class="n">labels</span><span class="o">=</span><span class="nb">tuple</span><span class="p">([</span><span class="s1">&#39;Parallel Capacitance&#39;</span><span class="p">,</span> <span class="s1">&#39;Dissipation factor&#39;</span><span class="p">]),</span>
+            <span class="n">names</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+            <span class="n">units</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+            <span class="n">labels</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
             <span class="n">shapes</span><span class="o">=</span><span class="p">((</span><span class="mi">1</span><span class="p">,),)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
             <span class="n">setpoint_names</span><span class="o">=</span><span class="p">((</span><span class="s1">&#39;Voltage&#39;</span><span class="p">,),)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
             <span class="n">setpoint_labels</span><span class="o">=</span><span class="p">((</span><span class="s1">&#39;Voltage&#39;</span><span class="p">,),)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
@@ -982,6 +986,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">:</span> <span class="s2">&quot;B1520A&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="p">:</span> <span class="s2">&quot;KeysightB1500&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_name_label_unit_from_impedance_model</span><span class="p">()</span>
 
         <span class="c1">#: Data, statuses, etc. of the first measured parameter</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">param1</span> <span class="o">=</span> <span class="n">_FMTResponse</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -998,10 +1004,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_fudge</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span> <span class="c1"># fudge factor for setting timeout</span>
 
 <div class="viewcode-block" id="CVSweepMeasurement.get_raw"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.CVSweepMeasurement.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">]]:</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">impedance_model</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">model</span> <span class="o">!=</span> <span class="n">constants</span><span class="o">.</span><span class="n">IMP</span><span class="o">.</span><span class="n">MeasurementMode</span><span class="o">.</span><span class="n">Cp_D</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Run sweep only supports Cp_D impedance model&#39;</span><span class="p">)</span>
-
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">setup_fnc_already_run</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Sweep setup has not yet been run successfully&#39;</span><span class="p">)</span>
 
@@ -1040,7 +1042,19 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">shapes</span> <span class="o">=</span> <span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_voltage</span><span class="o">.</span><span class="n">value</span><span class="p">),),)</span> <span class="o">*</span> <span class="mi">2</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">setpoints</span> <span class="o">=</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_voltage</span><span class="o">.</span><span class="n">value</span><span class="p">,),)</span> <span class="o">*</span> <span class="mi">2</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">param1</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">param2</span><span class="o">.</span><span class="n">value</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">param1</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">param2</span><span class="o">.</span><span class="n">value</span></div>
+
+<div class="viewcode-block" id="CVSweepMeasurement.update_name_label_unit_from_impedance_model"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.CVSweepMeasurement.update_name_label_unit_from_impedance_model">[docs]</a>    <span class="k">def</span> <span class="nf">update_name_label_unit_from_impedance_model</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">IMP</span><span class="o">.</span><span class="n">MeasurementMode</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">impedance_model</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> \
+            <span class="n">get_name_label_unit_of_impedance_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span></div></div>
+
 
 
 <div class="viewcode-block" id="Correction"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.Correction">[docs]</a><span class="k">class</span> <span class="nc">Correction</span><span class="p">(</span><span class="n">InstrumentChannel</span><span class="p">):</span>
