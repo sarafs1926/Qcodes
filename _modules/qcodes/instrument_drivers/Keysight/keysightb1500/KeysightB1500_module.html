@@ -159,6 +159,7 @@
 <span></span><span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">InstrumentChannel</span>
 <span class="kn">from</span> <span class="nn">.message_builder</span> <span class="kn">import</span> <span class="n">MessageBuilder</span>
@@ -169,6 +170,10 @@
 
 
 <span class="n">_FMTResponse</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;FMTResponse&#39;</span><span class="p">,</span> <span class="s1">&#39;value status channel type&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="MeasurementNotTaken"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.MeasurementNotTaken">[docs]</a><span class="k">class</span> <span class="nc">MeasurementNotTaken</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span></div>
 
 
 <div class="viewcode-block" id="fmt_response_base_parser"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.fmt_response_base_parser">[docs]</a><span class="k">def</span> <span class="nf">fmt_response_base_parser</span><span class="p">(</span><span class="n">raw_data_val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_FMTResponse</span><span class="p">:</span>
@@ -370,6 +375,18 @@
 <span class="c1">#   it might make more sense to generate one for each **channel**</span>
 
 
+<div class="viewcode-block" id="get_measurement_summary"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.get_measurement_summary">[docs]</a><span class="k">def</span> <span class="nf">get_measurement_summary</span><span class="p">(</span><span class="n">status_array</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">unique_error_statuses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">status_array</span><span class="p">[</span><span class="n">status_array</span> <span class="o">!=</span> <span class="s2">&quot;N&quot;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_error_statuses</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">constants</span><span class="o">.</span><span class="n">MeasurementStatus</span><span class="p">[</span><span class="n">err</span><span class="p">]</span> <span class="k">for</span> <span class="n">err</span> <span class="ow">in</span>
+            <span class="n">unique_error_statuses</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">MeasurementStatus</span><span class="p">[</span><span class="s2">&quot;N&quot;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">summary</span></div>
+
 <div class="viewcode-block" id="B1500Module"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.B1500Module">[docs]</a><span class="k">class</span> <span class="nc">B1500Module</span><span class="p">(</span><span class="n">InstrumentChannel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for all modules of B1500 Parameter Analyzer</span>
 
@@ -458,6 +475,25 @@
 <span class="sd">        (FMT3 and FMT4).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="o">.</span><span class="n">clear_timer_count</span><span class="p">(</span><span class="n">chnum</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="StatusMixin"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.StatusMixin">[docs]</a><span class="k">class</span> <span class="nc">StatusMixin</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param1</span> <span class="o">=</span> <span class="n">_FMTResponse</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param2</span> <span class="o">=</span> <span class="n">_FMTResponse</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="s1">&#39;param1&#39;</span><span class="p">,</span> <span class="s1">&#39;param2&#39;</span><span class="p">])</span>
+
+<div class="viewcode-block" id="StatusMixin.status_summary"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.StatusMixin.status_summary">[docs]</a>    <span class="k">def</span> <span class="nf">status_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+        <span class="n">status_array_param1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">param1</span><span class="o">.</span><span class="n">status</span>
+        <span class="n">status_array_param2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">param2</span><span class="o">.</span><span class="n">status</span>
+
+        <span class="k">if</span> <span class="n">status_array_param1</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">MeasurementNotTaken</span><span class="p">(</span><span class="s2">&quot;First run_sweep to generate the data&quot;</span><span class="p">)</span>
+        <span class="n">summary_param1</span> <span class="o">=</span> <span class="n">get_measurement_summary</span><span class="p">(</span><span class="n">status_array_param1</span><span class="p">)</span>
+        <span class="n">summary_param2</span> <span class="o">=</span> <span class="n">get_measurement_summary</span><span class="p">(</span><span class="n">status_array_param2</span><span class="p">)</span>
+        <span class="n">return_dict</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">summary_param1</span><span class="p">,</span>
+                       <span class="bp">self</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">summary_param2</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">return_dict</span></div></div>
 </pre></div>
 
            </div>

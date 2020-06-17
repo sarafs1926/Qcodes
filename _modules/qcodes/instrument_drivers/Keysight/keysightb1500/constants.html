@@ -177,14 +177,14 @@
     <span class="n">Z</span> <span class="o">=</span> <span class="s1">&#39;XDATA&#39;</span></div>
 
 
-<div class="viewcode-block" id="ComplianceError"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.ComplianceError">[docs]</a><span class="k">class</span> <span class="nc">ComplianceError</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<div class="viewcode-block" id="MeasurementError"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.MeasurementError">[docs]</a><span class="k">class</span> <span class="nc">MeasurementError</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The list below enumerates all possible compliance errors and assigns</span>
 <span class="sd">    integer 0 or 1 to them. Assigning integer 1 means the data is compliant</span>
 <span class="sd">    and assigning 0 means it not compliant. As seen from the list, all cases</span>
 <span class="sd">    except when the output is N are non-compliant. To know the reason for</span>
 <span class="sd">    Non compliance in the individual case one may refer to</span>
-<span class="sd">    :class:`.ComplianceStatus`</span>
+<span class="sd">    :class:`.MeasurementStatus`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">C</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">N</span> <span class="o">=</span> <span class="mi">1</span>
@@ -196,7 +196,8 @@
     <span class="n">G</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">S</span> <span class="o">=</span> <span class="mi">0</span></div>
 
-<div class="viewcode-block" id="ComplianceStatus"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.ComplianceStatus">[docs]</a><span class="k">class</span> <span class="nc">ComplianceStatus</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
+
+<div class="viewcode-block" id="MeasurementStatus"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.MeasurementStatus">[docs]</a><span class="k">class</span> <span class="nc">MeasurementStatus</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Contains the meanings of possible compliance errors. One may look at</span>
 <span class="sd">    this list to figure out the reason for the non-compliant data.</span>

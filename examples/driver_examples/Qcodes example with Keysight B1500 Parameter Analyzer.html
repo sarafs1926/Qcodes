@@ -515,7 +515,36 @@ alt="Binder badge"
       p.appendChild(document.createTextNode('.'));
     }
   </script>
-</div><div class="section" id="Qcodes-example-with-Keysight-B1500-Semiconductor-Parameter-Analyzer">
+</div><h1><p>Table of Contents</p>
+</h1><div class="toc"><ul class="toc-item"><li><p>1  Qcodes example with Keysight B1500 Semiconductor Parameter Analyzer</p>
+<ul class="toc-item"><li><p>1.1  Instrument Short info</p>
+<ul class="toc-item"><li><p>1.1.1  Physical grouping</p>
+</li><li><p>1.1.2  Logical grouping</p>
+</li></ul></li><li><p>1.2  Qcodes driver info</p>
+<ul class="toc-item"><li><p>1.2.1  Integer Flags and Constants used in the driver</p>
+</li><li><p>1.2.2  High level interface</p>
+</li><li><p>1.2.3  Low level interface</p>
+</li></ul></li><li><p>1.3  Programming Examples</p>
+<ul class="toc-item"><li><p>1.3.1  Initializing the instrument</p>
+</li></ul></li><li><p>1.4  High Level Interface</p>
+<ul class="toc-item"><li><p>1.4.1  Identifying and selecting installed modules</p>
+</li><li><p>1.4.2  Enabling / Disabling channels</p>
+</li><li><p>1.4.3  Perform self calibration</p>
+</li><li><p>1.4.4  Performing sampling measurements</p>
+</li><li><p>1.4.5  CV Sweep</p>
+</li><li><p>1.4.6  IV Sweep</p>
+</li><li><p>1.4.7  Performing phase compensation</p>
+</li><li><p>1.4.8  Performing Open/Short/Load correction</p>
+<ul class="toc-item"><li><p>1.4.8.1  Set and get reference values</p>
+</li><li><p>1.4.8.2  Add CMU output frequency to the list for correction</p>
+</li><li><p>1.4.8.3  Clear CMU output frequency list</p>
+</li><li><p>1.4.8.4  Query CMU output frequency list</p>
+</li><li><p>1.4.8.5  Open/Short/Load Correction</p>
+</li></ul></li><li><p>1.4.9  SMU sourcing and measuring</p>
+</li><li><p>1.4.10  Setting up ADCs to NPLC mode</p>
+</li></ul></li><li><p>1.5  Error Message</p>
+</li><li><p>1.6  Low Level Interface</p>
+</li></ul></li></ul></div><div class="section" id="Qcodes-example-with-Keysight-B1500-Semiconductor-Parameter-Analyzer">
 <h1>Qcodes example with Keysight B1500 Semiconductor Parameter Analyzer<a class="headerlink" href="#Qcodes-example-with-Keysight-B1500-Semiconductor-Parameter-Analyzer" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="Instrument-Short-info">
 <h2>Instrument Short info<a class="headerlink" href="#Instrument-Short-info" title="Permalink to this headline">¶</a></h2>
@@ -587,7 +616,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : C:\Users\CryoProbeusr\.qcodes\logs\200604-12040-qcodes.log
+Qcodes Logfile : C:\Users\CryoProbeusr\.qcodes\logs\200616-13244-qcodes.log
 pyqtgraph plotting not supported, try &#34;from qcodes.plots.pyqtgraph import QtPlot&#34; to see the full error
 </pre></div></div>
 </div>
@@ -631,7 +660,7 @@ pyqtgraph plotting not supported, try &#34;from qcodes.plots.pyqtgraph import Qt
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Connected to: Agilent Technologies B1500A (serial:0, firmware:A.06.01.2016.0401) in 0.35s
+Connected to: Agilent Technologies B1500A (serial:0, firmware:A.06.01.2016.0401) in 0.38s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1006,16 +1035,16 @@ Connected to: Agilent Technologies B1500A (serial:0, firmware:A.06.01.2016.0401)
 <p>MFCMU has two modes of measurement. The first is spot measurement and this here is sweep measurement. As the name suggest sweep measurement execute the measurement once for the whole list of voltages and saves the output in the buffer untill measurment is completed.</p>
 <p>The function below sets up properly the parameters to run the sweep measurements. Look at the docstring of <code class="docutils literal notranslate"><span class="pre">setup_staircase_cv</span></code> to know more about each argument of the function.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">b1500</span><span class="o">.</span><span class="n">cmu</span><span class="o">.</span><span class="n">enable_outputs</span><span class="p">()</span>
+<span></span><span class="n">b1500</span><span class="o">.</span><span class="n">cmu1</span><span class="o">.</span><span class="n">enable_outputs</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1044,7 +1073,7 @@ Connected to: Agilent Technologies B1500A (serial:0, firmware:A.06.01.2016.0401)
 </div>
 <p>If the setup function does not output any error then we are ready for the measurement.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1068,12 +1097,12 @@ Connected to: Agilent Technologies B1500A (serial:0, firmware:A.06.01.2016.0401)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Starting experimental run with id: 2282.
+Starting experimental run with id: 2330.
 </pre></div></div>
 </div>
 <p>The ouput of the <code class="docutils literal notranslate"><span class="pre">run_sweep</span></code> is a primary parameter (Capacitance) and a secondary parameter (Dissipation). The type of primary and secondary parameter depends on the impedance model set in the <code class="docutils literal notranslate"><span class="pre">setup_staircase_cv</span></code> function (or via the corresponding <code class="docutils literal notranslate"><span class="pre">impedance_model</span></code> parameter). The setpoints of both the parameters are the same voltage values as defined by <code class="docutils literal notranslate"><span class="pre">setup_staircase_cv</span></code> (behind the scenes, those values are available in the <code class="docutils literal notranslate"><span class="pre">cv_sweep_voltages</span></code> parameter).</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1082,13 +1111,13 @@ Starting experimental run with id: 2282.
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-([&lt;matplotlib.axes._subplots.AxesSubplot at 0x270ca3ca5c0&gt;,
-  &lt;matplotlib.axes._subplots.AxesSubplot at 0x270ca27a8d0&gt;],
+([&lt;matplotlib.axes._subplots.AxesSubplot at 0x1b18dff91d0&gt;,
+  &lt;matplotlib.axes._subplots.AxesSubplot at 0x1b19173f860&gt;],
  [None, None])
 </pre></div></div>
 </div>
@@ -1096,15 +1125,34 @@ Starting experimental run with id: 2282.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_69_1.png" src="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_69_1.png" />
+<img alt="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_70_1.png" src="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_70_1.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_69_2.png" src="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_69_2.png" />
+<img alt="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_70_2.png" src="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_70_2.png" />
 </div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">b1500</span><span class="o">.</span><span class="n">cmu1</span><span class="o">.</span><span class="n">run_sweep</span><span class="o">.</span><span class="n">status_summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;parallel_capacitance&#39;: &#39;No status error occurred.&#39;,
+ &#39;dissipation_factor&#39;: &#39;No status error occurred.&#39;}
+</pre></div></div>
 </div>
 </div>
 <div class="section" id="IV-Sweep">
@@ -1112,7 +1160,7 @@ Starting experimental run with id: 2282.
 <p>This section explains the IV Staircase sweep measurements.</p>
 <p>Enable the channels.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1122,7 +1170,7 @@ Starting experimental run with id: 2282.
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1134,7 +1182,7 @@ Starting experimental run with id: 2282.
 </div>
 <p>Setting up smu1 and smu2 for running the staircase sweep. One of the smu’s is used for sweep. Both the smu’s are used for acquiring data. In the setup below, smu1 is used to sweep over the sweep voltages -3 to 3 in 201 steps.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1158,7 +1206,7 @@ Starting experimental run with id: 2282.
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">smu2</span></code> is kept at constant voltage and at different compliance and measurement range settings.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1171,7 +1219,7 @@ Starting experimental run with id: 2282.
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">b1500.set_measurement_mode</span></code> is used to define measurement mode and the channels from which data is extracted from. Here, channels correspond to SMU1 and SMU2 respectively - the SMU which is setup to run the sweep needs to go <strong>FIRST</strong>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1186,7 +1234,7 @@ Starting experimental run with id: 2282.
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">run_iv_staircase_sweep</span></code> is used to run the sweep</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1219,11 +1267,11 @@ Starting experimental run with id: 2282.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Starting experimental run with id: 2307.
+Starting experimental run with id: 2329.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1232,13 +1280,13 @@ Starting experimental run with id: 2307.
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-([&lt;matplotlib.axes._subplots.AxesSubplot at 0x2519c477ac8&gt;,
-  &lt;matplotlib.axes._subplots.AxesSubplot at 0x2519c4a45c0&gt;],
+([&lt;matplotlib.axes._subplots.AxesSubplot at 0x1b18df955c0&gt;,
+  &lt;matplotlib.axes._subplots.AxesSubplot at 0x1b1915cd160&gt;],
  [None, None])
 </pre></div></div>
 </div>
@@ -1246,15 +1294,34 @@ Starting experimental run with id: 2307.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_83_1.png" src="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_83_1.png" />
+<img alt="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_85_1.png" src="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_85_1.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_83_2.png" src="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_83_2.png" />
+<img alt="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_85_2.png" src="../../_images/examples_driver_examples_Qcodes_example_with_Keysight_B1500_Parameter_Analyzer_85_2.png" />
 </div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">b1500</span><span class="o">.</span><span class="n">run_iv_staircase_sweep</span><span class="o">.</span><span class="n">status_summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;gate_current&#39;: &#39;No status error occurred.&#39;,
+ &#39;source_drain_current&#39;: &#39;No status error occurred.&#39;}
+</pre></div></div>
 </div>
 </div>
 <div class="section" id="Performing-phase-compensation">
@@ -1266,7 +1333,7 @@ Starting experimental run with id: 2307.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">b1500</span><span class="o">.</span><span class="n">cmu1</span><span class="o">.</span><span class="n">enable_outputs</span><span class="p">()</span>
+<span></span><span class="n">b1500</span><span class="o">.</span><span class="n">run_iv_staircase_sweep</span><span class="o">.</span><span class="n">measurement_status</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

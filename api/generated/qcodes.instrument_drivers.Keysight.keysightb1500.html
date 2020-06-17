@@ -1102,7 +1102,7 @@ parameters that are being check is printed.</p>
 <dl class="class">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.IVSweepMeasurement">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.</code><code class="sig-name descname">IVSweepMeasurement</code><span class="sig-paren">(</span><em class="sig-param">name: str</em>, <em class="sig-param">instrument: qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.B1517A</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_base.html#IVSweepMeasurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.IVSweepMeasurement" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../parameters/parameter.html#qcodes.instrument.parameter.MultiParameter" title="qcodes.instrument.parameter.MultiParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument.parameter.MultiParameter</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="../parameters/parameter.html#qcodes.instrument.parameter.MultiParameter" title="qcodes.instrument.parameter.MultiParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument.parameter.MultiParameter</span></code></a>, <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.StatusMixin" title="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.StatusMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.StatusMixin</span></code></a></p>
 <p>IV sweep measurement outputs a list of primary and secondary
 parameter.</p>
 <dl class="field-list simple">
@@ -1380,6 +1380,11 @@ If <code class="docutils literal notranslate"><span class="pre">update</span></c
 </dd></dl>
 
 <dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.IVSweepMeasurement.status_summary">
+<code class="sig-name descname">status_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Dict[str, str]<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.IVSweepMeasurement.status_summary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.IVSweepMeasurement.step">
 <em class="property">property </em><code class="sig-name descname">step</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.IVSweepMeasurement.step" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stepsize that this Parameter uses during set operation.
@@ -1431,6 +1436,24 @@ If step is None stepping will not be used.</p>
 </div>
 <div class="section" id="module-qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module">
 <span id="qcodes-instrument-drivers-keysight-keysightb1500-keysightb1500-module-module"></span><h2>qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module module<a class="headerlink" href="#module-qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.MeasurementNotTaken">
+<em class="property">exception </em><code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.</code><code class="sig-name descname">MeasurementNotTaken</code><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_module.html#MeasurementNotTaken"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.MeasurementNotTaken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#Exception" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.MeasurementNotTaken.args">
+<code class="sig-name descname">args</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.MeasurementNotTaken.args" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.MeasurementNotTaken.with_traceback">
+<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.MeasurementNotTaken.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="function">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.fmt_response_base_parser">
 <code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.</code><code class="sig-name descname">fmt_response_base_parser</code><span class="sig-paren">(</span><em class="sig-param">raw_data_val: str</em><span class="sig-paren">)</span> &#x2192; qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.FMTResponse<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_module.html#fmt_response_base_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.fmt_response_base_parser" title="Permalink to this definition">¶</a></dt>
@@ -1514,6 +1537,11 @@ calibration values.</p>
 <dl class="function">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.get_name_label_unit_of_impedance_model">
 <code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.</code><code class="sig-name descname">get_name_label_unit_of_impedance_model</code><span class="sig-paren">(</span><em class="sig-param">mode: qcodes.instrument_drivers.Keysight.keysightb1500.constants.IMP.MeasurementMode</em><span class="sig-paren">)</span> &#x2192; Tuple[Tuple[str, str], Tuple[str, str], Tuple[str, str]]<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_module.html#get_name_label_unit_of_impedance_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.get_name_label_unit_of_impedance_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.get_measurement_summary">
+<code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.</code><code class="sig-name descname">get_measurement_summary</code><span class="sig-paren">(</span><em class="sig-param">status_array: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_module.html#get_measurement_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.get_measurement_summary" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
@@ -1932,27 +1960,20 @@ parameters that are being check is printed.</p>
 
 </dd></dl>
 
+<dl class="class">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.StatusMixin">
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.</code><code class="sig-name descname">StatusMixin</code><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_module.html#StatusMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.StatusMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.StatusMixin.status_summary">
+<code class="sig-name descname">status_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Dict[str, str]<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_module.html#StatusMixin.status_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.StatusMixin.status_summary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement">
 <span id="qcodes-instrument-drivers-keysight-keysightb1500-keysightb1500-sampling-measurement-module"></span><h2>qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement module<a class="headerlink" href="#module-qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement" title="Permalink to this headline">¶</a></h2>
-<dl class="exception">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement.MeasurementNotTaken">
-<em class="property">exception </em><code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement.</code><code class="sig-name descname">MeasurementNotTaken</code><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_sampling_measurement.html#MeasurementNotTaken"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement.MeasurementNotTaken" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#Exception" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
-<dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement.MeasurementNotTaken.args">
-<code class="sig-name descname">args</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement.MeasurementNotTaken.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement.MeasurementNotTaken.with_traceback">
-<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement.MeasurementNotTaken.with_traceback" title="Permalink to this definition">¶</a></dt>
-<dd><p>Exception.with_traceback(tb) –
-set self.__traceback__ to tb and return self.</p>
-</dd></dl>
-
-</dd></dl>
-
 <dl class="class">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement.SamplingMeasurement">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement.</code><code class="sig-name descname">SamplingMeasurement</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_sampling_measurement.html#SamplingMeasurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_sampling_measurement.SamplingMeasurement" title="Permalink to this definition">¶</a></dt>
@@ -2002,7 +2023,7 @@ just longer than the measurement time.</p>
 number of data values which were not measured under “N” (normal)
 status.</p>
 <p>For the list of all the status values and their meaning refer to
-<a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus" title="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus"><code class="xref py py-class docutils literal notranslate"><span class="pre">constants.ComplianceStatus</span></code></a>.</p>
+<a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus" title="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus"><code class="xref py py-class docutils literal notranslate"><span class="pre">constants.MeasurementStatus</span></code></a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -4172,7 +4193,7 @@ parameters that are being check is printed.</p>
 <dl class="class">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.CVSweepMeasurement">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.</code><code class="sig-name descname">CVSweepMeasurement</code><span class="sig-paren">(</span><em class="sig-param">name: str</em>, <em class="sig-param">instrument: qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.B1520A</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1520A.html#CVSweepMeasurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.CVSweepMeasurement" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../parameters/parameter.html#qcodes.instrument.parameter.MultiParameter" title="qcodes.instrument.parameter.MultiParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument.parameter.MultiParameter</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="../parameters/parameter.html#qcodes.instrument.parameter.MultiParameter" title="qcodes.instrument.parameter.MultiParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument.parameter.MultiParameter</span></code></a>, <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.StatusMixin" title="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.StatusMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.StatusMixin</span></code></a></p>
 <p>CV sweep measurement outputs a list of primary (capacitance) and secondary
 parameter (disipation).</p>
 <dl class="field-list simple">
@@ -4479,6 +4500,11 @@ If <code class="docutils literal notranslate"><span class="pre">update</span></c
 <em class="property">property </em><code class="sig-name descname">snapshot_value</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.CVSweepMeasurement.snapshot_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>If True the value of the parameter will be included in the snapshot.</p>
 </dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.CVSweepMeasurement.status_summary">
+<code class="sig-name descname">status_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Dict[str, str]<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.CVSweepMeasurement.status_summary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.CVSweepMeasurement.step">
@@ -5821,111 +5847,111 @@ parameters that are being check is printed.</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.constants.</code><code class="sig-name descname">ComplianceError</code><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/constants.html#ComplianceError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError">
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.constants.</code><code class="sig-name descname">MeasurementError</code><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/constants.html#MeasurementError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.6/library/enum.html#enum.IntEnum" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
 <p>The list below enumerates all possible compliance errors and assigns
 integer 0 or 1 to them. Assigning integer 1 means the data is compliant
 and assigning 0 means it not compliant. As seen from the list, all cases
 except when the output is N are non-compliant. To know the reason for
 Non compliance in the individual case one may refer to
-<a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus" title="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus"><code class="xref py py-class docutils literal notranslate"><span class="pre">ComplianceStatus</span></code></a></p>
+<a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus" title="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus"><code class="xref py py-class docutils literal notranslate"><span class="pre">MeasurementStatus</span></code></a></p>
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.C">
-<code class="sig-name descname">C</code><em class="property"> = 0</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.C" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.C">
+<code class="sig-name descname">C</code><em class="property"> = 0</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.C" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.N">
-<code class="sig-name descname">N</code><em class="property"> = 1</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.N" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.N">
+<code class="sig-name descname">N</code><em class="property"> = 1</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.N" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.T">
-<code class="sig-name descname">T</code><em class="property"> = 0</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.T" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.T">
+<code class="sig-name descname">T</code><em class="property"> = 0</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.T" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.V">
-<code class="sig-name descname">V</code><em class="property"> = 0</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.V" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.V">
+<code class="sig-name descname">V</code><em class="property"> = 0</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.V" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.X">
-<code class="sig-name descname">X</code><em class="property"> = 0</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.X" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.X">
+<code class="sig-name descname">X</code><em class="property"> = 0</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.X" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.U">
-<code class="sig-name descname">U</code><em class="property"> = 0</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.U" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.U">
+<code class="sig-name descname">U</code><em class="property"> = 0</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.U" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.D">
-<code class="sig-name descname">D</code><em class="property"> = 0</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.D" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.D">
+<code class="sig-name descname">D</code><em class="property"> = 0</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.D" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.G">
-<code class="sig-name descname">G</code><em class="property"> = 0</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.G" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.G">
+<code class="sig-name descname">G</code><em class="property"> = 0</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.G" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.S">
-<code class="sig-name descname">S</code><em class="property"> = 0</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceError.S" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.S">
+<code class="sig-name descname">S</code><em class="property"> = 0</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementError.S" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.constants.</code><code class="sig-name descname">ComplianceStatus</code><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/constants.html#ComplianceStatus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus">
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.constants.</code><code class="sig-name descname">MeasurementStatus</code><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/constants.html#MeasurementStatus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.StrEnum" title="qcodes.instrument_drivers.Keysight.keysightb1500.constants.StrEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument_drivers.Keysight.keysightb1500.constants.StrEnum</span></code></a></p>
 <p>Contains the meanings of possible compliance errors. One may look at
 this list to figure out the reason for the non-compliant data.</p>
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.C">
-<code class="sig-name descname">C</code><em class="property"> = 'Reached compliance limit.'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.C" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.C">
+<code class="sig-name descname">C</code><em class="property"> = 'Reached compliance limit.'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.C" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.N">
-<code class="sig-name descname">N</code><em class="property"> = 'No status error occurred.'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.N" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.N">
+<code class="sig-name descname">N</code><em class="property"> = 'No status error occurred.'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.N" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.T">
-<code class="sig-name descname">T</code><em class="property"> = 'Another channel reached compliance limit.'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.T" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.T">
+<code class="sig-name descname">T</code><em class="property"> = 'Another channel reached compliance limit.'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.T" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.V">
-<code class="sig-name descname">V</code><em class="property"> = 'Measurement data is over the measurement range. Or the sweep measurement was aborted by the automatic stop function or power compliance. D will be 199.999E+99 (no meaning).'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.V" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.V">
+<code class="sig-name descname">V</code><em class="property"> = 'Measurement data is over the measurement range. Or the sweep measurement was aborted by the automatic stop function or power compliance. D will be 199.999E+99 (no meaning).'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.V" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.X">
-<code class="sig-name descname">X</code><em class="property"> = 'One or more channels are oscillating. Or source output did not settle before measurement.'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.X" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.X">
+<code class="sig-name descname">X</code><em class="property"> = 'One or more channels are oscillating. Or source output did not settle before measurement.'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.X" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.U">
-<code class="sig-name descname">U</code><em class="property"> = 'CMU is in the NULL loop unbalance condition.'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.U" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.U">
+<code class="sig-name descname">U</code><em class="property"> = 'CMU is in the NULL loop unbalance condition.'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.U" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.D">
-<code class="sig-name descname">D</code><em class="property"> = 'CMU is in the IV amplifier saturation condition.'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.D" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.D">
+<code class="sig-name descname">D</code><em class="property"> = 'CMU is in the IV amplifier saturation condition.'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.D" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.G">
-<code class="sig-name descname">G</code><em class="property"> = 'For linear or binary search measurement, the target value was not found within the search range. Returns the source output value. For quasi-pulsed spot measurement, the detection time was over the limit (3 s for Short mode, 12 s for Long mode).'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.G" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.G">
+<code class="sig-name descname">G</code><em class="property"> = 'For linear or binary search measurement, the target value was not found within the search range. Returns the source output value. For quasi-pulsed spot measurement, the detection time was over the limit (3 s for Short mode, 12 s for Long mode).'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.G" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.S">
-<code class="sig-name descname">S</code><em class="property"> = 'For linear or binary search measurement, the search measurement was stopped. Returns the source output value. See status of Data_sense.For quasi-pulsed spot measurement, output slew rate was too slow to perform the settling detection.Or quasi-pulsed source channel reached the current compliance before the source output voltage changed 10 V from the start voltage.'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.ComplianceStatus.S" title="Permalink to this definition">¶</a></dt>
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.S">
+<code class="sig-name descname">S</code><em class="property"> = 'For linear or binary search measurement, the search measurement was stopped. Returns the source output value. See status of Data_sense.For quasi-pulsed spot measurement, output slew rate was too slow to perform the settling detection.Or quasi-pulsed source channel reached the current compliance before the source output voltage changed 10 V from the start voltage.'</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.constants.MeasurementStatus.S" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
