@@ -187,9 +187,10 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;sweep_auto_abort&#39;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_sweep_auto_abort</span><span class="p">,</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_sweep_auto_abort</span><span class="p">,</span>
                            <span class="n">set_parser</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="p">,</span>
+                           <span class="n">get_parser</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="p">,</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Enum</span><span class="p">(</span><span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="p">)),</span>
-                           <span class="n">get_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                            <span class="n">initial_cache_value</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="o">.</span><span class="n">ENABLED</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                           enables or disables the automatic abort function </span>
@@ -204,9 +205,10 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;post_sweep_voltage_condition&#39;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_post_sweep_voltage_condition</span><span class="p">,</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_post_sweep_voltage_condition</span><span class="p">,</span>
                            <span class="n">set_parser</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="p">,</span>
+                           <span class="n">get_parser</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="p">,</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Enum</span><span class="p">(</span><span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="p">)),</span>
-                           <span class="n">get_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                            <span class="n">initial_cache_value</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="o">.</span><span class="n">START</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                           This command also sets the post measurement </span>
@@ -421,7 +423,30 @@
     <span class="k">def</span> <span class="nf">_set_post_sweep_voltage_condition</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">wmdcv</span><span class="p">(</span><span class="n">abort</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sweep_auto_abort</span><span class="p">(),</span> <span class="n">post</span><span class="o">=</span><span class="n">val</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_sweep_auto_abort_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">lrn_query</span><span class="p">(</span>
+            <span class="n">type_id</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">LRN</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">CV_DC_BIAS_SWEEP_MEASUREMENT_SETTINGS</span>
+        <span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;WMDCV(?P&lt;abort_function&gt;.+?)&#39;</span>
+                          <span class="sa">r</span><span class="s1">&#39;(,(?P&lt;output_after_sweep&gt;.+?)|;)&#39;</span><span class="p">,</span>
+                          <span class="n">response</span><span class="p">)</span>
+
+        <span class="n">resp_dict</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">resp_dict</span>
+
+    <span class="k">def</span> <span class="nf">_get_sweep_auto_abort</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">resp_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sweep_auto_abort_settings</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;abort_function&#39;</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">_get_post_sweep_voltage_condition</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">resp_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sweep_auto_abort_settings</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;output_after_sweep&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Received None. Set the parameter&quot;</span>
+                             <span class="s2">&quot;``post_sweep_voltage_condition`` first.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;output_after_sweep&#39;</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="B1520A"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.B1520A">[docs]</a><span class="k">class</span> <span class="nc">B1520A</span><span class="p">(</span><span class="n">B1500Module</span><span class="p">):</span>
