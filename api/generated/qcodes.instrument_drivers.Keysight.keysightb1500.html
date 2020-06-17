@@ -327,7 +327,7 @@ class.</p></li>
 
 <dl class="method">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.KeysightB1500.parse_spot_measurement_response">
-<code class="sig-name descname">parse_spot_measurement_response</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.KeysightB1500.parse_spot_measurement_response" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parse_spot_measurement_response</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.KeysightB1500.parse_spot_measurement_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract measured value and accompanying metadata from the string
 and return them as a dictionary.</p>
 <dl class="field-list simple">
@@ -1496,9 +1496,99 @@ the string and return them as a dictionary.</p>
 </dl>
 </dd></dl>
 
+<dl class="class">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse">
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.</code><code class="sig-name descname">SpotResponse</code><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_module.html#SpotResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.value">
+<code class="sig-name descname">value</code><em class="property">: float</em><em class="property"> = None</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.status">
+<code class="sig-name descname">status</code><em class="property">: MeasurementStatus</em><em class="property"> = None</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.channel">
+<code class="sig-name descname">channel</code><em class="property">: ChannelName</em><em class="property"> = None</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.channel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.dtype">
+<code class="sig-name descname">dtype</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.dtype" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.clear">
+<code class="sig-name descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None.  Remove all items from D.<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.clear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.copy">
+<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; a shallow copy of D<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.copy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.fromkeys">
+<code class="sig-name descname">fromkeys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.fromkeys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new dictionary with keys from iterable and values set to value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the value for key if key is in the dictionary, else default.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.items">
+<code class="sig-name descname">items</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; a set-like object providing a view on D's items<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.keys">
+<code class="sig-name descname">keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; a set-like object providing a view on D's keys<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.keys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.pop">
+<code class="sig-name descname">pop</code><span class="sig-paren">(</span><em class="sig-param">k</em><span class="optional">[</span>, <em class="sig-param">d</em><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; v, remove specified key and return the corresponding value.<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>If key is not found, d is returned if given, otherwise KeyError is raised</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.popitem">
+<code class="sig-name descname">popitem</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; (k, v), remove and return some (key, value) pair as a<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.popitem" title="Permalink to this definition">¶</a></dt>
+<dd><p>2-tuple; but raise KeyError if D is empty.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.setdefault">
+<code class="sig-name descname">setdefault</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.setdefault" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert key with a value of default if key is not in the dictionary.</p>
+<p>Return the value for key if key is in the dictionary, else default.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param">E</em>, <span class="optional">]</span><em class="sig-param">**F</em><span class="sig-paren">)</span> &#x2192; None.  Update D from dict/iterable E and F.<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k]
+If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v
+In either case, this is followed by: for k in F:  D[k] = F[k]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.values">
+<code class="sig-name descname">values</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; an object providing a view on D's values<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse.values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="function">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.parse_spot_measurement_response">
-<code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.</code><code class="sig-name descname">parse_spot_measurement_response</code><span class="sig-paren">(</span><em class="sig-param">response: str</em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_module.html#parse_spot_measurement_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.parse_spot_measurement_response" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.</code><code class="sig-name descname">parse_spot_measurement_response</code><span class="sig-paren">(</span><em class="sig-param">response: str</em><span class="sig-paren">)</span> &#x2192; qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_module.html#parse_spot_measurement_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.parse_spot_measurement_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract measured value and accompanying metadata from the string
 and return them as a dictionary.</p>
 <dl class="field-list simple">
@@ -1576,7 +1666,7 @@ class.</p></li>
 
 <dl class="method">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.B1500Module.parse_spot_measurement_response">
-<code class="sig-name descname">parse_spot_measurement_response</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.B1500Module.parse_spot_measurement_response" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parse_spot_measurement_response</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.B1500Module.parse_spot_measurement_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract measured value and accompanying metadata from the string
 and return them as a dictionary.</p>
 <dl class="field-list simple">
@@ -3217,7 +3307,7 @@ information as a dictionary.</p>
 
 <dl class="method">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.B1517A.parse_spot_measurement_response">
-<code class="sig-name descname">parse_spot_measurement_response</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.B1517A.parse_spot_measurement_response" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parse_spot_measurement_response</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.B1517A.parse_spot_measurement_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract measured value and accompanying metadata from the string
 and return them as a dictionary.</p>
 <dl class="field-list simple">
@@ -4056,7 +4146,7 @@ information as a dictionary.</p>
 
 <dl class="method">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.B1520A.parse_spot_measurement_response">
-<code class="sig-name descname">parse_spot_measurement_response</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.B1520A.parse_spot_measurement_response" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parse_spot_measurement_response</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1520A.B1520A.parse_spot_measurement_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract measured value and accompanying metadata from the string
 and return them as a dictionary.</p>
 <dl class="field-list simple">
@@ -5640,7 +5730,7 @@ information as a dictionary.</p>
 
 <dl class="method">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1530A.B1530A.parse_spot_measurement_response">
-<code class="sig-name descname">parse_spot_measurement_response</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1530A.B1530A.parse_spot_measurement_response" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parse_spot_measurement_response</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1530A.B1530A.parse_spot_measurement_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract measured value and accompanying metadata from the string
 and return them as a dictionary.</p>
 <dl class="field-list simple">
@@ -14937,7 +15027,7 @@ class.</p></li>
 
 <dl class="method">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500.parse_spot_measurement_response">
-<code class="sig-name descname">parse_spot_measurement_response</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500.parse_spot_measurement_response" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parse_spot_measurement_response</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.SpotResponse<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500.parse_spot_measurement_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract measured value and accompanying metadata from the string
 and return them as a dictionary.</p>
 <dl class="field-list simple">

@@ -334,6 +334,14 @@
                    <span class="o">.</span><span class="n">message</span>
                    <span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">_reset_measurement_statuses_of_smu_spot_measurement_parameters</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">parameter_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">parameter_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;voltage&#39;</span><span class="p">,</span> <span class="s1">&#39;current&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Parameter name should be one of [voltage,current], &#39;</span>
+                             <span class="sa">f</span><span class="s1">&#39;got </span><span class="si">{</span><span class="n">parameter_name</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">smu</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">by_kind</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">ModuleKind</span><span class="o">.</span><span class="n">SMU</span><span class="p">]:</span>
+            <span class="n">smu</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">parameter_name</span><span class="p">]</span><span class="o">.</span><span class="n">_measurement_status</span> <span class="o">=</span> <span class="kc">None</span>
+
 <div class="viewcode-block" id="KeysightB1500.use_nplc_for_high_speed_adc"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.KeysightB1500.use_nplc_for_high_speed_adc">[docs]</a>    <span class="k">def</span> <span class="nf">use_nplc_for_high_speed_adc</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>

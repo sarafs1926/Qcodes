@@ -159,10 +159,11 @@
 <span></span><span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">textwrap</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> \
-    <span class="n">cast</span>
+    <span class="n">cast</span><span class="p">,</span> <span class="n">Sequence</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">TypedDict</span><span class="p">,</span> <span class="n">Literal</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">qcodes.utils.validators</span> <span class="k">as</span> <span class="nn">vals</span>
+<span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">Parameter</span><span class="p">,</span> <span class="n">ParamRawDataType</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.channel</span> <span class="kn">import</span> <span class="n">InstrumentChannel</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.group_parameter</span> <span class="kn">import</span> <span class="n">GroupParameter</span><span class="p">,</span> <span class="n">Group</span>
 <span class="kn">from</span> <span class="nn">qcodes.utils.validators</span> <span class="kn">import</span> <span class="n">Arrays</span>
@@ -172,7 +173,7 @@
     <span class="n">parse_spot_measurement_response</span>
 <span class="kn">from</span> <span class="nn">.message_builder</span> <span class="kn">import</span> <span class="n">MessageBuilder</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">constants</span>
-<span class="kn">from</span> <span class="nn">.constants</span> <span class="kn">import</span> <span class="n">ModuleKind</span><span class="p">,</span> <span class="n">ChNr</span><span class="p">,</span> <span class="n">AAD</span><span class="p">,</span> <span class="n">MM</span>
+<span class="kn">from</span> <span class="nn">.constants</span> <span class="kn">import</span> <span class="n">ModuleKind</span><span class="p">,</span> <span class="n">ChNr</span><span class="p">,</span> <span class="n">AAD</span><span class="p">,</span> <span class="n">MM</span><span class="p">,</span> <span class="n">MeasurementStatus</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">.KeysightB1500_base</span> <span class="kn">import</span> <span class="n">KeysightB1500</span>
@@ -608,6 +609,109 @@
         <span class="k">return</span> <span class="n">out_dict</span></div>
 
 
+<span class="k">class</span> <span class="nc">_ParameterWithStatus</span><span class="p">(</span><span class="n">Parameter</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_measurement_status</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">MeasurementStatus</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">measurement_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">MeasurementStatus</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_measurement_status</span>
+
+    <span class="k">def</span> <span class="nf">snapshot_base</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                      <span class="n">params_to_skip_update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+                      <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="n">snapshot</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">snapshot_base</span><span class="p">(</span>
+            <span class="n">update</span><span class="o">=</span><span class="n">update</span><span class="p">,</span> <span class="n">params_to_skip_update</span><span class="o">=</span><span class="n">params_to_skip_update</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_snapshot_value</span><span class="p">:</span>
+            <span class="n">snapshot</span><span class="p">[</span><span class="s2">&quot;measurement_status&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">measurement_status</span>
+
+        <span class="k">return</span> <span class="n">snapshot</span>
+
+
+<span class="k">class</span> <span class="nc">_SpotMeasurementVoltageParameter</span><span class="p">(</span><span class="n">_ParameterWithStatus</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">ParamRawDataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">smu</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">&quot;B1517A&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">smu</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;output_range&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">smu</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;output_range&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">VOutputRange</span><span class="o">.</span><span class="n">AUTO</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">smu</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;output_range&quot;</span><span class="p">],</span>
+                          <span class="n">constants</span><span class="o">.</span><span class="n">VOutputRange</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;Asking to force voltage, but source_config contains a &quot;</span>
+                <span class="s2">&quot;current output range&quot;</span>
+            <span class="p">)</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">dv</span><span class="p">(</span>
+            <span class="n">chnum</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">v_range</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;output_range&quot;</span><span class="p">],</span>
+            <span class="n">voltage</span><span class="o">=</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">i_comp</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;compliance&quot;</span><span class="p">],</span>
+            <span class="n">comp_polarity</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;compl_polarity&quot;</span><span class="p">],</span>
+            <span class="n">i_range</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;min_compliance_range&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">smu</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+
+        <span class="n">smu</span><span class="o">.</span><span class="n">root_instrument</span><span class="o">.</span><span class="n">_reset_measurement_statuses_of_smu_spot_measurement_parameters</span><span class="p">(</span><span class="s1">&#39;voltage&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParamRawDataType</span><span class="p">:</span>
+        <span class="n">smu</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">&quot;B1517A&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">)</span>
+
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">tv</span><span class="p">(</span>
+            <span class="n">chnum</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">v_range</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">_measure_config</span><span class="p">[</span><span class="s2">&quot;measure_range&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">smu</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+
+        <span class="n">parsed</span> <span class="o">=</span> <span class="n">parse_spot_measurement_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_measurement_status</span> <span class="o">=</span> <span class="n">parsed</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">parsed</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">_SpotMeasurementCurrentParameter</span><span class="p">(</span><span class="n">_ParameterWithStatus</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">ParamRawDataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">smu</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">&quot;B1517A&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">smu</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;output_range&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">smu</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;output_range&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">IOutputRange</span><span class="o">.</span><span class="n">AUTO</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">smu</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;output_range&quot;</span><span class="p">],</span>
+                          <span class="n">constants</span><span class="o">.</span><span class="n">IOutputRange</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">&quot;Asking to force current, but source_config contains a &quot;</span>
+                <span class="s2">&quot;voltage output range&quot;</span>
+            <span class="p">)</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">di</span><span class="p">(</span>
+            <span class="n">chnum</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">i_range</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;output_range&quot;</span><span class="p">],</span>
+            <span class="n">current</span><span class="o">=</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">v_comp</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;compliance&quot;</span><span class="p">],</span>
+            <span class="n">comp_polarity</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;compl_polarity&quot;</span><span class="p">],</span>
+            <span class="n">v_range</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;min_compliance_range&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">smu</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+
+        <span class="n">smu</span><span class="o">.</span><span class="n">root_instrument</span><span class="o">.</span><span class="n">_reset_measurement_statuses_of_smu_spot_measurement_parameters</span><span class="p">(</span><span class="s1">&#39;current&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParamRawDataType</span><span class="p">:</span>
+        <span class="n">smu</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">&quot;B1517A&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">)</span>
+
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">ti</span><span class="p">(</span>
+            <span class="n">chnum</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">i_range</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">_measure_config</span><span class="p">[</span><span class="s2">&quot;measure_range&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">smu</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+
+        <span class="n">parsed</span> <span class="o">=</span> <span class="n">parse_spot_measurement_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_measurement_status</span> <span class="o">=</span> <span class="n">parsed</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">parsed</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+
+
 <div class="viewcode-block" id="B1517A"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.B1517A">[docs]</a><span class="k">class</span> <span class="nc">B1517A</span><span class="p">(</span><span class="n">B1500Module</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Driver for Keysight B1517A Source/Monitor Unit module for B1500</span>
@@ -680,17 +784,15 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;voltage&quot;</span><span class="p">,</span>
+            <span class="n">parameter_class</span><span class="o">=</span><span class="n">_SpotMeasurementVoltageParameter</span><span class="p">,</span>
             <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;V&quot;</span><span class="p">,</span>
-            <span class="n">set_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_voltage</span><span class="p">,</span>
-            <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_voltage</span><span class="p">,</span>
             <span class="n">snapshot_get</span><span class="o">=</span><span class="kc">False</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;current&quot;</span><span class="p">,</span>
+            <span class="n">parameter_class</span><span class="o">=</span><span class="n">_SpotMeasurementCurrentParameter</span><span class="p">,</span>
             <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">,</span>
-            <span class="n">set_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_current</span><span class="p">,</span>
-            <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_current</span><span class="p">,</span>
             <span class="n">snapshot_get</span><span class="o">=</span><span class="kc">False</span>
         <span class="p">)</span>
 
@@ -765,44 +867,6 @@
         <span class="n">total_time</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sample_rate</span> <span class="o">*</span> <span class="n">sample_number</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">total_time</span>
 
-    <span class="k">def</span> <span class="nf">_set_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;output_range&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;output_range&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">VOutputRange</span><span class="o">.</span><span class="n">AUTO</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;output_range&quot;</span><span class="p">],</span>
-                          <span class="n">constants</span><span class="o">.</span><span class="n">VOutputRange</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                <span class="s2">&quot;Asking to force voltage, but source_config contains a &quot;</span>
-                <span class="s2">&quot;current output range&quot;</span>
-            <span class="p">)</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">dv</span><span class="p">(</span>
-            <span class="n">chnum</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-            <span class="n">v_range</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;output_range&quot;</span><span class="p">],</span>
-            <span class="n">voltage</span><span class="o">=</span><span class="n">value</span><span class="p">,</span>
-            <span class="n">i_comp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;compliance&quot;</span><span class="p">],</span>
-            <span class="n">comp_polarity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;compl_polarity&quot;</span><span class="p">],</span>
-            <span class="n">i_range</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;min_compliance_range&quot;</span><span class="p">],</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_set_current</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;output_range&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;output_range&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">IOutputRange</span><span class="o">.</span><span class="n">AUTO</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;output_range&quot;</span><span class="p">],</span>
-                          <span class="n">constants</span><span class="o">.</span><span class="n">IOutputRange</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                <span class="s2">&quot;Asking to force current, but source_config contains a &quot;</span>
-                <span class="s2">&quot;voltage output range&quot;</span>
-            <span class="p">)</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">di</span><span class="p">(</span>
-            <span class="n">chnum</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-            <span class="n">i_range</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;output_range&quot;</span><span class="p">],</span>
-            <span class="n">current</span><span class="o">=</span><span class="n">value</span><span class="p">,</span>
-            <span class="n">v_comp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;compliance&quot;</span><span class="p">],</span>
-            <span class="n">comp_polarity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;compl_polarity&quot;</span><span class="p">],</span>
-            <span class="n">v_range</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_source_config</span><span class="p">[</span><span class="s2">&quot;min_compliance_range&quot;</span><span class="p">],</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
-
     <span class="k">def</span> <span class="nf">_set_current_measurement_range</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">i_range</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">IMeasRange</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
@@ -820,26 +884,6 @@
                           <span class="n">constants</span><span class="o">.</span><span class="n">IMeasRange</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">j</span><span class="p">)))</span>
                          <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">match</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">response_list</span>
-
-    <span class="k">def</span> <span class="nf">_get_current</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">ti</span><span class="p">(</span>
-            <span class="n">chnum</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-            <span class="n">i_range</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_measure_config</span><span class="p">[</span><span class="s2">&quot;measure_range&quot;</span><span class="p">],</span>
-        <span class="p">)</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
-
-        <span class="n">parsed</span> <span class="o">=</span> <span class="n">parse_spot_measurement_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">parsed</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">_get_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">tv</span><span class="p">(</span>
-            <span class="n">chnum</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-            <span class="n">v_range</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_measure_config</span><span class="p">[</span><span class="s2">&quot;measure_range&quot;</span><span class="p">],</span>
-        <span class="p">)</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
-
-        <span class="n">parsed</span> <span class="o">=</span> <span class="n">parse_spot_measurement_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">parsed</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">_set_measurement_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">MM</span><span class="o">.</span><span class="n">Mode</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">MessageBuilder</span><span class="p">()</span>
