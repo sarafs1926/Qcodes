@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,18 @@
   
 
   
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -32,10 +37,6 @@
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Example Measurements with Real Instruments" href="Real_instruments/Example Measurements with Real Instruments.html" />
@@ -55,7 +56,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> QCoDeS
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> QCoDeS
           
 
           
@@ -78,6 +79,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -133,6 +135,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -171,7 +174,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../index.html">Examples of using QCoDeS</a> &raquo;</li>
         
@@ -514,7 +517,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/200617-22502-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/200618-22386-qcodes.log
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -627,7 +630,7 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/200617-22502-qcodes.log
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-06-17 15:15:13,763 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/utils/deprecate.py:58: QCoDeSDeprecationWarning: The function &lt;add_result&gt; is deprecated. Use &#34;add_results&#34; as an alternative.
+2020-06-18 19:27:49,526 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/utils/deprecate.py:58: QCoDeSDeprecationWarning: The function &lt;add_result&gt; is deprecated. Use &#34;add_results&#34; as an alternative.
   issue_deprecation_warning(f&#39;{t} &lt;{n}&gt;&#39;, reason, alternative)
 
 </pre></div></div>
@@ -937,16 +940,16 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/200617-22502-qcodes.log
   &#39;full_name&#39;: &#39;&#39;,
   &#39;is_setpoint&#39;: True,
   &#39;unit&#39;: &#39;&#39;},
- &#39;y&#39;: {&#39;data&#39;: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+ &#39;y&#39;: {&#39;data&#39;: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   &#39;name&#39;: &#39;&#39;,
   &#39;full_name&#39;: &#39;&#39;,
   &#39;is_setpoint&#39;: True,
   &#39;unit&#39;: &#39;&#39;},
- &#39;z&#39;: {&#39;data&#39;: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-   [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-   [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-   [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]],
+ &#39;z&#39;: {&#39;data&#39;: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
   &#39;name&#39;: &#39;&#39;,
   &#39;full_name&#39;: &#39;&#39;,
   &#39;is_setpoint&#39;: False,
@@ -987,7 +990,14 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/200617-22502-qcodes.log
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -998,7 +1008,6 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/200617-22502-qcodes.log
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

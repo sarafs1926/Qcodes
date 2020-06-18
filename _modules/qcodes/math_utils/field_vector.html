@@ -1,15 +1,18 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>qcodes.math.field_vector &mdash; QCoDeS 0.15.0a1 documentation</title>
+  <title>qcodes.math_utils.field_vector &mdash; QCoDeS 0.15.0a1 documentation</title>
   
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
 
   
   
@@ -17,7 +20,9 @@
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
@@ -32,10 +37,6 @@
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link href="../../../_static/style.css" rel="stylesheet" type="text/css">
@@ -53,7 +54,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> QCoDeS
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> QCoDeS
           
 
           
@@ -76,6 +77,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -98,6 +100,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -136,11 +139,11 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>qcodes.math.field_vector</li>
+      <li>qcodes.math_utils.field_vector</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -155,7 +158,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for qcodes.math.field_vector</h1><div class="highlight"><pre>
+  <h1>Source code for qcodes.math_utils.field_vector</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">A helper module containing a class to keep track of vectors in different</span>
 <span class="sd">coordinate systems.</span>
@@ -169,7 +172,7 @@
 <span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;FieldVector&#39;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="FieldVector"><a class="viewcode-back" href="../../../api/math/field_vector.html#qcodes.math.field_vector.FieldVector">[docs]</a><span class="k">class</span> <span class="nc">FieldVector</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldVector"><a class="viewcode-back" href="../../../api/math_utils/field_vector.html#qcodes.math_utils.field_vector.FieldVector">[docs]</a><span class="k">class</span> <span class="nc">FieldVector</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A convenient class to keep track of vectors representing physical fields.</span>
 <span class="sd">    The idea is that a vector instance stores a representation in Cartesian,</span>
@@ -306,13 +309,13 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_set_attribute_values</span><span class="p">(</span><span class="n">FieldVector</span><span class="o">.</span><span class="n">attributes</span><span class="p">,</span> <span class="n">new_values</span><span class="p">)</span>
                 <span class="k">break</span>
 
-<div class="viewcode-block" id="FieldVector.copy"><a class="viewcode-back" href="../../../api/math/field_vector.html#qcodes.math.field_vector.FieldVector.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">T</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldVector.copy"><a class="viewcode-back" href="../../../api/math_utils/field_vector.html#qcodes.math_utils.field_vector.FieldVector.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">T</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Copy the properties of other vector to yourself.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">att</span> <span class="ow">in</span> <span class="n">FieldVector</span><span class="o">.</span><span class="n">attributes</span><span class="p">:</span>
             <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">att</span><span class="p">)</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">att</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="FieldVector.set_vector"><a class="viewcode-back" href="../../../api/math/field_vector.html#qcodes.math.field_vector.FieldVector.set_vector">[docs]</a>    <span class="k">def</span> <span class="nf">set_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">new_values</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldVector.set_vector"><a class="viewcode-back" href="../../../api/math_utils/field_vector.html#qcodes.math_utils.field_vector.FieldVector.set_vector">[docs]</a>    <span class="k">def</span> <span class="nf">set_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">new_values</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reset the the values of the vector.</span>
 
@@ -337,7 +340,7 @@
         <span class="n">new_vector</span> <span class="o">=</span> <span class="n">FieldVector</span><span class="p">(</span><span class="o">**</span><span class="n">new_values</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">new_vector</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="FieldVector.set_component"><a class="viewcode-back" href="../../../api/math/field_vector.html#qcodes.math.field_vector.FieldVector.set_component">[docs]</a>    <span class="k">def</span> <span class="nf">set_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">new_values</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldVector.set_component"><a class="viewcode-back" href="../../../api/math_utils/field_vector.html#qcodes.math_utils.field_vector.FieldVector.set_component">[docs]</a>    <span class="k">def</span> <span class="nf">set_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">new_values</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set a single component of the vector to some new value. It is</span>
 <span class="sd">        disallowed for the user to set vector components manually as this can</span>
@@ -385,7 +388,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_compute_unknowns</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="FieldVector.get_components"><a class="viewcode-back" href="../../../api/math/field_vector.html#qcodes.math.field_vector.FieldVector.get_components">[docs]</a>    <span class="k">def</span> <span class="nf">get_components</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">names</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldVector.get_components"><a class="viewcode-back" href="../../../api/math_utils/field_vector.html#qcodes.math_utils.field_vector.FieldVector.get_components">[docs]</a>    <span class="k">def</span> <span class="nf">get_components</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">names</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get field components by name.&quot;&quot;&quot;</span>
 
         <span class="k">def</span> <span class="nf">convert_angle_to_degrees</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
@@ -401,7 +404,7 @@
 
         <span class="k">return</span> <span class="n">components</span></div>
 
-<div class="viewcode-block" id="FieldVector.is_equal"><a class="viewcode-back" href="../../../api/math/field_vector.html#qcodes.math.field_vector.FieldVector.is_equal">[docs]</a>    <span class="k">def</span> <span class="nf">is_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldVector.is_equal"><a class="viewcode-back" href="../../../api/math_utils/field_vector.html#qcodes.math_utils.field_vector.FieldVector.is_equal">[docs]</a>    <span class="k">def</span> <span class="nf">is_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns ``True`` if ``other`` is equivalent to ``self``, ``False`` otherwise.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -457,7 +460,7 @@
 
     <span class="c1"># NB: we disable the pylint warning here so that we can match</span>
     <span class="c1">#     NumPy&#39;s naming convention for the norm method.</span>
-<div class="viewcode-block" id="FieldVector.norm"><a class="viewcode-back" href="../../../api/math/field_vector.html#qcodes.math.field_vector.FieldVector.norm">[docs]</a>    <span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="FieldVector.norm"><a class="viewcode-back" href="../../../api/math_utils/field_vector.html#qcodes.math_utils.field_vector.FieldVector.norm">[docs]</a>    <span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
              <span class="nb">ord</span><span class="p">:</span> <span class="n">NormOrder</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># pylint: disable=redefined-builtin</span>
              <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -466,7 +469,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">],</span> <span class="nb">ord</span><span class="o">=</span><span class="nb">ord</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="FieldVector.distance"><a class="viewcode-back" href="../../../api/math/field_vector.html#qcodes.math.field_vector.FieldVector.distance">[docs]</a>    <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span>
+<div class="viewcode-block" id="FieldVector.distance"><a class="viewcode-back" href="../../../api/math_utils/field_vector.html#qcodes.math_utils.field_vector.FieldVector.distance">[docs]</a>    <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span>
                  <span class="nb">ord</span><span class="p">:</span> <span class="n">NormOrder</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># pylint: disable=redefined-builtin</span>
                  <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span> <span class="o">-</span> <span class="n">other</span><span class="p">)</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="nb">ord</span><span class="o">=</span><span class="nb">ord</span><span class="p">)</span></div>
@@ -501,13 +504,13 @@
 
     <span class="c1"># Representation Methods #</span>
 
-<div class="viewcode-block" id="FieldVector.repr_cartesian"><a class="viewcode-back" href="../../../api/math/field_vector.html#qcodes.math.field_vector.FieldVector.repr_cartesian">[docs]</a>    <span class="k">def</span> <span class="nf">repr_cartesian</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="FieldVector.repr_cartesian"><a class="viewcode-back" href="../../../api/math_utils/field_vector.html#qcodes.math_utils.field_vector.FieldVector.repr_cartesian">[docs]</a>    <span class="k">def</span> <span class="nf">repr_cartesian</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;FieldVector(x=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2">, y=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s2">, z=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="si">}</span><span class="s2">)&quot;</span></div>
 
-<div class="viewcode-block" id="FieldVector.repr_spherical"><a class="viewcode-back" href="../../../api/math/field_vector.html#qcodes.math.field_vector.FieldVector.repr_spherical">[docs]</a>    <span class="k">def</span> <span class="nf">repr_spherical</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="FieldVector.repr_spherical"><a class="viewcode-back" href="../../../api/math_utils/field_vector.html#qcodes.math_utils.field_vector.FieldVector.repr_spherical">[docs]</a>    <span class="k">def</span> <span class="nf">repr_spherical</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;FieldVector(r=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="si">}</span><span class="s2">, phi=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="si">}</span><span class="s2">, theta=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="si">}</span><span class="s2">)&quot;</span></div>
 
-<div class="viewcode-block" id="FieldVector.repr_cylindrical"><a class="viewcode-back" href="../../../api/math/field_vector.html#qcodes.math.field_vector.FieldVector.repr_cylindrical">[docs]</a>    <span class="k">def</span> <span class="nf">repr_cylindrical</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="FieldVector.repr_cylindrical"><a class="viewcode-back" href="../../../api/math_utils/field_vector.html#qcodes.math_utils.field_vector.FieldVector.repr_cylindrical">[docs]</a>    <span class="k">def</span> <span class="nf">repr_cylindrical</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;FieldVector(rho=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="si">}</span><span class="s2">, phi=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="si">}</span><span class="s2">, z=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="si">}</span><span class="s2">)&quot;</span></div>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -522,10 +525,10 @@
 
     <span class="c1"># Homogeneous Coordinates #</span>
 
-<div class="viewcode-block" id="FieldVector.as_homogeneous"><a class="viewcode-back" href="../../../api/math/field_vector.html#qcodes.math.field_vector.FieldVector.as_homogeneous">[docs]</a>    <span class="k">def</span> <span class="nf">as_homogeneous</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="FieldVector.as_homogeneous"><a class="viewcode-back" href="../../../api/math_utils/field_vector.html#qcodes.math_utils.field_vector.FieldVector.as_homogeneous">[docs]</a>    <span class="k">def</span> <span class="nf">as_homogeneous</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="FieldVector.from_homogeneous"><a class="viewcode-back" href="../../../api/math/field_vector.html#qcodes.math.field_vector.FieldVector.from_homogeneous">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="FieldVector.from_homogeneous"><a class="viewcode-back" href="../../../api/math_utils/field_vector.html#qcodes.math_utils.field_vector.FieldVector.from_homogeneous">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_homogeneous</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">hvec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
         <span class="c1"># Homogeneous coordinates define an equivalence relation</span>
         <span class="c1">#     [x / s, y / s, z / s, 1] == [x, y, z, s].</span>
@@ -556,7 +559,14 @@
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -567,7 +577,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
