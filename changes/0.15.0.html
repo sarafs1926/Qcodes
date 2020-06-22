@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Changelog for QCoDeS 0.4.0 &mdash; QCoDeS 0.15.0 documentation</title>
+  <title>Changelog for QCoDeS 0.15.0 &mdash; QCoDeS 0.15.0 documentation</title>
   
 
   
@@ -39,8 +39,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Changelog for QCoDeS 0.5.0" href="0.5.0.html" />
-    <link rel="prev" title="Changelog for QCoDeS 0.3.0" href="0.3.0.html" />
+    <link rel="next" title="Changelog for QCoDeS 0.16.0 (not released yet)" href="0.16.0.html" />
+    <link rel="prev" title="Changelog for QCoDeS 0.15.0a1" href="0.15.0a1.html" />
     <link href="../_static/style.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -109,13 +109,7 @@
 <li class="toctree-l2"><a class="reference internal" href="0.2.0.html">0.2.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.2.1.html">0.2.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.3.0.html">0.3.0</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">0.4.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#new-improved">New &amp; Improved:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#instrument-drivers">Instrument drivers:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#miscellaneous">Miscellaneous:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#under-the-hood">Under the hood:</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="0.4.0.html">0.4.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.5.0.html">0.5.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.5.1.html">0.5.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.5.2.html">0.5.2</a></li>
@@ -131,7 +125,14 @@
 <li class="toctree-l2"><a class="reference internal" href="0.13.0.html">0.13.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.14.0.html">0.14.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.15.0a1.html">0.15.0a1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="0.15.0.html">0.15.0</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">0.15.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#breaking-changes">Breaking Changes:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#new-drivers">New drivers:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#improved-drivers">Improved drivers:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#improved">Improved:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#under-the-hood">Under the hood:</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="0.16.0.html">0.16.0</a></li>
 </ul>
 </li>
@@ -184,13 +185,13 @@
         
           <li><a href="index.html">Changelogs</a> &raquo;</li>
         
-      <li>Changelog for QCoDeS 0.4.0</li>
+      <li>Changelog for QCoDeS 0.15.0</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/changes/0.4.0.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/changes/0.15.0.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -227,84 +228,89 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="changelog-for-qcodes-0-4-0">
-<h1>Changelog for QCoDeS 0.4.0<a class="headerlink" href="#changelog-for-qcodes-0-4-0" title="Permalink to this headline">¶</a></h1>
-<p>The June 2019 release of QCoDeS adds final touches to support for
-complex-valued data, includes under-the-hood improvements, and
-ships a couple of new instrument drivers as well as
-improvements to existing instrument drivers.</p>
-<div class="section" id="new-improved">
-<h2>New &amp; Improved:<a class="headerlink" href="#new-improved" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="changelog-for-qcodes-0-15-0">
+<h1>Changelog for QCoDeS 0.15.0<a class="headerlink" href="#changelog-for-qcodes-0-15-0" title="Permalink to this headline">¶</a></h1>
+<p>The June 2020 release of QCoDeS. This release also includes all the changes
+mentioned in alpha release of June 2020 (<a class="reference internal" href="0.15.0a1.html"><span class="doc">Changelog for QCoDeS 0.15.0a1</span></a>).</p>
+<div class="section" id="breaking-changes">
+<h2>Breaking Changes:<a class="headerlink" href="#breaking-changes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Native support for complex-valued data:</p>
-<ul>
-<li><p>Support for plotting complex-valued datasets in <cite>plot_by_id</cite> (#1592)</p></li>
-<li><p>Reorg Parameter notebooks and add basic complex numbers notebook (#1568)</p></li>
-</ul>
-</li>
-<li><p>QCoDeS Workflow:</p>
-<ul>
-<li><p>Add <cite>plot_dataset</cite> function to plot given data set without specifying id as in <cite>plot_by_id</cite> (#1614)</p></li>
-</ul>
-</li>
-<li><p>Instruments</p>
-<ul>
-<li><p>Fix / snapshot_base <cite>params_to_skip_update</cite> behavior (#1584)</p></li>
-</ul>
-</li>
-<li><p>Database upgrades:</p>
-<ul>
-<li><p>DB version 6 - version contents of <cite>run_description</cite> column (#1577)</p></li>
-</ul>
-</li>
-<li><p>Old dataset:</p>
-<ul>
-<li><p>Change <cite>HDF5FormatMetadata</cite> to not sort keys in the metadata (#1581)</p></li>
-</ul>
-</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GroupParameter.group</span></code>, <code class="docutils literal notranslate"><span class="pre">Group.parameters</span></code> and <code class="docutils literal notranslate"><span class="pre">Group.instrument</span></code> are
+now all read only properties (#2031).</p></li>
+<li><p>The public attributes <code class="docutils literal notranslate"><span class="pre">Group.get_cmd</span></code> and <code class="docutils literal notranslate"><span class="pre">Group.get_cmd</span></code> have
+been removed (#2031).</p></li>
+<li><p>It is now an error to supply get/set_cmd, if get/set_raw is not abstract
+(#2015).</p></li>
+<li><p>The sweep parameters such as ‘sweep_mode’, ‘sweep_start’, ‘sweep_end’,
+‘sweep_steps’ in Keysight B1520A driver is moved from  class is moved from
+B1520A class to CVSweeper class (#2044).</p></li>
 </ul>
 </div>
-<div class="section" id="instrument-drivers">
-<h2>Instrument drivers:<a class="headerlink" href="#instrument-drivers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="new-drivers">
+<h2>New drivers:<a class="headerlink" href="#new-drivers" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>New Drivers:</p>
-<ul>
-<li><p>Keysight B1500 Parameter Analyzer (#1573)</p></li>
-<li><p>Tektronix Oscilloscopes: MSO/DPO5000/B, DPO7000/C, DPO70000/B/C/D/DX, DSA70000/B/C/D, and MSO70000/C/DX (#1579, #1606)</p></li>
-</ul>
-</li>
-<li><p>Improved Drivers:</p>
-<ul>
-<li><p>Lock-in Amplifiers:
-- ZI UHF-LI: fix <cite>scope_mode</cite> and <cite>scope_average_weight</cite> parameters (#1597)
-- Add jumbo frames and reference clock source parameters to ZIUHFLI (#1590)</p></li>
-<li><p>Magnets:
-- Two fixes for Oxford IPS120 driver. (#1619)</p></li>
-<li><p>Source Meters:
-- Keithley 2600: Add list to hold channels (#1603)</p></li>
-<li><p>QuTech instruments:
-- M4i: fix incorrect return value for <cite>ACDC_offs_compensation_x</cite> (#1585)
-- M4i: get ACDC offset compensation (#1596)
-- D5a: Add <cite>set_dac_unit</cite> method (#1582)
-- D5a: Updating vals when unit is updated (#1589)</p></li>
-</ul>
-</li>
+<li><p>Add Zurich Instruments drivers. The old ZIUHFLI driver is deprecated. The
+actual implementation is in
+<a class="reference external" href="https://github.com/zhinst/zhinst-qcodes/">zhinst-qcodes</a>
+as described in
+<a class="reference external" href="https://blogs.zhinst.com/andrea/2020/05/24/control-your-measurements-with-qcodes-and-labber/">this blog</a>
+(#2025).</p></li>
 </ul>
 </div>
-<div class="section" id="miscellaneous">
-<h2>Miscellaneous:<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="improved-drivers">
+<h2>Improved drivers:<a class="headerlink" href="#improved-drivers" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Documentation: Explicit experiment in notebooks (#1612)</p></li>
+<li><p>New features are added to Keysight B1517A driver to allow IV
+staircase sweep measurements (#2028).</p></li>
+<li><p>Various improvements are done on Keysight B1520A driver, such as, parsing
+correctly the wrong output floats (‘-0.-1’) from the instrument until new
+firmware release (#2023), improved testing (#2027), fixing spot
+measurement of capacitance checking for wrong impedance model, and working
+with ac_dc_volt_monitor=True (#2020), CVSweepMeasurements supports all
+impedance models (#2047).</p></li>
+<li><p>The measurement status are added to current and voltage parameters of
+B1517A driver (#2051).</p></li>
+<li><p>Added a method to obtain the measurement status summary of IV and CV Sweep
+measurements (#2050).</p></li>
+<li><p>The get functionality for sweep_auto_abort and post_sweep_auto_abort
+parameters is added in Keysight B1517A and B1520A driver (#2049).</p></li>
+<li><p>The error handling of Keysight B1500 driver is improved. Now each time a
+parameter is set the instruments queries for the error and throws exception
+is an error is received (#2041).</p></li>
+<li><p>Now on_off_val_mapping is used instead of a custom parser in Agilent
+E8527D (#2030).</p></li>
+<li><p>The parameter limits are added for the R&amp;S ZNB-40 VNA R&amp;S (#2029).</p></li>
+<li><p>Add a few system functions to the Keithley 2450 driver (#2052)</p></li>
+</ul>
+</div>
+<div class="section" id="improved">
+<h2>Improved:<a class="headerlink" href="#improved" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The DelegateParameter is now allowed to change source and also support a
+None source (#2005).</p></li>
+<li><p>The GroupParameter now correctly update their cache when a single
+parameter in the group has been set or captured (#2031).</p></li>
+<li><p>The GroupParameter now correctly implements mappings between
+<code class="docutils literal notranslate"><span class="pre">value</span></code> and <code class="docutils literal notranslate"><span class="pre">raw_value</span></code> e.g. <code class="docutils literal notranslate"><span class="pre">scale</span></code> and <code class="docutils literal notranslate"><span class="pre">offset</span></code> (#2031).</p></li>
+<li><p>Snapshot_base introduce new update=None, and use cache in parameter’s
+snapshot_base (#1833).</p></li>
+<li><p>Now initial cache value can be set to the Parameter using kwarg
+<code class="docutils literal notranslate"><span class="pre">initial_cache_val</span></code> (#1840).</p></li>
+<li><p>The snapshots of stations and instruments can also be diffed now using
+diff_param_values (#2021).</p></li>
 </ul>
 </div>
 <div class="section" id="under-the-hood">
 <h2>Under the hood:<a class="headerlink" href="#under-the-hood" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Use perf_counter, not monotonic for DB flushing (#1498)</p></li>
-<li><p>Don’t get db location from config if sqlite connection supplied (#1618)</p></li>
-<li><p>Don’t read from layouts and dependencies tables in QCoDeS (#1572)</p></li>
-<li><p>Reorganization of sqlite-facing modules (#1570)</p></li>
-<li><p>Reorganization of run descriptions module structure (#1577)</p></li>
+<li><p>New lines are now handled correctly on windows (#2026).</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Parameter</span></code> class, the gettable/settable have become read only
+property (#2024).</p></li>
+<li><p>Parameter cache.get is refactored to make the logic a bit more clear. Its
+functionality remains the same (#2008).</p></li>
+<li><p>The loop data location in channels test is changed for pytest-xdist to work
+(#2010).</p></li>
+<li><p>Added new dependency: “typing_extensions” (#2048)</p></li>
 </ul>
 </div>
 </div>
@@ -317,10 +323,10 @@ improvements to existing instrument drivers.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="0.5.0.html" class="btn btn-neutral float-right" title="Changelog for QCoDeS 0.5.0" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="0.16.0.html" class="btn btn-neutral float-right" title="Changelog for QCoDeS 0.16.0 (not released yet)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="0.3.0.html" class="btn btn-neutral float-left" title="Changelog for QCoDeS 0.3.0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="0.15.0a1.html" class="btn btn-neutral float-left" title="Changelog for QCoDeS 0.15.0a1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
