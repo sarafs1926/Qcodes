@@ -205,18 +205,12 @@
 <p>The general scheme is:</p>
 <p>1. create a (potentially nested) Loop, which defines the sweep setpoints and
 delays</p>
-<p>2. activate the loop (which changes it to an ActiveLoop object),
-or omit this step to use the default measurement as given by the
-Loop.set_measurement class method.</p>
+<ol class="arabic simple" start="2">
+<li><p>activate the loop (which changes it to an ActiveLoop object),</p></li>
+</ol>
 <p>3. run it with the .run method, which creates a DataSet to hold the data,
 and defines how and where to save the data.</p>
 <p>Some examples:</p>
-<ul class="simple">
-<li><p>set default measurements for later Loop’s to use</p></li>
-</ul>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Loop</span><span class="o">.</span><span class="n">set_measurement</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">,</span> <span class="n">param3</span><span class="p">)</span>
-</pre></div>
-</div>
 <ul class="simple">
 <li><p>1D sweep, using the default measurement set</p></li>
 </ul>
@@ -237,18 +231,18 @@ inner.</p></li>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Multidimensional sweep: 1D measurement of param6 on the outer loop, and the
-default measurements in a 2D loop</p></li>
+<li><p>Multidimensional sweep: 1D measurement of param6 on the outer loop, and another
+measurement in an inner loop.</p></li>
 </ul>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Loop</span><span class="p">(</span><span class="n">sv1</span><span class="p">,</span> <span class="n">delay</span><span class="p">)</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="n">param6</span><span class="p">,</span> <span class="n">Loop</span><span class="p">(</span><span class="n">sv2</span><span class="p">,</span> <span class="n">delay</span><span class="p">))</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Loop</span><span class="p">(</span><span class="n">sv1</span><span class="p">,</span> <span class="n">delay</span><span class="p">)</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="n">param6</span><span class="p">,</span> <span class="n">Loop</span><span class="p">(</span><span class="n">sv2</span><span class="p">,</span> <span class="n">delay</span><span class="p">)</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="n">sv3</span><span class="p">,</span> <span class="n">delay</span><span class="p">))</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Supported commands to .set_measurement or .each are:</p>
+<p>Supported commands to .each are:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Parameter: anything with a .get method and .name or .names see
 parameter.py for options</p></li>
-<li><p>ActiveLoop (or Loop, will be activated with default measurement)</p></li>
+<li><p>ActiveLoop</p></li>
 <li><p>Task: any callable that does not generate data</p></li>
 <li><p>Wait: a delay</p></li>
 </ul>
@@ -284,12 +278,6 @@ is None (no output)</p></li>
 </dl>
 <p>After creating a Loop, you attach one or more <code class="docutils literal notranslate"><span class="pre">actions</span></code> to it, making an
 <code class="docutils literal notranslate"><span class="pre">ActiveLoop</span></code></p>
-<div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<p>how? Maybe obvious but not specified! that you can <code class="docutils literal notranslate"><span class="pre">.run()</span></code>,
-or you can <code class="docutils literal notranslate"><span class="pre">.run()</span></code> a <code class="docutils literal notranslate"><span class="pre">Loop</span></code> directly, in which
-case it takes the default <code class="docutils literal notranslate"><span class="pre">actions</span></code> from the default <code class="docutils literal notranslate"><span class="pre">Station</span></code></p>
-</div>
 <p><code class="docutils literal notranslate"><span class="pre">actions</span></code> is a sequence of things to do at each <code class="docutils literal notranslate"><span class="pre">Loop</span></code> step: that can be
 a <code class="docutils literal notranslate"><span class="pre">Parameter</span></code> to measure, a <code class="docutils literal notranslate"><span class="pre">Task</span></code> to do (any callable that does not
 yield data), <code class="docutils literal notranslate"><span class="pre">Wait</span></code> times, or another <code class="docutils literal notranslate"><span class="pre">ActiveLoop</span></code> or <code class="docutils literal notranslate"><span class="pre">Loop</span></code> to nest
@@ -380,20 +368,6 @@ if an action is not recognized</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="qcodes.loops.Loop.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qcodes/loops.html#Loop.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.loops.Loop.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>shortcut to run a loop with the default measurement set
-stored by Station.set_measurement</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="qcodes.loops.Loop.run_temp">
-<code class="sig-name descname">run_temp</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qcodes/loops.html#Loop.run_temp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.loops.Loop.run_temp" title="Permalink to this definition">¶</a></dt>
-<dd><p>shortcut to run a loop in the foreground as a temporary dataset
-using the default measurement set</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="qcodes.loops.Loop.then">
 <code class="sig-name descname">then</code><span class="sig-paren">(</span><em class="sig-param">*actions</em>, <em class="sig-param">overwrite=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qcodes/loops.html#Loop.then"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.loops.Loop.then" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attach actions to be performed after the loop completes.</p>
@@ -404,7 +378,7 @@ any data.</p>
 and can also be done there, but it’s allowed at this stage too so that
 you can define final actions and share them among several <code class="docutils literal notranslate"><span class="pre">Loops</span></code> that
 have different loop actions, or attach final actions to a Loop run</p>
-<div class="admonition-todo admonition" id="id2">
+<div class="admonition-todo admonition" id="id1">
 <p class="admonition-title">Todo</p>
 <p>examples of this ? with default actions.</p>
 </div>

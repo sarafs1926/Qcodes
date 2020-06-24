@@ -196,10 +196,7 @@
     <span class="n">DelegateParameter</span><span class="p">,</span> <span class="n">_BaseParameter</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">qcodes.utils.validators</span> <span class="k">as</span> <span class="nn">validators</span>
 <span class="kn">from</span> <span class="nn">qcodes.monitor.monitor</span> <span class="kn">import</span> <span class="n">Monitor</span>
-<span class="kn">from</span> <span class="nn">qcodes.utils.deprecate</span> <span class="kn">import</span> <span class="n">deprecate</span>
-<span class="kn">from</span> <span class="nn">qcodes.actions</span> <span class="kn">import</span> <span class="n">_actions_snapshot</span>
 
-<span class="n">ActionType</span> <span class="o">=</span> <span class="n">Any</span>
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -298,7 +295,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">use_monitor</span> <span class="o">=</span> <span class="n">use_monitor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config_file</span> <span class="o">=</span> <span class="n">config_file</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">default_measurement</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">ActionType</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_added_methods</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_monitor_parameters</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Parameter</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -333,8 +329,6 @@
             <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="p">{},</span>
             <span class="s1">&#39;components&#39;</span><span class="p">:</span> <span class="p">{},</span>
             <span class="s1">&#39;config&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span>
-            <span class="s1">&#39;default_measurement&#39;</span><span class="p">:</span> <span class="n">_actions_snapshot</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">default_measurement</span><span class="p">,</span> <span class="n">update</span><span class="p">)</span>
         <span class="p">}</span>
 
         <span class="n">components_to_remove</span> <span class="o">=</span> <span class="p">[]</span>
@@ -412,54 +406,6 @@
                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Component </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> is not part of the station&#39;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">e</span></div>
-
-<div class="viewcode-block" id="Station.set_measurement"><a class="viewcode-back" href="../../api/station.html#qcodes.station.Station.set_measurement">[docs]</a>    <span class="nd">@deprecate</span><span class="p">(</span><span class="s2">&quot;Default measurements on a station will &quot;</span>
-               <span class="s2">&quot;be removed in a future release&quot;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">set_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">actions</span><span class="p">:</span> <span class="n">ActionType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Save a set ``*actions`` as the default measurement for this Station.</span>
-
-<span class="sd">        These actions will be executed by default by a Loop if this is the</span>
-<span class="sd">        default Station, and any measurements among them can be done once</span>
-<span class="sd">        by ``.measure``.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            *actions: parameters to set as default  measurement</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Validate now so the user gets an error message ASAP</span>
-        <span class="c1"># and so we don&#39;t accept `Loop` as an action here, where</span>
-        <span class="c1"># it would cause infinite recursion.</span>
-        <span class="c1"># We need to import Loop inside here to avoid circular import</span>
-        <span class="kn">from</span> <span class="nn">.loops</span> <span class="kn">import</span> <span class="n">Loop</span>
-        <span class="n">Loop</span><span class="o">.</span><span class="n">validate_actions</span><span class="p">(</span><span class="o">*</span><span class="n">actions</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">default_measurement</span> <span class="o">=</span> <span class="n">actions</span></div>
-
-<div class="viewcode-block" id="Station.measure"><a class="viewcode-back" href="../../api/station.html#qcodes.station.Station.measure">[docs]</a>    <span class="nd">@deprecate</span><span class="p">(</span><span class="s2">&quot;Default measurements on a station will &quot;</span>
-               <span class="s2">&quot;be removed in a future release&quot;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">measure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">actions</span><span class="p">:</span> <span class="n">ActionType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Measure the default measurement, or parameters in actions.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            *actions: Parameters to mesure.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">actions</span><span class="p">:</span>
-            <span class="n">actions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_measurement</span>
-
-        <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
-
-        <span class="c1"># this is a stripped down, uncompiled version of how</span>
-        <span class="c1"># ActiveLoop handles a set of actions</span>
-        <span class="c1"># callables (including Wait) return nothing, but can</span>
-        <span class="c1"># change system state.</span>
-        <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">actions</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="s1">&#39;get&#39;</span><span class="p">):</span>
-                <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
-            <span class="k">elif</span> <span class="n">callable</span><span class="p">(</span><span class="n">action</span><span class="p">):</span>
-                <span class="n">action</span><span class="p">()</span>
-
-        <span class="k">return</span> <span class="n">out</span></div>
 
     <span class="c1"># station[&#39;someitem&#39;] and station.someitem are both</span>
     <span class="c1"># shortcuts to station.components[&#39;someitem&#39;]</span>

@@ -168,17 +168,11 @@
 <span class="sd">delays</span>
 
 <span class="sd">2. activate the loop (which changes it to an ActiveLoop object),</span>
-<span class="sd">or omit this step to use the default measurement as given by the</span>
-<span class="sd">Loop.set_measurement class method.</span>
 
 <span class="sd">3. run it with the .run method, which creates a DataSet to hold the data,</span>
 <span class="sd">and defines how and where to save the data.</span>
 
 <span class="sd">Some examples:</span>
-
-<span class="sd">- set default measurements for later Loop&#39;s to use</span>
-
-<span class="sd">&gt;&gt;&gt; Loop.set_measurement(param1, param2, param3)</span>
 
 <span class="sd">- 1D sweep, using the default measurement set</span>
 
@@ -193,16 +187,16 @@
 
 <span class="sd">&gt;&gt;&gt; Loop(sv, delay).each(param4, param5).run()</span>
 
-<span class="sd">- Multidimensional sweep: 1D measurement of param6 on the outer loop, and the</span>
-<span class="sd">  default measurements in a 2D loop</span>
+<span class="sd">- Multidimensional sweep: 1D measurement of param6 on the outer loop, and another</span>
+<span class="sd">  measurement in an inner loop.</span>
 
-<span class="sd">&gt;&gt;&gt; Loop(sv1, delay).each(param6, Loop(sv2, delay)).run()</span>
+<span class="sd">&gt;&gt;&gt; Loop(sv1, delay).each(param6, Loop(sv2, delay).each(sv3, delay)).run()</span>
 
-<span class="sd">Supported commands to .set_measurement or .each are:</span>
+<span class="sd">Supported commands to .each are:</span>
 
 <span class="sd">    - Parameter: anything with a .get method and .name or .names see</span>
 <span class="sd">      parameter.py for options</span>
-<span class="sd">    - ActiveLoop (or Loop, will be activated with default measurement)</span>
+<span class="sd">    - ActiveLoop</span>
 <span class="sd">    - Task: any callable that does not generate data</span>
 <span class="sd">    - Wait: a delay</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -220,7 +214,6 @@
 
 <span class="kn">from</span> <span class="nn">.actions</span> <span class="kn">import</span> <span class="p">(</span><span class="n">_actions_snapshot</span><span class="p">,</span> <span class="n">Task</span><span class="p">,</span> <span class="n">Wait</span><span class="p">,</span> <span class="n">_Measure</span><span class="p">,</span> <span class="n">_Nest</span><span class="p">,</span>
                       <span class="n">BreakIf</span><span class="p">,</span> <span class="n">_QcodesBreak</span><span class="p">)</span>
-
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -253,11 +246,6 @@
 
 <span class="sd">    After creating a Loop, you attach one or more ``actions`` to it, making an</span>
 <span class="sd">    ``ActiveLoop``</span>
-
-<span class="sd">    TODO:</span>
-<span class="sd">        how? Maybe obvious but not specified! that you can ``.run()``,</span>
-<span class="sd">        or you can ``.run()`` a ``Loop`` directly, in which</span>
-<span class="sd">        case it takes the default ``actions`` from the default ``Station``</span>
 
 <span class="sd">    ``actions`` is a sequence of things to do at each ``Loop`` step: that can be</span>
 <span class="sd">    a ``Parameter`` to measure, a ``Task`` to do (any callable that does not</span>
@@ -345,12 +333,6 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">actions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
 
-        <span class="c1"># check for nested Loops, and activate them with default measurement</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">action</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">actions</span><span class="p">):</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">Loop</span><span class="p">):</span>
-                <span class="n">default</span> <span class="o">=</span> <span class="n">Station</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">default_measurement</span>
-                <span class="n">actions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">action</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="o">*</span><span class="n">default</span><span class="p">)</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">validate_actions</span><span class="p">(</span><span class="o">*</span><span class="n">actions</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nested_loop</span><span class="p">:</span>
@@ -403,20 +385,6 @@
                             <span class="s1">&#39;objects. `Loop` objects are OK too, except in &#39;</span>
                             <span class="s1">&#39;Station default measurements.&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Loop.run"><a class="viewcode-back" href="../../api/loops.html#qcodes.loops.Loop.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        shortcut to run a loop with the default measurement set</span>
-<span class="sd">        stored by Station.set_measurement</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">default</span> <span class="o">=</span> <span class="n">Station</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">default_measurement</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="o">*</span><span class="n">default</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Loop.run_temp"><a class="viewcode-back" href="../../api/loops.html#qcodes.loops.Loop.run_temp">[docs]</a>    <span class="k">def</span> <span class="nf">run_temp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        shortcut to run a loop in the foreground as a temporary dataset</span>
-<span class="sd">        using the default measurement set</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Loop.then"><a class="viewcode-back" href="../../api/loops.html#qcodes.loops.Loop.then">[docs]</a>    <span class="k">def</span> <span class="nf">then</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">actions</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
