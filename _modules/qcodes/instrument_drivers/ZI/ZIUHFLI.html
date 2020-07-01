@@ -1559,7 +1559,7 @@
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Enum</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="mf">1.8e9</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span>
                                             <span class="bp">self</span><span class="o">.</span><span class="n">_samplingrate_codes</span><span class="o">.</span><span class="n">values</span><span class="p">()]),</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; A numeric representation of the scope&#39;s</span>
-<span class="s2">                             samplingrate parameter. Sets and gets the sampling </span>
+<span class="s2">                             samplingrate parameter. Sets and gets the sampling</span>
 <span class="s2">                             rate by using the scope_samplingrate parameter.&quot;&quot;&quot;</span>
                            <span class="p">)</span>
 
@@ -1726,8 +1726,6 @@
                            <span class="n">val_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ON&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;OFF&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Enum</span><span class="p">(</span><span class="s1">&#39;ON&#39;</span><span class="p">,</span> <span class="s1">&#39;OFF&#39;</span><span class="p">))</span>
 
-        <span class="c1"># make this a slave parameter off scope_holdoff_seconds</span>
-        <span class="c1"># and scope_holdoff_events</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;scope_trig_holdoffmode&#39;</span><span class="p">,</span>
                             <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Scope trigger holdoff mode&quot;</span><span class="p">,</span>
                             <span class="n">set_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_setter</span><span class="p">,</span> <span class="s1">&#39;scopes&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
