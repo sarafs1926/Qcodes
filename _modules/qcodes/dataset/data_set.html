@@ -197,13 +197,13 @@
     <span class="n">connect</span><span class="p">,</span> <span class="n">get_DB_location</span><span class="p">,</span> <span class="n">conn_from_dbpath_or_conn</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.queries</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">add_meta_data</span><span class="p">,</span> <span class="n">add_parameter</span><span class="p">,</span> <span class="n">completed</span><span class="p">,</span> <span class="n">create_run</span><span class="p">,</span>
-    <span class="n">get_completed_timestamp_from_run_id</span><span class="p">,</span> <span class="n">get_data</span><span class="p">,</span>
-    <span class="n">get_experiment_name_from_experiment_id</span><span class="p">,</span> <span class="n">get_experiments</span><span class="p">,</span>
+    <span class="n">get_completed_timestamp_from_run_id</span><span class="p">,</span>
+    <span class="n">get_experiment_name_from_experiment_id</span><span class="p">,</span>
     <span class="n">get_guid_from_run_id</span><span class="p">,</span> <span class="n">get_guids_from_run_spec</span><span class="p">,</span>
     <span class="n">get_last_experiment</span><span class="p">,</span> <span class="n">get_metadata</span><span class="p">,</span> <span class="n">get_metadata_from_run_id</span><span class="p">,</span>
     <span class="n">get_parameter_data</span><span class="p">,</span> <span class="n">get_parent_dataset_links</span><span class="p">,</span> <span class="n">get_run_description</span><span class="p">,</span>
     <span class="n">get_run_timestamp_from_run_id</span><span class="p">,</span> <span class="n">get_runid_from_guid</span><span class="p">,</span>
-    <span class="n">get_sample_name_from_experiment_id</span><span class="p">,</span> <span class="n">get_setpoints</span><span class="p">,</span> <span class="n">get_values</span><span class="p">,</span>
+    <span class="n">get_sample_name_from_experiment_id</span><span class="p">,</span> <span class="n">get_setpoints</span><span class="p">,</span>
     <span class="n">mark_run_complete</span><span class="p">,</span> <span class="n">remove_trigger</span><span class="p">,</span> <span class="n">run_exists</span><span class="p">,</span> <span class="n">set_run_timestamp</span><span class="p">,</span>
     <span class="n">update_parent_datasets</span><span class="p">,</span> <span class="n">update_run_description</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.query_helpers</span> <span class="kn">import</span> <span class="p">(</span><span class="n">VALUE</span><span class="p">,</span> <span class="n">insert_many_values</span><span class="p">,</span>
@@ -1010,47 +1010,6 @@
                 <span class="n">valid_param_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">maybeParam</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">valid_param_names</span>
 
-<div class="viewcode-block" id="DataSet.get_data"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.get_data">[docs]</a>    <span class="nd">@deprecate</span><span class="p">(</span><span class="s1">&#39;This method does not accurately represent the dataset.&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;Use `get_parameter_data` instead.&#39;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                 <span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">_BaseParameter</span><span class="p">],</span>
-                 <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the values stored in the :class:`.DataSet` for the specified parameters.</span>
-<span class="sd">        The values are returned as a list of lists, SQL rows by SQL columns,</span>
-<span class="sd">        e.g. datapoints by parameters. The data type of each element is based</span>
-<span class="sd">        on the datatype provided when the :class:`.DataSet` was created. The parameter</span>
-<span class="sd">        list may contain a mix of string parameter names, QCoDeS Parameter</span>
-<span class="sd">        objects, and ParamSpec objects (as long as they have a ``name`` field).</span>
-
-<span class="sd">        If provided, the start and end arguments select a range of results</span>
-<span class="sd">        by result count (index). If the range is empty - that is, if the end is</span>
-<span class="sd">        less than or equal to the start, or if start is after the current end</span>
-<span class="sd">        of the :class:`.DataSet` – then a list of empty arrays is returned.</span>
-
-<span class="sd">        For a more type independent and easier to work with view of the data</span>
-<span class="sd">        you may want to consider using</span>
-<span class="sd">        :py:meth:`.get_parameter_data`</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            *params: string parameter names, QCoDeS Parameter objects, and</span>
-<span class="sd">                ParamSpec objects</span>
-<span class="sd">            start: start value of selection range (by result count); ignored</span>
-<span class="sd">                if None</span>
-<span class="sd">            end: end value of selection range (by results count); ignored if</span>
-<span class="sd">                None</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            list of lists SQL rows of data by SQL columns. Each SQL row is a</span>
-<span class="sd">            datapoint and each SQL column is a parameter. Each element will</span>
-<span class="sd">            be of the datatypes stored in the database (numeric, array or</span>
-<span class="sd">            string)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">valid_param_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_parameters</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">get_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span> <span class="n">valid_param_names</span><span class="p">,</span>
-                        <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></div>
-
 <div class="viewcode-block" id="DataSet.get_parameter_data"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.get_parameter_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_parameter_data</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">_BaseParameter</span><span class="p">],</span>
@@ -1234,19 +1193,6 @@
                 <span class="n">dst</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">single_file_name</span><span class="si">}</span><span class="s1">.dat&#39;</span><span class="p">)</span>
                 <span class="n">df_to_save</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dfs_to_save</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
                 <span class="n">df_to_save</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path_or_buf</span><span class="o">=</span><span class="n">dst</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="DataSet.get_values"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.get_values">[docs]</a>    <span class="nd">@deprecate</span><span class="p">(</span><span class="s1">&#39;This method does not accurately represent the dataset.&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;Use `get_parameter_data` instead.&#39;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">get_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the values (i.e. not NULLs) of the specified parameter</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">param_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unknown parameter, not in this DataSet&#39;</span><span class="p">)</span>
-
-        <span class="n">values</span> <span class="o">=</span> <span class="n">get_values</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span> <span class="n">param_name</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">values</span></div>
 
 <div class="viewcode-block" id="DataSet.get_setpoints"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.get_setpoints">[docs]</a>    <span class="k">def</span> <span class="nf">get_setpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>

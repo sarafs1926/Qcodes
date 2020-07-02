@@ -612,42 +612,6 @@ background writing thread has been started. Else do nothing.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="qcodes.dataset.data_set.DataSet.get_data">
-<code class="sig-name descname">get_data</code><span class="sig-paren">(</span><em class="sig-param">*params: Union[str, qcodes.dataset.descriptions.param_spec.ParamSpec, qcodes.instrument.parameter._BaseParameter], start: Optional[int] = None, end: Optional[int] = None</em><span class="sig-paren">)</span> &#x2192; List[List[Any]]<a class="reference internal" href="../../_modules/qcodes/dataset/data_set.html#DataSet.get_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.get_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the values stored in the <a class="reference internal" href="#qcodes.dataset.data_set.DataSet" title="qcodes.dataset.data_set.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> for the specified parameters.
-The values are returned as a list of lists, SQL rows by SQL columns,
-e.g. datapoints by parameters. The data type of each element is based
-on the datatype provided when the <a class="reference internal" href="#qcodes.dataset.data_set.DataSet" title="qcodes.dataset.data_set.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> was created. The parameter
-list may contain a mix of string parameter names, QCoDeS Parameter
-objects, and ParamSpec objects (as long as they have a <code class="docutils literal notranslate"><span class="pre">name</span></code> field).</p>
-<p>If provided, the start and end arguments select a range of results
-by result count (index). If the range is empty - that is, if the end is
-less than or equal to the start, or if start is after the current end
-of the <a class="reference internal" href="#qcodes.dataset.data_set.DataSet" title="qcodes.dataset.data_set.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> – then a list of empty arrays is returned.</p>
-<p>For a more type independent and easier to work with view of the data
-you may want to consider using
-<a class="reference internal" href="#qcodes.dataset.data_set.DataSet.get_parameter_data" title="qcodes.dataset.data_set.DataSet.get_parameter_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_parameter_data()</span></code></a></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>*params</strong> – string parameter names, QCoDeS Parameter objects, and
-ParamSpec objects</p></li>
-<li><p><strong>start</strong> – start value of selection range (by result count); ignored
-if None</p></li>
-<li><p><strong>end</strong> – end value of selection range (by results count); ignored if
-None</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>list of lists SQL rows of data by SQL columns. Each SQL row is a
-datapoint and each SQL column is a parameter. Each element will
-be of the datatypes stored in the database (numeric, array or
-string)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
 <dt id="qcodes.dataset.data_set.DataSet.get_parameter_data">
 <code class="sig-name descname">get_parameter_data</code><span class="sig-paren">(</span><em class="sig-param">*params: Union[str, qcodes.dataset.descriptions.param_spec.ParamSpec, qcodes.instrument.parameter._BaseParameter], start: Optional[int] = None, end: Optional[int] = None</em><span class="sig-paren">)</span> &#x2192; Dict[str, Dict[str, numpy.ndarray]]<a class="reference internal" href="../../_modules/qcodes/dataset/data_set.html#DataSet.get_parameter_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.get_parameter_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the values stored in the <a class="reference internal" href="#qcodes.dataset.data_set.DataSet" title="qcodes.dataset.data_set.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> for the specified parameters
@@ -766,12 +730,6 @@ dependent parameters to a single file.</p></li>
 </ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="qcodes.dataset.data_set.DataSet.get_values">
-<code class="sig-name descname">get_values</code><span class="sig-paren">(</span><em class="sig-param">param_name: str</em><span class="sig-paren">)</span> &#x2192; List[List[Any]]<a class="reference internal" href="../../_modules/qcodes/dataset/data_set.html#DataSet.get_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.get_values" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the values (i.e. not NULLs) of the specified parameter</p>
 </dd></dl>
 
 <dl class="method">
