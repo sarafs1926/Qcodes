@@ -31,7 +31,7 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
@@ -214,58 +214,58 @@
 <div class="section" id="module-qcodes.data.location">
 <span id="qcodes-data-location"></span><h1>qcodes.data.location<a class="headerlink" href="#module-qcodes.data.location" title="Permalink to this headline">¶</a></h1>
 <p>Standard location_provider class(es) for creating DataSet locations.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="qcodes.data.location.SafeFormatter">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.data.location.</code><code class="sig-name descname">SafeFormatter</code><a class="reference internal" href="../../_modules/qcodes/data/location.html#SafeFormatter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.location.SafeFormatter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.6/library/string.html#string.Formatter" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">string.Formatter</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.7/library/string.html#string.Formatter" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">string.Formatter</span></code></a></p>
 <p>Modified string formatter that doesn’t complain about missing keys.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.location.SafeFormatter.get_value">
-<code class="sig-name descname">get_value</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">args</em>, <em class="sig-param">kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/location.html#SafeFormatter.get_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.location.SafeFormatter.get_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">args</span></em>, <em class="sig-param"><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/location.html#SafeFormatter.get_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.location.SafeFormatter.get_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Missing keys just get left as they were: ‘{key}’.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.location.SafeFormatter.check_unused_args">
-<code class="sig-name descname">check_unused_args</code><span class="sig-paren">(</span><em class="sig-param">used_args</em>, <em class="sig-param">args</em>, <em class="sig-param">kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.location.SafeFormatter.check_unused_args" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_unused_args</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">used_args</span></em>, <em class="sig-param"><span class="n">args</span></em>, <em class="sig-param"><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.location.SafeFormatter.check_unused_args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.location.SafeFormatter.convert_field">
-<code class="sig-name descname">convert_field</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">conversion</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.location.SafeFormatter.convert_field" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">convert_field</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">conversion</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.location.SafeFormatter.convert_field" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.location.SafeFormatter.format">
-<code class="sig-name descname">format</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.location.SafeFormatter.format" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">format</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.location.SafeFormatter.format" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.location.SafeFormatter.format_field">
-<code class="sig-name descname">format_field</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">format_spec</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.location.SafeFormatter.format_field" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">format_field</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">format_spec</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.location.SafeFormatter.format_field" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.location.SafeFormatter.get_field">
-<code class="sig-name descname">get_field</code><span class="sig-paren">(</span><em class="sig-param">field_name</em>, <em class="sig-param">args</em>, <em class="sig-param">kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.location.SafeFormatter.get_field" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_field</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">field_name</span></em>, <em class="sig-param"><span class="n">args</span></em>, <em class="sig-param"><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.location.SafeFormatter.get_field" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.location.SafeFormatter.parse">
-<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">format_string</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.location.SafeFormatter.parse" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">format_string</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.location.SafeFormatter.parse" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.location.SafeFormatter.vformat">
-<code class="sig-name descname">vformat</code><span class="sig-paren">(</span><em class="sig-param">format_string</em>, <em class="sig-param">args</em>, <em class="sig-param">kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.location.SafeFormatter.vformat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">vformat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">format_string</span></em>, <em class="sig-param"><span class="n">args</span></em>, <em class="sig-param"><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.location.SafeFormatter.vformat" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="qcodes.data.location.FormatLocation">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.data.location.</code><code class="sig-name descname">FormatLocation</code><span class="sig-paren">(</span><em class="sig-param">fmt=None</em>, <em class="sig-param">fmt_date=None</em>, <em class="sig-param">fmt_time=None</em>, <em class="sig-param">fmt_counter=None</em>, <em class="sig-param">record=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/location.html#FormatLocation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.location.FormatLocation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.data.location.</code><code class="sig-name descname">FormatLocation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fmt</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fmt_date</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fmt_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fmt_counter</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">record</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/location.html#FormatLocation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.location.FormatLocation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>This is the default DataSet Location provider.</p>
 <p>It provides a callable that returns a new (not used by another DataSet)
 location string, based on a format string <code class="docutils literal notranslate"><span class="pre">fmt</span></code> and a dict <code class="docutils literal notranslate"><span class="pre">record</span></code> of
@@ -300,19 +300,19 @@ would return is occupied, we add <code class="docutils literal notranslate"><spa
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>fmt</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>]</em>) – a format string that all the other info will be
+<li><p><strong>fmt</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – a format string that all the other info will be
 inserted into. Default ‘{date}/{time}’, or ‘{date}/{time}_{name}’
 if there is a <code class="docutils literal notranslate"><span class="pre">name</span></code> in the record.</p></li>
-<li><p><strong>fmt_date</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>]</em>) – a <code class="docutils literal notranslate"><span class="pre">datetime.strftime</span></code> format string,
+<li><p><strong>fmt_date</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – a <code class="docutils literal notranslate"><span class="pre">datetime.strftime</span></code> format string,
 should only use the date part. The result will be inserted in
 ‘{date}’ in <code class="docutils literal notranslate"><span class="pre">fmt</span></code>. Default ‘%Y-%m-%d’.</p></li>
-<li><p><strong>fmt_time</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>]</em>) – a <code class="docutils literal notranslate"><span class="pre">datetime.strftime</span></code> format string,
+<li><p><strong>fmt_time</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – a <code class="docutils literal notranslate"><span class="pre">datetime.strftime</span></code> format string,
 should only use the time part. The result will be inserted in
 ‘{time}’ in <code class="docutils literal notranslate"><span class="pre">fmt</span></code>. Default ‘%H-%M-%S’.</p></li>
-<li><p><strong>fmt_counter</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>]</em>) – a format string for the counter (integer)
+<li><p><strong>fmt_counter</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – a format string for the counter (integer)
 which is automatically generated from existing DataSets that the
 io manager can see. Default ‘{03}’.</p></li>
-<li><p><strong>record</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a><em>]</em>) – A dict of default values to provide when
+<li><p><strong>record</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em>]</em>) – A dict of default values to provide when
 calling the location_provider. Values provided later will
 override these values.</p></li>
 </ul>
@@ -323,20 +323,20 @@ override these values.</p></li>
 <p>Do not include date/time or number formatting in <code class="docutils literal notranslate"><span class="pre">fmt</span></code> itself, such
 as ‘{date:%Y-%m-%d}’ or ‘{counter:03}’</p>
 </div>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="qcodes.data.location.FormatLocation.default_fmt">
 <code class="sig-name descname">default_fmt</code><em class="property"> = 'data/{date}/#{counter}_{name}_{time}'</em><a class="headerlink" href="#qcodes.data.location.FormatLocation.default_fmt" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.location.FormatLocation.__call__">
-<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">io</em>, <em class="sig-param">record=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/location.html#FormatLocation.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.location.FormatLocation.__call__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">io</span></em>, <em class="sig-param"><span class="n">record</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/location.html#FormatLocation.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.location.FormatLocation.__call__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call the location provider to get a new location.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>io</strong> (<em>io_manager</em>) – where we intend to put the new DataSet.</p></li>
-<li><p><strong>record</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a><em>]</em>) – information to insert in the format string
+<li><p><strong>record</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em>]</em>) – information to insert in the format string
 Any key provided here will override the default record</p></li>
 </ul>
 </dd>

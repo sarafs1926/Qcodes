@@ -31,7 +31,7 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
@@ -218,16 +218,16 @@
 </style>
 <div class="section" id="module-qcodes.utils.command">
 <span id="qcodes-utils-command"></span><h1>qcodes.utils.command<a class="headerlink" href="#module-qcodes.utils.command" title="Permalink to this headline">¶</a></h1>
-<dl class="exception">
+<dl class="py exception">
 <dt id="qcodes.utils.command.NoCommandError">
 <em class="property">exception </em><code class="sig-prename descclassname">qcodes.utils.command.</code><code class="sig-name descname">NoCommandError</code><a class="reference internal" href="../../_modules/qcodes/utils/command.html#NoCommandError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.NoCommandError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#Exception" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
-<dl class="attribute">
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#Exception" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dl class="py attribute">
 <dt id="qcodes.utils.command.NoCommandError.args">
 <code class="sig-name descname">args</code><a class="headerlink" href="#qcodes.utils.command.NoCommandError.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.utils.command.NoCommandError.with_traceback">
 <code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.utils.command.NoCommandError.with_traceback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Exception.with_traceback(tb) –
@@ -236,16 +236,16 @@ set self.__traceback__ to tb and return self.</p>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="qcodes.utils.command.Command">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.command.</code><code class="sig-name descname">Command</code><span class="sig-paren">(</span><em class="sig-param">arg_count</em>, <em class="sig-param">cmd=None</em>, <em class="sig-param">exec_str=None</em>, <em class="sig-param">input_parser=None</em>, <em class="sig-param">output_parser=None</em>, <em class="sig-param">no_cmd_function=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.command.</code><code class="sig-name descname">Command</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arg_count</span></em>, <em class="sig-param"><span class="n">cmd</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exec_str</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">input_parser</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">output_parser</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">no_cmd_function</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Create a callable command from a string or function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>arg_count</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – The number of arguments to the command.</p></li>
-<li><p><strong>cmd</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>, </em><a class="reference internal" href="validators.html#qcodes.utils.validators.Callable" title="qcodes.utils.validators.Callable"><em>Callable</em></a><em>]</em><em>]</em>) – If a function, it will be
+<li><p><strong>arg_count</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The number of arguments to the command.</p></li>
+<li><p><strong>cmd</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><a class="reference internal" href="validators.html#qcodes.utils.validators.Callable" title="qcodes.utils.validators.Callable"><em>Callable</em></a><em>]</em><em>]</em>) – If a function, it will be
 called directly when the command is invoked. If a string,
 it should contain positional fields to <code class="docutils literal notranslate"><span class="pre">.format</span></code> like <code class="docutils literal notranslate"><span class="pre">'{}'</span></code>
 or <code class="docutils literal notranslate"><span class="pre">'{0}'</span></code>, and it will be passed on to <code class="docutils literal notranslate"><span class="pre">exec_str</span></code> after
@@ -268,83 +268,83 @@ invoked, and it should probably throw an error of its own (eg
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#TypeError" title="(in Python v3.6)"><strong>TypeError</strong></a> – If no_cmd_function is not the expected type.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#TypeError" title="(in Python v3.6)"><strong>TypeError</strong></a> – If input_parser is not the expected type.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#TypeError" title="(in Python v3.6)"><strong>TypeError</strong></a> – If output_parser is not the expected type.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#TypeError" title="(in Python v3.6)"><strong>TypeError</strong></a> – If exec_string is not the expected type.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#TypeError" title="(in Python v3.7)"><strong>TypeError</strong></a> – If no_cmd_function is not the expected type.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#TypeError" title="(in Python v3.7)"><strong>TypeError</strong></a> – If input_parser is not the expected type.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#TypeError" title="(in Python v3.7)"><strong>TypeError</strong></a> – If output_parser is not the expected type.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#TypeError" title="(in Python v3.7)"><strong>TypeError</strong></a> – If exec_string is not the expected type.</p></li>
 <li><p><a class="reference internal" href="#qcodes.utils.command.NoCommandError" title="qcodes.utils.command.NoCommandError"><strong>NoCommandError</strong></a> – If no cmd is found no_cmd_function is missing.</p></li>
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.utils.command.Command.call_by_str">
-<code class="sig-name descname">call_by_str</code><span class="sig-paren">(</span><em class="sig-param">*args</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_by_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_by_str" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">call_by_str</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_by_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_by_str" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute a formatted string.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.utils.command.Command.call_by_str_parsed_out">
-<code class="sig-name descname">call_by_str_parsed_out</code><span class="sig-paren">(</span><em class="sig-param">*args</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_by_str_parsed_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_by_str_parsed_out" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">call_by_str_parsed_out</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_by_str_parsed_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_by_str_parsed_out" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute a formatted string with output parsing.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.utils.command.Command.call_by_str_parsed_in">
-<code class="sig-name descname">call_by_str_parsed_in</code><span class="sig-paren">(</span><em class="sig-param">arg</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_by_str_parsed_in"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_by_str_parsed_in" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">call_by_str_parsed_in</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arg</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_by_str_parsed_in"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_by_str_parsed_in" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute a formatted string with 1-arg input parsing.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.utils.command.Command.call_by_str_parsed_in_out">
-<code class="sig-name descname">call_by_str_parsed_in_out</code><span class="sig-paren">(</span><em class="sig-param">arg</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_by_str_parsed_in_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_by_str_parsed_in_out" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">call_by_str_parsed_in_out</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arg</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_by_str_parsed_in_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_by_str_parsed_in_out" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute a formatted string with 1-arg input and output parsing.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.utils.command.Command.call_by_str_parsed_in2">
-<code class="sig-name descname">call_by_str_parsed_in2</code><span class="sig-paren">(</span><em class="sig-param">*args</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_by_str_parsed_in2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_by_str_parsed_in2" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">call_by_str_parsed_in2</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_by_str_parsed_in2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_by_str_parsed_in2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute a formatted string with multi-arg input parsing.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.utils.command.Command.call_by_str_parsed_in2_out">
-<code class="sig-name descname">call_by_str_parsed_in2_out</code><span class="sig-paren">(</span><em class="sig-param">*args</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_by_str_parsed_in2_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_by_str_parsed_in2_out" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">call_by_str_parsed_in2_out</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_by_str_parsed_in2_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_by_str_parsed_in2_out" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute a formatted string with multi-arg input &amp; output parsing.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.utils.command.Command.call_cmd_parsed_out">
-<code class="sig-name descname">call_cmd_parsed_out</code><span class="sig-paren">(</span><em class="sig-param">*args</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_cmd_parsed_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_cmd_parsed_out" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">call_cmd_parsed_out</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_cmd_parsed_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_cmd_parsed_out" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute a function with output parsing.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.utils.command.Command.call_cmd_parsed_in">
-<code class="sig-name descname">call_cmd_parsed_in</code><span class="sig-paren">(</span><em class="sig-param">arg</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_cmd_parsed_in"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_cmd_parsed_in" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">call_cmd_parsed_in</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arg</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_cmd_parsed_in"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_cmd_parsed_in" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute a function with 1-arg input parsing.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.utils.command.Command.call_cmd_parsed_in_out">
-<code class="sig-name descname">call_cmd_parsed_in_out</code><span class="sig-paren">(</span><em class="sig-param">arg</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_cmd_parsed_in_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_cmd_parsed_in_out" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">call_cmd_parsed_in_out</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arg</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_cmd_parsed_in_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_cmd_parsed_in_out" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute a function with 1-arg input and output parsing.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.utils.command.Command.call_cmd_parsed_in2">
-<code class="sig-name descname">call_cmd_parsed_in2</code><span class="sig-paren">(</span><em class="sig-param">*args</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_cmd_parsed_in2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_cmd_parsed_in2" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">call_cmd_parsed_in2</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_cmd_parsed_in2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_cmd_parsed_in2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute a function with multi-arg input parsing.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.utils.command.Command.call_cmd_parsed_in2_out">
-<code class="sig-name descname">call_cmd_parsed_in2_out</code><span class="sig-paren">(</span><em class="sig-param">*args</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_cmd_parsed_in2_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_cmd_parsed_in2_out" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">call_cmd_parsed_in2_out</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.call_cmd_parsed_in2_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.call_cmd_parsed_in2_out" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute a function with multi-arg input &amp; output parsing.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.utils.command.Command.__call__">
-<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">*args</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.__call__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/command.html#Command.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.command.Command.__call__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Invoke the command.</p>
 </dd></dl>
 

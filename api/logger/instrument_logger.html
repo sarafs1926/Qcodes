@@ -31,7 +31,7 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
@@ -212,17 +212,17 @@
 </style>
 <div class="section" id="module-qcodes.logger.instrument_logger">
 <span id="qcodes-logger-instrument-logger"></span><h1>qcodes.logger.instrument_logger<a class="headerlink" href="#module-qcodes.logger.instrument_logger" title="Permalink to this headline">¶</a></h1>
-<p>This module defines a <a class="reference external" href="https://docs.python.org/3.6/library/logging.html#logging.LoggerAdapter" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.LoggerAdapter</span></code></a> and
-<a class="reference external" href="https://docs.python.org/3.6/library/logging.html#logging.Filter" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.Filter</span></code></a>. They are used to enable the capturing of output from
+<p>This module defines a <a class="reference external" href="https://docs.python.org/3.7/library/logging.html#logging.LoggerAdapter" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.LoggerAdapter</span></code></a> and
+<a class="reference external" href="https://docs.python.org/3.7/library/logging.html#logging.Filter" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.Filter</span></code></a>. They are used to enable the capturing of output from
 specific
 instruments.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="qcodes.logger.instrument_logger.InstrumentLoggerAdapter">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.logger.instrument_logger.</code><code class="sig-name descname">InstrumentLoggerAdapter</code><span class="sig-paren">(</span><em class="sig-param">logger</em>, <em class="sig-param">extra</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/logger/instrument_logger.html#InstrumentLoggerAdapter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.6/library/logging.html#logging.LoggerAdapter" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.LoggerAdapter</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.logger.instrument_logger.</code><code class="sig-name descname">InstrumentLoggerAdapter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">logger</span></em>, <em class="sig-param"><span class="n">extra</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/logger/instrument_logger.html#InstrumentLoggerAdapter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.7/library/logging.html#logging.LoggerAdapter" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.LoggerAdapter</span></code></a></p>
 <p>In the Python logging module adapters are used to add context information
-to logging. The <a class="reference external" href="https://docs.python.org/3.6/library/logging.html#logging.LoggerAdapter" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.LoggerAdapter</span></code></a> has the same methods as the
-<a class="reference external" href="https://docs.python.org/3.6/library/logging.html#logging.Logger" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.Logger</span></code></a> and can thus be used as such.</p>
+to logging. The <a class="reference external" href="https://docs.python.org/3.7/library/logging.html#logging.LoggerAdapter" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.LoggerAdapter</span></code></a> has the same methods as the
+<a class="reference external" href="https://docs.python.org/3.7/library/logging.html#logging.Logger" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.Logger</span></code></a> and can thus be used as such.</p>
 <p>Here it is used to add the instruments full name to the log records so that
 they can be filtered (using the <a class="reference internal" href="#qcodes.logger.instrument_logger.InstrumentFilter" title="qcodes.logger.instrument_logger.InstrumentFilter"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstrumentFilter</span></code></a>) by instrument
 instance.</p>
@@ -237,100 +237,100 @@ easy stacking of LoggerAdapters, if so desired.</p>
 <p>You can effectively pass keyword arguments as shown in the
 following example:</p>
 <p>adapter = LoggerAdapter(someLogger, dict(p1=v1, p2=”v2”))</p>
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.logger.instrument_logger.InstrumentLoggerAdapter.process">
-<code class="sig-name descname">process</code><span class="sig-paren">(</span><em class="sig-param">msg: str, kwargs: MutableMapping[str, Any]</em><span class="sig-paren">)</span> &#x2192; Tuple[str, MutableMapping[str, Any]]<a class="reference internal" href="../../_modules/qcodes/logger/instrument_logger.html#InstrumentLoggerAdapter.process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.process" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">process</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">kwargs</span><span class="p">:</span> <span class="n">MutableMapping<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>MutableMapping<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Any<span class="p">]</span><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/logger/instrument_logger.html#InstrumentLoggerAdapter.process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.process" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the message and the kwargs for the handlers.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.logger.instrument_logger.InstrumentLoggerAdapter.critical">
-<code class="sig-name descname">critical</code><span class="sig-paren">(</span><em class="sig-param">msg</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.critical" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">critical</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.critical" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delegate a critical call to the underlying logger.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.logger.instrument_logger.InstrumentLoggerAdapter.debug">
-<code class="sig-name descname">debug</code><span class="sig-paren">(</span><em class="sig-param">msg</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.debug" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">debug</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.debug" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delegate a debug call to the underlying logger.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.logger.instrument_logger.InstrumentLoggerAdapter.error">
-<code class="sig-name descname">error</code><span class="sig-paren">(</span><em class="sig-param">msg</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.error" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">error</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.error" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delegate an error call to the underlying logger.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.logger.instrument_logger.InstrumentLoggerAdapter.exception">
-<code class="sig-name descname">exception</code><span class="sig-paren">(</span><em class="sig-param">msg</em>, <em class="sig-param">*args</em>, <em class="sig-param">exc_info=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.exception" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">exception</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">exc_info</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.exception" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delegate an exception call to the underlying logger.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.logger.instrument_logger.InstrumentLoggerAdapter.getEffectiveLevel">
 <code class="sig-name descname">getEffectiveLevel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.getEffectiveLevel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the effective level for the underlying logger.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.logger.instrument_logger.InstrumentLoggerAdapter.hasHandlers">
 <code class="sig-name descname">hasHandlers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.hasHandlers" title="Permalink to this definition">¶</a></dt>
 <dd><p>See if the underlying logger has any handlers.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.logger.instrument_logger.InstrumentLoggerAdapter.info">
-<code class="sig-name descname">info</code><span class="sig-paren">(</span><em class="sig-param">msg</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delegate an info call to the underlying logger.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.logger.instrument_logger.InstrumentLoggerAdapter.isEnabledFor">
-<code class="sig-name descname">isEnabledFor</code><span class="sig-paren">(</span><em class="sig-param">level</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.isEnabledFor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">isEnabledFor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.isEnabledFor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Is this logger enabled for level ‘level’?</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.logger.instrument_logger.InstrumentLoggerAdapter.log">
-<code class="sig-name descname">log</code><span class="sig-paren">(</span><em class="sig-param">level</em>, <em class="sig-param">msg</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level</span></em>, <em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.log" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delegate a log call to the underlying logger, after adding
 contextual information from this adapter instance.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.logger.instrument_logger.InstrumentLoggerAdapter.manager">
 <em class="property">property </em><code class="sig-name descname">manager</code><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.manager" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.logger.instrument_logger.InstrumentLoggerAdapter.name">
 <em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.logger.instrument_logger.InstrumentLoggerAdapter.setLevel">
-<code class="sig-name descname">setLevel</code><span class="sig-paren">(</span><em class="sig-param">level</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.setLevel" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">setLevel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.setLevel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the specified level on the underlying logger.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.logger.instrument_logger.InstrumentLoggerAdapter.warn">
-<code class="sig-name descname">warn</code><span class="sig-paren">(</span><em class="sig-param">msg</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.warn" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">warn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.warn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.logger.instrument_logger.InstrumentLoggerAdapter.warning">
-<code class="sig-name descname">warning</code><span class="sig-paren">(</span><em class="sig-param">msg</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.warning" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">warning</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter.warning" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delegate a warning call to the underlying logger.</p>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="qcodes.logger.instrument_logger.InstrumentFilter">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.logger.instrument_logger.</code><code class="sig-name descname">InstrumentFilter</code><span class="sig-paren">(</span><em class="sig-param">instruments: Union[InstrumentBase, Sequence[InstrumentBase]]</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/logger/instrument_logger.html#InstrumentFilter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentFilter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.6/library/logging.html#logging.Filter" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.Filter</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.logger.instrument_logger.</code><code class="sig-name descname">InstrumentFilter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instruments</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>InstrumentBase<span class="p">, </span>Sequence<span class="p">[</span>InstrumentBase<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/logger/instrument_logger.html#InstrumentFilter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.7/library/logging.html#logging.Filter" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.Filter</span></code></a></p>
 <p>Filter to filter out records that originate from the given instruments.
 Records created through the <a class="reference internal" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter" title="qcodes.logger.instrument_logger.InstrumentLoggerAdapter"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstrumentLoggerAdapter</span></code></a> have additional
 properties as specified in the <cite>extra</cite> dictionary which is a property of
@@ -342,9 +342,9 @@ originate from the list of instruments that has been passed to the
 <p>Initialize with the name of the logger which, together with its
 children, will have its events allowed through the filter. If no
 name is specified, allow every event.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.logger.instrument_logger.InstrumentFilter.filter">
-<code class="sig-name descname">filter</code><span class="sig-paren">(</span><em class="sig-param">record: logging.LogRecord</em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../../_modules/qcodes/logger/instrument_logger.html#InstrumentFilter.filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentFilter.filter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">filter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">record</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/logging.html#logging.LogRecord" title="(in Python v3.7)">logging.LogRecord</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><a class="reference internal" href="../../_modules/qcodes/logger/instrument_logger.html#InstrumentFilter.filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.logger.instrument_logger.InstrumentFilter.filter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determine if the specified record is to be logged.</p>
 <p>Is the specified record to be logged? Returns 0 for no, nonzero for
 yes. If deemed appropriate, the record may be modified in-place.</p>
@@ -352,13 +352,13 @@ yes. If deemed appropriate, the record may be modified in-place.</p>
 
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="qcodes.logger.instrument_logger.get_instrument_logger">
-<code class="sig-prename descclassname">qcodes.logger.instrument_logger.</code><code class="sig-name descname">get_instrument_logger</code><span class="sig-paren">(</span><em class="sig-param">instrument_instance: InstrumentBase</em>, <em class="sig-param">logger_name: Optional[str] = None</em><span class="sig-paren">)</span> &#x2192; qcodes.logger.instrument_logger.InstrumentLoggerAdapter<a class="reference internal" href="../../_modules/qcodes/logger/instrument_logger.html#get_instrument_logger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.logger.instrument_logger.get_instrument_logger" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.logger.instrument_logger.</code><code class="sig-name descname">get_instrument_logger</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instrument_instance</span><span class="p">:</span> <span class="n">InstrumentBase</span></em>, <em class="sig-param"><span class="n">logger_name</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter" title="qcodes.logger.instrument_logger.InstrumentLoggerAdapter">qcodes.logger.instrument_logger.InstrumentLoggerAdapter</a><a class="reference internal" href="../../_modules/qcodes/logger/instrument_logger.html#get_instrument_logger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.logger.instrument_logger.get_instrument_logger" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an <a class="reference internal" href="#qcodes.logger.instrument_logger.InstrumentLoggerAdapter" title="qcodes.logger.instrument_logger.InstrumentLoggerAdapter"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstrumentLoggerAdapter</span></code></a> that can be used to log
 messages
 including <code class="docutils literal notranslate"><span class="pre">instrument_instance</span></code> as  an additional context.</p>
-<p>The <a class="reference external" href="https://docs.python.org/3.6/library/logging.html#logging.LoggerAdapter" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.LoggerAdapter</span></code></a> object can be used as any logger.</p>
+<p>The <a class="reference external" href="https://docs.python.org/3.7/library/logging.html#logging.LoggerAdapter" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.LoggerAdapter</span></code></a> object can be used as any logger.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -369,15 +369,15 @@ If <cite>None</cite>, defaults to the root logger.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.6/library/logging.html#logging.LoggerAdapter" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.LoggerAdapter</span></code></a> instance, that can be used for instrument
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.7/library/logging.html#logging.LoggerAdapter" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.LoggerAdapter</span></code></a> instance, that can be used for instrument
 specific logging.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="qcodes.logger.instrument_logger.filter_instrument">
-<code class="sig-prename descclassname">qcodes.logger.instrument_logger.</code><code class="sig-name descname">filter_instrument</code><span class="sig-paren">(</span><em class="sig-param">instrument: Union[InstrumentBase, Sequence[InstrumentBase]], handler: Union[logging.Handler, Sequence[logging.Handler], None] = None, level: Union[int, str, None] = None</em><span class="sig-paren">)</span> &#x2192; Iterator[None]<a class="reference internal" href="../../_modules/qcodes/logger/instrument_logger.html#filter_instrument"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.logger.instrument_logger.filter_instrument" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.logger.instrument_logger.</code><code class="sig-name descname">filter_instrument</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instrument</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>InstrumentBase<span class="p">, </span>Sequence<span class="p">[</span>InstrumentBase<span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">handler</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/logging.html#logging.Handler" title="(in Python v3.7)">logging.Handler</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/logging.html#logging.Handler" title="(in Python v3.7)">logging.Handler</a><span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">level</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Iterator[None]<a class="reference internal" href="../../_modules/qcodes/logger/instrument_logger.html#filter_instrument"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.logger.instrument_logger.filter_instrument" title="Permalink to this definition">¶</a></dt>
 <dd><p>Context manager that adds a filter that only enables the log messages of
 the supplied instruments to pass.</p>
 <p class="rubric">Example</p>

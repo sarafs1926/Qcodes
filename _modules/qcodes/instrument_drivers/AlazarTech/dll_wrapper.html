@@ -31,7 +31,7 @@
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
@@ -287,8 +287,8 @@
 
 <span class="sd">    Note that this class is still quite specific to Alazar ATS DLL library.</span>
 
-<span class="sd">    This class uses dictionary of the :attr:``signatures`` attribute in order</span>
-<span class="sd">    to assign ``argtypes`` and ``restype`` atttributes for functions of</span>
+<span class="sd">    This class uses dictionary of the :attr:`signatures` attribute in order</span>
+<span class="sd">    to assign ``argtypes`` and ``restype`` attributes for functions of</span>
 <span class="sd">    a loaded DLL library (from the ``_dll`` attribute of the class).</span>
 <span class="sd">    If ``restype`` is of type ``RETURN_CODE``, then an exception is</span>
 <span class="sd">    raised in case the return code is an Alazar error code. For string-alike</span>
@@ -302,16 +302,17 @@
 <span class="sd">    Method ``_sync_dll_call`` is supposed to be called when a subclass</span>
 <span class="sd">    implements calls to functions of the loaded DLL.</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        signatures: :mod:`ctypes` signatures for loaded DLL functions;</span>
-<span class="sd">            it is to be filled with :class:`Signature` instances for the DLL</span>
-<span class="sd">            functions of interest in a subclass.</span>
-
 <span class="sd">    Args:</span>
 <span class="sd">        dll_path: Path to the DLL library to load and wrap</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">signatures</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Signature</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Signatures for loaded DLL functions;</span>
+<span class="sd">    It is to be filled with :class:`Signature` instances for the DLL</span>
+<span class="sd">    functions of interest in a subclass.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
 
     <span class="c1"># This is the DLL library instance.</span>
     <span class="n">_dll</span><span class="p">:</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span>

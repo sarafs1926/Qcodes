@@ -31,7 +31,7 @@
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
@@ -308,19 +308,6 @@
 <span class="sd">            between saves to disk. If not ``LOCAL``, the ``DataServer`` handles</span>
 <span class="sd">            this and generally writes more often. Use None to disable writing</span>
 <span class="sd">            from calls to ``self.store``. Default 5.</span>
-
-<span class="sd">    Attributes:</span>
-<span class="sd">        background_functions (collections.OrderedDict[Callable]): Class</span>
-<span class="sd">            attribute, ``{key: fn}``: ``fn`` is a callable accepting no</span>
-<span class="sd">            arguments, and ``key`` is a name to identify the function and help</span>
-<span class="sd">            you attach and remove it.</span>
-
-<span class="sd">            In ``DataSet.complete`` we call each of these periodically, in the</span>
-<span class="sd">            order that they were attached.</span>
-
-<span class="sd">            Note that because this is a class attribute, the functions will</span>
-<span class="sd">            apply to every DataSet. If you want specific functions for one</span>
-<span class="sd">            DataSet you can override this with an instance attribute.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># ie data_set.arrays[&#39;vsd&#39;] === data_set.vsd</span>
@@ -331,6 +318,18 @@
     <span class="n">location_provider</span> <span class="o">=</span> <span class="n">FormatLocation</span><span class="p">()</span>
 
     <span class="n">background_functions</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The value ``fn`` is a callable accepting no</span>
+<span class="sd">    arguments, and ``key`` is a name to identify the function and help</span>
+<span class="sd">    you attach and remove it.</span>
+
+<span class="sd">    In ``DataSet.complete`` we call each of these periodically, in the</span>
+<span class="sd">    order that they were attached.</span>
+
+<span class="sd">    Note that because this is a class attribute, the functions will</span>
+<span class="sd">    apply to every DataSet. If you want specific functions for one</span>
+<span class="sd">    DataSet you can override this with an instance attribute.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">arrays</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">formatter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">io</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">write_period</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>

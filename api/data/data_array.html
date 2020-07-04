@@ -31,7 +31,7 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
@@ -213,9 +213,9 @@
 </style>
 <div class="section" id="module-qcodes.data.data_array">
 <span id="qcodes-data-data-array"></span><h1>qcodes.data.data_array<a class="headerlink" href="#module-qcodes.data.data_array" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="qcodes.data.data_array.DataArray">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.data.data_array.</code><code class="sig-name descname">DataArray</code><span class="sig-paren">(</span><em class="sig-param">parameter=None</em>, <em class="sig-param">name=None</em>, <em class="sig-param">full_name=None</em>, <em class="sig-param">label=None</em>, <em class="sig-param">snapshot=None</em>, <em class="sig-param">array_id=None</em>, <em class="sig-param">set_arrays=()</em>, <em class="sig-param">shape=None</em>, <em class="sig-param">action_indices=()</em>, <em class="sig-param">unit=None</em>, <em class="sig-param">units=None</em>, <em class="sig-param">is_setpoint=False</em>, <em class="sig-param">preset_data=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.data.data_array.</code><code class="sig-name descname">DataArray</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parameter</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">full_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">label</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">snapshot</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">array_id</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">set_arrays</span><span class="o">=</span><span class="default_value">()</span></em>, <em class="sig-param"><span class="n">shape</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">action_indices</span><span class="o">=</span><span class="default_value">()</span></em>, <em class="sig-param"><span class="n">unit</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">units</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">is_setpoint</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">preset_data</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../utils/helpers.html#qcodes.utils.helpers.DelegateAttributes" title="qcodes.utils.helpers.DelegateAttributes"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.helpers.DelegateAttributes</span></code></a></p>
 <p>A container for one parameter in a measurement loop.</p>
 <p>If this is a measured parameter, This object doesn’t contain
@@ -238,15 +238,15 @@ because we delegate attributes through to the numpy array</p>
 populate this array, if any. Will copy <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">full_name</span></code>,
 <code class="docutils literal notranslate"><span class="pre">label</span></code>, <code class="docutils literal notranslate"><span class="pre">unit</span></code>, and <code class="docutils literal notranslate"><span class="pre">snapshot</span></code> from here unless you
 provide them explicitly.</p></li>
-<li><p><strong>name</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>]</em>) – The short name of this array.
+<li><p><strong>name</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – The short name of this array.
 TODO: use full_name as name, and get rid of short name</p></li>
-<li><p><strong>full_name</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>]</em>) – The complete name of this array. If the
+<li><p><strong>full_name</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – The complete name of this array. If the
 array is based on a parameter linked to an instrument, this is
 typically ‘&lt;instrument_name&gt;_&lt;param_name&gt;’</p></li>
-<li><p><strong>label</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>]</em>) – A description of the values in this array to
+<li><p><strong>label</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – A description of the values in this array to
 use for axis and colorbar labels on plots.</p></li>
-<li><p><strong>snapshot</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a><em>]</em>) – Metadata snapshot to save with this array.</p></li>
-<li><p><strong>array_id</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>]</em>) – A name for this array that’s unique within
+<li><p><strong>snapshot</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em>]</em>) – Metadata snapshot to save with this array.</p></li>
+<li><p><strong>array_id</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – A name for this array that’s unique within
 its <code class="docutils literal notranslate"><span class="pre">DataSet</span></code>. Typically the full_name, but when the <code class="docutils literal notranslate"><span class="pre">DataSet</span></code>
 is constructed we will append ‘_&lt;i&gt;’ (<code class="docutils literal notranslate"><span class="pre">i</span></code> is an integer starting
 from 1) if necessary to differentiate arrays with the same id.
@@ -258,17 +258,17 @@ but I’ve already said we should remove this)?</p></li>
 created with shape already, you can provide one setpoint array
 per dimension. The first should have one dimension, the second
 two dimensions, etc.</p></li>
-<li><p><strong>shape</strong> (<em>Optional</em><em>[</em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>]</em><em>]</em>) – The shape (as in numpy) of the array.
+<li><p><strong>shape</strong> (<em>Optional</em><em>[</em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>]</em><em>]</em>) – The shape (as in numpy) of the array.
 Will be prepended with new dimensions by any calls to <code class="docutils literal notranslate"><span class="pre">nest</span></code>.</p></li>
-<li><p><strong>action_indices</strong> (<em>Optional</em><em>[</em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>]</em><em>]</em>) – If used within a <code class="docutils literal notranslate"><span class="pre">Loop</span></code>,
+<li><p><strong>action_indices</strong> (<em>Optional</em><em>[</em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>]</em><em>]</em>) – If used within a <code class="docutils literal notranslate"><span class="pre">Loop</span></code>,
 these are the indices at each level of nesting within the
 <code class="docutils literal notranslate"><span class="pre">Loop</span></code> of the loop action that’s populating this array.
 TODO: this shouldn’t be in DataArray at all, the loop should
 handle converting this to array_id internally (maybe it
 already does?)</p></li>
-<li><p><strong>unit</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>]</em>) – The unit of the values stored in this array.</p></li>
-<li><p><strong>units</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>]</em>) – DEPRECATED, redirects to <code class="docutils literal notranslate"><span class="pre">unit</span></code>.</p></li>
-<li><p><strong>is_setpoint</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – True if this is a setpoint array, False if it
+<li><p><strong>unit</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – The unit of the values stored in this array.</p></li>
+<li><p><strong>units</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – DEPRECATED, redirects to <code class="docutils literal notranslate"><span class="pre">unit</span></code>.</p></li>
+<li><p><strong>is_setpoint</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – True if this is a setpoint array, False if it
 is measured. Default False.</p></li>
 <li><p><strong>preset_data</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a><em>, </em><a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Sequence" title="qcodes.utils.validators.Sequence"><em>Sequence</em></a><em>]</em><em>]</em>) – Contents of the
 array, if already known (for example if this is a setpoint
@@ -277,22 +277,22 @@ from the <code class="docutils literal notranslate"><span class="pre">shape</spa
 </ul>
 </dd>
 </dl>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="qcodes.data.data_array.DataArray.SNAP_ATTRS">
 <code class="sig-name descname">SNAP_ATTRS</code><em class="property"> = ('array_id', 'name', 'shape', 'unit', 'label', 'action_indices', 'is_setpoint')</em><a class="headerlink" href="#qcodes.data.data_array.DataArray.SNAP_ATTRS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="qcodes.data.data_array.DataArray.COPY_ATTRS_FROM_INPUT">
 <code class="sig-name descname">COPY_ATTRS_FROM_INPUT</code><em class="property"> = ('name', 'label', 'unit')</em><a class="headerlink" href="#qcodes.data.data_array.DataArray.COPY_ATTRS_FROM_INPUT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="qcodes.data.data_array.DataArray.SNAP_OMIT_KEYS">
 <code class="sig-name descname">SNAP_OMIT_KEYS</code><em class="property"> = ('ts', 'value', '__class__', 'set_arrays', 'shape', 'array_id', 'action_indices')</em><a class="headerlink" href="#qcodes.data.data_array.DataArray.SNAP_OMIT_KEYS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_array.DataArray.data_set">
 <em class="property">property </em><code class="sig-name descname">data_set</code><a class="headerlink" href="#qcodes.data.data_array.DataArray.data_set" title="Permalink to this definition">¶</a></dt>
 <dd><p>The DataSet this array belongs to.</p>
@@ -300,9 +300,9 @@ from the <code class="docutils literal notranslate"><span class="pre">shape</spa
 TODO: make this a weakref</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_array.DataArray.nest">
-<code class="sig-name descname">nest</code><span class="sig-paren">(</span><em class="sig-param">size</em>, <em class="sig-param">action_index=None</em>, <em class="sig-param">set_array=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.nest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.nest" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">nest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">size</span></em>, <em class="sig-param"><span class="n">action_index</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">set_array</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.nest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.nest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Nest this array inside a new outer loop.</p>
 <p>You cannot call <code class="docutils literal notranslate"><span class="pre">nest</span></code> after <code class="docutils literal notranslate"><span class="pre">init_data</span></code> unless this is a
 setpoint array.
@@ -312,8 +312,8 @@ is_setpoint?</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – Length of the new loop.</p></li>
-<li><p><strong>action_index</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>]</em>) – Within the outer loop at this
+<li><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Length of the new loop.</p></li>
+<li><p><strong>action_index</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>]</em>) – Within the outer loop at this
 nesting level, which action does this array derive from?</p></li>
 <li><p><strong>set_array</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="#qcodes.data.data_array.DataArray" title="qcodes.data.data_array.DataArray"><em>DataArray</em></a><em>]</em>) – The setpoints of the new outer
 loop. If this DataArray <em>is</em> a setpoint array, you should
@@ -334,9 +334,9 @@ reference itself as the inner setpoint array.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_array.DataArray.init_data">
-<code class="sig-name descname">init_data</code><span class="sig-paren">(</span><em class="sig-param">data=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.init_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.init_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">init_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.init_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.init_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create the actual numpy array to hold data.</p>
 <p>The array will be sized based on either <code class="docutils literal notranslate"><span class="pre">self.shape</span></code> or
 data provided here.</p>
@@ -352,23 +352,23 @@ array will be filled with NaN.</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#ValueError" title="(in Python v3.6)"><strong>ValueError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">self.shape</span></code> does not match <code class="docutils literal notranslate"><span class="pre">data.shape</span></code></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#ValueError" title="(in Python v3.6)"><strong>ValueError</strong></a> – if the array was already initialized with a
+<li><p><a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#ValueError" title="(in Python v3.7)"><strong>ValueError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">self.shape</span></code> does not match <code class="docutils literal notranslate"><span class="pre">data.shape</span></code></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#ValueError" title="(in Python v3.7)"><strong>ValueError</strong></a> – if the array was already initialized with a
     different shape than we’re about to create</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_array.DataArray.clear">
 <code class="sig-name descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.clear" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fill the (already existing) data array with nan.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_array.DataArray.__setitem__">
-<code class="sig-name descname">__setitem__</code><span class="sig-paren">(</span><em class="sig-param">loop_indices</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.__setitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.__setitem__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__setitem__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">loop_indices</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.__setitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.__setitem__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set data values.</p>
 <p>Follows numpy syntax, allowing indices of lower dimensionality than
 the array, if value makes up the extra dimension(s)</p>
@@ -376,12 +376,12 @@ the array, if value makes up the extra dimension(s)</p>
 want this overhead, you can access <code class="docutils literal notranslate"><span class="pre">self.ndarray</span></code> directly.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="qcodes.data.data_array.DataArray.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List[str]</em><em class="property"> = ['ndarray']</em><a class="headerlink" href="#qcodes.data.data_array.DataArray.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['ndarray']</em><a class="headerlink" href="#qcodes.data.data_array.DataArray.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_array.DataArray.__len__">
 <code class="sig-name descname">__len__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.__len__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.__len__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Array length.</p>
@@ -389,9 +389,9 @@ want this overhead, you can access <code class="docutils literal notranslate"><s
 attribute to already exist.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_array.DataArray.flat_index">
-<code class="sig-name descname">flat_index</code><span class="sig-paren">(</span><em class="sig-param">indices</em>, <em class="sig-param">index_fill=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.flat_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.flat_index" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">flat_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">indices</span></em>, <em class="sig-param"><span class="n">index_fill</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.flat_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.flat_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate the raveled index for the given indices.</p>
 <p>This is the index you would have if the array is reshaped to 1D,
 looping over the indices from inner to outer.</p>
@@ -410,18 +410,18 @@ end of the slice.</p></li>
 <dd class="field-even"><p>the resulting flat index.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#int" title="(in Python v3.6)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_array.DataArray.mark_saved">
-<code class="sig-name descname">mark_saved</code><span class="sig-paren">(</span><em class="sig-param">last_saved_index</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.mark_saved"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.mark_saved" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">mark_saved</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">last_saved_index</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.mark_saved"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.mark_saved" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mark certain outstanding modifications as saved.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>last_saved_index</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – The flat index of the last point
+<dd class="field-odd"><p><strong>last_saved_index</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The flat index of the last point
 saved. If <code class="docutils literal notranslate"><span class="pre">modified_range</span></code> extends beyond this, the
 data past <code class="docutils literal notranslate"><span class="pre">last_saved_index</span></code> will still be marked
 modified, otherwise <code class="docutils literal notranslate"><span class="pre">modified_range</span></code> is cleared
@@ -430,7 +430,7 @@ entirely.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_array.DataArray.clear_save">
 <code class="sig-name descname">clear_save</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.clear_save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.clear_save" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make previously saved parts of this array look unsaved (modified).</p>
@@ -438,7 +438,7 @@ entirely.</p>
 moving or copying the <code class="docutils literal notranslate"><span class="pre">DataSet</span></code>.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_array.DataArray.get_synced_index">
 <code class="sig-name descname">get_synced_index</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.get_synced_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.get_synced_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the last index which has been synced from the server.</p>
@@ -453,18 +453,18 @@ TODO: seems hacky to init_data here.</p>
 </p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#int" title="(in Python v3.6)">int</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_array.DataArray.get_changes">
-<code class="sig-name descname">get_changes</code><span class="sig-paren">(</span><em class="sig-param">synced_index</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.get_changes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.get_changes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_changes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">synced_index</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.get_changes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.get_changes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find changes since the last sync of this array.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>synced_index</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – The last flat index which has already
+<dd class="field-odd"><p><strong>synced_index</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The last flat index which has already
 been synced.</p>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -480,14 +480,14 @@ vals (List[float]): the new values</p>
 </p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Union[<a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)">dict</a>, <a class="reference external" href="https://docs.python.org/3.6/library/constants.html#None" title="(in Python v3.6)">None</a>]</p>
+<dd class="field-odd"><p>Union[<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a>, <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_array.DataArray.apply_changes">
-<code class="sig-name descname">apply_changes</code><span class="sig-paren">(</span><em class="sig-param">start</em>, <em class="sig-param">stop</em>, <em class="sig-param">vals</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.apply_changes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.apply_changes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">apply_changes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start</span></em>, <em class="sig-param"><span class="n">stop</span></em>, <em class="sig-param"><span class="n">vals</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.apply_changes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.apply_changes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Insert new synced values into the array.</p>
 <p>To be be called in a <code class="docutils literal notranslate"><span class="pre">PULL_FROM_SERVER</span></code> <code class="docutils literal notranslate"><span class="pre">DataSet</span></code> using results
 returned by <code class="docutils literal notranslate"><span class="pre">get_changes</span></code> from the <code class="docutils literal notranslate"><span class="pre">DataServer</span></code>.</p>
@@ -495,31 +495,31 @@ returned by <code class="docutils literal notranslate"><span class="pre">get_cha
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the flat index of the first new value.</p></li>
-<li><p><strong>stop</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – the flat index of the last new value.</p></li>
-<li><p><strong>vals</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>]</em>) – the new values</p></li>
+<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – the flat index of the first new value.</p></li>
+<li><p><strong>stop</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – the flat index of the last new value.</p></li>
+<li><p><strong>vals</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>]</em>) – the new values</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="qcodes.data.data_array.DataArray.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List[str]</em><em class="property"> = []</em><a class="headerlink" href="#qcodes.data.data_array.DataArray.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.data.data_array.DataArray.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="qcodes.data.data_array.DataArray.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List[str]</em><em class="property"> = []</em><a class="headerlink" href="#qcodes.data.data_array.DataArray.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.data.data_array.DataArray.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_array.DataArray.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param">update=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.snapshot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.snapshot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>JSON representation of this DataArray.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_array.DataArray.fraction_complete">
 <code class="sig-name descname">fraction_complete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_array.html#DataArray.fraction_complete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_array.DataArray.fraction_complete" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the fraction of this array which has data in it.</p>
@@ -530,12 +530,12 @@ where we have touched it.</p>
 <dd class="field-odd"><p>fraction of array which is complete, from 0.0 to 1.0</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#float" title="(in Python v3.6)">float</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_array.DataArray.units">
 <em class="property">property </em><code class="sig-name descname">units</code><a class="headerlink" href="#qcodes.data.data_array.DataArray.units" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>

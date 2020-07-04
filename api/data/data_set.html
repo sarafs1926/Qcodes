@@ -31,7 +31,7 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
@@ -214,14 +214,14 @@
 <div class="section" id="module-qcodes.data.data_set">
 <span id="qcodes-data-data-set"></span><h1>qcodes.data.data_set<a class="headerlink" href="#module-qcodes.data.data_set" title="Permalink to this headline">¶</a></h1>
 <p>DataSet class and factory functions.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="qcodes.data.data_set.new_data">
-<code class="sig-prename descclassname">qcodes.data.data_set.</code><code class="sig-name descname">new_data</code><span class="sig-paren">(</span><em class="sig-param">location=None</em>, <em class="sig-param">loc_record=None</em>, <em class="sig-param">name=None</em>, <em class="sig-param">overwrite=False</em>, <em class="sig-param">io=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#new_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.new_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.data.data_set.</code><code class="sig-name descname">new_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">location</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">loc_record</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">overwrite</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">io</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#new_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.new_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new DataSet.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>location</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>,</em><a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Callable" title="qcodes.utils.validators.Callable"><em>Callable</em></a><em>, </em><a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Bool" title="qcodes.utils.validators.Bool"><em>Bool</em></a><em>]</em><em>]</em>) – <p>If you provide a string,
+<li><p><strong>location</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>,</em><a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Callable" title="qcodes.utils.validators.Callable"><em>Callable</em></a><em>, </em><a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Bool" title="qcodes.utils.validators.Bool"><em>Bool</em></a><em>]</em><em>]</em>) – <p>If you provide a string,
 it must be an unused location in the io manager. Can also be:</p>
 <ul>
 <li><p>a Callable <code class="docutils literal notranslate"><span class="pre">location</span> <span class="pre">provider</span></code> with one required parameter
@@ -235,10 +235,10 @@ directory, which this location is a relative path inside.
 Default <code class="docutils literal notranslate"><span class="pre">DataSet.location_provider</span></code> which is initially
 <code class="docutils literal notranslate"><span class="pre">FormatLocation()</span></code></p>
 </p></li>
-<li><p><strong>loc_record</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a><em>]</em>) – If location is a callable, this will be
+<li><p><strong>loc_record</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em>]</em>) – If location is a callable, this will be
 passed to it as <code class="docutils literal notranslate"><span class="pre">record</span></code></p></li>
-<li><p><strong>name</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>]</em>) – overrides the <code class="docutils literal notranslate"><span class="pre">name</span></code> key in the <code class="docutils literal notranslate"><span class="pre">loc_record</span></code>.</p></li>
-<li><p><strong>overwrite</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – Are we allowed to overwrite an existing location?
+<li><p><strong>name</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – overrides the <code class="docutils literal notranslate"><span class="pre">name</span></code> key in the <code class="docutils literal notranslate"><span class="pre">loc_record</span></code>.</p></li>
+<li><p><strong>overwrite</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Are we allowed to overwrite an existing location?
 Default False.</p></li>
 <li><p><strong>io</strong> (<em>Optional</em><em>[</em><em>io_manager</em><em>]</em>) – base physical location of the <code class="docutils literal notranslate"><span class="pre">DataSet</span></code>.
 Default <code class="docutils literal notranslate"><span class="pre">DataSet.default_io</span></code> is initially <code class="docutils literal notranslate"><span class="pre">DiskIO('.')</span></code> which
@@ -249,7 +249,7 @@ to the DataSet. Can be added later with <code class="docutils literal notranslat
 <li><p><strong>formatter</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="format.html#qcodes.data.format.Formatter" title="qcodes.data.format.Formatter"><em>Formatter</em></a><em>]</em>) – sets the file format/structure to
 write (and read) with. Default <code class="docutils literal notranslate"><span class="pre">DataSet.default_formatter</span></code> which
 is initially <code class="docutils literal notranslate"><span class="pre">GNUPlotFormat()</span></code>.</p></li>
-<li><p><strong>write_period</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>]</em>) – seconds
+<li><p><strong>write_period</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>]</em>) – seconds
 between saves to disk.</p></li>
 </ul>
 </dd>
@@ -259,14 +259,14 @@ between saves to disk.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="qcodes.data.data_set.load_data">
-<code class="sig-prename descclassname">qcodes.data.data_set.</code><code class="sig-name descname">load_data</code><span class="sig-paren">(</span><em class="sig-param">location=None</em>, <em class="sig-param">formatter=None</em>, <em class="sig-param">io=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#load_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.load_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.data.data_set.</code><code class="sig-name descname">load_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">location</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">formatter</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">io</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#load_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.load_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load an existing DataSet.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>location</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>]</em>) – the location to load from. Default is the
+<li><p><strong>location</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – the location to load from. Default is the
 current live DataSet.
 Note that the full path to or physical location of the data is a
 combination of io + location. the default <code class="docutils literal notranslate"><span class="pre">DiskIO</span></code> sets the base
@@ -286,9 +286,9 @@ where you started the python session.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="qcodes.data.data_set.DataSet">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.data.data_set.</code><code class="sig-name descname">DataSet</code><span class="sig-paren">(</span><em class="sig-param">location=None</em>, <em class="sig-param">arrays=None</em>, <em class="sig-param">formatter=None</em>, <em class="sig-param">io=None</em>, <em class="sig-param">write_period=5</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.data.data_set.</code><code class="sig-name descname">DataSet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">location</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">arrays</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">formatter</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">io</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">write_period</span><span class="o">=</span><span class="default_value">5</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../utils/helpers.html#qcodes.utils.helpers.DelegateAttributes" title="qcodes.utils.helpers.DelegateAttributes"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.helpers.DelegateAttributes</span></code></a></p>
 <p>A container for one complete measurement loop.</p>
 <p>May contain many individual arrays with potentially different
@@ -298,7 +298,7 @@ sizes and dimensionalities.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>location</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>]</em>) – A location in the io manager, or <code class="docutils literal notranslate"><span class="pre">False</span></code>
+<li><p><strong>location</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>]</em>) – A location in the io manager, or <code class="docutils literal notranslate"><span class="pre">False</span></code>
 for an only-in-memory temporary DataSet.
 Note that the full path to or physical location of the data is a
 combination of io + location. the default <code class="docutils literal notranslate"><span class="pre">DiskIO</span></code> sets the base
@@ -312,18 +312,37 @@ to the DataSet. Can be added later with <code class="docutils literal notranslat
 <li><p><strong>formatter</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="format.html#qcodes.data.format.Formatter" title="qcodes.data.format.Formatter"><em>Formatter</em></a><em>]</em>) – sets the file format/structure to
 write (and read) with. Default <code class="docutils literal notranslate"><span class="pre">DataSet.default_formatter</span></code> which
 is initially <code class="docutils literal notranslate"><span class="pre">GNUPlotFormat()</span></code>.</p></li>
-<li><p><strong>write_period</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>]</em>) – Only if <code class="docutils literal notranslate"><span class="pre">mode=LOCAL</span></code>, seconds
+<li><p><strong>write_period</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>]</em>) – Only if <code class="docutils literal notranslate"><span class="pre">mode=LOCAL</span></code>, seconds
 between saves to disk. If not <code class="docutils literal notranslate"><span class="pre">LOCAL</span></code>, the <code class="docutils literal notranslate"><span class="pre">DataServer</span></code> handles
 this and generally writes more often. Use None to disable writing
 from calls to <code class="docutils literal notranslate"><span class="pre">self.store</span></code>. Default 5.</p></li>
 </ul>
 </dd>
 </dl>
-<dl class="attribute">
+<dl class="py attribute">
+<dt id="qcodes.data.data_set.DataSet.delegate_attr_dicts">
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['arrays']</em><a class="headerlink" href="#qcodes.data.data_set.DataSet.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.data.data_set.DataSet.default_io">
+<code class="sig-name descname">default_io</code><em class="property"> = &lt;DiskIO, base_location='/home/vsts/work/1/s/docs'&gt;</em><a class="headerlink" href="#qcodes.data.data_set.DataSet.default_io" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.data.data_set.DataSet.default_formatter">
+<code class="sig-name descname">default_formatter</code><em class="property"> = &lt;qcodes.data.gnuplot_format.GNUPlotFormat object&gt;</em><a class="headerlink" href="#qcodes.data.data_set.DataSet.default_formatter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.data.data_set.DataSet.location_provider">
+<code class="sig-name descname">location_provider</code><em class="property"> = &lt;qcodes.data.location.FormatLocation object&gt;</em><a class="headerlink" href="#qcodes.data.data_set.DataSet.location_provider" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.data.data_set.DataSet.background_functions">
-<code class="sig-name descname">background_functions</code><a class="headerlink" href="#qcodes.data.data_set.DataSet.background_functions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Class
-attribute, <code class="docutils literal notranslate"><span class="pre">{key:</span> <span class="pre">fn}</span></code>: <code class="docutils literal notranslate"><span class="pre">fn</span></code> is a callable accepting no
+<code class="sig-name descname">background_functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Callable<span class="p">]</span></em><em class="property"> = {}</em><a class="headerlink" href="#qcodes.data.data_set.DataSet.background_functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>The value <code class="docutils literal notranslate"><span class="pre">fn</span></code> is a callable accepting no
 arguments, and <code class="docutils literal notranslate"><span class="pre">key</span></code> is a name to identify the function and help
 you attach and remove it.</p>
 <p>In <code class="docutils literal notranslate"><span class="pre">DataSet.complete</span></code> we call each of these periodically, in the
@@ -331,39 +350,9 @@ order that they were attached.</p>
 <p>Note that because this is a class attribute, the functions will
 apply to every DataSet. If you want specific functions for one
 DataSet you can override this with an instance attribute.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.6/library/collections.html#collections.OrderedDict" title="(in Python v3.6)">collections.OrderedDict</a>[<a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Callable" title="qcodes.utils.validators.Callable">Callable</a>]</p>
-</dd>
-</dl>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="qcodes.data.data_set.DataSet.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['arrays']</em><a class="headerlink" href="#qcodes.data.data_set.DataSet.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="qcodes.data.data_set.DataSet.default_io">
-<code class="sig-name descname">default_io</code><em class="property"> = &lt;DiskIO, base_location='/home/vsts/work/1/s/docs'&gt;</em><a class="headerlink" href="#qcodes.data.data_set.DataSet.default_io" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="qcodes.data.data_set.DataSet.default_formatter">
-<code class="sig-name descname">default_formatter</code><em class="property"> = &lt;qcodes.data.gnuplot_format.GNUPlotFormat object&gt;</em><a class="headerlink" href="#qcodes.data.data_set.DataSet.default_formatter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="qcodes.data.data_set.DataSet.location_provider">
-<code class="sig-name descname">location_provider</code><em class="property"> = &lt;qcodes.data.location.FormatLocation object&gt;</em><a class="headerlink" href="#qcodes.data.data_set.DataSet.location_provider" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">background_functions</code><em class="property">: Dict[str, Callable]</em><em class="property"> = {}</em></dt>
-<dd></dd></dl>
-
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.sync">
 <code class="sig-name descname">sync</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.sync"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.sync" title="Permalink to this definition">¶</a></dt>
 <dd><p>Synchronize this DataSet with the DataServer or storage.</p>
@@ -374,12 +363,12 @@ If not, reads the entire DataSet from disk.</p>
 <dd class="field-odd"><p>True if this DataSet is live on the server</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)">bool</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.fraction_complete">
 <code class="sig-name descname">fraction_complete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.fraction_complete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.fraction_complete" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the fraction of this DataSet which has data in it.</p>
@@ -393,14 +382,14 @@ array sizes. If there are no measured arrays, returns zero.</p>
 </p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#float" title="(in Python v3.6)">float</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.complete">
-<code class="sig-name descname">complete</code><span class="sig-paren">(</span><em class="sig-param">delay=1.5</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.complete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.complete" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">complete</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">delay</span><span class="o">=</span><span class="default_value">1.5</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.complete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.complete" title="Permalink to this definition">¶</a></dt>
 <dd><p>Periodically sync the DataSet and display percent complete status.</p>
 <p>Also, each period, execute functions stored in (class attribute)
 <code class="docutils literal notranslate"><span class="pre">self.background_functions</span></code>. If a function fails, we log its
@@ -408,18 +397,18 @@ traceback and continue on. If any one function fails twice in
 a row, it gets removed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>delay</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – seconds between iterations. Default 1.5</p>
+<dd class="field-odd"><p><strong>delay</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – seconds between iterations. Default 1.5</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.get_changes">
-<code class="sig-name descname">get_changes</code><span class="sig-paren">(</span><em class="sig-param">synced_indices</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.get_changes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.get_changes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_changes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">synced_indices</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.get_changes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.get_changes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find changes since the last sync of this DataSet.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>synced_indices</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – <code class="docutils literal notranslate"><span class="pre">{array_id:</span> <span class="pre">synced_index}</span></code> where
+<dd class="field-odd"><p><strong>synced_indices</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – <code class="docutils literal notranslate"><span class="pre">{array_id:</span> <span class="pre">synced_index}</span></code> where
 synced_index is the last flat index which has already
 been synced, for any (usually all) arrays in the DataSet.</p>
 </dd>
@@ -434,14 +423,14 @@ present in the return, only those with changes.</p>
 </p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Dict" title="qcodes.utils.validators.Dict">Dict</a>[<a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)">dict</a>]</p>
+<dd class="field-odd"><p><a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Dict" title="qcodes.utils.validators.Dict">Dict</a>[<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.add_array">
-<code class="sig-name descname">add_array</code><span class="sig-paren">(</span><em class="sig-param">data_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.add_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.add_array" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_array</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_array</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.add_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.add_array" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add one DataArray to this DataSet, and mark it as part of this DataSet.</p>
 <p>Note: DO NOT just set <code class="docutils literal notranslate"><span class="pre">data_set.arrays[id]</span> <span class="pre">=</span> <span class="pre">data_array</span></code>, because
 this will not check if we are overwriting another array, nor set the
@@ -452,36 +441,36 @@ matches how you’re storing it here.</p>
 <dd class="field-odd"><p><strong>data_array</strong> (<a class="reference internal" href="data_array.html#qcodes.data.data_array.DataArray" title="qcodes.data.data_array.DataArray"><em>DataArray</em></a>) – the new array to add</p>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#ValueError" title="(in Python v3.6)"><strong>ValueError</strong></a> – if there is already an array with this id here.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#ValueError" title="(in Python v3.7)"><strong>ValueError</strong></a> – if there is already an array with this id here.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.remove_array">
-<code class="sig-name descname">remove_array</code><span class="sig-paren">(</span><em class="sig-param">array_id</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.remove_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.remove_array" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">remove_array</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">array_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.remove_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.remove_array" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove an array from a dataset</p>
 <p>Throws an exception when the array specified is refereced by other
 arrays in the dataset.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>array_id</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – array_id of array to be removed</p>
+<dd class="field-odd"><p><strong>array_id</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – array_id of array to be removed</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.store">
-<code class="sig-name descname">store</code><span class="sig-paren">(</span><em class="sig-param">loop_indices</em>, <em class="sig-param">ids_values</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.store"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.store" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">store</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">loop_indices</span></em>, <em class="sig-param"><span class="n">ids_values</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.store"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.store" title="Permalink to this definition">¶</a></dt>
 <dd><p>Insert data into one or more of our DataArrays.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>loop_indices</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#tuple" title="(in Python v3.6)"><em>tuple</em></a>) – the indices within whatever loops we are
+<li><p><strong>loop_indices</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a>) – the indices within whatever loops we are
 inside. May have fewer dimensions than some of the arrays
 we are inserting into, if the corresponding value makes up
 the remaining dimensionality.</p></li>
-<li><p><strong>values</strong> (<a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Dict" title="qcodes.utils.validators.Dict"><em>Dict</em></a><em>[</em><em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Sequence" title="qcodes.utils.validators.Sequence"><em>Sequence</em></a><em>]</em><em>]</em>) – a dict whose keys are
+<li><p><strong>values</strong> (<a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Dict" title="qcodes.utils.validators.Dict"><em>Dict</em></a><em>[</em><em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Sequence" title="qcodes.utils.validators.Sequence"><em>Sequence</em></a><em>]</em><em>]</em>) – a dict whose keys are
 array_ids, and values are single numbers or entire slices
 to insert into that array.</p></li>
 </ul>
@@ -489,33 +478,33 @@ to insert into that array.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.default_parameter_name">
-<code class="sig-name descname">default_parameter_name</code><span class="sig-paren">(</span><em class="sig-param">paramname='amplitude'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.default_parameter_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.default_parameter_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">default_parameter_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">paramname</span><span class="o">=</span><span class="default_value">'amplitude'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.default_parameter_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.default_parameter_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return name of default parameter for plotting</p>
 <p>The default parameter is determined by looking into
 metdata[‘default_parameter_name’].  If this variable is not present,
 then the closest match to the argument paramname is tried.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>paramname</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – Name to match to parameter name</p>
+<dd class="field-odd"><p><strong>paramname</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name to match to parameter name</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>name of the default parameter</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(Optional[<a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)">str</a>])</p>
+<dd class="field-odd"><p>(Optional[<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a>])</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.default_parameter_array">
-<code class="sig-name descname">default_parameter_array</code><span class="sig-paren">(</span><em class="sig-param">paramname='amplitude'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.default_parameter_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.default_parameter_array" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">default_parameter_array</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">paramname</span><span class="o">=</span><span class="default_value">'amplitude'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.default_parameter_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.default_parameter_array" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return default parameter array</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>paramname</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – Name to match to parameter name.
+<dd class="field-odd"><p><strong>paramname</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name to match to parameter name.
 Defaults to ‘amplitude’</p>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -531,128 +520,128 @@ Defaults to ‘amplitude’</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.read">
 <code class="sig-name descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.read" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read the whole DataSet from storage, overwriting the local data.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.read_metadata">
 <code class="sig-name descname">read_metadata</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.read_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.read_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read the metadata from storage, overwriting the local data.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.write">
-<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param">write_metadata=False</em>, <em class="sig-param">only_complete=True</em>, <em class="sig-param">filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.write" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">write_metadata</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">only_complete</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.write" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes updates to the DataSet to storage.
 N.B. it is recommended to call data_set.finalize() when a DataSet is
 no longer expected to change to ensure files get closed</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>write_metadata</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – write the metadata to disk</p></li>
-<li><p><strong>only_complete</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – passed on to the match_save_range inside
+<li><p><strong>write_metadata</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – write the metadata to disk</p></li>
+<li><p><strong>only_complete</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – passed on to the match_save_range inside
 self.formatter.write. Used to ensure that all new data gets
 saved even when some columns are strange.</p></li>
-<li><p><strong>filename</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>]</em>) – The filename (minus extension) to use.
+<li><p><strong>filename</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – The filename (minus extension) to use.
 The file gets saved in the usual location.</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.write_copy">
-<code class="sig-name descname">write_copy</code><span class="sig-paren">(</span><em class="sig-param">path=None</em>, <em class="sig-param">io_manager=None</em>, <em class="sig-param">location=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.write_copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.write_copy" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">write_copy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">io_manager</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">location</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.write_copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.write_copy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write a new complete copy of this DataSet to storage.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>]</em>) – An absolute path on this system to write to.
+<li><p><strong>path</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – An absolute path on this system to write to.
 If you specify this, you may not include either <code class="docutils literal notranslate"><span class="pre">io_manager</span></code>
 or <code class="docutils literal notranslate"><span class="pre">location</span></code>.</p></li>
 <li><p><strong>io_manager</strong> (<em>Optional</em><em>[</em><em>io_manager</em><em>]</em>) – A new <code class="docutils literal notranslate"><span class="pre">io_manager</span></code> to use with
 either the <code class="docutils literal notranslate"><span class="pre">DataSet</span></code>’s same or a new <code class="docutils literal notranslate"><span class="pre">location</span></code>.</p></li>
-<li><p><strong>location</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>]</em>) – A new <code class="docutils literal notranslate"><span class="pre">location</span></code> to write to, using
+<li><p><strong>location</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – A new <code class="docutils literal notranslate"><span class="pre">location</span></code> to write to, using
 either this <code class="docutils literal notranslate"><span class="pre">DataSet</span></code>’s same or a new <code class="docutils literal notranslate"><span class="pre">io_manager</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.add_metadata">
-<code class="sig-name descname">add_metadata</code><span class="sig-paren">(</span><em class="sig-param">new_metadata</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.add_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.add_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_metadata</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.add_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.add_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update DataSet.metadata with additional data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>new_metadata</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)"><em>dict</em></a>) – new data to be deep updated into
+<dd class="field-odd"><p><strong>new_metadata</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – new data to be deep updated into
 the existing metadata</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.save_metadata">
 <code class="sig-name descname">save_metadata</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.save_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.save_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate and save the DataSet’s metadata.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.finalize">
-<code class="sig-name descname">finalize</code><span class="sig-paren">(</span><em class="sig-param">filename=None</em>, <em class="sig-param">write_metadata=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.finalize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.finalize" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">finalize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">write_metadata</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.finalize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.finalize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mark the DataSet complete and write any remaining modifications.</p>
 <p>Also closes the data file(s), if the <code class="docutils literal notranslate"><span class="pre">Formatter</span></code> we’re using
 supports that.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>]</em>) – The file name (minus extension) to
+<li><p><strong>filename</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – The file name (minus extension) to
 write to. The location of the file is the usual one.</p></li>
-<li><p><strong>write_metadata</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – Whether to save a snapshot. For e.g. dumping
+<li><p><strong>write_metadata</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Whether to save a snapshot. For e.g. dumping
 raw data inside a loop, a snapshot is not wanted.</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param">update=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.snapshot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.snapshot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>JSON state of the DataSet.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.get_array_metadata">
-<code class="sig-name descname">get_array_metadata</code><span class="sig-paren">(</span><em class="sig-param">array_id</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.get_array_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.get_array_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_array_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">array_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.get_array_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.get_array_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the metadata for a single contained DataArray.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>array_id</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – the array to get metadata for.</p>
+<dd class="field-odd"><p><strong>array_id</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – the array to get metadata for.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>metadata for this array.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#dict" title="(in Python v3.6)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.data_set.DataSet.__repr__">
 <code class="sig-name descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/data_set.html#DataSet.__repr__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.data_set.DataSet.__repr__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rich information about the DataSet and contained arrays.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="qcodes.data.data_set.DataSet.delegate_attr_objects">
 <code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.data.data_set.DataSet.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="qcodes.data.data_set.DataSet.omit_delegate_attrs">
 <code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.data.data_set.DataSet.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>

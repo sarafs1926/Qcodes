@@ -31,7 +31,7 @@
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
@@ -228,8 +228,6 @@
 <span class="sd">        npts: number of points in frequency sweep</span>
 
 <span class="sd">    Methods:</span>
-<span class="sd">          set_sweep(start, stop, npts): sets the shapes and</span>
-<span class="sd">              setpoint arrays of the parameter to correspond with the sweep</span>
 <span class="sd">          get(): executes a sweep and returns magnitude and phase arrays</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -249,6 +247,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="n">channel</span>
 
 <div class="viewcode-block" id="FrequencySweep.set_sweep"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rohde_schwarz.html#qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweep.set_sweep">[docs]</a>    <span class="k">def</span> <span class="nf">set_sweep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">stop</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">npts</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        sets the shapes and setpoint arrays of the parameter to</span>
+<span class="sd">        correspond with the sweep</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            start: Starting frequency of the sweep</span>
+<span class="sd">            stop: Stopping frequency of the sweep</span>
+<span class="sd">            npts: Number of points in the sweep</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Needed to update config of the software parameter on sweep change</span>
         <span class="c1"># freq setpoints tuple as needs to be hashable for look up.</span>
         <span class="n">f</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">start</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">stop</span><span class="p">),</span> <span class="n">num</span><span class="o">=</span><span class="n">npts</span><span class="p">))</span>

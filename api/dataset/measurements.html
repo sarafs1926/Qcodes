@@ -31,7 +31,7 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
@@ -217,16 +217,16 @@
 <p>The measurement module provides a context manager for registering parameters
 to measure and storing results. The user is expected to mainly interact with it
 using the <a class="reference internal" href="#qcodes.dataset.measurements.Measurement" title="qcodes.dataset.measurements.Measurement"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measurement</span></code></a> class.</p>
-<dl class="exception">
+<dl class="py exception">
 <dt id="qcodes.dataset.measurements.ParameterTypeError">
 <em class="property">exception </em><code class="sig-prename descclassname">qcodes.dataset.measurements.</code><code class="sig-name descname">ParameterTypeError</code><a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#ParameterTypeError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.ParameterTypeError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#Exception" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
-<dl class="attribute">
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#Exception" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dl class="py attribute">
 <dt id="qcodes.dataset.measurements.ParameterTypeError.args">
 <code class="sig-name descname">args</code><a class="headerlink" href="#qcodes.dataset.measurements.ParameterTypeError.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.dataset.measurements.ParameterTypeError.with_traceback">
 <code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.dataset.measurements.ParameterTypeError.with_traceback" title="Permalink to this definition">¶</a></dt>
 <dd><p>Exception.with_traceback(tb) –
@@ -235,20 +235,20 @@ set self.__traceback__ to tb and return self.</p>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="qcodes.dataset.measurements.DataSaver">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.dataset.measurements.</code><code class="sig-name descname">DataSaver</code><span class="sig-paren">(</span><em class="sig-param">dataset: qcodes.dataset.data_set.DataSet</em>, <em class="sig-param">write_period: float</em>, <em class="sig-param">interdeps: qcodes.dataset.descriptions.dependencies.InterDependencies_</em>, <em class="sig-param">write_in_background: bool</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#DataSaver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.DataSaver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.dataset.measurements.</code><code class="sig-name descname">DataSaver</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span><span class="p">:</span> <span class="n"><a class="reference internal" href="data_set.html#qcodes.dataset.data_set.DataSet" title="qcodes.dataset.data_set.DataSet">qcodes.dataset.data_set.DataSet</a></span></em>, <em class="sig-param"><span class="n">write_period</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a></span></em>, <em class="sig-param"><span class="n">interdeps</span><span class="p">:</span> <span class="n">qcodes.dataset.descriptions.dependencies.InterDependencies_</span></em>, <em class="sig-param"><span class="n">write_in_background</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#DataSaver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.DataSaver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The class used by the <a class="reference internal" href="#qcodes.dataset.measurements.Runner" title="qcodes.dataset.measurements.Runner"><code class="xref py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> context manager to handle the
 datasaving to the database.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="qcodes.dataset.measurements.DataSaver.default_callback">
-<code class="sig-name descname">default_callback</code><em class="property">: Optional[dict]</em><em class="property"> = None</em><a class="headerlink" href="#qcodes.dataset.measurements.DataSaver.default_callback" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">default_callback</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#qcodes.dataset.measurements.DataSaver.default_callback" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.dataset.measurements.DataSaver.add_result">
-<code class="sig-name descname">add_result</code><span class="sig-paren">(</span><em class="sig-param">*res_tuple: Tuple[Union[qcodes.instrument.parameter._BaseParameter, str], Union[str, complex, numpy.integer, numpy.floating, numpy.complexfloating, numpy.ndarray, Sequence[Union[str, complex, numpy.integer, numpy.floating, numpy.complexfloating]]]]</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#DataSaver.add_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.DataSaver.add_result" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_result</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">res_tuple</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span>Union<span class="p">[</span>qcodes.instrument.parameter._BaseParameter<span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span><span class="p">, </span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#complex" title="(in Python v3.7)">complex</a><span class="p">, </span>numpy.integer<span class="p">, </span>numpy.floating<span class="p">, </span>numpy.complexfloating<span class="p">, </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">, </span>Sequence<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#complex" title="(in Python v3.7)">complex</a><span class="p">, </span>numpy.integer<span class="p">, </span>numpy.floating<span class="p">, </span>numpy.complexfloating<span class="p">]</span><span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#DataSaver.add_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.DataSaver.add_result" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a result to the measurement results. Represents a measurement
 point in the space of measurement parameters, e.g. in an experiment
 varying two voltages and measuring two currents, a measurement point
@@ -270,9 +270,9 @@ are results.</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#ValueError" title="(in Python v3.6)"><strong>ValueError</strong></a> – If a parameter name is not registered in the parent
+<li><p><a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#ValueError" title="(in Python v3.7)"><strong>ValueError</strong></a> – If a parameter name is not registered in the parent
     Measurement object.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#ValueError" title="(in Python v3.6)"><strong>ValueError</strong></a> – If the shapes of parameters do not match, i.e. if a
+<li><p><a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#ValueError" title="(in Python v3.7)"><strong>ValueError</strong></a> – If the shapes of parameters do not match, i.e. if a
     parameter gets values of a different shape than its setpoints
     (the exception being that setpoints can always be scalar)</p></li>
 <li><p><a class="reference internal" href="#qcodes.dataset.measurements.ParameterTypeError" title="qcodes.dataset.measurements.ParameterTypeError"><strong>ParameterTypeError</strong></a> – If a parameter is given a value not matching
@@ -282,33 +282,33 @@ are results.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.dataset.measurements.DataSaver.flush_data_to_database">
-<code class="sig-name descname">flush_data_to_database</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#DataSaver.flush_data_to_database"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.DataSaver.flush_data_to_database" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">flush_data_to_database</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#DataSaver.flush_data_to_database"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.DataSaver.flush_data_to_database" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write the in-memory results to the database.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.dataset.measurements.DataSaver.run_id">
 <em class="property">property </em><code class="sig-name descname">run_id</code><a class="headerlink" href="#qcodes.dataset.measurements.DataSaver.run_id" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.dataset.measurements.DataSaver.points_written">
 <em class="property">property </em><code class="sig-name descname">points_written</code><a class="headerlink" href="#qcodes.dataset.measurements.DataSaver.points_written" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.dataset.measurements.DataSaver.dataset">
 <em class="property">property </em><code class="sig-name descname">dataset</code><a class="headerlink" href="#qcodes.dataset.measurements.DataSaver.dataset" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="qcodes.dataset.measurements.Runner">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.dataset.measurements.</code><code class="sig-name descname">Runner</code><span class="sig-paren">(</span><em class="sig-param">enteractions: List</em>, <em class="sig-param">exitactions: List</em>, <em class="sig-param">experiment: qcodes.dataset.experiment_container.Experiment = None</em>, <em class="sig-param">station: qcodes.station.Station = None</em>, <em class="sig-param">write_period: float = None</em>, <em class="sig-param">interdeps: qcodes.dataset.descriptions.dependencies.InterDependencies_ = InterDependencies_(dependencies={}</em>, <em class="sig-param">inferences={}</em>, <em class="sig-param">standalones=frozenset())</em>, <em class="sig-param">name: str = ''</em>, <em class="sig-param">subscribers: Sequence[Tuple[Callable</em>, <em class="sig-param">Union[MutableSequence</em>, <em class="sig-param">MutableMapping]]] = None</em>, <em class="sig-param">parent_datasets: Sequence[Dict] = ()</em>, <em class="sig-param">extra_log_info: str = ''</em>, <em class="sig-param">write_in_background: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Runner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Runner" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.dataset.measurements.</code><code class="sig-name descname">Runner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">enteractions</span><span class="p">:</span> <span class="n">List</span></em>, <em class="sig-param"><span class="n">exitactions</span><span class="p">:</span> <span class="n">List</span></em>, <em class="sig-param"><span class="n">experiment</span><span class="p">:</span> <span class="n">qcodes.dataset.experiment_container.Experiment</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">station</span><span class="p">:</span> <span class="n"><a class="reference internal" href="../station.html#qcodes.station.Station" title="qcodes.station.Station">qcodes.station.Station</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">write_period</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interdeps</span><span class="p">:</span> <span class="n">qcodes.dataset.descriptions.dependencies.InterDependencies_</span> <span class="o">=</span> <span class="default_value">InterDependencies_(dependencies={}, inferences={}, standalones=frozenset())</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span> <span class="o">=</span> <span class="default_value">''</span></em>, <em class="sig-param"><span class="n">subscribers</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Tuple<span class="p">[</span>Callable<span class="p">, </span>Union<span class="p">[</span>MutableSequence<span class="p">, </span>MutableMapping<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">parent_datasets</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em>, <em class="sig-param"><span class="n">extra_log_info</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span> <span class="o">=</span> <span class="default_value">''</span></em>, <em class="sig-param"><span class="n">write_in_background</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Runner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Runner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Context manager for the measurement.</p>
 <p>Lives inside a <a class="reference internal" href="#qcodes.dataset.measurements.Measurement" title="qcodes.dataset.measurements.Measurement"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measurement</span></code></a> and should never be instantiated
 outside a Measurement.</p>
@@ -317,10 +317,10 @@ to the database. Additionally, it may perform experiment bootstrapping
 and clean-up after a measurement.</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="qcodes.dataset.measurements.Measurement">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.dataset.measurements.</code><code class="sig-name descname">Measurement</code><span class="sig-paren">(</span><em class="sig-param">exp: Optional[qcodes.dataset.experiment_container.Experiment] = None</em>, <em class="sig-param">station: Optional[qcodes.station.Station] = None</em>, <em class="sig-param">name: str = ''</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.dataset.measurements.</code><code class="sig-name descname">Measurement</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">exp</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>qcodes.dataset.experiment_container.Experiment<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">station</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="../station.html#qcodes.station.Station" title="qcodes.station.Station">qcodes.station.Station</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span> <span class="o">=</span> <span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Measurement procedure container. Note that multiple measurement
 instances cannot be nested.</p>
 <dl class="field-list simple">
@@ -337,19 +337,19 @@ produced by the measurement. If not given, a default value of
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.dataset.measurements.Measurement.parameters">
 <em class="property">property </em><code class="sig-name descname">parameters</code><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.parameters" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.dataset.measurements.Measurement.write_period">
 <em class="property">property </em><code class="sig-name descname">write_period</code><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.write_period" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.dataset.measurements.Measurement.register_parent">
-<code class="sig-name descname">register_parent</code><span class="sig-paren">(</span><em class="sig-param">parent: qcodes.dataset.data_set.DataSet</em>, <em class="sig-param">link_type: str</em>, <em class="sig-param">description: str = ''</em><span class="sig-paren">)</span> &#x2192; T<a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement.register_parent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.register_parent" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">register_parent</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parent</span><span class="p">:</span> <span class="n"><a class="reference internal" href="data_set.html#qcodes.dataset.data_set.DataSet" title="qcodes.dataset.data_set.DataSet">qcodes.dataset.data_set.DataSet</a></span></em>, <em class="sig-param"><span class="n">link_type</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">description</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span> <span class="o">=</span> <span class="default_value">''</span></em><span class="sig-paren">)</span> &#x2192; T<a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement.register_parent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.register_parent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Register a parent for the outcome of this measurement</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -362,9 +362,9 @@ produced by the measurement. If not given, a default value of
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.dataset.measurements.Measurement.register_parameter">
-<code class="sig-name descname">register_parameter</code><span class="sig-paren">(</span><em class="sig-param">parameter: qcodes.instrument.parameter._BaseParameter</em>, <em class="sig-param">setpoints: Sequence[Union[str</em>, <em class="sig-param">qcodes.instrument.parameter._BaseParameter]] = None</em>, <em class="sig-param">basis: Sequence[Union[str</em>, <em class="sig-param">qcodes.instrument.parameter._BaseParameter]] = None</em>, <em class="sig-param">paramtype: Optional[str] = None</em><span class="sig-paren">)</span> &#x2192; T<a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement.register_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.register_parameter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">register_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parameter</span><span class="p">:</span> <span class="n">qcodes.instrument.parameter._BaseParameter</span></em>, <em class="sig-param"><span class="n">setpoints</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>qcodes.instrument.parameter._BaseParameter<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">basis</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>qcodes.instrument.parameter._BaseParameter<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">paramtype</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; T<a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement.register_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.register_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add QCoDeS Parameter to the dataset produced by running this
 measurement.</p>
 <dl class="field-list simple">
@@ -385,9 +385,9 @@ and the validator of the supplied parameter.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.dataset.measurements.Measurement.register_custom_parameter">
-<code class="sig-name descname">register_custom_parameter</code><span class="sig-paren">(</span><em class="sig-param">name: str</em>, <em class="sig-param">label: str = None</em>, <em class="sig-param">unit: str = None</em>, <em class="sig-param">basis: Sequence[Union[str</em>, <em class="sig-param">qcodes.instrument.parameter._BaseParameter]] = None</em>, <em class="sig-param">setpoints: Sequence[Union[str</em>, <em class="sig-param">qcodes.instrument.parameter._BaseParameter]] = None</em>, <em class="sig-param">paramtype: str = 'numeric'</em><span class="sig-paren">)</span> &#x2192; T<a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement.register_custom_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.register_custom_parameter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">register_custom_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">label</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">unit</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">basis</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>qcodes.instrument.parameter._BaseParameter<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">setpoints</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>qcodes.instrument.parameter._BaseParameter<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">paramtype</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span> <span class="o">=</span> <span class="default_value">'numeric'</span></em><span class="sig-paren">)</span> &#x2192; T<a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement.register_custom_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.register_custom_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Register a custom parameter with this measurement</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -409,16 +409,16 @@ are the setpoints of this parameter</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.dataset.measurements.Measurement.unregister_parameter">
-<code class="sig-name descname">unregister_parameter</code><span class="sig-paren">(</span><em class="sig-param">parameter: Sequence[Union[str, qcodes.instrument.parameter._BaseParameter]]</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement.unregister_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.unregister_parameter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">unregister_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parameter</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>qcodes.instrument.parameter._BaseParameter<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement.unregister_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.unregister_parameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove a custom/QCoDeS parameter from the dataset produced by
 running this measurement</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.dataset.measurements.Measurement.add_before_run">
-<code class="sig-name descname">add_before_run</code><span class="sig-paren">(</span><em class="sig-param">func: Callable</em>, <em class="sig-param">args: tuple</em><span class="sig-paren">)</span> &#x2192; T<a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement.add_before_run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.add_before_run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_before_run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span></em>, <em class="sig-param"><span class="n">args</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#tuple" title="(in Python v3.7)">tuple</a></span></em><span class="sig-paren">)</span> &#x2192; T<a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement.add_before_run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.add_before_run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an action to be performed before the measurement.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -430,9 +430,9 @@ running this measurement</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.dataset.measurements.Measurement.add_after_run">
-<code class="sig-name descname">add_after_run</code><span class="sig-paren">(</span><em class="sig-param">func: Callable</em>, <em class="sig-param">args: tuple</em><span class="sig-paren">)</span> &#x2192; T<a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement.add_after_run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.add_after_run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_after_run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span></em>, <em class="sig-param"><span class="n">args</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#tuple" title="(in Python v3.7)">tuple</a></span></em><span class="sig-paren">)</span> &#x2192; T<a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement.add_after_run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.add_after_run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an action to be performed after the measurement.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -444,9 +444,9 @@ running this measurement</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.dataset.measurements.Measurement.add_subscriber">
-<code class="sig-name descname">add_subscriber</code><span class="sig-paren">(</span><em class="sig-param">func: Callable, state: Union[MutableSequence, MutableMapping]</em><span class="sig-paren">)</span> &#x2192; T<a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement.add_subscriber"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.add_subscriber" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_subscriber</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span></em>, <em class="sig-param"><span class="n">state</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>MutableSequence<span class="p">, </span>MutableMapping<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; T<a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement.add_subscriber"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.add_subscriber" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a subscriber to the dataset of the measurement.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -460,9 +460,9 @@ tuples of parameter values, an integer, a mutable variable
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.dataset.measurements.Measurement.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">write_in_background: bool = False</em><span class="sig-paren">)</span> &#x2192; qcodes.dataset.measurements.Runner<a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">write_in_background</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#qcodes.dataset.measurements.Runner" title="qcodes.dataset.measurements.Runner">qcodes.dataset.measurements.Runner</a><a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#Measurement.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.Measurement.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the context manager for the experimental run</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

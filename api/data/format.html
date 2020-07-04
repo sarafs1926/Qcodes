@@ -31,7 +31,7 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
@@ -213,10 +213,10 @@
 </style>
 <div class="section" id="module-qcodes.data.format">
 <span id="qcodes-data-format"></span><h1>qcodes.data.format<a class="headerlink" href="#module-qcodes.data.format" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="qcodes.data.format.Formatter">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.data.format.</code><code class="sig-name descname">Formatter</code><a class="reference internal" href="../../_modules/qcodes/data/format.html#Formatter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.format.Formatter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Data file formatters</p>
 <p>Formatters translate between DataSets and data files.</p>
 <p>Each Formatter is expected to implement writing methods:</p>
@@ -256,43 +256,43 @@ tells the IO manager where to store it</p></li>
 last_saved_index and modified_range, as well as whether or not
 it found the specified file, to determine how much to write.</p></li>
 </ul>
-<dl class="class">
+<dl class="py class">
 <dt id="qcodes.data.format.Formatter.ArrayGroup">
-<em class="property">class </em><code class="sig-name descname">ArrayGroup</code><span class="sig-paren">(</span><em class="sig-param">shape</em>, <em class="sig-param">set_arrays</em>, <em class="sig-param">data</em>, <em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.format.Formatter.ArrayGroup" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#tuple" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a></p>
+<em class="property">class </em><code class="sig-name descname">ArrayGroup</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">shape</span></em>, <em class="sig-param"><span class="n">set_arrays</span></em>, <em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.format.Formatter.ArrayGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#tuple" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a></p>
 <p>Create new instance of ArrayGroup(shape, set_arrays, data, name)</p>
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.format.Formatter.ArrayGroup.count">
-<code class="sig-name descname">count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.format.Formatter.ArrayGroup.count" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">count</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">/</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.format.Formatter.ArrayGroup.count" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return number of occurrences of value.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.format.Formatter.ArrayGroup.data">
 <em class="property">property </em><code class="sig-name descname">data</code><a class="headerlink" href="#qcodes.data.format.Formatter.ArrayGroup.data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 2</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.format.Formatter.ArrayGroup.index">
-<code class="sig-name descname">index</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.format.Formatter.ArrayGroup.index" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">index</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">start=0</em>, <em class="sig-param">stop=9223372036854775807</em>, <em class="sig-param">/</em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.data.format.Formatter.ArrayGroup.index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return first index of value.</p>
 <p>Raises ValueError if the value is not present.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.format.Formatter.ArrayGroup.name">
 <em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#qcodes.data.format.Formatter.ArrayGroup.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 3</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.format.Formatter.ArrayGroup.set_arrays">
 <em class="property">property </em><code class="sig-name descname">set_arrays</code><a class="headerlink" href="#qcodes.data.format.Formatter.ArrayGroup.set_arrays" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 1</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.format.Formatter.ArrayGroup.shape">
 <em class="property">property </em><code class="sig-name descname">shape</code><a class="headerlink" href="#qcodes.data.format.Formatter.ArrayGroup.shape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 0</p>
@@ -300,9 +300,9 @@ it found the specified file, to determine how much to write.</p></li>
 
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.format.Formatter.write">
-<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param">data_set: DataSet</em>, <em class="sig-param">io_manager</em>, <em class="sig-param">location</em>, <em class="sig-param">write_metadata=True</em>, <em class="sig-param">force_write=False</em>, <em class="sig-param">only_complete=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/format.html#Formatter.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.format.Formatter.write" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_set</span><span class="p">:</span> <span class="n">DataSet</span></em>, <em class="sig-param"><span class="n">io_manager</span></em>, <em class="sig-param"><span class="n">location</span></em>, <em class="sig-param"><span class="n">write_metadata</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">force_write</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">only_complete</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/format.html#Formatter.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.format.Formatter.write" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write the DataSet to storage.</p>
 <p>Subclasses must override this method.</p>
 <p>It is up to the Formatter to decide when to overwrite completely,
@@ -312,19 +312,19 @@ and when to just append or otherwise update the file(s).</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data_set</strong> – the data we are writing.</p></li>
 <li><p><strong>io_manager</strong> (<em>io_manager</em>) – base physical location to write to.</p></li>
-<li><p><strong>location</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – the file location within the io_manager.</p></li>
-<li><p><strong>write_metadata</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – if True, then the metadata is written to disk</p></li>
-<li><p><strong>force_write</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – if True, then the data is written to disk</p></li>
-<li><p><strong>only_complete</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – Used only by the gnuplot formatter’s
+<li><p><strong>location</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – the file location within the io_manager.</p></li>
+<li><p><strong>write_metadata</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – if True, then the metadata is written to disk</p></li>
+<li><p><strong>force_write</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – if True, then the data is written to disk</p></li>
+<li><p><strong>only_complete</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Used only by the gnuplot formatter’s
 overridden version of this method</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.format.Formatter.read">
-<code class="sig-name descname">read</code><span class="sig-paren">(</span><em class="sig-param">data_set: DataSet</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../../_modules/qcodes/data/format.html#Formatter.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.format.Formatter.read" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">read</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_set</span><span class="p">:</span> <span class="n">DataSet</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/data/format.html#Formatter.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.format.Formatter.read" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read the entire <code class="docutils literal notranslate"><span class="pre">DataSet</span></code>.</p>
 <p>Find all files matching <code class="docutils literal notranslate"><span class="pre">data_set.location</span></code> (using io_manager.list)
 and call <code class="docutils literal notranslate"><span class="pre">read_one_file</span></code> on each. Subclasses may either override
@@ -342,9 +342,9 @@ expect to be overwritten)</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.format.Formatter.write_metadata">
-<code class="sig-name descname">write_metadata</code><span class="sig-paren">(</span><em class="sig-param">data_set: DataSet</em>, <em class="sig-param">io_manager</em>, <em class="sig-param">location</em>, <em class="sig-param">read_first=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/format.html#Formatter.write_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.format.Formatter.write_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">write_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_set</span><span class="p">:</span> <span class="n">DataSet</span></em>, <em class="sig-param"><span class="n">io_manager</span></em>, <em class="sig-param"><span class="n">location</span></em>, <em class="sig-param"><span class="n">read_first</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/format.html#Formatter.write_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.format.Formatter.write_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write the metadata for this DataSet to storage.</p>
 <p>Subclasses must override this method.</p>
 <dl class="field-list simple">
@@ -352,8 +352,8 @@ expect to be overwritten)</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data_set</strong> – the data we are writing.</p></li>
 <li><p><strong>io_manager</strong> (<em>io_manager</em>) – base physical location to write to.</p></li>
-<li><p><strong>location</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – the file location within the io_manager.</p></li>
-<li><p><strong>read_first</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>]</em>) – whether to first look for previously
+<li><p><strong>location</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – the file location within the io_manager.</p></li>
+<li><p><strong>read_first</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>]</em>) – whether to first look for previously
 saved metadata that may contain more information than the local
 copy.</p></li>
 </ul>
@@ -361,9 +361,9 @@ copy.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.format.Formatter.read_metadata">
-<code class="sig-name descname">read_metadata</code><span class="sig-paren">(</span><em class="sig-param">data_set: DataSet</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/format.html#Formatter.read_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.format.Formatter.read_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">read_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_set</span><span class="p">:</span> <span class="n">DataSet</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/format.html#Formatter.read_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.format.Formatter.read_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read the metadata from this DataSet from storage.</p>
 <p>Subclasses must override this method.</p>
 <dl class="field-list simple">
@@ -373,9 +373,9 @@ copy.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.format.Formatter.read_one_file">
-<code class="sig-name descname">read_one_file</code><span class="sig-paren">(</span><em class="sig-param">data_set: DataSet</em>, <em class="sig-param">f</em>, <em class="sig-param">ids_read</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/format.html#Formatter.read_one_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.format.Formatter.read_one_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">read_one_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_set</span><span class="p">:</span> <span class="n">DataSet</span></em>, <em class="sig-param"><span class="n">f</span></em>, <em class="sig-param"><span class="n">ids_read</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/format.html#Formatter.read_one_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.format.Formatter.read_one_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read data from a single file into a <code class="docutils literal notranslate"><span class="pre">DataSet</span></code>.</p>
 <p>Formatter subclasses that break a DataSet into multiple data files may
 choose to override either this method, which handles one file at a
@@ -386,7 +386,7 @@ time, or <code class="docutils literal notranslate"><span class="pre">read</span
 <li><p><strong>data_set</strong> – the data we are reading into.</p></li>
 <li><p><strong>f</strong> – a file-like object to read from, as provided by
 <code class="docutils literal notranslate"><span class="pre">io_manager.open</span></code>.</p></li>
-<li><p><strong>ids_read</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#set" title="(in Python v3.6)"><em>set</em></a>) – <code class="docutils literal notranslate"><span class="pre">array_ids</span></code> that we have already read.
+<li><p><strong>ids_read</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#set" title="(in Python v3.7)"><em>set</em></a>) – <code class="docutils literal notranslate"><span class="pre">array_ids</span></code> that we have already read.
 When you read an array, check that it’s not in this set (except
 setpoints, which can be in several files with different inner
 loops) then add it to the set so other files know it should not
@@ -394,14 +394,14 @@ be read again.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.6/library/exceptions.html#ValueError" title="(in Python v3.6)"><strong>ValueError</strong></a> – if a duplicate array_id of measured data is found</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#ValueError" title="(in Python v3.7)"><strong>ValueError</strong></a> – if a duplicate array_id of measured data is found</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.format.Formatter.match_save_range">
-<code class="sig-name descname">match_save_range</code><span class="sig-paren">(</span><em class="sig-param">group</em>, <em class="sig-param">file_exists</em>, <em class="sig-param">only_complete=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/format.html#Formatter.match_save_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.format.Formatter.match_save_range" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">match_save_range</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">group</span></em>, <em class="sig-param"><span class="n">file_exists</span></em>, <em class="sig-param"><span class="n">only_complete</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/format.html#Formatter.match_save_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.format.Formatter.match_save_range" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the save range that will joins all changes in an array group.</p>
 <p>Matches all full-sized arrays: the data arrays plus the inner loop
 setpoint array.</p>
@@ -414,13 +414,13 @@ setpoint gets set and then does not change later.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>group</strong> (<a class="reference internal" href="#qcodes.data.format.Formatter.ArrayGroup" title="qcodes.data.format.Formatter.ArrayGroup"><em>Formatter.ArrayGroup</em></a>) – a <code class="docutils literal notranslate"><span class="pre">namedtuple</span></code> containing the
 arrays that go together in one file, as tuple <code class="docutils literal notranslate"><span class="pre">group.data</span></code>.</p></li>
-<li><p><strong>file_exists</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – Does this file already exist? If True, and
+<li><p><strong>file_exists</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Does this file already exist? If True, and
 all arrays in the group agree on <code class="docutils literal notranslate"><span class="pre">last_saved_index</span></code>, we
 assume the file has been written up to this index and we can
 append to it. Otherwise we will set the returned range to start
 from zero (so if the file does exist, it gets completely
 overwritten).</p></li>
-<li><p><strong>only_complete</strong> (<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – Should we write all available new data,
+<li><p><strong>only_complete</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Should we write all available new data,
 or only complete rows? If True, we write only the range of
 array indices which all arrays in the group list as modified,
 so that future writes will be able to do a clean append to
@@ -442,14 +442,14 @@ Default True.</p></li>
 </p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Tuple(<a class="reference external" href="https://docs.python.org/3.6/library/functions.html#int" title="(in Python v3.6)">int</a>, <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#int" title="(in Python v3.6)">int</a>)</p>
+<dd class="field-odd"><p>Tuple(<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a>, <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a>)</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.data.format.Formatter.group_arrays">
-<code class="sig-name descname">group_arrays</code><span class="sig-paren">(</span><em class="sig-param">arrays</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/format.html#Formatter.group_arrays"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.format.Formatter.group_arrays" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">group_arrays</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arrays</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/data/format.html#Formatter.group_arrays"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.data.format.Formatter.group_arrays" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the sets of arrays which share all the same setpoint arrays.</p>
 <p>Some Formatters use this grouping to determine which arrays to save
 together in one file.</p>

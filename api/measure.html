@@ -31,7 +31,7 @@
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -201,9 +201,9 @@
 </style>
 <div class="section" id="module-qcodes.measure">
 <span id="qcodes-measure"></span><h1>qcodes.measure<a class="headerlink" href="#module-qcodes.measure" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="qcodes.measure.Measure">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.measure.</code><code class="sig-name descname">Measure</code><span class="sig-paren">(</span><em class="sig-param">*actions</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qcodes/measure.html#Measure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.measure.Measure" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.measure.</code><code class="sig-name descname">Measure</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">actions</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qcodes/measure.html#Measure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.measure.Measure" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="utils/metadata.html#qcodes.utils.metadata.Metadatable" title="qcodes.utils.metadata.Metadatable"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.metadata.Metadatable</span></code></a></p>
 <p>Create a DataSet from a single (non-looped) set of actions.</p>
 <dl class="field-list simple">
@@ -215,42 +215,42 @@ Scalars returned by an action will be saved as length-1 arrays,
 with a dummy setpoint for consistency with other DataSets.</p>
 </dd>
 </dl>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="qcodes.measure.Measure.dummy_parameter">
-<code class="sig-name descname">dummy_parameter</code><em class="property"> = &lt;qcodes.instrument.parameter.Parameter: single at 139814203312464&gt;</em><a class="headerlink" href="#qcodes.measure.Measure.dummy_parameter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">dummy_parameter</code><em class="property"> = &lt;qcodes.instrument.parameter.Parameter: single at 139936232634704&gt;</em><a class="headerlink" href="#qcodes.measure.Measure.dummy_parameter" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.measure.Measure.run_temp">
-<code class="sig-name descname">run_temp</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qcodes/measure.html#Measure.run_temp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.measure.Measure.run_temp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run_temp</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qcodes/measure.html#Measure.run_temp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.measure.Measure.run_temp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper to run this measurement as a temporary data set</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.measure.Measure.get_data_set">
-<code class="sig-name descname">get_data_set</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qcodes/measure.html#Measure.get_data_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.measure.Measure.get_data_set" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_data_set</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qcodes/measure.html#Measure.get_data_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.measure.Measure.get_data_set" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.measure.Measure.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">use_threads=False</em>, <em class="sig-param">quiet=False</em>, <em class="sig-param">station=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qcodes/measure.html#Measure.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.measure.Measure.run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">use_threads</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">quiet</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">station</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qcodes/measure.html#Measure.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.measure.Measure.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the actions in this measurement and return their data as a DataSet</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>quiet</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>]</em>) – Set True to not print anything except
+<li><p><strong>quiet</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>]</em>) – Set True to not print anything except
 errors. Default False.</p></li>
 <li><p><strong>station</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="station.html#qcodes.station.Station" title="qcodes.station.Station"><em>Station</em></a><em>]</em>) – the <code class="docutils literal notranslate"><span class="pre">Station</span></code> this measurement
 pertains to. Defaults to <code class="docutils literal notranslate"><span class="pre">Station.default</span></code> if one is defined.
 Only used to supply metadata.</p></li>
-<li><p><strong>use_threads</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>]</em>) – whether to parallelize <code class="docutils literal notranslate"><span class="pre">get</span></code>
+<li><p><strong>use_threads</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>]</em>) – whether to parallelize <code class="docutils literal notranslate"><span class="pre">get</span></code>
 operations using threads. Default False.</p></li>
-<li><p><strong>location</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3.6/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>]</em><em>]</em>) – the location of the
+<li><p><strong>location</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>]</em><em>]</em>) – the location of the
 DataSet, a string whose meaning depends on formatter and io,
 or False to only keep in memory. May be a callable to provide
 automatic locations. If omitted, will use the default
 DataSet.location_provider</p></li>
-<li><p><strong>name</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a><em>]</em>) – if location is default or another provider
+<li><p><strong>name</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – if location is default or another provider
 function, name is a string to add to location to make it more
 readable/meaningful to users</p></li>
 <li><p><strong>formatter</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="data/format.html#qcodes.data.format.Formatter" title="qcodes.data.format.Formatter"><em>Formatter</em></a><em>]</em>) – knows how to read and write the
@@ -269,15 +269,15 @@ along with any other optional keyword arguments.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.measure.Measure.snapshot_base">
-<code class="sig-name descname">snapshot_base</code><span class="sig-paren">(</span><em class="sig-param">update: Optional[bool] = False</em>, <em class="sig-param">params_to_skip_update: Optional[Sequence[str]] = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qcodes/measure.html#Measure.snapshot_base"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.measure.Measure.snapshot_base" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot_base</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">params_to_skip_update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qcodes/measure.html#Measure.snapshot_base"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.measure.Measure.snapshot_base" title="Permalink to this definition">¶</a></dt>
 <dd><p>Override this with the primary information for a subclass.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.measure.Measure.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param">metadata: dict</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#qcodes.measure.Measure.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.measure.Measure.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -286,9 +286,9 @@ along with any other optional keyword arguments.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="qcodes.measure.Measure.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param">update: Optional[bool] = False</em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.measure.Measure.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.measure.Measure.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.measure.Measure.snapshot_base" title="qcodes.measure.Measure.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
