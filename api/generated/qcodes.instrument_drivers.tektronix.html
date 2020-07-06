@@ -814,7 +814,7 @@ See <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.generate_awg_file">
-<code class="sig-name descname">generate_awg_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.generate_awg_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.generate_awg_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">generate_awg_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">packed_waveforms</span></em>, <em class="sig-param"><span class="n">wfname_l</span></em>, <em class="sig-param"><span class="n">nrep</span></em>, <em class="sig-param"><span class="n">trig_wait</span></em>, <em class="sig-param"><span class="n">goto_state</span></em>, <em class="sig-param"><span class="n">jump_to</span></em>, <em class="sig-param"><span class="n">channel_cfg</span></em>, <em class="sig-param"><span class="n">sequence_cfg</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">preservechannelsettings</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.generate_awg_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.generate_awg_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function generates an .awg-file for uploading to the AWG.
 The .awg-file contains a waveform list, full sequencing information
 and instrument configuration settings.</p>
@@ -1043,7 +1043,7 @@ event queues.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.pack_waveform">
-<code class="sig-name descname">pack_waveform</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.pack_waveform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.pack_waveform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">pack_waveform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">wf</span></em>, <em class="sig-param"><span class="n">m1</span></em>, <em class="sig-param"><span class="n">m2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.pack_waveform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.pack_waveform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts/packs a waveform and two markers into a 16-bit format
 according to the AWG Integer format specification.
 The waveform occupies 14 bits and the markers one bit each.
@@ -2175,7 +2175,7 @@ self.force_trigger.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5200.Tektronix_AWG5200.generate_awg_file">
-<code class="sig-name descname">generate_awg_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5200.Tektronix_AWG5200.generate_awg_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">generate_awg_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">packed_waveforms</span></em>, <em class="sig-param"><span class="n">wfname_l</span></em>, <em class="sig-param"><span class="n">nrep</span></em>, <em class="sig-param"><span class="n">trig_wait</span></em>, <em class="sig-param"><span class="n">goto_state</span></em>, <em class="sig-param"><span class="n">jump_to</span></em>, <em class="sig-param"><span class="n">channel_cfg</span></em>, <em class="sig-param"><span class="n">sequence_cfg</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">preservechannelsettings</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5200.Tektronix_AWG5200.generate_awg_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function generates an .awg-file for uploading to the AWG.
 The .awg-file contains a waveform list, full sequencing information
 and instrument configuration settings.</p>
@@ -2703,7 +2703,7 @@ See <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5200.Tektronix_AWG5200.pack_waveform">
-<code class="sig-name descname">pack_waveform</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5200.Tektronix_AWG5200.pack_waveform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">pack_waveform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">wf</span></em>, <em class="sig-param"><span class="n">m1</span></em>, <em class="sig-param"><span class="n">m2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5200.Tektronix_AWG5200.pack_waveform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts/packs a waveform and two markers into a 16-bit format
 according to the AWG Integer format specification.
 The waveform occupies 14 bits and the markers one bit each.
