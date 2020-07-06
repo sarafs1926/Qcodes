@@ -489,7 +489,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/200706-18003-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/200706-17866-qcodes.log
 </pre></div></div>
 </div>
 <div class="section" id="QCoDeS-config">
@@ -516,7 +516,7 @@ In the following example, I have changed the default path of my database, repres
 {&#39;core&#39;: {&#39;default_fmt&#39;: &#39;data/{date}/#{counter}_{name}_{time}&#39;,
   &#39;register_magic&#39;: True,
   &#39;import_legacy_api&#39;: False,
-  &#39;db_location&#39;: &#39;/tmp/pytest-of-vsts/pytest-0/popen-gw1/test_load_last_experiment0/temp.db&#39;,
+  &#39;db_location&#39;: &#39;~/experiments.db&#39;,
   &#39;db_debug&#39;: False,
   &#39;loglevel&#39;: &#39;WARNING&#39;,
   &#39;file_loglevel&#39;: &#39;INFO&#39;},
@@ -545,12 +545,12 @@ In the following example, I have changed the default path of my database, repres
    &#39;cutoff_percentile&#39;: [0.5, 0.5],
    &#39;color_over&#39;: &#39;#a1c4fc&#39;,
    &#39;color_under&#39;: &#39;#017000&#39;}},
- &#39;user&#39;: {&#39;scriptfolder&#39;: &#39;.&#39;, &#39;mainfolder&#39;: &#39;output&#39;},
+ &#39;user&#39;: {&#39;scriptfolder&#39;: &#39;.&#39;, &#39;mainfolder&#39;: &#39;.&#39;},
  &#39;station&#39;: {&#39;enable_forced_reconnect&#39;: False,
   &#39;default_folder&#39;: &#39;.&#39;,
   &#39;default_file&#39;: None,
   &#39;use_monitor&#39;: False},
- &#39;GUID_components&#39;: {&#39;location&#39;: 0, &#39;work_station&#39;: 92, &#39;sample&#39;: 0},
+ &#39;GUID_components&#39;: {&#39;location&#39;: 0, &#39;work_station&#39;: 0, &#39;sample&#39;: 0},
  &#39;telemetry&#39;: {&#39;enabled&#39;: False,
   &#39;instrumentation_key&#39;: &#39;00000000-0000-0000-0000-000000000000&#39;}}
 </pre></div></div>
@@ -628,7 +628,7 @@ In the following example, I have changed the default path of my database, repres
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 controls core settings of qcodes.
-Current value: {&#39;default_fmt&#39;: &#39;data/{date}/#{counter}_{name}_{time}&#39;, &#39;register_magic&#39;: True, &#39;import_legacy_api&#39;: False, &#39;db_location&#39;: &#39;/tmp/pytest-of-vsts/pytest-0/popen-gw1/test_load_last_experiment0/temp.db&#39;, &#39;db_debug&#39;: False, &#39;loglevel&#39;: &#39;WARNING&#39;, &#39;file_loglevel&#39;: &#39;INFO&#39;}. Type: object. Default: Not defined.
+Current value: {&#39;default_fmt&#39;: &#39;data/{date}/#{counter}_{name}_{time}&#39;, &#39;register_magic&#39;: True, &#39;import_legacy_api&#39;: False, &#39;db_location&#39;: &#39;~/experiments.db&#39;, &#39;db_debug&#39;: False, &#39;loglevel&#39;: &#39;WARNING&#39;, &#39;file_loglevel&#39;: &#39;INFO&#39;}. Type: object. Default: Not defined.
 </pre></div></div>
 </div>
 <div class="section" id="Configuring-QCoDeS">
@@ -704,7 +704,7 @@ Current value: /dev/random. Type: string. Default: /dev/random.
 {&#39;core&#39;: {&#39;default_fmt&#39;: &#39;data/{date}/#{counter}_{name}_{time}&#39;,
   &#39;register_magic&#39;: True,
   &#39;import_legacy_api&#39;: False,
-  &#39;db_location&#39;: &#39;/tmp/pytest-of-vsts/pytest-0/popen-gw1/test_load_last_experiment0/temp.db&#39;,
+  &#39;db_location&#39;: &#39;~/experiments.db&#39;,
   &#39;db_debug&#39;: False,
   &#39;loglevel&#39;: &#39;WARNING&#39;,
   &#39;file_loglevel&#39;: &#39;INFO&#39;},
@@ -733,12 +733,12 @@ Current value: /dev/random. Type: string. Default: /dev/random.
    &#39;cutoff_percentile&#39;: [0.5, 0.5],
    &#39;color_over&#39;: &#39;#a1c4fc&#39;,
    &#39;color_under&#39;: &#39;#017000&#39;}},
- &#39;user&#39;: {&#39;scriptfolder&#39;: &#39;.&#39;, &#39;mainfolder&#39;: &#39;output&#39;},
+ &#39;user&#39;: {&#39;scriptfolder&#39;: &#39;.&#39;, &#39;mainfolder&#39;: &#39;.&#39;},
  &#39;station&#39;: {&#39;enable_forced_reconnect&#39;: False,
   &#39;default_folder&#39;: &#39;.&#39;,
   &#39;default_file&#39;: None,
   &#39;use_monitor&#39;: False},
- &#39;GUID_components&#39;: {&#39;location&#39;: 0, &#39;work_station&#39;: 92, &#39;sample&#39;: 0},
+ &#39;GUID_components&#39;: {&#39;location&#39;: 0, &#39;work_station&#39;: 0, &#39;sample&#39;: 0},
  &#39;telemetry&#39;: {&#39;enabled&#39;: False,
   &#39;instrumentation_key&#39;: &#39;00000000-0000-0000-0000-000000000000&#39;}}
 </pre></div></div>
@@ -861,7 +861,7 @@ save_to_home() -&gt; None method of qcodes.configuration.config.Config instance
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;scriptfolder&#39;: &#39;.&#39;, &#39;mainfolder&#39;: &#39;output&#39;, &#39;base_location&#39;: &#39;/dev/random&#39;}
+{&#39;scriptfolder&#39;: &#39;.&#39;, &#39;mainfolder&#39;: &#39;.&#39;, &#39;base_location&#39;: &#39;/dev/random&#39;}
 </pre></div></div>
 </div>
 </div>
