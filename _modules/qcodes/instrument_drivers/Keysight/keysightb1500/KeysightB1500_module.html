@@ -404,6 +404,24 @@
 
     <span class="k">return</span> <span class="n">summary</span></div>
 
+
+<div class="viewcode-block" id="convert_dummy_val_to_nan"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.convert_dummy_val_to_nan">[docs]</a><span class="k">def</span> <span class="nf">convert_dummy_val_to_nan</span><span class="p">(</span><span class="n">param</span><span class="p">:</span> <span class="n">_FMTResponse</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts dummy value to NaN. Instrument may output dummy value (</span>
+<span class="sd">    199.999E+99) if measurement data is over the measurement range. Or the</span>
+<span class="sd">    sweep measurement was aborted by the automatic stop function or power</span>
+<span class="sd">    compliance. Or if any abort condition is detected. Dummy data</span>
+<span class="sd">    199.999E+99 will be returned for the data after abort.&quot;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        param: This must be of type named tuple _FMTResponse.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mf">1e99</span><span class="p">:</span>
+            <span class="n">param</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="B1500Module"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.B1500Module">[docs]</a><span class="k">class</span> <span class="nc">B1500Module</span><span class="p">(</span><span class="n">InstrumentChannel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for all modules of B1500 Parameter Analyzer</span>
 

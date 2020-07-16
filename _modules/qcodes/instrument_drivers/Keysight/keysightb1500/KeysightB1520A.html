@@ -172,7 +172,8 @@
 <span class="kn">from</span> <span class="nn">.KeysightB1500_module</span> <span class="kn">import</span> <span class="n">B1500Module</span><span class="p">,</span> <span class="n">parse_dcorr_query_response</span><span class="p">,</span> \
     <span class="n">format_dcorr_response</span><span class="p">,</span> <span class="n">_DCORRResponse</span><span class="p">,</span> <span class="n">parse_dcv_measurement_response</span><span class="p">,</span> \
     <span class="n">_FMTResponse</span><span class="p">,</span> <span class="n">fmt_response_base_parser</span><span class="p">,</span> <span class="n">fixed_negative_float</span><span class="p">,</span> \
-    <span class="n">get_name_label_unit_of_impedance_model</span><span class="p">,</span> <span class="n">StatusMixin</span>
+    <span class="n">get_name_label_unit_of_impedance_model</span><span class="p">,</span> <span class="n">StatusMixin</span><span class="p">,</span> \
+    <span class="n">convert_dummy_val_to_nan</span>
 <span class="kn">from</span> <span class="nn">.message_builder</span> <span class="kn">import</span> <span class="n">MessageBuilder</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">constants</span>
 <span class="kn">from</span> <span class="nn">.constants</span> <span class="kn">import</span> <span class="n">ModuleKind</span><span class="p">,</span> <span class="n">ChNr</span><span class="p">,</span> <span class="n">MM</span>
@@ -1069,6 +1070,9 @@
 
             <span class="bp">self</span><span class="o">.</span><span class="n">shapes</span> <span class="o">=</span> <span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_voltage</span><span class="o">.</span><span class="n">value</span><span class="p">),),)</span> <span class="o">*</span> <span class="mi">2</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">setpoints</span> <span class="o">=</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_voltage</span><span class="o">.</span><span class="n">value</span><span class="p">,),)</span> <span class="o">*</span> <span class="mi">2</span>
+
+        <span class="n">convert_dummy_val_to_nan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param1</span><span class="p">)</span>
+        <span class="n">convert_dummy_val_to_nan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param2</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">param1</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">param2</span><span class="o">.</span><span class="n">value</span></div>
 
