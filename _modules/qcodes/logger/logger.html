@@ -231,6 +231,18 @@
     <span class="k">return</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">format_string</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="get_formatter_for_telemetry"><a class="viewcode-back" href="../../../api/logger/logger.html#qcodes.logger.logger.get_formatter_for_telemetry">[docs]</a><span class="k">def</span> <span class="nf">get_formatter_for_telemetry</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns :class:`logging.Formatter` with only name, function name and</span>
+<span class="sd">    message keywords from FORMAT_STRING_DICT</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">format_string_items</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;%(</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">)</span><span class="si">{</span><span class="n">fmt</span><span class="si">}</span><span class="s1">&#39;</span>
+                           <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">fmt</span> <span class="ow">in</span> <span class="n">FORMAT_STRING_DICT</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                           <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;funcName&#39;</span><span class="p">]]</span>
+    <span class="n">format_string</span> <span class="o">=</span> <span class="n">LOGGING_SEPARATOR</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">format_string_items</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">format_string</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="get_console_handler"><a class="viewcode-back" href="../../../api/logger/logger.html#qcodes.logger.logger.get_console_handler">[docs]</a><span class="k">def</span> <span class="nf">get_console_handler</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get handle that prints messages from the root logger to the console.</span>
@@ -390,6 +402,7 @@
                               <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">qc</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">telemetry</span><span class="o">.</span><span class="n">instrumentation_key</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">telemetry_handler</span><span class="o">.</span><span class="n">add_telemetry_processor</span><span class="p">(</span><span class="n">callback_function</span><span class="p">)</span>
         <span class="n">telemetry_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+        <span class="n">telemetry_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">get_formatter_for_telemetry</span><span class="p">())</span>
         <span class="n">root_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">telemetry_handler</span><span class="p">)</span>
 
     <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;QCoDes logger setup completed&quot;</span><span class="p">)</span>
