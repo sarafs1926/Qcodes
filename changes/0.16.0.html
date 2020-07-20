@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Changelog for QCoDeS 0.16.0 (not released yet) &mdash; QCoDeS 0.15.0 documentation</title>
+  <title>Changelog for QCoDeS 0.16.0 &mdash; QCoDeS 0.15.0 documentation</title>
   
 
   
@@ -128,6 +128,10 @@
 <li class="toctree-l2"><a class="reference internal" href="0.15.0.html">0.15.0</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">0.16.0</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#breaking-changes">Breaking Changes:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#new-drivers">New drivers:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#improved-drivers">Improved drivers:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#improved">Improved:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#under-the-hood">Under the hood:</a></li>
 </ul>
 </li>
 </ul>
@@ -181,7 +185,7 @@
         
           <li><a href="index.html">Changelogs</a> &raquo;</li>
         
-      <li>Changelog for QCoDeS 0.16.0 (not released yet)</li>
+      <li>Changelog for QCoDeS 0.16.0</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -224,12 +228,70 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="changelog-for-qcodes-0-16-0-not-released-yet">
-<h1>Changelog for QCoDeS 0.16.0 (not released yet)<a class="headerlink" href="#changelog-for-qcodes-0-16-0-not-released-yet" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="changelog-for-qcodes-0-16-0">
+<h1>Changelog for QCoDeS 0.16.0<a class="headerlink" href="#changelog-for-qcodes-0-16-0" title="Permalink to this headline">¶</a></h1>
+<p>The July 2020 release of QCoDeS.</p>
+<p>Note: this will be the <strong>last</strong> QCoDeS release to support python 3.6</p>
 <div class="section" id="breaking-changes">
 <h2>Breaking Changes:<a class="headerlink" href="#breaking-changes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">math</span></code> has been renamed as <code class="docutils literal notranslate"><span class="pre">math_utils</span></code> (#2040).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">math</span></code> has been renamed to <code class="docutils literal notranslate"><span class="pre">math_utils</span></code> (#2040).</p></li>
+<li><p>The deprecated <cite>default_measurement</cite> of the <cite>Station</cite> is now removed (#2058)</p></li>
+<li><p>The deprecated methods <cite>get_data</cite> and <cite>get_values</cite> of the <cite>DataSet</cite> have now been removed (#2067)</p></li>
+<li><p>The <cite>get_setpoints</cite> method of the <cite>DataSet</cite> has been deprecated (#2068)</p></li>
+</ul>
+</div>
+<div class="section" id="new-drivers">
+<h2>New drivers:<a class="headerlink" href="#new-drivers" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="improved-drivers">
+<h2>Improved drivers:<a class="headerlink" href="#improved-drivers" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The Keithley 2450 driver got a bunch of new parameters and methods (#1970, #2052)</p></li>
+<li><p>The Keysight B1500 driver now checks errors after setting each parameter (#2041) and outputs <cite>NaN</cite> instead of <cite>199.999e99</cite> when compliance is reached (#2074)</p></li>
+<li><dl class="simple">
+<dt>The Keysight B1520A driver saw a bunch of improvements:</dt><dd><ul>
+<li><p>sweep API was restructured more logically (#2044)</p></li>
+<li><p>the driver now supports all possible impedance models (#2047)</p></li>
+<li><p>the measurement status is retrieved after each sweep (#2050)</p></li>
+<li><p>added <cite>get_cmds</cite> for <cite>sweep_auto_abort</cite> and <cite>post_sweep_auto_abort</cite> (#2049)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>The Keysight B1517A driver had the following improvements:</dt><dd><ul>
+<li><p>the measurement status is retrieved after each sweep (#2050).</p></li>
+<li><p>added <cite>get_cmds</cite> for <cite>sweep_auto_abort</cite> and <cite>post_sweep_auto_abort</cite> (#2049)</p></li>
+<li><p>added measurement status to current/voltage parameters (#2051)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="improved">
+<h2>Improved:<a class="headerlink" href="#improved" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>All master-slave references from drivers have been removed or deprecated (#2066)</p></li>
+<li><p>QCoDeS now comes with a code of conduct (#2078)</p></li>
+</ul>
+</div>
+<div class="section" id="under-the-hood">
+<h2>Under the hood:<a class="headerlink" href="#under-the-hood" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Better execution of the test suite and hardening of tests (#2016, #2037, #2038, #2039, #2040, #2042, #2045, #2056, #2057, #2063, #2064, #2070, #2073, #2077, #2076). Special highlights from this massive work:</dt><dd><ul>
+<li><p>The test suite now runs in parallel, a major win for all developers</p></li>
+<li><p>Much better handling of the QCoDeS config system as a result</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Update of dependencies to <cite>mypy</cite> 0.782 (#2034, #2075) and <cite>pyqtgraph</cite> 0.11.0 (#2036)</p></li>
+<li><p>The <cite>measurements.py</cite> module is now slightly better type-annotated (#2065)</p></li>
+<li><p>Documentation is built with Spinx 3.1.2 (#2069, #2072)</p></li>
+<li><p>Added support for (upcoming) <cite>pytest</cite> 6 and explicit dependency on <cite>packaging</cite> (#2076)</p></li>
 </ul>
 </div>
 </div>
