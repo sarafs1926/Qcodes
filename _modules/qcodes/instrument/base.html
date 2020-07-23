@@ -529,11 +529,8 @@
 <div class="viewcode-block" id="InstrumentBase.__getstate__"><a class="viewcode-back" href="../../../api/instrument/base.html#qcodes.instrument_drivers.AimTTi.AimTTi_PL601P_channels.InstrumentBase.__getstate__">[docs]</a>    <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Prevent pickling instruments, and give a nice error message.&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-            <span class="s1">&#39;Pickling </span><span class="si">{}</span><span class="s1">. qcodes Instruments should not.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="o">+</span>
-            <span class="s1">&#39; be pickled. Likely this means you &#39;</span>
-            <span class="s1">&#39;were trying to use a local instrument (defined with &#39;</span>
-            <span class="s1">&#39;server_name=None) in a background Loop. Local instruments can &#39;</span>
-            <span class="s1">&#39;only be used in Loops with background=False.&#39;</span><span class="p">)</span></div>
+            <span class="sa">f</span><span class="s1">&#39;Error when pickling instrument </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">. &#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;QCoDeS instruments can not be pickled.&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="InstrumentBase.validate_status"><a class="viewcode-back" href="../../../api/instrument/base.html#qcodes.instrument_drivers.AimTTi.AimTTi_PL601P_channels.InstrumentBase.validate_status">[docs]</a>    <span class="k">def</span> <span class="nf">validate_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot; Validate the values of all gettable parameters</span>
