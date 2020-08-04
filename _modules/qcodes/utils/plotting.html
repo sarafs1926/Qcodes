@@ -170,11 +170,11 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.colorbar</span>
+<span class="kn">import</span> <span class="nn">matplotlib.collections</span>
 <span class="kn">import</span> <span class="nn">qcodes</span>
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-
-<span class="n">Number</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
 
 
 <span class="sd">&quot;&quot;&quot;</span>
@@ -187,7 +187,7 @@
 
 <div class="viewcode-block" id="auto_range_iqr"><a class="viewcode-back" href="../../../api/utils/plotting.html#qcodes.utils.plotting.auto_range_iqr">[docs]</a><span class="k">def</span> <span class="nf">auto_range_iqr</span><span class="p">(</span><span class="n">data_array</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
                    <span class="n">cutoff_percentile</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span>
-                       <span class="n">Tuple</span><span class="p">[</span><span class="n">Number</span><span class="p">,</span> <span class="n">Number</span><span class="p">],</span> <span class="n">Number</span><span class="p">]</span><span class="o">=</span><span class="n">DEFAULT_PERCENTILE</span>
+                       <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">DEFAULT_PERCENTILE</span>
                    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the min and max range of the provided array that excludes outliers</span>
@@ -242,7 +242,7 @@
 <span class="n">DEFAULT_COLOR_UNDER</span> <span class="o">=</span> <span class="s1">&#39;Cyan&#39;</span>
 
 
-<span class="k">def</span> <span class="nf">_set_colorbar_extend</span><span class="p">(</span><span class="n">colorbar</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">colorbar</span><span class="p">,</span>
+<span class="k">def</span> <span class="nf">_set_colorbar_extend</span><span class="p">(</span><span class="n">colorbar</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colorbar</span><span class="o">.</span><span class="n">Colorbar</span><span class="p">,</span>
                          <span class="n">extend</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Workaround for a missing setter for the extend property of a matplotlib</span>
@@ -261,14 +261,19 @@
 <span class="sd">        extend: the desired extend (&#39;neither&#39;, &#39;both&#39;, &#39;min&#39; or &#39;max&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">colorbar</span><span class="o">.</span><span class="n">extend</span> <span class="o">=</span> <span class="n">extend</span>
-    <span class="n">colorbar</span><span class="o">.</span><span class="n">_inside</span> <span class="o">=</span> <span class="n">colorbar</span><span class="o">.</span><span class="n">_slice_dict</span><span class="p">[</span><span class="n">extend</span><span class="p">]</span>
+    <span class="n">_slice_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;neither&#39;</span><span class="p">:</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                   <span class="s1">&#39;both&#39;</span><span class="p">:</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+                   <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                   <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
+    <span class="n">colorbar</span><span class="o">.</span><span class="n">_inside</span> <span class="o">=</span> <span class="n">_slice_dict</span><span class="p">[</span><span class="n">extend</span><span class="p">]</span>
 
-<div class="viewcode-block" id="apply_color_scale_limits"><a class="viewcode-back" href="../../../api/utils/plotting.html#qcodes.utils.plotting.apply_color_scale_limits">[docs]</a><span class="k">def</span> <span class="nf">apply_color_scale_limits</span><span class="p">(</span><span class="n">colorbar</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">colorbar</span><span class="p">,</span>
+
+<div class="viewcode-block" id="apply_color_scale_limits"><a class="viewcode-back" href="../../../api/utils/plotting.html#qcodes.utils.plotting.apply_color_scale_limits">[docs]</a><span class="k">def</span> <span class="nf">apply_color_scale_limits</span><span class="p">(</span><span class="n">colorbar</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colorbar</span><span class="o">.</span><span class="n">Colorbar</span><span class="p">,</span>
                              <span class="n">new_lim</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]],</span>
-                             <span class="n">data_lim</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                             <span class="n">data_array</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                             <span class="n">color_over</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span><span class="o">=</span><span class="n">DEFAULT_COLOR_OVER</span><span class="p">,</span>
-                             <span class="n">color_under</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span><span class="o">=</span><span class="n">DEFAULT_COLOR_UNDER</span>
+                             <span class="n">data_lim</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                             <span class="n">data_array</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                             <span class="n">color_over</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">DEFAULT_COLOR_OVER</span><span class="p">,</span>
+                             <span class="n">color_under</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">DEFAULT_COLOR_UNDER</span>
                              <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies limits to colorscale and updates extend.</span>
@@ -336,12 +341,12 @@
     <span class="n">colorbar</span><span class="o">.</span><span class="n">mappable</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="n">vlim</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="apply_auto_color_scale"><a class="viewcode-back" href="../../../api/utils/plotting.html#qcodes.utils.plotting.apply_auto_color_scale">[docs]</a><span class="k">def</span> <span class="nf">apply_auto_color_scale</span><span class="p">(</span><span class="n">colorbar</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">colorbar</span><span class="p">,</span>
-                           <span class="n">data_array</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="apply_auto_color_scale"><a class="viewcode-back" href="../../../api/utils/plotting.html#qcodes.utils.plotting.apply_auto_color_scale">[docs]</a><span class="k">def</span> <span class="nf">apply_auto_color_scale</span><span class="p">(</span><span class="n">colorbar</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colorbar</span><span class="o">.</span><span class="n">Colorbar</span><span class="p">,</span>
+                           <span class="n">data_array</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                            <span class="n">cutoff_percentile</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span>
-                               <span class="n">Number</span><span class="p">,</span> <span class="n">Number</span><span class="p">],</span> <span class="n">Number</span><span class="p">]</span><span class="o">=</span><span class="n">DEFAULT_PERCENTILE</span><span class="p">,</span>
-                           <span class="n">color_over</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span><span class="o">=</span><span class="n">DEFAULT_COLOR_OVER</span><span class="p">,</span>
-                           <span class="n">color_under</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span><span class="o">=</span><span class="n">DEFAULT_COLOR_UNDER</span>
+                               <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">DEFAULT_PERCENTILE</span><span class="p">,</span>
+                           <span class="n">color_over</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">DEFAULT_COLOR_OVER</span><span class="p">,</span>
+                           <span class="n">color_under</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">DEFAULT_COLOR_UNDER</span>
                            <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sets the color limits such that outliers are disregarded.</span>
@@ -377,13 +382,13 @@
                              <span class="n">color_over</span><span class="o">=</span><span class="n">color_over</span><span class="p">,</span> <span class="n">color_under</span><span class="o">=</span><span class="n">color_under</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="auto_color_scale_from_config"><a class="viewcode-back" href="../../../api/utils/plotting.html#qcodes.utils.plotting.auto_color_scale_from_config">[docs]</a><span class="k">def</span> <span class="nf">auto_color_scale_from_config</span><span class="p">(</span><span class="n">colorbar</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">colorbar</span><span class="p">,</span>
-                                 <span class="n">auto_color_scale</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                 <span class="n">data_array</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="auto_color_scale_from_config"><a class="viewcode-back" href="../../../api/utils/plotting.html#qcodes.utils.plotting.auto_color_scale_from_config">[docs]</a><span class="k">def</span> <span class="nf">auto_color_scale_from_config</span><span class="p">(</span><span class="n">colorbar</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colorbar</span><span class="o">.</span><span class="n">Colorbar</span><span class="p">,</span>
+                                 <span class="n">auto_color_scale</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                 <span class="n">data_array</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                                  <span class="n">cutoff_percentile</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span>
-                                     <span class="n">Number</span><span class="p">,</span> <span class="n">Number</span><span class="p">],</span> <span class="n">Number</span><span class="p">]]</span><span class="o">=</span><span class="n">DEFAULT_PERCENTILE</span><span class="p">,</span>
-                                 <span class="n">color_over</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                 <span class="n">color_under</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                     <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">DEFAULT_PERCENTILE</span><span class="p">,</span>
+                                 <span class="n">color_over</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                 <span class="n">color_under</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                                  <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sets the color limits such that outliers are disregarded, depending on</span>
@@ -422,12 +427,11 @@
         <span class="n">color_under</span> <span class="o">=</span> <span class="n">qcodes</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">auto_color_scale</span><span class="o">.</span><span class="n">color_under</span>
     <span class="k">if</span> <span class="n">cutoff_percentile</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">cutoff_percentile</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
-            <span class="n">Tuple</span><span class="p">[</span><span class="n">Number</span><span class="p">,</span> <span class="n">Number</span><span class="p">],</span>
+            <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
             <span class="nb">tuple</span><span class="p">(</span><span class="n">qcodes</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">auto_color_scale</span><span class="o">.</span><span class="n">cutoff_percentile</span><span class="p">))</span>
 
     <span class="n">apply_auto_color_scale</span><span class="p">(</span><span class="n">colorbar</span><span class="p">,</span> <span class="n">data_array</span><span class="p">,</span> <span class="n">cutoff_percentile</span><span class="p">,</span>
                            <span class="n">color_over</span><span class="p">,</span> <span class="n">color_under</span><span class="p">)</span></div>
-
 </pre></div>
 
            </div>
