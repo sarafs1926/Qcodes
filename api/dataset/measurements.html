@@ -284,8 +284,15 @@ are results.</p>
 
 <dl class="py method">
 <dt id="qcodes.dataset.measurements.DataSaver.flush_data_to_database">
-<code class="sig-name descname">flush_data_to_database</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#DataSaver.flush_data_to_database"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.DataSaver.flush_data_to_database" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">flush_data_to_database</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">block</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/dataset/measurements.html#DataSaver.flush_data_to_database"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.measurements.DataSaver.flush_data_to_database" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write the in-memory results to the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>block</strong> – If writing using a background thread block until the
+background thread has written all data to disc. The
+argument has no effect if not using a background thread.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">

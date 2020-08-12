@@ -168,16 +168,12 @@
 <span class="kn">import</span> <span class="nn">uuid</span>
 <span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">Empty</span><span class="p">,</span> <span class="n">Queue</span>
 <span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Sized</span><span class="p">,</span>
-                    <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span><span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span>
+                    <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Sized</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span>
 
 <span class="kn">import</span> <span class="nn">qcodes</span>
-<span class="kn">from</span> <span class="nn">.descriptions.versioning</span> <span class="kn">import</span> <span class="n">serialization</span> <span class="k">as</span> <span class="n">serial</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.dependencies</span> <span class="kn">import</span> <span class="p">(</span><span class="n">DependencyError</span><span class="p">,</span>
                                                       <span class="n">InterDependencies_</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.param_spec</span> <span class="kn">import</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">ParamSpecBase</span>
@@ -186,31 +182,38 @@
                                                                <span class="n">old_to_new</span><span class="p">,</span>
                                                                <span class="n">v1_to_v0</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.versioning.v0</span> <span class="kn">import</span> <span class="n">InterDependencies</span>
-<span class="kn">from</span> <span class="nn">qcodes.dataset.guids</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">filter_guids_by_parts</span><span class="p">,</span> <span class="n">generate_guid</span><span class="p">,</span> <span class="n">parse_guid</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">qcodes.dataset.guids</span> <span class="kn">import</span> <span class="p">(</span><span class="n">filter_guids_by_parts</span><span class="p">,</span> <span class="n">generate_guid</span><span class="p">,</span>
+                                  <span class="n">parse_guid</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.linked_datasets.links</span> <span class="kn">import</span> <span class="p">(</span><span class="n">Link</span><span class="p">,</span> <span class="n">links_to_str</span><span class="p">,</span>
                                                   <span class="n">str_to_links</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.connection</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ConnectionPlus</span><span class="p">,</span> <span class="n">atomic</span><span class="p">,</span>
-                                              <span class="n">atomic_transaction</span><span class="p">,</span>
-                                              <span class="n">transaction</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.database</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">connect</span><span class="p">,</span> <span class="n">get_DB_location</span><span class="p">,</span> <span class="n">conn_from_dbpath_or_conn</span><span class="p">)</span>
+                                              <span class="n">atomic_transaction</span><span class="p">,</span> <span class="n">transaction</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.database</span> <span class="kn">import</span> <span class="p">(</span><span class="n">conn_from_dbpath_or_conn</span><span class="p">,</span> <span class="n">connect</span><span class="p">,</span>
+                                            <span class="n">get_DB_location</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.queries</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">add_meta_data</span><span class="p">,</span> <span class="n">add_parameter</span><span class="p">,</span> <span class="n">completed</span><span class="p">,</span> <span class="n">create_run</span><span class="p">,</span>
     <span class="n">get_completed_timestamp_from_run_id</span><span class="p">,</span>
-    <span class="n">get_experiment_name_from_experiment_id</span><span class="p">,</span>
-    <span class="n">get_guid_from_run_id</span><span class="p">,</span> <span class="n">get_guids_from_run_spec</span><span class="p">,</span>
-    <span class="n">get_last_experiment</span><span class="p">,</span> <span class="n">get_metadata</span><span class="p">,</span> <span class="n">get_metadata_from_run_id</span><span class="p">,</span>
-    <span class="n">get_parameter_data</span><span class="p">,</span> <span class="n">get_parent_dataset_links</span><span class="p">,</span> <span class="n">get_run_description</span><span class="p">,</span>
-    <span class="n">get_run_timestamp_from_run_id</span><span class="p">,</span> <span class="n">get_runid_from_guid</span><span class="p">,</span>
-    <span class="n">get_sample_name_from_experiment_id</span><span class="p">,</span> <span class="n">get_setpoints</span><span class="p">,</span>
-    <span class="n">mark_run_complete</span><span class="p">,</span> <span class="n">remove_trigger</span><span class="p">,</span> <span class="n">run_exists</span><span class="p">,</span> <span class="n">set_run_timestamp</span><span class="p">,</span>
-    <span class="n">update_parent_datasets</span><span class="p">,</span> <span class="n">update_run_description</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.query_helpers</span> <span class="kn">import</span> <span class="p">(</span><span class="n">VALUE</span><span class="p">,</span> <span class="n">insert_many_values</span><span class="p">,</span>
+    <span class="n">get_experiment_name_from_experiment_id</span><span class="p">,</span> <span class="n">get_guid_from_run_id</span><span class="p">,</span>
+    <span class="n">get_guids_from_run_spec</span><span class="p">,</span> <span class="n">get_last_experiment</span><span class="p">,</span> <span class="n">get_metadata</span><span class="p">,</span>
+    <span class="n">get_metadata_from_run_id</span><span class="p">,</span> <span class="n">get_parameter_data</span><span class="p">,</span> <span class="n">get_parent_dataset_links</span><span class="p">,</span>
+    <span class="n">get_run_description</span><span class="p">,</span> <span class="n">get_run_timestamp_from_run_id</span><span class="p">,</span> <span class="n">get_runid_from_guid</span><span class="p">,</span>
+    <span class="n">get_sample_name_from_experiment_id</span><span class="p">,</span> <span class="n">get_setpoints</span><span class="p">,</span> <span class="n">mark_run_complete</span><span class="p">,</span>
+    <span class="n">remove_trigger</span><span class="p">,</span> <span class="n">run_exists</span><span class="p">,</span> <span class="n">set_run_timestamp</span><span class="p">,</span> <span class="n">update_parent_datasets</span><span class="p">,</span>
+    <span class="n">update_run_description</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.query_helpers</span> <span class="kn">import</span> <span class="p">(</span><span class="n">VALUE</span><span class="p">,</span> <span class="n">VALUES</span><span class="p">,</span>
+                                                 <span class="n">insert_many_values</span><span class="p">,</span>
                                                  <span class="n">insert_values</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span>
-                                                 <span class="n">select_one_where</span><span class="p">,</span> <span class="n">VALUES</span><span class="p">)</span>
+                                                 <span class="n">select_one_where</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">_BaseParameter</span>
 <span class="kn">from</span> <span class="nn">qcodes.utils.deprecate</span> <span class="kn">import</span> <span class="n">deprecate</span>
+
+<span class="kn">from</span> <span class="nn">.data_set_cache</span> <span class="kn">import</span> <span class="n">DataSetCache</span>
+<span class="kn">from</span> <span class="nn">.descriptions.versioning</span> <span class="kn">import</span> <span class="n">serialization</span> <span class="k">as</span> <span class="n">serial</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -236,6 +239,7 @@
 <span class="c1"># the DataSet constructor for a while, then deprecate SPECS and finally remove</span>
 <span class="c1"># the ParamSpec class</span>
 <span class="n">SpecsOrInterDeps</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">SPECS</span><span class="p">,</span> <span class="n">InterDependencies_</span><span class="p">]</span>
+<span class="n">ParameterData</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]</span>
 
 
 <div class="viewcode-block" id="CompletedError"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.CompletedError">[docs]</a><span class="k">class</span> <span class="nc">CompletedError</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">):</span>
@@ -392,6 +396,7 @@
                       <span class="n">values</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">insert_many_values</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
 
+
 <div class="viewcode-block" id="DataSet"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet">[docs]</a><span class="k">class</span> <span class="nc">DataSet</span><span class="p">(</span><span class="n">Sized</span><span class="p">):</span>
 
     <span class="c1"># the &quot;persistent traits&quot; are the attributes/properties of the DataSet</span>
@@ -443,6 +448,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span><span class="p">:</span> <span class="n">InterDependencies_</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_dataset_links</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Link</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_write_queue</span><span class="p">:</span> <span class="n">Queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+        <span class="c1">#: In memory representation of the data in the dataset.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span> <span class="n">DataSetCache</span> <span class="o">=</span> <span class="n">DataSetCache</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">run_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">run_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="n">run_id</span><span class="p">):</span>
@@ -798,7 +805,7 @@
 <span class="sd">        Is this :class:`.DataSet` currently running? A running :class:`.DataSet` has been started,</span>
 <span class="sd">        but not yet completed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_started</span> <span class="ow">and</span> <span class="ow">not</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_completed</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_started</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_completed</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">started</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -1014,10 +1021,10 @@
             <span class="bp">self</span><span class="p">,</span>
             <span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">_BaseParameter</span><span class="p">],</span>
             <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
+            <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParameterData</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the values stored in the :class:`.DataSet` for the specified parameters</span>
-<span class="sd">        and their dependencies. If no paramerers are supplied the values will</span>
+<span class="sd">        and their dependencies. If no parameters are supplied the values will</span>
 <span class="sd">        be returned for all parameters that are not them self dependencies.</span>
 
 <span class="sd">        The values are returned as a dictionary with names of the requested</span>
@@ -1099,41 +1106,57 @@
 <span class="sd">            a column and a indexed by a :py:class:`pandas.MultiIndex` formed</span>
 <span class="sd">            by the dependencies.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-        <span class="n">dfs</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">datadict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_parameter_data</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">,</span>
                                            <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
                                            <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">subdict</span> <span class="ow">in</span> <span class="n">datadict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">subdict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">dfs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-                <span class="k">continue</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">index</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-                <span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">subdict</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="n">keys</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">indexdata</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">subdict</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
-                                  <span class="k">if</span> <span class="n">subdict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">)</span>
-                                  <span class="k">else</span> <span class="n">subdict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-                                  <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-                <span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">(</span>
-                    <span class="n">indexdata</span><span class="p">,</span>
-                    <span class="n">names</span><span class="o">=</span><span class="n">keys</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-
-            <span class="k">if</span> <span class="n">subdict</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">):</span>
-                <span class="c1"># ravel will not fully unpack a numpy array of arrays</span>
-                <span class="c1"># which are of &quot;object&quot; dtype. This can happen if a variable</span>
-                <span class="c1"># length array is stored in the db. We use concatenate to</span>
-                <span class="c1"># flatten these</span>
-                <span class="n">mydata</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">subdict</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">mydata</span> <span class="o">=</span> <span class="n">subdict</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mydata</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span>
-                              <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
-            <span class="n">dfs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span>
+        <span class="n">dfs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_to_dataframes</span><span class="p">(</span><span class="n">datadict</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">dfs</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_data_to_dataframe</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">index</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;pd.Index&quot;</span><span class="p">,</span> <span class="s2">&quot;pd.MultiIndex&quot;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;pd.DataFrame&quot;</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="n">dependent_col_name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">dependent_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">dependent_col_name</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">dependent_data</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">):</span>
+            <span class="c1"># ravel will not fully unpack a numpy array of arrays</span>
+            <span class="c1"># which are of &quot;object&quot; dtype. This can happen if a variable</span>
+            <span class="c1"># length array is stored in the db. We use concatenate to</span>
+            <span class="c1"># flatten these</span>
+            <span class="n">mydata</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">dependent_data</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">mydata</span> <span class="o">=</span> <span class="n">dependent_data</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mydata</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span>
+                          <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">dependent_col_name</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">df</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_generate_pandas_index</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;pd.Index&quot;</span><span class="p">,</span> <span class="s2">&quot;pd.MultiIndex&quot;</span><span class="p">]:</span>
+        <span class="c1"># the first element in the dict given by parameter_tree is always the dependent</span>
+        <span class="c1"># parameter and the index is therefore formed from the rest</span>
+        <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="n">keys</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">index_data</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+                               <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">)</span>
+                               <span class="k">else</span> <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+                               <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">(</span>
+                <span class="n">index_data</span><span class="p">,</span>
+                <span class="n">names</span><span class="o">=</span><span class="n">keys</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="k">return</span> <span class="n">index</span>
+
+    <span class="k">def</span> <span class="nf">_load_to_dataframes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datadict</span><span class="p">:</span> <span class="n">ParameterData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;pd.DataFrame&quot;</span><span class="p">]:</span>
+        <span class="n">dfs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">subdict</span> <span class="ow">in</span> <span class="n">datadict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_pandas_index</span><span class="p">(</span><span class="n">subdict</span><span class="p">)</span>
+            <span class="n">dfs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_to_dataframe</span><span class="p">(</span><span class="n">subdict</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">dfs</span>
 
 <div class="viewcode-block" id="DataSet.write_data_to_text_file"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.write_data_to_text_file">[docs]</a>    <span class="k">def</span> <span class="nf">write_data_to_text_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
                                 <span class="n">single_file</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>

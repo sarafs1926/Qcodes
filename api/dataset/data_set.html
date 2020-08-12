@@ -303,6 +303,12 @@ is provided.</p></li>
 <code class="sig-name descname">persistent_traits</code><em class="property"> = ('name', 'guid', 'number_of_results', 'parameters', 'paramspecs', 'exp_name', 'sample_name', 'completed', 'snapshot', 'run_timestamp_raw', 'description', 'completed_timestamp_raw', 'metadata', 'dependent_parameters', 'parent_dataset_links', 'captured_run_id', 'captured_counter')</em><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.persistent_traits" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.dataset.data_set.DataSet.cache">
+<code class="sig-name descname">cache</code><em class="property">: DataSetCache</em><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>In memory representation of the data in the dataset.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt id="qcodes.dataset.data_set.DataSet.run_id">
 <em class="property">property </em><code class="sig-name descname">run_id</code><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.run_id" title="Permalink to this definition">¶</a></dt>
@@ -615,7 +621,7 @@ background writing thread has been started. Else do nothing.</p>
 <dt id="qcodes.dataset.data_set.DataSet.get_parameter_data">
 <code class="sig-name descname">get_parameter_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>qcodes.dataset.descriptions.param_spec.ParamSpec<span class="p">, </span>qcodes.instrument.parameter._BaseParameter<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">start</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">end</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/dataset/data_set.html#DataSet.get_parameter_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.get_parameter_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the values stored in the <a class="reference internal" href="#qcodes.dataset.data_set.DataSet" title="qcodes.dataset.data_set.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> for the specified parameters
-and their dependencies. If no paramerers are supplied the values will
+and their dependencies. If no parameters are supplied the values will
 be returned for all parameters that are not them self dependencies.</p>
 <p>The values are returned as a dictionary with names of the requested
 parameters as keys and values consisting of dictionaries with the
@@ -921,6 +927,52 @@ supplied guids.</p>
 </dd>
 </dl>
 <p>Returns: ASCII art table of information about the supplied guids.</p>
+</dd></dl>
+
+<span class="target" id="module-qcodes.dataset.data_set_cache"></span><dl class="py class">
+<dt id="qcodes.dataset.data_set_cache.DataSetCache">
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.dataset.data_set_cache.</code><code class="sig-name descname">DataSetCache</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span><span class="p">:</span> <span class="n">DataSet</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/dataset/data_set_cache.html#DataSetCache"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set_cache.DataSetCache" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>The DataSetCache contains a in memory representation of the
+data in this dataset as well a a method to progressively read data
+from the db as it is written. The cache is available in the same formats
+as <code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet.get_parameter_data</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet.get_data_as_pandas_dataframe</span></code></p>
+<dl class="py method">
+<dt id="qcodes.dataset.data_set_cache.DataSetCache.load_data_from_db">
+<code class="sig-name descname">load_data_from_db</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/dataset/data_set_cache.html#DataSetCache.load_data_from_db"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set_cache.DataSetCache.load_data_from_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads data from the dataset into the cache.
+If new data has been added to the dataset since the last time
+this method was called, calling this method again would load
+that new portion of the data and append to the already loaded data.
+If the dataset is marked completed and data has already been loaded
+no load will be performed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qcodes.dataset.data_set_cache.DataSetCache.data">
+<code class="sig-name descname">data</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; ParameterData<a class="reference internal" href="../../_modules/qcodes/dataset/data_set_cache.html#DataSetCache.data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set_cache.DataSetCache.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads data from the database on disk if needed and returns
+the cached data. The cached data is in the same format as <code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet.get_parameter_data</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The cached dataset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qcodes.dataset.data_set_cache.DataSetCache.to_pandas">
+<code class="sig-name descname">to_pandas</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>pd.DataFrame<span class="p">]</span><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/dataset/data_set_cache.html#DataSetCache.to_pandas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set_cache.DataSetCache.to_pandas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the cached dataset to Pandas dataframes. The returned dataframes
+are in the same format <code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet.get_data_as_pandas_dataframe</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dict from parameter name to Pandas Dataframes. Each dataframe
+represents one parameter tree.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </div>

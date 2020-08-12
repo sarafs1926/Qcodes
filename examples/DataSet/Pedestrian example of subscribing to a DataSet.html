@@ -126,6 +126,8 @@
 <li class="toctree-l3"><a class="reference internal" href="Working-With-Pandas-and-XArray.html">Working with Pandas and XArray</a></li>
 <li class="toctree-l3"><a class="reference internal" href="subscriber json exporter.html">Subscriber with JSON export</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Real_instruments/Example Measurements with Real Instruments.html">Example Measurements with Real Instruments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cache/read_data_from_cache.html">Read data from cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cache/write_for_caching.html">Write data to cache</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#plotting">Plotting</a></li>
@@ -535,7 +537,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/200810-18687-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/200812-20503-qcodes.log
 </pre></div></div>
 </div>
 <div class="section" id="Example-1:-A-notification">
@@ -607,7 +609,7 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/200810-18687-qcodes.log
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-08-10 10:06:38,626 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/utils/deprecate.py:58: QCoDeSDeprecationWarning: The function &lt;add_result&gt; is deprecated. Use &#34;add_results&#34; as an alternative.
+2020-08-12 15:14:28,711 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/utils/deprecate.py:58: QCoDeSDeprecationWarning: The function &lt;add_result&gt; is deprecated. Use &#34;add_results&#34; as an alternative.
   issue_deprecation_warning(f&#39;{t} &lt;{n}&gt;&#39;, reason, alternative)
 
 </pre></div></div>
@@ -629,23 +631,22 @@ At step 46: The voltage exceeded the limit 5 times!
 At step 51: The voltage exceeded the limit 5 times!
 At step 56: The voltage exceeded the limit 5 times!
 At step 61: The voltage exceeded the limit 5 times!
-At step 66: The voltage exceeded the limit 5 times!
-At step 71: The voltage exceeded the limit 5 times!
-At step 76: The voltage exceeded the limit 5 times!
-At step 81: The voltage exceeded the limit 5 times!
-At step 86: The voltage exceeded the limit 5 times!
-At step 91: The voltage exceeded the limit 5 times!
-At step 96: The voltage exceeded the limit 5 times!
+At step 68: The voltage exceeded the limit 5 times!
+At step 73: The voltage exceeded the limit 5 times!
+At step 78: The voltage exceeded the limit 5 times!
+At step 83: The voltage exceeded the limit 5 times!
+At step 88: The voltage exceeded the limit 5 times!
 At step 101: The voltage exceeded the limit 5 times!
-At step 106: The voltage exceeded the limit 5 times!
-At step 111: The voltage exceeded the limit 5 times!
-At step 116: The voltage exceeded the limit 5 times!
-At step 121: The voltage exceeded the limit 5 times!
-At step 126: The voltage exceeded the limit 5 times!
-At step 131: The voltage exceeded the limit 5 times!
-At step 136: The voltage exceeded the limit 5 times!
-At step 141: The voltage exceeded the limit 5 times!
-At step 146: The voltage exceeded the limit 5 times!
+At step 104: The voltage exceeded the limit 5 times!
+At step 107: The voltage exceeded the limit 5 times!
+At step 112: The voltage exceeded the limit 5 times!
+At step 117: The voltage exceeded the limit 5 times!
+At step 123: The voltage exceeded the limit 5 times!
+At step 127: The voltage exceeded the limit 5 times!
+At step 132: The voltage exceeded the limit 5 times!
+At step 137: The voltage exceeded the limit 5 times!
+At step 142: The voltage exceeded the limit 5 times!
+At step 147: The voltage exceeded the limit 5 times!
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -746,11 +747,11 @@ Exception in thread Thread-7:
 Traceback (most recent call last):
   File &#34;/usr/share/miniconda/envs/qcodes/lib/python3.7/threading.py&#34;, line 926, in _bootstrap_inner
     self.run()
-  File &#34;/home/vsts/work/1/s/qcodes/dataset/data_set.py&#34;, line 160, in run
+  File &#34;/home/vsts/work/1/s/qcodes/dataset/data_set.py&#34;, line 164, in run
     self._loop()
-  File &#34;/home/vsts/work/1/s/qcodes/dataset/data_set.py&#34;, line 183, in _loop
+  File &#34;/home/vsts/work/1/s/qcodes/dataset/data_set.py&#34;, line 187, in _loop
     self._call_callback_on_queue_data()
-  File &#34;/home/vsts/work/1/s/qcodes/dataset/data_set.py&#34;, line 174, in _call_callback_on_queue_data
+  File &#34;/home/vsts/work/1/s/qcodes/dataset/data_set.py&#34;, line 178, in _call_callback_on_queue_data
     self.callback(result_list, self._data_set_len, self.state)
   File &#34;&lt;ipython-input-9-348631bac194&gt;&#34;, line 15, in ASCII_plotter_5bit
     plotline[yvalue] = &#39;O&#39;
