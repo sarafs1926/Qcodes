@@ -169,7 +169,7 @@
 <span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">Empty</span><span class="p">,</span> <span class="n">Queue</span>
 <span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span><span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span>
-                    <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Sized</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">)</span>
+                    <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Sized</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Set</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span>
 
@@ -233,7 +233,15 @@
 <span class="c1"># i.e. no dynamic creation of metadata columns, but add stuff to</span>
 <span class="c1"># a json inside a &#39;metadata&#39; column</span>
 
-
+<span class="n">array_like_types</span> <span class="o">=</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+<span class="n">scalar_res_types</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">complex</span><span class="p">,</span>
+                         <span class="n">numpy</span><span class="o">.</span><span class="n">integer</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">floating</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">complexfloating</span><span class="p">]</span>
+<span class="n">values_type</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">scalar_res_types</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+                    <span class="n">Sequence</span><span class="p">[</span><span class="n">scalar_res_types</span><span class="p">]]</span>
+<span class="n">res_type</span> <span class="o">=</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">_BaseParameter</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
+                 <span class="n">Union</span><span class="p">[</span><span class="n">scalar_res_types</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+                       <span class="n">Sequence</span><span class="p">[</span><span class="n">scalar_res_types</span><span class="p">]]]</span>
+<span class="n">setpoints_type</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_BaseParameter</span><span class="p">]]</span>
 <span class="n">SPECS</span> <span class="o">=</span> <span class="n">List</span><span class="p">[</span><span class="n">ParamSpec</span><span class="p">]</span>
 <span class="c1"># Transition period type: SpecsOrInterDeps. We will allow both as input to</span>
 <span class="c1"># the DataSet constructor for a while, then deprecate SPECS and finally remove</span>
@@ -450,6 +458,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_write_queue</span><span class="p">:</span> <span class="n">Queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
         <span class="c1">#: In memory representation of the data in the dataset.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span> <span class="n">DataSetCache</span> <span class="o">=</span> <span class="n">DataSetCache</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">VALUE</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">if</span> <span class="n">run_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">run_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="n">run_id</span><span class="p">):</span>
@@ -905,14 +914,8 @@
 <span class="sd">        It is an error to add results to a completed :class:`.DataSet`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pristine</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;This DataSet has not been marked as started. &#39;</span>
-                               <span class="s1">&#39;Please mark the DataSet as started before &#39;</span>
-                               <span class="s1">&#39;adding results to it.&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raise_if_not_writable</span><span class="p">()</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">completed</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">CompletedError</span><span class="p">(</span><span class="s1">&#39;This DataSet is complete, no further &#39;</span>
-                                 <span class="s1">&#39;results can be added to it.&#39;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span><span class="o">.</span><span class="n">_id_to_paramspec</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
                           <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
@@ -943,14 +946,7 @@
 <span class="sd">        It is an error to add results to a completed :class:`.DataSet`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pristine</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;This DataSet has not been marked as started. &#39;</span>
-                               <span class="s1">&#39;Please mark the DataSet as started before &#39;</span>
-                               <span class="s1">&#39;adding results to it.&#39;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">completed</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">CompletedError</span><span class="p">(</span><span class="s1">&#39;This DataSet is complete, no further &#39;</span>
-                                 <span class="s1">&#39;results can be added to it.&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raise_if_not_writable</span><span class="p">()</span>
 
         <span class="n">expected_keys</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">results</span><span class="p">])</span>
         <span class="n">values</span> <span class="o">=</span> <span class="p">[[</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">expected_keys</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
@@ -962,20 +958,23 @@
             <span class="n">insert_many_values</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">expected_keys</span><span class="p">),</span>
                                <span class="n">values</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataSet.add_result_to_queue"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.add_result_to_queue">[docs]</a>    <span class="k">def</span> <span class="nf">add_result_to_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">_raise_if_not_writable</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pristine</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;This DataSet has not been marked as started. &#39;</span>
+                               <span class="s1">&#39;Please mark the DataSet as started before &#39;</span>
+                               <span class="s1">&#39;adding results to it.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">completed</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CompletedError</span><span class="p">(</span><span class="s1">&#39;This DataSet is complete, no further &#39;</span>
+                                 <span class="s1">&#39;results can be added to it.&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DataSet.add_result_to_queue"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.add_result_to_queue">[docs]</a>    <span class="nd">@deprecate</span><span class="p">(</span><span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;add_results&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">add_result_to_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                             <span class="n">results</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">VALUE</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add result to the output Queue from which a worker in a separate thread</span>
 <span class="sd">        consumes</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pristine</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;This DataSet has not been marked as started. &#39;</span>
-                               <span class="s1">&#39;Please mark the DataSet as started before &#39;</span>
-                               <span class="s1">&#39;adding results to it.&#39;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">completed</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">CompletedError</span><span class="p">(</span><span class="s1">&#39;This DataSet is complete, no further &#39;</span>
-                                 <span class="s1">&#39;results can be added to it.&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raise_if_not_writable</span><span class="p">()</span>
 
         <span class="n">expected_keys</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">results</span><span class="p">])</span>
         <span class="n">values</span> <span class="o">=</span> <span class="p">[[</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">expected_keys</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
@@ -1326,7 +1325,195 @@
             <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ps</span><span class="p">:</span>
                 <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_enqueue_results</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">result_dict</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ParamSpecBase</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enqueue the results into self._results</span>
+
+<span class="sd">        Before we can enqueue the results, all values of the results dict</span>
+<span class="sd">        must have the same length. We enqueue each parameter tree seperately,</span>
+<span class="sd">        effectively mimicking making one call to add_result per parameter</span>
+<span class="sd">        tree.</span>
+
+<span class="sd">        Deal with &#39;numeric&#39; type parameters. If a &#39;numeric&#39; top level parameter</span>
+<span class="sd">        has non-scalar shape, it must be unrolled into a list of dicts of</span>
+<span class="sd">        single values (database).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raise_if_not_writable</span><span class="p">()</span>
+        <span class="n">interdeps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span>
+
+        <span class="n">toplevel_params</span> <span class="o">=</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">interdeps</span><span class="o">.</span><span class="n">dependencies</span><span class="p">)</span>
+                           <span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">result_dict</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">toplevel_param</span> <span class="ow">in</span> <span class="n">toplevel_params</span><span class="p">:</span>
+            <span class="n">inff_params</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">interdeps</span><span class="o">.</span><span class="n">inferences</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">toplevel_param</span><span class="p">,</span> <span class="p">()))</span>
+            <span class="n">deps_params</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">interdeps</span><span class="o">.</span><span class="n">dependencies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">toplevel_param</span><span class="p">,</span> <span class="p">()))</span>
+            <span class="n">all_params</span> <span class="o">=</span> <span class="p">(</span><span class="n">inff_params</span>
+                          <span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">deps_params</span><span class="p">)</span>
+                          <span class="o">.</span><span class="n">union</span><span class="p">({</span><span class="n">toplevel_param</span><span class="p">}))</span>
+            <span class="n">res_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">VALUE</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># the dict to append to _results</span>
+            <span class="k">if</span> <span class="n">toplevel_param</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span>
+                <span class="n">res_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_finalize_res_dict_array</span><span class="p">(</span>
+                    <span class="n">result_dict</span><span class="p">,</span> <span class="n">all_params</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">toplevel_param</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;numeric&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;complex&#39;</span><span class="p">):</span>
+                <span class="n">res_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_finalize_res_dict_numeric_text_or_complex</span><span class="p">(</span>
+                               <span class="n">result_dict</span><span class="p">,</span> <span class="n">toplevel_param</span><span class="p">,</span>
+                               <span class="n">inff_params</span><span class="p">,</span> <span class="n">deps_params</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">res_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">ps</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">result_dict</span><span class="p">[</span><span class="n">ps</span><span class="p">]</span> <span class="k">for</span> <span class="n">ps</span> <span class="ow">in</span> <span class="n">all_params</span><span class="p">}</span>
+                <span class="n">res_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">res_dict</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_results</span> <span class="o">+=</span> <span class="n">res_list</span>
+
+        <span class="c1"># Finally, handle standalone parameters</span>
+
+        <span class="n">standalones</span> <span class="o">=</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">interdeps</span><span class="o">.</span><span class="n">standalones</span><span class="p">)</span>
+                       <span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">result_dict</span><span class="p">)))</span>
+
+        <span class="k">if</span> <span class="n">standalones</span><span class="p">:</span>
+            <span class="n">stdln_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">st</span><span class="p">:</span> <span class="n">result_dict</span><span class="p">[</span><span class="n">st</span><span class="p">]</span> <span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="n">standalones</span><span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_results</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_finalize_res_dict_standalones</span><span class="p">(</span><span class="n">stdln_dict</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_finalize_res_dict_array</span><span class="p">(</span>
+            <span class="n">result_dict</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ParamSpecBase</span><span class="p">,</span> <span class="n">values_type</span><span class="p">],</span>
+            <span class="n">all_params</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">ParamSpecBase</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">VALUE</span><span class="p">]]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make a list of res_dicts out of the results for a &#39;array&#39; type</span>
+<span class="sd">        parameter. The results are assumed to already have been validated for</span>
+<span class="sd">        type and shape</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">reshaper</span><span class="p">(</span><span class="n">val</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">ps</span><span class="p">:</span> <span class="n">ParamSpecBase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VALUE</span><span class="p">:</span>
+            <span class="n">paramtype</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">type</span>
+            <span class="k">if</span> <span class="n">paramtype</span> <span class="o">==</span> <span class="s1">&#39;numeric&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">paramtype</span> <span class="o">==</span> <span class="s1">&#39;text&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">paramtype</span> <span class="o">==</span> <span class="s1">&#39;complex&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">complex</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">paramtype</span> <span class="o">==</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">val</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">val</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cannot handle unknown paramtype &#39;</span>
+                                 <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">paramtype</span><span class="si">!r}</span><span class="s1"> of </span><span class="si">{</span><span class="n">ps</span><span class="si">!r}</span><span class="s1">.&#39;</span><span class="p">)</span>
+
+        <span class="n">res_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">ps</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">reshaper</span><span class="p">(</span><span class="n">result_dict</span><span class="p">[</span><span class="n">ps</span><span class="p">],</span> <span class="n">ps</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">ps</span> <span class="ow">in</span> <span class="n">all_params</span><span class="p">}</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">res_dict</span><span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_finalize_res_dict_numeric_text_or_complex</span><span class="p">(</span>
+            <span class="n">result_dict</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ParamSpecBase</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+            <span class="n">toplevel_param</span><span class="p">:</span> <span class="n">ParamSpecBase</span><span class="p">,</span>
+            <span class="n">inff_params</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">ParamSpecBase</span><span class="p">],</span>
+            <span class="n">deps_params</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">ParamSpecBase</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">VALUE</span><span class="p">]]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make a res_dict in the format expected by DataSet.add_results out</span>
+<span class="sd">        of the results for a &#39;numeric&#39; or text type parameter. This includes</span>
+<span class="sd">        replicating and unrolling values as needed and also handling the corner</span>
+<span class="sd">        case of np.array(1) kind of values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">res_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">VALUE</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">all_params</span> <span class="o">=</span> <span class="n">inff_params</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">deps_params</span><span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">({</span><span class="n">toplevel_param</span><span class="p">})</span>
+
+        <span class="n">t_map</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;numeric&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s1">&#39;complex&#39;</span><span class="p">:</span> <span class="nb">complex</span><span class="p">}</span>
+
+        <span class="n">toplevel_shape</span> <span class="o">=</span> <span class="n">result_dict</span><span class="p">[</span><span class="n">toplevel_param</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">if</span> <span class="n">toplevel_shape</span> <span class="o">==</span> <span class="p">():</span>
+            <span class="c1"># In the case of a single value, life is reasonably simple</span>
+            <span class="n">res_list</span> <span class="o">=</span> <span class="p">[{</span><span class="n">ps</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">t_map</span><span class="p">[</span><span class="n">ps</span><span class="o">.</span><span class="n">type</span><span class="p">](</span><span class="n">result_dict</span><span class="p">[</span><span class="n">ps</span><span class="p">])</span>
+                         <span class="k">for</span> <span class="n">ps</span> <span class="ow">in</span> <span class="n">all_params</span><span class="p">}]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># We first massage all values into np.arrays of the same</span>
+            <span class="c1"># shape</span>
+            <span class="n">flat_results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+            <span class="n">toplevel_val</span> <span class="o">=</span> <span class="n">result_dict</span><span class="p">[</span><span class="n">toplevel_param</span><span class="p">]</span>
+            <span class="n">flat_results</span><span class="p">[</span><span class="n">toplevel_param</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">toplevel_val</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+            <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">flat_results</span><span class="p">[</span><span class="n">toplevel_param</span><span class="o">.</span><span class="n">name</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">dep</span> <span class="ow">in</span> <span class="n">deps_params</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">result_dict</span><span class="p">[</span><span class="n">dep</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">():</span>
+                    <span class="n">flat_results</span><span class="p">[</span><span class="n">dep</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">result_dict</span><span class="p">[</span><span class="n">dep</span><span class="p">],</span> <span class="n">N</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">flat_results</span><span class="p">[</span><span class="n">dep</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">result_dict</span><span class="p">[</span><span class="n">dep</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">inff</span> <span class="ow">in</span> <span class="n">inff_params</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">result_dict</span><span class="p">[</span><span class="n">inff</span><span class="p">])</span> <span class="o">==</span> <span class="p">():</span>
+                    <span class="n">flat_results</span><span class="p">[</span><span class="n">inff</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">result_dict</span><span class="p">[</span><span class="n">dep</span><span class="p">],</span> <span class="n">N</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">flat_results</span><span class="p">[</span><span class="n">inff</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">result_dict</span><span class="p">[</span><span class="n">inff</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+            <span class="c1"># And then put everything into the list</span>
+
+            <span class="n">res_list</span> <span class="o">=</span> <span class="p">[{</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">flat_results</span><span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">][</span><span class="n">ind</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">all_params</span><span class="p">}</span>
+                        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+
+        <span class="k">return</span> <span class="n">res_list</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_finalize_res_dict_standalones</span><span class="p">(</span>
+            <span class="n">result_dict</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ParamSpecBase</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">VALUE</span><span class="p">]]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Massage all standalone parameters into the correct shape</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">res_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">VALUE</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">param</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">result_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">param</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;text&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+                    <span class="n">res_list</span> <span class="o">+=</span> <span class="p">[{</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">)}</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">value</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">res_list</span> <span class="o">+=</span> <span class="p">[{</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)}]</span>
+            <span class="k">elif</span> <span class="n">param</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;numeric&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+                    <span class="n">res_list</span> <span class="o">+=</span> <span class="p">[{</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">number</span><span class="p">}</span> <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">value</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">res_list</span> <span class="o">+=</span> <span class="p">[{</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)}]</span>
+            <span class="k">elif</span> <span class="n">param</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;complex&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+                    <span class="n">res_list</span> <span class="o">+=</span> <span class="p">[{</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">number</span><span class="p">}</span> <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">value</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">res_list</span> <span class="o">+=</span> <span class="p">[{</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="nb">complex</span><span class="p">(</span><span class="n">value</span><span class="p">)}]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">res_list</span> <span class="o">+=</span> <span class="p">[{</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">value</span><span class="p">}]</span>
+
+        <span class="k">return</span> <span class="n">res_list</span>
+
+<div class="viewcode-block" id="DataSet.flush_data_to_database"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.flush_data_to_database">[docs]</a>    <span class="k">def</span> <span class="nf">flush_data_to_database</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write the in-memory results to the database.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            block: If writing using a background thread block until the</span>
+<span class="sd">                background thread has written all data to disc. The</span>
+<span class="sd">                argument has no effect if not using a background thread.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Flushing to database&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_results</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bg_writer</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+                    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Succesfully enqueued result for write thread&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Successfully wrote result to disk&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_results</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bg_writer</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+                    <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not enqueue result; </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Could not commit to database; </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;No results to flush&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bg_writer</span><span class="o">.</span><span class="n">is_alive</span><span class="p">()</span> <span class="ow">and</span> <span class="n">block</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Waiting for write queue to empty.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data_write_queue</span><span class="o">.</span><span class="n">join</span><span class="p">()</span></div></div>
 
 
 <span class="c1"># public api</span>
