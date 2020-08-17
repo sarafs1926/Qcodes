@@ -317,7 +317,7 @@ shortcut methods: <code class="docutils literal notranslate"><span class="pre">i
 
 <dl class="py method">
 <dt id="qcodes.instrument.base.InstrumentBase.add_submodule">
-<code class="sig-name descname">add_submodule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">submodule</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>InstrumentBase<span class="p">, </span>ChannelList<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument/base.html#InstrumentBase.add_submodule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument.base.InstrumentBase.add_submodule" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_submodule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">submodule</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="#qcodes.instrument.base.InstrumentBase" title="qcodes.instrument.base.InstrumentBase">InstrumentBase</a><span class="p">, </span>ChannelList<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument/base.html#InstrumentBase.add_submodule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument.base.InstrumentBase.add_submodule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bind one submodule to this instrument.</p>
 <p>Instrument subclasses can call this repeatedly in their <code class="docutils literal notranslate"><span class="pre">__init__</span></code>
 method for every submodule of the instrument.</p>
@@ -551,7 +551,7 @@ instead, override <a class="reference internal" href="#qcodes.instrument.base.In
 <p>ABC that is useful for defining mixin classes for Instrument class</p>
 <dl class="py attribute">
 <dt id="qcodes.instrument.base.AbstractInstrument.log">
-<code class="sig-name descname">log</code><em class="property">: ‘InstrumentLoggerAdapter’</em><a class="headerlink" href="#qcodes.instrument.base.AbstractInstrument.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument.base.AbstractInstrument.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -840,7 +840,7 @@ out of any class. Default <a class="reference internal" href="../parameters/para
 
 <dl class="py method">
 <dt id="qcodes.instrument.base.Instrument.add_submodule">
-<code class="sig-name descname">add_submodule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">submodule</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>InstrumentBase<span class="p">, </span>ChannelList<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument.base.Instrument.add_submodule" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_submodule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">submodule</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="#qcodes.instrument.base.InstrumentBase" title="qcodes.instrument.base.InstrumentBase">InstrumentBase</a><span class="p">, </span>ChannelList<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument.base.Instrument.add_submodule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bind one submodule to this instrument.</p>
 <p>Instrument subclasses can call this repeatedly in their <code class="docutils literal notranslate"><span class="pre">__init__</span></code>
 method for every submodule of the instrument.</p>
@@ -1085,6 +1085,11 @@ parameters that are being check is printed.</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.base.Instrument.log">
+<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument.base.Instrument.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument.base.Instrument.ask_raw">
