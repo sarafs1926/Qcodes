@@ -823,16 +823,15 @@
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_latest</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
             <span class="n">start_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_latest</span><span class="p">()</span>
-
             <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">start_value</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">))</span> <span class="ow">and</span>
                     <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">))):</span>
-                <span class="c1"># something weird... parameter is numeric but one of the ends</span>
-                <span class="c1"># isn&#39;t, even though it&#39;s valid. probably MultiType with a</span>
-                <span class="c1"># mix of numeric and non-numeric types... So just set the</span>
-                <span class="c1"># endpoint and move on.</span>
+                <span class="c1"># parameter is numeric but either one of the endpoints</span>
+                <span class="c1"># is not or the starting point is unknown. The later</span>
+                <span class="c1"># can happen for a non gettable parameter in the initial set</span>
+                <span class="c1"># operation.</span>
                 <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cannot sweep </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> from </span><span class="si">{</span><span class="n">start_value</span><span class="si">!r}</span><span class="s1"> &#39;</span>
                             <span class="sa">f</span><span class="s1">&#39;to </span><span class="si">{</span><span class="n">value</span><span class="si">!r}</span><span class="s1"> - jumping.&#39;</span><span class="p">)</span>
-                <span class="k">return</span> <span class="p">[]</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">value</span><span class="p">]</span>
 
             <span class="c1"># drop the initial value, we&#39;re already there</span>
             <span class="k">return</span> <span class="n">permissive_range</span><span class="p">(</span><span class="n">start_value</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">step</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="p">[</span><span class="n">value</span><span class="p">]</span>
