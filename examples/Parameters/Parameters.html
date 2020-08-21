@@ -492,7 +492,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/200821-21160-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/200821-21330-qcodes.log
 </pre></div></div>
 </div>
 <p>QCoDeS provides the following classes of built-in parameters:</p>
@@ -596,6 +596,7 @@ c is settable True
 <p><strong>NOTE:</strong> This is an older base class for array-valued parameters. For any new driver we strongly recommend using <code class="docutils literal notranslate"><span class="pre">ParameterWithSetpoints</span></code> class which is both more flexible and significantly easier to use. Refer to notebook on <a class="reference internal" href="Simple-Example-of-ParameterWithSetpoints.html"><span class="doc">writing drivers with ParameterWithSetpoints</span></a>.</p>
 <p>We have kept the documentation shown below of <code class="docutils literal notranslate"><span class="pre">ArrayParameter</span></code> for the legacy purpose.</p>
 <p>For actions that create a whole array of values at once. When you use it in a <code class="docutils literal notranslate"><span class="pre">Loop</span></code>, it makes a single <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> with the array returned by <code class="docutils literal notranslate"><span class="pre">get</span></code> nested inside extra dimension(s) for the loop.</p>
+<p>While storing the <code class="docutils literal notranslate"><span class="pre">ArrayParameter</span></code> data in the database using <code class="docutils literal notranslate"><span class="pre">datasaver.add_result()</span></code> , be informed that it is stored as BLOB in one row of sqlite database. Where the BLOB in sqlite has a default max length limit set at 1 billion (1,000,000,000) bytes.</p>
 <p><code class="docutils literal notranslate"><span class="pre">ArrayParameter</span></code> is, for now, only gettable.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
