@@ -663,11 +663,8 @@
 <div class="viewcode-block" id="Instrument.__del__"><a class="viewcode-back" href="../../../api/instrument/base.html#qcodes.instrument_drivers.AimTTi.AimTTi_PL601P_channels.Instrument.__del__">[docs]</a>    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Close the instrument and remove its instance record.&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">wr</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">wr</span> <span class="ow">in</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_instances&#39;</span><span class="p">,</span> <span class="p">[]):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_instances</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">wr</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="k">except</span><span class="p">:</span>
+        <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
             <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="Instrument.close"><a class="viewcode-back" href="../../../api/instrument/base.html#qcodes.instrument_drivers.AimTTi.AimTTi_PL601P_channels.Instrument.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
