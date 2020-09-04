@@ -673,15 +673,15 @@ individual parsing of their values).</p></li>
 </dd>
 </dl>
 <dl class="py method">
-<dt id="qcodes.instrument.group_parameter.Group.set">
-<code class="sig-name descname">set</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">set_parameter</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#qcodes.instrument.group_parameter.GroupParameter" title="qcodes.instrument.group_parameter.GroupParameter">qcodes.instrument.group_parameter.GroupParameter</a></span></em>, <em class="sig-param"><span class="n">raw_value</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument/group_parameter.html#Group.set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument.group_parameter.Group.set" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the value of the given parameter within a group to the given
-value by calling the <code class="docutils literal notranslate"><span class="pre">set_cmd</span></code>.</p>
+<dt id="qcodes.instrument.group_parameter.Group.set_parameters">
+<code class="sig-name descname">set_parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parameters_dict</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument/group_parameter.html#Group.set_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument.group_parameter.Group.set_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of one or more parameters within a group to the given
+values by calling the <code class="docutils literal notranslate"><span class="pre">set_cmd</span></code> while updating rest.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>set_parameter</strong> – The parameter within the group to set.</p></li>
-<li><p><strong>raw_value</strong> – The new raw_value for this parameter.</p></li>
+<li><p><strong>parameters_dict</strong> – The dictionary of one or more parameters within</p></li>
+<li><p><strong>group with the corresponding values to be set.</strong> (<em>the</em>) – </p></li>
 </ul>
 </dd>
 </dl>
