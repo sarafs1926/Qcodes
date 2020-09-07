@@ -169,7 +169,7 @@
 <span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">Empty</span><span class="p">,</span> <span class="n">Queue</span>
 <span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span><span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span>
-                    <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Sized</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Set</span><span class="p">)</span>
+                    <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Sized</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span>
 
@@ -179,8 +179,7 @@
 <span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.param_spec</span> <span class="kn">import</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">ParamSpecBase</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.rundescriber</span> <span class="kn">import</span> <span class="n">RunDescriber</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.versioning.converters</span> <span class="kn">import</span> <span class="p">(</span><span class="n">new_to_old</span><span class="p">,</span>
-                                                               <span class="n">old_to_new</span><span class="p">,</span>
-                                                               <span class="n">v1_to_v0</span><span class="p">)</span>
+                                                               <span class="n">old_to_new</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.versioning.v0</span> <span class="kn">import</span> <span class="n">InterDependencies</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.guids</span> <span class="kn">import</span> <span class="p">(</span><span class="n">filter_guids_by_parts</span><span class="p">,</span> <span class="n">generate_guid</span><span class="p">,</span>
                                   <span class="n">parse_guid</span><span class="p">)</span>
@@ -766,8 +765,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span> <span class="o">=</span> <span class="n">interdeps</span></div>
 
 <div class="viewcode-block" id="DataSet.get_parameters"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.get_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">get_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SPECS</span><span class="p">:</span>
-        <span class="n">rd_v0</span> <span class="o">=</span> <span class="n">v1_to_v0</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
-        <span class="n">old_interdeps</span> <span class="o">=</span> <span class="n">rd_v0</span><span class="o">.</span><span class="n">interdeps</span>
+        <span class="n">old_interdeps</span> <span class="o">=</span> <span class="n">new_to_old</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="o">.</span><span class="n">interdeps</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">old_interdeps</span><span class="o">.</span><span class="n">paramspecs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DataSet.add_metadata"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.add_metadata">[docs]</a>    <span class="k">def</span> <span class="nf">add_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
