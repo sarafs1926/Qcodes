@@ -264,14 +264,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">npts</span><span class="p">,)</span></div>
 
 <div class="viewcode-block" id="FrequencySweep.get_raw"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rohde_schwarz.html#qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweep.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">_get_sweep_data</span><span class="p">()</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">format</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Polar&#39;</span><span class="p">,</span> <span class="s1">&#39;Complex&#39;</span><span class="p">,</span>
-                                         <span class="s1">&#39;Smith&#39;</span><span class="p">,</span> <span class="s1">&#39;Inverse Smith&#39;</span><span class="p">]:</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;QCoDeS Dataset does not currently support Complex &quot;</span>
-                        <span class="s2">&quot;values. Will discard the imaginary part. In order to &quot;</span>
-                        <span class="s2">&quot;acquire phase and amplitude use the &quot;</span>
-                        <span class="s2">&quot;FrequencySweepMagPhase parameter.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">data</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">_get_sweep_data</span><span class="p">()</span></div></div>
 
 
 <div class="viewcode-block" id="ZNBChannel"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rohde_schwarz.html#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNBChannel">[docs]</a><span class="k">class</span> <span class="nc">ZNBChannel</span><span class="p">(</span><span class="n">InstrumentChannel</span><span class="p">):</span>
