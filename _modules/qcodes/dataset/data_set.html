@@ -159,13 +159,15 @@
            <div itemprop="articleBody">
             
   <h1>Source code for qcodes.dataset.data_set</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">functools</span>
+<span></span><span class="kn">import</span> <span class="nn">atexit</span>
+<span class="kn">import</span> <span class="nn">functools</span>
 <span class="kn">import</span> <span class="nn">importlib</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">Empty</span><span class="p">,</span> <span class="n">Queue</span>
 <span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span><span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span>
@@ -378,11 +380,10 @@
 <span class="sd">    Write the results from the DataSet&#39;s dataqueue in a new thread</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="n">Queue</span><span class="p">,</span> <span class="n">conn</span><span class="p">:</span> <span class="n">ConnectionPlus</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="n">Queue</span><span class="p">,</span> <span class="n">conn</span><span class="p">:</span> <span class="n">ConnectionPlus</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">queue</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">path_to_dbfile</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span> <span class="o">=</span> <span class="n">table_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">keep_writing</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -395,13 +396,39 @@
             <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;keys&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;stop&#39;</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">keep_writing</span> <span class="o">=</span> <span class="kc">False</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;keys&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;finalize&#39;</span><span class="p">:</span>
+                <span class="n">_WRITERS</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">]</span><span class="o">.</span><span class="n">active_datasets</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">])</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">write_results</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;keys&#39;</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">write_results</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;keys&#39;</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;table_name&#39;</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">write_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keys</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
-                      <span class="n">values</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">insert_many_values</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+                      <span class="n">values</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]],</span>
+                      <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">insert_many_values</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Send a termination signal to the data writing queue, wait for the</span>
+<span class="sd">        queue to empty and the thread to join.</span>
+
+<span class="sd">        If the background writing thread is not alive this will do nothing.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">({</span><span class="s1">&#39;keys&#39;</span><span class="p">:</span> <span class="s1">&#39;stop&#39;</span><span class="p">,</span> <span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="p">[]})</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">_WriterStatus</span><span class="p">:</span>
+    <span class="n">bg_writer</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_BackgroundWriter</span><span class="p">]</span>
+    <span class="n">write_in_background</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span>
+    <span class="n">data_write_queue</span><span class="p">:</span> <span class="n">Queue</span>
+    <span class="n">active_datasets</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+
+
+<span class="n">_WRITERS</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_WriterStatus</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
 
 <div class="viewcode-block" id="DataSet"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet">[docs]</a><span class="k">class</span> <span class="nc">DataSet</span><span class="p">(</span><span class="n">Sized</span><span class="p">):</span>
@@ -415,6 +442,7 @@
                          <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;completed_timestamp_raw&#39;</span><span class="p">,</span> <span class="s1">&#39;metadata&#39;</span><span class="p">,</span>
                          <span class="s1">&#39;dependent_parameters&#39;</span><span class="p">,</span> <span class="s1">&#39;parent_dataset_links&#39;</span><span class="p">,</span>
                          <span class="s1">&#39;captured_run_id&#39;</span><span class="p">,</span> <span class="s1">&#39;captured_counter&#39;</span><span class="p">)</span>
+    <span class="n">background_sleep_time</span> <span class="o">=</span> <span class="mf">1e-3</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_to_db</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">run_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -454,10 +482,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">subscribers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_Subscriber</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span><span class="p">:</span> <span class="n">InterDependencies_</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_dataset_links</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Link</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_data_write_queue</span><span class="p">:</span> <span class="n">Queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
         <span class="c1">#: In memory representation of the data in the dataset.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span> <span class="n">DataSetCache</span> <span class="o">=</span> <span class="n">DataSetCache</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">VALUE</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+
 
         <span class="k">if</span> <span class="n">run_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">run_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="n">run_id</span><span class="p">):</span>
@@ -501,9 +529,14 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">get_metadata_from_run_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_id</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_dataset_links</span> <span class="o">=</span> <span class="p">[]</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_bg_writer</span> <span class="o">=</span> <span class="n">_BackgroundWriter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_write_queue</span><span class="p">,</span>
-                                            <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span>
-                                            <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">_WRITERS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path_to_db</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">queue</span><span class="p">:</span> <span class="n">Queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+            <span class="n">ws</span><span class="p">:</span> <span class="n">_WriterStatus</span> <span class="o">=</span> <span class="n">_WriterStatus</span><span class="p">(</span>
+                <span class="n">bg_writer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">write_in_background</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">data_write_queue</span><span class="o">=</span><span class="n">queue</span><span class="p">,</span>
+                <span class="n">active_datasets</span><span class="o">=</span><span class="nb">set</span><span class="p">())</span>
+            <span class="n">_WRITERS</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">path_to_db</span><span class="p">]</span> <span class="o">=</span> <span class="n">ws</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">run_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
@@ -646,6 +679,10 @@
                     <span class="s1">&#39;Got link(s) with head(s) pointing to another dataset.&#39;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_dataset_links</span> <span class="o">=</span> <span class="n">links</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_writer_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_WriterStatus</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_WRITERS</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">path_to_db</span><span class="p">]</span>
 
 <div class="viewcode-block" id="DataSet.the_same_dataset_as"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.the_same_dataset_as">[docs]</a>    <span class="k">def</span> <span class="nf">the_same_dataset_as</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s1">&#39;DataSet&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -869,8 +906,23 @@
         <span class="n">pdl_str</span> <span class="o">=</span> <span class="n">links_to_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent_dataset_links</span><span class="p">)</span>
         <span class="n">update_parent_datasets</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_id</span><span class="p">,</span> <span class="n">pdl_str</span><span class="p">)</span>
 
+        <span class="n">writer_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_writer_status</span>
+
+        <span class="n">write_in_background_status</span> <span class="o">=</span> <span class="n">writer_status</span><span class="o">.</span><span class="n">write_in_background</span>
+        <span class="k">if</span> <span class="n">write_in_background_status</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">write_in_background_status</span> <span class="o">!=</span> <span class="n">start_bg_writer</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;All datasets written to the same database must &quot;</span>
+                               <span class="s2">&quot;be written either in the background or in the &quot;</span>
+                               <span class="s2">&quot;main thread. You cannot mix.&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">start_bg_writer</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_bg_writer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+            <span class="n">writer_status</span><span class="o">.</span><span class="n">write_in_background</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="n">writer_status</span><span class="o">.</span><span class="n">bg_writer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">writer_status</span><span class="o">.</span><span class="n">bg_writer</span> <span class="o">=</span> <span class="n">_BackgroundWriter</span><span class="p">(</span><span class="n">writer_status</span><span class="o">.</span><span class="n">data_write_queue</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">writer_status</span><span class="o">.</span><span class="n">bg_writer</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+                <span class="n">writer_status</span><span class="o">.</span><span class="n">bg_writer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">writer_status</span><span class="o">.</span><span class="n">write_in_background</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="n">writer_status</span><span class="o">.</span><span class="n">active_datasets</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run_id</span><span class="p">)</span>
 
 <div class="viewcode-block" id="DataSet.mark_completed"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.mark_completed">[docs]</a>    <span class="k">def</span> <span class="nf">mark_completed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -889,7 +941,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subscribers</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="n">sub</span><span class="o">.</span><span class="n">done_callback</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">terminate_queue</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_dataset_written</span><span class="p">()</span>
 
 <div class="viewcode-block" id="DataSet.add_result"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.add_result">[docs]</a>    <span class="nd">@deprecate</span><span class="p">(</span><span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;add_results&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">add_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">VALUE</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
@@ -949,9 +1001,12 @@
         <span class="n">expected_keys</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">results</span><span class="p">])</span>
         <span class="n">values</span> <span class="o">=</span> <span class="p">[[</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">expected_keys</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bg_writer</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
-            <span class="n">item</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;keys&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">expected_keys</span><span class="p">),</span> <span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="n">values</span><span class="p">}</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_data_write_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="n">writer_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_writer_status</span>
+
+        <span class="k">if</span> <span class="n">writer_status</span><span class="o">.</span><span class="n">write_in_background</span><span class="p">:</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;keys&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">expected_keys</span><span class="p">),</span> <span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="n">values</span><span class="p">,</span>
+                    <span class="s2">&quot;table_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">}</span>
+            <span class="n">writer_status</span><span class="o">.</span><span class="n">data_write_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">insert_many_values</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">expected_keys</span><span class="p">),</span>
                                <span class="n">values</span><span class="p">)</span></div>
@@ -977,18 +1032,27 @@
         <span class="n">expected_keys</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">results</span><span class="p">])</span>
         <span class="n">values</span> <span class="o">=</span> <span class="p">[[</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">expected_keys</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
 
-        <span class="n">item</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;keys&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">expected_keys</span><span class="p">),</span> <span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="n">values</span><span class="p">}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_data_write_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></div>
+        <span class="n">item</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;keys&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">expected_keys</span><span class="p">),</span> <span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="n">values</span><span class="p">,</span>
+                <span class="s2">&quot;table_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">}</span>
+        <span class="n">writer_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_writer_status</span>
 
-<div class="viewcode-block" id="DataSet.terminate_queue"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.terminate_queue">[docs]</a>    <span class="k">def</span> <span class="nf">terminate_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Send a termination signal to the data writing queue, if the</span>
-<span class="sd">        background writing thread has been started. Else do nothing.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bg_writer</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_data_write_queue</span><span class="o">.</span><span class="n">put</span><span class="p">({</span><span class="s1">&#39;keys&#39;</span><span class="p">:</span> <span class="s1">&#39;stop&#39;</span><span class="p">,</span> <span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="p">[]})</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_data_write_queue</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_bg_writer</span><span class="o">.</span><span class="n">join</span><span class="p">()</span></div>
+        <span class="n">writer_status</span><span class="o">.</span><span class="n">data_write_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_ensure_dataset_written</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">writer_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_writer_status</span>
+
+        <span class="k">if</span> <span class="n">writer_status</span><span class="o">.</span><span class="n">write_in_background</span><span class="p">:</span>
+            <span class="n">writer_status</span><span class="o">.</span><span class="n">data_write_queue</span><span class="o">.</span><span class="n">put</span><span class="p">({</span><span class="s1">&#39;keys&#39;</span><span class="p">:</span> <span class="s1">&#39;finalize&#39;</span><span class="p">,</span> <span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_id</span><span class="p">})</span>
+            <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_id</span> <span class="ow">in</span> <span class="n">writer_status</span><span class="o">.</span><span class="n">active_datasets</span><span class="p">:</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">background_sleep_time</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">writer_status</span><span class="o">.</span><span class="n">active_datasets</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">writer_status</span><span class="o">.</span><span class="n">active_datasets</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">writer_status</span><span class="o">.</span><span class="n">write_in_background</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">writer_status</span><span class="o">.</span><span class="n">bg_writer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">writer_status</span><span class="o">.</span><span class="n">bg_writer</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+                <span class="n">writer_status</span><span class="o">.</span><span class="n">bg_writer</span> <span class="o">=</span> <span class="kc">None</span>
+
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_validate_parameters</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">_BaseParameter</span><span class="p">]</span>
@@ -1492,26 +1556,29 @@
 <span class="sd">                argument has no effect if not using a background thread.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Flushing to database&#39;</span><span class="p">)</span>
+        <span class="n">writer_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_writer_status</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
+
                 <span class="bp">self</span><span class="o">.</span><span class="n">add_results</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">)</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bg_writer</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">writer_status</span><span class="o">.</span><span class="n">write_in_background</span><span class="p">:</span>
                     <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Succesfully enqueued result for write thread&quot;</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Successfully wrote result to disk&#39;</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_results</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bg_writer</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">writer_status</span><span class="o">.</span><span class="n">write_in_background</span><span class="p">:</span>
                     <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not enqueue result; </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Could not commit to database; </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;No results to flush&#39;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bg_writer</span><span class="o">.</span><span class="n">is_alive</span><span class="p">()</span> <span class="ow">and</span> <span class="n">block</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">writer_status</span><span class="o">.</span><span class="n">write_in_background</span> <span class="ow">and</span> <span class="n">block</span><span class="p">:</span>
             <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Waiting for write queue to empty.&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_data_write_queue</span><span class="o">.</span><span class="n">join</span><span class="p">()</span></div>
+            <span class="n">writer_status</span><span class="o">.</span><span class="n">data_write_queue</span><span class="o">.</span><span class="n">join</span><span class="p">()</span></div>
 
 
 <span class="c1"># public api</span>

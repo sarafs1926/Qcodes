@@ -538,7 +538,6 @@
 <span class="sd">    to the database. Additionally, it may perform experiment bootstrapping</span>
 <span class="sd">    and clean-up after a measurement.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">_is_entered</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="n">enteractions</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="n">exitactions</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
@@ -584,12 +583,6 @@
     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataSaver</span><span class="p">:</span>
         <span class="c1"># TODO: should user actions really precede the dataset?</span>
         <span class="c1"># first do whatever bootstrapping the user specified</span>
-
-        <span class="k">if</span> <span class="n">Runner</span><span class="o">.</span><span class="n">_is_entered</span><span class="p">:</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Nested measurements are not supported. This will &#39;</span>
-                        <span class="s1">&#39;become an error in future releases of QCoDeS&#39;</span><span class="p">)</span>
-
-        <span class="n">Runner</span><span class="o">.</span><span class="n">_is_entered</span> <span class="o">=</span> <span class="kc">True</span>
 
         <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">enteractions</span><span class="p">:</span>
             <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
@@ -649,9 +642,8 @@
                  <span class="n">traceback</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TracebackType</span><span class="p">]</span>
                  <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">with</span> <span class="n">DelayedKeyboardInterrupt</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">datasaver</span><span class="o">.</span><span class="n">flush_data_to_database</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">datasaver</span><span class="o">.</span><span class="n">flush_data_to_database</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-            <span class="n">Runner</span><span class="o">.</span><span class="n">_is_entered</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="c1"># perform the &quot;teardown&quot; events</span>
             <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">exitactions</span><span class="p">:</span>
                 <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>

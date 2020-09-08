@@ -304,6 +304,11 @@ is provided.</p></li>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.dataset.data_set.DataSet.background_sleep_time">
+<code class="sig-name descname">background_sleep_time</code><em class="property"> = 0.001</em><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.background_sleep_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.dataset.data_set.DataSet.cache">
 <code class="sig-name descname">cache</code><em class="property">: DataSetCache</em><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.cache" title="Permalink to this definition">¶</a></dt>
 <dd><p>In memory representation of the data in the dataset.</p>
@@ -608,13 +613,6 @@ the name of a parameter in this <a class="reference internal" href="#qcodes.data
 <code class="sig-name descname">add_result_to_queue</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">results</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Mapping<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Optional<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#complex" title="(in Python v3.7)">complex</a><span class="p">, </span>List<span class="p">, </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span><span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/dataset/data_set.html#DataSet.add_result_to_queue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.add_result_to_queue" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add result to the output Queue from which a worker in a separate thread
 consumes</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qcodes.dataset.data_set.DataSet.terminate_queue">
-<code class="sig-name descname">terminate_queue</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/dataset/data_set.html#DataSet.terminate_queue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.terminate_queue" title="Permalink to this definition">¶</a></dt>
-<dd><p>Send a termination signal to the data writing queue, if the
-background writing thread has been started. Else do nothing.</p>
 </dd></dl>
 
 <dl class="py method">
