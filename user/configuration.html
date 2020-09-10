@@ -422,7 +422,8 @@ The configuration is modeled after the module structure plus some higher level s
 <td colspan="3"><p><em>object</em></p></td>
 </tr>
 <tr class="row-odd"><td><p>default</p></td>
-<td colspan="3"><p>OrderedDict([(‘pyvisa’, ‘INFO’)])</p></td>
+<td><p>pyvisa</p></td>
+<td colspan="2"><p>INFO</p></td>
 </tr>
 <tr class="row-even"><td><p>additionalProperties</p></td>
 <td><p>type</p></td>
@@ -498,7 +499,7 @@ The configuration is modeled after the module structure plus some higher level s
 <tr class="row-even"><td><p>default</p></td>
 <td colspan="3"><p>100</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="24"><ul class="simple">
+<tr class="row-odd"><td rowspan="25"><ul class="simple">
 <li><p>plotting</p></li>
 </ul>
 </td>
@@ -533,7 +534,7 @@ The configuration is modeled after the module structure plus some higher level s
 <tr class="row-odd"><td><p>default</p></td>
 <td colspan="3"><p>5000</p></td>
 </tr>
-<tr class="row-even"><td rowspan="15"><ul class="simple">
+<tr class="row-even"><td rowspan="16"><ul class="simple">
 <li><p>auto_color_scale</p></li>
 </ul>
 </td>
@@ -556,7 +557,7 @@ The configuration is modeled after the module structure plus some higher level s
 <tr class="row-odd"><td><p>default</p></td>
 <td colspan="2"><p>False</p></td>
 </tr>
-<tr class="row-even"><td rowspan="5"><ul class="simple">
+<tr class="row-even"><td rowspan="6"><ul class="simple">
 <li><p>cutoff_percentile</p></li>
 </ul>
 </td>
@@ -565,76 +566,43 @@ The configuration is modeled after the module structure plus some higher level s
 <tr class="row-odd"><td><p>type</p></td>
 <td colspan="2"><p><em>array</em></p></td>
 </tr>
-<tr class="row-even"><td><p>default</p></td>
-<td colspan="2"><p>[0.5, 0.5]</p></td>
+<tr class="row-even"><td rowspan="2"><p>default</p></td>
+<td colspan="2"><p>0.5</p></td>
 </tr>
-<tr class="row-odd"><td colspan="3"><p>items</p></td>
+<tr class="row-odd"><td colspan="2"><p>0.5</p></td>
 </tr>
-<tr class="row-even"><td><ul class="simple">
+<tr class="row-even"><td colspan="3"><p>items</p></td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
 <li></li>
 </ul>
 </td>
 <td><p>type</p></td>
 <td><p><em>number</em></p></td>
 </tr>
-<tr class="row-odd"><td rowspan="2"><ul class="simple">
+<tr class="row-even"><td rowspan="2"><ul class="simple">
 <li><p>color_over</p></li>
 </ul>
 </td>
 <td colspan="3"><p>Matplotlib color representing the datapoints clipped by the upper limit</p></td>
 </tr>
-<tr class="row-even"><td><p>default</p></td>
+<tr class="row-odd"><td><p>default</p></td>
 <td colspan="2"><p>white</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="2"><ul class="simple">
+<tr class="row-even"><td rowspan="2"><ul class="simple">
 <li><p>color_under</p></li>
 </ul>
 </td>
 <td colspan="3"><p>Matplotlib color representing the datapoints clipped by the lower limit</p></td>
 </tr>
-<tr class="row-even"><td><p>default</p></td>
+<tr class="row-odd"><td><p>default</p></td>
 <td colspan="2"><p>grey</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="9"><ul class="simple">
+<tr class="row-even"><td rowspan="9"><ul class="simple">
 <li><p>user</p></li>
 </ul>
 </td>
 <td colspan="5"><p>Optional feature for qdev-wrappers package: controls user settings of qcodes</p></td>
-</tr>
-<tr class="row-even"><td><p>type</p></td>
-<td colspan="4"><p><em>object</em></p></td>
-</tr>
-<tr class="row-odd"><td colspan="5"><p>properties</p></td>
-</tr>
-<tr class="row-even"><td rowspan="3"><ul class="simple">
-<li><p>scriptfolder</p></li>
-</ul>
-</td>
-<td colspan="4"><p>Location of scripts for general experiments</p></td>
-</tr>
-<tr class="row-odd"><td><p>type</p></td>
-<td colspan="3"><p><em>string</em></p></td>
-</tr>
-<tr class="row-even"><td><p>default</p></td>
-<td colspan="3"><p>/</p></td>
-</tr>
-<tr class="row-odd"><td rowspan="3"><ul class="simple">
-<li><p>mainfolder</p></li>
-</ul>
-</td>
-<td colspan="4"><p>Location of experiments</p></td>
-</tr>
-<tr class="row-even"><td><p>type</p></td>
-<td colspan="3"><p><em>string</em></p></td>
-</tr>
-<tr class="row-odd"><td><p>default</p></td>
-<td colspan="3"></td>
-</tr>
-<tr class="row-even"><td rowspan="15"><ul class="simple">
-<li><p>station</p></li>
-</ul>
-</td>
-<td colspan="5"><p>Settings for QCoDeS Station.</p></td>
 </tr>
 <tr class="row-odd"><td><p>type</p></td>
 <td colspan="4"><p><em>object</em></p></td>
@@ -642,58 +610,34 @@ The configuration is modeled after the module structure plus some higher level s
 <tr class="row-even"><td colspan="5"><p>properties</p></td>
 </tr>
 <tr class="row-odd"><td rowspan="3"><ul class="simple">
-<li><p>enable_forced_reconnect</p></li>
+<li><p>scriptfolder</p></li>
 </ul>
 </td>
-<td colspan="4"><p>If set to true, on instantiation of an existing instrument from station configuration, the existing instrument instance will be closed.</p></td>
+<td colspan="4"><p>Location of scripts for general experiments</p></td>
 </tr>
 <tr class="row-even"><td><p>type</p></td>
-<td colspan="3"><p><em>boolean</em></p></td>
+<td colspan="3"><p><em>string</em></p></td>
 </tr>
 <tr class="row-odd"><td><p>default</p></td>
-<td colspan="3"><p>False</p></td>
+<td colspan="3"><p>/</p></td>
 </tr>
 <tr class="row-even"><td rowspan="3"><ul class="simple">
-<li><p>default_folder</p></li>
+<li><p>mainfolder</p></li>
 </ul>
 </td>
-<td colspan="4"><p>Default folder where to look for a YAML station configuration file</p></td>
+<td colspan="4"><p>Location of experiments</p></td>
 </tr>
 <tr class="row-odd"><td><p>type</p></td>
-<td colspan="3"><p><em>string</em> / <em>null</em></p></td>
+<td colspan="3"><p><em>string</em></p></td>
 </tr>
 <tr class="row-even"><td><p>default</p></td>
-<td colspan="3"><p>None</p></td>
+<td colspan="3"></td>
 </tr>
-<tr class="row-odd"><td rowspan="3"><ul class="simple">
-<li><p>default_file</p></li>
+<tr class="row-odd"><td rowspan="15"><ul class="simple">
+<li><p>station</p></li>
 </ul>
 </td>
-<td colspan="4"><p>Default file name, specifying a YAML station configuration file to load, when none is specified. The path can be absolute, relative to the current folder or relative to the default folder as specified in the qcodes config.</p></td>
-</tr>
-<tr class="row-even"><td><p>type</p></td>
-<td colspan="3"><p><em>string</em> / <em>null</em></p></td>
-</tr>
-<tr class="row-odd"><td><p>default</p></td>
-<td colspan="3"><p>None</p></td>
-</tr>
-<tr class="row-even"><td rowspan="3"><ul class="simple">
-<li><p>use_monitor</p></li>
-</ul>
-</td>
-<td colspan="4"><p>Update the monitor based on the monitor attribute specified in the instruments section of the station config yaml file.</p></td>
-</tr>
-<tr class="row-odd"><td><p>type</p></td>
-<td colspan="3"><p><em>boolean</em></p></td>
-</tr>
-<tr class="row-even"><td><p>default</p></td>
-<td colspan="3"><p>False</p></td>
-</tr>
-<tr class="row-odd"><td rowspan="12"><ul class="simple">
-<li><p><strong>GUID_components</strong></p></li>
-</ul>
-</td>
-<td colspan="5"><p>Identifiers for creating a GUID per run in the dataset database.</p></td>
+<td colspan="5"><p>Settings for QCoDeS Station.</p></td>
 </tr>
 <tr class="row-even"><td><p>type</p></td>
 <td colspan="4"><p><em>object</em></p></td>
@@ -701,22 +645,69 @@ The configuration is modeled after the module structure plus some higher level s
 <tr class="row-odd"><td colspan="5"><p>properties</p></td>
 </tr>
 <tr class="row-even"><td rowspan="3"><ul class="simple">
+<li><p>enable_forced_reconnect</p></li>
+</ul>
+</td>
+<td colspan="4"><p>If set to true, on instantiation of an existing instrument from station configuration, the existing instrument instance will be closed.</p></td>
+</tr>
+<tr class="row-odd"><td><p>type</p></td>
+<td colspan="3"><p><em>boolean</em></p></td>
+</tr>
+<tr class="row-even"><td><p>default</p></td>
+<td colspan="3"><p>False</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><ul class="simple">
+<li><p>default_folder</p></li>
+</ul>
+</td>
+<td colspan="4"><p>Default folder where to look for a YAML station configuration file</p></td>
+</tr>
+<tr class="row-even"><td><p>type</p></td>
+<td colspan="3"><p><em>string</em> / <em>null</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>default</p></td>
+<td colspan="3"><p>None</p></td>
+</tr>
+<tr class="row-even"><td rowspan="3"><ul class="simple">
+<li><p>default_file</p></li>
+</ul>
+</td>
+<td colspan="4"><p>Default file name, specifying a YAML station configuration file to load, when none is specified. The path can be absolute, relative to the current folder or relative to the default folder as specified in the qcodes config.</p></td>
+</tr>
+<tr class="row-odd"><td><p>type</p></td>
+<td colspan="3"><p><em>string</em> / <em>null</em></p></td>
+</tr>
+<tr class="row-even"><td><p>default</p></td>
+<td colspan="3"><p>None</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><ul class="simple">
+<li><p>use_monitor</p></li>
+</ul>
+</td>
+<td colspan="4"><p>Update the monitor based on the monitor attribute specified in the instruments section of the station config yaml file.</p></td>
+</tr>
+<tr class="row-even"><td><p>type</p></td>
+<td colspan="3"><p><em>boolean</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>default</p></td>
+<td colspan="3"><p>False</p></td>
+</tr>
+<tr class="row-even"><td rowspan="12"><ul class="simple">
+<li><p><strong>GUID_components</strong></p></li>
+</ul>
+</td>
+<td colspan="5"><p>Identifiers for creating a GUID per run in the dataset database.</p></td>
+</tr>
+<tr class="row-odd"><td><p>type</p></td>
+<td colspan="4"><p><em>object</em></p></td>
+</tr>
+<tr class="row-even"><td colspan="5"><p>properties</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><ul class="simple">
 <li><p>location</p></li>
 </ul>
 </td>
 <td colspan="4"><p>Geographical location code</p></td>
-</tr>
-<tr class="row-odd"><td><p>type</p></td>
-<td colspan="3"><p><em>integer</em></p></td>
-</tr>
-<tr class="row-even"><td><p>default</p></td>
-<td colspan="3"><p>0</p></td>
-</tr>
-<tr class="row-odd"><td rowspan="3"><ul class="simple">
-<li><p>work_station</p></li>
-</ul>
-</td>
-<td colspan="4"><p>Work station identification code</p></td>
 </tr>
 <tr class="row-even"><td><p>type</p></td>
 <td colspan="3"><p><em>integer</em></p></td>
@@ -725,10 +716,10 @@ The configuration is modeled after the module structure plus some higher level s
 <td colspan="3"><p>0</p></td>
 </tr>
 <tr class="row-even"><td rowspan="3"><ul class="simple">
-<li><p>sample</p></li>
+<li><p>work_station</p></li>
 </ul>
 </td>
-<td colspan="4"><p>Sample identification code</p></td>
+<td colspan="4"><p>Work station identification code</p></td>
 </tr>
 <tr class="row-odd"><td><p>type</p></td>
 <td colspan="3"><p><em>integer</em></p></td>
@@ -736,37 +727,49 @@ The configuration is modeled after the module structure plus some higher level s
 <tr class="row-even"><td><p>default</p></td>
 <td colspan="3"><p>0</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="8"><ul class="simple">
+<tr class="row-odd"><td rowspan="3"><ul class="simple">
+<li><p>sample</p></li>
+</ul>
+</td>
+<td colspan="4"><p>Sample identification code</p></td>
+</tr>
+<tr class="row-even"><td><p>type</p></td>
+<td colspan="3"><p><em>integer</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>default</p></td>
+<td colspan="3"><p>0</p></td>
+</tr>
+<tr class="row-even"><td rowspan="8"><ul class="simple">
 <li><p><strong>telemetry</strong></p></li>
 </ul>
 </td>
 <td><p>type</p></td>
 <td colspan="4"><p><em>object</em></p></td>
 </tr>
-<tr class="row-even"><td colspan="5"><p>properties</p></td>
+<tr class="row-odd"><td colspan="5"><p>properties</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="3"><ul class="simple">
+<tr class="row-even"><td rowspan="3"><ul class="simple">
 <li><p>enabled</p></li>
 </ul>
 </td>
 <td colspan="4"><p>Whether or not to enable sending telemetry data to the developers of QCoDeS (or elsewhere)</p></td>
 </tr>
-<tr class="row-even"><td><p>type</p></td>
+<tr class="row-odd"><td><p>type</p></td>
 <td colspan="3"><p><em>boolean</em></p></td>
 </tr>
-<tr class="row-odd"><td><p>default</p></td>
+<tr class="row-even"><td><p>default</p></td>
 <td colspan="3"><p>False</p></td>
 </tr>
-<tr class="row-even"><td rowspan="3"><ul class="simple">
+<tr class="row-odd"><td rowspan="3"><ul class="simple">
 <li><p>instrumentation_key</p></li>
 </ul>
 </td>
 <td colspan="4"><p>A valid Azure Application Insights instrumentation key</p></td>
 </tr>
-<tr class="row-odd"><td><p>type</p></td>
+<tr class="row-even"><td><p>type</p></td>
 <td colspan="3"><p><em>string</em></p></td>
 </tr>
-<tr class="row-even"><td><p>default</p></td>
+<tr class="row-odd"><td><p>default</p></td>
 <td colspan="3"><p>00000000-0000-0000-0000-000000000000</p></td>
 </tr>
 </tbody>
