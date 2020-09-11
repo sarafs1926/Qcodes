@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Source Code &mdash; QCoDeS 0.17.0 documentation</title>
+  <title>Related Projects &mdash; QCoDeS 0.17.0 documentation</title>
   
 
   
@@ -39,8 +39,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Contributing" href="contributing.html" />
-    <link rel="prev" title="Community Guide" href="index.html" />
+    <link rel="next" title="Object Hierarchy" href="objects.html" />
+    <link rel="prev" title="Contributing" href="contributing.html" />
     <link href="../_static/style.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -92,9 +92,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../help.html">Get Help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Community Guide</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Source Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">Source Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="related_projects.html">Related Projects</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Related Projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#qcodes-contrib-drivers">QCoDeS contrib drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#broadbean">Broadbean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plottr">Plottr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#zhinst-qcodes">zhinst-qcodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qtt-qunatum-technology-toolbox">qtt (Qunatum Technology Toolbox)</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="objects.html">Object Hierarchy</a></li>
 </ul>
 </li>
@@ -151,13 +158,13 @@
         
           <li><a href="index.html">Community Guide</a> &raquo;</li>
         
-      <li>Source Code</li>
+      <li>Related Projects</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/community/install.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/community/related_projects.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -194,11 +201,72 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="source-code">
-<span id="installcom"></span><h1>Source Code<a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h1>
-<p>The source lives on  <a class="reference external" href="https://github.com/QCoDeS">https://github.com/QCoDeS</a> .</p>
-<p>Refer to  <a class="reference external" href="https://github.com/QCoDeS/Qcodes#install">https://github.com/QCoDeS/Qcodes#install</a>
-for how to on install from source.</p>
+<div class="section" id="related-projects">
+<span id="relatedprojects"></span><h1>Related Projects<a class="headerlink" href="#related-projects" title="Permalink to this headline">¶</a></h1>
+<p>On this page we list a number of projects that are
+affiliated with or makes use of QCoDeS in some way or another.</p>
+<p>If you would like to get your project featured here please submit a
+pull request adding your project to this page.
+The page is located at <code class="docutils literal notranslate"><span class="pre">docs\community\related_projects.rst</span></code> within the QCoDeS
+repository.</p>
+<div class="section" id="qcodes-contrib-drivers">
+<h2>QCoDeS contrib drivers<a class="headerlink" href="#qcodes-contrib-drivers" title="Permalink to this headline">¶</a></h2>
+<p>QCoDeS contrib drivers is a collection of drivers for many
+different instruments developed by the community. If you have
+developed a driver that your wish to share with the community
+this is the ideal place for it.</p>
+<p>Broadbean can be installed with pip from PyPi
+with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qcodes_contrib_drivers</span></code>
+The source code is hosted on Github
+<a class="reference external" href="https://github.com/qcodes/qcodes_contrib_drivers">here</a>
+and the documentation can be found
+<a class="reference external" href="https://qcodes.github.io/Qcodes_contrib_drivers/">here</a></p>
+</div>
+<div class="section" id="broadbean">
+<h2>Broadbean<a class="headerlink" href="#broadbean" title="Permalink to this headline">¶</a></h2>
+<p>Broadbean is a library for making pulses. Intended to be used
+with QCoDeS (and in particular its Tektronix AWG 5014 driver)</p>
+<p>Broadbean can be installed with pip from PyPi
+with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">broadbean</span></code>
+The source code is hosted on Github
+<a class="reference external" href="https://github.com/qcodes/broadbean">here</a>
+and the documentation can be found
+<a class="reference external" href="https://qcodes.github.io/broadbean/">here</a></p>
+</div>
+<div class="section" id="plottr">
+<h2>Plottr<a class="headerlink" href="#plottr" title="Permalink to this headline">¶</a></h2>
+<p>Plottr is a framework for inspecting data, based on flowcharts from pyqtgraph.
+plottr’s main aim is to allow the user to define custom data processing
+flows and plotting. A particular use case is data filtering and plotting.
+Plottr has dedicated support for plotting QCoDeS datasets.</p>
+<p>Plottr can be installed with pip from PyPi
+with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">plottr</span></code>
+The source code is hosted on Github
+<a class="reference external" href="https://github.com/toolsforexperiments/plottr/">here</a>
+and the documentation can be found
+<a class="reference external" href="https://plottr.readthedocs.io/en/latest/">here</a></p>
+</div>
+<div class="section" id="zhinst-qcodes">
+<h2>zhinst-qcodes<a class="headerlink" href="#zhinst-qcodes" title="Permalink to this headline">¶</a></h2>
+<p>The Zurich Instruments drivers for QCoDeS (zhinst-qcodes) is a package of
+instrument drivers for devices produced by Zurich Instruments for QCoDeS.
+The QCoDeS instrument drivers are based on the Zurich Instruments Toolkit.</p>
+<p>zhinst-qcodes can be installed with pip from PyPi
+with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">zhinst-qcodes</span></code>
+The source code is hosted on Github
+<a class="reference external" href="https://docs.zhinst.com/zhinst-qcodes/en/latest/">here</a>
+and the documentation can be found
+<a class="reference external" href="https://github.com/zhinst/zhinst-qcodes/">here</a></p>
+</div>
+<div class="section" id="qtt-qunatum-technology-toolbox">
+<h2>qtt (Qunatum Technology Toolbox)<a class="headerlink" href="#qtt-qunatum-technology-toolbox" title="Permalink to this headline">¶</a></h2>
+<p>Quantum Technology Toolbox (QTT) is a Python-based framework
+for the tuning and calibration of quantum dots and spin qubits.
+QTT is the framework on which you can base your measurement
+and analysis scripts. QTT is based on Qcodes and the SciPy ecosystem.</p>
+<p><a class="reference external" href="https://github.com/QuTech-Delft/qtt">GitHub page with the repository</a></p>
+<p><a class="reference external" href="https://qtt.readthedocs.io">Docs:</a></p>
+</div>
 </div>
 
 
@@ -209,10 +277,10 @@ for how to on install from source.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="objects.html" class="btn btn-neutral float-right" title="Object Hierarchy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Community Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="contributing.html" class="btn btn-neutral float-left" title="Contributing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
