@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Changelog for QCoDeS 0.3.0 &mdash; QCoDeS 0.17.0 documentation</title>
+  <title>Changelog for QCoDeS 0.18.0 &mdash; QCoDeS 0.17.0 documentation</title>
   
 
   
@@ -39,8 +39,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Changelog for QCoDeS 0.4.0" href="0.4.0.html" />
-    <link rel="prev" title="Changelog for QCoDeS 0.2.1" href="0.2.1.html" />
+    <link rel="next" title="Examples of using QCoDeS" href="../examples/index.html" />
+    <link rel="prev" title="Changelog for QCoDeS 0.17.0" href="0.17.0.html" />
     <link href="../_static/style.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -108,12 +108,7 @@
 <li class="toctree-l2"><a class="reference internal" href="0.1.11.html">0.1.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.2.0.html">0.2.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.2.1.html">0.2.1</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">0.3.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#new-improved">New &amp; Improved:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#breaking-changes">Breaking Changes:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#miscellaneous">Miscellaneous:</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="0.3.0.html">0.3.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.4.0.html">0.4.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.5.0.html">0.5.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.5.1.html">0.5.1</a></li>
@@ -133,7 +128,15 @@
 <li class="toctree-l2"><a class="reference internal" href="0.15.0.html">0.15.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.16.0.html">0.16.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.17.0.html">0.17.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="0.18.0.html">0.18.0</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">0.18.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#breaking-changes">Breaking Changes:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#new">New:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#improved">Improved:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#improved-drivers">Improved drivers:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#under-the-hood">Under the hood:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies:</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples of using QCoDeS</a></li>
@@ -185,13 +188,13 @@
         
           <li><a href="index.html">Changelogs</a> &raquo;</li>
         
-      <li>Changelog for QCoDeS 0.3.0</li>
+      <li>Changelog for QCoDeS 0.18.0</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/changes/0.3.0.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/changes/0.18.0.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -228,103 +231,67 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="changelog-for-qcodes-0-3-0">
-<h1>Changelog for QCoDeS 0.3.0<a class="headerlink" href="#changelog-for-qcodes-0-3-0" title="Permalink to this headline">¶</a></h1>
-<p>The May 2019 release of QCoDeS contains a large backend re-structure of the Measurement.DataSaver logic
-as well a handful of driver improvements and some new data saving functionalities.</p>
-<div class="section" id="new-improved">
-<h2>New &amp; Improved:<a class="headerlink" href="#new-improved" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>New and Improved Drivers:</p>
-<ul>
-<li><p>Alazar Cards:</p>
-<ul>
-<li><p>All models; limit maximum buffer size as documented for AlazarBeforeAsyncRead (#1535)</p></li>
-<li><p>All models; add api instance as initialization parameter (#1524)</p></li>
-</ul>
-</li>
-<li><p>Arbitraty Waveform Generators:</p>
-<ul>
-<li><p>Keysight 33510B: add support for this specific model (#1544)</p></li>
-<li><p>Zurich Instruments HDAWG8; Remove warning when taking snapshot of ZIHDAWG8 (#1561)</p></li>
-</ul>
-</li>
-<li><p>Lock-in Amplifiers:</p>
-<ul>
-<li><p>Zurich Instruments UHF-LI; support all 8 oscillators with MF option (#1546)</p></li>
-<li><p>Zurich Instruments UHF-LI; add parameter to UHFLI driver to select oscillator per demodulator (#1551)</p></li>
-</ul>
-</li>
-<li><p>Magnets:</p>
-<ul>
-<li><p>American Magnetics AMI430; allow a broader range of field limit values (#1558)</p></li>
-<li><p>American Magnetics AMI430; fix coil-constant related bug (#1527)</p></li>
-</ul>
-</li>
-<li><p>Multimeters:</p>
-<ul>
-<li><p>Tektronix Keithley 6500; allow immediate triggering (#1576)</p></li>
-<li><p>Tektronix Keithley 6500; fix invalid SCPI commands (#1541)</p></li>
-</ul>
-</li>
-<li><p>Source Meters:</p>
-<ul>
-<li><p>Tektronix Keithley 2450; add brand new driver! (#1533, #1569)</p></li>
-</ul>
-</li>
-<li><p>Vector Generators:</p>
-<ul>
-<li><p>Keysight E8267D; extend frequency modulation features (#1554)</p></li>
-</ul>
-</li>
-<li><p>Vector Network Analyzers:</p>
-<ul>
-<li><p>Rohde&amp;Schwarz ZNB; make initialization more fail-safe (#1564)</p></li>
-</ul>
-</li>
-<li><p>Others:</p>
-<ul>
-<li><p>Mj2; allow higher gain (#1575)</p></li>
-<li><p>Cryocon; allow the setting of the termination character (#1559)</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Data Saving Features:</p>
-<ul>
-<li><p>Allow arrays of different lengths to be stored together (#1477)</p></li>
-<li><p>Allow complex numbers (#1484, #1489, #1493)</p></li>
-<li><p>Infer the SQLite storage type of parameters (#1494)</p></li>
-</ul>
-</li>
-<li><p>Documentation:</p>
-<ul>
-<li><p>Increase title consistency (#1553)</p></li>
-</ul>
-</li>
-<li><p>Database upgrades:</p>
-<ul>
-<li><p>Schema version bumped to 5; snapshot column always present (#1562)</p></li>
-</ul>
-</li>
-<li><p>QCoDeS Workflow:</p>
-<ul>
-<li><p>Extend QCoDeS-Station to be configurable through yaml file (#1560)</p></li>
-</ul>
-</li>
-</ul>
-</div>
+<div class="section" id="changelog-for-qcodes-0-18-0">
+<h1>Changelog for QCoDeS 0.18.0<a class="headerlink" href="#changelog-for-qcodes-0-18-0" title="Permalink to this headline">¶</a></h1>
+<p>The September 2020 release of QCoDeS.</p>
 <div class="section" id="breaking-changes">
 <h2>Breaking Changes:<a class="headerlink" href="#breaking-changes" title="Permalink to this headline">¶</a></h2>
+<p>There are no breaking changes in this release of QCoDeS.</p>
+</div>
+<div class="section" id="new">
+<h2>New:<a class="headerlink" href="#new" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>The DataSet no longer has an <cite>add_parameter</cite> method (#1547)</p></li>
+<li><p>Support nested <code class="docutils literal notranslate"><span class="pre">Measurement</span></code> context managers; in particular, only create
+one background writer thread for multiple datasets (#2124)</p></li>
+<li><p>Interactive widget to explore datasets in Jupyter Notebooks (#1967, #2163)</p></li>
 </ul>
 </div>
-<div class="section" id="miscellaneous">
-<h2>Miscellaneous:<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="improved">
+<h2>Improved:<a class="headerlink" href="#improved" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>The python package dependencies have been updated (#1550)</p></li>
-<li><p>Our copyright is up to date :) (#1552)</p></li>
+<li><p>Jump to value when trying to set a parameter that cannot be set in steps
+(can’t be swept) (#2128)</p></li>
+<li><p>Raise exception if <code class="docutils literal notranslate"><span class="pre">get_cmd</span></code> is not defined in a <code class="docutils literal notranslate"><span class="pre">Group</span></code> of
+<code class="docutils literal notranslate"><span class="pre">GroupParameter</span></code> s (#2133)</p></li>
+<li><p>Add new <code class="docutils literal notranslate"><span class="pre">set_parameters</span></code> method to <code class="docutils literal notranslate"><span class="pre">Group</span></code> and remove the old deprecated
+<code class="docutils literal notranslate"><span class="pre">set</span></code> method (#2137)</p></li>
+<li><p>Update ArrayParameter Docs (#2126)</p></li>
+<li><p>Add a docs page listing projects to QCoDeS project (#2142)</p></li>
+</ul>
+</div>
+<div class="section" id="improved-drivers">
+<h2>Improved drivers:<a class="headerlink" href="#improved-drivers" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Keysight B1500: fix measure range bug, <code class="docutils literal notranslate"><span class="pre">measure_config</span></code> method is deprecated (#2150)</p></li>
+<li><p>Remove warning about complex numbers in R&amp;S ZNB driver (#2140)</p></li>
+</ul>
+</div>
+<div class="section" id="under-the-hood">
+<h2>Under the hood:<a class="headerlink" href="#under-the-hood" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Simplify instrument destructor (#2132)</p></li>
+<li><p>Add types to <code class="docutils literal notranslate"><span class="pre">RunDescriber</span></code> dict representations (#2134)</p></li>
+<li><p>Rework <code class="docutils literal notranslate"><span class="pre">RunDescriber</span></code> and update to version 2 (#2135)</p></li>
+<li><p>Allow <code class="docutils literal notranslate"><span class="pre">from_dict_to_current</span></code> to deserialize <code class="docutils literal notranslate"><span class="pre">RunDescriber</span></code> from new
+versions (#2144)</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">python_requires</span></code> as key to <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> (#2123)</p></li>
+</ul>
+</div>
+<div class="section" id="dependencies">
+<h2>Dependencies:<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Constrain all requirements and their dependencies in requirements.txt (#2164)</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">pip</span></code> s new resolver when installing dependencies (#2168)</p></li>
+<li><p>Fix docs and test requirements to minor version (#2148)</p></li>
+<li><p>Restrict pyvisa to less than 1.11 (#2162)</p></li>
+<li><p>Install pyqt for python 3.8 (#2157)</p></li>
+<li><p>Require latest opencensus packages (#2141)</p></li>
+<li><p>Remove no longer needed apt dependecies from travis (#1843)</p></li>
+<li><p>Update nbconvert requirement from 5.6.1 to ~=6.0.3 (#2146, #2152, #2160)</p></li>
+<li><p>Update pytest requirement from ~=6.0.1 to ~=6.0.2 (#2151)</p></li>
+<li><p>Update coverage requirement from ~=5.2.1 to ~=5.3 (#2154)</p></li>
+<li><p>Update sphinx-jsonschema requirement from ~=1.16.1 to ~=1.16.2 (#2155)</p></li>
+<li><p>Update hypothesis requirement from ~=5.5.5 to ~=5.35.3 (#2158)</p></li>
 </ul>
 </div>
 </div>
@@ -337,10 +304,10 @@ as well a handful of driver improvements and some new data saving functionalitie
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="0.4.0.html" class="btn btn-neutral float-right" title="Changelog for QCoDeS 0.4.0" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Examples of using QCoDeS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="0.2.1.html" class="btn btn-neutral float-left" title="Changelog for QCoDeS 0.2.1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="0.17.0.html" class="btn btn-neutral float-left" title="Changelog for QCoDeS 0.17.0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
