@@ -1527,18 +1527,20 @@ Starting experimental run with id: 2329.
 </pre></div>
 </div>
 </div>
-<p>To measure do the following: 1. Configure the measure range 2. Enable the channel (if not yet enabled) 3. Do the measurement 4. (optionally) Disable the channel</p>
+<p>To measure do the following: 1. Configure the voltage or/and current measure ranges 2. Enable the channel (if not yet enabled) 3. Do the measurement 4. (optionally) Disable the channel</p>
 <p><strong>Note: The measure settings (Step 1) are persistent until changed again. So for sucessive measurements the configuration can be omitted.</strong></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">b1500</span><span class="o">.</span><span class="n">smu1</span><span class="o">.</span><span class="n">measure_config</span><span class="p">(</span><span class="n">measure_range</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">IMeasRange</span><span class="o">.</span><span class="n">FIX_100uA</span><span class="p">)</span>
+<span></span><span class="n">b1500</span><span class="o">.</span><span class="n">smu1</span><span class="o">.</span><span class="n">i_measure_range_config</span><span class="p">(</span><span class="n">i_measure_range</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">IMeasRange</span><span class="o">.</span><span class="n">MIN_100mA</span><span class="p">)</span>
+<span class="n">b1500</span><span class="o">.</span><span class="n">smu1</span><span class="o">.</span><span class="n">v_measure_range_config</span><span class="p">(</span><span class="n">v_measure_range</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">VMeasRange</span><span class="o">.</span><span class="n">FIX_2V</span><span class="p">)</span>
 
 <span class="n">b1500</span><span class="o">.</span><span class="n">smu1</span><span class="o">.</span><span class="n">enable_outputs</span><span class="p">()</span>
 
 <span class="n">cur</span> <span class="o">=</span> <span class="n">b1500</span><span class="o">.</span><span class="n">smu1</span><span class="o">.</span><span class="n">current</span><span class="p">()</span>
+<span class="n">vol</span> <span class="o">=</span> <span class="n">b1500</span><span class="o">.</span><span class="n">smu1</span><span class="o">.</span><span class="n">voltage</span><span class="p">()</span>
 
 <span class="n">b1500</span><span class="o">.</span><span class="n">smu1</span><span class="o">.</span><span class="n">disable_outputs</span><span class="p">()</span>
 </pre></div>

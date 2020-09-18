@@ -170,13 +170,15 @@
 <span class="kn">from</span> <span class="nn">qcodes.instrument.channel</span> <span class="kn">import</span> <span class="n">InstrumentChannel</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.group_parameter</span> <span class="kn">import</span> <span class="n">GroupParameter</span><span class="p">,</span> <span class="n">Group</span>
 <span class="kn">from</span> <span class="nn">qcodes.utils.validators</span> <span class="kn">import</span> <span class="n">Arrays</span>
+<span class="kn">from</span> <span class="nn">qcodes.utils.deprecate</span> <span class="kn">import</span> <span class="n">deprecate</span>
 
 <span class="kn">from</span> <span class="nn">.KeysightB1500_sampling_measurement</span> <span class="kn">import</span> <span class="n">SamplingMeasurement</span>
 <span class="kn">from</span> <span class="nn">.KeysightB1500_module</span> <span class="kn">import</span> <span class="n">B1500Module</span><span class="p">,</span> \
     <span class="n">parse_spot_measurement_response</span>
 <span class="kn">from</span> <span class="nn">.message_builder</span> <span class="kn">import</span> <span class="n">MessageBuilder</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">constants</span>
-<span class="kn">from</span> <span class="nn">.constants</span> <span class="kn">import</span> <span class="n">ModuleKind</span><span class="p">,</span> <span class="n">ChNr</span><span class="p">,</span> <span class="n">AAD</span><span class="p">,</span> <span class="n">MM</span><span class="p">,</span> <span class="n">MeasurementStatus</span>
+<span class="kn">from</span> <span class="nn">.constants</span> <span class="kn">import</span> <span class="n">ModuleKind</span><span class="p">,</span> <span class="n">ChNr</span><span class="p">,</span> <span class="n">AAD</span><span class="p">,</span> <span class="n">MM</span><span class="p">,</span> <span class="n">MeasurementStatus</span><span class="p">,</span> \
+    <span class="n">VMeasRange</span><span class="p">,</span> <span class="n">IMeasRange</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">.KeysightB1500_base</span> <span class="kn">import</span> <span class="n">KeysightB1500</span>
@@ -664,7 +666,7 @@
 
         <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">tv</span><span class="p">(</span>
             <span class="n">chnum</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-            <span class="n">v_range</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">_measure_config</span><span class="p">[</span><span class="s2">&quot;measure_range&quot;</span><span class="p">],</span>
+            <span class="n">v_range</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">_measure_config</span><span class="p">[</span><span class="s2">&quot;v_measure_range&quot;</span><span class="p">],</span>
         <span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">smu</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
 
@@ -704,7 +706,7 @@
 
         <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">ti</span><span class="p">(</span>
             <span class="n">chnum</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-            <span class="n">i_range</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">_measure_config</span><span class="p">[</span><span class="s2">&quot;measure_range&quot;</span><span class="p">],</span>
+            <span class="n">i_range</span><span class="o">=</span><span class="n">smu</span><span class="o">.</span><span class="n">_measure_config</span><span class="p">[</span><span class="s2">&quot;i_measure_range&quot;</span><span class="p">],</span>
         <span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">smu</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
 
@@ -735,7 +737,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">slot_nr</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">channels</span> <span class="o">=</span> <span class="p">(</span><span class="n">ChNr</span><span class="p">(</span><span class="n">slot_nr</span><span class="p">),)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_measure_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">k</span><span class="p">:</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;measure_range&quot;</span><span class="p">,)}</span>
+            <span class="n">k</span><span class="p">:</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;v_measure_range&quot;</span><span class="p">,</span> <span class="s2">&quot;i_measure_range&quot;</span><span class="p">,)}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_source_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="n">k</span><span class="p">:</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;output_range&quot;</span><span class="p">,</span> <span class="s2">&quot;compliance&quot;</span><span class="p">,</span>
                               <span class="s2">&quot;compl_polarity&quot;</span><span class="p">,</span> <span class="s2">&quot;min_compliance_range&quot;</span><span class="p">)}</span>
@@ -750,6 +752,44 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">setup_fnc_already_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">power_line_frequency</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_average_coefficient</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_valid_v_measure_ranges</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">VMeasRange</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">VMeasRange</span><span class="o">.</span><span class="n">AUTO</span><span class="p">,</span>
+                                                          <span class="n">VMeasRange</span><span class="o">.</span><span class="n">MIN_0V5</span><span class="p">,</span>
+                                                          <span class="n">VMeasRange</span><span class="o">.</span><span class="n">MIN_2V</span><span class="p">,</span>
+                                                          <span class="n">VMeasRange</span><span class="o">.</span><span class="n">MIN_5V</span><span class="p">,</span>
+                                                          <span class="n">VMeasRange</span><span class="o">.</span><span class="n">MIN_20V</span><span class="p">,</span>
+                                                          <span class="n">VMeasRange</span><span class="o">.</span><span class="n">MIN_40V</span><span class="p">,</span>
+                                                          <span class="n">VMeasRange</span><span class="o">.</span><span class="n">MIN_100V</span><span class="p">,</span>
+                                                          <span class="n">VMeasRange</span><span class="o">.</span><span class="n">FIX_0V5</span><span class="p">,</span>
+                                                          <span class="n">VMeasRange</span><span class="o">.</span><span class="n">FIX_2V</span><span class="p">,</span>
+                                                          <span class="n">VMeasRange</span><span class="o">.</span><span class="n">FIX_5V</span><span class="p">,</span>
+                                                          <span class="n">VMeasRange</span><span class="o">.</span><span class="n">FIX_20V</span><span class="p">,</span>
+                                                          <span class="n">VMeasRange</span><span class="o">.</span><span class="n">FIX_40V</span><span class="p">,</span>
+                                                          <span class="n">VMeasRange</span><span class="o">.</span><span class="n">FIX_100V</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_valid_i_measure_ranges</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">IMeasRange</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">IMeasRange</span><span class="o">.</span><span class="n">AUTO</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">MIN_1pA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">MIN_10pA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">MIN_100pA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">MIN_1nA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">MIN_10nA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">MIN_100nA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">MIN_1uA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">MIN_10uA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">MIN_100uA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">MIN_1mA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">MIN_10mA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">MIN_100mA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">FIX_1pA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">FIX_10pA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">FIX_100pA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">FIX_1nA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">FIX_10nA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">FIX_100nA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">FIX_1uA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">FIX_10uA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">FIX_100uA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">FIX_1mA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">FIX_10mA</span><span class="p">,</span>
+                                                          <span class="n">IMeasRange</span><span class="o">.</span><span class="n">FIX_100mA</span><span class="p">]</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;measurement_mode&quot;</span><span class="p">,</span>
@@ -961,13 +1001,58 @@
             <span class="s2">&quot;min_compliance_range&quot;</span><span class="p">:</span> <span class="n">min_compliance_range</span><span class="p">,</span>
         <span class="p">}</span></div>
 
-<div class="viewcode-block" id="B1517A.measure_config"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.B1517A.measure_config">[docs]</a>    <span class="k">def</span> <span class="nf">measure_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">measure_range</span><span class="p">:</span> <span class="n">constants</span><span class="o">.</span><span class="n">MeasureRange</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="B1517A.measure_config"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.B1517A.measure_config">[docs]</a>    <span class="nd">@deprecate</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s1">&#39;the method confuses ranges for voltage and current &#39;</span>
+                      <span class="s1">&#39;measurements&#39;</span><span class="p">,</span>
+               <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;v_measure_range_config or i_measure_range_config&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">measure_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">measure_range</span><span class="p">:</span> <span class="n">constants</span><span class="o">.</span><span class="n">MeasureRange</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Configure measuring voltage/current</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            measure_range: voltage/current measurement range</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_measure_config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;measure_range&quot;</span><span class="p">:</span> <span class="n">measure_range</span><span class="p">}</span></div>
+        <span class="k">if</span> <span class="n">measure_range</span> <span class="ow">in</span> <span class="p">(</span><span class="n">VMeasRange</span><span class="o">.</span><span class="n">AUTO</span><span class="p">,</span> <span class="n">IMeasRange</span><span class="o">.</span><span class="n">AUTO</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">v_measure_range_config</span><span class="p">(</span><span class="n">VMeasRange</span><span class="o">.</span><span class="n">AUTO</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">i_measure_range_config</span><span class="p">(</span><span class="n">IMeasRange</span><span class="o">.</span><span class="n">AUTO</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">measure_range</span><span class="p">,</span> <span class="n">constants</span><span class="o">.</span><span class="n">VMeasRange</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">v_measure_range_config</span><span class="p">(</span><span class="n">measure_range</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">measure_range</span><span class="p">,</span> <span class="n">constants</span><span class="o">.</span><span class="n">IMeasRange</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">i_measure_range_config</span><span class="p">(</span><span class="n">measure_range</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="B1517A.v_measure_range_config"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.B1517A.v_measure_range_config">[docs]</a>    <span class="k">def</span> <span class="nf">v_measure_range_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                               <span class="n">v_measure_range</span><span class="p">:</span> <span class="n">constants</span><span class="o">.</span><span class="n">VMeasRange</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Configure measuring voltage</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            v_measure_range: voltage measurement range</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v_measure_range</span><span class="p">,</span> <span class="n">constants</span><span class="o">.</span><span class="n">VMeasRange</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected valid voltage measurement range, &quot;</span>
+                            <span class="sa">f</span><span class="s2">&quot;got </span><span class="si">{</span><span class="n">v_measure_range</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">v_measure_range</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_valid_v_measure_ranges</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">v_measure_range</span><span class="si">}</span><span class="s2"> voltage measurement &quot;</span>
+                               <span class="sa">f</span><span class="s2">&quot;range is invalid for the device. Valid &quot;</span>
+                               <span class="sa">f</span><span class="s2">&quot;ranges are </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_valid_v_measure_ranges</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_measure_config</span><span class="p">[</span><span class="s2">&quot;v_measure_range&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_measure_range</span></div>
+
+<div class="viewcode-block" id="B1517A.i_measure_range_config"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.B1517A.i_measure_range_config">[docs]</a>    <span class="k">def</span> <span class="nf">i_measure_range_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                               <span class="n">i_measure_range</span><span class="p">:</span> <span class="n">constants</span><span class="o">.</span><span class="n">IMeasRange</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Configure measuring current</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            i_measure_range: current measurement range</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i_measure_range</span><span class="p">,</span> <span class="n">constants</span><span class="o">.</span><span class="n">IMeasRange</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected valid current measurement range, &quot;</span>
+                            <span class="sa">f</span><span class="s2">&quot;got </span><span class="si">{</span><span class="n">i_measure_range</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">i_measure_range</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_valid_i_measure_ranges</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i_measure_range</span><span class="si">}</span><span class="s2"> current measurement &quot;</span>
+                               <span class="sa">f</span><span class="s2">&quot;range is invalid for the device. Valid &quot;</span>
+                               <span class="sa">f</span><span class="s2">&quot;ranges are </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_valid_i_measure_ranges</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_measure_config</span><span class="p">[</span><span class="s2">&quot;i_measure_range&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_measure_range</span></div>
 
 <div class="viewcode-block" id="B1517A.timing_parameters"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.B1517A.timing_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">timing_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                           <span class="n">h_bias</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
