@@ -598,7 +598,6 @@ alt="Binder badge"
 <span class="kn">from</span> <span class="nn">qcodes.dataset.experiment_container</span> <span class="kn">import</span> <span class="n">load_or_create_experiment</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.measurements</span> <span class="kn">import</span> <span class="n">Measurement</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.plotting</span> <span class="kn">import</span> <span class="n">plot_dataset</span>
-<span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">expand_setpoints_helper</span>
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">initialise_database</span>
 <span class="kn">from</span> <span class="nn">pyvisa.errors</span> <span class="kn">import</span> <span class="n">VisaIOError</span>
 
@@ -945,7 +944,7 @@ Connected to: Agilent Technologies B1500A (serial:0, firmware:A.06.01.2016.0401)
 <span class="n">meas</span><span class="o">.</span><span class="n">register_parameter</span><span class="p">(</span><span class="n">b1500</span><span class="o">.</span><span class="n">smu1</span><span class="o">.</span><span class="n">sampling_measurement_trace</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="n">meas</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="k">as</span> <span class="n">datasaver</span><span class="p">:</span>
-    <span class="n">datasaver</span><span class="o">.</span><span class="n">add_result</span><span class="p">(</span><span class="o">*</span><span class="n">expand_setpoints_helper</span><span class="p">(</span><span class="n">b1500</span><span class="o">.</span><span class="n">smu1</span><span class="o">.</span><span class="n">sampling_measurement_trace</span><span class="p">))</span>
+    <span class="n">datasaver</span><span class="o">.</span><span class="n">add_result</span><span class="p">((</span><span class="n">b1500</span><span class="o">.</span><span class="n">smu1</span><span class="o">.</span><span class="n">sampling_measurement_trace</span><span class="p">,</span> <span class="n">b1500</span><span class="o">.</span><span class="n">smu1</span><span class="o">.</span><span class="n">sampling_measurement_trace</span><span class="o">.</span><span class="n">get</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>

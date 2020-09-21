@@ -2809,8 +2809,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_wrapped_parameter</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">instrument_value</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="expand_setpoints_helper"><a class="viewcode-back" href="../../../api/parameters/parameter.html#qcodes.instrument_drivers.devices.expand_setpoints_helper">[docs]</a><span class="k">def</span> <span class="nf">expand_setpoints_helper</span><span class="p">(</span><span class="n">parameter</span><span class="p">:</span> <span class="n">ParameterWithSetpoints</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span>
-        <span class="n">Tuple</span><span class="p">[</span><span class="n">_BaseParameter</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
+<div class="viewcode-block" id="expand_setpoints_helper"><a class="viewcode-back" href="../../../api/parameters/parameter.html#qcodes.instrument_drivers.devices.expand_setpoints_helper">[docs]</a><span class="k">def</span> <span class="nf">expand_setpoints_helper</span><span class="p">(</span><span class="n">parameter</span><span class="p">:</span> <span class="n">ParameterWithSetpoints</span><span class="p">,</span>
+                            <span class="n">results</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ParamDataType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span>
+        <span class="n">Tuple</span><span class="p">[</span><span class="n">_BaseParameter</span><span class="p">,</span> <span class="n">ParamDataType</span><span class="p">]]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A helper function that takes a :class:`.ParameterWithSetpoints` and</span>
 <span class="sd">    acquires the parameter along with it&#39;s setpoints. The data is returned</span>
@@ -2819,6 +2820,8 @@
 <span class="sd">    Args:</span>
 <span class="sd">        parameter: A :class:`.ParameterWithSetpoints` to be acquired and</span>
 <span class="sd">            expanded</span>
+<span class="sd">        results: The data for the given parameter. Typically the output of</span>
+<span class="sd">            `parameter.get()`. If None this function will call `parameter.get`</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        A list of tuples of parameters and values for the specified parameter</span>
@@ -2838,7 +2841,11 @@
     <span class="n">output_grids</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="o">*</span><span class="n">setpoint_data</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">param</span><span class="p">,</span> <span class="n">grid</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">setpoint_params</span><span class="p">,</span> <span class="n">output_grids</span><span class="p">):</span>
         <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">param</span><span class="p">,</span> <span class="n">grid</span><span class="p">))</span>
-    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">parameter</span><span class="p">,</span> <span class="n">parameter</span><span class="o">.</span><span class="n">get</span><span class="p">()))</span>
+    <span class="k">if</span> <span class="n">results</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">parameter</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">results</span>
+    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">parameter</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">res</span></div>
 </pre></div>
 

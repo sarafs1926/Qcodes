@@ -194,7 +194,7 @@
 <span class="kn">from</span> <span class="nn">qcodes.dataset.linked_datasets.links</span> <span class="kn">import</span> <span class="n">Link</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ArrayParameter</span><span class="p">,</span> <span class="n">MultiParameter</span><span class="p">,</span>
                                          <span class="n">Parameter</span><span class="p">,</span> <span class="n">ParameterWithSetpoints</span><span class="p">,</span>
-                                         <span class="n">_BaseParameter</span><span class="p">)</span>
+                                         <span class="n">_BaseParameter</span><span class="p">,</span> <span class="n">expand_setpoints_helper</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qcodes.utils.delaykeyboardinterrupt</span> <span class="kn">import</span> <span class="n">DelayedKeyboardInterrupt</span>
 <span class="kn">from</span> <span class="nn">qcodes.utils.helpers</span> <span class="kn">import</span> <span class="n">NumpyJSONEncoder</span>
 
@@ -287,17 +287,29 @@
         <span class="c1"># enforcing that setpoints come before dependent variables.</span>
         <span class="n">results_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">ParamSpecBase</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
+        <span class="n">parameter_names</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">partial_result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">full_name</span>
+                                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">partial_result</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">_BaseParameter</span><span class="p">)</span> <span class="k">else</span> <span class="n">partial_result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                                <span class="k">for</span> <span class="n">partial_result</span> <span class="ow">in</span> <span class="n">res_tuple</span><span class="p">)</span>
+
         <span class="k">for</span> <span class="n">partial_result</span> <span class="ow">in</span> <span class="n">res_tuple</span><span class="p">:</span>
             <span class="n">parameter</span> <span class="o">=</span> <span class="n">partial_result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">partial_result</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">ArrayParameter</span><span class="p">):</span>
                 <span class="n">results_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_unpack_arrayparameter</span><span class="p">(</span><span class="n">partial_result</span><span class="p">))</span>
             <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">MultiParameter</span><span class="p">):</span>
                 <span class="n">results_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_unpack_multiparameter</span><span class="p">(</span><span class="n">partial_result</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">ParameterWithSetpoints</span><span class="p">):</span>
+                <span class="n">results_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_conditionally_expand_parameter_with_setpoints</span><span class="p">(</span>
+                        <span class="n">data</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">parameter_names</span><span class="p">,</span> <span class="n">partial_result</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">results_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_unpack_partial_result</span><span class="p">(</span><span class="n">partial_result</span><span class="p">))</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_unpack_partial_result</span><span class="p">(</span><span class="n">partial_result</span><span class="p">)</span>
+                <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_result_deps</span><span class="p">(</span><span class="n">results_dict</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_result_shapes</span><span class="p">(</span><span class="n">results_dict</span><span class="p">)</span>
@@ -308,6 +320,28 @@
         <span class="k">if</span> <span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_save_time</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_period</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">flush_data_to_database</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_last_save_time</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">_conditionally_expand_parameter_with_setpoints</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">values_type</span><span class="p">,</span> <span class="n">parameter</span><span class="p">:</span> <span class="n">ParameterWithSetpoints</span><span class="p">,</span>
+            <span class="n">parameter_names</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">partial_result</span><span class="p">:</span> <span class="n">res_type</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">ParamSpecBase</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+        <span class="n">local_results</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">setpoint_names</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">setpoint</span><span class="o">.</span><span class="n">full_name</span> <span class="k">for</span> <span class="n">setpoint</span> <span class="ow">in</span> <span class="n">parameter</span><span class="o">.</span><span class="n">setpoints</span><span class="p">)</span>
+        <span class="n">expanded</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">setpoint_name</span> <span class="ow">in</span> <span class="n">parameter_names</span> <span class="k">for</span> <span class="n">setpoint_name</span> <span class="ow">in</span> <span class="n">setpoint_names</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">expanded</span><span class="p">):</span>
+            <span class="n">local_results</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_unpack_partial_result</span><span class="p">(</span><span class="n">partial_result</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="n">expanded</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Some of the setpoints of </span><span class="si">{</span><span class="n">parameter</span><span class="o">.</span><span class="n">full_name</span><span class="si">}</span><span class="s2"> &quot;</span>
+                             <span class="s2">&quot;were explicitly given but others were not. &quot;</span>
+                             <span class="s2">&quot;Either supply all of them or none of them.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">expanded_partial_result</span> <span class="o">=</span> <span class="n">expand_setpoints_helper</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">expanded_partial_result</span><span class="p">:</span>
+                <span class="n">local_results</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_unpack_partial_result</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+                <span class="p">)</span>
+        <span class="k">return</span> <span class="n">local_results</span>
 
     <span class="k">def</span> <span class="nf">_unpack_partial_result</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>

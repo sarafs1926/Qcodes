@@ -3633,14 +3633,18 @@ not account for the scaling)</p>
 
 <dl class="py function">
 <dt id="qcodes.instrument.parameter.expand_setpoints_helper">
-<code class="sig-prename descclassname">qcodes.instrument.parameter.</code><code class="sig-name descname">expand_setpoints_helper</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parameter</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#qcodes.instrument.parameter.ParameterWithSetpoints" title="qcodes.instrument.parameter.ParameterWithSetpoints">qcodes.instrument.parameter.ParameterWithSetpoints</a></span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>Tuple<span class="p">[</span>qcodes.instrument.parameter._BaseParameter<span class="p">, </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/instrument/parameter.html#expand_setpoints_helper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument.parameter.expand_setpoints_helper" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.instrument.parameter.</code><code class="sig-name descname">expand_setpoints_helper</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parameter</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#qcodes.instrument.parameter.ParameterWithSetpoints" title="qcodes.instrument.parameter.ParameterWithSetpoints">qcodes.instrument.parameter.ParameterWithSetpoints</a></span></em>, <em class="sig-param"><span class="n">results</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Any<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>Tuple<span class="p">[</span>qcodes.instrument.parameter._BaseParameter<span class="p">, </span>Any<span class="p">]</span><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/instrument/parameter.html#expand_setpoints_helper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument.parameter.expand_setpoints_helper" title="Permalink to this definition">¶</a></dt>
 <dd><p>A helper function that takes a <a class="reference internal" href="#qcodes.instrument.parameter.ParameterWithSetpoints" title="qcodes.instrument.parameter.ParameterWithSetpoints"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParameterWithSetpoints</span></code></a> and
 acquires the parameter along with it’s setpoints. The data is returned
 in a format prepared to insert into the dataset.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>parameter</strong> – A <a class="reference internal" href="#qcodes.instrument.parameter.ParameterWithSetpoints" title="qcodes.instrument.parameter.ParameterWithSetpoints"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParameterWithSetpoints</span></code></a> to be acquired and
-expanded</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameter</strong> – A <a class="reference internal" href="#qcodes.instrument.parameter.ParameterWithSetpoints" title="qcodes.instrument.parameter.ParameterWithSetpoints"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParameterWithSetpoints</span></code></a> to be acquired and
+expanded</p></li>
+<li><p><strong>results</strong> – The data for the given parameter. Typically the output of
+<cite>parameter.get()</cite>. If None this function will call <cite>parameter.get</cite></p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A list of tuples of parameters and values for the specified parameter
