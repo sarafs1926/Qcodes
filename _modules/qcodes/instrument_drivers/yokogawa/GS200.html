@@ -162,7 +162,9 @@
 <span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
 
-<span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">VisaInstrument</span><span class="p">,</span> <span class="n">InstrumentChannel</span>
+<span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">DelegateParameter</span>
+<span class="kn">from</span> <span class="nn">qcodes.instrument.visa</span> <span class="kn">import</span> <span class="n">VisaInstrument</span>
+<span class="kn">from</span> <span class="nn">qcodes.instrument.channel</span> <span class="kn">import</span> <span class="n">InstrumentChannel</span>
 <span class="kn">from</span> <span class="nn">qcodes.utils.validators</span> <span class="kn">import</span> <span class="n">Numbers</span><span class="p">,</span> <span class="n">Bool</span><span class="p">,</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">Ints</span>
 
 
@@ -328,7 +330,7 @@
 
 <span class="sd">    Args:</span>
 <span class="sd">      name: What this instrument is called locally.</span>
-<span class="sd">      address: The GPIB address of this instrument</span>
+<span class="sd">      address: The GPIB or USB address of this instrument</span>
 <span class="sd">      kwargs: kwargs to be passed to VisaInstrument class</span>
 <span class="sd">      terminator: read terminator for reads/writes to the instrument.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -352,64 +354,75 @@
                            <span class="n">set_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_source_mode</span><span class="p">,</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">Enum</span><span class="p">(</span><span class="s1">&#39;VOLT&#39;</span><span class="p">,</span> <span class="s1">&#39;CURR&#39;</span><span class="p">))</span>
 
-        <span class="c1"># When getting the mode internally in the driver, look up the mode as</span>
-        <span class="c1"># recorded by the _cached_mode property, instead of calling source</span>
-        <span class="c1"># _mode(). This will prevent frequent VISA calls to the instrument.</span>
-        <span class="c1"># Calling _set_source_mode will change the chased value.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_cached_mode</span> <span class="o">=</span> <span class="s2">&quot;VOLT&quot;</span>
-
-        <span class="c1"># We want to cache the range value so communication with the instrument</span>
-        <span class="c1"># only happens when the set the range. Getting the range always returns</span>
-        <span class="c1"># the cached value. This value is adjusted when calling self._set_range.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_cached_range_value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># We need to get the source_mode value here as we cannot rely on the</span>
+        <span class="c1"># default value that may have been changed before we connect to the</span>
+        <span class="c1"># instrument (in a previous session or via the frontpanel).</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source_mode</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;voltage_range&#39;</span><span class="p">,</span>
                            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Voltage Source Range&#39;</span><span class="p">,</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span>
                            <span class="n">get_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_range</span><span class="p">,</span> <span class="s2">&quot;VOLT&quot;</span><span class="p">),</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_range</span><span class="p">,</span> <span class="s2">&quot;VOLT&quot;</span><span class="p">),</span>
-                           <span class="n">vals</span><span class="o">=</span><span class="n">Enum</span><span class="p">(</span><span class="mf">10e-3</span><span class="p">,</span> <span class="mf">100e-3</span><span class="p">,</span> <span class="mf">1e0</span><span class="p">,</span> <span class="mf">10e0</span><span class="p">,</span> <span class="mf">30e0</span><span class="p">))</span>
+                           <span class="n">vals</span><span class="o">=</span><span class="n">Enum</span><span class="p">(</span><span class="mf">10e-3</span><span class="p">,</span> <span class="mf">100e-3</span><span class="p">,</span> <span class="mf">1e0</span><span class="p">,</span> <span class="mf">10e0</span><span class="p">,</span> <span class="mf">30e0</span><span class="p">),</span>
+                           <span class="n">snapshot_exclude</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">source_mode</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;CURR&#39;</span>
+                           <span class="p">)</span>
 
-        <span class="c1"># The driver is initialized in the volt mode. In this mode we cannot</span>
-        <span class="c1"># get &#39;current_range&#39;. Hence the snapshot is excluded.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;current_range&#39;</span><span class="p">,</span>
                            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Current Source Range&#39;</span><span class="p">,</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span>
                            <span class="n">get_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_range</span><span class="p">,</span> <span class="s2">&quot;CURR&quot;</span><span class="p">),</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_range</span><span class="p">,</span> <span class="s2">&quot;CURR&quot;</span><span class="p">),</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">Enum</span><span class="p">(</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">10e-3</span><span class="p">,</span> <span class="mf">100e-3</span><span class="p">,</span> <span class="mf">200e-3</span><span class="p">),</span>
-                           <span class="n">snapshot_exclude</span><span class="o">=</span><span class="kc">True</span>
+                           <span class="n">snapshot_exclude</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">source_mode</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;VOLT&quot;</span>
                            <span class="p">)</span>
 
-        <span class="c1"># This is changed through the source_mode interface</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">voltage_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;range&#39;</span><span class="p">,</span>
+                           <span class="n">parameter_class</span><span class="o">=</span><span class="n">DelegateParameter</span><span class="p">,</span>
+                           <span class="n">source</span><span class="o">=</span><span class="kc">None</span>
+                           <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_auto_range</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># The instrument does not support auto range. The parameter</span>
+        <span class="c1"># auto_range is introduced to add this capability with</span>
+        <span class="c1"># setting the initial state at False mode.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;auto_range&#39;</span><span class="p">,</span>
                            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Auto Range&#39;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_auto_range</span><span class="p">,</span>
-                           <span class="n">get_cmd</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_auto_range</span><span class="p">,</span>
-                           <span class="n">vals</span><span class="o">=</span><span class="n">Bool</span><span class="p">())</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                           <span class="n">initial_cache_value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                           <span class="n">vals</span><span class="o">=</span><span class="n">Bool</span><span class="p">()</span>
+                           <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;voltage&#39;</span><span class="p">,</span>
                            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Voltage&#39;</span><span class="p">,</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_set_output</span><span class="p">,</span> <span class="s2">&quot;VOLT&quot;</span><span class="p">),</span>
-                           <span class="n">get_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_set_output</span><span class="p">,</span> <span class="s2">&quot;VOLT&quot;</span><span class="p">)</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_set_output</span><span class="p">,</span> <span class="s2">&quot;VOLT&quot;</span><span class="p">),</span>
+                           <span class="n">snapshot_exclude</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">source_mode</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;CURR&quot;</span>
                            <span class="p">)</span>
-        <span class="c1"># Again, at init we are in &quot;VOLT&quot; mode. Hence, exclude the snapshot of</span>
-        <span class="c1"># &#39;current&#39; as instrument does not support this parameter in</span>
-        <span class="c1"># &quot;VOLT&quot; mode.</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;current&#39;</span><span class="p">,</span>
                            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Current&#39;</span><span class="p">,</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_set_output</span><span class="p">,</span> <span class="s2">&quot;CURR&quot;</span><span class="p">),</span>
                            <span class="n">get_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_set_output</span><span class="p">,</span> <span class="s2">&quot;CURR&quot;</span><span class="p">),</span>
-                           <span class="n">snapshot_exclude</span><span class="o">=</span><span class="kc">True</span>
+                           <span class="n">snapshot_exclude</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">source_mode</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;VOLT&#39;</span>
                            <span class="p">)</span>
 
-        <span class="c1"># This is changed through the source_mode interface</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">output_level</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;output_level&#39;</span><span class="p">,</span>
+                           <span class="n">parameter_class</span><span class="o">=</span><span class="n">DelegateParameter</span><span class="p">,</span>
+                           <span class="n">source</span><span class="o">=</span><span class="kc">None</span>
+                           <span class="p">)</span>
+
+        <span class="c1"># We need to pass the source parameter for delegate parameters</span>
+        <span class="c1"># (range and output_level) here according to the present</span>
+        <span class="c1"># source_mode.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">source_mode</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;VOLT&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">voltage_range</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output_level</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_range</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output_level</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;voltage_limit&#39;</span><span class="p">,</span>
                            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Voltage Protection Limit&#39;</span><span class="p">,</span>
@@ -437,6 +450,7 @@
                               <span class="s1">&#39;off&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
                               <span class="s1">&#39;on&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
                            <span class="p">})</span>
+
         <span class="c1"># Note: The guard feature can be used to remove common mode noise.</span>
         <span class="c1"># Read the manual to see if you would like to use it</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;guard&#39;</span><span class="p">,</span>
@@ -554,25 +568,23 @@
         <span class="n">auto_enabled</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_range</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">auto_enabled</span><span class="p">:</span>
-            <span class="n">self_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_range_value</span>
+            <span class="n">self_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">self_range</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Trying to set output but not in&quot;</span>
                                    <span class="s2">&quot; auto mode and range is unknown.&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_mode</span>
+            <span class="n">mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source_mode</span><span class="o">.</span><span class="n">get_latest</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;CURR&quot;</span><span class="p">:</span>
                 <span class="n">self_range</span> <span class="o">=</span> <span class="mf">200E-3</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">self_range</span> <span class="o">=</span> <span class="mi">30</span>
+                <span class="n">self_range</span> <span class="o">=</span> <span class="mf">30.0</span>
 
         <span class="c1"># Check we are not trying to set an out of range value</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_range_value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">output_level</span><span class="p">)</span>\
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">output_level</span><span class="p">)</span>\
                 <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">self_range</span><span class="p">):</span>
             <span class="c1"># Check that the range hasn&#39;t changed</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">auto_enabled</span><span class="p">:</span>
-                <span class="c1"># Update range</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="p">()</span>
-                <span class="n">self_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_range_value</span>
+                <span class="n">self_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="o">.</span><span class="n">get_latest</span><span class="p">()</span>
                 <span class="k">if</span> <span class="n">self_range</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Trying to set output but not in&quot;</span>
                                        <span class="s2">&quot; auto mode and range is unknown.&quot;</span><span class="p">)</span>
@@ -602,7 +614,7 @@
             <span class="k">return</span>
 
         <span class="k">if</span> <span class="n">source_mode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">source_mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_mode</span>
+            <span class="n">source_mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source_mode</span><span class="o">.</span><span class="n">get_latest</span><span class="p">()</span>
         <span class="c1"># Get source range if auto-range is off</span>
         <span class="k">if</span> <span class="n">source_range</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_range</span><span class="p">():</span>
             <span class="n">source_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="p">()</span>
@@ -627,21 +639,21 @@
     <span class="k">def</span> <span class="nf">_assert_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Assert that we are in the correct mode to perform an operation.</span>
-<span class="sd">        If check is True, we double check the instrument if this check fails.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            mode: &quot;CURR&quot; or &quot;VOLT&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_mode</span> <span class="o">!=</span> <span class="n">mode</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">source_mode</span><span class="o">.</span><span class="n">get_latest</span><span class="p">()</span> <span class="o">!=</span> <span class="n">mode</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot get/set </span><span class="si">{}</span><span class="s2"> settings while in </span><span class="si">{}</span><span class="s2"> mode&quot;</span><span class="o">.</span>
-                             <span class="nb">format</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_mode</span><span class="p">))</span>
+                             <span class="nb">format</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source_mode</span><span class="o">.</span><span class="n">get_latest</span><span class="p">()))</span>
 
     <span class="k">def</span> <span class="nf">_set_source_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Set output mode. Also, exclude/include the parameters from snapshot</span>
-<span class="sd">        depending on the mode. The instrument does not support</span>
-<span class="sd">        &#39;current&#39;, &#39;current_range&#39; parameters in &quot;VOLT&quot; mode and &#39;voltage&#39;,</span>
-<span class="sd">        &#39;voltage_range&#39; parameters in &quot;CURR&quot; mode.</span>
+<span class="sd">        Set output mode and change delegate parameters&#39; source accordingly.</span>
+<span class="sd">        Also, exclude/include the parameters from snapshot depending on the</span>
+<span class="sd">        mode. The instrument does not support &#39;current&#39;, &#39;current_range&#39;</span>
+<span class="sd">        parameters in &quot;VOLT&quot; mode and &#39;voltage&#39;, &#39;voltage_range&#39; parameters</span>
+<span class="sd">        in &quot;CURR&quot; mode.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            mode: &quot;CURR&quot; or &quot;VOLT&quot;</span>
@@ -651,22 +663,25 @@
             <span class="k">raise</span> <span class="n">GS200Exception</span><span class="p">(</span><span class="s2">&quot;Cannot switch mode while source is on&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;VOLT&quot;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">voltage_range</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">output_level</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">voltage_range</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output_level</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">voltage_range</span><span class="o">.</span><span class="n">snapshot_exclude</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="o">.</span><span class="n">snapshot_exclude</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">current_range</span><span class="o">.</span><span class="n">snapshot_exclude</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">snapshot_exclude</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_range</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">output_level</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_range</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output_level</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">voltage_range</span><span class="o">.</span><span class="n">snapshot_exclude</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span><span class="o">.</span><span class="n">snapshot_exclude</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">current_range</span><span class="o">.</span><span class="n">snapshot_exclude</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">snapshot_exclude</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;SOUR:FUNC </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mode</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_cached_mode</span> <span class="o">=</span> <span class="n">mode</span>
+        <span class="c1"># We set the cache here since `_update_measurement_module`</span>
+        <span class="c1"># needs the current value which would otherwise only be set</span>
+        <span class="c1"># after this method exits</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source_mode</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
         <span class="c1"># Update the measurement mode</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_measurement_module</span><span class="p">(</span><span class="n">source_mode</span><span class="o">=</span><span class="n">mode</span><span class="p">)</span>
 
@@ -676,38 +691,33 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            mode: &quot;CURR&quot; or &quot;VOLT&quot;</span>
-<span class="sd">            output_range: Range to set. For voltage we have the ranges [10e-3,</span>
-<span class="sd">                100e-3, 1e0, 10e0, 30e0]. For current we have the ranges [1e-3,</span>
-<span class="sd">                10e-3, 100e-3, 200e-3]. If auto_range = False then setting the</span>
-<span class="sd">                output can only happen if the set value is smaller then the</span>
+<span class="sd">            output_range: Range to set. For voltage, we have the ranges [10e-3,</span>
+<span class="sd">                100e-3, 1e0, 10e0, 30e0]. For current, we have the ranges [1e-3,</span>
+<span class="sd">                10e-3, 100e-3, 200e-3]. If auto_range = False, then setting the</span>
+<span class="sd">                output can only happen if the set value is smaller than the</span>
 <span class="sd">                present range.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_assert_mode</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
         <span class="n">output_range</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">output_range</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_measurement_module</span><span class="p">(</span><span class="n">source_mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
                                         <span class="n">source_range</span><span class="o">=</span><span class="n">output_range</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_cached_range_value</span> <span class="o">=</span> <span class="n">output_range</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:SOUR:RANG </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">output_range</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">_get_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Query the present range.</span>
-<span class="sd">        Note: we do not return the cached value here to ensure snapshots</span>
-<span class="sd">        correctly update range. In fact, we update the cached value when</span>
-<span class="sd">        calling this method.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            mode: &quot;CURR&quot; or &quot;VOLT&quot;</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            range: For voltage we have the ranges [10e-3, 100e-3, 1e0, 10e0,</span>
-<span class="sd">                30e0]. For current we have the ranges [1e-3, 10e-3, 100e-3,</span>
-<span class="sd">                200e-3]. If auto_range = False then setting the output can only</span>
-<span class="sd">                happen if the set value is smaller then the present range.</span>
+<span class="sd">            range: For voltage, we have the ranges [10e-3, 100e-3, 1e0, 10e0,</span>
+<span class="sd">                30e0]. For current, we have the ranges [1e-3, 10e-3, 100e-3,</span>
+<span class="sd">                200e-3]. If auto_range = False, then setting the output can only</span>
+<span class="sd">                happen if the set value is smaller than the present range.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_assert_mode</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_cached_range_value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">&quot;:SOUR:RANG?&quot;</span><span class="p">))</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_range_value</span></div>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">&quot;:SOUR:RANG?&quot;</span><span class="p">))</span></div>
 </pre></div>
 
            </div>
