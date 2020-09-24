@@ -514,7 +514,7 @@ parameters (set trigger level) and get the values from them (obtain a trace). By
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.plotting</span> <span class="kn">import</span> <span class="n">plot_dataset</span>
 <span class="kn">from</span> <span class="nn">qcodes.logger.logger</span> <span class="kn">import</span> <span class="n">start_all_logging</span>
-<span class="kn">from</span> <span class="nn">qcodes.tests.instrument_mocks</span> <span class="kn">import</span> <span class="n">DummyInstrument</span>
+<span class="kn">from</span> <span class="nn">qcodes.tests.instrument_mocks</span> <span class="kn">import</span> <span class="n">DummyInstrument</span><span class="p">,</span> <span class="n">DummyInstrumentWithMeasurement</span>
 </pre></div>
 </div>
 </div>
@@ -545,7 +545,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/200924-16914-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/200924-16895-qcodes.log
 </pre></div></div>
 </div>
 <p>or we can configure qcodes to automatically start logging on every import of qcodes, by running the following code once. (This will persist the current configuration in <code class="docutils literal notranslate"><span class="pre">~\qcodesrc.json</span></code>)</p>
@@ -613,8 +613,9 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/200924-16914-qcodes.log
 <span></span><span class="c1"># A dummy instrument dac with two parameters ch1 and ch2</span>
 <span class="n">dac</span> <span class="o">=</span> <span class="n">DummyInstrument</span><span class="p">(</span><span class="s1">&#39;dac&#39;</span><span class="p">,</span> <span class="n">gates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ch1&#39;</span><span class="p">,</span> <span class="s1">&#39;ch2&#39;</span><span class="p">])</span>
 
-<span class="c1"># A dummy instrument dmm with two parameters v1 and v2</span>
-<span class="n">dmm</span> <span class="o">=</span> <span class="n">DummyInstrument</span><span class="p">(</span><span class="s1">&#39;dmm&#39;</span><span class="p">,</span> <span class="n">gates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;v1&#39;</span><span class="p">,</span> <span class="s1">&#39;v2&#39;</span><span class="p">])</span>
+<span class="c1"># A dummy instrument that generates some real looking output depending</span>
+<span class="c1"># on the values set on the setter_instr, in this case the dac</span>
+<span class="n">dmm</span> <span class="o">=</span> <span class="n">DummyInstrumentWithMeasurement</span><span class="p">(</span><span class="s1">&#39;dmm&#39;</span><span class="p">,</span> <span class="n">setter_instr</span><span class="o">=</span><span class="n">dac</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -724,7 +725,7 @@ v2  :   0 (V)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;dmm&#39;: &lt;DummyInstrument: dmm&gt;}
+{&#39;dmm&#39;: &lt;DummyInstrumentWithMeasurement: dmm&gt;}
 </pre></div></div>
 </div>
 <p>Let us add the <code class="docutils literal notranslate"><span class="pre">dac</span></code> instrument back:</p>
@@ -767,7 +768,7 @@ v2  :   0 (V)
 <div class="highlight"><pre>
 {&#39;instruments&#39;: {&#39;dmm&#39;: {&#39;functions&#39;: {},
    &#39;submodules&#39;: {},
-   &#39;__class__&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrument&#39;,
+   &#39;__class__&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrumentWithMeasurement&#39;,
    &#39;parameters&#39;: {&#39;IDN&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
      &#39;full_name&#39;: &#39;dmm_IDN&#39;,
      &#39;value&#39;: {&#39;vendor&#39;: None,
@@ -778,41 +779,41 @@ v2  :   0 (V)
       &#39;model&#39;: &#39;dmm&#39;,
       &#39;serial&#39;: None,
       &#39;firmware&#39;: None},
-     &#39;ts&#39;: &#39;2020-09-24 10:23:48&#39;,
-     &#39;vals&#39;: &#39;&lt;Anything&gt;&#39;,
-     &#39;unit&#39;: &#39;&#39;,
+     &#39;ts&#39;: &#39;2020-09-24 10:52:21&#39;,
+     &#39;instrument&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrumentWithMeasurement&#39;,
+     &#39;instrument_name&#39;: &#39;dmm&#39;,
+     &#39;inter_delay&#39;: 0,
+     &#39;post_delay&#39;: 0,
      &#39;label&#39;: &#39;IDN&#39;,
+     &#39;vals&#39;: &#39;&lt;Anything&gt;&#39;,
      &#39;name&#39;: &#39;IDN&#39;,
-     &#39;inter_delay&#39;: 0,
-     &#39;instrument&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrument&#39;,
-     &#39;instrument_name&#39;: &#39;dmm&#39;,
-     &#39;post_delay&#39;: 0},
-    &#39;v1&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+     &#39;unit&#39;: &#39;&#39;},
+    &#39;v1&#39;: {&#39;__class__&#39;: &#39;qcodes.tests.instrument_mocks.DmmExponentialParameter&#39;,
      &#39;full_name&#39;: &#39;dmm_v1&#39;,
-     &#39;value&#39;: 0,
-     &#39;raw_value&#39;: 0,
-     &#39;ts&#39;: &#39;2020-09-24 10:23:48&#39;,
-     &#39;vals&#39;: &#39;&lt;Numbers -800&lt;=v&lt;=400&gt;&#39;,
-     &#39;unit&#39;: &#39;V&#39;,
+     &#39;value&#39;: 4.956940508870206,
+     &#39;raw_value&#39;: 4.956940508870206,
+     &#39;ts&#39;: &#39;2020-09-24 10:52:21&#39;,
+     &#39;instrument&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrumentWithMeasurement&#39;,
+     &#39;instrument_name&#39;: &#39;dmm&#39;,
+     &#39;inter_delay&#39;: 0,
+     &#39;post_delay&#39;: 0,
      &#39;label&#39;: &#39;Gate v1&#39;,
-     &#39;name&#39;: &#39;v1&#39;,
-     &#39;inter_delay&#39;: 0,
-     &#39;instrument&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrument&#39;,
-     &#39;instrument_name&#39;: &#39;dmm&#39;,
-     &#39;post_delay&#39;: 0},
-    &#39;v2&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
-     &#39;full_name&#39;: &#39;dmm_v2&#39;,
-     &#39;value&#39;: 0,
-     &#39;raw_value&#39;: 0,
-     &#39;ts&#39;: &#39;2020-09-24 10:23:48&#39;,
      &#39;vals&#39;: &#39;&lt;Numbers -800&lt;=v&lt;=400&gt;&#39;,
-     &#39;unit&#39;: &#39;V&#39;,
-     &#39;label&#39;: &#39;Gate v2&#39;,
-     &#39;name&#39;: &#39;v2&#39;,
-     &#39;inter_delay&#39;: 0,
-     &#39;instrument&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrument&#39;,
+     &#39;name&#39;: &#39;v1&#39;,
+     &#39;unit&#39;: &#39;V&#39;},
+    &#39;v2&#39;: {&#39;__class__&#39;: &#39;qcodes.tests.instrument_mocks.DmmGaussParameter&#39;,
+     &#39;full_name&#39;: &#39;dmm_v2&#39;,
+     &#39;value&#39;: 0.7596447419421861,
+     &#39;raw_value&#39;: 0.7596447419421861,
+     &#39;ts&#39;: &#39;2020-09-24 10:52:21&#39;,
+     &#39;instrument&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrumentWithMeasurement&#39;,
      &#39;instrument_name&#39;: &#39;dmm&#39;,
-     &#39;post_delay&#39;: 0}},
+     &#39;inter_delay&#39;: 0,
+     &#39;post_delay&#39;: 0,
+     &#39;label&#39;: &#39;Gate v2&#39;,
+     &#39;vals&#39;: &#39;&lt;Numbers -800&lt;=v&lt;=400&gt;&#39;,
+     &#39;name&#39;: &#39;v2&#39;,
+     &#39;unit&#39;: &#39;V&#39;}},
    &#39;name&#39;: &#39;dmm&#39;},
   &#39;dac&#39;: {&#39;functions&#39;: {},
    &#39;submodules&#39;: {},
@@ -827,41 +828,41 @@ v2  :   0 (V)
       &#39;model&#39;: &#39;dac&#39;,
       &#39;serial&#39;: None,
       &#39;firmware&#39;: None},
-     &#39;ts&#39;: &#39;2020-09-24 10:23:48&#39;,
-     &#39;vals&#39;: &#39;&lt;Anything&gt;&#39;,
-     &#39;unit&#39;: &#39;&#39;,
-     &#39;label&#39;: &#39;IDN&#39;,
-     &#39;name&#39;: &#39;IDN&#39;,
-     &#39;inter_delay&#39;: 0,
+     &#39;ts&#39;: &#39;2020-09-24 10:52:21&#39;,
      &#39;instrument&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrument&#39;,
      &#39;instrument_name&#39;: &#39;dac&#39;,
-     &#39;post_delay&#39;: 0},
+     &#39;inter_delay&#39;: 0,
+     &#39;post_delay&#39;: 0,
+     &#39;label&#39;: &#39;IDN&#39;,
+     &#39;vals&#39;: &#39;&lt;Anything&gt;&#39;,
+     &#39;name&#39;: &#39;IDN&#39;,
+     &#39;unit&#39;: &#39;&#39;},
     &#39;ch1&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
      &#39;full_name&#39;: &#39;dac_ch1&#39;,
      &#39;value&#39;: 0,
      &#39;raw_value&#39;: 0,
-     &#39;ts&#39;: &#39;2020-09-24 10:23:48&#39;,
-     &#39;vals&#39;: &#39;&lt;Numbers -800&lt;=v&lt;=400&gt;&#39;,
-     &#39;unit&#39;: &#39;V&#39;,
-     &#39;label&#39;: &#39;Gate ch1&#39;,
-     &#39;name&#39;: &#39;ch1&#39;,
-     &#39;inter_delay&#39;: 0,
+     &#39;ts&#39;: &#39;2020-09-24 10:52:21&#39;,
      &#39;instrument&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrument&#39;,
      &#39;instrument_name&#39;: &#39;dac&#39;,
-     &#39;post_delay&#39;: 0},
+     &#39;inter_delay&#39;: 0,
+     &#39;post_delay&#39;: 0,
+     &#39;label&#39;: &#39;Gate ch1&#39;,
+     &#39;vals&#39;: &#39;&lt;Numbers -800&lt;=v&lt;=400&gt;&#39;,
+     &#39;name&#39;: &#39;ch1&#39;,
+     &#39;unit&#39;: &#39;V&#39;},
     &#39;ch2&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
      &#39;full_name&#39;: &#39;dac_ch2&#39;,
      &#39;value&#39;: 0,
      &#39;raw_value&#39;: 0,
-     &#39;ts&#39;: &#39;2020-09-24 10:23:48&#39;,
-     &#39;vals&#39;: &#39;&lt;Numbers -800&lt;=v&lt;=400&gt;&#39;,
-     &#39;unit&#39;: &#39;V&#39;,
-     &#39;label&#39;: &#39;Gate ch2&#39;,
-     &#39;name&#39;: &#39;ch2&#39;,
-     &#39;inter_delay&#39;: 0,
+     &#39;ts&#39;: &#39;2020-09-24 10:52:21&#39;,
      &#39;instrument&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrument&#39;,
      &#39;instrument_name&#39;: &#39;dac&#39;,
-     &#39;post_delay&#39;: 0}},
+     &#39;inter_delay&#39;: 0,
+     &#39;post_delay&#39;: 0,
+     &#39;label&#39;: &#39;Gate ch2&#39;,
+     &#39;vals&#39;: &#39;&lt;Numbers -800&lt;=v&lt;=400&gt;&#39;,
+     &#39;name&#39;: &#39;ch2&#39;,
+     &#39;unit&#39;: &#39;V&#39;}},
    &#39;name&#39;: &#39;dac&#39;}},
  &#39;parameters&#39;: {},
  &#39;components&#39;: {},
@@ -873,45 +874,6 @@ v2  :   0 (V)
 <h4>Station Configurator<a class="headerlink" href="#Station-Configurator" title="Permalink to this headline">¶</a></h4>
 <p>The instantiation of the instruments, that is, setting up the proper initial values of the corresponding parameters and similar pre-specifications of a measurement constitutes the initialization portion of the code. In general, this portion can be quite long and tedious to maintain. These (and more) concerns can be solved by a YAML configuration file of the <code class="docutils literal notranslate"><span class="pre">Station</span></code> object. We refer to the notebook on <a class="reference external" href="http://qcodes.github.io/Qcodes/examples/Station.html#Default-Station">station</a> for more
 details.</p>
-</div>
-</div>
-<div class="section" id="Simulating-the-response-of-instrument">
-<h3>Simulating the response of instrument<a class="headerlink" href="#Simulating-the-response-of-instrument" title="Permalink to this headline">¶</a></h3>
-<p>You may <strong>skip this block</strong> during the first read. In actual experiments you will not need to simulate the response.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">class</span> <span class="nc">dmm_parameter</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">Parameter</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exponential_decay</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
-        <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ed</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        This method is automatically wrapped to</span>
-<span class="sd">        provide a ``get`` method on the parameter instance.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ed</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">dac</span><span class="o">.</span><span class="n">ch1</span><span class="p">())</span>
-        <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ed</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">val</span>
-
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">exponential_decay</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Yields a*exp(-b*x) where x is put in</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="k">yield</span>
-            <span class="k">yield</span> <span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.02</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span>
-
-
-<span class="n">dmm</span><span class="o">.</span><span class="n">v1</span> <span class="o">=</span> <span class="n">dmm_parameter</span><span class="p">(</span><span class="s1">&#39;dmm_v1&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -932,7 +894,7 @@ more complex design cases.</p>
 <p>To understand more about parameters consult the <a class="reference external" href="http://qcodes.github.io/Qcodes/examples/index.html#parameters">notebook on Parameter</a> for more details.</p>
 <p>In most cases, a settable parameter accepts its value as a function argument. Let us set the a value of 1.1 for the ‘ch1’ parameter of the ‘dac’ instrument:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -942,7 +904,7 @@ more complex design cases.</p>
 </div>
 <p>Similarly, we ask the current value of a gettable parameter with a simple function call. For example, the output voltage of dmm can be read via</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -951,12 +913,12 @@ more complex design cases.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-3.969785434540588
+3.8385493507462436
 </pre></div></div>
 </div>
 <p>Further information can be found in the <a class="reference external" href="http://qcodes.github.io/Qcodes/user/intro.html#parameter">user guide</a> or <a class="reference external" href="http://qcodes.github.io/Qcodes/api/parameters/index.html">api documentation</a> of parameter.</p>
@@ -966,7 +928,7 @@ more complex design cases.</p>
 <p>Before starting a measurement, we first initialise a database. The location of the database is specified by the configuration object of the QCoDeS installation. The database is created with the latest supported version complying with the QCoDeS version that is currently under use. If a database already exists but an upgrade has been done to the QCoDeS, then that database can continue to be used and it is going to be upgraded to the latest version automatically at first connection.</p>
 <p>The initialisation of the database is achieved via:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -980,19 +942,19 @@ more complex design cases.</p>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Upgrading database; v0 -&gt; v1: : 0it [00:00, ?it/s]
-Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 445.26it/s]
+Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 389.62it/s]
 Upgrading database; v2 -&gt; v3: : 0it [00:00, ?it/s]
 Upgrading database; v3 -&gt; v4: : 0it [00:00, ?it/s]
-Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 381.40it/s]
+Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 22.02it/s]
 Upgrading database; v5 -&gt; v6: : 0it [00:00, ?it/s]
-Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 177.06it/s]
-Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 587.19it/s]
-Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 360.06it/s]
+Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 260.24it/s]
+Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 537.46it/s]
+Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 511.69it/s]
 </pre></div></div>
 </div>
 <p>Alternatively, if you already have a QCoDeS database which you would like to use for your measurement, say at <code class="docutils literal notranslate"><span class="pre">~/myData.db</span></code>, it is sufficient to use</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1006,14 +968,14 @@ Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Upgrading database; v0 -&gt; v1: : 0it [00:00, ?it/s]
-Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 903.75it/s]
+Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 471.06it/s]
 Upgrading database; v2 -&gt; v3: : 0it [00:00, ?it/s]
 Upgrading database; v3 -&gt; v4: : 0it [00:00, ?it/s]
-Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 443.19it/s]
+Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 358.24it/s]
 Upgrading database; v5 -&gt; v6: : 0it [00:00, ?it/s]
-Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 248.89it/s]
-Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 836.35it/s]
-Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 857.20it/s]
+Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 344.39it/s]
+Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 414.13it/s]
+Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 805.51it/s]
 </pre></div></div>
 </div>
 <p>Note that it is user’s responsibility to provide the correct absolute path for the existing database. The notation of the path may differ with respect to the operating system. The method <code class="docutils literal notranslate"><span class="pre">initialise_or_create_database_at</span></code> makes sure that your QCoDeS session is connected to the referred database. If the database file does not exist, it will be initiated at the provided path.</p>
@@ -1021,7 +983,7 @@ Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00
 <h3>Current location of database<a class="headerlink" href="#Current-location-of-database" title="Permalink to this headline">¶</a></h3>
 <p>By default, QCoDeS initialises an empty database to your home directory:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1030,7 +992,7 @@ Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1043,7 +1005,7 @@ Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00
 <h3>Change location of database<a class="headerlink" href="#Change-location-of-database" title="Permalink to this headline">¶</a></h3>
 <p>In case you would like to change the location of the database, for example, to the current working directory, it is sufficient to assign the new path as the value of the corresponding key <code class="docutils literal notranslate"><span class="pre">db_location</span></code>:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1057,7 +1019,7 @@ Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00
 <h3>Load or create experiment<a class="headerlink" href="#Load-or-create-experiment" title="Permalink to this headline">¶</a></h3>
 <p>After initialising the database we create the <code class="docutils literal notranslate"><span class="pre">Experiment</span></code> object. This object contains the name of the experiment and the sample, and the path of the database. You can use <code class="docutils literal notranslate"><span class="pre">load_or_create_experiment</span></code> to find and return an experiment with the given experiment and sample name if it already exists, or create one if not found.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1072,19 +1034,19 @@ Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Upgrading database; v0 -&gt; v1: : 0it [00:00, ?it/s]
-Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 399.19it/s]
+Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 474.47it/s]
 Upgrading database; v2 -&gt; v3: : 0it [00:00, ?it/s]
 Upgrading database; v3 -&gt; v4: : 0it [00:00, ?it/s]
-Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 957.82it/s]
+Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 325.80it/s]
 Upgrading database; v5 -&gt; v6: : 0it [00:00, ?it/s]
-Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 303.14it/s]
-Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 716.12it/s]
-Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 487.20it/s]
+Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 214.73it/s]
+Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 373.23it/s]
+Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 709.70it/s]
 </pre></div></div>
 </div>
 <p>The methods shown above to load or create the experiment is the most versatile one. However for specific cases the following alternative methods can be used to create or load experiments:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1103,7 +1065,7 @@ Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00
 <p>QCoDeS is capable of storing relations between the parameters, i.e., which parameter is independent and which parameter depends on another one. This capability is later used to make useful plots, where the knowledge of interdependencies is used to define the corresponding variables for the coordinate axes. The required (mandatory) parameters in the measurement are first registered. If there is an interdependency between any given two or more parameters, the independent one is declared as a
 ‘setpoint’. In our example, <code class="docutils literal notranslate"><span class="pre">dac.ch1</span></code> is the independent parameter and <code class="docutils literal notranslate"><span class="pre">dmm.v1</span></code> is the dependent parameter whose setpoint is <code class="docutils literal notranslate"><span class="pre">dac.ch1</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1141,7 +1103,7 @@ Starting experimental run with id: 1.
 <h3>List all the experiments in the database<a class="headerlink" href="#List-all-the-experiments-in-the-database" title="Permalink to this headline">¶</a></h3>
 <p>The list of experiments that are stored in the database can be called back as follows:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1150,7 +1112,7 @@ Starting experimental run with id: 1.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1166,7 +1128,7 @@ Starting experimental run with id: 1.
 <h3>List all the datasets in the database<a class="headerlink" href="#List-all-the-datasets-in-the-database" title="Permalink to this headline">¶</a></h3>
 <p>Let us now retrieve the datasets stored within the current experiment via:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1175,7 +1137,7 @@ Starting experimental run with id: 1.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1191,7 +1153,7 @@ Starting experimental run with id: 1.
 <h3>Load the data set using one or more specifications<a class="headerlink" href="#Load-the-data-set-using-one-or-more-specifications" title="Permalink to this headline">¶</a></h3>
 <p>The method <code class="docutils literal notranslate"><span class="pre">load_by_run_spec</span></code> can be used to load a run with given specifications such as ‘experiment name’ and ‘sample name’:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1206,7 +1168,7 @@ Starting experimental run with id: 1.
 <h3>Plot dataset<a class="headerlink" href="#Plot-dataset" title="Permalink to this headline">¶</a></h3>
 <p>We arrived at a point where we can visualize our data. To this end, we use the <code class="docutils literal notranslate"><span class="pre">plot_dataset</span></code> method with <code class="docutils literal notranslate"><span class="pre">dataset</span></code> as its argument:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1215,12 +1177,12 @@ Starting experimental run with id: 1.
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-([&lt;AxesSubplot:title={&#39;center&#39;:&#39;Run #1, Experiment dataset_context_manager (no sample1)&#39;}, xlabel=&#39;Gate ch1 (V)&#39;, ylabel=&#39;dmm_v1&#39;&gt;],
+([&lt;AxesSubplot:title={&#39;center&#39;:&#39;Run #1, Experiment dataset_context_manager (no sample1)&#39;}, xlabel=&#39;Gate ch1 (V)&#39;, ylabel=&#39;Gate v1 (V)&#39;&gt;],
  [None])
 </pre></div></div>
 </div>
@@ -1228,7 +1190,7 @@ Starting experimental run with id: 1.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_15_minutes_to_QCoDeS_88_1.png" src="../_images/examples_15_minutes_to_QCoDeS_88_1.png" />
+<img alt="../_images/examples_15_minutes_to_QCoDeS_85_1.png" src="../_images/examples_15_minutes_to_QCoDeS_85_1.png" />
 </div>
 </div>
 <p>For more detailed examples of plotting QCoDeS datasets, refer to the following articles:</p>
@@ -1242,7 +1204,7 @@ Starting experimental run with id: 1.
 <h3>Get data of specific parameter of a dataset<a class="headerlink" href="#Get-data-of-specific-parameter-of-a-dataset" title="Permalink to this headline">¶</a></h3>
 <p>If you are interested in numerical values of a particular parameter within a given dataset, the corresponding data can be retrieved by using <code class="docutils literal notranslate"><span class="pre">get_parameter_data</span></code> method:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1251,7 +1213,7 @@ Starting experimental run with id: 1.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1261,7 +1223,7 @@ Starting experimental run with id: 1.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1270,14 +1232,13 @@ Starting experimental run with id: 1.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;dmm_v1&#39;: {&#39;dmm_v1&#39;: array([ 5.03074136e+00,  2.79920701e+00,  1.67409791e+00,  9.09772344e-01,
-          4.67923715e-01,  2.70953372e-01,  3.16125824e-02,  1.63135370e-01,
-         -9.32154010e-04, -5.36752014e-02]),
+{&#39;dmm_v1&#39;: {&#39;dmm_v1&#39;: array([ 4.97408704,  2.88404812,  1.68580193,  1.06754024,  0.76279935,
+          0.18005658,  0.09616014,  0.06120833, -0.02212794,  0.1642957 ]),
   &#39;dac_ch1&#39;: array([ 0.        ,  2.77777778,  5.55555556,  8.33333333, 11.11111111,
          13.88888889, 16.66666667, 19.44444444, 22.22222222, 25.        ])}}
 </pre></div></div>
@@ -1288,7 +1249,7 @@ Starting experimental run with id: 1.
 <h3>Export data to pandas dataframe<a class="headerlink" href="#Export-data-to-pandas-dataframe" title="Permalink to this headline">¶</a></h3>
 <p>If desired, any data stored within a QCoDeS database can also be exported as pandas dataframes. This can be achieved via:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1298,7 +1259,7 @@ Starting experimental run with id: 1.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1330,23 +1291,23 @@ Starting experimental run with id: 1.
   <tbody>
     <tr>
       <th>0.000000</th>
-      <td>5.030741</td>
+      <td>4.974087</td>
     </tr>
     <tr>
       <th>2.777778</th>
-      <td>2.799207</td>
+      <td>2.884048</td>
     </tr>
     <tr>
       <th>5.555556</th>
-      <td>1.674098</td>
+      <td>1.685802</td>
     </tr>
     <tr>
       <th>8.333333</th>
-      <td>0.909772</td>
+      <td>1.067540</td>
     </tr>
     <tr>
       <th>11.111111</th>
-      <td>0.467924</td>
+      <td>0.762799</td>
     </tr>
   </tbody>
 </table>
@@ -1394,15 +1355,6 @@ one. The default config is located in <code class="docutils literal notranslate"
 <h3>QCoDeS instrument drivers<a class="headerlink" href="#QCoDeS-instrument-drivers" title="Permalink to this headline">¶</a></h3>
 <p>We support and provide drivers for most of the instruments currently in use at the Microsoft stations. However, if more functionalities than the ones which are currently supported by drivers are required, one may update the driver or request the features form QCoDeS team. You are more than welcome to contribute and if you would like to have a quick overview on how to write instrument drivers, please refer to the <a class="reference external" href="http://qcodes.github.io/Qcodes/examples/index.html#writing-drivers">example notebooks on writing
 drivers</a>.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 </div>

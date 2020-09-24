@@ -499,7 +499,7 @@ alt="Binder badge"
 <span class="kn">import</span> <span class="nn">qcodes</span> <span class="k">as</span> <span class="nn">qc</span>
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">Station</span><span class="p">,</span> <span class="n">load_or_create_experiment</span><span class="p">,</span> \
     <span class="n">initialise_database</span><span class="p">,</span> <span class="n">Measurement</span><span class="p">,</span> <span class="n">load_by_run_spec</span><span class="p">,</span> <span class="n">load_by_guid</span>
-<span class="kn">from</span> <span class="nn">qcodes.tests.instrument_mocks</span> <span class="kn">import</span> <span class="n">DummyInstrument</span>
+<span class="kn">from</span> <span class="nn">qcodes.tests.instrument_mocks</span> <span class="kn">import</span> <span class="n">DummyInstrument</span><span class="p">,</span> <span class="n">DummyInstrumentWithMeasurement</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.plotting</span> <span class="kn">import</span> <span class="n">plot_dataset</span>
 <span class="kn">import</span> <span class="nn">time</span>
 </pre></div>
@@ -518,7 +518,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/200924-18448-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/200924-18411-qcodes.log
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -526,56 +526,17 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/200924-18448-qcodes.log
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># a generator to simulate a physical signal, in this case an exponentially</span>
-<span class="c1"># decaying signal</span>
-
-<span class="k">def</span> <span class="nf">exponential_decay</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Yields a*exp(-b*x) where x is put in</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="k">yield</span>
-        <span class="k">yield</span> <span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.02</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># preparatory mocking of physical setup</span>
 
 <span class="n">dac</span> <span class="o">=</span> <span class="n">DummyInstrument</span><span class="p">(</span><span class="s1">&#39;dac&#39;</span><span class="p">,</span> <span class="n">gates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ch1&#39;</span><span class="p">,</span> <span class="s1">&#39;ch2&#39;</span><span class="p">])</span>
-<span class="n">dmm</span> <span class="o">=</span> <span class="n">DummyInstrument</span><span class="p">(</span><span class="s1">&#39;dmm&#39;</span><span class="p">,</span> <span class="n">gates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;v1&#39;</span><span class="p">,</span> <span class="s1">&#39;v2&#39;</span><span class="p">])</span>
+<span class="n">dmm</span> <span class="o">=</span> <span class="n">DummyInstrumentWithMeasurement</span><span class="p">(</span><span class="s1">&#39;dmm&#39;</span><span class="p">,</span> <span class="n">setter_instr</span><span class="o">=</span><span class="n">dac</span><span class="p">)</span>
 
 <span class="n">station</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">Station</span><span class="p">(</span><span class="n">dmm</span><span class="p">,</span> <span class="n">dac</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># and then a bit of &quot;wiring&quot; to make the dmm &quot;measure&quot;</span>
-<span class="c1"># the exponential decay</span>
-
-<span class="n">ed</span> <span class="o">=</span> <span class="n">exponential_decay</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
-<span class="nb">next</span><span class="p">(</span><span class="n">ed</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">customgetter</span><span class="p">(</span><span class="n">dac</span><span class="p">):</span>
-    <span class="n">val</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">dac</span><span class="o">.</span><span class="n">ch1</span><span class="p">())</span>
-    <span class="nb">next</span><span class="p">(</span><span class="n">ed</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">val</span>
-
-<span class="n">dmm</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">customgetter</span><span class="p">,</span> <span class="n">dac</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -587,7 +548,7 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/200924-18448-qcodes.log
 </div>
 <p>Now we are ready to run an experiment. Once this experiment is running, take note of the id of the run (also accessible via <code class="docutils literal notranslate"><span class="pre">dataset.captured_run_id</span></code>) created and open the <a class="reference internal" href="read_data_from_cache.html"><span class="doc">Read data from cache</span></a> notebook and use there this id. After 20 sec this notebook will start writing actual data to the dataset.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
