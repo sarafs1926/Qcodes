@@ -274,7 +274,7 @@
 
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;cmd must be a string or function with &#39;</span> <span class="o">+</span>
-                            <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> args&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arg_count</span><span class="p">))</span>
+                            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">arg_count</span><span class="si">}</span><span class="s1"> args&#39;</span><span class="p">)</span>
 
     <span class="c1"># Wrappers that may or may not be used in constructing call</span>
     <span class="c1"># these functions are not very DRY at all - this could be condensed</span>
@@ -335,7 +335,7 @@
         <span class="sd">&quot;&quot;&quot;Invoke the command.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arg_count</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                <span class="s1">&#39;command takes exactly </span><span class="si">{}</span><span class="s1"> args&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arg_count</span><span class="p">))</span>
+                <span class="sa">f</span><span class="s1">&#39;command takes exactly </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">arg_count</span><span class="si">}</span><span class="s1"> args&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">exec_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div></div>
 </pre></div>
 

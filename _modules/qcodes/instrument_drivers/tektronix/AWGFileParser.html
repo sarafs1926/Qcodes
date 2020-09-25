@@ -578,7 +578,7 @@
                 <span class="n">lookupname</span> <span class="o">=</span> <span class="n">name</span><span class="p">[:</span><span class="n">namestop</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
 
                 <span class="k">if</span> <span class="s1">&#39;DATA&#39;</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
-                    <span class="n">fmtstr</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">H&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wfmlen</span><span class="p">)</span>
+                    <span class="n">fmtstr</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">wfmlen</span><span class="si">}</span><span class="s1">H&#39;</span>
                     <span class="n">AWG_FILE_FORMAT_WAV</span><span class="p">[</span><span class="s1">&#39;WAVEFORM_DATA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fmtstr</span>
 
                 <span class="n">value</span> <span class="o">=</span> <span class="n">_unwrap</span><span class="p">(</span><span class="n">rawvalue</span><span class="p">,</span> <span class="n">AWG_FILE_FORMAT_WAV</span><span class="p">[</span><span class="n">lookupname</span><span class="p">])</span>
