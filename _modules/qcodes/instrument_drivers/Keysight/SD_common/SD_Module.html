@@ -191,7 +191,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">ndarray</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">value</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Error in call to SD_Module &#39;</span>
@@ -346,7 +346,7 @@
 <span class="sd">            or negative numbers for errors</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SD_module</span><span class="o">.</span><span class="n">PXItriggerRead</span><span class="p">(</span><span class="n">pxi_trigger</span><span class="p">)</span>
-        <span class="n">value_name</span> <span class="o">=</span> <span class="s1">&#39;pxi_trigger number </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pxi_trigger</span><span class="p">)</span>
+        <span class="n">value_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;pxi_trigger number </span><span class="si">{</span><span class="n">pxi_trigger</span><span class="si">}</span><span class="s1">&#39;</span>
         <span class="k">return</span> <span class="n">result_parser</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">value_name</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span></div>
 
     <span class="c1">#</span>
@@ -362,7 +362,7 @@
 <span class="sd">            value (int): Digital value with negated logic, 0 (ON) or 1 (OFF)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SD_module</span><span class="o">.</span><span class="n">PXItriggerWrite</span><span class="p">(</span><span class="n">pxi_trigger</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-        <span class="n">value_name</span> <span class="o">=</span> <span class="s1">&#39;set pxi_trigger </span><span class="si">{}</span><span class="s1"> to </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pxi_trigger</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="n">value_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;set pxi_trigger </span><span class="si">{</span><span class="n">pxi_trigger</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span>
         <span class="k">return</span> <span class="n">result_parser</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">value_name</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span></div>
 
     <span class="c1">#</span>
@@ -381,7 +381,7 @@
 <span class="sd">            access_mode (int): ?? not in the docs</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SD_module</span><span class="o">.</span><span class="n">FPGAreadPCport</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="n">data_size</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">address_mode</span><span class="p">,</span> <span class="n">access_mode</span><span class="p">)</span>
-        <span class="n">value_name</span> <span class="o">=</span> <span class="s1">&#39;data at PCport </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">port</span><span class="p">)</span>
+        <span class="n">value_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;data at PCport </span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s1">&#39;</span>
         <span class="k">return</span> <span class="n">result_parser</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">value_name</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SD_Module.set_fpga_pc_port"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.SD_common.html#qcodes.instrument_drivers.Keysight.SD_common.SD_AWG.SD_Module.set_fpga_pc_port">[docs]</a>    <span class="k">def</span> <span class="nf">set_fpga_pc_port</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">address_mode</span><span class="p">,</span> <span class="n">access_mode</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -459,7 +459,7 @@
 
 <div class="viewcode-block" id="SD_Module.run_self_test"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.SD_common.html#qcodes.instrument_drivers.Keysight.SD_common.SD_AWG.SD_Module.run_self_test">[docs]</a>    <span class="k">def</span> <span class="nf">run_self_test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SD_module</span><span class="o">.</span><span class="n">runSelfTest</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Did self test and got result: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">))</span></div></div>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Did self test and got result: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

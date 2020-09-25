@@ -630,7 +630,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_traces</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">trace_name</span> <span class="ow">in</span> <span class="n">parlist</span><span class="p">[::</span><span class="mi">2</span><span class="p">]:</span>
             <span class="n">trace_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_trace_by_name</span><span class="p">(</span><span class="n">trace_name</span><span class="p">)</span>
-            <span class="n">pna_trace</span> <span class="o">=</span> <span class="n">PNATrace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;tr</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">trace_num</span><span class="p">),</span>
+            <span class="n">pna_trace</span> <span class="o">=</span> <span class="n">PNATrace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;tr</span><span class="si">{</span><span class="n">trace_num</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
                                  <span class="n">trace_name</span><span class="p">,</span> <span class="n">trace_num</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_traces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pna_trace</span><span class="p">)</span>
 
