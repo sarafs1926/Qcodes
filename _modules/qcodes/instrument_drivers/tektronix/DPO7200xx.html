@@ -346,9 +346,9 @@
                 <span class="s2">&quot;SFPbinary&quot;</span><span class="p">,</span>
             <span class="p">),</span>
             <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            For a detailed explanation of the </span>
-<span class="s2">            set arguments, please consult the </span>
-<span class="s2">            programmers manual at page 263/264. </span>
+<span class="s2">            For a detailed explanation of the</span>
+<span class="s2">            set arguments, please consult the</span>
+<span class="s2">            programmers manual at page 263/264.</span>
 
 <span class="s2">            http://download.tek.com/manual/077001022.pdf</span>
 <span class="s2">            &quot;&quot;&quot;</span><span class="p">)</span>
@@ -388,9 +388,9 @@
             <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_cmd</span><span class="p">(</span><span class="s2">&quot;WFMOutPRE:YOFF?&quot;</span><span class="p">),</span>
             <span class="n">get_parser</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
             <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                Raw acquisition values range from min to max. </span>
-<span class="s2">                For instance, for unsigned binary values of one </span>
-<span class="s2">                byte, min=0 and max=255. The data offset specifies </span>
+<span class="s2">                Raw acquisition values range from min to max.</span>
+<span class="s2">                For instance, for unsigned binary values of one</span>
+<span class="s2">                byte, min=0 and max=255. The data offset specifies</span>
 <span class="s2">                the center of this range</span>
 <span class="s2">                &quot;&quot;&quot;</span><span class="p">)</span>
         <span class="p">)</span>
@@ -687,16 +687,16 @@
             <span class="n">vals</span><span class="o">=</span><span class="n">Enum</span><span class="p">(</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="s2">&quot;manual&quot;</span><span class="p">),</span>
             <span class="n">get_parser</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span>
             <span class="n">docstring</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            Auto mode attempts to keep record length </span>
-<span class="s2">            constant as you change the time per division </span>
+<span class="s2">            Auto mode attempts to keep record length</span>
+<span class="s2">            constant as you change the time per division</span>
 <span class="s2">            setting. Record length is read only.</span>
 
-<span class="s2">            Constant mode attempts to keep sample rate </span>
-<span class="s2">            constant as you change the time per division </span>
+<span class="s2">            Constant mode attempts to keep sample rate</span>
+<span class="s2">            constant as you change the time per division</span>
 <span class="s2">            setting. Record length is read only.</span>
 
-<span class="s2">            Manual mode lets you change sample mode and </span>
-<span class="s2">            record length. Time per division or Horizontal </span>
+<span class="s2">            Manual mode lets you change sample mode and</span>
+<span class="s2">            record length. Time per division or Horizontal</span>
 <span class="s2">            scale is read only.</span>
 <span class="s2">            &quot;&quot;&quot;</span>
         <span class="p">)</span>
@@ -737,10 +737,10 @@
             <span class="n">get_parser</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
             <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;%&quot;</span><span class="p">,</span>
             <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            The horizontal position relative to a </span>
+<span class="s2">            The horizontal position relative to a</span>
 <span class="s2">            received trigger. E.g. a value of &#39;10&#39;</span>
-<span class="s2">            sets the trigger position of the waveform </span>
-<span class="s2">            such that 10</span><span class="si">% o</span><span class="s2">f the display is to the </span>
+<span class="s2">            sets the trigger position of the waveform</span>
+<span class="s2">            such that 10</span><span class="si">% o</span><span class="s2">f the display is to the</span>
 <span class="s2">            left of the trigger position.</span>
 <span class="s2">            &quot;&quot;&quot;</span><span class="p">)</span>
         <span class="p">)</span>
@@ -751,7 +751,7 @@
             <span class="n">set_cmd</span><span class="o">=</span><span class="s2">&quot;HORizontal:ROLL </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="n">vals</span><span class="o">=</span><span class="n">Enum</span><span class="p">(</span><span class="s2">&quot;Auto&quot;</span><span class="p">,</span> <span class="s2">&quot;On&quot;</span><span class="p">,</span> <span class="s2">&quot;Off&quot;</span><span class="p">),</span>
             <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            Use Roll Mode when you want to view data at </span>
+<span class="s2">            Use Roll Mode when you want to view data at</span>
 <span class="s2">            very slow sweep speeds.</span>
 <span class="s2">            &quot;&quot;&quot;</span><span class="p">)</span>
         <span class="p">)</span>

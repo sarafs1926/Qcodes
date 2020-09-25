@@ -285,7 +285,7 @@
                           <span class="s2">&quot;RAMP&quot;</span><span class="p">:</span> <span class="s2">&quot;RAMP&quot;</span><span class="p">,</span> <span class="s2">&quot;SIN&quot;</span><span class="p">:</span> <span class="s2">&quot;SIN&quot;</span><span class="p">,</span>
                           <span class="s2">&quot;SQU&quot;</span><span class="p">:</span> <span class="s2">&quot;SQU&quot;</span><span class="p">,</span>   <span class="s2">&quot;TRI&quot;</span><span class="p">:</span> <span class="s2">&quot;TRI&quot;</span><span class="p">,</span>
                           <span class="s2">&quot;USER&quot;</span><span class="p">:</span> <span class="s2">&quot;USER&quot;</span><span class="p">,</span> <span class="s2">&quot;PULSE&quot;</span><span class="p">:</span> <span class="s2">&quot;PULS&quot;</span><span class="p">}</span>
-    
+
     <span class="n">waveforms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">waveform_params</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="s1">&#39;DG1062&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
@@ -356,7 +356,7 @@
             <span class="n">get_cmd</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;OUTPUT</span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s2">:STATE?&quot;</span><span class="p">,</span>
             <span class="n">set_cmd</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;OUTPUT</span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s2">:STATE </span><span class="se">{{}}</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="p">)</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span>
             <span class="s2">&quot;duty_cycle&quot;</span><span class="p">,</span>
             <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_duty_cycle</span><span class="p">,</span>
@@ -384,7 +384,7 @@
                 <span class="n">waveform</span><span class="o">=</span><span class="n">waveform</span>
             <span class="p">)</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waveform</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">f</span><span class="p">)</span>
-            
+
         <span class="c1"># Retrieve current waveform from device</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">waveform</span><span class="p">()</span>
 

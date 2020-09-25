@@ -203,7 +203,7 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">output_name</span><span class="p">,</span> <span class="n">output_index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">output_name</span><span class="p">,</span> <span class="n">output_index</span><span class="p">,</span> <span class="n">has_pid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="c1"># Add more parameters for OUTMODE command </span>
+        <span class="c1"># Add more parameters for OUTMODE command</span>
         <span class="c1"># and redefine the corresponding group</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;polarity&#39;</span><span class="p">,</span>
                            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Output polarity&#39;</span><span class="p">,</span>
@@ -390,7 +390,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Lakeshore Model 372 Temperature Controller Driver</span>
 
-<span class="sd">    Note that interaction with the control input (referred to as &#39;A&#39; in the </span>
+<span class="sd">    Note that interaction with the control input (referred to as &#39;A&#39; in the</span>
 <span class="sd">    Computer Interface Operation section of the manual) is not implemented.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">channel_name_command</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ch</span><span class="si">{:02}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">):</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>

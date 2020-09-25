@@ -219,21 +219,21 @@
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Enum</span><span class="p">(</span><span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="p">)),</span>
                            <span class="n">initial_cache_value</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="o">.</span><span class="n">ENABLED</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        The WM command enables or disables the automatic abort function for </span>
-<span class="s2">        the staircase sweep sources and the pulsed sweep source. The </span>
-<span class="s2">        automatic abort function stops the measurement when one of the </span>
+<span class="s2">        The WM command enables or disables the automatic abort function for</span>
+<span class="s2">        the staircase sweep sources and the pulsed sweep source. The</span>
+<span class="s2">        automatic abort function stops the measurement when one of the</span>
 <span class="s2">        following conditions occurs:</span>
 <span class="s2">         - Compliance on the measurement channel</span>
 <span class="s2">         - Compliance on the non-measurement channel</span>
 <span class="s2">         - Overflow on the AD converter</span>
 <span class="s2">         - Oscillation on any channel</span>
-<span class="s2">        This command also sets the post measurement condition for the sweep </span>
-<span class="s2">        sources. After the measurement is normally completed, the staircase </span>
-<span class="s2">        sweep sources force the value specified by the post parameter, </span>
+<span class="s2">        This command also sets the post measurement condition for the sweep</span>
+<span class="s2">        sources. After the measurement is normally completed, the staircase</span>
+<span class="s2">        sweep sources force the value specified by the post parameter,</span>
 <span class="s2">        and the pulsed sweep source forces the pulse base value.</span>
-<span class="s2">        </span>
-<span class="s2">        If the measurement is stopped by the automatic abort function, </span>
-<span class="s2">        the staircase sweep sources force the start value, and the pulsed </span>
+
+<span class="s2">        If the measurement is stopped by the automatic abort function,</span>
+<span class="s2">        the staircase sweep sources force the start value, and the pulsed</span>
 <span class="s2">        sweep source forces the pulse base value after sweep.</span>
 <span class="s2">        &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -245,7 +245,7 @@
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Enum</span><span class="p">(</span><span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">WM</span><span class="o">.</span><span class="n">Post</span><span class="p">)),</span>
                            <span class="n">initial_cache_value</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">WM</span><span class="o">.</span><span class="n">Post</span><span class="o">.</span><span class="n">START</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        Source output value after the measurement is normally completed. If </span>
+<span class="s2">        Source output value after the measurement is normally completed. If</span>
 <span class="s2">        this parameter is not set, the sweep sources force the start value.</span>
 <span class="s2">                                 &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -255,10 +255,10 @@
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                           Hold time (in seconds) that is the </span>
-<span class="s2">                           wait time after starting measurement </span>
-<span class="s2">                           and before starting delay time for </span>
-<span class="s2">                           the first step 0 to 655.35 s, with 10 </span>
+<span class="s2">                           Hold time (in seconds) that is the</span>
+<span class="s2">                           wait time after starting measurement</span>
+<span class="s2">                           and before starting delay time for</span>
+<span class="s2">                           the first step 0 to 655.35 s, with 10</span>
 <span class="s2">                           ms resolution. Numeric expression.</span>
 <span class="s2">                          &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -269,8 +269,8 @@
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                           Delay time (in seconds) that is the wait time after</span>
-<span class="s2">                           starting to force a step output and before </span>
-<span class="s2">                            starting a step measurement. 0 to 65.535 s, </span>
+<span class="s2">                           starting to force a step output and before</span>
+<span class="s2">                            starting a step measurement. 0 to 65.535 s,</span>
 <span class="s2">                            with 0.1 ms resolution. Numeric expression.</span>
 <span class="s2">                            &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -281,12 +281,12 @@
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                            Step delay time (in seconds) that is the wait time</span>
-<span class="s2">                            after starting a step measurement and before  </span>
-<span class="s2">                            starting to force the next step output. 0 to 1 s, </span>
-<span class="s2">                            with 0.1 ms resolution. Numeric expression. If </span>
-<span class="s2">                            this parameter is not set, step delay will be 0. If </span>
-<span class="s2">                            step delay is shorter than the measurement time, </span>
-<span class="s2">                            the B1500 waits until the measurement completes, </span>
+<span class="s2">                            after starting a step measurement and before</span>
+<span class="s2">                            starting to force the next step output. 0 to 1 s,</span>
+<span class="s2">                            with 0.1 ms resolution. Numeric expression. If</span>
+<span class="s2">                            this parameter is not set, step delay will be 0. If</span>
+<span class="s2">                            step delay is shorter than the measurement time,</span>
+<span class="s2">                            the B1500 waits until the measurement completes,</span>
 <span class="s2">                            then forces the next step output.</span>
 <span class="s2">                            &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -296,11 +296,11 @@
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                            Step source trigger delay time (in seconds) that</span>
-<span class="s2">                            is the wait time after completing a step output </span>
-<span class="s2">                            setup and before sending a step output setup </span>
-<span class="s2">                            completion trigger. 0 to the value of ``delay`` s, </span>
-<span class="s2">                            with 0.1 ms resolution. </span>
-<span class="s2">                            If this parameter is not set, </span>
+<span class="s2">                            is the wait time after completing a step output</span>
+<span class="s2">                            setup and before sending a step output setup</span>
+<span class="s2">                            completion trigger. 0 to the value of ``delay`` s,</span>
+<span class="s2">                            with 0.1 ms resolution.</span>
+<span class="s2">                            If this parameter is not set,</span>
 <span class="s2">                            trigger delay will be 0.</span>
 <span class="s2">                            &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -311,10 +311,10 @@
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                           Step measurement trigger delay time (in seconds)</span>
-<span class="s2">                           that is the wait time after receiving a start step </span>
-<span class="s2">                           measurement trigger and before starting a step </span>
-<span class="s2">                           measurement. 0 to 65.535 s, with 0.1 ms resolution. </span>
-<span class="s2">                           Numeric expression. If this parameter is not set, </span>
+<span class="s2">                           that is the wait time after receiving a start step</span>
+<span class="s2">                           measurement trigger and before starting a step</span>
+<span class="s2">                           measurement. 0 to 65.535 s, with 0.1 ms resolution.</span>
+<span class="s2">                           Numeric expression. If this parameter is not set,</span>
 <span class="s2">                           measure delay will be 0.</span>
 <span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -355,15 +355,15 @@
                            <span class="n">set_parser</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">VOutputRange</span><span class="p">,</span>
                            <span class="n">snapshot_get</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        Ranging type for staircase sweep voltage output. Integer expression. </span>
-<span class="s2">        See Table 4-4 on page 20. The B1500 usually uses the minimum range </span>
-<span class="s2">        that covers both start and stop values to force the staircase sweep </span>
-<span class="s2">        voltage. However, if you set `power_compliance` and if the following </span>
-<span class="s2">        formulas are true, the B1500 uses the minimum range that covers the </span>
-<span class="s2">        output value, and changes the output range dynamically (20 V range or </span>
-<span class="s2">        above). Range changing may cause 0 V output in a moment. For the </span>
-<span class="s2">        limited auto ranging, the instrument never uses the range less than </span>
-<span class="s2">        the specified range. </span>
+<span class="s2">        Ranging type for staircase sweep voltage output. Integer expression.</span>
+<span class="s2">        See Table 4-4 on page 20. The B1500 usually uses the minimum range</span>
+<span class="s2">        that covers both start and stop values to force the staircase sweep</span>
+<span class="s2">        voltage. However, if you set `power_compliance` and if the following</span>
+<span class="s2">        formulas are true, the B1500 uses the minimum range that covers the</span>
+<span class="s2">        output value, and changes the output range dynamically (20 V range or</span>
+<span class="s2">        above). Range changing may cause 0 V output in a moment. For the</span>
+<span class="s2">        limited auto ranging, the instrument never uses the range less than</span>
+<span class="s2">        the specified range.</span>
 <span class="s2">         - Icomp &gt; maximum current for the output range</span>
 <span class="s2">         - Pcomp/output voltage &gt; maximum current for the output range</span>
 <span class="s2">        &quot;&quot;&quot;</span><span class="p">))</span>
@@ -375,7 +375,7 @@
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span>
                            <span class="n">snapshot_get</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        Start value of the stair case sweep (in V). For the log sweep, </span>
+<span class="s2">        Start value of the stair case sweep (in V). For the log sweep,</span>
 <span class="s2">        start and stop must have the same polarity.</span>
 <span class="s2">                                &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -396,7 +396,7 @@
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Ints</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1001</span><span class="p">),</span>
                            <span class="n">snapshot_get</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        Number of steps for staircase sweep. Possible  values from 1 to </span>
+<span class="s2">        Number of steps for staircase sweep. Possible  values from 1 to</span>
 <span class="s2">        1001&quot;&quot;&quot;</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;current_compliance&#39;</span><span class="p">,</span>
@@ -406,14 +406,14 @@
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span>
                            <span class="n">snapshot_get</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        Current compliance (in A). Refer to Manual 2016. See Table 4-7 on </span>
-<span class="s2">        page 24, Table 4-9 on page 26, Table 4-12 on page 27, or Table 4-15 </span>
-<span class="s2">        on page 28 for each measurement resource type. If you do not set </span>
+<span class="s2">        Current compliance (in A). Refer to Manual 2016. See Table 4-7 on</span>
+<span class="s2">        page 24, Table 4-9 on page 26, Table 4-12 on page 27, or Table 4-15</span>
+<span class="s2">        on page 28 for each measurement resource type. If you do not set</span>
 <span class="s2">        current_compliance, the previous value is used.</span>
 <span class="s2">        Compliance polarity is automatically set to the same polarity as the</span>
-<span class="s2">        output value, regardless of the specified Icomp. </span>
-<span class="s2">        If the output value is 0, the compliance polarity is positive. If </span>
-<span class="s2">        you set Pcomp, the maximum Icomp value for the measurement resource </span>
+<span class="s2">        output value, regardless of the specified Icomp.</span>
+<span class="s2">        If the output value is 0, the compliance polarity is positive. If</span>
+<span class="s2">        you set Pcomp, the maximum Icomp value for the measurement resource</span>
 <span class="s2">        is allowed, regardless of the output range setting.</span>
 <span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -424,10 +424,10 @@
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span>
                            <span class="n">snapshot_get</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        Power compliance (in W). Resolution: 0.001 W. If it is not entered, </span>
+<span class="s2">        Power compliance (in W). Resolution: 0.001 W. If it is not entered,</span>
 <span class="s2">        the power compliance is not set. This parameter is not available for</span>
-<span class="s2">        HVSMU. 0.001 to 2 for MPSMU/HRSMU, 0.001 to 20 for HPSMU, 0.001 to </span>
-<span class="s2">        40 for HCSMU, 0.001 to 80 for dual HCSMU, 0.001 to 3 for MCSMU, </span>
+<span class="s2">        HVSMU. 0.001 to 2 for MPSMU/HRSMU, 0.001 to 20 for HPSMU, 0.001 to</span>
+<span class="s2">        40 for HCSMU, 0.001 to 80 for dual HCSMU, 0.001 to 3 for MCSMU,</span>
 <span class="s2">        0.001 to 100 for UHVU</span>
 <span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -800,11 +800,11 @@
             <span class="n">initial_cache_value</span><span class="o">=</span><span class="n">MM</span><span class="o">.</span><span class="n">Mode</span><span class="o">.</span><span class="n">SPOT</span><span class="p">,</span>
             <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                Set measurement mode for this module.</span>
-<span class="s2">                </span>
-<span class="s2">                It is recommended for this parameter to use values from </span>
+
+<span class="s2">                It is recommended for this parameter to use values from</span>
 <span class="s2">                :class:`.constants.MM.Mode` enumeration.</span>
-<span class="s2">                </span>
-<span class="s2">                Refer to the documentation of ``MM`` command in the </span>
+
+<span class="s2">                Refer to the documentation of ``MM`` command in the</span>
 <span class="s2">                programming guide for more information.&quot;&quot;&quot;</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="c1"># Instrument is initialized with this setting having value of</span>
@@ -819,7 +819,7 @@
             <span class="n">set_parser</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">CMM</span><span class="o">.</span><span class="n">Mode</span><span class="p">,</span>
             <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Enum</span><span class="p">(</span><span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">CMM</span><span class="o">.</span><span class="n">Mode</span><span class="p">)),</span>
             <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            The methods sets the SMU measurement operation mode. This </span>
+<span class="s2">            The methods sets the SMU measurement operation mode. This</span>
 <span class="s2">            is not available for the high speed spot measurement.</span>
 <span class="s2">            mode : SMU measurement operation mode. `constants.CMM.Mode`</span>
 <span class="s2">            &quot;&quot;&quot;</span><span class="p">)</span>
@@ -863,10 +863,10 @@
             <span class="n">set_parser</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">IMeasRange</span><span class="p">,</span>
             <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">            This method specifies the current measurement range or ranging</span>
-<span class="s2">            type.In the initial setting, the auto ranging is set. The range </span>
-<span class="s2">            changing occurs immediately after the trigger (that is, during </span>
+<span class="s2">            type.In the initial setting, the auto ranging is set. The range</span>
+<span class="s2">            changing occurs immediately after the trigger (that is, during</span>
 <span class="s2">            the measurements). Current measurement channel can be decided by</span>
-<span class="s2">             the `measurement_operation_mode` method setting and the channel </span>
+<span class="s2">             the `measurement_operation_mode` method setting and the channel</span>
 <span class="s2">            output mode (voltage or current).</span>
 <span class="s2">        &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -878,10 +878,10 @@
             <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Bool</span><span class="p">(),</span>
             <span class="n">initial_cache_value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            This methods sets the connection mode of a SMU filter for each </span>
-<span class="s2">            channel. A filter is mounted on the SMU. It assures clean source </span>
-<span class="s2">            output with no spikes or overshooting. </span>
-<span class="s2">            ``False``, meaning &quot;disconnect&quot; is the initial setting. Set to </span>
+<span class="s2">            This methods sets the connection mode of a SMU filter for each</span>
+<span class="s2">            channel. A filter is mounted on the SMU. It assures clean source</span>
+<span class="s2">            output with no spikes or overshooting.</span>
+<span class="s2">            ``False``, meaning &quot;disconnect&quot; is the initial setting. Set to</span>
 <span class="s2">            ``True`` to connect.</span>
 <span class="s2">            &quot;&quot;&quot;</span><span class="p">)</span>
 

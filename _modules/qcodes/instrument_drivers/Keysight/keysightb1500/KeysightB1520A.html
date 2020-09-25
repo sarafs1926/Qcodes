@@ -197,10 +197,10 @@
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Enum</span><span class="p">(</span><span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="p">)),</span>
                            <span class="n">initial_cache_value</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">Abort</span><span class="o">.</span><span class="n">ENABLED</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                           enables or disables the automatic abort function </span>
-<span class="s2">                           for the CV (DC bias) sweep measurement (MM18) and </span>
-<span class="s2">                           the pulsed bias sweep measurement (MM20). The </span>
-<span class="s2">                           automatic abort function stops the measurement </span>
+<span class="s2">                           enables or disables the automatic abort function</span>
+<span class="s2">                           for the CV (DC bias) sweep measurement (MM18) and</span>
+<span class="s2">                           the pulsed bias sweep measurement (MM20). The</span>
+<span class="s2">                           automatic abort function stops the measurement</span>
 <span class="s2">                           when one of the following conditions occurs:</span>
 <span class="s2">                               - NULL loop unbalance condition</span>
 <span class="s2">                               - IV amplifier saturation condition</span>
@@ -215,15 +215,15 @@
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Enum</span><span class="p">(</span><span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="p">)),</span>
                            <span class="n">initial_cache_value</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">WMDCV</span><span class="o">.</span><span class="n">Post</span><span class="o">.</span><span class="n">START</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                           This command also sets the post measurement </span>
-<span class="s2">                           condition of the MFCMU. After the measurement is </span>
-<span class="s2">                           normally completed, the DC bias sweep source </span>
-<span class="s2">                           forces the value specified by the post parameter, </span>
-<span class="s2">                           and the pulsed bias sweep source forces </span>
+<span class="s2">                           This command also sets the post measurement</span>
+<span class="s2">                           condition of the MFCMU. After the measurement is</span>
+<span class="s2">                           normally completed, the DC bias sweep source</span>
+<span class="s2">                           forces the value specified by the post parameter,</span>
+<span class="s2">                           and the pulsed bias sweep source forces</span>
 <span class="s2">                           the pulse base value.</span>
-<span class="s2">                           If the measurement is stopped by the automatic  </span>
-<span class="s2">                           abort function, the DC bias sweep source forces </span>
-<span class="s2">                           the start value, and the pulsed bias sweep source </span>
+<span class="s2">                           If the measurement is stopped by the automatic</span>
+<span class="s2">                           abort function, the DC bias sweep source forces</span>
+<span class="s2">                           the start value, and the pulsed bias sweep source</span>
 <span class="s2">                           forces the pulse base value after sweep.</span>
 <span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -233,10 +233,10 @@
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                           Hold time (in seconds) that is the </span>
-<span class="s2">                           wait time after starting measurement </span>
-<span class="s2">                           and before starting delay time for </span>
-<span class="s2">                           the first step 0 to 655.35, with 10 </span>
+<span class="s2">                           Hold time (in seconds) that is the</span>
+<span class="s2">                           wait time after starting measurement</span>
+<span class="s2">                           and before starting delay time for</span>
+<span class="s2">                           the first step 0 to 655.35, with 10</span>
 <span class="s2">                           ms resolution. Numeric expression.</span>
 <span class="s2">                          &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -247,8 +247,8 @@
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                           Delay time (in seconds) that is the wait time after</span>
-<span class="s2">                           starting to force a step output and before </span>
-<span class="s2">                            starting a step measurement. 0 to 65.535, </span>
+<span class="s2">                           starting to force a step output and before</span>
+<span class="s2">                            starting a step measurement. 0 to 65.535,</span>
 <span class="s2">                            with 0.1 ms resolution. Numeric expression.</span>
 <span class="s2">                            &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -259,12 +259,12 @@
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                            Step delay time (in seconds) that is the wait time</span>
-<span class="s2">                            after starting a step measurement and before  </span>
-<span class="s2">                            starting to force the next step output. 0 to 1, </span>
-<span class="s2">                            with 0.1 ms resolution. Numeric expression. If </span>
-<span class="s2">                            this parameter is not set, step delay will be 0. If </span>
-<span class="s2">                            step delay is shorter than the measurement time, </span>
-<span class="s2">                            the B1500 waits until the measurement completes, </span>
+<span class="s2">                            after starting a step measurement and before</span>
+<span class="s2">                            starting to force the next step output. 0 to 1,</span>
+<span class="s2">                            with 0.1 ms resolution. Numeric expression. If</span>
+<span class="s2">                            this parameter is not set, step delay will be 0. If</span>
+<span class="s2">                            step delay is shorter than the measurement time,</span>
+<span class="s2">                            the B1500 waits until the measurement completes,</span>
 <span class="s2">                            then forces the next step output.</span>
 <span class="s2">                            &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -274,9 +274,9 @@
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                            Step source trigger delay time (in seconds) that</span>
-<span class="s2">                            is the wait time after completing a step output </span>
-<span class="s2">                            setup and before sending a step output setup </span>
-<span class="s2">                            completion trigger. 0 to the value of ``delay``, </span>
+<span class="s2">                            is the wait time after completing a step output</span>
+<span class="s2">                            setup and before sending a step output setup</span>
+<span class="s2">                            completion trigger. 0 to the value of ``delay``,</span>
 <span class="s2">                            with 0.1 ms resolution. Numeric expression. If this</span>
 <span class="s2">                            parameter is not set, trigger delay will be 0.</span>
 <span class="s2">                            &quot;&quot;&quot;</span><span class="p">))</span>
@@ -288,10 +288,10 @@
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                           Step measurement trigger delay time (in seconds)</span>
-<span class="s2">                           that is the wait time after receiving a start step </span>
-<span class="s2">                           measurement trigger and before starting a step </span>
-<span class="s2">                           measurement. 0 to 65.535, with 0.1 ms resolution. </span>
-<span class="s2">                           Numeric expression. If this parameter is not set, </span>
+<span class="s2">                           that is the wait time after receiving a start step</span>
+<span class="s2">                           measurement trigger and before starting a step</span>
+<span class="s2">                           measurement. 0 to 65.535, with 0.1 ms resolution.</span>
+<span class="s2">                           Numeric expression. If this parameter is not set,</span>
 <span class="s2">                           measure delay will be 0.</span>
 <span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -315,7 +315,7 @@
                            <span class="n">set_parser</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">SweepMode</span><span class="p">,</span>
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                   Sweep mode. </span>
+<span class="s2">                   Sweep mode.</span>
 <span class="s2">                       1: Linear sweep (single stair, start to stop.)</span>
 <span class="s2">                       2: Log sweep (single stair, start to stop.)</span>
 <span class="s2">                       3: Linear sweep (double stair, start to stop to start.)</span>
@@ -328,7 +328,7 @@
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span>
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                   Start value of the DC bias sweep (in V). For the log  sweep, </span>
+<span class="s2">                   Start value of the DC bias sweep (in V). For the log  sweep,</span>
 <span class="s2">                   start and stop must have the same polarity.</span>
 <span class="s2">                                  &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -338,7 +338,7 @@
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span>
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                   Stop value of the DC bias sweep (in V). For the log sweep, </span>
+<span class="s2">                   Stop value of the DC bias sweep (in V). For the log sweep,</span>
 <span class="s2">                   start and stop must have the same polarity.</span>
 <span class="s2">                                  &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -347,7 +347,7 @@
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Ints</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1001</span><span class="p">),</span>
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                   Number of steps for staircase sweep. Possible  values from 1 to </span>
+<span class="s2">                   Number of steps for staircase sweep. Possible  values from 1 to</span>
 <span class="s2">                   1001&quot;&quot;&quot;</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_chan&#39;</span><span class="p">,</span>
@@ -510,19 +510,19 @@
                            <span class="n">set_parser</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">ADJ</span><span class="o">.</span><span class="n">Mode</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">            This parameter selects the MFCMU phase compensation mode. This</span>
-<span class="s2">            command initializes the MFCMU. The available modes are captured </span>
+<span class="s2">            command initializes the MFCMU. The available modes are captured</span>
 <span class="s2">            in :class:`constants.ADJ.Mode`:</span>
-<span class="s2"> </span>
+
 <span class="s2">                - 0: Auto mode. Initial setting.</span>
 <span class="s2">                - 1: Manual mode.</span>
 <span class="s2">                - 2: Load adaptive mode.</span>
-<span class="s2">    </span>
-<span class="s2">            For mode=0, the KeysightB1500 sets the compensation data </span>
-<span class="s2">            automatically. For mode=1, execute the </span>
-<span class="s2">            :meth:`phase_compensation` method ( the ``ADJ?`` command) to  </span>
-<span class="s2">            perform the phase compensation and set the compensation data. </span>
-<span class="s2">            For mode=2, the KeysightB1500 performs the phase compensation </span>
-<span class="s2">            before every measurement. It is useful when there are wide load </span>
+
+<span class="s2">            For mode=0, the KeysightB1500 sets the compensation data</span>
+<span class="s2">            automatically. For mode=1, execute the</span>
+<span class="s2">            :meth:`phase_compensation` method ( the ``ADJ?`` command) to</span>
+<span class="s2">            perform the phase compensation and set the compensation data.</span>
+<span class="s2">            For mode=2, the KeysightB1500 performs the phase compensation</span>
+<span class="s2">            before every measurement. It is useful when there are wide load</span>
 <span class="s2">            fluctuations by changing the bias and so on.&quot;&quot;&quot;</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="s1">&#39;cv_sweep&#39;</span><span class="p">,</span> <span class="n">CVSweeper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;cv_sweep&#39;</span><span class="p">))</span>
@@ -532,7 +532,7 @@
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Ints</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1023</span><span class="p">),</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            Coefficient used to define the number of averaging samples or </span>
+<span class="s2">            Coefficient used to define the number of averaging samples or</span>
 <span class="s2">            the averaging time. Integer expression.</span>
 <span class="s2">                - For mode=0: 1 to 1023. Initial setting/default setting is 2.</span>
 <span class="s2">                - For mode=2: 1 to 100. Initial setting/default setting is 1.</span>
@@ -544,19 +544,19 @@
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Enum</span><span class="p">(</span><span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">ACT</span><span class="o">.</span><span class="n">Mode</span><span class="p">)),</span>
                            <span class="n">set_parser</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">ACT</span><span class="o">.</span><span class="n">Mode</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            Sets the number of averaging samples or the averaging time set </span>
+<span class="s2">            Sets the number of averaging samples or the averaging time set</span>
 <span class="s2">            to the A/D converter of the MFCMU</span>
-<span class="s2">            </span>
-<span class="s2">                ``constants.ACT.Mode.AUTO``: Auto mode. Defines the number </span>
-<span class="s2">                of averaging samples given by the following formula. Then </span>
-<span class="s2">                initial averaging is the number of averaging samples </span>
-<span class="s2">                automatically set by the B1500 and you cannot change. </span>
-<span class="s2">            </span>
+
+<span class="s2">                ``constants.ACT.Mode.AUTO``: Auto mode. Defines the number</span>
+<span class="s2">                of averaging samples given by the following formula. Then</span>
+<span class="s2">                initial averaging is the number of averaging samples</span>
+<span class="s2">                automatically set by the B1500 and you cannot change.</span>
+
 <span class="s2">                Number of averaging samples = N x initial averaging</span>
-<span class="s2">            </span>
-<span class="s2">                ``constants.ACT.Mode.PLC``: Power line cycle (PLC) mode. </span>
-<span class="s2">                Defines the averaging time given by the following formula. </span>
-<span class="s2">            </span>
+
+<span class="s2">                ``constants.ACT.Mode.PLC``: Power line cycle (PLC) mode.</span>
+<span class="s2">                Defines the averaging time given by the following formula.</span>
+
 <span class="s2">                Averaging time = N / power line frequency</span>
 <span class="s2">                                       &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -571,9 +571,9 @@
                            <span class="n">set_parser</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">RangingMode</span><span class="p">,</span>
                            <span class="n">get_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            Specifies the measurement range or the measurement ranging type </span>
-<span class="s2">            of the MFCMU. In the initial setting, the auto ranging is set. </span>
-<span class="s2">            The range changing occurs immediately after the trigger </span>
+<span class="s2">            Specifies the measurement range or the measurement ranging type</span>
+<span class="s2">            of the MFCMU. In the initial setting, the auto ranging is set.</span>
+<span class="s2">            The range changing occurs immediately after the trigger</span>
 <span class="s2">            (that is, during the measurements).</span>
 <span class="s2">            Possible ranging modes are autorange and fixed range.</span>
 <span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
@@ -582,11 +582,11 @@
                            <span class="n">set_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_measurement_range_for_non_auto</span><span class="p">,</span>
                            <span class="n">get_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            Measurement range. Needs to set when ``ranging_mode`` is set to </span>
-<span class="s2">            PLC. The value should be integer 0 or more. 50 ohm, 100 ohm, </span>
-<span class="s2">            300 ohm, 1 kilo ohm, 3 kilo ohm, 10 kilo ohm, 30 kilo ohm, </span>
-<span class="s2">            100 kilo ohm, and 300 kilo ohm are selectable. Available </span>
-<span class="s2">            measurement ranges depend on the output signal frequency set by </span>
+<span class="s2">            Measurement range. Needs to set when ``ranging_mode`` is set to</span>
+<span class="s2">            PLC. The value should be integer 0 or more. 50 ohm, 100 ohm,</span>
+<span class="s2">            300 ohm, 1 kilo ohm, 3 kilo ohm, 10 kilo ohm, 30 kilo ohm,</span>
+<span class="s2">            100 kilo ohm, and 300 kilo ohm are selectable. Available</span>
+<span class="s2">            measurement ranges depend on the output signal frequency set by</span>
 <span class="s2">            the FC command.&quot;&quot;&quot;</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;measurement_mode&quot;</span><span class="p">,</span>
@@ -597,10 +597,10 @@
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">            Set measurement mode for this module.</span>
 
-<span class="s2">            It is recommended for this parameter to use values from </span>
+<span class="s2">            It is recommended for this parameter to use values from</span>
 <span class="s2">            :class:`.constants.MM.Mode` enumeration.</span>
 
-<span class="s2">            Refer to the documentation of ``MM`` command in the programming </span>
+<span class="s2">            Refer to the documentation of ``MM`` command in the programming</span>
 <span class="s2">            guide for more information.</span>
 <span class="s2">                            &quot;&quot;&quot;</span><span class="p">))</span>
 
@@ -612,8 +612,8 @@
                            <span class="n">set_parser</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">IMP</span><span class="o">.</span><span class="n">MeasurementMode</span><span class="p">,</span>
                            <span class="n">initial_value</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">IMP</span><span class="o">.</span><span class="n">MeasurementMode</span><span class="o">.</span><span class="n">Cp_D</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            The IMP command specifies the parameter measured by the MFCMU. </span>
-<span class="s2">            Look at the ``constants.IMP.MeasurementMode`` for all the modes. </span>
+<span class="s2">            The IMP command specifies the parameter measured by the MFCMU.</span>
+<span class="s2">            Look at the ``constants.IMP.MeasurementMode`` for all the modes.</span>
 <span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ac_dc_volt_monitor&#39;</span><span class="p">,</span>
@@ -622,10 +622,10 @@
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Ints</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
                            <span class="n">initial_value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            This command enables or disables the data monitor and data </span>
+<span class="s2">            This command enables or disables the data monitor and data</span>
 <span class="s2">            output of the MFCMU AC voltage and DC voltage.</span>
 <span class="s2">                0: Disables the data monitor and output. Initial setting.</span>
-<span class="s2">                1: Enables the data monitor and output.                        </span>
+<span class="s2">                1: Enables the data monitor and output.</span>
 <span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;cv_sweep_voltages&#39;</span><span class="p">,</span>
@@ -633,22 +633,22 @@
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span>
                            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Voltage&#39;</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            Outputs the tuple of voltages to sweep.  sweep_start, sweep_end </span>
-<span class="s2">            and sweep_step functions are used to define the values of </span>
-<span class="s2">            voltages. There are possible modes; linear sweep, log sweep, </span>
-<span class="s2">            linear 2 way sweep and log 2 way sweep. The  output of </span>
-<span class="s2">            sweep_mode method is used to decide which mode to use.  </span>
+<span class="s2">            Outputs the tuple of voltages to sweep.  sweep_start, sweep_end</span>
+<span class="s2">            and sweep_step functions are used to define the values of</span>
+<span class="s2">            voltages. There are possible modes; linear sweep, log sweep,</span>
+<span class="s2">            linear 2 way sweep and log 2 way sweep. The  output of</span>
+<span class="s2">            sweep_mode method is used to decide which mode to use.</span>
 <span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;run_sweep&#39;</span><span class="p">,</span>
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">CVSweepMeasurement</span><span class="p">,</span>
                            <span class="n">docstring</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            This is MultiParameter. Running the sweep runs the measurement </span>
-<span class="s2">            on the list of values of cv_sweep_voltages. The output is a </span>
-<span class="s2">            primary parameter (for ex Capacitance) and a secondary  </span>
-<span class="s2">            parameter (for ex Dissipation) both of whom use the same </span>
-<span class="s2">            setpoint cv_sweep_voltages. The impedance_model defines exactly </span>
-<span class="s2">            what will be the primary and secondary parameter. The default </span>
+<span class="s2">            This is MultiParameter. Running the sweep runs the measurement</span>
+<span class="s2">            on the list of values of cv_sweep_voltages. The output is a</span>
+<span class="s2">            primary parameter (for ex Capacitance) and a secondary</span>
+<span class="s2">            parameter (for ex Dissipation) both of whom use the same</span>
+<span class="s2">            setpoint cv_sweep_voltages. The impedance_model defines exactly</span>
+<span class="s2">            what will be the primary and secondary parameter. The default</span>
 <span class="s2">            case is Capacitance and Dissipation.</span>
 <span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
 
