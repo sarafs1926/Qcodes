@@ -845,7 +845,7 @@
                        <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">err_str</span><span class="si">}</span><span class="s1"> was raised&#39;</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">extrainfo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Extra info: </span><span class="si">{</span><span class="n">extrainfo</span><span class="si">}</span><span class="s1">&#39;</span>
-                <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Call to </span><span class="si">{source}</span><span class="s1"> was successful&#39;</span>
             <span class="k">if</span> <span class="n">extrainfo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>

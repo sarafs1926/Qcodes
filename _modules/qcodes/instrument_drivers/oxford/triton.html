@@ -331,11 +331,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Warning: set magnet sweep rate in range (0 , 0.2] T/min&#39;</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_get_control_B_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
-        <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;READ:SYS:VRM:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;READ:SYS:VRM:</span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s1">&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_response_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="n">cmd</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">_get_control_Bcomp_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
-        <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;READ:SYS:VRM:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;READ:SYS:VRM:</span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s1">&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_response_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="n">cmd</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="n">cmd</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:])</span>
 
     <span class="k">def</span> <span class="nf">_get_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
@@ -374,13 +374,13 @@
         <span class="c1"># verify current channel</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_control_channel</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">force_get</span><span class="p">:</span>
             <span class="n">tempval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span>
-                <span class="s1">&#39;READ:DEV:T</span><span class="si">{}</span><span class="s1">:TEMP:LOOP:MODE&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_control_channel</span><span class="p">))</span>
+                <span class="sa">f</span><span class="s1">&#39;READ:DEV:T</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_control_channel</span><span class="si">}</span><span class="s1">:TEMP:LOOP:MODE&#39;</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">tempval</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;NOT_FOUND&#39;</span><span class="p">):</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_control_channel</span>
 
         <span class="c1"># either _control_channel is not set or wrong</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">17</span><span class="p">):</span>
-            <span class="n">tempval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;READ:DEV:T</span><span class="si">{}</span><span class="s1">:TEMP:LOOP:MODE&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+            <span class="n">tempval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;READ:DEV:T</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">:TEMP:LOOP:MODE&#39;</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">tempval</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;NOT_FOUND&#39;</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_control_channel</span> <span class="o">=</span> <span class="n">i</span>
                 <span class="k">break</span>
@@ -393,12 +393,12 @@
 
     <span class="k">def</span> <span class="nf">_get_control_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
         <span class="n">chan</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_control_channel</span><span class="p">()</span>
-        <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;READ:DEV:T</span><span class="si">{}</span><span class="s1">:TEMP:LOOP:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chan</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;READ:DEV:T</span><span class="si">{</span><span class="n">chan</span><span class="si">}</span><span class="s1">:TEMP:LOOP:</span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s1">&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_response_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="n">cmd</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">_set_control_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="n">chan</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_control_channel</span><span class="p">()</span>
-        <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;SET:DEV:T</span><span class="si">{}</span><span class="s1">:TEMP:LOOP:</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chan</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;SET:DEV:T</span><span class="si">{</span><span class="n">chan</span><span class="si">}</span><span class="s1">:TEMP:LOOP:</span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_set_control_magnet_sweeprate_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
@@ -478,7 +478,7 @@
 
     <span class="k">def</span> <span class="nf">_get_temp_channel_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
         <span class="n">config</span> <span class="o">=</span> <span class="n">configparser</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">()</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf16&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf16&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="nb">next</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
             <span class="n">config</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 

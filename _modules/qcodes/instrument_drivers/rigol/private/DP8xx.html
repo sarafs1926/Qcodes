@@ -172,7 +172,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ovp_range</span> <span class="o">=</span> <span class="n">ovp_range</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ocp_range</span> <span class="o">=</span> <span class="n">ocp_range</span>
 
-        <span class="n">select_cmd</span> <span class="o">=</span> <span class="s2">&quot;:INSTrument:NSELect </span><span class="si">{}</span><span class="s2">;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+        <span class="n">select_cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;:INSTrument:NSELect </span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s2">;&quot;</span>
         <span class="n">strstrip</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s2">&quot;set_voltage&quot;</span><span class="p">,</span>
@@ -198,13 +198,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">,</span>
                            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Output enabled&#39;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> :OUTPut:STATe </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">select_cmd</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">),</span>
-                           <span class="n">get_cmd</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> :OUTPut:STATe?&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">select_cmd</span><span class="p">),</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">select_cmd</span><span class="si">}</span><span class="s1"> :OUTPut:STATe?&#39;</span><span class="p">,</span>
                            <span class="n">get_parser</span><span class="o">=</span><span class="n">strstrip</span><span class="p">,</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">OnOff</span><span class="p">()</span>
                            <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span><span class="p">,</span>
                            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Get the output mode&#39;</span><span class="p">,</span>
-                           <span class="n">get_cmd</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> :OUTPut:MODE?&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">select_cmd</span><span class="p">),</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">select_cmd</span><span class="si">}</span><span class="s1"> :OUTPut:MODE?&#39;</span><span class="p">,</span>
                            <span class="n">get_parser</span><span class="o">=</span><span class="n">strstrip</span><span class="p">,</span>
                            <span class="n">val_mapping</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;ConstantVoltage&#39;</span><span class="p">:</span> <span class="s1">&#39;CV&#39;</span><span class="p">,</span>
                                         <span class="s1">&#39;ConstantCurrent&#39;</span><span class="p">:</span> <span class="s1">&#39;CC&#39;</span><span class="p">,</span>
@@ -244,7 +244,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;ovp_state&#39;</span><span class="p">,</span>
                            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Over Voltage Protection status&#39;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> :VOLTage:PROTection:STATe </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">select_cmd</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">),</span>
-                           <span class="n">get_cmd</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> :VOLTage:PROTection:STATe?&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">select_cmd</span><span class="p">),</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">select_cmd</span><span class="si">}</span><span class="s1"> :VOLTage:PROTection:STATe?&#39;</span><span class="p">,</span>
                            <span class="n">get_parser</span><span class="o">=</span><span class="n">strstrip</span><span class="p">,</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">OnOff</span><span class="p">()</span>
                            <span class="p">)</span>
@@ -261,7 +261,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;ocp_state&#39;</span><span class="p">,</span>
                            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Over Current Protection status&#39;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> :CURRent:PROTection:STATe </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">select_cmd</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">),</span>
-                           <span class="n">get_cmd</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> :CURRent:PROTection:STATe?&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">select_cmd</span><span class="p">),</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">select_cmd</span><span class="si">}</span><span class="s1"> :CURRent:PROTection:STATe?&#39;</span><span class="p">,</span>
                            <span class="n">get_parser</span><span class="o">=</span><span class="n">strstrip</span><span class="p">,</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">OnOff</span><span class="p">()</span>
                            <span class="p">)</span></div>
