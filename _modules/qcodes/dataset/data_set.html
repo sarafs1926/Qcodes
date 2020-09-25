@@ -668,7 +668,7 @@
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Can not set parent dataset links on a dataset &#39;</span>
                                <span class="s1">&#39;that has been started.&#39;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">((</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">link</span><span class="p">,</span> <span class="n">Link</span><span class="p">)</span> <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">links</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">link</span><span class="p">,</span> <span class="n">Link</span><span class="p">)</span> <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">links</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid input. Did not receive a list of Links&#39;</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">links</span><span class="p">:</span>
