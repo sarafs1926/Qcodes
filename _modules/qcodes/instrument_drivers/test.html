@@ -202,7 +202,7 @@
         <span class="n">name</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="vm">__name__</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">instances</span><span class="p">:</span>
-            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;no instances of </span><span class="si">{}</span><span class="s1"> found&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;no instances of </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> found&#39;</span>
             <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s1">&#39;noskip&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
                 <span class="c1"># just to test this class, we need to disallow skipping</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
@@ -210,7 +210,7 @@
                 <span class="k">raise</span> <span class="n">unittest</span><span class="o">.</span><span class="n">SkipTest</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">instances</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;***** found one </span><span class="si">{}</span><span class="s1">, testing *****&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;***** found one </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">, testing *****&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;***** found </span><span class="si">{}</span><span class="s1"> instances of </span><span class="si">{}</span><span class="s1">; &#39;</span>
                   <span class="s1">&#39;testing the last one *****&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">instances</span><span class="p">),</span> <span class="n">name</span><span class="p">))</span>
