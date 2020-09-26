@@ -397,17 +397,17 @@
         <span class="n">old_timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">timeout</span>
 
         <span class="k">if</span> <span class="n">N</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Can not run </span><span class="si">{}</span><span class="s1"> times.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">+</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Can not run </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1"> times.&#39;</span> <span class="o">+</span>
                              <span class="s1">&#39; please select a number from 1-999.&#39;</span><span class="p">)</span>
 
         <span class="c1"># set a longer timeout, to not timeout during the sweep</span>
         <span class="n">new_timeout</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">*</span><span class="n">st</span><span class="o">*</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1000</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">new_timeout</span>
 
-        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Making </span><span class="si">{}</span><span class="s1"> blocking sweeps.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">+</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Making </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1"> blocking sweeps.&#39;</span> <span class="o">+</span>
                   <span class="s1">&#39; Setting VISA timeout to </span><span class="si">{}</span><span class="s1"> s.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">new_timeout</span><span class="o">/</span><span class="mi">1000</span><span class="p">))</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;OPC?;NUMG</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;OPC?;NUMG</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">old_timeout</span></div>
 
@@ -461,7 +461,7 @@
                        <span class="s1">&#39;SWR&#39;</span><span class="p">:</span> <span class="s1">&#39;SWR&#39;</span><span class="p">}</span>
 
         <span class="k">if</span> <span class="n">fmt</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">val_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Cannot set display_format to </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fmt</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cannot set display_format to </span><span class="si">{</span><span class="n">fmt</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_traceready</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">display_reference</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">_unit_map</span><span class="p">[</span><span class="n">fmt</span><span class="p">]</span>
@@ -485,7 +485,7 @@
 
         <span class="c1"># keep asking until we find the currently used format</span>
         <span class="k">for</span> <span class="n">cmd</span> <span class="ow">in</span> <span class="n">val_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">?&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cmd</span><span class="p">))</span>
+            <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">cmd</span><span class="si">}</span><span class="s1">?&#39;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">resp</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;1</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">]:</span>
                 <span class="k">break</span>
 
