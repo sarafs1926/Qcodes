@@ -205,7 +205,7 @@
         <span class="c1"># Add the parameters</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;v&#39;</span><span class="p">,</span>
-                           <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Channel </span><span class="si">{}</span><span class="s1"> voltage&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channum</span><span class="p">),</span>
+                           <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Channel </span><span class="si">{</span><span class="n">channum</span><span class="si">}</span><span class="s1"> voltage&#39;</span><span class="p">,</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">_set_voltage</span><span class="p">,</span> <span class="n">channum</span><span class="p">),</span>
                            <span class="n">get_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">_get_voltage</span><span class="p">,</span> <span class="n">channum</span><span class="p">),</span>
@@ -214,28 +214,28 @@
                            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;vrange&#39;</span><span class="p">,</span>
-                           <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Channel </span><span class="si">{}</span><span class="s1"> atten.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channum</span><span class="p">),</span>
+                           <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Channel </span><span class="si">{</span><span class="n">channum</span><span class="si">}</span><span class="s1"> atten.&#39;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">_set_vrange</span><span class="p">,</span> <span class="n">channum</span><span class="p">),</span>
                            <span class="n">get_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">_get_vrange</span><span class="p">,</span> <span class="n">channum</span><span class="p">),</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Enum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
                            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span>
-                           <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Channel </span><span class="si">{}</span><span class="s1"> current&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channum</span><span class="p">),</span>
-                           <span class="n">get_cmd</span><span class="o">=</span><span class="s1">&#39;get </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channum</span><span class="p">),</span>
+                           <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Channel </span><span class="si">{</span><span class="n">channum</span><span class="si">}</span><span class="s1"> current&#39;</span><span class="p">,</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;get </span><span class="si">{</span><span class="n">channum</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">,</span>
                            <span class="n">get_parser</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">_current_parser</span>
                            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;irange&#39;</span><span class="p">,</span>
-                           <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Channel </span><span class="si">{}</span><span class="s1"> irange&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channum</span><span class="p">),</span>
-                           <span class="n">set_cmd</span><span class="o">=</span><span class="s1">&#39;cur </span><span class="si">{}</span><span class="s1"> {{}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channum</span><span class="p">),</span>
-                           <span class="n">get_cmd</span><span class="o">=</span><span class="s1">&#39;cur </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channum</span><span class="p">),</span>
+                           <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Channel </span><span class="si">{</span><span class="n">channum</span><span class="si">}</span><span class="s1"> irange&#39;</span><span class="p">,</span>
+                           <span class="n">set_cmd</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;cur </span><span class="si">{</span><span class="n">channum</span><span class="si">}</span><span class="s1"> </span><span class="se">{{}}</span><span class="s1">&#39;</span><span class="p">,</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;cur </span><span class="si">{</span><span class="n">channum</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
                            <span class="n">get_parser</span><span class="o">=</span><span class="nb">int</span>
                            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;slope&#39;</span><span class="p">,</span>
-                           <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Channel </span><span class="si">{}</span><span class="s1"> slope&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channum</span><span class="p">),</span>
+                           <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Channel </span><span class="si">{</span><span class="n">channum</span><span class="si">}</span><span class="s1"> slope&#39;</span><span class="p">,</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V/s&#39;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">_setslope</span><span class="p">,</span> <span class="n">channum</span><span class="p">),</span>
                            <span class="n">get_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">_getslope</span><span class="p">,</span> <span class="n">channum</span><span class="p">),</span>
@@ -244,21 +244,21 @@
                            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;sync&#39;</span><span class="p">,</span>
-                           <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Channel </span><span class="si">{}</span><span class="s1"> sync output&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channum</span><span class="p">),</span>
+                           <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Channel </span><span class="si">{</span><span class="n">channum</span><span class="si">}</span><span class="s1"> sync output&#39;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">_setsync</span><span class="p">,</span> <span class="n">channum</span><span class="p">),</span>
                            <span class="n">get_cmd</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">_getsync</span><span class="p">,</span> <span class="n">channum</span><span class="p">),</span>
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Ints</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
                            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;sync_delay&#39;</span><span class="p">,</span>
-                           <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Channel </span><span class="si">{}</span><span class="s1"> sync pulse delay&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channum</span><span class="p">),</span>
+                           <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Channel </span><span class="si">{</span><span class="n">channum</span><span class="si">}</span><span class="s1"> sync pulse delay&#39;</span><span class="p">,</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
                            <span class="n">get_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">set_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                            <span class="n">initial_value</span><span class="o">=</span><span class="mi">0</span>
                            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;sync_duration&#39;</span><span class="p">,</span>
-                           <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Channel </span><span class="si">{}</span><span class="s1"> sync pulse duration&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channum</span><span class="p">),</span>
+                           <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Channel </span><span class="si">{</span><span class="n">channum</span><span class="si">}</span><span class="s1"> sync pulse duration&#39;</span><span class="p">,</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
                            <span class="n">get_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">set_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                            <span class="n">initial_value</span><span class="o">=</span><span class="mf">0.01</span>
@@ -380,20 +380,20 @@
                                <span class="n">multichan_paramclass</span><span class="o">=</span><span class="n">QDacMultiChannelParameter</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">chan_range</span><span class="p">:</span>
-            <span class="n">channel</span> <span class="o">=</span> <span class="n">QDacChannel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;chan</span><span class="si">{:02}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="n">QDacChannel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;chan</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s1">02</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
             <span class="n">channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
             <span class="c1"># Should raise valueerror if name is invalid (silently fails now)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="s1">&#39;ch</span><span class="si">{:02}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">channel</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ch</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s1">02</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
         <span class="n">channels</span><span class="o">.</span><span class="n">lock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="s1">&#39;channels&#39;</span><span class="p">,</span> <span class="n">channels</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">board</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">sensor</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-                <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Board </span><span class="si">{}</span><span class="s1">, Temperature </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="n">sensor</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;temp</span><span class="si">{}</span><span class="s1">_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="n">sensor</span><span class="p">),</span>
+                <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Board </span><span class="si">{</span><span class="n">board</span><span class="si">}</span><span class="s1">, Temperature </span><span class="si">{</span><span class="n">sensor</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;temp</span><span class="si">{</span><span class="n">board</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sensor</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
                                    <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
                                    <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">,</span>
-                                   <span class="n">get_cmd</span><span class="o">=</span><span class="s1">&#39;tem </span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="n">sensor</span><span class="p">),</span>
+                                   <span class="n">get_cmd</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;tem </span><span class="si">{</span><span class="n">board</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">sensor</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
                                    <span class="n">get_parser</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_num_verbose</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;cal&#39;</span><span class="p">,</span>
@@ -414,7 +414,7 @@
         <span class="c1"># Initialise the instrument, all channels DC (unbind func. generators)</span>
         <span class="k">for</span> <span class="n">chan</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">chan_range</span><span class="p">:</span>
             <span class="c1"># Note: this call does NOT change the voltage on the channel</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;wav </span><span class="si">{}</span><span class="s1"> 0 1 0&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chan</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;wav </span><span class="si">{</span><span class="n">chan</span><span class="si">}</span><span class="s1"> 0 1 0&#39;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_message</span><span class="p">()</span>
@@ -464,7 +464,7 @@
             <span class="c1"># We need .get and not get_latest in case a ramp was interrupted</span>
             <span class="n">v_start</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
             <span class="n">time</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">v_set</span><span class="o">-</span><span class="n">v_start</span><span class="p">)</span><span class="o">/</span><span class="n">slope</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Slope: </span><span class="si">{}</span><span class="s1">, time: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span> <span class="n">time</span><span class="p">))</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Slope: </span><span class="si">{</span><span class="n">slope</span><span class="si">}</span><span class="s1">, time: </span><span class="si">{</span><span class="n">time</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="c1"># Attenuation compensation and syncing</span>
             <span class="c1"># happen inside _rampvoltage</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_rampvoltage</span><span class="p">(</span><span class="n">chan</span><span class="p">,</span> <span class="n">fg</span><span class="p">,</span> <span class="n">v_start</span><span class="p">,</span> <span class="n">v_set</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
@@ -515,7 +515,7 @@
 <span class="sd">        parameter accordingly</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;vol </span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chan</span><span class="p">,</span> <span class="n">switchint</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;vol </span><span class="si">{</span><span class="n">chan</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">switchint</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
         <span class="c1"># setting v_range preserves v_dac but changes v_exp, see comment above</span>
         <span class="c1"># for definitions.</span>
@@ -559,11 +559,11 @@
     <span class="k">def</span> <span class="nf">read_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
 
         <span class="k">if</span> <span class="n">chan</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">chan_range</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;valid channels are </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chan_range</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;valid channels are </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">chan_range</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">valid_params</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="s1">&#39;vrange&#39;</span><span class="p">,</span> <span class="s1">&#39;irange&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">param</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_params</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s1">&#39;read_state valid params are </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">valid_params</span><span class="p">))</span>
+                <span class="sa">f</span><span class="s1">&#39;read_state valid params are </span><span class="si">{</span><span class="n">valid_params</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_cache</span><span class="p">(</span><span class="n">readcurrents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
@@ -679,7 +679,7 @@
             <span class="c1"># free the previously assigned sync</span>
             <span class="n">oldsync</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="n">chan</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sync</span><span class="o">.</span><span class="n">get_latest</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">oldsync</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;syn </span><span class="si">{}</span><span class="s1"> 0 0 0&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">oldsync</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;syn </span><span class="si">{</span><span class="n">oldsync</span><span class="si">}</span><span class="s1"> 0 0 0&#39;</span><span class="p">)</span>
             <span class="k">return</span>
 
         <span class="k">if</span> <span class="n">sync</span> <span class="ow">in</span> <span class="p">[</span><span class="n">syn</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">syn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_syncoutputs</span><span class="p">]:</span>
@@ -718,7 +718,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Channel number must be 1-48.&#39;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">slope</span> <span class="o">==</span> <span class="s1">&#39;Inf&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;wav </span><span class="si">{}</span><span class="s1"> 0 0 0&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chan</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;wav </span><span class="si">{</span><span class="n">chan</span><span class="si">}</span><span class="s1"> 0 0 0&#39;</span><span class="p">)</span>
 
             <span class="c1"># Now clear the assigned slope and function generator (if possible)</span>
             <span class="k">try</span><span class="p">:</span>
@@ -748,7 +748,7 @@
             <span class="n">rampchans</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_slopes</span><span class="p">])</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Can not assign finite slope to more than &#39;</span> <span class="o">+</span>
                              <span class="s2">&quot;8 channels. Assign &#39;Inf&#39; to at least one of &quot;</span> <span class="o">+</span>
-                             <span class="s1">&#39;the following channels: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rampchans</span><span class="p">))</span>
+                             <span class="sa">f</span><span class="s1">&#39;the following channels: </span><span class="si">{</span><span class="n">rampchans</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_slopes</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">chan</span><span class="p">,</span> <span class="n">slope</span><span class="p">])</span>
         <span class="k">return</span>
@@ -835,7 +835,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Writing to instrument </span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">cmd</span><span class="p">))</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Writing to instrument </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">cmd</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
         <span class="n">nr_bytes_written</span><span class="p">,</span> <span class="n">ret_code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">check_error</span><span class="p">(</span><span class="n">ret_code</span><span class="p">)</span>
@@ -893,8 +893,8 @@
             <span class="k">for</span> <span class="n">pp</span> <span class="ow">in</span> <span class="n">paramstoget</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
                 <span class="n">param</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="n">ii</span><span class="p">],</span> <span class="n">pp</span><span class="p">)</span>
                 <span class="n">line</span> <span class="o">+=</span> <span class="n">printdict</span><span class="p">[</span><span class="n">pp</span><span class="p">]</span>
-                <span class="n">line</span> <span class="o">+=</span> <span class="s1">&#39;: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">get_latest</span><span class="p">())</span>
-                <span class="n">line</span> <span class="o">+=</span> <span class="s1">&#39; (</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
+                <span class="n">line</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;: </span><span class="si">{</span><span class="n">param</span><span class="o">.</span><span class="n">get_latest</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="n">line</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39; (</span><span class="si">{</span><span class="n">param</span><span class="o">.</span><span class="n">unit</span><span class="si">}</span><span class="s1">)&#39;</span>
                 <span class="n">line</span> <span class="o">+=</span> <span class="s1">&#39;. &#39;</span>
             <span class="n">line</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    &#39;</span>
             <span class="k">for</span> <span class="n">pp</span> <span class="ow">in</span> <span class="n">paramstoget</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>

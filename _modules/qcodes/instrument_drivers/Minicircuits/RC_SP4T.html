@@ -205,7 +205,7 @@
         <span class="c1"># corrisponding to each switch state</span>
         <span class="c1"># setting more than one will be ignored</span>
         <span class="n">val</span> <span class="o">=</span> <span class="n">val</span> <span class="o">|</span> <span class="n">current_switchstate</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;SETP=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SETP=</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="c1"># the &#39;SP4T&#39; command wont work on early devices (FW &lt; C8)</span>
 
     <span class="k">def</span> <span class="nf">_get_switch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -238,9 +238,9 @@
         <span class="n">_chanlist</span> <span class="o">=</span> <span class="n">_chanlist</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">_max_channel_number</span><span class="p">]</span>
 
         <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">_chanlist</span><span class="p">:</span>
-            <span class="n">channel</span> <span class="o">=</span> <span class="n">MC_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;channel_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">c</span><span class="p">)</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="n">MC_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;channel_</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
             <span class="n">channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="s1">&#39;channel_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">channel</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;channel_</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
         <span class="n">channels</span><span class="o">.</span><span class="n">lock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="s1">&#39;channels&#39;</span><span class="p">,</span> <span class="n">channels</span><span class="p">)</span>
 

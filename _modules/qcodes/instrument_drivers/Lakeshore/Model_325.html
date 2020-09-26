@@ -388,7 +388,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span>
             <span class="s1">&#39;temperature&#39;</span><span class="p">,</span>
-            <span class="n">get_cmd</span><span class="o">=</span><span class="s1">&#39;KRDG? </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_input</span><span class="p">),</span>
+            <span class="n">get_cmd</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;KRDG? </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_input</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
             <span class="n">get_parser</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Temperature&#39;</span><span class="p">,</span>
             <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;K&#39;</span>
@@ -396,7 +396,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span>
             <span class="s1">&#39;status&#39;</span><span class="p">,</span>
-            <span class="n">get_cmd</span><span class="o">=</span><span class="s1">&#39;RDGST? </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_input</span><span class="p">),</span>
+            <span class="n">get_cmd</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;RDGST? </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_input</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
             <span class="n">get_parser</span><span class="o">=</span><span class="k">lambda</span> <span class="n">status</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode_sensor_status</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">status</span><span class="p">)),</span>
             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sensor_Status&#39;</span>
         <span class="p">)</span>
@@ -634,9 +634,9 @@
             <span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;sensor&quot;</span><span class="p">,</span> <span class="n">Model_325_Sensor</span><span class="p">,</span> <span class="n">snapshotable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">inp</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]:</span>
-            <span class="n">sensor</span> <span class="o">=</span> <span class="n">Model_325_Sensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;sensor_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">inp</span><span class="p">),</span> <span class="n">inp</span><span class="p">)</span>
+            <span class="n">sensor</span> <span class="o">=</span> <span class="n">Model_325_Sensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;sensor_</span><span class="si">{</span><span class="n">inp</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">inp</span><span class="p">)</span>
             <span class="n">sensors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sensor</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="s1">&#39;sensor_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">inp</span><span class="p">),</span> <span class="n">sensor</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;sensor_</span><span class="si">{</span><span class="n">inp</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">sensor</span><span class="p">)</span>
 
         <span class="n">sensors</span><span class="o">.</span><span class="n">lock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="s2">&quot;sensor&quot;</span><span class="p">,</span> <span class="n">sensors</span><span class="p">)</span>
@@ -645,9 +645,9 @@
             <span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;heater&quot;</span><span class="p">,</span> <span class="n">Model_325_Heater</span><span class="p">,</span> <span class="n">snapshotable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">loop</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span>
-            <span class="n">heater</span> <span class="o">=</span> <span class="n">Model_325_Heater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;heater_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">loop</span><span class="p">),</span> <span class="n">loop</span><span class="p">)</span>
+            <span class="n">heater</span> <span class="o">=</span> <span class="n">Model_325_Heater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;heater_</span><span class="si">{</span><span class="n">loop</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">loop</span><span class="p">)</span>
             <span class="n">heaters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">heater</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="s1">&#39;heater_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">loop</span><span class="p">),</span> <span class="n">heater</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;heater_</span><span class="si">{</span><span class="n">loop</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">heater</span><span class="p">)</span>
 
         <span class="n">heaters</span><span class="o">.</span><span class="n">lock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="s2">&quot;heater&quot;</span><span class="p">,</span> <span class="n">heaters</span><span class="p">)</span>
@@ -696,7 +696,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">file_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.330&quot;</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Only curve files with extension .330 are supported&quot;</span><span class="p">)</span>
 
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">curve_file</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">curve_file</span><span class="p">:</span>
             <span class="n">file_data</span> <span class="o">=</span> <span class="n">read_curve_file</span><span class="p">(</span><span class="n">curve_file</span><span class="p">)</span>
 
         <span class="n">data_dict</span> <span class="o">=</span> <span class="n">get_sanitize_data</span><span class="p">(</span><span class="n">file_data</span><span class="p">)</span>

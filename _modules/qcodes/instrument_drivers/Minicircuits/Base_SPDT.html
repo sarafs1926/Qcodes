@@ -186,7 +186,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span>
             <span class="s1">&#39;switch&#39;</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;switch </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channel_letter</span><span class="p">),</span>
+            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;switch </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">channel_letter</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
             <span class="n">set_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_switch</span><span class="p">,</span>
             <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_switch</span><span class="p">,</span>
             <span class="n">vals</span><span class="o">=</span><span class="n">Ints</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
@@ -218,7 +218,7 @@
 
         <span class="n">_chanlist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_deprecated_attributes</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;channel_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">k</span>
+            <span class="sa">f</span><span class="s1">&#39;channel_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">k</span>
             <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">_chanlist</span>
         <span class="p">}</span>
 
@@ -226,9 +226,9 @@
         <span class="n">_chanlist</span> <span class="o">=</span> <span class="n">_chanlist</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">_max_channel_number</span><span class="p">]</span>
 
         <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">_chanlist</span><span class="p">:</span>
-            <span class="n">channel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CHANNEL_CLASS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;channel_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">c</span><span class="p">)</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CHANNEL_CLASS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;channel_</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
             <span class="n">channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
-            <span class="n">attribute_name</span> <span class="o">=</span> <span class="s1">&#39;channel_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+            <span class="n">attribute_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;channel_</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&#39;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="n">attribute_name</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_deprecated_attributes</span><span class="p">[</span><span class="n">attribute_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span>
@@ -263,7 +263,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">channels</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
                 <span class="s1">&#39;The driver could not determine the number of channels of&#39;</span> <span class="o">+</span>
-                <span class="s1">&#39; the model </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">, it might not be supported&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+                <span class="sa">f</span><span class="s1">&#39; the model </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="se">\&#39;</span><span class="s1">, it might not be supported&#39;</span>
             <span class="p">)</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">channels</span><span class="p">)</span></div></div>
 </pre></div>
