@@ -257,7 +257,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_message</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_set_nplc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;VOLT:NPLC </span><span class="si">{:f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;VOLT:NPLC </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s1">f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="c1"># resolution settings change with NPLC</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
@@ -268,18 +268,18 @@
         <span class="c1"># rounding errors.</span>
         <span class="n">res_fac_strs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">{:.1e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span> <span class="o">*</span> <span class="n">rang</span><span class="p">)</span>
                         <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resolution_factor</span><span class="p">]</span>
-        <span class="k">if</span> <span class="s1">&#39;</span><span class="si">{:.1e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">res_fac_strs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s1">.1e</span><span class="si">}</span><span class="s1">&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">res_fac_strs</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s1">&#39;Resolution setting </span><span class="si">{:.1e}</span><span class="s1"> (</span><span class="si">{}</span><span class="s1"> at range </span><span class="si">{}</span><span class="s1">) &#39;</span>
                 <span class="s1">&#39;does not exist. &#39;</span>
                 <span class="s1">&#39;Possible values are </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">rang</span><span class="p">,</span>
                                                 <span class="n">res_fac_strs</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;VOLT:DC:RES </span><span class="si">{:.1e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;VOLT:DC:RES </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s1">.1e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="c1"># NPLC settings change with resolution</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">NPLC</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_set_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;SENS:VOLT:DC:RANG </span><span class="si">{:f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SENS:VOLT:DC:RANG </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s1">f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="c1"># resolution settings change with range</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 

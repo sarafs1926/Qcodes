@@ -222,7 +222,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">trace_ready</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:FORMat BYTE&#39;</span><span class="p">)</span>                         <span class="c1"># Set the data type for waveforms to &quot;BYTE&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:SOURce CHAN</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="p">))</span>  <span class="c1"># Set read channel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;:WAVeform:SOURce CHAN</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># Set read channel</span>
 
         <span class="n">data_bin</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw</span><span class="p">:</span>
@@ -312,11 +312,11 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s2">&quot;amplitude&quot;</span><span class="p">,</span>
-                           <span class="n">get_cmd</span><span class="o">=</span><span class="s2">&quot;:MEASure:VAMP? chan</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channel</span><span class="p">),</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;:MEASure:VAMP? chan</span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
                            <span class="n">get_parser</span> <span class="o">=</span> <span class="nb">float</span>
                           <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s2">&quot;vertical_scale&quot;</span><span class="p">,</span>
-                           <span class="n">get_cmd</span><span class="o">=</span><span class="s2">&quot;:CHANnel</span><span class="si">{}</span><span class="s2">:SCALe?&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channel</span><span class="p">),</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;:CHANnel</span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s2">:SCALe?&quot;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="s2">&quot;:CHANnel</span><span class="si">{}</span><span class="s2">:SCALe </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">),</span>
                            <span class="n">get_parser</span><span class="o">=</span><span class="nb">float</span>
                           <span class="p">)</span>
@@ -410,7 +410,7 @@
         <span class="n">channels</span> <span class="o">=</span> <span class="n">ChannelList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Channels&quot;</span><span class="p">,</span> <span class="n">RigolDS4000Channel</span><span class="p">,</span> <span class="n">snapshotable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">channel_number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
-            <span class="n">channel</span> <span class="o">=</span> <span class="n">RigolDS4000Channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;ch</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channel_number</span><span class="p">),</span> <span class="n">channel_number</span><span class="p">)</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="n">RigolDS4000Channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;ch</span><span class="si">{</span><span class="n">channel_number</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">channel_number</span><span class="p">)</span>
             <span class="n">channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
 
         <span class="n">channels</span><span class="o">.</span><span class="n">lock</span><span class="p">()</span>
