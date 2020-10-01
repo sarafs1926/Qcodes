@@ -286,22 +286,34 @@
 <span class="sd">    &gt;&gt;&gt; assert abs(dac.voltage() - v) &lt;= tolerance</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">:</span> <span class="s2">&quot;_BaseParameter&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">ParamDataType</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">:</span> <span class="s2">&quot;_BaseParameter&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">ParamDataType</span><span class="p">,</span>
+                 <span class="n">allow_changes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span> <span class="o">=</span> <span class="n">parameter</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">value</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_original_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">get_latest</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_value_is_changing</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_allow_changes</span> <span class="o">=</span> <span class="n">allow_changes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_original_value</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_original_settable</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value_is_changing</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_original_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_value</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_changes</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_original_settable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">settable</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">_settable</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># type: ignore[has-type]</span>
 
     <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">typ</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="ne">BaseException</span><span class="p">]],</span>
                  <span class="n">value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="ne">BaseException</span><span class="p">],</span>
                  <span class="n">traceback</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TracebackType</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value_is_changing</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_changes</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">_settable</span> <span class="o">=</span> <span class="p">(</span>  <span class="c1"># type: ignore[has-type]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_original_settable</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_value</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_original_value</span><span class="p">)</span>
 
 
@@ -1003,19 +1015,52 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">set_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">ParamDataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_SetParamContext</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">set_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">ParamDataType</span><span class="p">,</span>
+               <span class="n">allow_changes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_SetParamContext</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Use a context manager to temporarily set the value of a parameter to</span>
-<span class="sd">        a value. Example:</span>
+<span class="sd">        Use a context manager to temporarily set a parameter to a value. By</span>
+<span class="sd">        default, the parameter value cannot be changed inside the context.</span>
+<span class="sd">        This may be overridden with ``allow_changes=True``.</span>
 
-<span class="sd">        &gt;&gt;&gt; from qcodes import Parameter</span>
-<span class="sd">        &gt;&gt;&gt; p = Parameter(&quot;p&quot;, set_cmd=None, get_cmd=None)</span>
-<span class="sd">        &gt;&gt;&gt; with p.set_to(3):</span>
-<span class="sd">        ...    print(f&quot;p value in with block {p.get()}&quot;)</span>
-<span class="sd">        &gt;&gt;&gt; print(f&quot;p value outside with block {p.get()}&quot;)</span>
+<span class="sd">        Examples:</span>
+
+<span class="sd">            &gt;&gt;&gt; from qcodes import Parameter</span>
+<span class="sd">            &gt;&gt;&gt; p = Parameter(&quot;p&quot;, set_cmd=None, get_cmd=None)</span>
+<span class="sd">            &gt;&gt;&gt; p.set(2)</span>
+<span class="sd">            &gt;&gt;&gt; with p.set_to(3):</span>
+<span class="sd">            ...     print(f&quot;p value in with block {p.get()}&quot;)  # prints 3</span>
+<span class="sd">            ...     p.set(5)  # raises an exception</span>
+<span class="sd">            &gt;&gt;&gt; print(f&quot;p value outside with block {p.get()}&quot;)  # prints 2</span>
+<span class="sd">            &gt;&gt;&gt; with p.set_to(3, allow_changes=True):</span>
+<span class="sd">            ...     p.set(5)  # now this works</span>
+<span class="sd">            &gt;&gt;&gt; print(f&quot;value after second block: {p.get()}&quot;)  # still prints 2</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">context_manager</span> <span class="o">=</span> <span class="n">_SetParamContext</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="n">context_manager</span> <span class="o">=</span> <span class="n">_SetParamContext</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span>
+                                           <span class="n">allow_changes</span><span class="o">=</span><span class="n">allow_changes</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">context_manager</span>
+
+    <span class="k">def</span> <span class="nf">restore_at_exit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">allow_changes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_SetParamContext</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Use a context manager to restore the value of a parameter after a</span>
+<span class="sd">        ``with`` block.</span>
+
+<span class="sd">        By default, the parameter value may be changed inside the block, but</span>
+<span class="sd">        this can be prevented with ``allow_changes=False``. This can be</span>
+<span class="sd">        useful, for example, for debugging a complex measurement that</span>
+<span class="sd">        unintentionally modifies a parameter.</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">            &gt;&gt;&gt; p = Parameter(&quot;p&quot;, set_cmd=None, get_cmd=None)</span>
+<span class="sd">            &gt;&gt;&gt; p.set(2)</span>
+<span class="sd">            &gt;&gt;&gt; with p.restore_at_exit():</span>
+<span class="sd">            ...     p.set(3)</span>
+<span class="sd">            ...     print(f&quot;value inside with block: {p.get()}&quot;)  # prints 3</span>
+<span class="sd">            &gt;&gt;&gt; print(f&quot;value after with block: {p.get()}&quot;)  # prints 2</span>
+<span class="sd">            &gt;&gt;&gt; with p.restore_at_exit(allow_changes=False):</span>
+<span class="sd">            ...     p.set(5)  # raises an exception</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">(),</span> <span class="n">allow_changes</span><span class="o">=</span><span class="n">allow_changes</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">name_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>

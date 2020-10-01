@@ -797,6 +797,28 @@ the command for setting the parameter returns quickly.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacMultiChannelParameter.restore_at_exit">
+<code class="sig-name descname">restore_at_exit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">allow_changes</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; qcodes.instrument.parameter._SetParamContext<a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacMultiChannelParameter.restore_at_exit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use a context manager to restore the value of a parameter after a
+<code class="docutils literal notranslate"><span class="pre">with</span></code> block.</p>
+<p>By default, the parameter value may be changed inside the block, but
+this can be prevented with <code class="docutils literal notranslate"><span class="pre">allow_changes=False</span></code>. This can be
+useful, for example, for debugging a complex measurement that
+unintentionally modifies a parameter.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="n">set_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">get_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">p</span><span class="o">.</span><span class="n">restore_at_exit</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">p</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;value inside with block: </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># prints 3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;value after with block: </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># prints 2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">p</span><span class="o">.</span><span class="n">restore_at_exit</span><span class="p">(</span><span class="n">allow_changes</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">p</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># raises an exception</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacMultiChannelParameter.root_instrument">
 <em class="property">property </em><code class="sig-name descname">root_instrument</code><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacMultiChannelParameter.root_instrument" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the fundamental instrument that this parameter belongs too.
@@ -819,14 +841,21 @@ underlying parameter.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacMultiChannelParameter.set_to">
-<code class="sig-name descname">set_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; qcodes.instrument.parameter._SetParamContext<a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacMultiChannelParameter.set_to" title="Permalink to this definition">¶</a></dt>
-<dd><p>Use a context manager to temporarily set the value of a parameter to
-a value. Example:</p>
+<code class="sig-name descname">set_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">Any</span></em>, <em class="sig-param"><span class="n">allow_changes</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; qcodes.instrument.parameter._SetParamContext<a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacMultiChannelParameter.set_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use a context manager to temporarily set a parameter to a value. By
+default, the parameter value cannot be changed inside the context.
+This may be overridden with <code class="docutils literal notranslate"><span class="pre">allow_changes=True</span></code>.</p>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">Parameter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="n">set_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">get_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">p</span><span class="o">.</span><span class="n">set_to</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-<span class="gp">... </span>   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p value in with block </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p value outside with block </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p value in with block </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># prints 3</span>
+<span class="gp">... </span>    <span class="n">p</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># raises an exception</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p value outside with block </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># prints 2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">p</span><span class="o">.</span><span class="n">set_to</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">allow_changes</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">p</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># now this works</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;value after second block: </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># still prints 2</span>
 </pre></div>
 </div>
 </dd></dl>
