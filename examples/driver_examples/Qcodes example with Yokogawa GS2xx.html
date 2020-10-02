@@ -512,33 +512,24 @@ alt="Binder badge"
   </script>
 </div><div class="section" id="QCoDeS-Example-with-Yokogawa-GS200/GS210">
 <h1>QCoDeS Example with Yokogawa GS200/GS210<a class="headerlink" href="#QCoDeS-Example-with-Yokogawa-GS200/GS210" title="Permalink to this headline">¶</a></h1>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">time</span>
-
 <span class="kn">import</span> <span class="nn">qcodes</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument_drivers.yokogawa.GS200</span> <span class="kn">import</span> <span class="n">GS200</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-pyqtgraph plotting not supported, try &#34;from qcodes.plots.pyqtgraph import QtPlot&#34; to see the full error
-</pre></div></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">gs</span> <span class="o">=</span> <span class="n">GS200</span><span class="p">(</span><span class="s2">&quot;gs200&quot;</span><span class="p">,</span> <span class="s1">&#39;GPIB0::1::INSTR&#39;</span><span class="p">,</span> <span class="n">terminator</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span></span><span class="n">gs</span> <span class="o">=</span> <span class="n">GS200</span><span class="p">(</span><span class="s2">&quot;gs200&quot;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;USB::0xB21::0x39::91RB18719::INSTR&#39;</span><span class="p">,</span> <span class="n">terminator</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -547,60 +538,131 @@ pyqtgraph plotting not supported, try &#34;from qcodes.plots.pyqtgraph import Qt
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Connected to: YOKOGAWA GS210 (serial:91T928108, firmware:2.02) in 0.08s
+Connected to: YOKOGAWA GS210 (serial:91RB18719, firmware:2.02) in 0.12s
 </pre></div></div>
 </div>
-<p>Lets do some sanity checks</p>
-<div class="nbinput nblast docutils container">
+<p>The instrument turns on in the ‘VOLT’ mode:</p>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">gs</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-<span class="n">gs</span><span class="o">.</span><span class="n">source_mode</span><span class="p">(</span><span class="s2">&quot;VOLT&quot;</span><span class="p">)</span>
-<span class="n">gs</span><span class="o">.</span><span class="n">auto_range</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">gs</span><span class="o">.</span><span class="n">voltage</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">source_mode</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;VOLT&#39;
+</pre></div></div>
+</div>
+<p>The mode can be changed to ‘CURR’ via source_mode:</p>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">gs</span><span class="o">.</span><span class="n">auto_range</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">source_mode</span><span class="p">(</span><span class="s1">&#39;CURR&#39;</span><span class="p">)</span>
+<span class="n">gs</span><span class="o">.</span><span class="n">source_mode</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<p>Try to put 1 V on the output</p>
-<div class="nbinput nblast docutils container">
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;CURR&#39;
+</pre></div></div>
+</div>
+<p>If the instrument is reconnected without turning it off and on, it will be connected with the previous session’s mode:</p>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">gs</span><span class="o">.</span><span class="n">voltage</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">GS200</span><span class="p">(</span><span class="s2">&quot;gs200&quot;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;USB::0xB21::0x39::91RB18719::INSTR&#39;</span><span class="p">,</span> <span class="n">terminator</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">gs</span><span class="o">.</span><span class="n">source_mode</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<p>The instrument indeed goes to 1 V output. Next, assert that an error is raised if we try to get/set the current</p>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Connected to: YOKOGAWA GS210 (serial:91RB18719, firmware:2.02) in 0.03s
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;CURR&#39;
+</pre></div></div>
+</div>
+<p>The source_mode can only be changed when the output is ‘off’. By default the output is off and there is no actual current is flowing:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">output</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;off&#39;
+</pre></div></div>
+</div>
+<p>Setting/ getting attributes/ methods of a mode (‘VOLT’ or ‘CURR’) is only possible if the source_mode is in that mode (in this case, we are in the’CURR’ mode and trying to access voltage attributes/ methods):</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">try</span><span class="p">:</span>
-    <span class="n">gs</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>  <span class="c1"># Set a current</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something has gone wrong&quot;</span><span class="p">)</span>
-    <span class="k">assert</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">voltage</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span> <span class="c1"># Set the voltage</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something has gone wrong.&quot;</span><span class="p">)</span>
 <span class="k">except</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;exception correctly raised&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception correctly raised.&quot;</span><span class="p">)</span>
 
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">gs</span><span class="o">.</span><span class="n">current</span><span class="p">()</span> <span class="c1"># Get the current</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something has gone wrong&quot;</span><span class="p">)</span>
-    <span class="k">assert</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">voltage</span><span class="p">()</span> <span class="c1"># Get the voltage</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something has gone wrong.&quot;</span><span class="p">)</span>
 <span class="k">except</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;exception correctly raised&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception correctly raised.&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">voltage_range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Set the voltage_range</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something has gone wrong.&quot;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception correctly raised.&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">voltage_range</span><span class="p">()</span> <span class="c1"># Get the voltage_range</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something has gone wrong.&quot;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception correctly raised.&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">ramp_voltage</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># Get the voltage_range</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something has gone wrong.&quot;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception correctly raised.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -609,30 +671,32 @@ Connected to: YOKOGAWA GS210 (serial:91T928108, firmware:2.02) in 0.08s
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-exception correctly raised
-exception correctly raised
+Exception correctly raised.
+Exception correctly raised.
+Exception correctly raised.
+Exception correctly raised.
+Exception correctly raised.
 </pre></div></div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">gs</span><span class="o">.</span><span class="n">voltage</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<p>The instrument indeed goes back to 0 V output</p>
-<div class="nbinput nblast docutils container">
+<p>We can set/ get current attributes in the ‘CURR’ mode:</p>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">gs</span><span class="o">.</span><span class="n">source_mode</span><span class="p">(</span><span class="s2">&quot;CURR&quot;</span><span class="p">)</span>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">current_range</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<p>Instrument does indeed go to current source mode</p>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.01
+</pre></div></div>
+</div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
@@ -642,13 +706,13 @@ exception correctly raised
 </pre></div>
 </div>
 </div>
-<p>The instrument does indeed show 1mA output. Note that because output is off, no actual current is flowing</p>
+<p>Snapshotting interactively changes when the source_mode is changed (voltage and voltage_range are excluded from snapshot in the ‘CURR’ mode and vice versa):</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">gs</span><span class="o">.</span><span class="n">output</span><span class="p">()</span>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">snapshot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -658,243 +722,318 @@ exception correctly raised
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&#39;off&#39;
+{&#39;functions&#39;: {&#39;reset&#39;: {}},
+ &#39;submodules&#39;: {&#39;measure&#39;: {&#39;functions&#39;: {},
+   &#39;submodules&#39;: {},
+   &#39;__class__&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200_Monitor&#39;,
+   &#39;parameters&#39;: {&#39;enabled&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+     &#39;full_name&#39;: &#39;gs200_measure_enabled&#39;,
+     &#39;value&#39;: None,
+     &#39;raw_value&#39;: None,
+     &#39;ts&#39;: None,
+     &#39;inter_delay&#39;: 0,
+     &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200_Monitor&#39;,
+     &#39;instrument_name&#39;: &#39;gs200_measure&#39;,
+     &#39;val_mapping&#39;: {&#39;off&#39;: 0, &#39;on&#39;: 1},
+     &#39;label&#39;: &#39;Measurement Enabled&#39;,
+     &#39;unit&#39;: &#39;&#39;,
+     &#39;post_delay&#39;: 0,
+     &#39;name&#39;: &#39;enabled&#39;,
+     &#39;vals&#39;: &#34;&lt;Enum: {&#39;off&#39;, &#39;on&#39;}&gt;&#34;},
+    &#39;measure&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+     &#39;full_name&#39;: &#39;gs200_measure_measure&#39;,
+     &#39;value&#39;: None,
+     &#39;raw_value&#39;: None,
+     &#39;ts&#39;: None,
+     &#39;inter_delay&#39;: 0,
+     &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200_Monitor&#39;,
+     &#39;instrument_name&#39;: &#39;gs200_measure&#39;,
+     &#39;label&#39;: &#39;&lt;unset&gt;&#39;,
+     &#39;unit&#39;: &#39;V/I&#39;,
+     &#39;post_delay&#39;: 0,
+     &#39;name&#39;: &#39;measure&#39;},
+    &#39;NPLC&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+     &#39;full_name&#39;: &#39;gs200_measure_NPLC&#39;,
+     &#39;value&#39;: None,
+     &#39;raw_value&#39;: None,
+     &#39;ts&#39;: None,
+     &#39;inter_delay&#39;: 0,
+     &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200_Monitor&#39;,
+     &#39;instrument_name&#39;: &#39;gs200_measure&#39;,
+     &#39;label&#39;: &#39;NPLC&#39;,
+     &#39;unit&#39;: &#39;1/LineFreq&#39;,
+     &#39;post_delay&#39;: 0,
+     &#39;name&#39;: &#39;NPLC&#39;,
+     &#39;vals&#39;: &#39;&lt;Ints 1&lt;=v&lt;=25&gt;&#39;},
+    &#39;delay&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+     &#39;full_name&#39;: &#39;gs200_measure_delay&#39;,
+     &#39;value&#39;: None,
+     &#39;raw_value&#39;: None,
+     &#39;ts&#39;: None,
+     &#39;inter_delay&#39;: 0,
+     &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200_Monitor&#39;,
+     &#39;instrument_name&#39;: &#39;gs200_measure&#39;,
+     &#39;label&#39;: &#39;Measurement Delay&#39;,
+     &#39;unit&#39;: &#39;ms&#39;,
+     &#39;post_delay&#39;: 0,
+     &#39;name&#39;: &#39;delay&#39;,
+     &#39;vals&#39;: &#39;&lt;Ints 0&lt;=v&lt;=999999&gt;&#39;},
+    &#39;trigger&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+     &#39;full_name&#39;: &#39;gs200_measure_trigger&#39;,
+     &#39;value&#39;: None,
+     &#39;raw_value&#39;: None,
+     &#39;ts&#39;: None,
+     &#39;inter_delay&#39;: 0,
+     &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200_Monitor&#39;,
+     &#39;instrument_name&#39;: &#39;gs200_measure&#39;,
+     &#39;val_mapping&#39;: {&#39;READY&#39;: &#39;READ&#39;,
+      &#39;READ&#39;: &#39;READ&#39;,
+      &#39;TIMER&#39;: &#39;TIM&#39;,
+      &#39;TIM&#39;: &#39;TIM&#39;,
+      &#39;COMMUNICATE&#39;: &#39;COMM&#39;,
+      &#39;IMMEDIATE&#39;: &#39;IMM&#39;,
+      &#39;IMM&#39;: &#39;IMM&#39;},
+     &#39;label&#39;: &#39;Trigger Source&#39;,
+     &#39;unit&#39;: &#39;&#39;,
+     &#39;post_delay&#39;: 0,
+     &#39;name&#39;: &#39;trigger&#39;,
+     &#39;vals&#39;: &#34;&lt;Enum: {&#39;TIMER&#39;, &#39;COMMUNICATE&#39;, &#39;READY&#39;, &#39;IMMEDIATE&#39;, &#39;READ&#39;, &#39;IMM&#39;, &#39;TIM&#39;}&gt;&#34;},
+    &#39;interval&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+     &#39;full_name&#39;: &#39;gs200_measure_interval&#39;,
+     &#39;value&#39;: None,
+     &#39;raw_value&#39;: None,
+     &#39;ts&#39;: None,
+     &#39;inter_delay&#39;: 0,
+     &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200_Monitor&#39;,
+     &#39;instrument_name&#39;: &#39;gs200_measure&#39;,
+     &#39;label&#39;: &#39;Measurement Interval&#39;,
+     &#39;unit&#39;: &#39;s&#39;,
+     &#39;post_delay&#39;: 0,
+     &#39;name&#39;: &#39;interval&#39;,
+     &#39;vals&#39;: &#39;&lt;Numbers 0.1&lt;=v&lt;=3600&gt;&#39;}},
+   &#39;name&#39;: &#39;gs200_measure&#39;}},
+ &#39;__class__&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200&#39;,
+ &#39;parameters&#39;: {&#39;IDN&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;gs200_IDN&#39;,
+   &#39;value&#39;: {&#39;vendor&#39;: &#39;YOKOGAWA&#39;,
+    &#39;model&#39;: &#39;GS210&#39;,
+    &#39;serial&#39;: &#39;91RB18719&#39;,
+    &#39;firmware&#39;: &#39;2.02&#39;},
+   &#39;raw_value&#39;: {&#39;vendor&#39;: &#39;YOKOGAWA&#39;,
+    &#39;model&#39;: &#39;GS210&#39;,
+    &#39;serial&#39;: &#39;91RB18719&#39;,
+    &#39;firmware&#39;: &#39;2.02&#39;},
+   &#39;ts&#39;: &#39;2020-09-24 13:47:53&#39;,
+   &#39;inter_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200&#39;,
+   &#39;instrument_name&#39;: &#39;gs200&#39;,
+   &#39;label&#39;: &#39;IDN&#39;,
+   &#39;unit&#39;: &#39;&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;name&#39;: &#39;IDN&#39;,
+   &#39;vals&#39;: &#39;&lt;Anything&gt;&#39;},
+  &#39;timeout&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;gs200_timeout&#39;,
+   &#39;value&#39;: 5,
+   &#39;raw_value&#39;: 5,
+   &#39;ts&#39;: &#39;2020-09-24 13:47:53&#39;,
+   &#39;inter_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200&#39;,
+   &#39;instrument_name&#39;: &#39;gs200&#39;,
+   &#39;label&#39;: &#39;timeout&#39;,
+   &#39;unit&#39;: &#39;s&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;name&#39;: &#39;timeout&#39;,
+   &#39;vals&#39;: &#39;&lt;MultiType: Numbers v&gt;=0, Enum: {None}&gt;&#39;},
+  &#39;output&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;gs200_output&#39;,
+   &#39;value&#39;: &#39;off&#39;,
+   &#39;raw_value&#39;: 0,
+   &#39;ts&#39;: &#39;2020-09-24 13:47:53&#39;,
+   &#39;inter_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200&#39;,
+   &#39;instrument_name&#39;: &#39;gs200&#39;,
+   &#39;val_mapping&#39;: {&#39;off&#39;: 0, &#39;on&#39;: 1},
+   &#39;label&#39;: &#39;Output State&#39;,
+   &#39;unit&#39;: &#39;&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;name&#39;: &#39;output&#39;,
+   &#39;vals&#39;: &#34;&lt;Enum: {&#39;off&#39;, &#39;on&#39;}&gt;&#34;},
+  &#39;source_mode&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;gs200_source_mode&#39;,
+   &#39;value&#39;: &#39;CURR&#39;,
+   &#39;raw_value&#39;: &#39;CURR&#39;,
+   &#39;ts&#39;: &#39;2020-09-24 13:47:53&#39;,
+   &#39;inter_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200&#39;,
+   &#39;instrument_name&#39;: &#39;gs200&#39;,
+   &#39;label&#39;: &#39;Source Mode&#39;,
+   &#39;unit&#39;: &#39;&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;name&#39;: &#39;source_mode&#39;,
+   &#39;vals&#39;: &#34;&lt;Enum: {&#39;VOLT&#39;, &#39;CURR&#39;}&gt;&#34;},
+  &#39;current_range&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;gs200_current_range&#39;,
+   &#39;value&#39;: 0.01,
+   &#39;raw_value&#39;: 0.01,
+   &#39;ts&#39;: &#39;2020-09-24 13:47:53&#39;,
+   &#39;inter_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200&#39;,
+   &#39;instrument_name&#39;: &#39;gs200&#39;,
+   &#39;label&#39;: &#39;Current Source Range&#39;,
+   &#39;unit&#39;: &#39;I&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;name&#39;: &#39;current_range&#39;,
+   &#39;vals&#39;: &#39;&lt;Enum: {0.1, 0.01, 0.2, 0.001}&gt;&#39;},
+  &#39;range&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.DelegateParameter&#39;,
+   &#39;full_name&#39;: &#39;gs200_range&#39;,
+   &#39;value&#39;: 0.01,
+   &#39;raw_value&#39;: 0.01,
+   &#39;ts&#39;: &#39;2020-09-24 13:47:53&#39;,
+   &#39;inter_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200&#39;,
+   &#39;instrument_name&#39;: &#39;gs200&#39;,
+   &#39;label&#39;: &#39;Current Source Range&#39;,
+   &#39;unit&#39;: &#39;I&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;name&#39;: &#39;range&#39;,
+   &#39;source_parameter&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+    &#39;full_name&#39;: &#39;gs200_current_range&#39;,
+    &#39;value&#39;: 0.01,
+    &#39;raw_value&#39;: 0.01,
+    &#39;ts&#39;: &#39;2020-09-24 13:47:53&#39;,
+    &#39;inter_delay&#39;: 0,
+    &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200&#39;,
+    &#39;instrument_name&#39;: &#39;gs200&#39;,
+    &#39;label&#39;: &#39;Current Source Range&#39;,
+    &#39;unit&#39;: &#39;I&#39;,
+    &#39;post_delay&#39;: 0,
+    &#39;name&#39;: &#39;current_range&#39;,
+    &#39;vals&#39;: &#39;&lt;Enum: {0.1, 0.01, 0.2, 0.001}&gt;&#39;}},
+  &#39;auto_range&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;gs200_auto_range&#39;,
+   &#39;value&#39;: False,
+   &#39;raw_value&#39;: False,
+   &#39;ts&#39;: &#39;2020-09-24 13:47:53&#39;,
+   &#39;inter_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200&#39;,
+   &#39;instrument_name&#39;: &#39;gs200&#39;,
+   &#39;label&#39;: &#39;Auto Range&#39;,
+   &#39;unit&#39;: &#39;&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;name&#39;: &#39;auto_range&#39;,
+   &#39;vals&#39;: &#39;&lt;Boolean&gt;&#39;},
+  &#39;current&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;gs200_current&#39;,
+   &#39;value&#39;: 0.001,
+   &#39;raw_value&#39;: 0.001,
+   &#39;ts&#39;: &#39;2020-09-24 13:47:53&#39;,
+   &#39;inter_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200&#39;,
+   &#39;instrument_name&#39;: &#39;gs200&#39;,
+   &#39;label&#39;: &#39;Current&#39;,
+   &#39;unit&#39;: &#39;I&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;name&#39;: &#39;current&#39;},
+  &#39;output_level&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.DelegateParameter&#39;,
+   &#39;full_name&#39;: &#39;gs200_output_level&#39;,
+   &#39;value&#39;: 0.001,
+   &#39;raw_value&#39;: 0.001,
+   &#39;ts&#39;: &#39;2020-09-24 13:47:53&#39;,
+   &#39;inter_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200&#39;,
+   &#39;instrument_name&#39;: &#39;gs200&#39;,
+   &#39;label&#39;: &#39;Current&#39;,
+   &#39;unit&#39;: &#39;I&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;name&#39;: &#39;output_level&#39;,
+   &#39;source_parameter&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+    &#39;full_name&#39;: &#39;gs200_current&#39;,
+    &#39;value&#39;: 0.001,
+    &#39;raw_value&#39;: 0.001,
+    &#39;ts&#39;: &#39;2020-09-24 13:47:53&#39;,
+    &#39;inter_delay&#39;: 0,
+    &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200&#39;,
+    &#39;instrument_name&#39;: &#39;gs200&#39;,
+    &#39;label&#39;: &#39;Current&#39;,
+    &#39;unit&#39;: &#39;I&#39;,
+    &#39;post_delay&#39;: 0,
+    &#39;name&#39;: &#39;current&#39;}},
+  &#39;voltage_limit&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;gs200_voltage_limit&#39;,
+   &#39;value&#39;: None,
+   &#39;raw_value&#39;: None,
+   &#39;ts&#39;: None,
+   &#39;inter_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200&#39;,
+   &#39;instrument_name&#39;: &#39;gs200&#39;,
+   &#39;label&#39;: &#39;Voltage Protection Limit&#39;,
+   &#39;unit&#39;: &#39;V&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;name&#39;: &#39;voltage_limit&#39;,
+   &#39;vals&#39;: &#39;&lt;Ints 1&lt;=v&lt;=30&gt;&#39;},
+  &#39;current_limit&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;gs200_current_limit&#39;,
+   &#39;value&#39;: None,
+   &#39;raw_value&#39;: None,
+   &#39;ts&#39;: None,
+   &#39;inter_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200&#39;,
+   &#39;instrument_name&#39;: &#39;gs200&#39;,
+   &#39;label&#39;: &#39;Current Protection Limit&#39;,
+   &#39;unit&#39;: &#39;I&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;name&#39;: &#39;current_limit&#39;,
+   &#39;vals&#39;: &#39;&lt;Numbers 0.001&lt;=v&lt;=0.2&gt;&#39;},
+  &#39;four_wire&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;gs200_four_wire&#39;,
+   &#39;value&#39;: None,
+   &#39;raw_value&#39;: None,
+   &#39;ts&#39;: None,
+   &#39;inter_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200&#39;,
+   &#39;instrument_name&#39;: &#39;gs200&#39;,
+   &#39;val_mapping&#39;: {&#39;off&#39;: 0, &#39;on&#39;: 1},
+   &#39;label&#39;: &#39;Four Wire Sensing&#39;,
+   &#39;unit&#39;: &#39;&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;name&#39;: &#39;four_wire&#39;,
+   &#39;vals&#39;: &#34;&lt;Enum: {&#39;off&#39;, &#39;on&#39;}&gt;&#34;},
+  &#39;guard&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;gs200_guard&#39;,
+   &#39;value&#39;: None,
+   &#39;raw_value&#39;: None,
+   &#39;ts&#39;: None,
+   &#39;inter_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200&#39;,
+   &#39;instrument_name&#39;: &#39;gs200&#39;,
+   &#39;val_mapping&#39;: {&#39;off&#39;: 0, &#39;on&#39;: 1},
+   &#39;label&#39;: &#39;Guard Terminal&#39;,
+   &#39;unit&#39;: &#39;&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;name&#39;: &#39;guard&#39;,
+   &#39;vals&#39;: &#34;&lt;Enum: {&#39;off&#39;, &#39;on&#39;}&gt;&#34;},
+  &#39;line_freq&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;gs200_line_freq&#39;,
+   &#39;value&#39;: None,
+   &#39;raw_value&#39;: None,
+   &#39;ts&#39;: None,
+   &#39;inter_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.yokogawa.GS200.GS200&#39;,
+   &#39;instrument_name&#39;: &#39;gs200&#39;,
+   &#39;label&#39;: &#39;Line Frequency&#39;,
+   &#39;unit&#39;: &#39;Hz&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;name&#39;: &#39;line_freq&#39;}},
+ &#39;name&#39;: &#39;gs200&#39;,
+ &#39;address&#39;: &#39;USB::0xB21::0x39::91RB18719::INSTR&#39;,
+ &#39;terminator&#39;: &#39;\n&#39;,
+ &#39;timeout&#39;: 5.0}
 </pre></div></div>
 </div>
-<p>The instrument is indeed in off mode</p>
-<p>Put a 10kOhm resistor over the output and verify that the voltage across the resistor is 1E-3 * 10E3 = 10 V.</p>
-<div class="nbinput nblast docutils container">
+<p>By default, auto_range is in False state. So, setting voltage or current is limitted to the present voltage_range or current_range:</p>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">gs</span><span class="o">.</span><span class="n">voltage_limit</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">gs</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;on&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<p>We verify that the voltage on the multmeter is indeed 10V. Let’s verify that if we put a 5 volt voltage limit the voltage does indeed drop to 5 V</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">gs</span><span class="o">.</span><span class="n">voltage_limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<p>We see that the voltage on the multimeter is indeed 5V</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">gs</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mf">0.00</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<p>The multimeter reads 0 mA again and the voltage across the resistor is 0 V</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">gs</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<p>The instrument turns output off. Next assert that exceptions are raised if we try to get/set the voltage while still being in current mode</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">try</span><span class="p">:</span>
-    <span class="n">gs</span><span class="o">.</span><span class="n">volatge</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># Set a voltage</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something has gone wrong&quot;</span><span class="p">)</span>
-    <span class="k">assert</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="k">except</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;exception correctly raised&quot;</span><span class="p">)</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">gs</span><span class="o">.</span><span class="n">voltage</span><span class="p">()</span> <span class="c1"># Get the voltage</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something has gone wrong&quot;</span><span class="p">)</span>
-    <span class="k">assert</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="k">except</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;exception correctly raised&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-exception correctly raised
-exception correctly raised
-</pre></div></div>
-</div>
-<p>Next, test that we get an exception if we turn off auto ranging and deliberately set the voltage outside of the chosen range</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">gs</span><span class="o">.</span><span class="n">auto_range</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">gs</span><span class="o">.</span><span class="n">source_mode</span><span class="p">(</span><span class="s2">&quot;VOLT&quot;</span><span class="p">)</span>
-<span class="n">gs</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="mf">10E-3</span><span class="p">)</span>
-
-<span class="k">try</span><span class="p">:</span>
-     <span class="n">gs</span><span class="o">.</span><span class="n">voltage</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">exp</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;exception correctly raised&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-exception correctly raised
-</pre></div></div>
-</div>
-<p>Verify that when auto range is true, we can set voltages without being worried about ranges</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">gs</span><span class="o">.</span><span class="n">source_mode</span><span class="p">(</span><span class="s2">&quot;VOLT&quot;</span><span class="p">)</span>
-<span class="n">gs</span><span class="o">.</span><span class="n">auto_range</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">gs</span><span class="o">.</span><span class="n">voltage</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<p>We verify that we can now set the output to 1.5V without problems. Let see if ramping from 0 to 5 volts with steps of 0.5 works. The delay between the steps shall be 1 second, so the entire ramp should take 10 seconds</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">tb</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">gs</span><span class="o">.</span><span class="n">voltage</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">gs</span><span class="o">.</span><span class="n">ramp_voltage</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">te</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This took </span><span class="si">{:.3}</span><span class="s2"> seconds&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">te</span> <span class="o">-</span> <span class="n">tb</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-This took 10.0 seconds
-</pre></div></div>
-</div>
-<p>Now try to ramp the current while still in volt mode. This should raise an error</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">try</span><span class="p">:</span>
-    <span class="n">gs</span><span class="o">.</span><span class="n">ramp_current</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1E-3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something has gone wrong&quot;</span><span class="p">)</span>
-    <span class="k">assert</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="k">except</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;exception correctly raised&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-exception correctly raised
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">gs</span><span class="o">.</span><span class="n">voltage_range</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-10.0
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">try</span><span class="p">:</span>
-    <span class="n">gs</span><span class="o">.</span><span class="n">current_range</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something has gone wrong&quot;</span><span class="p">)</span>
-    <span class="k">assert</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="k">except</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;exception correctly raised&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-exception correctly raised
-</pre></div></div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">gs</span><span class="o">.</span><span class="n">source_mode</span><span class="p">(</span><span class="s2">&quot;CURR&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">gs</span><span class="o">.</span><span class="n">current_range</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-0.001
-</pre></div></div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">gs</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -903,13 +1042,326 @@ exception correctly raised
 </div>
 </div>
 <div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+False
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">current_range</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mf">0.009</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The current value is withing the present current_range&quot;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception incorrectly raised.&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something has gone wrong.&quot;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exception is correctly raised. The value is out of the present &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;range of </span><span class="si">{</span><span class="n">gs</span><span class="o">.</span><span class="n">current_range</span><span class="p">()</span><span class="si">}</span><span class="s2"> A.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The current value is withing the present current_range
+Exception is correctly raised. The value is out of the present range of 0.01 A.
+</pre></div></div>
+</div>
+<p>auto_range can be used to set the value even if the value is out of the present range. If the value exceeds the present range, the range automatically switches to the higher range tier untill the maximum allowed limit is reached (0.2 A for current and 30 V for voltage). auto_range can be useful when one wants to ramp the value without worrying about the end value to be out of the present range. We ramp the current from 0.009 A to 0.02 A with the step of 0.001 A (delay between each step is set to
+1 second) and time it. Our present range is 0.01 A, so we expect the range automatically switches to 0.1 A because of auto_range is True.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">auto_range</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">gs</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mf">0.009</span><span class="p">)</span>
+<span class="n">gs</span><span class="o">.</span><span class="n">current_range</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.01
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">gs</span><span class="o">.</span><span class="n">ramp_current</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ramping took </span><span class="si">{:.4}</span><span class="s2"> seconds&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ramping took 10.84 seconds
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">current</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.02
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">current_range</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.1
+</pre></div></div>
+</div>
+<p>Now, we turn off auto_range and set the current value out of the present range to test if we correctly get an error</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">auto_range</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mf">0.15</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something has gone wrong&quot;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exception is correctly raised. The value is out of the present &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;range of </span><span class="si">{</span><span class="n">gs</span><span class="o">.</span><span class="n">current_range</span><span class="p">()</span><span class="si">}</span><span class="s2"> A.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Exception is correctly raised. The value is out of the present range of 0.1 A.
+</pre></div></div>
+</div>
+<p>Now, we want to test the ramping in the False state of auto_range. We expect the ramping to stop when we exceed the range and we get out of range error:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">auto_range</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">gs</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mf">0.007</span><span class="p">)</span>
+<span class="n">gs</span><span class="o">.</span><span class="n">current_range</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">ramp_current</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception is correctly raised. Ramping is stopped at </span><span class="si">{}</span><span class="s2"> A because the&quot;</span>
+          <span class="s2">&quot; range is exceeded&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gs</span><span class="o">.</span><span class="n">current</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Exception is correctly raised. Ramping is stopped at 0.01 A because the range is exceeded
+</pre></div></div>
+</div>
+<p>Now, we switch to the ‘VOLT’ mode and test a few things:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">source_mode</span><span class="p">(</span><span class="s1">&#39;VOLT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">voltage</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1.0
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">voltage_range</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1.0
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">auto_range</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+False
+</pre></div></div>
+</div>
+<p>We can look at the voltage_limit and current_limit limit in any source_mode:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">current_limit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-True
+0.2
 </pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">voltage_limit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+30
+</pre></div></div>
+</div>
+<p>Now, we turn on the output to test if we see the correct output (in the ‘CURR’ and ‘VOLT’ mode, the voltage_limit and current_limit is active, respectively):</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s1">&#39;on&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We can verify that our multileter is reading 0.2 A. Now, we change the current_limit and test again:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">current_limit</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>As expected, the multimeter is reading 0.1 A.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gs</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
