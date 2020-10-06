@@ -536,6 +536,11 @@ alt="Binder badge"
 
 <span class="c1"># import logging</span>
 <span class="c1"># logging.basicConfig(level=logging.DEBUG)</span>
+<span class="kn">from</span> <span class="nn">qcodes.loops</span> <span class="kn">import</span> <span class="n">Loop</span>
+<span class="kn">from</span> <span class="nn">qcodes.plots.pyqtgraph</span> <span class="kn">import</span> <span class="n">QtPlot</span>
+<span class="kn">from</span> <span class="nn">qcodes.plots.qcmatplotlib</span> <span class="kn">import</span> <span class="n">MatPlot</span>
+<span class="kn">from</span> <span class="nn">qcodes.measure</span> <span class="kn">import</span> <span class="n">Measure</span>
+<span class="kn">from</span> <span class="nn">qcodes.actions</span> <span class="kn">import</span> <span class="n">Task</span>
 </pre></div>
 </div>
 </div>
@@ -628,8 +633,8 @@ trace_points       :    201
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># Now aquire a trace</span>
 <span class="n">vna</span><span class="o">.</span><span class="n">trace</span><span class="o">.</span><span class="n">prepare_trace</span><span class="p">()</span>  <span class="c1"># this must be called prior to a Measurement or Loop</span>
-<span class="n">tracedata</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">Measure</span><span class="p">(</span><span class="n">vna</span><span class="o">.</span><span class="n">trace</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>  <span class="c1"># this returns a dataset</span>
-<span class="n">plot</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">MatPlot</span><span class="p">(</span><span class="n">tracedata</span><span class="o">.</span><span class="n">arrays</span><span class="p">[</span><span class="s1">&#39;vna_trace&#39;</span><span class="p">])</span>
+<span class="n">tracedata</span> <span class="o">=</span> <span class="n">Measure</span><span class="p">(</span><span class="n">vna</span><span class="o">.</span><span class="n">trace</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>  <span class="c1"># this returns a dataset</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">MatPlot</span><span class="p">(</span><span class="n">tracedata</span><span class="o">.</span><span class="n">arrays</span><span class="p">[</span><span class="s1">&#39;vna_trace&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1444,18 +1449,18 @@ if (IPython.notebook.kernel != null) {
 <span class="n">n_avgs</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">vna</span><span class="o">.</span><span class="n">number_of_averages</span><span class="p">(</span><span class="n">n_avgs</span><span class="p">)</span>
 <span class="c1"># make a Task that runs N sweeps and waits for them to finish</span>
-<span class="n">run_sweeper</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">Task</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">vna</span><span class="o">.</span><span class="n">run_N_times</span><span class="p">,</span> <span class="n">n_avgs</span><span class="p">))</span>
+<span class="n">run_sweeper</span> <span class="o">=</span> <span class="n">Task</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">vna</span><span class="o">.</span><span class="n">run_N_times</span><span class="p">,</span> <span class="n">n_avgs</span><span class="p">))</span>
 
 
 <span class="c1"># prepare the trace</span>
 <span class="n">vna</span><span class="o">.</span><span class="n">trace</span><span class="o">.</span><span class="n">prepare_trace</span><span class="p">()</span>
 
 <span class="c1"># set up a Loop</span>
-<span class="n">loop</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">Loop</span><span class="p">(</span><span class="n">vna</span><span class="o">.</span><span class="n">output_power</span><span class="o">.</span><span class="n">sweep</span><span class="p">(</span><span class="o">-</span><span class="mi">84</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">20</span><span class="p">))</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="n">run_sweeper</span><span class="p">,</span> <span class="n">vna</span><span class="o">.</span><span class="n">trace</span><span class="p">)</span>
+<span class="n">loop</span> <span class="o">=</span> <span class="n">Loop</span><span class="p">(</span><span class="n">vna</span><span class="o">.</span><span class="n">output_power</span><span class="o">.</span><span class="n">sweep</span><span class="p">(</span><span class="o">-</span><span class="mi">84</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">20</span><span class="p">))</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="n">run_sweeper</span><span class="p">,</span> <span class="n">vna</span><span class="o">.</span><span class="n">trace</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">loop</span><span class="o">.</span><span class="n">get_data_set</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;HP8753D_tutorial&#39;</span><span class="p">)</span>
 
 <span class="c1"># set up plotting</span>
-<span class="n">plot</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">QtPlot</span><span class="p">()</span>  <span class="c1"># create a plot</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">QtPlot</span><span class="p">()</span>  <span class="c1"># create a plot</span>
 <span class="n">plot</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">vna_trace</span><span class="p">)</span>  <span class="c1"># add a graph to the plot</span>
 <span class="c1"># run the loop</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">loop</span><span class="o">.</span><span class="n">with_bg_task</span><span class="p">(</span><span class="n">plot</span><span class="o">.</span><span class="n">update</span><span class="p">,</span> <span class="n">plot</span><span class="o">.</span><span class="n">save</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>

@@ -549,6 +549,7 @@ alt="Binder badge"
 
 <span class="kn">import</span> <span class="nn">qcodes</span> <span class="k">as</span> <span class="nn">qc</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument_drivers.ZI.ZIUHFLI</span> <span class="kn">import</span> <span class="n">ZIUHFLI</span>
+<span class="kn">from</span> <span class="nn">qcodes.measure</span> <span class="kn">import</span> <span class="n">Measure</span>
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">log</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
@@ -1699,7 +1700,7 @@ if (IPython.notebook.kernel != null) {
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># A more correct way to do this is to perform a proper QCoDeS measurement</span>
-<span class="n">sweepdata</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">Measure</span><span class="p">(</span><span class="n">zi</span><span class="o">.</span><span class="n">Sweep</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">sweepdata</span> <span class="o">=</span> <span class="n">Measure</span><span class="p">(</span><span class="n">zi</span><span class="o">.</span><span class="n">Sweep</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3432,7 +3433,7 @@ if (IPython.notebook.kernel != null) {
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># But it is strongly encouraged to use measure with QCoDeS rather than by using the .get method directly.</span>
 
-<span class="n">scopedata</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">Measure</span><span class="p">(</span><span class="n">zi</span><span class="o">.</span><span class="n">Scope</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">scopedata</span> <span class="o">=</span> <span class="n">Measure</span><span class="p">(</span><span class="n">zi</span><span class="o">.</span><span class="n">Scope</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

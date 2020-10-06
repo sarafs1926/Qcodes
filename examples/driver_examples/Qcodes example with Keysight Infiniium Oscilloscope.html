@@ -530,7 +530,7 @@ alt="Binder badge"
 </div>
 <div class="section" id="Importing-Dependencies">
 <h2>Importing Dependencies<a class="headerlink" href="#Importing-Dependencies" title="Permalink to this headline">¶</a></h2>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
@@ -543,12 +543,29 @@ alt="Binder badge"
 <span class="c1"># qcodes imports</span>
 <span class="kn">import</span> <span class="nn">qcodes</span> <span class="k">as</span> <span class="nn">qc</span>
 <span class="kn">import</span> <span class="nn">qcodes.instrument_drivers.Keysight.Infiniium</span> <span class="k">as</span> <span class="nn">MSO</span>
-
+<span class="kn">from</span> <span class="nn">qcodes.plots.qcmatplotlib</span> <span class="kn">import</span> <span class="n">MatPlot</span>
+<span class="kn">from</span> <span class="nn">qcodes.measure</span> <span class="kn">import</span> <span class="n">Measure</span>
 <span class="c1">#setup</span>
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
 <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Logging hadn&#39;t been started.
+Activating auto-logging. Current session state plus future input saved.
+Filename       : C:\Users\Jens-Work\.qcodes\logs\command_history.log
+Mode           : append
+Output logging : True
+Raw input log  : False
+Timestamping   : True
+State          : active
+Qcodes Logfile : C:\Users\Jens-Work\.qcodes\logs\201006-15096-qcodes.log
+</pre></div></div>
 </div>
 </div>
 <div class="section" id="Create-the-Instrument">
@@ -635,7 +652,7 @@ Connected to: KEYSIGHT TECHNOLOGIES MSOS104A (serial:MY55510104, firmware:06.00.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">data</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">Measure</span><span class="p">(</span><span class="n">mso</span><span class="o">.</span><span class="n">ch4</span><span class="o">.</span><span class="n">trace</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span></span><span class="n">data</span> <span class="o">=</span> <span class="n">Measure</span><span class="p">(</span><span class="n">mso</span><span class="o">.</span><span class="n">ch4</span><span class="o">.</span><span class="n">trace</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -657,7 +674,7 @@ acquired at 2017-10-18 13:49:47
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plot</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">MatPlot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">arrays</span><span class="p">[</span><span class="s1">&#39;MSO_chan4_trace&#39;</span><span class="p">])</span>
+<span></span><span class="n">plot</span> <span class="o">=</span> <span class="n">MatPlot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">arrays</span><span class="p">[</span><span class="s1">&#39;MSO_chan4_trace&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>

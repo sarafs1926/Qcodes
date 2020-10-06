@@ -528,6 +528,9 @@ alt="Binder badge"
 <span class="kn">import</span> <span class="nn">qcodes</span> <span class="k">as</span> <span class="nn">qc</span>
 <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument_drivers.stanford_research.SR830</span> <span class="kn">import</span> <span class="n">SR830</span>
+
+<span class="kn">from</span> <span class="nn">qcodes.plots.qcmatplotlib</span> <span class="kn">import</span> <span class="n">MatPlot</span>
+<span class="kn">from</span> <span class="nn">qcodes.measure</span> <span class="kn">import</span> <span class="n">Measure</span>
 </pre></div>
 </div>
 </div>
@@ -661,7 +664,7 @@ timeout          :      5 (s)
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># Then perform a measurement</span>
 <span class="n">sr</span><span class="o">.</span><span class="n">ch1_databuffer</span><span class="o">.</span><span class="n">prepare_buffer_readout</span><span class="p">()</span>  <span class="c1"># MANDATORY</span>
-<span class="n">meas</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">Measure</span><span class="p">(</span><span class="n">sr</span><span class="o">.</span><span class="n">ch1_databuffer</span><span class="p">)</span>
+<span class="n">meas</span> <span class="o">=</span> <span class="n">Measure</span><span class="p">(</span><span class="n">sr</span><span class="o">.</span><span class="n">ch1_databuffer</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">meas</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -683,7 +686,7 @@ acquired at 2017-06-21 13:27:30
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plot</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">MatPlot</span><span class="p">()</span>
+<span></span><span class="n">plot</span> <span class="o">=</span> <span class="n">MatPlot</span><span class="p">()</span>
 <span class="n">plot</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">lockin_ch1_databuffer</span><span class="p">)</span>
 </pre></div>
 </div>
