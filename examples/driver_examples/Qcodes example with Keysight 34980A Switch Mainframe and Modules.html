@@ -116,13 +116,6 @@
 <li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Ithaco.html">QCoDeS Example with Ithaco</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Keithley%202600.html">QCoDeS Example with with Keithley 2600</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Keithley%207510.html">QCoDeS Example with Tektronix Keithley 7510 Multimeter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Keithley%207510.html#To-reset-the-system-to-default-settings:">To reset the system to default settings:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Keithley%207510.html#To-perform-measurement-with-different-sense-functions:">To perform measurement with different sense functions:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Keithley%207510.html#To-set-measurement-range-(positive-full-scale-measure-range):">To set measurement range (positive full-scale measure range):</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Keithley%207510.html#To-set-the-NPLC-(Number-of-Power-Line-Cycles)-value-for-measurements:">To set the NPLC (Number of Power Line Cycles) value for measurements:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Keithley%207510.html#To-set-the-delay:">To set the delay:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Keithley%207510.html#To-set-auto-zero-(automatic-updates-to-the-internal-reference-measurements):">To set auto zero (automatic updates to the internal reference measurements):</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Keithley%207510.html#To-set-averaging-filter-for-measurements,-including-average-count,-and-filter-type:">To set averaging filter for measurements, including average count, and filter type:</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Keysight%2033500B.html">QCoDeS Example with Keysight 33500B</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Keysight%20344xxA.html">QCoDeS Example with Keysight 344xxA</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">QCoDeS Example with Keysight 34980A Multifunction Switch / Measure Mainframe and Modules</a><ul>
@@ -130,9 +123,9 @@
 <li class="toctree-l4"><a class="reference internal" href="#Basic-Switch-control,-module-level">Basic Switch control, module level</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#About-safety-interlock">About safety interlock</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Basic-Switch-control,-instrument-level">Basic Switch control, instrument level</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#So,-when-to-use-connect,-connect_paths,-is_closed,-or-are_closed?">So, when to use connect, connect_paths, is_closed, or are_closed?</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#So,-when-to-use-connect,-connect_paths,-is_closed,-or-are_closed?">So, when to use connect, connect_paths, is_closed, or are_closed?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Keysight%20B1500%20Parameter%20Analyzer.html">Qcodes example with Keysight B1500 Semiconductor Parameter Analyzer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Keysight%20B2200%20Series%20Femto%20Leakage%20Switch%20Matrix.html">QCoDeS Example with Keysight B2200 Series Femto Leakage Switch Matrix</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Keysight%20Infiniium%20Oscilloscope.html">QCoDeS Example with Keysight Infiniium Oscilloscopes</a></li>
@@ -928,9 +921,8 @@ True
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="So,-when-to-use-connect,-connect_paths,-is_closed,-or-are_closed?">
-<h1>So, when to use connect, connect_paths, is_closed, or are_closed?<a class="headerlink" href="#So,-when-to-use-connect,-connect_paths,-is_closed,-or-are_closed?" title="Permalink to this headline">¶</a></h1>
+<h2>So, when to use connect, connect_paths, is_closed, or are_closed?<a class="headerlink" href="#So,-when-to-use-connect,-connect_paths,-is_closed,-or-are_closed?" title="Permalink to this headline">¶</a></h2>
 <p>Yes, it seem very confusing because of the path/paths, and is/are.</p>
 <p>The reason for the singular/plural is that the module can work with one row and column pair (r, c), or a list of row and column pairs [(r1, c1), (r2, c2)].</p>
 <p><strong>When work with single row-column pair, use the singular version of functions</strong> - instrument.module.connect(r, c) - instrument.module.is_closed(r,c)</p>
@@ -942,6 +934,7 @@ True
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>
