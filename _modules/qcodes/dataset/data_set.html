@@ -159,8 +159,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for qcodes.dataset.data_set</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">atexit</span>
-<span class="kn">import</span> <span class="nn">functools</span>
+<span></span><span class="kn">import</span> <span class="nn">functools</span>
 <span class="kn">import</span> <span class="nn">importlib</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">logging</span>
@@ -182,6 +181,7 @@
 <span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.rundescriber</span> <span class="kn">import</span> <span class="n">RunDescriber</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.versioning.converters</span> <span class="kn">import</span> <span class="p">(</span><span class="n">new_to_old</span><span class="p">,</span>
                                                                <span class="n">old_to_new</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.versioning.rundescribertypes</span> <span class="kn">import</span> <span class="n">Shapes</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.versioning.v0</span> <span class="kn">import</span> <span class="n">InterDependencies</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.guids</span> <span class="kn">import</span> <span class="p">(</span><span class="n">filter_guids_by_parts</span><span class="p">,</span> <span class="n">generate_guid</span><span class="p">,</span>
                                   <span class="n">parse_guid</span><span class="p">)</span>
@@ -450,7 +450,8 @@
                  <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">specs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SpecsOrInterDeps</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">values</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">VALUES</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+                 <span class="n">metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">shapes</span><span class="p">:</span> <span class="n">Shapes</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a new :class:`.DataSet` object. The object can either hold a new run or</span>
 <span class="sd">        an already existing run. If a ``run_id`` is provided, then an old run is</span>
@@ -468,23 +469,26 @@
 <span class="sd">            exp_id: the id of the experiment in which to create a new run.</span>
 <span class="sd">              Ignored if ``run_id`` is provided.</span>
 <span class="sd">            name: the name of the dataset. Ignored if ``run_id`` is provided.</span>
-<span class="sd">            specs: paramspecs belonging to the dataset. Ignored if ``run_id`` is</span>
-<span class="sd">              provided.</span>
+<span class="sd">            specs: paramspecs belonging to the dataset or an ``InterDependencies_``</span>
+<span class="sd">              object that describes the dataset. Ignored if ``run_id`` is provided.</span>
 <span class="sd">            values: values to insert into the dataset. Ignored if ``run_id`` is</span>
 <span class="sd">              provided.</span>
 <span class="sd">            metadata: metadata to insert into the dataset. Ignored if ``run_id``</span>
 <span class="sd">              is provided.</span>
+<span class="sd">            shapes:</span>
+<span class="sd">                An optional dict from names of dependent parameters to the shape</span>
+<span class="sd">                of the data captured as a list of integers. The list is in the</span>
+<span class="sd">                same order as the interdependencies or paramspecs provided.</span>
+<span class="sd">                Ignored if ``run_id`` is provided.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">conn_from_dbpath_or_conn</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">path_to_db</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_debug</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">subscribers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_Subscriber</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span><span class="p">:</span> <span class="n">InterDependencies_</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_dataset_links</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Link</span><span class="p">]</span>
         <span class="c1">#: In memory representation of the data in the dataset.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span> <span class="n">DataSetCache</span> <span class="o">=</span> <span class="n">DataSetCache</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">VALUE</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
-
 
         <span class="k">if</span> <span class="n">run_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">run_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="n">run_id</span><span class="p">):</span>
@@ -493,7 +497,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_run_id</span> <span class="o">=</span> <span class="n">run_id</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_completed</span> <span class="o">=</span> <span class="n">completed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_id</span><span class="p">)</span>
             <span class="n">run_desc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_run_description_from_db</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span> <span class="o">=</span> <span class="n">run_desc</span><span class="o">.</span><span class="n">interdeps</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rundescriber</span> <span class="o">=</span> <span class="n">run_desc</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">get_metadata_from_run_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_id</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_started</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_timestamp_raw</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_dataset_links</span> <span class="o">=</span> <span class="n">str_to_links</span><span class="p">(</span>
@@ -519,12 +523,18 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_run_id</span> <span class="o">=</span> <span class="n">run_id</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_completed</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_started</span> <span class="o">=</span> <span class="kc">False</span>
+
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">specs</span><span class="p">,</span> <span class="n">InterDependencies_</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span> <span class="o">=</span> <span class="n">specs</span>
+                <span class="n">interdeps</span> <span class="o">=</span> <span class="n">specs</span>
             <span class="k">elif</span> <span class="n">specs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span> <span class="o">=</span> <span class="n">old_to_new</span><span class="p">(</span><span class="n">InterDependencies</span><span class="p">(</span><span class="o">*</span><span class="n">specs</span><span class="p">))</span>
+                <span class="n">interdeps</span> <span class="o">=</span> <span class="n">old_to_new</span><span class="p">(</span><span class="n">InterDependencies</span><span class="p">(</span><span class="o">*</span><span class="n">specs</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span> <span class="o">=</span> <span class="n">InterDependencies_</span><span class="p">()</span>
+                <span class="n">interdeps</span> <span class="o">=</span> <span class="n">InterDependencies_</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_interdependencies</span><span class="p">(</span>
+                <span class="n">interdeps</span><span class="o">=</span><span class="n">interdeps</span><span class="p">,</span>
+                <span class="n">shapes</span><span class="o">=</span><span class="n">shapes</span><span class="p">)</span>
+
             <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">get_metadata_from_run_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_id</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_dataset_links</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -614,7 +624,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return all the parameters that explicitly depend on other parameters</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span><span class="o">.</span><span class="n">dependencies</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rundescriber</span><span class="o">.</span><span class="n">interdeps</span><span class="o">.</span><span class="n">dependencies</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">exp_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
@@ -641,7 +651,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">description</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RunDescriber</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">RunDescriber</span><span class="p">(</span><span class="n">interdeps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rundescriber</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
@@ -784,10 +794,14 @@
                                   <span class="s1">&#39;Please use DataSet.set_interdependencies &#39;</span>
                                   <span class="s1">&#39;instead.&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataSet.set_interdependencies"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.set_interdependencies">[docs]</a>    <span class="k">def</span> <span class="nf">set_interdependencies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interdeps</span><span class="p">:</span> <span class="n">InterDependencies_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="DataSet.set_interdependencies"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.set_interdependencies">[docs]</a>    <span class="k">def</span> <span class="nf">set_interdependencies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                              <span class="n">interdeps</span><span class="p">:</span> <span class="n">InterDependencies_</span><span class="p">,</span>
+                              <span class="n">shapes</span><span class="p">:</span> <span class="n">Shapes</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Overwrite the interdependencies object (which holds all added</span>
-<span class="sd">        parameters and their relationships) of this dataset</span>
+<span class="sd">        Set the interdependencies object (which holds all added</span>
+<span class="sd">        parameters and their relationships) of this dataset and</span>
+<span class="sd">        optionally the shapes object that holds information about</span>
+<span class="sd">        the shape of the data to be measured.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">interdeps</span><span class="p">,</span> <span class="n">InterDependencies_</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Wrong input type. Expected InterDepencies_, &#39;</span>
@@ -797,8 +811,7 @@
             <span class="n">mssg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Can not set interdependencies on a DataSet that has &#39;</span>
                     <span class="s1">&#39;been started.&#39;</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">mssg</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span> <span class="o">=</span> <span class="n">interdeps</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rundescriber</span> <span class="o">=</span> <span class="n">RunDescriber</span><span class="p">(</span><span class="n">interdeps</span><span class="p">,</span> <span class="n">shapes</span><span class="o">=</span><span class="n">shapes</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DataSet.get_parameters"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.get_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">get_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SPECS</span><span class="p">:</span>
         <span class="n">old_interdeps</span> <span class="o">=</span> <span class="n">new_to_old</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="o">.</span><span class="n">interdeps</span><span class="p">)</span>
@@ -891,7 +904,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Perform the actions that must take place once the run has been started</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">paramspecs</span> <span class="o">=</span> <span class="n">new_to_old</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span><span class="p">)</span><span class="o">.</span><span class="n">paramspecs</span>
+        <span class="n">paramspecs</span> <span class="o">=</span> <span class="n">new_to_old</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rundescriber</span><span class="o">.</span><span class="n">interdeps</span><span class="p">)</span><span class="o">.</span><span class="n">paramspecs</span>
 
         <span class="k">for</span> <span class="n">spec</span> <span class="ow">in</span> <span class="n">paramspecs</span><span class="p">:</span>
             <span class="n">add_parameter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span> <span class="n">spec</span><span class="p">)</span>
@@ -966,9 +979,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_raise_if_not_writable</span><span class="p">()</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span><span class="o">.</span><span class="n">_id_to_paramspec</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_rundescriber</span><span class="o">.</span><span class="n">interdeps</span><span class="o">.</span><span class="n">_id_to_paramspec</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
                           <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span><span class="o">.</span><span class="n">validate_subset</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rundescriber</span><span class="o">.</span><span class="n">interdeps</span><span class="o">.</span><span class="n">validate_subset</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">DependencyError</span> <span class="k">as</span> <span class="n">de</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s1">&#39;Can not add result, missing setpoint values&#39;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">de</span>
@@ -1117,7 +1130,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">valid_param_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">ps</span><span class="o">.</span><span class="n">name</span>
-                                 <span class="k">for</span> <span class="n">ps</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span><span class="o">.</span><span class="n">non_dependencies</span><span class="p">]</span>
+                                 <span class="k">for</span> <span class="n">ps</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rundescriber</span><span class="o">.</span><span class="n">interdeps</span><span class="o">.</span><span class="n">non_dependencies</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">valid_param_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_parameters</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">get_parameter_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span>
@@ -1287,12 +1300,12 @@
 <span class="sd">                setpoints</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">paramspec</span><span class="p">:</span> <span class="n">ParamSpecBase</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span><span class="o">.</span><span class="n">_id_to_paramspec</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span>
+        <span class="n">paramspec</span><span class="p">:</span> <span class="n">ParamSpecBase</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rundescriber</span><span class="o">.</span><span class="n">interdeps</span><span class="o">.</span><span class="n">_id_to_paramspec</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">param_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unknown parameter, not in this DataSet&#39;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">paramspec</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span><span class="o">.</span><span class="n">dependencies</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">paramspec</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rundescriber</span><span class="o">.</span><span class="n">interdeps</span><span class="o">.</span><span class="n">dependencies</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Parameter </span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s1"> has no setpoints.&#39;</span><span class="p">)</span>
 
         <span class="n">setpoints</span> <span class="o">=</span> <span class="n">get_setpoints</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span> <span class="n">param_name</span><span class="p">)</span>
@@ -1403,7 +1416,7 @@
 <span class="sd">        single values (database).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_raise_if_not_writable</span><span class="p">()</span>
-        <span class="n">interdeps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span>
+        <span class="n">interdeps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rundescriber</span><span class="o">.</span><span class="n">interdeps</span>
 
         <span class="n">toplevel_params</span> <span class="o">=</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">interdeps</span><span class="o">.</span><span class="n">dependencies</span><span class="p">)</span>
                            <span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">result_dict</span><span class="p">)))</span>

@@ -289,12 +289,16 @@ file that is different from <code class="docutils literal notranslate"><span cla
 <li><p><strong>exp_id</strong> – the id of the experiment in which to create a new run.
 Ignored if <code class="docutils literal notranslate"><span class="pre">run_id</span></code> is provided.</p></li>
 <li><p><strong>name</strong> – the name of the dataset. Ignored if <code class="docutils literal notranslate"><span class="pre">run_id</span></code> is provided.</p></li>
-<li><p><strong>specs</strong> – paramspecs belonging to the dataset. Ignored if <code class="docutils literal notranslate"><span class="pre">run_id</span></code> is
-provided.</p></li>
+<li><p><strong>specs</strong> – paramspecs belonging to the dataset or an <code class="docutils literal notranslate"><span class="pre">InterDependencies_</span></code>
+object that describes the dataset. Ignored if <code class="docutils literal notranslate"><span class="pre">run_id</span></code> is provided.</p></li>
 <li><p><strong>values</strong> – values to insert into the dataset. Ignored if <code class="docutils literal notranslate"><span class="pre">run_id</span></code> is
 provided.</p></li>
 <li><p><strong>metadata</strong> – metadata to insert into the dataset. Ignored if <code class="docutils literal notranslate"><span class="pre">run_id</span></code>
 is provided.</p></li>
+<li><p><strong>shapes</strong> – An optional dict from names of dependent parameters to the shape
+of the data captured as a list of integers. The list is in the
+same order as the interdependencies or paramspecs provided.
+Ignored if <code class="docutils literal notranslate"><span class="pre">run_id</span></code> is provided.</p></li>
 </ul>
 </dd>
 </dl>
@@ -483,9 +487,11 @@ echoed back.</p>
 
 <dl class="py method">
 <dt id="qcodes.dataset.data_set.DataSet.set_interdependencies">
-<code class="sig-name descname">set_interdependencies</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">interdeps</span><span class="p">:</span> <span class="n">qcodes.dataset.descriptions.dependencies.InterDependencies_</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/dataset/data_set.html#DataSet.set_interdependencies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.set_interdependencies" title="Permalink to this definition">¶</a></dt>
-<dd><p>Overwrite the interdependencies object (which holds all added
-parameters and their relationships) of this dataset</p>
+<code class="sig-name descname">set_interdependencies</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">interdeps</span><span class="p">:</span> <span class="n">qcodes.dataset.descriptions.dependencies.InterDependencies_</span></em>, <em class="sig-param"><span class="n">shapes</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">, </span><span class="p">…</span><span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/dataset/data_set.html#DataSet.set_interdependencies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.set_interdependencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the interdependencies object (which holds all added
+parameters and their relationships) of this dataset and
+optionally the shapes object that holds information about
+the shape of the data to be measured.</p>
 </dd></dl>
 
 <dl class="py method">

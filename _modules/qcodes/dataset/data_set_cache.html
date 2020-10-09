@@ -164,11 +164,13 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.queries</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">get_interdeps_from_result_table_name</span><span class="p">,</span> <span class="n">completed</span><span class="p">,</span>
-    <span class="n">get_parameter_data_for_one_paramtree</span><span class="p">)</span>
+    <span class="n">completed</span><span class="p">,</span> <span class="n">get_interdeps_from_result_table_name</span><span class="p">,</span>
+    <span class="n">get_parameter_data_for_one_paramtree</span><span class="p">,</span>
+    <span class="n">get_rundescriber_from_result_table_name</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
     <span class="kn">from</span> <span class="nn">.data_set</span> <span class="kn">import</span> <span class="n">DataSet</span><span class="p">,</span> <span class="n">ParameterData</span>
 
 
@@ -203,19 +205,27 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">completed</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_loaded_from_completed_ds</span> <span class="o">=</span> <span class="kc">True</span>
 
-        <span class="n">interdeps</span> <span class="o">=</span> <span class="n">get_interdeps_from_result_table_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">table_name</span><span class="p">)</span>
+        <span class="n">rundescriber</span> <span class="o">=</span> <span class="n">get_rundescriber_from_result_table_name</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">table_name</span>
+        <span class="p">)</span>
+        <span class="n">interdeps</span> <span class="o">=</span> <span class="n">rundescriber</span><span class="o">.</span><span class="n">interdeps</span>
         <span class="n">parameters</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ps</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">ps</span> <span class="ow">in</span> <span class="n">interdeps</span><span class="o">.</span><span class="n">non_dependencies</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
             <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_status</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 
-            <span class="n">data</span><span class="p">,</span> <span class="n">n_rows_read</span> <span class="o">=</span> <span class="n">get_parameter_data_for_one_paramtree</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span>
-                                                              <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span>
-                                                              <span class="n">interdeps</span><span class="o">=</span><span class="n">interdeps</span><span class="p">,</span>
-                                                              <span class="n">output_param</span><span class="o">=</span><span class="n">parameter</span><span class="p">,</span>
-                                                              <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
-                                                              <span class="n">end</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">parameter</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_merge_data_dicts_inner</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="p">{}),</span> <span class="n">data</span><span class="p">)</span>
+            <span class="n">data</span><span class="p">,</span> <span class="n">n_rows_read</span> <span class="o">=</span> <span class="n">get_parameter_data_for_one_paramtree</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span>
+                <span class="n">rundescriber</span><span class="o">=</span><span class="n">rundescriber</span><span class="p">,</span>
+                <span class="n">output_param</span><span class="o">=</span><span class="n">parameter</span><span class="p">,</span>
+                <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+                <span class="n">end</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">parameter</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_merge_data_dicts_inner</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="p">{}),</span>
+                <span class="n">data</span>
+            <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_read_status</span><span class="p">[</span><span class="n">parameter</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_status</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">n_rows_read</span></div>
 
     <span class="nd">@staticmethod</span>

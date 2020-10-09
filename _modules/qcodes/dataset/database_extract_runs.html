@@ -159,24 +159,26 @@
            <div itemprop="articleBody">
             
   <h1>Source code for qcodes.dataset.database_extract_runs</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
 <span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
-<span class="kn">import</span> <span class="nn">os</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.versioning.converters</span> <span class="kn">import</span> <span class="n">new_to_old</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.data_set</span> <span class="kn">import</span> <span class="n">DataSet</span>
-<span class="kn">from</span> <span class="nn">qcodes.dataset.experiment_container</span> <span class="kn">import</span> <span class="n">load_or_create_experiment</span>
-<span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.connection</span> <span class="kn">import</span> <span class="n">atomic</span><span class="p">,</span> <span class="n">ConnectionPlus</span>
-<span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.database</span> <span class="kn">import</span> <span class="n">connect</span><span class="p">,</span> \
-    <span class="n">get_db_version_and_newest_available_version</span>
-<span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.queries</span> <span class="kn">import</span> <span class="n">add_meta_data</span><span class="p">,</span> <span class="n">create_run</span><span class="p">,</span> \
-    <span class="n">get_exp_ids_from_run_ids</span><span class="p">,</span> <span class="n">get_matching_exp_ids</span><span class="p">,</span> <span class="n">get_runid_from_guid</span><span class="p">,</span> \
-    <span class="n">is_run_id_in_database</span><span class="p">,</span> <span class="n">mark_run_complete</span><span class="p">,</span> <span class="n">new_experiment</span>
-<span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.query_helpers</span> <span class="kn">import</span> <span class="n">select_many_where</span><span class="p">,</span> \
-    <span class="n">sql_placeholder_string</span>
+<span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.versioning.converters</span> <span class="kn">import</span> <span class="n">new_to_old</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.linked_datasets.links</span> <span class="kn">import</span> <span class="n">links_to_str</span>
+<span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.connection</span> <span class="kn">import</span> <span class="n">ConnectionPlus</span><span class="p">,</span> <span class="n">atomic</span>
+<span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.database</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">connect</span><span class="p">,</span> <span class="n">get_db_version_and_newest_available_version</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.queries</span> <span class="kn">import</span> <span class="p">(</span><span class="n">add_meta_data</span><span class="p">,</span> <span class="n">create_run</span><span class="p">,</span>
+                                           <span class="n">get_exp_ids_from_run_ids</span><span class="p">,</span>
+                                           <span class="n">get_matching_exp_ids</span><span class="p">,</span>
+                                           <span class="n">get_runid_from_guid</span><span class="p">,</span>
+                                           <span class="n">is_run_id_in_database</span><span class="p">,</span>
+                                           <span class="n">mark_run_complete</span><span class="p">,</span> <span class="n">new_experiment</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.query_helpers</span> <span class="kn">import</span> <span class="p">(</span><span class="n">select_many_where</span><span class="p">,</span>
+                                                 <span class="n">sql_placeholder_string</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="extract_runs_into_db"><a class="viewcode-back" href="../../../api/dataset/database_extract_runs.html#qcodes.dataset.database_extract_runs.extract_runs_into_db">[docs]</a><span class="k">def</span> <span class="nf">extract_runs_into_db</span><span class="p">(</span><span class="n">source_db_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -350,7 +352,9 @@
         <span class="n">param_names</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">param_names</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">parspecs_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">new_to_old</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">_interdeps</span><span class="p">)</span><span class="o">.</span><span class="n">paramspecs</span><span class="p">}</span>
+    <span class="n">parspecs_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">new_to_old</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">description</span><span class="o">.</span><span class="n">interdeps</span><span class="p">)</span><span class="o">.</span><span class="n">paramspecs</span>
+    <span class="p">}</span>
     <span class="n">parspecs</span> <span class="o">=</span> <span class="p">[</span><span class="n">parspecs_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">param_names</span><span class="p">]</span>
 
     <span class="n">metadata</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">metadata</span>
