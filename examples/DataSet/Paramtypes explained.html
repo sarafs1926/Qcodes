@@ -526,7 +526,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201013-16092-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201013-16299-qcodes.log
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -545,14 +545,14 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/201013-16092-qcodes.log
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Upgrading database; v0 -&gt; v1: : 0it [00:00, ?it/s]
-Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 567.03it/s]
+Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 458.49it/s]
 Upgrading database; v2 -&gt; v3: : 0it [00:00, ?it/s]
 Upgrading database; v3 -&gt; v4: : 0it [00:00, ?it/s]
-Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 481.55it/s]
+Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 643.99it/s]
 Upgrading database; v5 -&gt; v6: : 0it [00:00, ?it/s]
-Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 361.77it/s]
-Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 434.96it/s]
-Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 510.57it/s]
+Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 225.37it/s]
+Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 402.49it/s]
+Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 684.23it/s]
 </pre></div></div>
 </div>
 <p>Let us, now, create two dummy instruments to be used in our experiment.</p>
@@ -677,7 +677,7 @@ Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Starting experimental run with id: 1.
-Finished run in 0.016 s
+Finished run in 0.013 s
 </pre></div></div>
 </div>
 <p>The data may be retrieved using the <code class="docutils literal notranslate"><span class="pre">get_data_by_id</span></code> function. This function will always bring back the data <strong>as if</strong> it had been stored in a point-by-point format. That is to say, all parameters come out as array of the same length, with setpoints values appropriately repeated.</p>
@@ -713,13 +713,13 @@ Finished run in 0.016 s
    &#39;unit&#39;: &#39;Hz&#39;,
    &#39;label&#39;: &#39;&#39;},
   {&#39;name&#39;: &#39;SA_spectrum&#39;,
-   &#39;data&#39;: array([ 1.23886835, -0.00258117, -1.02509013,  0.37907262, -1.44154889,
-           1.64033614, -0.40663087, -1.00169176, -0.50487549,  0.02821929,
-           0.12672889,  1.85505786, -0.60864269, -0.39283695, -1.03918419,
-           0.71479056, -0.22845462,  1.36325407,  1.16098563,  1.08118737,
-          -0.41636885,  0.32797382,  1.12593667,  1.91526337,  0.60367133,
-           0.77722676,  0.75743959, -0.60332486,  0.67529967, -0.26242204,
-          -1.72271265,  0.79503209,  0.05646185, -0.84334177,  0.3435974 ]),
+   &#39;data&#39;: array([-0.22142836, -1.64366075, -0.11282743,  1.01340901,  0.0470615 ,
+          -0.45407334,  0.68092377,  0.91762529,  0.07356599,  0.49434347,
+           1.13011442, -0.96263764,  0.84643275, -1.24409898,  0.79723252,
+           1.32404862, -0.1287977 , -1.20932312,  0.81783711,  1.5634731 ,
+          -0.54842231,  0.17099423, -1.5056636 ,  0.93988986, -0.85390517,
+          -0.73977125,  0.31264656,  1.54124701,  1.34308104,  0.98763108,
+           0.01423914,  1.66784484, -0.34780479,  0.317895  , -0.98608269]),
    &#39;unit&#39;: &#39;V/sqrt(Hz)&#39;,
    &#39;label&#39;: &#39;Noisy spectrum&#39;}]]
 </pre></div></div>
@@ -762,7 +762,7 @@ Finished run in 0.016 s
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Starting experimental run with id: 2.
-Finished run in 0.014 s
+Finished run in 0.012 s
 </pre></div></div>
 </div>
 <p>Reading back out the data, we can <strong>not</strong> see whether they were stored as <code class="docutils literal notranslate"><span class="pre">numeric</span></code> or <code class="docutils literal notranslate"><span class="pre">array</span></code> type.</p>
@@ -798,13 +798,13 @@ Finished run in 0.014 s
    &#39;unit&#39;: &#39;Hz&#39;,
    &#39;label&#39;: &#39;&#39;},
   {&#39;name&#39;: &#39;SA_spectrum&#39;,
-   &#39;data&#39;: array([-1.27717178, -0.99927823,  1.33149906, -0.78019983,  1.3827907 ,
-          -0.2880648 ,  0.59133449, -0.03846041, -0.5770097 , -0.77457407,
-           1.6157426 ,  0.65024424,  0.15008494, -0.08434367, -0.57525975,
-          -0.31981847, -0.84064793, -1.85644455, -1.03046141,  0.73334956,
-          -1.14620523,  2.02356904,  1.08490015, -0.08367594, -0.11465463,
-           0.54118247, -0.78362002, -1.50929692, -0.31523664,  0.82195767,
-           1.71264812,  0.6377972 ,  0.6280491 , -2.76082307,  1.07305037]),
+   &#39;data&#39;: array([-0.06941232, -0.74938655, -2.98922455, -0.21593696, -0.1181042 ,
+           0.2183984 ,  0.49480549,  0.84570882, -1.03765841,  0.35237339,
+          -0.82762924,  0.01200055, -0.39716658,  0.1581856 ,  0.40552533,
+           0.06564621, -0.50153059,  0.67041254,  1.25687476,  2.80608267,
+           0.04937481,  0.36363708, -1.54013944, -0.66926549, -0.90360197,
+           0.18048796,  1.77937748,  1.28783134, -0.15477978, -0.7972163 ,
+          -0.58646799, -0.79233655, -1.34636343, -0.46258594, -0.20924617]),
    &#39;unit&#39;: &#39;V/sqrt(Hz)&#39;,
    &#39;label&#39;: &#39;Noisy spectrum&#39;}]]
 </pre></div></div>
