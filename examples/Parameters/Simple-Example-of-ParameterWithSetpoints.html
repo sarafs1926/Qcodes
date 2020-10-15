@@ -100,6 +100,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#basic-examples">Basic examples</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#parameters">Parameters</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="Complex_Parameters.html">Complex Numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Parameter-With-Setpoints-defined-on-a-different-instrument.html">ParameterWithSetpoints with setpoints defined on another instrument.</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Parameters.html">Parameters in QCoDeS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Scaled_Parameter.html">ScaledParameter</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Simple Example of ParameterWithSetpoints</a><ul>
@@ -502,7 +503,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201015-18303-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201015-17931-qcodes.log
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -622,22 +623,6 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/201015-18303-qcodes.log
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Upgrading database; v0 -&gt; v1: : 0it [00:00, ?it/s]
-Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 417.68it/s]
-Upgrading database; v2 -&gt; v3: : 0it [00:00, ?it/s]
-Upgrading database; v3 -&gt; v4: : 0it [00:00, ?it/s]
-Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 407.93it/s]
-Upgrading database; v5 -&gt; v6: : 0it [00:00, ?it/s]
-Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 424.74it/s]
-Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 1063.19it/s]
-Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 503.03it/s]
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -646,6 +631,9 @@ Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00
 <div class="highlight"><pre>
 tutorial_ParameterWithSetpoints#no sample#1@/home/vsts/work/1/s/docs/examples/Parameters/tutorial_paramter_with_setpoints.db
 ----------------------------------------------------------------------------------------------------------------------------
+1-results-1-dmm_setpoints,dmm_current-1
+2-results-2-dmm_setpoints,dmm_current-1
+3-results-3-dmm_setpoints,dmm_current-1
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -793,7 +781,7 @@ array([0., 1., 2., 3., 4., 5., 6., 7., 8., 9.])
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-(&lt;__main__.GeneratedSetPoints: freq_axis at 139910891224016&gt;,)
+(&lt;__main__.GeneratedSetPoints: freq_axis at 139903533549200&gt;,)
 </pre></div></div>
 </div>
 <p>Or even change them.</p>
@@ -829,7 +817,7 @@ array([0., 1., 2., 3., 4., 5., 6., 7., 8., 9.])
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Starting experimental run with id: 1.
+Starting experimental run with id: 4.
 </pre></div></div>
 </div>
 <p>And plot it</p>
@@ -848,7 +836,7 @@ Starting experimental run with id: 1.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-([&lt;AxesSubplot:title={&#39;center&#39;:&#39;Run #1, Experiment tutorial_ParameterWithSetpoints (no sample)&#39;}, xlabel=&#39;Freq Axis (Hz)&#39;, ylabel=&#39;Spectrum ($10^{-3}$ dBm)&#39;&gt;],
+([&lt;AxesSubplot:title={&#39;center&#39;:&#39;Run #4, Experiment tutorial_ParameterWithSetpoints (no sample)&#39;}, xlabel=&#39;Freq Axis (Hz)&#39;, ylabel=&#39;Spectrum ($10^{-3}$ dBm)&#39;&gt;],
  [None])
 </pre></div></div>
 </div>
@@ -880,7 +868,7 @@ Starting experimental run with id: 1.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Starting experimental run with id: 2.
+Starting experimental run with id: 5.
 </pre></div></div>
 </div>
 <p>Note that it is an error to supply values for some but not all of the setpoints.</p>
