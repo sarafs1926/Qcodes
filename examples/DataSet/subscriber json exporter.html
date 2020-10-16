@@ -40,7 +40,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Example Measurements with Real Instruments" href="Real_instruments/Example%20Measurements%20with%20Real%20Instruments.html" />
-    <link rel="prev" title="Working with Pandas and XArray" href="Working-With-Pandas-and-XArray.html" />
+    <link rel="prev" title="Importing data from legacy .dat files" href="import-data-from-legacy-dat-files.html" />
     <link href="../../_static/style.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -106,7 +106,6 @@
 <li class="toctree-l3"><a class="reference internal" href="Dataset_Performance.html">DataSet Performance</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Extracting-runs-from-one-DB-file-to-another.html">Extracting runs from one DB file to another</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Linking%20to%20parent%20datasets.html">Linking to parent datasets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Load%20old%20data.html">Load old Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Measuring%20X%20as%20a%20function%20of%20time.html">Measuring X as a function of time</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Offline%20Plotting%20Tutorial.html">Offline Plotting Tutorial</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Offline%20plotting%20with%20categorical%20data.html">Offline plotting with categorical data</a></li>
@@ -119,6 +118,7 @@
 <li class="toctree-l3"><a class="reference internal" href="Using_the_doNd_functions_for_running_experiments.html">Using doNd functions for performing measurements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Working%20with%20snapshots.html">Working with snapshots</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Working-With-Pandas-and-XArray.html">Working with Pandas and XArray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="import-data-from-legacy-dat-files.html">Importing data from legacy .dat files</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Subscriber with JSON export</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Real_instruments/Example%20Measurements%20with%20Real%20Instruments.html">Example Measurements with Real Instruments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Cache/read_data_from_cache.html">Read data from cache</a></li>
@@ -519,7 +519,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201016-17317-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201016-17544-qcodes.log
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -632,7 +632,7 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/201016-17317-qcodes.log
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-16 09:36:59,407 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/utils/deprecate.py:58: QCoDeSDeprecationWarning: The function &lt;add_result&gt; is deprecated. Use &#34;add_results&#34; as an alternative.
+2020-10-16 10:32:29,905 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/utils/deprecate.py:58: QCoDeSDeprecationWarning: The function &lt;add_result&gt; is deprecated. Use &#34;add_results&#34; as an alternative.
   issue_deprecation_warning(f&#39;{t} &lt;{n}&gt;&#39;, reason, alternative)
 
 </pre></div></div>
@@ -947,11 +947,11 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/201016-17317-qcodes.log
   &#39;full_name&#39;: &#39;&#39;,
   &#39;is_setpoint&#39;: True,
   &#39;unit&#39;: &#39;&#39;},
- &#39;z&#39;: {&#39;data&#39;: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-   [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-   [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-   [4, 4, 4, 4, 4, 4, 4, 4, 4, 4]],
+ &#39;z&#39;: {&#39;data&#39;: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
   &#39;name&#39;: &#39;&#39;,
   &#39;full_name&#39;: &#39;&#39;,
   &#39;is_setpoint&#39;: False,
@@ -980,7 +980,7 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/201016-17317-qcodes.log
         <a href="Real_instruments/Example%20Measurements%20with%20Real%20Instruments.html" class="btn btn-neutral float-right" title="Example Measurements with Real Instruments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="Working-With-Pandas-and-XArray.html" class="btn btn-neutral float-left" title="Working with Pandas and XArray" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="import-data-from-legacy-dat-files.html" class="btn btn-neutral float-left" title="Importing data from legacy .dat files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Load old Data &mdash; QCoDeS 0.18.0 documentation</title>
+  <title>Importing data from legacy .dat files &mdash; QCoDeS 0.18.0 documentation</title>
   
 
   
@@ -39,8 +39,8 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Measuring X as a function of time" href="Measuring%20X%20as%20a%20function%20of%20time.html" />
-    <link rel="prev" title="Linking to parent datasets" href="Linking%20to%20parent%20datasets.html" />
+    <link rel="next" title="Subscriber with JSON export" href="subscriber%20json%20exporter.html" />
+    <link rel="prev" title="Working with Pandas and XArray" href="Working-With-Pandas-and-XArray.html" />
     <link href="../../_static/style.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -106,7 +106,6 @@
 <li class="toctree-l3"><a class="reference internal" href="Dataset_Performance.html">DataSet Performance</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Extracting-runs-from-one-DB-file-to-another.html">Extracting runs from one DB file to another</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Linking%20to%20parent%20datasets.html">Linking to parent datasets</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Load old Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Measuring%20X%20as%20a%20function%20of%20time.html">Measuring X as a function of time</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Offline%20Plotting%20Tutorial.html">Offline Plotting Tutorial</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Offline%20plotting%20with%20categorical%20data.html">Offline plotting with categorical data</a></li>
@@ -119,6 +118,7 @@
 <li class="toctree-l3"><a class="reference internal" href="Using_the_doNd_functions_for_running_experiments.html">Using doNd functions for performing measurements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Working%20with%20snapshots.html">Working with snapshots</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Working-With-Pandas-and-XArray.html">Working with Pandas and XArray</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Importing data from legacy .dat files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="subscriber%20json%20exporter.html">Subscriber with JSON export</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Real_instruments/Example%20Measurements%20with%20Real%20Instruments.html">Example Measurements with Real Instruments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Cache/read_data_from_cache.html">Read data from cache</a></li>
@@ -180,13 +180,13 @@
         
           <li><a href="../index.html">Examples of using QCoDeS</a> &raquo;</li>
         
-      <li>Load old Data</li>
+      <li>Importing data from legacy .dat files</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/examples/DataSet/Load old data.ipynb.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/examples/DataSet/import-data-from-legacy-dat-files.ipynb.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -457,9 +457,9 @@ div.rendered_html tbody tr:hover {
 <div class="admonition note">
   <p>This page was generated from
     <a class="reference external"
-    href="https://github.com/qcodes/qcodes/blob/master/docs/examples/DataSet/Load old data.ipynb">docs/examples/DataSet/Load old data.ipynb</a>.
+    href="https://github.com/qcodes/qcodes/blob/master/docs/examples/DataSet/import-data-from-legacy-dat-files.ipynb">docs/examples/DataSet/import-data-from-legacy-dat-files.ipynb</a>.
     Interactive online version:
-    <a href="https://mybinder.org/v2/gh/qcodes/qcodes/master?filepath=docs/examples/DataSet/Load old data.ipynb"><img
+    <a href="https://mybinder.org/v2/gh/qcodes/qcodes/master?filepath=docs/examples/DataSet/import-data-from-legacy-dat-files.ipynb"><img
 alt="Binder badge"
     src="https://mybinder.org/badge_logo.svg"
     style="vertical-align:text-bottom"></a>.
@@ -479,8 +479,9 @@ alt="Binder badge"
       p.appendChild(document.createTextNode('.'));
     }
   </script>
-</div><div class="section" id="Load-old-Data">
-<h1>Load old Data<a class="headerlink" href="#Load-old-Data" title="Permalink to this headline">¶</a></h1>
+</div><div class="section" id="Importing-data-from-legacy-.dat-files">
+<h1>Importing data from legacy .dat files<a class="headerlink" href="#Importing-data-from-legacy-.dat-files" title="Permalink to this headline">¶</a></h1>
+<p>This notebook shows you how you can import data from a legacy dataset generated with the old <code class="docutils literal notranslate"><span class="pre">qcodes.data</span></code> dataset. These are typically generated with <code class="docutils literal notranslate"><span class="pre">qcodes.loops.Loop</span></code> or <code class="docutils literal notranslate"><span class="pre">qcodes.measure.Measure</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -513,7 +514,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201016-15128-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201016-17497-qcodes.log
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -553,14 +554,14 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/201016-15128-qcodes.log
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Starting experimental run with id: 9.
+Starting experimental run with id: 50.
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Load_old_data_4_1.png" src="../../_images/examples_DataSet_Load_old_data_4_1.png" />
+<img alt="../../_images/examples_DataSet_import-data-from-legacy-dat-files_5_1.png" src="../../_images/examples_DataSet_import-data-from-legacy-dat-files_5_1.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -578,14 +579,14 @@ Starting experimental run with id: 9.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Starting experimental run with id: 10.
+Starting experimental run with id: 51.
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Load_old_data_5_1.png" src="../../_images/examples_DataSet_Load_old_data_5_1.png" />
+<img alt="../../_images/examples_DataSet_import-data-from-legacy-dat-files_6_1.png" src="../../_images/examples_DataSet_import-data-from-legacy-dat-files_6_1.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -607,10 +608,10 @@ Starting experimental run with id: 10.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Measuring%20X%20as%20a%20function%20of%20time.html" class="btn btn-neutral float-right" title="Measuring X as a function of time" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="subscriber%20json%20exporter.html" class="btn btn-neutral float-right" title="Subscriber with JSON export" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="Linking%20to%20parent%20datasets.html" class="btn btn-neutral float-left" title="Linking to parent datasets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Working-With-Pandas-and-XArray.html" class="btn btn-neutral float-left" title="Working with Pandas and XArray" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
