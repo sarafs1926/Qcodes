@@ -508,7 +508,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201016-18479-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201016-18397-qcodes.log
 </pre></div></div>
 </div>
 <div class="section" id="What-is-a-Station?">
@@ -586,7 +586,7 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/201016-18479-qcodes.log
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;p&#39;: &lt;qcodes.instrument.parameter.Parameter: p at 139826224918288&gt;,
+{&#39;p&#39;: &lt;qcodes.instrument.parameter.Parameter: p at 140340982479056&gt;,
  &#39;instr&#39;: &lt;DummyInstrument: instr&gt;}
 </pre></div></div>
 </div>
@@ -634,7 +634,7 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/201016-18479-qcodes.log
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;qcodes.instrument.parameter.Parameter: p at 139826224918288&gt;
+&lt;qcodes.instrument.parameter.Parameter: p at 140340982479056&gt;
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -896,7 +896,12 @@ initialization script. The latter may easily cause a bloaded code with possible 
 <h2>Setting up Visual Studio Code to work with station files<a class="headerlink" href="#Setting-up-Visual-Studio-Code-to-work-with-station-files" title="Permalink to this headline">¶</a></h2>
 <p>VSCode can be conveniently used to work with station files. The <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml">YAML extension by Red Hat</a>, allows to use JSON schemas to validate and auto-complete YAML files.</p>
 <p><img alt="vscode" src="../_images/vscode_integration.gif" /></p>
-<p><strong>Quick setup steps</strong> - install <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml">YAML extension by Red Hat</a> - run <code class="docutils literal notranslate"><span class="pre">qcodes.utils.installation.register_station_schema_with_vscode()</span></code> - make sure your station file has the extension <code class="docutils literal notranslate"><span class="pre">.station.yaml</span></code></p>
+<p><strong>Quick setup steps</strong></p>
+<ul class="simple">
+<li><p>install <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml">YAML extension by Red Hat</a></p></li>
+<li><p>run <code class="docutils literal notranslate"><span class="pre">qcodes.utils.installation.register_station_schema_with_vscode()</span></code></p></li>
+<li><p>make sure your station file has the extension <code class="docutils literal notranslate"><span class="pre">.station.yaml</span></code></p></li>
+</ul>
 <p><strong>Setup details</strong></p>
 <p>To associate the qcodes station schema with <code class="docutils literal notranslate"><span class="pre">*.station.yaml</span></code> files you can either run</p>
 <div class="nbinput nblast docutils container">
@@ -921,13 +926,13 @@ initialization script. The latter may easily cause a bloaded code with possible 
 </div>
 <p>To get autocompletion for instruments from other packages run</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">qcodes</span>
-<span class="kn">import</span> <span class="nn">qdev_wrappers</span>
-<span class="kn">import</span> <span class="nn">pytopo</span>
-<span class="n">qcodes</span><span class="o">.</span><span class="n">station</span><span class="o">.</span><span class="n">update_config_schema</span><span class="p">(</span><span class="n">qdev_wrappers</span><span class="p">,</span> <span class="n">pytopo</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">qcodes_contrib_drivers</span>
+<span class="kn">import</span> <span class="nn">zhinst</span>
+<span class="n">qcodes</span><span class="o">.</span><span class="n">station</span><span class="o">.</span><span class="n">update_config_schema</span><span class="p">(</span><span class="n">qcodes_contrib_drivers</span><span class="p">,</span> <span class="n">zhinst</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>where <code class="docutils literal notranslate"><span class="pre">qdev_wrappers</span></code> and <code class="docutils literal notranslate"><span class="pre">pytopo</span></code> are example packages that are available in the python environment where qcodes is running from.</p>
-<p>Beware that the generated schema file is not python-environment aware. To circumvent that, you can manually generate a schema file for each environment and register them as a workspace setting in vscode.</p>
+<p>where <code class="docutils literal notranslate"><span class="pre">qcodes_contrib_drivers</span></code> and <code class="docutils literal notranslate"><span class="pre">zhinst</span></code> are example packages that are available in the python environment where qcodes is running from.</p>
+<p><strong>Beware</strong> that the generated schema file is not python-environment aware. To circumvent that, you can manually generate a schema file for each environment and register them as a workspace setting in vscode.</p>
 </div>
 </div>
 
