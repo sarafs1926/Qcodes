@@ -172,6 +172,7 @@
 <span class="kn">from</span> <span class="nn">.KeysightB1530A</span> <span class="kn">import</span> <span class="n">B1530A</span>
 <span class="kn">from</span> <span class="nn">.KeysightB1520A</span> <span class="kn">import</span> <span class="n">B1520A</span>
 <span class="kn">from</span> <span class="nn">.KeysightB1517A</span> <span class="kn">import</span> <span class="n">B1517A</span>
+<span class="kn">from</span> <span class="nn">.KeysightB1511B</span> <span class="kn">import</span> <span class="n">B1511B</span>
 <span class="kn">from</span> <span class="nn">.KeysightB1500_module</span> <span class="kn">import</span> <span class="n">B1500Module</span><span class="p">,</span> <span class="n">parse_module_query_response</span><span class="p">,</span> \
     <span class="n">parse_spot_measurement_response</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">constants</span>
@@ -290,14 +291,17 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            A specific instance of :class:`.B1500Module`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="s2">&quot;B1517A&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="s2">&quot;B1511B&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">B1511B</span><span class="p">(</span><span class="n">slot_nr</span><span class="o">=</span><span class="n">slot_nr</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">model</span> <span class="o">==</span> <span class="s2">&quot;B1517A&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">B1517A</span><span class="p">(</span><span class="n">slot_nr</span><span class="o">=</span><span class="n">slot_nr</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">model</span> <span class="o">==</span> <span class="s2">&quot;B1520A&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">B1520A</span><span class="p">(</span><span class="n">slot_nr</span><span class="o">=</span><span class="n">slot_nr</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">model</span> <span class="o">==</span> <span class="s2">&quot;B1530A&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">B1530A</span><span class="p">(</span><span class="n">slot_nr</span><span class="o">=</span><span class="n">slot_nr</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Module type not yet supported.&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Module type </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2"> in slot&quot;</span>
+                                      <span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="n">slot_nr</span><span class="si">}</span><span class="s2"> not yet supported.&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="KeysightB1500.enable_channels"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.KeysightB1500.enable_channels">[docs]</a>    <span class="k">def</span> <span class="nf">enable_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">ChannelList</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
                         <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
