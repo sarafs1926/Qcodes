@@ -262,18 +262,7 @@
 <span class="sd">            val: A string representing the channels, channel ranges,</span>
 <span class="sd">                backplane relays, slots or channel patterns to be queried.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_interlock_state</span><span class="p">()</span>
-        <span class="n">backplanes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_analog_backplane_specifiers</span><span class="p">()</span>
-        <span class="n">val_specifiers</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">val_specifiers</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">backplanes</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">states</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">element</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Interlock is disengaged&#39;</span><span class="p">:</span>
-                        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The hardware interlock in Slot &#39;</span>
-                                      <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">element</span><span class="p">[</span><span class="s2">&quot;slot_no&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> is disengaged. &#39;</span>
-                                      <span class="s1">&#39;The corresponding analog backplane &#39;</span>
-                                      <span class="s1">&#39;relays cannot be energized.&#39;</span><span class="p">,</span>
-                                      <span class="ne">UserWarning</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">InvalidValue</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s1"> is not a valid specifier. &#39;</span>
                                <span class="s1">&#39;The specifier should be channels, channel &#39;</span>
@@ -299,7 +288,46 @@
         <span class="k">if</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">forbidden_channels</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">):</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;You are attempting to close channels that are &#39;</span>
                           <span class="s1">&#39;forbidden to close.&#39;</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_warn_on_disengaged_interlocks</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;channel.close(&#39;</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&#39;)&quot;</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_warn_on_disengaged_interlocks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if backplance channels among the given specifiers can be</span>
+<span class="sd">        energized dependening on respective hardware interlocks being</span>
+<span class="sd">        engaged, and raises a warning for those backplane channels which</span>
+<span class="sd">        cannot be energized.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            val: A string representing the channels, channel ranges,</span>
+<span class="sd">                backplane relays.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_interlock_state</span><span class="p">()</span>
+        <span class="n">val_specifiers</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">val_specifiers</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_backplane_channel</span><span class="p">(</span><span class="n">channel</span><span class="p">):</span>
+                <span class="n">slot</span> <span class="o">=</span> <span class="n">channel</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">interlock_state</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">state</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">states</span> <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;slot_no&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">slot</span>
+                <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">interlock_state</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Interlock is disengaged&quot;</span><span class="p">:</span>
+                    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;The hardware interlock in Slot &quot;</span>
+                        <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">interlock_state</span><span class="p">[</span><span class="s2">&quot;slot_no&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> is disengaged. &#39;</span>
+                        <span class="sa">f</span><span class="s2">&quot;The analog backplane relay </span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s2"> &quot;</span>
+                        <span class="s2">&quot;cannot be energized.&quot;</span><span class="p">,</span>
+                        <span class="ne">UserWarning</span><span class="p">,</span>
+                        <span class="mi">2</span><span class="p">,</span>
+                    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_is_backplane_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">channel_id</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">channel_id</span><span class="si">}</span><span class="s2"> is not a valid channel id&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">channel_id</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;9&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span>
 
 <div class="viewcode-block" id="Keithley_3706A.exclusive_close"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.exclusive_close">[docs]</a>    <span class="k">def</span> <span class="nf">exclusive_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -858,11 +886,12 @@
                             <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Interlock is engaged&#39;</span><span class="p">}</span>
         <span class="n">states</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">slot_id</span><span class="p">:</span>
-            <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;slot[</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="si">}</span><span class="s1">].interlock.state&#39;</span><span class="p">)</span>
-            <span class="n">state_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;slot_no&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span>
-                          <span class="s1">&#39;state&#39;</span><span class="p">:</span> <span class="n">interlock_status</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">state</span><span class="p">))]}</span>
-            <span class="n">states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state_dict</span><span class="p">)</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_interlock_state_by_slot</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">states</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;slot_no&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">interlock_status</span><span class="p">[</span><span class="n">state</span><span class="p">]})</span>
         <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">states</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Keithley_3706A.get_interlock_state_by_slot"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.get_interlock_state_by_slot">[docs]</a>    <span class="k">def</span> <span class="nf">get_interlock_state_by_slot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slot</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;slot[</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">slot</span><span class="p">)</span><span class="si">}</span><span class="s2">].interlock.state&quot;</span><span class="p">)))</span></div>
 
 <div class="viewcode-block" id="Keithley_3706A.get_ip_address"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.get_ip_address">[docs]</a>    <span class="k">def</span> <span class="nf">get_ip_address</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
