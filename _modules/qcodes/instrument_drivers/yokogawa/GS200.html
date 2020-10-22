@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.18.0+714.gb79de42392
+                0.18.0+766.g6358f0c8b5
               </div>
             
           
@@ -328,6 +328,68 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;V&#39;</span></div></div>
 
 
+<div class="viewcode-block" id="GS200Program"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.yokogawa.html#qcodes.instrument_drivers.yokogawa.GS200.GS200Program">[docs]</a><span class="k">class</span> <span class="nc">GS200Program</span><span class="p">(</span><span class="n">InstrumentChannel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="s1">&#39;GS200&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_repeat</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_file_name</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s2">&quot;interval&quot;</span><span class="p">,</span>
+                           <span class="n">label</span><span class="o">=</span><span class="s2">&quot;the program interval time&quot;</span><span class="p">,</span>
+                           <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
+                           <span class="n">vals</span><span class="o">=</span><span class="n">Numbers</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">3600.0</span><span class="p">),</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="s2">&quot;:PROG:INT?&quot;</span><span class="p">,</span>
+                           <span class="n">set_cmd</span><span class="o">=</span><span class="s2">&quot;:PROG:INT </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s2">&quot;slope&quot;</span><span class="p">,</span>
+                           <span class="n">label</span><span class="o">=</span><span class="s2">&quot;the program slope time&quot;</span><span class="p">,</span>
+                           <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
+                           <span class="n">vals</span><span class="o">=</span><span class="n">Numbers</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">3600.0</span><span class="p">),</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="s2">&quot;:PROG:SLOP?&quot;</span><span class="p">,</span>
+                           <span class="n">set_cmd</span><span class="o">=</span><span class="s2">&quot;:PROG:SLOP </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s2">&quot;trigger&quot;</span><span class="p">,</span>
+                           <span class="n">label</span><span class="o">=</span><span class="s2">&quot;the program trigger&quot;</span><span class="p">,</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="s2">&quot;:PROG:TRIG?&quot;</span><span class="p">,</span>
+                           <span class="n">set_cmd</span><span class="o">=</span><span class="s2">&quot;:PROG:TRIG </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+                           <span class="n">vals</span><span class="o">=</span><span class="n">Enum</span><span class="p">(</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="s1">&#39;mend&#39;</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s2">&quot;save&quot;</span><span class="p">,</span>
+                           <span class="n">set_cmd</span><span class="o">=</span><span class="s2">&quot;:PROG:SAVE &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="p">,</span>
+                           <span class="n">docstring</span><span class="o">=</span><span class="s2">&quot;save the program to the system memory &quot;</span>
+                                     <span class="s2">&quot;(.csv file)&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s2">&quot;load&quot;</span><span class="p">,</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="s2">&quot;:PROG:LOAD?&quot;</span><span class="p">,</span>
+                           <span class="n">set_cmd</span><span class="o">=</span><span class="s2">&quot;:PROG:LOAD &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="p">,</span>
+                           <span class="n">docstring</span><span class="o">=</span><span class="s2">&quot;load the program (.csv file) from the &quot;</span>
+                                     <span class="s2">&quot;system memory&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s2">&quot;repeat&quot;</span><span class="p">,</span>
+                           <span class="n">label</span><span class="o">=</span><span class="s2">&quot;program execution repetition&quot;</span><span class="p">,</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="s2">&quot;:PROG:REP?&quot;</span><span class="p">,</span>
+                           <span class="n">set_cmd</span><span class="o">=</span><span class="s2">&quot;:PROG:REP </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+                           <span class="n">val_mapping</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;OFF&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                                        <span class="s1">&#39;ON&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">,</span>
+                           <span class="n">label</span><span class="o">=</span><span class="s2">&quot;step of the current program&quot;</span><span class="p">,</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="s2">&quot;:PROG:COUN?&quot;</span><span class="p">,</span>
+                           <span class="n">set_cmd</span><span class="o">=</span><span class="s2">&quot;:PROG:COUN </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+                           <span class="n">vals</span><span class="o">=</span><span class="n">Ints</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_function</span><span class="p">(</span><span class="s1">&#39;start&#39;</span><span class="p">,</span>
+                          <span class="n">call_cmd</span><span class="o">=</span><span class="s2">&quot;:PROG:EDIT:STAR&quot;</span><span class="p">,</span>
+                          <span class="n">docstring</span><span class="o">=</span><span class="s2">&quot;start program editing&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_function</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">,</span>
+                          <span class="n">call_cmd</span><span class="o">=</span><span class="s2">&quot;:PROG:EDIT:END&quot;</span><span class="p">,</span>
+                          <span class="n">docstring</span><span class="o">=</span><span class="s2">&quot;end program editing&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_function</span><span class="p">(</span><span class="s1">&#39;run&#39;</span><span class="p">,</span>
+                          <span class="n">call_cmd</span><span class="o">=</span><span class="s2">&quot;:PROG:RUN&quot;</span><span class="p">,</span>
+                          <span class="n">docstring</span><span class="o">=</span><span class="s2">&quot;run the program&quot;</span><span class="p">,)</span></div>
+
+
 <div class="viewcode-block" id="GS200"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.yokogawa.html#qcodes.instrument_drivers.yokogawa.GS200.GS200">[docs]</a><span class="k">class</span> <span class="nc">GS200</span><span class="p">(</span><span class="n">VisaInstrument</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is the QCoDeS driver for the Yokogawa GS200 voltage and current source.</span>
@@ -461,10 +523,8 @@
                            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Guard Terminal&#39;</span><span class="p">,</span>
                            <span class="n">get_cmd</span><span class="o">=</span><span class="s1">&#39;:SENS:GUAR?&#39;</span><span class="p">,</span>
                            <span class="n">set_cmd</span><span class="o">=</span><span class="s1">&#39;:SENS:GUAR </span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">,</span>
-                           <span class="n">val_mapping</span><span class="o">=</span><span class="p">{</span>
-                              <span class="s1">&#39;off&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-                              <span class="s1">&#39;on&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-                          <span class="p">})</span>
+                           <span class="n">val_mapping</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;off&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                                        <span class="s1">&#39;on&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
 
         <span class="c1"># Return measured line frequency</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s2">&quot;line_freq&quot;</span><span class="p">,</span>
@@ -480,6 +540,29 @@
 
         <span class="c1"># Reset function</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_function</span><span class="p">(</span><span class="s1">&#39;reset&#39;</span><span class="p">,</span> <span class="n">call_cmd</span><span class="o">=</span><span class="s1">&#39;*RST&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="s1">&#39;program&#39;</span><span class="p">,</span> <span class="n">GS200Program</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;program&#39;</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s2">&quot;BNC_out&quot;</span><span class="p">,</span>
+                           <span class="n">label</span><span class="o">=</span><span class="s2">&quot;BNC trigger out&quot;</span><span class="p">,</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="s2">&quot;:ROUT:BNCO?&quot;</span><span class="p">,</span>
+                           <span class="n">set_cmd</span><span class="o">=</span><span class="s2">&quot;:ROUT:BNCO </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+                           <span class="n">vals</span><span class="o">=</span><span class="n">Enum</span><span class="p">(</span><span class="s2">&quot;trigger&quot;</span><span class="p">,</span> <span class="s2">&quot;output&quot;</span><span class="p">,</span> <span class="s2">&quot;ready&quot;</span><span class="p">),</span>
+                           <span class="n">docstring</span><span class="o">=</span><span class="s2">&quot;Sets or queries the output BNC signal&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s2">&quot;BNC_in&quot;</span><span class="p">,</span>
+                           <span class="n">label</span><span class="o">=</span><span class="s2">&quot;BNC trigger in&quot;</span><span class="p">,</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="s2">&quot;:ROUT:BNCI?&quot;</span><span class="p">,</span>
+                           <span class="n">set_cmd</span><span class="o">=</span><span class="s2">&quot;:ROUT:BNCI </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+                           <span class="n">vals</span><span class="o">=</span><span class="n">Enum</span><span class="p">(</span><span class="s2">&quot;trigger&quot;</span><span class="p">,</span> <span class="s2">&quot;output&quot;</span><span class="p">),</span>
+                           <span class="n">docstring</span><span class="o">=</span><span class="s2">&quot;Sets or queries the input BNC signal&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span>
+            <span class="s2">&quot;system_errors&quot;</span><span class="p">,</span>
+            <span class="n">get_cmd</span><span class="o">=</span><span class="s2">&quot;:SYSTem:ERRor?&quot;</span><span class="p">,</span>
+            <span class="n">docstring</span><span class="o">=</span><span class="s2">&quot;returns the oldest unread error message from the event &quot;</span>
+                      <span class="s2">&quot;log and removes it from the log.&quot;</span>
+        <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_message</span><span class="p">()</span>
 

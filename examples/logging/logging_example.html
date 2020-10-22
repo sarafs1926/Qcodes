@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.18.0+714.gb79de42392
+                0.18.0+766.g6358f0c8b5
               </div>
             
           
@@ -539,7 +539,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201021-26072-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201022-26654-qcodes.log
 Activating auto-logging. Current session state plus future input saved.
 Filename       : /home/vsts/.qcodes/logs/command_history.log
 Mode           : append
@@ -547,7 +547,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201021-26072-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201022-26654-qcodes.log
 </pre></div></div>
 </div>
 <p>The call to <code class="docutils literal notranslate"><span class="pre">start_all_logging</span></code> does two things: 1. Create handlers to output logging messages from the root logger to the console and to a log file. 2. Enable logging of the IPython commands into a separate log file.</p>
@@ -611,7 +611,7 @@ passed to an instrument with an individual message). On the other hand setting t
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-21 13:28:52,021 ¦ example_logger ¦ DEBUG ¦ &lt;ipython-input-1-c7e8205cb86b&gt; ¦ &lt;module&gt; ¦ 8 ¦ This message is visible as the logging level is temporarily elevated to `DEBUG`
+2020-10-22 11:00:32,427 ¦ example_logger ¦ DEBUG ¦ &lt;ipython-input-1-c7e8205cb86b&gt; ¦ &lt;module&gt; ¦ 8 ¦ This message is visible as the logging level is temporarily elevated to `DEBUG`
 </pre></div></div>
 </div>
 <p>For other handlers than the console handler, you can do the same thing using the <code class="docutils literal notranslate"><span class="pre">handler_level</span></code> context manager.</p>
@@ -656,7 +656,7 @@ passed to an instrument with an individual message). On the other hand setting t
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.04s
+Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.05s
 Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
 Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
 </pre></div></div>
@@ -679,12 +679,12 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-21 13:28:52,116 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [x(AMI430_VISA)] Querying: STATE?
-2020-10-21 13:28:52,117 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [x(AMI430_VISA)] Response: 2
-2020-10-21 13:28:52,119 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [x(AMI430_VISA)] Querying: FIELD:MAG?
-2020-10-21 13:28:52,120 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [x(AMI430_VISA)] Response: 0.0
-2020-10-21 13:28:52,123 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [x(AMI430_VISA)] Querying: FIELD:MAG?
-2020-10-21 13:28:52,123 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [x(AMI430_VISA)] Response: 0.0
+2020-10-22 11:00:32,519 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [x(AMI430_VISA)] Querying: STATE?
+2020-10-22 11:00:32,520 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [x(AMI430_VISA)] Response: 2
+2020-10-22 11:00:32,522 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [x(AMI430_VISA)] Querying: FIELD:MAG?
+2020-10-22 11:00:32,523 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [x(AMI430_VISA)] Response: 0.0
+2020-10-22 11:00:32,524 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [x(AMI430_VISA)] Querying: FIELD:MAG?
+2020-10-22 11:00:32,525 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [x(AMI430_VISA)] Response: 0.0
 </pre></div></div>
 </div>
 <p>The output on the console shows as expected only messages from the <code class="docutils literal notranslate"><span class="pre">x</span></code> instrument. For multiple instruments pass a sequence of instruments to <code class="docutils literal notranslate"><span class="pre">filter_instrument</span></code> we write:</p>
@@ -705,18 +705,18 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-21 13:28:52,139 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [x(AMI430_VISA)] Querying: STATE?
-2020-10-21 13:28:52,140 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [x(AMI430_VISA)] Response: 2
-2020-10-21 13:28:52,141 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [y(AMI430_VISA)] Querying: STATE?
-2020-10-21 13:28:52,142 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [y(AMI430_VISA)] Response: 2
-2020-10-21 13:28:52,142 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [x(AMI430_VISA)] Querying: FIELD:MAG?
-2020-10-21 13:28:52,143 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [x(AMI430_VISA)] Response: 0.0
-2020-10-21 13:28:52,144 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [y(AMI430_VISA)] Querying: FIELD:MAG?
-2020-10-21 13:28:52,144 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [y(AMI430_VISA)] Response: 0.0
-2020-10-21 13:28:52,145 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [x(AMI430_VISA)] Querying: FIELD:MAG?
-2020-10-21 13:28:52,146 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [x(AMI430_VISA)] Response: 0.0
-2020-10-21 13:28:52,147 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [y(AMI430_VISA)] Querying: FIELD:MAG?
-2020-10-21 13:28:52,147 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [y(AMI430_VISA)] Response: 0.0
+2020-10-22 11:00:32,543 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [x(AMI430_VISA)] Querying: STATE?
+2020-10-22 11:00:32,543 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [x(AMI430_VISA)] Response: 2
+2020-10-22 11:00:32,544 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [y(AMI430_VISA)] Querying: STATE?
+2020-10-22 11:00:32,545 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [y(AMI430_VISA)] Response: 2
+2020-10-22 11:00:32,546 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [x(AMI430_VISA)] Querying: FIELD:MAG?
+2020-10-22 11:00:32,547 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [x(AMI430_VISA)] Response: 0.0
+2020-10-22 11:00:32,548 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [y(AMI430_VISA)] Querying: FIELD:MAG?
+2020-10-22 11:00:32,549 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [y(AMI430_VISA)] Response: 0.0
+2020-10-22 11:00:32,550 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [x(AMI430_VISA)] Querying: FIELD:MAG?
+2020-10-22 11:00:32,551 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [x(AMI430_VISA)] Response: 0.0
+2020-10-22 11:00:32,552 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 230 ¦ [y(AMI430_VISA)] Querying: FIELD:MAG?
+2020-10-22 11:00:32,552 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 232 ¦ [y(AMI430_VISA)] Response: 0.0
 </pre></div></div>
 </div>
 </div>
@@ -792,7 +792,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
   <tbody>
     <tr>
       <th>0</th>
-      <td>2020-10-21 13:28:52,383</td>
+      <td>2020-10-22 11:00:32,788</td>
       <td>qcodes.instrument.base</td>
       <td>DEBUG</td>
       <td>AMI430</td>
@@ -802,7 +802,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>1</th>
-      <td>2020-10-21 13:28:52,384</td>
+      <td>2020-10-22 11:00:32,788</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -812,7 +812,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>2</th>
-      <td>2020-10-21 13:28:52,384</td>
+      <td>2020-10-22 11:00:32,788</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -822,7 +822,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>3</th>
-      <td>2020-10-21 13:28:52,384</td>
+      <td>2020-10-22 11:00:32,788</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -832,7 +832,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>4</th>
-      <td>2020-10-21 13:28:52,384</td>
+      <td>2020-10-22 11:00:32,788</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -842,7 +842,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>5</th>
-      <td>2020-10-21 13:28:52,384</td>
+      <td>2020-10-22 11:00:32,789</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -852,7 +852,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>6</th>
-      <td>2020-10-21 13:28:52,384</td>
+      <td>2020-10-22 11:00:32,789</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -862,7 +862,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>7</th>
-      <td>2020-10-21 13:28:52,384</td>
+      <td>2020-10-22 11:00:32,789</td>
       <td>qcodes.instrument.base</td>
       <td>DEBUG</td>
       <td>AMI430</td>
@@ -872,7 +872,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>8</th>
-      <td>2020-10-21 13:28:52,384</td>
+      <td>2020-10-22 11:00:32,789</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -882,7 +882,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>9</th>
-      <td>2020-10-21 13:28:52,384</td>
+      <td>2020-10-22 11:00:32,789</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -892,7 +892,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>10</th>
-      <td>2020-10-21 13:28:52,385</td>
+      <td>2020-10-22 11:00:32,789</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -902,7 +902,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>11</th>
-      <td>2020-10-21 13:28:52,385</td>
+      <td>2020-10-22 11:00:32,789</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -912,7 +912,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>12</th>
-      <td>2020-10-21 13:28:52,385</td>
+      <td>2020-10-22 11:00:32,790</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -922,7 +922,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>13</th>
-      <td>2020-10-21 13:28:52,385</td>
+      <td>2020-10-22 11:00:32,790</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -932,7 +932,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>14</th>
-      <td>2020-10-21 13:28:52,385</td>
+      <td>2020-10-22 11:00:32,790</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -942,7 +942,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>15</th>
-      <td>2020-10-21 13:28:52,385</td>
+      <td>2020-10-22 11:00:32,790</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -952,7 +952,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>16</th>
-      <td>2020-10-21 13:28:52,385</td>
+      <td>2020-10-22 11:00:32,790</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -962,7 +962,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>17</th>
-      <td>2020-10-21 13:28:52,386</td>
+      <td>2020-10-22 11:00:32,791</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -972,7 +972,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>18</th>
-      <td>2020-10-21 13:28:52,386</td>
+      <td>2020-10-22 11:00:32,791</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -982,7 +982,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>19</th>
-      <td>2020-10-21 13:28:52,386</td>
+      <td>2020-10-22 11:00:32,791</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -992,7 +992,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>20</th>
-      <td>2020-10-21 13:28:52,386</td>
+      <td>2020-10-22 11:00:32,791</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1002,7 +1002,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>21</th>
-      <td>2020-10-21 13:28:52,386</td>
+      <td>2020-10-22 11:00:32,791</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1012,7 +1012,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>22</th>
-      <td>2020-10-21 13:28:52,386</td>
+      <td>2020-10-22 11:00:32,792</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1022,7 +1022,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>23</th>
-      <td>2020-10-21 13:28:52,386</td>
+      <td>2020-10-22 11:00:32,792</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1032,7 +1032,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>24</th>
-      <td>2020-10-21 13:28:52,386</td>
+      <td>2020-10-22 11:00:32,792</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1042,7 +1042,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>25</th>
-      <td>2020-10-21 13:28:52,387</td>
+      <td>2020-10-22 11:00:32,792</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1052,7 +1052,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>26</th>
-      <td>2020-10-21 13:28:52,387</td>
+      <td>2020-10-22 11:00:32,792</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1062,7 +1062,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>27</th>
-      <td>2020-10-21 13:28:52,387</td>
+      <td>2020-10-22 11:00:32,792</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1072,7 +1072,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>28</th>
-      <td>2020-10-21 13:28:52,387</td>
+      <td>2020-10-22 11:00:32,793</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1082,7 +1082,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>29</th>
-      <td>2020-10-21 13:28:52,387</td>
+      <td>2020-10-22 11:00:32,793</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1092,7 +1092,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>30</th>
-      <td>2020-10-21 13:28:52,387</td>
+      <td>2020-10-22 11:00:32,793</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1102,7 +1102,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>31</th>
-      <td>2020-10-21 13:28:52,387</td>
+      <td>2020-10-22 11:00:32,793</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1112,7 +1112,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>32</th>
-      <td>2020-10-21 13:28:52,388</td>
+      <td>2020-10-22 11:00:32,793</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1122,7 +1122,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>33</th>
-      <td>2020-10-21 13:28:52,388</td>
+      <td>2020-10-22 11:00:32,794</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1132,7 +1132,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>34</th>
-      <td>2020-10-21 13:28:52,388</td>
+      <td>2020-10-22 11:00:32,794</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1142,7 +1142,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>35</th>
-      <td>2020-10-21 13:28:52,388</td>
+      <td>2020-10-22 11:00:32,794</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1152,7 +1152,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>36</th>
-      <td>2020-10-21 13:28:52,388</td>
+      <td>2020-10-22 11:00:32,794</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1162,7 +1162,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>37</th>
-      <td>2020-10-21 13:28:52,388</td>
+      <td>2020-10-22 11:00:32,794</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1172,7 +1172,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>38</th>
-      <td>2020-10-21 13:28:52,388</td>
+      <td>2020-10-22 11:00:32,794</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1182,7 +1182,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>39</th>
-      <td>2020-10-21 13:28:52,388</td>
+      <td>2020-10-22 11:00:32,794</td>
       <td>qcodes.instrument.base</td>
       <td>DEBUG</td>
       <td>AMI430</td>
@@ -1192,7 +1192,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>40</th>
-      <td>2020-10-21 13:28:52,388</td>
+      <td>2020-10-22 11:00:32,794</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1202,7 +1202,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>41</th>
-      <td>2020-10-21 13:28:52,388</td>
+      <td>2020-10-22 11:00:32,795</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1212,7 +1212,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>42</th>
-      <td>2020-10-21 13:28:52,389</td>
+      <td>2020-10-22 11:00:32,795</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1222,7 +1222,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>43</th>
-      <td>2020-10-21 13:28:52,389</td>
+      <td>2020-10-22 11:00:32,795</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1232,7 +1232,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>44</th>
-      <td>2020-10-21 13:28:52,389</td>
+      <td>2020-10-22 11:00:32,795</td>
       <td>qcodes.instrument.base</td>
       <td>DEBUG</td>
       <td>AMI430</td>
@@ -1288,7 +1288,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
   <tbody>
     <tr>
       <th>0</th>
-      <td>2020-10-21 13:28:52,383</td>
+      <td>2020-10-22 11:00:32,788</td>
       <td>qcodes.instrument.base</td>
       <td>DEBUG</td>
       <td>AMI430</td>
@@ -1298,7 +1298,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>1</th>
-      <td>2020-10-21 13:28:52,384</td>
+      <td>2020-10-22 11:00:32,788</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1308,7 +1308,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>2</th>
-      <td>2020-10-21 13:28:52,384</td>
+      <td>2020-10-22 11:00:32,788</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1318,7 +1318,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>3</th>
-      <td>2020-10-21 13:28:52,384</td>
+      <td>2020-10-22 11:00:32,788</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1328,7 +1328,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>4</th>
-      <td>2020-10-21 13:28:52,384</td>
+      <td>2020-10-22 11:00:32,788</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1348,7 +1348,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>85</th>
-      <td>2020-10-21 13:28:52,395</td>
+      <td>2020-10-22 11:00:32,803</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1358,7 +1358,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>86</th>
-      <td>2020-10-21 13:28:52,396</td>
+      <td>2020-10-22 11:00:32,803</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1368,7 +1368,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>87</th>
-      <td>2020-10-21 13:28:52,396</td>
+      <td>2020-10-22 11:00:32,803</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1378,7 +1378,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>88</th>
-      <td>2020-10-21 13:28:52,396</td>
+      <td>2020-10-22 11:00:32,803</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1388,7 +1388,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>89</th>
-      <td>2020-10-21 13:28:52,396</td>
+      <td>2020-10-22 11:00:32,804</td>
       <td>qcodes.instrument.base</td>
       <td>DEBUG</td>
       <td>AMI430</td>
@@ -1452,7 +1452,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
   <tbody>
     <tr>
       <th>0</th>
-      <td>2020-10-21 13:28:52,465</td>
+      <td>2020-10-22 11:00:32,876</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1462,7 +1462,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>1</th>
-      <td>2020-10-21 13:28:52,465</td>
+      <td>2020-10-22 11:00:32,876</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1472,7 +1472,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>2</th>
-      <td>2020-10-21 13:28:52,466</td>
+      <td>2020-10-22 11:00:32,877</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1482,7 +1482,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>3</th>
-      <td>2020-10-21 13:28:52,466</td>
+      <td>2020-10-22 11:00:32,877</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1492,7 +1492,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>4</th>
-      <td>2020-10-21 13:28:52,466</td>
+      <td>2020-10-22 11:00:32,878</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
@@ -1502,7 +1502,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>5</th>
-      <td>2020-10-21 13:28:52,467</td>
+      <td>2020-10-22 11:00:32,878</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
