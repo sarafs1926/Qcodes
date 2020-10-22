@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.18.0+774.ga5e23e868d
+                0.18.0+777.gdfcf94d832
               </div>
             
           
@@ -165,21 +165,16 @@
   <h1>Source code for qcodes.instrument_drivers.QDev.QDac_channels</h1><div class="highlight"><pre>
 <span></span><span class="c1"># QCoDeS driver for QDac using channels</span>
 
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">pyvisa</span> <span class="k">as</span> <span class="nn">visa</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
-<span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">xor</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 
-<span class="kn">from</span> <span class="nn">qcodes.instrument.channel</span> <span class="kn">import</span> <span class="n">InstrumentChannel</span><span class="p">,</span> <span class="n">ChannelList</span>
-<span class="kn">from</span> <span class="nn">qcodes.instrument.channel</span> <span class="kn">import</span> <span class="n">MultiChannelInstrumentParameter</span>
+<span class="kn">import</span> <span class="nn">pyvisa</span> <span class="k">as</span> <span class="nn">visa</span>
+
+<span class="kn">from</span> <span class="nn">qcodes.instrument.channel</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ChannelList</span><span class="p">,</span> <span class="n">InstrumentChannel</span><span class="p">,</span>
+                                       <span class="n">MultiChannelInstrumentParameter</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.visa</span> <span class="kn">import</span> <span class="n">VisaInstrument</span>
 <span class="kn">from</span> <span class="nn">qcodes.utils</span> <span class="kn">import</span> <span class="n">validators</span> <span class="k">as</span> <span class="n">vals</span>
-<span class="kn">from</span> <span class="nn">qcodes.utils.deprecate</span> <span class="kn">import</span> <span class="n">deprecate</span>
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -409,12 +404,6 @@
                            <span class="n">set_cmd</span><span class="o">=</span><span class="s1">&#39;ver </span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">,</span>
                            <span class="n">val_mapping</span><span class="o">=</span><span class="p">{</span><span class="kc">True</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;fast_voltage_set&#39;</span><span class="p">,</span>
-                           <span class="n">label</span><span class="o">=</span><span class="s1">&#39;fast voltage set&#39;</span><span class="p">,</span>
-                           <span class="n">get_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">set_cmd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                           <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Bool</span><span class="p">(),</span>
-                           <span class="n">initial_value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                           <span class="n">docstring</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;&quot;Deprecated with no functionality&quot;&quot;&quot;</span><span class="p">)</span>
         <span class="c1"># Initialise the instrument, all channels DC (unbind func. generators)</span>
         <span class="k">for</span> <span class="n">chan</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">chan_range</span><span class="p">:</span>
             <span class="c1"># Note: this call does NOT change the voltage on the channel</span>
@@ -557,28 +546,6 @@
 <span class="sd">        parser for chXX_i parameter</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="mf">1e-6</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_num_verbose</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-
-<div class="viewcode-block" id="QDac.read_state"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.QDev.html#qcodes.instrument_drivers.QDev.QDac_channels.QDac.read_state">[docs]</a>    <span class="nd">@deprecate</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s1">&#39;inconsitent values for irange&#39;</span><span class="p">,</span>
-               <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;use channel parameters&#39;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">read_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chan</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
-
-        <span class="k">if</span> <span class="n">chan</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">chan_range</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;valid channels are </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">chan_range</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="n">valid_params</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="s1">&#39;vrange&#39;</span><span class="p">,</span> <span class="s1">&#39;irange&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">param</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_params</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s1">&#39;read_state valid params are </span><span class="si">{</span><span class="n">valid_params</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_update_cache</span><span class="p">(</span><span class="n">readcurrents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-        <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">[</span><span class="n">chan</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">param</span><span class="p">)</span><span class="o">.</span><span class="n">get_latest</span><span class="p">()</span>
-
-        <span class="n">returnmap</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;vrange&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
-                     <span class="s1">&#39;irange&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;1 muA&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;100 muA&#39;</span><span class="p">}}</span>
-
-        <span class="k">if</span> <span class="s1">&#39;range&#39;</span> <span class="ow">in</span> <span class="n">param</span><span class="p">:</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="n">returnmap</span><span class="p">[</span><span class="n">param</span><span class="p">][</span><span class="n">value</span><span class="p">]</span></div>
-
 
     <span class="k">def</span> <span class="nf">_update_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">readcurrents</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
