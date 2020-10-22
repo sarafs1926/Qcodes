@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.18.0+769.gce49cb2c4f
+                0.18.0+772.g4d70430b01
               </div>
             
           
@@ -522,15 +522,6 @@ alt="Binder badge"
 <p>Note however that not every feature/parameter is available on all <code class="docutils literal notranslate"><span class="pre">344xxA</span></code> models. This, when possible, is reflected in the instantiated driver object. Also note that models like <code class="docutils literal notranslate"><span class="pre">34465A</span></code> have options (like <code class="docutils literal notranslate"><span class="pre">DIG</span></code> and <code class="docutils literal notranslate"><span class="pre">MEM</span></code>) that can either be enabled or disabled on a particular instrument; this also has impact on availability of some features/parameters and/or their settings. In general, refer to the instrument’s manual for detailed information.</p>
 <p><strong>NOTE</strong>: Beginning with firmware revision 3.0, the digitizing and advanced triggering option, referred to as “DIG”, for models 34465A-DIG/34470A-DIG, is now standard.</p>
 <p>The driver does not cover all the features of the instrument. <strong>At present, the driver only supports being used to measure DC Voltage</strong></p>
-<p><strong>NOTE</strong>: use drivers for these models which originate from <code class="docutils literal notranslate"><span class="pre">*_submodules</span></code> python modules, from example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules</span> <span class="kn">import</span> <span class="n">Keysight_34465A</span>
-</pre></div>
-</div>
-<p>instead of</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qcodes.instrument_drivers.Keysight.Keysight_34465A</span> <span class="kn">import</span> <span class="n">Keysight_34465A</span>
-</pre></div>
-</div>
-<p>The latter ones are deprecated due to their deficiencies.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
