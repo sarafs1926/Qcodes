@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.19.0+3.g4d2820e8bd
+                0.19.0+9.gc0d9a7b301
               </div>
             
           
@@ -217,21 +217,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -332,7 +346,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -398,6 +412,7 @@ div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
     padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -521,7 +536,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201023-13798-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201023-14198-qcodes.log
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -630,8 +645,8 @@ benchmarking#the sample is a lie#1@/home/vsts/experiments.db
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CPU times: user 14.1 ms, sys: 0 ns, total: 14.1 ms
-Wall time: 14 ms
+CPU times: user 13.3 ms, sys: 218 µs, total: 13.5 ms
+Wall time: 13.5 ms
 </pre></div></div>
 </div>
 <p>and store in memory</p>
@@ -665,8 +680,8 @@ Wall time: 14 ms
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CPU times: user 10.6 ms, sys: 0 ns, total: 10.6 ms
-Wall time: 10.4 ms
+CPU times: user 8.94 ms, sys: 0 ns, total: 8.94 ms
+Wall time: 8.9 ms
 </pre></div></div>
 </div>
 </div>
@@ -703,7 +718,7 @@ Wall time: 10.4 ms
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:05:03,581 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/utils/deprecate.py:58: QCoDeSDeprecationWarning: The function &lt;add_result&gt; is deprecated. Use &#34;add_results&#34; as an alternative.
+2020-10-23 06:12:21,416 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/utils/deprecate.py:58: QCoDeSDeprecationWarning: The function &lt;add_result&gt; is deprecated. Use &#34;add_results&#34; as an alternative.
   issue_deprecation_warning(f&#39;{t} &lt;{n}&gt;&#39;, reason, alternative)
 
 </pre></div></div>
@@ -713,8 +728,8 @@ Wall time: 10.4 ms
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CPU times: user 294 ms, sys: 81.7 ms, total: 376 ms
-Wall time: 1.19 s
+CPU times: user 314 ms, sys: 100 ms, total: 414 ms
+Wall time: 1.48 s
 </pre></div></div>
 </div>
 </div>
@@ -756,8 +771,8 @@ Wall time: 1.19 s
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CPU times: user 105 ms, sys: 9.83 ms, total: 115 ms
-Wall time: 142 ms
+CPU times: user 119 ms, sys: 7.72 ms, total: 127 ms
+Wall time: 154 ms
 </pre></div></div>
 </div>
 </div>
@@ -799,8 +814,8 @@ Wall time: 142 ms
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CPU times: user 23 ms, sys: 0 ns, total: 23 ms
-Wall time: 22.9 ms
+CPU times: user 22.2 ms, sys: 279 µs, total: 22.4 ms
+Wall time: 22.5 ms
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -846,7 +861,7 @@ Wall time: 22.9 ms
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-123 ms ± 3.74 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+141 ms ± 2.73 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -893,7 +908,7 @@ Wall time: 22.9 ms
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-6.96 ms ± 129 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+6.94 ms ± 242 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div></div>
 </div>
 </div>
@@ -939,7 +954,7 @@ Wall time: 22.9 ms
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-36.2 ms ± 1.77 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+41.7 ms ± 1.82 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div></div>
 </div>
 </div>

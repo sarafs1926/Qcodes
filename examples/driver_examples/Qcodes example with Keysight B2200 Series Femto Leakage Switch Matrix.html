@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.19.0+3.g4d2820e8bd
+                0.19.0+9.gc0d9a7b301
               </div>
             
           
@@ -237,21 +237,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -352,7 +366,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -418,6 +432,7 @@ div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
     padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -548,7 +563,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201023-22430-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201023-22598-qcodes.log
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -668,7 +683,7 @@ Connected to: AGILENT TECHNOLOGIES B2200A (serial:0, firmware:A.01.00) in 0.05s
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:20,963 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,330 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -697,7 +712,7 @@ Connected to: AGILENT TECHNOLOGIES B2200A (serial:0, firmware:A.01.00) in 0.05s
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:20,973 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,340 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -747,7 +762,7 @@ Connected to: AGILENT TECHNOLOGIES B2200A (serial:0, firmware:A.01.00) in 0.05s
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:20,990 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,359 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   This is separate from the ipykernel package so we can avoid doing imports until
 
 </pre></div></div>
@@ -777,7 +792,7 @@ Connected to: AGILENT TECHNOLOGIES B2200A (serial:0, firmware:A.01.00) in 0.05s
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:20,999 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:2: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,369 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:2: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
 
 
 </pre></div></div>
@@ -835,7 +850,7 @@ can be connected to only one input port. - existing connection to a port will be
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,015 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,387 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -864,7 +879,7 @@ can be connected to only one input port. - existing connection to a port will be
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,024 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,397 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -937,7 +952,7 @@ Skipped `Connecting multiple inputs to the same output` example.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,043 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/instrument_drivers/Keysight/keysight_b220x.py:336: UserWarning: When going from *free* to *single* mode existing connections are not released.
+2020-10-23 06:19:00,418 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/instrument_drivers/Keysight/keysight_b220x.py:336: UserWarning: When going from *free* to *single* mode existing connections are not released.
   warnings.warn(&#39;When going from *free* to *single* mode existing &#39;
 
 </pre></div></div>
@@ -973,10 +988,10 @@ Skipped `Connecting multiple inputs to the same output` example.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,053 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:4: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,428 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:4: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   after removing the cwd from sys.path.
 
-2020-10-23 03:11:21,054 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:9: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,431 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:9: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   if __name__ == &#39;__main__&#39;:
 
 </pre></div></div>
@@ -1021,16 +1036,16 @@ Skipped `Connecting multiple inputs to the same output` example.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,068 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:5: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,442 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:5: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;
 
-2020-10-23 03:11:21,070 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:6: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,443 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:6: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
 
 
-2020-10-23 03:11:21,071 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:7: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,445 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:7: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   import sys
 
-2020-10-23 03:11:21,074 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:14: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,449 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:14: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
 
 
 </pre></div></div>
@@ -1117,10 +1132,10 @@ Connection Sequence after Reset:  bbm
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,093 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:2: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,468 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:2: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
 
 
-2020-10-23 03:11:21,094 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,470 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   This is separate from the ipykernel package so we can avoid doing imports until
 
 </pre></div></div>
@@ -1290,7 +1305,7 @@ Before executing this make sure that there is no source connected to input 13 as
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,148 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,534 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -1355,10 +1370,10 @@ Before executing this make sure that there is no source connected to input 13 as
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,169 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:2: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,557 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:2: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
 
 
-2020-10-23 03:11:21,171 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,559 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   This is separate from the ipykernel package so we can avoid doing imports until
 
 </pre></div></div>
@@ -1403,7 +1418,7 @@ Before executing this make sure that there is no source connected to input 13 as
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,185 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,577 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -1433,7 +1448,7 @@ Before executing this make sure that there is no source connected to input 13 as
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,193 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,588 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -1464,7 +1479,7 @@ Before executing this make sure that there is no source connected to input 13 as
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,201 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,598 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   This is separate from the ipykernel package so we can avoid doing imports until
 
 </pre></div></div>
@@ -1537,10 +1552,10 @@ Before executing this make sure that there is no source connected to input 13 as
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,214 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,613 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   This is separate from the ipykernel package so we can avoid doing imports until
 
-2020-10-23 03:11:21,216 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:4: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,615 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:4: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   after removing the cwd from sys.path.
 
 </pre></div></div>
@@ -1606,7 +1621,7 @@ False
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,237 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,644 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -1639,7 +1654,7 @@ False
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,247 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,655 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -1683,10 +1698,10 @@ False
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,256 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:4: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,666 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:4: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   after removing the cwd from sys.path.
 
-2020-10-23 03:11:21,259 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:12: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,669 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:12: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   if sys.path[0] == &#39;&#39;:
 
 </pre></div></div>
@@ -1784,7 +1799,7 @@ after:  [1, 3, 5]
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,285 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,698 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   This is separate from the ipykernel package so we can avoid doing imports until
 
 </pre></div></div>
@@ -1802,7 +1817,7 @@ before:  {(2, 48), (10, 12)}
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,287 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:6: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,701 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:6: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
 
 
 </pre></div></div>
@@ -1836,10 +1851,10 @@ after disconnecting:  {(2, 48), (10, 12)}
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-10-23 03:11:21,297 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,712 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   This is separate from the ipykernel package so we can avoid doing imports until
 
-2020-10-23 03:11:21,301 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:6: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2020-10-23 06:19:00,714 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:6: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
 
 
 </pre></div></div>

@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.19.0+3.g4d2820e8bd
+                0.19.0+9.gc0d9a7b301
               </div>
             
           
@@ -215,21 +215,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -330,7 +344,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -396,6 +410,7 @@ div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
     padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -532,7 +547,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201023-16634-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201023-16804-qcodes.log
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -552,14 +567,14 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/201023-16634-qcodes.log
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Upgrading database; v0 -&gt; v1: : 0it [00:00, ?it/s]
-Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 545.42it/s]
+Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 532.68it/s]
 Upgrading database; v2 -&gt; v3: : 0it [00:00, ?it/s]
 Upgrading database; v3 -&gt; v4: : 0it [00:00, ?it/s]
-Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 753.56it/s]
+Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 318.50it/s]
 Upgrading database; v5 -&gt; v6: : 0it [00:00, ?it/s]
-Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 290.93it/s]
-Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 1065.36it/s]
-Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 474.04it/s]
+Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 199.64it/s]
+Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 378.79it/s]
+Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 835.52it/s]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -568,7 +583,7 @@ Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-saving_data_in_bg#no_sample#1@/tmp/3e1fcb2d3f93591386acf1f64b691a1e3146f52f9ade679b.db
+saving_data_in_bg#no_sample#1@/tmp/b9a93ad38cd160c245cfae2efa9189a020596f88d1dc05cd.db
 --------------------------------------------------------------------------------------
 </pre></div></div>
 </div>
@@ -615,7 +630,7 @@ saving_data_in_bg#no_sample#1@/tmp/3e1fcb2d3f93591386acf1f64b691a1e3146f52f9ade6
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;qcodes.dataset.measurements.Measurement at 0x7f2217042650&gt;
+&lt;qcodes.dataset.measurements.Measurement at 0x7f878bc1e090&gt;
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -684,10 +699,10 @@ saving_data_in_bg#no_sample#1@/tmp/3e1fcb2d3f93591386acf1f64b691a1e3146f52f9ade6
 Starting experimental run with id: 1.
 Report:
 Number of data points saved: 10 x 10000 points
-Init time:            0.01044267099996432 s
-Data generation time: 1.013157680000404 s
-Data saving time:     1.331347737999522 s
-Total time:           2.3550937899999553 s
+Init time:            0.017840771000010136 s
+Data generation time: 1.0132863129992984 s
+Data saving time:     1.4107481870005358 s
+Total time:           2.4420908719998806 s
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -765,10 +780,10 @@ Total time:           2.3550937899999553 s
 Starting experimental run with id: 2.
 Report:
 Number of data points saved: 10 x 10000 points
-Init time:            0.011459376999937376 s
-Data generation time: 1.0413150520000727 s
-Data saving time:     0.44980994399998053 s
-Total time:           1.5027137740000853 s
+Init time:            0.015979862999756733 s
+Data generation time: 1.038393002999328 s
+Data saving time:     0.4765200810006718 s
+Total time:           1.5310580469999877 s
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
