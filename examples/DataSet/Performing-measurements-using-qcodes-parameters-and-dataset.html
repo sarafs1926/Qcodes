@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.19.0+5.ge677c3c909
+                0.19.0+14.gbc44715896
               </div>
             
           
@@ -214,21 +214,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -329,7 +343,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -395,6 +409,7 @@ div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
     padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -529,7 +544,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201023-16107-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201023-16533-qcodes.log
 Activating auto-logging. Current session state plus future input saved.
 Filename       : /home/vsts/.qcodes/logs/command_history.log
 Mode           : append
@@ -537,7 +552,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201023-16107-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201023-16533-qcodes.log
 </pre></div></div>
 </div>
 <p>In what follows, we shall define some utility functions as well as declare our dummy instruments. We, then, add these instruments to a <code class="docutils literal notranslate"><span class="pre">Station</span></code> object.</p>
@@ -665,8 +680,8 @@ End of experiment
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;dmm_v1&#39;: {&#39;dmm_v1&#39;: array([ 5.09027936,  2.89818716,  1.77250338,  1.06664471,  0.50396755,
-          0.26976777,  0.31645266, -0.04270427, -0.00585074,  0.09644942]),
+{&#39;dmm_v1&#39;: {&#39;dmm_v1&#39;: array([ 4.93986259,  2.85279426,  1.68902153,  0.92602288,  0.48401149,
+          0.4044094 ,  0.23965393, -0.03309413,  0.07751067,  0.00919465]),
   &#39;dac_ch1&#39;: array([ 0.        ,  2.77777778,  5.55555556,  8.33333333, 11.11111111,
          13.88888889, 16.66666667, 19.44444444, 22.22222222, 25.        ])}}
 </pre></div></div>
@@ -687,8 +702,8 @@ End of experiment
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;dmm_v1&#39;: {&#39;dmm_v1&#39;: array([ 5.09027936,  2.89818716,  1.77250338,  1.06664471,  0.50396755,
-          0.26976777,  0.31645266, -0.04270427, -0.00585074,  0.09644942]),
+{&#39;dmm_v1&#39;: {&#39;dmm_v1&#39;: array([ 4.93986259,  2.85279426,  1.68902153,  0.92602288,  0.48401149,
+          0.4044094 ,  0.23965393, -0.03309413,  0.07751067,  0.00919465]),
   &#39;dac_ch1&#39;: array([ 0.        ,  2.77777778,  5.55555556,  8.33333333, 11.11111111,
          13.88888889, 16.66666667, 19.44444444, 22.22222222, 25.        ])}}
 </pre></div></div>
@@ -757,43 +772,43 @@ End of experiment
   <tbody>
     <tr>
       <th>0.000000</th>
-      <td>5.090279</td>
+      <td>4.939863</td>
     </tr>
     <tr>
       <th>2.777778</th>
-      <td>2.898187</td>
+      <td>2.852794</td>
     </tr>
     <tr>
       <th>5.555556</th>
-      <td>1.772503</td>
+      <td>1.689022</td>
     </tr>
     <tr>
       <th>8.333333</th>
-      <td>1.066645</td>
+      <td>0.926023</td>
     </tr>
     <tr>
       <th>11.111111</th>
-      <td>0.503968</td>
+      <td>0.484011</td>
     </tr>
     <tr>
       <th>13.888889</th>
-      <td>0.269768</td>
+      <td>0.404409</td>
     </tr>
     <tr>
       <th>16.666667</th>
-      <td>0.316453</td>
+      <td>0.239654</td>
     </tr>
     <tr>
       <th>19.444444</th>
-      <td>-0.042704</td>
+      <td>-0.033094</td>
     </tr>
     <tr>
       <th>22.222222</th>
-      <td>-0.005851</td>
+      <td>0.077511</td>
     </tr>
     <tr>
       <th>25.000000</th>
-      <td>0.096449</td>
+      <td>0.009195</td>
     </tr>
   </tbody>
 </table>
@@ -869,7 +884,7 @@ True
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Dataset GUID is: aaaaaaaa-0000-0000-0000-0175541a9c8e
+Dataset GUID is: aaaaaaaa-0000-0000-0000-017554321684
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1040,7 +1055,7 @@ End of experiment
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;qcodes.dataset.measurements.Measurement at 0x7fda5e05b650&gt;
+&lt;qcodes.dataset.measurements.Measurement at 0x7f5693dc3bd0&gt;
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1119,43 +1134,43 @@ Starting experimental run with id: 36.
     <tr>
       <th rowspan="10" valign="top">-1.0</th>
       <th>-1.000000</th>
-      <td>0.000609</td>
+      <td>-0.000012</td>
     </tr>
     <tr>
       <th>-0.989950</th>
-      <td>-0.000360</td>
+      <td>0.000390</td>
     </tr>
     <tr>
       <th>-0.979899</th>
-      <td>-0.000874</td>
+      <td>0.000407</td>
     </tr>
     <tr>
       <th>-0.969849</th>
-      <td>-0.000356</td>
+      <td>0.000569</td>
     </tr>
     <tr>
       <th>-0.959799</th>
-      <td>-0.000153</td>
+      <td>0.000045</td>
     </tr>
     <tr>
       <th>-0.949749</th>
-      <td>0.001110</td>
+      <td>-0.000602</td>
     </tr>
     <tr>
       <th>-0.939698</th>
-      <td>-0.000328</td>
+      <td>0.000064</td>
     </tr>
     <tr>
       <th>-0.929648</th>
-      <td>-0.000161</td>
+      <td>-0.000250</td>
     </tr>
     <tr>
       <th>-0.919598</th>
-      <td>0.001052</td>
+      <td>0.001038</td>
     </tr>
     <tr>
       <th>-0.909548</th>
-      <td>-0.000097</td>
+      <td>0.000691</td>
     </tr>
   </tbody>
 </table>
@@ -1532,7 +1547,7 @@ Coordinates:
   * dac_ch1  (dac_ch1) float64 -1.0 -0.9899 -0.9799 ... 0.9799 0.9899 1.0
   * dac_ch2  (dac_ch2) float64 -1.0 -0.9899 -0.9799 ... 0.9799 0.9899 1.0
 Data variables:
-    dmm_v2   (dac_ch1, dac_ch2) float64 0.0006093 -0.0003603 ... -4.683e-05</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-1d38a8ab-a32a-445f-9c76-9de7fc288ab2' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-1d38a8ab-a32a-445f-9c76-9de7fc288ab2' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>dac_ch1</span>: 200</li><li><span class='xr-has-index'>dac_ch2</span>: 200</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-939fb065-ea37-4908-b85a-1d6870ec5d7a' class='xr-section-summary-in' type='checkbox'  checked><label for='section-939fb065-ea37-4908-b85a-1d6870ec5d7a' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>dac_ch1</span></div><div class='xr-var-dims'>(dac_ch1)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.0 -0.9899 -0.9799 ... 0.9899 1.0</div><input id='attrs-5a505c84-8e5d-45e3-a066-7eaa301206f8' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-5a505c84-8e5d-45e3-a066-7eaa301206f8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-07016cf9-402d-4a8c-ad46-2575afcfac6e' class='xr-var-data-in' type='checkbox'><label for='data-07016cf9-402d-4a8c-ad46-2575afcfac6e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-1.      , -0.98995 , -0.979899, -0.969849, -0.959799, -0.949749,
+    dmm_v2   (dac_ch1, dac_ch2) float64 -1.238e-05 0.0003895 ... -0.0002324</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-490804d1-f3b2-4c55-9ee5-21f3fab19433' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-490804d1-f3b2-4c55-9ee5-21f3fab19433' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>dac_ch1</span>: 200</li><li><span class='xr-has-index'>dac_ch2</span>: 200</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-5e959dca-5fe1-4a70-a191-afba8d01d599' class='xr-section-summary-in' type='checkbox'  checked><label for='section-5e959dca-5fe1-4a70-a191-afba8d01d599' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>dac_ch1</span></div><div class='xr-var-dims'>(dac_ch1)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.0 -0.9899 -0.9799 ... 0.9899 1.0</div><input id='attrs-96f497d2-7354-4f68-90f5-144f3cc61f1b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-96f497d2-7354-4f68-90f5-144f3cc61f1b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-26ffe242-1ab6-45b7-b145-b3488bc89145' class='xr-var-data-in' type='checkbox'><label for='data-26ffe242-1ab6-45b7-b145-b3488bc89145' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-1.      , -0.98995 , -0.979899, -0.969849, -0.959799, -0.949749,
        -0.939698, -0.929648, -0.919598, -0.909548, -0.899497, -0.889447,
        -0.879397, -0.869347, -0.859296, -0.849246, -0.839196, -0.829146,
        -0.819095, -0.809045, -0.798995, -0.788945, -0.778894, -0.768844,
@@ -1565,7 +1580,7 @@ Data variables:
         0.809045,  0.819095,  0.829146,  0.839196,  0.849246,  0.859296,
         0.869347,  0.879397,  0.889447,  0.899497,  0.909548,  0.919598,
         0.929648,  0.939698,  0.949749,  0.959799,  0.969849,  0.979899,
-        0.98995 ,  1.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>dac_ch2</span></div><div class='xr-var-dims'>(dac_ch2)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.0 -0.9899 -0.9799 ... 0.9899 1.0</div><input id='attrs-aaa5cf44-208e-4974-8c38-e02a4a5bda30' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-aaa5cf44-208e-4974-8c38-e02a4a5bda30' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9bf6ccc1-fd3f-4fad-840d-6d98ae74b2e9' class='xr-var-data-in' type='checkbox'><label for='data-9bf6ccc1-fd3f-4fad-840d-6d98ae74b2e9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-1.      , -0.98995 , -0.979899, -0.969849, -0.959799, -0.949749,
+        0.98995 ,  1.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>dac_ch2</span></div><div class='xr-var-dims'>(dac_ch2)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.0 -0.9899 -0.9799 ... 0.9899 1.0</div><input id='attrs-3eba0cbd-8430-4fcb-925e-85fa82f488e1' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-3eba0cbd-8430-4fcb-925e-85fa82f488e1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-06c96b1c-cff0-414e-8208-93f032efa4a3' class='xr-var-data-in' type='checkbox'><label for='data-06c96b1c-cff0-414e-8208-93f032efa4a3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-1.      , -0.98995 , -0.979899, -0.969849, -0.959799, -0.949749,
        -0.939698, -0.929648, -0.919598, -0.909548, -0.899497, -0.889447,
        -0.879397, -0.869347, -0.859296, -0.849246, -0.839196, -0.829146,
        -0.819095, -0.809045, -0.798995, -0.788945, -0.778894, -0.768844,
@@ -1598,19 +1613,19 @@ Data variables:
         0.809045,  0.819095,  0.829146,  0.839196,  0.849246,  0.859296,
         0.869347,  0.879397,  0.889447,  0.899497,  0.909548,  0.919598,
         0.929648,  0.939698,  0.949749,  0.959799,  0.969849,  0.979899,
-        0.98995 ,  1.      ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-6d7e77ca-8e9d-45f7-aae2-8953805b50d6' class='xr-section-summary-in' type='checkbox'  checked><label for='section-6d7e77ca-8e9d-45f7-aae2-8953805b50d6' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>dmm_v2</span></div><div class='xr-var-dims'>(dac_ch1, dac_ch2)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0006093 -0.0003603 ... -4.683e-05</div><input id='attrs-c3b13a05-9b17-4545-a559-185d2b155a63' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-c3b13a05-9b17-4545-a559-185d2b155a63' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-85a48277-6f98-4b4c-a53b-6904b9baacbc' class='xr-var-data-in' type='checkbox'><label for='data-85a48277-6f98-4b4c-a53b-6904b9baacbc' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[ 6.09299706e-04, -3.60278123e-04, -8.73507908e-04, ...,
-        -1.61532030e-04, -4.01923525e-05, -8.50191973e-05],
-       [ 1.44678705e-04,  1.01762193e-04, -1.87990430e-04, ...,
-        -3.85451180e-04, -1.47911566e-04,  2.54018465e-04],
-       [ 1.33901276e-04, -3.33267054e-04,  1.72033776e-04, ...,
-         3.59530035e-04, -8.30143685e-05,  4.19751145e-04],
+        0.98995 ,  1.      ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-eb86aea3-01b9-4e3b-959f-2392b6788e96' class='xr-section-summary-in' type='checkbox'  checked><label for='section-eb86aea3-01b9-4e3b-959f-2392b6788e96' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>dmm_v2</span></div><div class='xr-var-dims'>(dac_ch1, dac_ch2)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.238e-05 0.0003895 ... -0.0002324</div><input id='attrs-255c18f7-51e7-4de9-8319-c141c1e1e8c1' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-255c18f7-51e7-4de9-8319-c141c1e1e8c1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-74eb61ad-5b59-46e2-9d2f-fa2e25ba0886' class='xr-var-data-in' type='checkbox'><label for='data-74eb61ad-5b59-46e2-9d2f-fa2e25ba0886' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[-1.23830813e-05,  3.89540185e-04,  4.07252359e-04, ...,
+         1.54695612e-04, -8.32299735e-04,  3.90075797e-04],
+       [-2.62375448e-04, -2.37308210e-04,  5.07951421e-04, ...,
+         2.26987797e-04, -4.89287626e-05,  5.21370565e-04],
+       [ 5.99215240e-04, -4.27217870e-04, -8.79046034e-05, ...,
+         1.62975954e-04, -3.69638342e-04,  3.08489463e-04],
        ...,
-       [-1.76021858e-05,  9.55386236e-05, -5.34353225e-04, ...,
-        -1.76820545e-04,  6.32223395e-04, -6.24227552e-06],
-       [ 1.64455269e-04,  3.23421037e-05,  1.94239431e-04, ...,
-        -2.54374040e-05, -7.36108201e-05, -1.12237058e-04],
-       [-3.96409216e-04,  9.44298958e-04, -5.43743284e-04, ...,
-         6.20236548e-04, -2.34531237e-04, -4.68335933e-05]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-4d45ba03-0810-4bc1-b1f3-03a9e51178c7' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-4d45ba03-0810-4bc1-b1f3-03a9e51178c7' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div>
+       [-5.40799896e-04,  5.25110349e-04, -1.54204625e-04, ...,
+        -5.86719015e-06, -1.40138812e-04,  1.34105485e-03],
+       [-8.38845565e-05, -2.35734771e-04, -4.02442069e-04, ...,
+         2.21825033e-04, -6.47576704e-04,  3.27429225e-05],
+       [-5.52552229e-05,  1.42636760e-04, -8.28205840e-04, ...,
+        -5.31536534e-04,  1.18014444e-03, -2.32413643e-04]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a5379e63-c543-41f8-afb8-05615ff93eed' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-a5379e63-c543-41f8-afb8-05615ff93eed' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div>
 </div>
 <p>Note, however, that XArray is only suited for data that is on a rectangular grid with few or no missing values.</p>
 <div class="nbinput docutils container">
@@ -1752,7 +1767,7 @@ Starting experimental run with id: 37.
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Starting experimental run with id: 38.
-130 46 0.2513375170375631
+130 46 0.25133532479351073
 ----------
 </pre></div></div>
 </div>
@@ -1962,54 +1977,54 @@ Starting experimental run with id: 41.
   </thead>
   <tbody>
     <tr>
-      <th>-0.206826</th>
-      <th>0.812188</th>
-      <td>0.026830</td>
+      <th>0.261079</th>
+      <th>-0.646618</th>
+      <td>0.003060</td>
     </tr>
     <tr>
-      <th>-0.265954</th>
-      <th>0.089681</th>
-      <td>0.352875</td>
+      <th>0.682465</th>
+      <th>-0.573603</th>
+      <td>0.001560</td>
     </tr>
     <tr>
-      <th>-0.188568</th>
-      <th>0.308878</th>
-      <td>0.529041</td>
+      <th>-0.329539</th>
+      <th>0.303991</th>
+      <td>0.237390</td>
     </tr>
     <tr>
-      <th>-0.030639</th>
-      <th>0.573990</th>
-      <td>0.322902</td>
+      <th>-0.112561</th>
+      <th>-0.670684</th>
+      <td>0.002837</td>
     </tr>
     <tr>
-      <th>-0.631507</th>
-      <th>0.153380</th>
-      <td>0.015518</td>
+      <th>-0.350914</th>
+      <th>-0.299551</th>
+      <td>0.029771</td>
     </tr>
     <tr>
-      <th>-0.787965</th>
-      <th>-0.892400</th>
-      <td>-0.000166</td>
+      <th>0.954896</th>
+      <th>-0.932245</th>
+      <td>0.000213</td>
     </tr>
     <tr>
-      <th>-0.833855</th>
-      <th>-0.560247</th>
-      <td>-0.000421</td>
+      <th>0.885320</th>
+      <th>0.538020</th>
+      <td>0.003664</td>
     </tr>
     <tr>
-      <th>-0.103055</th>
-      <th>0.432220</th>
-      <td>0.528988</td>
+      <th>-0.988441</th>
+      <th>0.654675</th>
+      <td>-0.000256</td>
     </tr>
     <tr>
-      <th>0.115594</th>
-      <th>-0.190679</th>
-      <td>0.333334</td>
+      <th>0.609013</th>
+      <th>-0.067603</th>
+      <td>0.080514</td>
     </tr>
     <tr>
-      <th>0.334703</th>
-      <th>0.666561</th>
-      <td>0.127836</td>
+      <th>0.674417</th>
+      <th>-0.277767</th>
+      <td>0.012648</td>
     </tr>
   </tbody>
 </table>
@@ -2089,16 +2104,16 @@ Starting experimental run with id: 42.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- final_simplex: (array([[0.10455603, 0.18611811],
-       [0.10455603, 0.18611811],
-       [0.10455603, 0.18611811]]), array([-1.13245944, -1.13216718, -1.13214004]))
-           fun: -1.132459437725446
-       message: &#39;Optimization terminated successfully.&#39;
-          nfev: 192
-           nit: 79
-        status: 0
-       success: True
-             x: array([0.10455603, 0.18611811])
+ final_simplex: (array([[0.09838283, 0.20296648],
+       [0.09838283, 0.20296648],
+       [0.09838283, 0.20296648]]), array([-1.13462793, -1.13316126, -1.13269205]))
+           fun: -1.1346279260472065
+       message: &#39;Maximum number of function evaluations has been exceeded.&#39;
+          nfev: 402
+           nit: 159
+        status: 1
+       success: False
+             x: array([0.09838283, 0.20296648])
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -2175,7 +2190,6 @@ Added points to measurement, step 5.
 The run now holds 7 rows
 Added points to measurement, step 6.
 Added points to measurement, step 7.
-The run now holds 8 rows
 The run now holds 9 rows
 Added points to measurement, step 8.
 Added points to measurement, step 9.
@@ -2233,24 +2247,24 @@ Added points to measurement, step 0.
 First parameter value list: []
 Added points to measurement, step 1.
 First parameter value list: []
-The run now holds 3 rows
-Added points to measurement, step 2.
+The run now holds 3 rowsAdded points to measurement, step 2.
 First parameter value list: [0, 1, 2]
+
 Added points to measurement, step 3.
 First parameter value list: [0, 1, 2]
-The run now holds 5 rowsAdded points to measurement, step 4.
+The run now holds 4 rows
+Added points to measurement, step 4.
 First parameter value list: [0, 1, 2, 3, 4]
-
 Added points to measurement, step 5.
 First parameter value list: [0, 1, 2, 3, 4]
-The run now holds 6 rows
-Added points to measurement, step 6.
+The run now holds 6 rowsAdded points to measurement, step 6.
 First parameter value list: [0, 1, 2, 3, 4, 5, 6]
+
 Added points to measurement, step 7.
 First parameter value list: [0, 1, 2, 3, 4, 5, 6]
-The run now holds 9 rows
-Added points to measurement, step 8.
+The run now holds 9 rowsAdded points to measurement, step 8.
 First parameter value list: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+
 Added points to measurement, step 9.
 First parameter value list: [0, 1, 2, 3, 4, 5, 6, 7, 8]
 The run now holds 10 rowsThe run now holds 10 rows
@@ -2399,8 +2413,8 @@ Starting experimental run with id: 45.
 <div class="highlight"><pre>
 ([&lt;AxesSubplot:title={&#39;center&#39;:&#39;Run #45, Experiment performing_meas_using_parameters_and_dataset (no sample)&#39;}, xlabel=&#39;this setpoint (this setpointunit)&#39;, ylabel=&#39;that setpoint (that setpointunit)&#39;&gt;,
   &lt;AxesSubplot:title={&#39;center&#39;:&#39;Run #45, Experiment performing_meas_using_parameters_and_dataset (no sample)&#39;}, xlabel=&#39;this setpoint (this setpointunit)&#39;, ylabel=&#39;that setpoint (that setpointunit)&#39;&gt;],
- [&lt;matplotlib.colorbar.Colorbar at 0x7fda5c155710&gt;,
-  &lt;matplotlib.colorbar.Colorbar at 0x7fda5b9c4590&gt;])
+ [&lt;matplotlib.colorbar.Colorbar at 0x7f5691d15b50&gt;,
+  &lt;matplotlib.colorbar.Colorbar at 0x7f569192f110&gt;])
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -2918,11 +2932,11 @@ Coordinates:
   * MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint  (MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint) int64 ...
   * MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint  (MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint) int64 ...
 Data variables:
-    that                                                 (MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint, MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint) int64 ...</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-9f2c888d-81db-4f34-8a0d-cd6e35b4b33c' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-9f2c888d-81db-4f34-8a0d-cd6e35b4b33c' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint</span>: 3</li><li><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint</span>: 5</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-c8b85344-848d-4a83-a301-6084d715abdd' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c8b85344-848d-4a83-a301-6084d715abdd' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>5 6 7 8 9</div><input id='attrs-2bd25a50-cd8b-426d-bab5-10ba01bd2713' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2bd25a50-cd8b-426d-bab5-10ba01bd2713' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-cd2c526f-4801-4be7-b2b8-a4d873ef3c23' class='xr-var-data-in' type='checkbox'><label for='data-cd2c526f-4801-4be7-b2b8-a4d873ef3c23' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([5, 6, 7, 8, 9])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>9 10 11</div><input id='attrs-1a3d9452-603b-4e8f-9d40-7430510f1daa' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-1a3d9452-603b-4e8f-9d40-7430510f1daa' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6f0a3573-cb58-46ea-abd5-f522e6ba596e' class='xr-var-data-in' type='checkbox'><label for='data-6f0a3573-cb58-46ea-abd5-f522e6ba596e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([ 9, 10, 11])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-33deba35-bf7e-43e9-a597-8dc20952e08c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-33deba35-bf7e-43e9-a597-8dc20952e08c' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>that</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint, MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</div><input id='attrs-e353553b-89c5-4aaf-9c36-6bbb4e86e9b9' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-e353553b-89c5-4aaf-9c36-6bbb4e86e9b9' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-eb3255f2-c1bf-42e9-acbd-6ad9efb83e34' class='xr-var-data-in' type='checkbox'><label for='data-eb3255f2-c1bf-42e9-acbd-6ad9efb83e34' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[1, 1, 1],
+    that                                                 (MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint, MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint) int64 ...</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-b99e35e6-1224-4764-ad8d-246e337c5c1c' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-b99e35e6-1224-4764-ad8d-246e337c5c1c' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint</span>: 3</li><li><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint</span>: 5</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-6585f160-8435-4a91-9f86-8dd258338e9d' class='xr-section-summary-in' type='checkbox'  checked><label for='section-6585f160-8435-4a91-9f86-8dd258338e9d' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>5 6 7 8 9</div><input id='attrs-f00e670d-aab7-4104-a854-cff4dba0bc0f' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-f00e670d-aab7-4104-a854-cff4dba0bc0f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1af69b49-f3bf-4b09-84b3-5e60178ce624' class='xr-var-data-in' type='checkbox'><label for='data-1af69b49-f3bf-4b09-84b3-5e60178ce624' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([5, 6, 7, 8, 9])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>9 10 11</div><input id='attrs-9a8a0575-1de5-44e1-9584-1660cba208b1' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-9a8a0575-1de5-44e1-9584-1660cba208b1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-54a77a0f-9949-4d90-a2e4-ef6c3bc56aac' class='xr-var-data-in' type='checkbox'><label for='data-54a77a0f-9949-4d90-a2e4-ef6c3bc56aac' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([ 9, 10, 11])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-f721e254-c37d-47f0-8358-ea7690efb12f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f721e254-c37d-47f0-8358-ea7690efb12f' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>that</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint, MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</div><input id='attrs-bdb5d309-f58c-4ee8-bb79-5e7e59d88220' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-bdb5d309-f58c-4ee8-bb79-5e7e59d88220' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3337b79d-824a-4b24-abd5-5571cc9864ee' class='xr-var-data-in' type='checkbox'><label for='data-3337b79d-824a-4b24-abd5-5571cc9864ee' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[1, 1, 1],
        [1, 1, 1],
        [1, 1, 1],
        [1, 1, 1],
-       [1, 1, 1]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-485a8df7-63e5-447f-9f27-b08ca69838b2' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-485a8df7-63e5-447f-9f27-b08ca69838b2' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div>
+       [1, 1, 1]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-23b8ad13-14a5-4110-ba90-28618e913953' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-23b8ad13-14a5-4110-ba90-28618e913953' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div>
 </div>
 </div>
 </div>
