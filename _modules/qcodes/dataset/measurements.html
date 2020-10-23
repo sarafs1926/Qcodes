@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+19.gd2c37c15db
+                0.19.0+24.ga542d28cda
               </div>
             
           
@@ -439,7 +439,7 @@
             <span class="n">shape</span> <span class="o">=</span> <span class="n">parameter</span><span class="o">.</span><span class="n">shapes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">paramspec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span><span class="o">.</span><span class="n">_id_to_paramspec</span><span class="p">[</span><span class="n">parameter</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+                <span class="n">paramspec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interdeps</span><span class="o">.</span><span class="n">_id_to_paramspec</span><span class="p">[</span><span class="n">parameter</span><span class="o">.</span><span class="n">full_names</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
             <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Can not add result for parameter &#39;</span>
                                  <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">parameter</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">, &#39;</span>
@@ -884,12 +884,6 @@
                                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">paramtype</span><span class="si">}</span><span class="s2">. However, only &quot;</span>
                                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ParamSpec</span><span class="o">.</span><span class="n">allowed_types</span><span class="si">}</span><span class="s2"> are supported.&quot;</span><span class="p">)</span>
 
-        <span class="c1"># perhaps users will want a different name? But the name must be unique</span>
-        <span class="c1"># on a per-run basis</span>
-        <span class="c1"># we also use the name below, but perhaps is is better to have</span>
-        <span class="c1"># a more robust Parameter2String function?</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
-
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">ArrayParameter</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_register_arrayparameter</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span>
                                           <span class="n">setpoints</span><span class="p">,</span>
@@ -907,7 +901,7 @@
                                           <span class="n">paramtype</span><span class="p">,</span>
                                           <span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">Parameter</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_register_parameter</span><span class="p">(</span><span class="n">name</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_register_parameter</span><span class="p">(</span><span class="n">parameter</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
                                      <span class="n">parameter</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
                                      <span class="n">parameter</span><span class="o">.</span><span class="n">unit</span><span class="p">,</span>
                                      <span class="n">setpoints</span><span class="p">,</span>
@@ -1016,14 +1010,13 @@
 <span class="sd">        Register an ArrayParameter and the setpoints belonging to that</span>
 <span class="sd">        ArrayParameter</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
         <span class="n">my_setpoints</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">setpoints</span><span class="p">)</span> <span class="k">if</span> <span class="n">setpoints</span> <span class="k">else</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">parameter</span><span class="o">.</span><span class="n">shape</span><span class="p">)):</span>
             <span class="k">if</span> <span class="n">parameter</span><span class="o">.</span><span class="n">setpoint_full_names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> \
                     <span class="n">parameter</span><span class="o">.</span><span class="n">setpoint_full_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">spname</span> <span class="o">=</span> <span class="n">parameter</span><span class="o">.</span><span class="n">setpoint_full_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">spname</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">_setpoint_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="n">spname</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">parameter</span><span class="o">.</span><span class="n">full_name</span><span class="si">}</span><span class="s1">_setpoint_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span>
             <span class="k">if</span> <span class="n">parameter</span><span class="o">.</span><span class="n">setpoint_labels</span><span class="p">:</span>
                 <span class="n">splabel</span> <span class="o">=</span> <span class="n">parameter</span><span class="o">.</span><span class="n">setpoint_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
@@ -1042,7 +1035,7 @@
 
             <span class="n">my_setpoints</span> <span class="o">+=</span> <span class="p">[</span><span class="n">spname</span><span class="p">]</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_parameter</span><span class="p">(</span><span class="n">name</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_parameter</span><span class="p">(</span><span class="n">parameter</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
                                  <span class="n">parameter</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
                                  <span class="n">parameter</span><span class="o">.</span><span class="n">unit</span><span class="p">,</span>
                                  <span class="n">my_setpoints</span><span class="p">,</span>
@@ -1058,7 +1051,6 @@
 <span class="sd">        Register an ParameterWithSetpoints and the setpoints belonging to the</span>
 <span class="sd">        Parameter</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
         <span class="n">my_setpoints</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">setpoints</span><span class="p">)</span> <span class="k">if</span> <span class="n">setpoints</span> <span class="k">else</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">sp</span> <span class="ow">in</span> <span class="n">parameter</span><span class="o">.</span><span class="n">setpoints</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sp</span><span class="p">,</span> <span class="n">Parameter</span><span class="p">):</span>
@@ -1078,7 +1070,7 @@
 
             <span class="n">my_setpoints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spname</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_register_parameter</span><span class="p">(</span><span class="n">name</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_parameter</span><span class="p">(</span><span class="n">parameter</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
                                  <span class="n">parameter</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
                                  <span class="n">parameter</span><span class="o">.</span><span class="n">unit</span><span class="p">,</span>
                                  <span class="n">my_setpoints</span><span class="p">,</span>
@@ -1131,7 +1123,7 @@
             <span class="n">setpoints_lists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">my_setpoints</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">setpoints</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">setpoints_lists</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_register_parameter</span><span class="p">(</span><span class="n">multiparameter</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_register_parameter</span><span class="p">(</span><span class="n">multiparameter</span><span class="o">.</span><span class="n">full_names</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
                                      <span class="n">multiparameter</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
                                      <span class="n">multiparameter</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
                                      <span class="n">setpoints</span><span class="p">,</span>
