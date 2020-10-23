@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.19.0+9.gc0d9a7b301
+                0.19.0+5.ge677c3c909
               </div>
             
           
@@ -213,35 +213,21 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container div.prompt *,
-div.nboutput.container div.prompt *,
-div.nbinput.container div.input_area pre,
-div.nboutput.container div.output_area pre,
-div.nbinput.container div.input_area .highlight,
-div.nboutput.container div.output_area .highlight {
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
     border: none;
-    padding: 0;
+    padding: 0 0;
     margin: 0;
     box-shadow: none;
-}
-
-div.nbinput.container > div[class*=highlight],
-div.nboutput.container > div[class*=highlight] {
-    margin: 0;
-}
-
-div.nbinput.container div.prompt *,
-div.nboutput.container div.prompt * {
-    background: none;
-}
-
-div.nboutput.container div.output_area .highlight,
-div.nboutput.container div.output_area pre {
-    background: unset;
-}
-
-div.nboutput.container div.output_area div.highlight {
-    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -342,7 +328,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    /*background: #f5f5f5;*/
+    background: #f5f5f5;
 }
 
 /* override MathJax center alignment in output cells */
@@ -408,7 +394,6 @@ div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
     padding: 5px;
-    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -545,7 +530,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201023-16071-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201023-15872-qcodes.log
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -564,14 +549,14 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/201023-16071-qcodes.log
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Upgrading database; v0 -&gt; v1: : 0it [00:00, ?it/s]
-Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 404.31it/s]
+Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 590.08it/s]
 Upgrading database; v2 -&gt; v3: : 0it [00:00, ?it/s]
 Upgrading database; v3 -&gt; v4: : 0it [00:00, ?it/s]
-Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 402.41it/s]
+Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 386.61it/s]
 Upgrading database; v5 -&gt; v6: : 0it [00:00, ?it/s]
-Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 391.59it/s]
-Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 460.51it/s]
-Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 514.70it/s]
+Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 225.03it/s]
+Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 370.39it/s]
+Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 427.86it/s]
 </pre></div></div>
 </div>
 <p>Let us, now, create two dummy instruments to be used in our experiment.</p>
@@ -696,7 +681,7 @@ Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Starting experimental run with id: 1.
-Finished run in 0.019 s
+Finished run in 0.027 s
 </pre></div></div>
 </div>
 <p>The data may be retrieved using the <code class="docutils literal notranslate"><span class="pre">get_data_by_id</span></code> function. This function will always bring back the data <strong>as if</strong> it had been stored in a point-by-point format. That is to say, all parameters come out as array of the same length, with setpoints values appropriately repeated.</p>
@@ -732,13 +717,13 @@ Finished run in 0.019 s
    &#39;unit&#39;: &#39;Hz&#39;,
    &#39;label&#39;: &#39;&#39;},
   {&#39;name&#39;: &#39;SA_spectrum&#39;,
-   &#39;data&#39;: array([-0.26892482, -1.50723829,  0.67094712, -0.24049584, -0.14912771,
-          -0.32243122,  0.57551064, -0.41879619, -0.07507119,  0.85674091,
-          -0.43892045,  0.08901579, -0.58960168,  0.04100043,  0.67875134,
-           0.26137398, -1.25280799,  0.46149856, -2.11237838,  0.86860427,
-           0.71565329,  0.7448593 , -0.85777999, -0.94840073,  1.72915823,
-           0.64672723, -1.37588049, -0.92218162,  0.54993494, -0.14098945,
-          -0.76306268, -0.06631141,  1.00543287,  1.61357093,  0.67254856]),
+   &#39;data&#39;: array([ 0.08649326, -0.44269274,  0.50578386, -1.37210942, -1.18182165,
+          -0.07904164, -0.24826427, -0.75850084, -1.07268206,  1.08578623,
+          -1.44746331,  1.01494759, -0.07379719, -0.80320709, -0.0365482 ,
+           1.51498909,  0.23834947, -0.74340553,  0.34929399, -0.44322189,
+          -0.68087182, -0.81889632,  0.55020363,  1.67460178,  0.85162661,
+          -1.99294183, -1.26176846, -1.34607626,  1.55541121,  1.16930559,
+          -0.04797011,  0.17475501,  1.67789505,  0.03459929, -1.15567788]),
    &#39;unit&#39;: &#39;V/sqrt(Hz)&#39;,
    &#39;label&#39;: &#39;Noisy spectrum&#39;}]]
 </pre></div></div>
@@ -781,7 +766,7 @@ Finished run in 0.019 s
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Starting experimental run with id: 2.
-Finished run in 0.018 s
+Finished run in 0.021 s
 </pre></div></div>
 </div>
 <p>Reading back out the data, we can <strong>not</strong> see whether they were stored as <code class="docutils literal notranslate"><span class="pre">numeric</span></code> or <code class="docutils literal notranslate"><span class="pre">array</span></code> type.</p>
@@ -817,13 +802,15 @@ Finished run in 0.018 s
    &#39;unit&#39;: &#39;Hz&#39;,
    &#39;label&#39;: &#39;&#39;},
   {&#39;name&#39;: &#39;SA_spectrum&#39;,
-   &#39;data&#39;: array([-0.12203451,  0.69971589, -0.26078793, -0.82844423,  0.18461517,
-          -0.39574482,  1.44557374, -0.12877353, -0.38070641, -0.691961  ,
-           0.77481743, -0.29439114,  0.13167912, -0.80596113,  1.52485149,
-          -0.12547097, -0.1117223 ,  0.77805275, -1.06055194, -1.18552744,
-          -0.07554267, -1.29982779, -0.43080811, -0.81288271,  0.02396897,
-           0.62003663, -0.20993501, -0.72753869,  0.21009073,  0.25459016,
-          -1.30853166,  0.8269777 ,  0.69394462, -1.01161511,  0.99261175]),
+   &#39;data&#39;: array([ 2.91498248e+00,  1.15846092e+00, -4.32274164e-01,  1.09145762e+00,
+          -3.07309156e-01,  7.98110072e-01,  3.05759829e-01,  4.22397534e-01,
+           2.65051610e-01, -1.22210129e-02, -2.03140744e+00,  6.47060506e-01,
+           1.43224004e-01, -1.29029809e+00, -6.01698289e-01, -1.05783936e+00,
+           1.28005040e+00, -7.80286075e-01, -2.52421120e-01, -1.21706651e+00,
+           8.96127137e-01,  1.47917003e-01, -6.82298624e-01, -3.66601822e-01,
+          -1.11212226e+00,  4.88498090e-01, -1.04620169e+00, -7.95565413e-01,
+           1.84177849e+00, -3.13383107e-01, -5.00387009e-03, -3.76963836e-01,
+           1.05679940e+00,  1.25959061e-03,  3.11327259e-01]),
    &#39;unit&#39;: &#39;V/sqrt(Hz)&#39;,
    &#39;label&#39;: &#39;Noisy spectrum&#39;}]]
 </pre></div></div>
