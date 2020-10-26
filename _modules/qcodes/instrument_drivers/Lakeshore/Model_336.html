@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+42.g0cc6e2af45
+                0.19.0+51.g798abfea2c
               </div>
             
           
@@ -208,7 +208,12 @@
     <span class="n">_input_channel_parameter_kwargs</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;val_mapping&#39;</span><span class="p">:</span> <span class="n">_channel_name_to_outmode_command_map</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">output_name</span><span class="p">,</span> <span class="n">output_index</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">parent</span><span class="p">:</span> <span class="s2">&quot;Model_336&quot;</span><span class="p">,</span>
+            <span class="n">output_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">output_index</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">output_name</span><span class="p">,</span> <span class="n">output_index</span><span class="p">,</span> <span class="n">has_pid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">P</span><span class="o">.</span><span class="n">vals</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
@@ -236,7 +241,12 @@
         <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
         <span class="s1">&#39;high&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">output_name</span><span class="p">,</span> <span class="n">output_index</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">parent</span><span class="p">:</span> <span class="s2">&quot;Model_336&quot;</span><span class="p">,</span>
+            <span class="n">output_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">output_index</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">output_name</span><span class="p">,</span> <span class="n">output_index</span><span class="p">,</span> <span class="n">has_pid</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
 
@@ -248,7 +258,12 @@
                        <span class="mi">64</span><span class="p">:</span> <span class="s1">&#39;Sensor Units Zero&#39;</span><span class="p">,</span>
                        <span class="mi">128</span><span class="p">:</span> <span class="s1">&#39;Sensor Units Overrange&#39;</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">parent</span><span class="p">:</span> <span class="s2">&quot;Model_336&quot;</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">channel</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
 
         <span class="c1"># Parameters related to Input Type Parameter Command (INTYPE)</span>
@@ -316,7 +331,7 @@
     <span class="n">input_channel_parameter_values_to_channel_name_on_instrument</span> <span class="o">=</span> \
         <span class="n">_channel_name_to_command_map</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">output_1</span> <span class="o">=</span> <span class="n">Output_336_CurrentSource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;output_1&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
