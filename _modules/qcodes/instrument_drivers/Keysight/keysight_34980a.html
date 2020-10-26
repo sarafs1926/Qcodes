@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+46.g99f10d8cd6
+                0.19.0+66.g38de9e035f
               </div>
             
           
@@ -167,6 +167,7 @@
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Dict</span>
 <span class="kn">from</span> <span class="nn">.keysight_34980a_submodules</span> <span class="kn">import</span> <span class="n">KeysightSubModule</span>
 <span class="kn">from</span> <span class="nn">.keysight_34934a</span> <span class="kn">import</span> <span class="n">Keysight34934A</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.visa</span> <span class="kn">import</span> <span class="n">VisaInstrument</span>
@@ -177,7 +178,10 @@
 <span class="n">KEYSIGHT_MODELS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;34934A&#39;</span><span class="p">:</span> <span class="n">Keysight34934A</span><span class="p">}</span>
 
 
-<div class="viewcode-block" id="post_execution_status_poll"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Keysight.html#qcodes.instrument_drivers.Keysight.keysight_34980a.post_execution_status_poll">[docs]</a><span class="k">def</span> <span class="nf">post_execution_status_poll</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="post_execution_status_poll"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Keysight.html#qcodes.instrument_drivers.Keysight.keysight_34980a.post_execution_status_poll">[docs]</a><span class="k">def</span> <span class="nf">post_execution_status_poll</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">T</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates a decorator that clears the instrument&#39;s status registers</span>
 <span class="sd">    before executing the actual call and reads the status register after the</span>
@@ -187,7 +191,7 @@
 <span class="sd">        func: function to wrap</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="s2">&quot;Keysight34980A&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">clear_status</span><span class="p">()</span>
         <span class="n">retval</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -206,7 +210,11 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    QCodes driver for 34980A switch/measure unit</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">terminator</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">terminator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an instance of the instrument.</span>
 
@@ -291,12 +299,12 @@
                                 <span class="sa">f</span><span class="s1">&#39;in slot </span><span class="si">{</span><span class="n">slot</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">system_slots_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">system_slots_info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_system_slots_info_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_system_slots_info_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_system_slots_info</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_system_slots_info_dict</span>
 
-    <span class="k">def</span> <span class="nf">_system_slots_info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_system_slots_info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        the command SYST:CTYP? returns the following:</span>
 <span class="sd">        Agilent Technologies,&lt;Model Number&gt;,&lt;Serial Number&gt;,&lt;Firmware Rev&gt;</span>

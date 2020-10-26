@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+46.g99f10d8cd6
+                0.19.0+66.g38de9e035f
               </div>
             
           
@@ -216,7 +216,7 @@
             <span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="n">layout</span><span class="p">)</span>
         <span class="p">]</span>
 
-<div class="viewcode-block" id="Keysight34934A.write"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Keysight.html#qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="Keysight34934A.write"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Keysight.html#qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        When the module is safety interlocked, users can not make any</span>
 <span class="sd">        connections. There will be no effect when try to connect any channels.</span>
@@ -239,10 +239,10 @@
         <span class="k">if</span> <span class="p">(</span><span class="n">row</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">row</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">column</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">column</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;row/column value out of range&#39;</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">_get_relay_protection_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_relay_protection_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SYSTem:MODule:ROW:PROTection? </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">slot</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_set_relay_protection_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_relay_protection_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SYSTem:MODule:ROW:PROTection </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">slot</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Keysight34934A.to_channel_list"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Keysight.html#qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.to_channel_list">[docs]</a>    <span class="k">def</span> <span class="nf">to_channel_list</span><span class="p">(</span>
@@ -333,7 +333,7 @@
         <span class="n">channels_per_row</span> <span class="o">=</span> <span class="mi">800</span> <span class="o">/</span> <span class="n">rows</span>
         <span class="n">offset</span> <span class="o">+=</span> <span class="mi">100</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">channels_per_row</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">numbering_function</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">numbering_function</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">col</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">channels_per_row</span> <span class="o">*</span> <span class="n">row</span> <span class="o">+</span> <span class="n">col</span> <span class="o">+</span> <span class="n">offset</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">numbering_function</span></div></div>

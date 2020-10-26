@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+46.g99f10d8cd6
+                0.19.0+66.g38de9e035f
               </div>
             
           
@@ -164,7 +164,7 @@
             
   <h1>Source code for qcodes.instrument_drivers.Keysight.Infiniium</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Any</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -173,6 +173,7 @@
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">InstrumentChannel</span><span class="p">,</span> <span class="n">ChannelList</span><span class="p">,</span> <span class="n">Instrument</span>
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">ArrayParameter</span>
 <span class="kn">from</span> <span class="nn">qcodes.utils.validators</span> <span class="kn">import</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">Numbers</span>
+<span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">ParamRawDataType</span>
 
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -191,7 +192,7 @@
 <span class="sd">    raw_trace will return a trace from OSCIL</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">instrument</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">instrument</span><span class="p">:</span> <span class="n">Instrument</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span>
                          <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1024</span><span class="p">,),</span>
                          <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Voltage&#39;</span><span class="p">,</span>
@@ -201,11 +202,11 @@
                              <span class="sa">f</span><span class="s1">&#39;Channel </span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s1"> time series&#39;</span><span class="p">,),</span>
                          <span class="n">setpoint_units</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,),</span>
                          <span class="n">docstring</span><span class="o">=</span><span class="s1">&#39;raw trace from the scope&#39;</span><span class="p">,</span>
+                         <span class="n">instrument</span><span class="o">=</span><span class="n">instrument</span>
                          <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="n">channel</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span> <span class="o">=</span> <span class="n">instrument</span>
 
-<div class="viewcode-block" id="RawTrace.prepare_curvedata"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Keysight.html#qcodes.instrument_drivers.Keysight.Infiniium.RawTrace.prepare_curvedata">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_curvedata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="RawTrace.prepare_curvedata"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Keysight.html#qcodes.instrument_drivers.Keysight.Infiniium.RawTrace.prepare_curvedata">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_curvedata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prepare the scope for returning curve data</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -215,6 +216,8 @@
 
         <span class="c1"># shorthand</span>
         <span class="n">instr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">instr</span><span class="p">,</span> <span class="n">InfiniiumChannel</span><span class="p">)</span>
+
         <span class="c1"># number of set points</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">npts</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">instr</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">&quot;WAV:POIN?&quot;</span><span class="p">))</span>
         <span class="c1"># first set point</span>
@@ -230,14 +233,18 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">npts</span><span class="p">,</span> <span class="p">)</span>
 
         <span class="c1"># make this on a per channel basis?</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">trace_ready</span> <span class="o">=</span> <span class="kc">True</span></div>
+        <span class="n">root_instrument</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">root_instrument</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">root_instrument</span><span class="p">,</span> <span class="n">Infiniium</span><span class="p">)</span>
+        <span class="n">root_instrument</span><span class="o">.</span><span class="n">trace_ready</span> <span class="o">=</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="RawTrace.get_raw"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Keysight.html#qcodes.instrument_drivers.Keysight.Infiniium.RawTrace.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="RawTrace.get_raw"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Keysight.html#qcodes.instrument_drivers.Keysight.Infiniium.RawTrace.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParamRawDataType</span><span class="p">:</span>
         <span class="c1"># when get is called the setpoints have to be known already</span>
         <span class="c1"># (saving data issue). Therefor create additional prepare function that</span>
         <span class="c1"># queries for the size.</span>
         <span class="c1"># check if already prepared</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">trace_ready</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="p">,</span> <span class="n">InfiniiumChannel</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">root_instrument</span><span class="o">.</span><span class="n">trace_ready</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">TraceNotReady</span><span class="p">(</span><span class="s1">&#39;Please run prepare_curvedata to prepare &#39;</span>
                                 <span class="s1">&#39;the scope for acquiring a trace.&#39;</span><span class="p">)</span>
 
@@ -324,7 +331,7 @@
     <span class="c1"># note: this is not really a channel, but InstrumentChannel does everything</span>
     <span class="c1"># a &#39;Submodule&#39; class should do</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">Instrument</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">Instrument</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;source_1&#39;</span><span class="p">,</span>
@@ -460,7 +467,7 @@
 
 <div class="viewcode-block" id="InfiniiumChannel"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Keysight.html#qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel">[docs]</a><span class="k">class</span> <span class="nc">InfiniiumChannel</span><span class="p">(</span><span class="n">InstrumentChannel</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="s2">&quot;Infiniium&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="c1"># display</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;display&#39;</span><span class="p">,</span>
@@ -522,14 +529,16 @@
 <span class="sd">     - tested for MSOS104A of the Infiniium S-series.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialises the oscilloscope.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            name (str): Name of the instrument used by QCoDeS</span>
-<span class="sd">        address (string): Instrument address as used by VISA</span>
-<span class="sd">            timeout (float): visa timeout, in secs.</span>
+<span class="sd">            name: Name of the instrument used by QCoDeS</span>
+<span class="sd">            address: Instrument address as used by VISA</span>
+<span class="sd">            timeout: visa timeout, in secs.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
@@ -703,7 +712,7 @@
                            <span class="p">)</span>
         <span class="c1"># Channels</span>
         <span class="n">channels</span> <span class="o">=</span> <span class="n">ChannelList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Channels&quot;</span><span class="p">,</span> <span class="n">InfiniiumChannel</span><span class="p">,</span>
-                                <span class="n">snapshotable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                               <span class="n">snapshotable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
             <span class="n">channel</span> <span class="o">=</span> <span class="n">InfiniiumChannel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;chan</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
@@ -719,7 +728,7 @@
     <span class="k">def</span> <span class="nf">_cmd_and_invalidate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">partial</span><span class="p">(</span><span class="n">Infiniium</span><span class="o">.</span><span class="n">_cmd_and_invalidate_call</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_cmd_and_invalidate_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_cmd_and_invalidate_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        executes command and sets trace_ready status to false</span>
 <span class="sd">        any command that effects the number of setpoints should invalidate the trace</span>
@@ -727,7 +736,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">trace_ready</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
 
-<div class="viewcode-block" id="Infiniium.save_data"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Keysight.html#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.save_data">[docs]</a>    <span class="k">def</span> <span class="nf">save_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<div class="viewcode-block" id="Infiniium.save_data"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Keysight.html#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.save_data">[docs]</a>    <span class="k">def</span> <span class="nf">save_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Saves the channels currently shown on oscilloscope screen to a USB.</span>
 <span class="sd">        Must set data_format parameter prior to calling this</span>
