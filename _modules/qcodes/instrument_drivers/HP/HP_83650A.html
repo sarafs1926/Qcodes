@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+66.g38de9e035f
+                0.19.0+79.gd8d359dc6c
               </div>
             
           
@@ -166,7 +166,7 @@
 <span></span><span class="c1"># Driver for microwave source HP_83650A</span>
 <span class="c1">#</span>
 <span class="c1"># Written by Bruno Buijtendorp (brunobuijtendorp@gmail.com)</span>
-
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Any</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">VisaInstrument</span>
@@ -175,13 +175,19 @@
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="parsestr"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.HP.html#qcodes.instrument_drivers.HP.HP_83650A.parsestr">[docs]</a><span class="k">def</span> <span class="nf">parsestr</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+<div class="viewcode-block" id="parsestr"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.HP.html#qcodes.instrument_drivers.HP.HP_83650A.parsestr">[docs]</a><span class="k">def</span> <span class="nf">parsestr</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">v</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="HP_83650A"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.HP.html#qcodes.instrument_drivers.HP.HP_83650A.HP_83650A">[docs]</a><span class="k">class</span> <span class="nc">HP_83650A</span><span class="p">(</span><span class="n">VisaInstrument</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">server_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">verbose</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+                 <span class="n">reset</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">server_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Driver for HP_83650A</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -268,12 +274,12 @@
                            <span class="n">docstring</span><span class="o">=</span><span class="s1">&#39;Pulse source, ....&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_message</span><span class="p">()</span>
 
-<div class="viewcode-block" id="HP_83650A.reset"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.HP.html#qcodes.instrument_drivers.HP.HP_83650A.HP_83650A.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="HP_83650A.reset"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.HP.html#qcodes.instrument_drivers.HP.HP_83650A.HP_83650A.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Resetting instrument&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;*RST&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">print_all</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="HP_83650A.print_all"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.HP.html#qcodes.instrument_drivers.HP.HP_83650A.HP_83650A.print_all">[docs]</a>    <span class="k">def</span> <span class="nf">print_all</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="HP_83650A.print_all"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.HP.html#qcodes.instrument_drivers.HP.HP_83650A.HP_83650A.print_all">[docs]</a>    <span class="k">def</span> <span class="nf">print_all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Reading all settings from instrument&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rfstatus</span><span class="o">.</span><span class="n">label</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rfstatus</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">power</span><span class="o">.</span><span class="n">label</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">power</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">power</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
@@ -282,7 +288,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">freqmode</span><span class="o">.</span><span class="n">label</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">freqmode</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">print_modstatus</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="HP_83650A.print_modstatus"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.HP.html#qcodes.instrument_drivers.HP.HP_83650A.HP_83650A.print_modstatus">[docs]</a>    <span class="k">def</span> <span class="nf">print_modstatus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="HP_83650A.print_modstatus"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.HP.html#qcodes.instrument_drivers.HP.HP_83650A.HP_83650A.print_modstatus">[docs]</a>    <span class="k">def</span> <span class="nf">print_modstatus</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fmstatus</span><span class="o">.</span><span class="n">label</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmstatus</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fmcoup</span><span class="o">.</span><span class="n">label</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmcoup</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">amstatus</span><span class="o">.</span><span class="n">label</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">amstatus</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
