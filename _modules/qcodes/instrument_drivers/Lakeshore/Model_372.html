@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+51.g798abfea2c
+                0.19.0+46.g99f10d8cd6
               </div>
             
           
@@ -204,12 +204,7 @@
         <span class="s1">&#39;get_parser&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="s1">&#39;vals&#39;</span><span class="p">:</span> <span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">_n_channels</span><span class="p">)}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">parent</span><span class="p">:</span> <span class="s2">&quot;Model_372&quot;</span><span class="p">,</span>
-            <span class="n">output_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-            <span class="n">output_index</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">output_name</span><span class="p">,</span> <span class="n">output_index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">output_name</span><span class="p">,</span> <span class="n">output_index</span><span class="p">,</span> <span class="n">has_pid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="c1"># Add more parameters for OUTMODE command</span>
@@ -259,12 +254,7 @@
                        <span class="mi">64</span><span class="p">:</span> <span class="s1">&#39;T. OVER&#39;</span><span class="p">,</span>
                        <span class="mi">128</span><span class="p">:</span> <span class="s1">&#39;T. UNDER&#39;</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">parent</span><span class="p">:</span> <span class="s2">&quot;Model_372&quot;</span><span class="p">,</span>
-            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-            <span class="n">channel</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
 
         <span class="c1"># Parameters related to Input Channel Parameter Command (INSET)</span>
@@ -415,7 +405,7 @@
 
     <span class="n">CHANNEL_CLASS</span> <span class="o">=</span> <span class="n">Model_372_Channel</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="n">heaters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;sample_heater&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;warmup_heater&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;analog_heater&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
