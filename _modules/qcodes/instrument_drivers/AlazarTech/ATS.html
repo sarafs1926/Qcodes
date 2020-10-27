@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+137.gc9ed6404dd
+                0.19.0+155.gf24e2d2489
               </div>
             
           
@@ -350,112 +350,6 @@
             <span class="s1">&#39;pcie_link_speed&#39;</span><span class="p">:</span> <span class="n">pcie_link_speed</span><span class="p">,</span>
             <span class="s1">&#39;pcie_link_width&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">capability</span><span class="o">.</span><span class="n">query_pcie_link_width</span><span class="p">())</span>
             <span class="p">}</span></div>
-
-<div class="viewcode-block" id="AlazarTech_ATS.config"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.AlazarTech.html#qcodes.instrument_drivers.AlazarTech.ATS.AlazarTech_ATS.config">[docs]</a>    <span class="k">def</span> <span class="nf">config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-               <span class="n">clock_source</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_rate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">clock_edge</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-               <span class="n">external_sample_rate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-               <span class="n">decimation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coupling</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">channel_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-               <span class="n">impedance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bwlimit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">trigger_operation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-               <span class="n">trigger_engine1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">trigger_source1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-               <span class="n">trigger_slope1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">trigger_level1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-               <span class="n">trigger_engine2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">trigger_source2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-               <span class="n">trigger_slope2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">trigger_level2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-               <span class="n">external_trigger_coupling</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">external_trigger_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-               <span class="n">trigger_delay</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout_ticks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">aux_io_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-               <span class="n">aux_io_param</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        configure the ATS board and set the corresponding parameters to the</span>
-<span class="sd">        appropriate values.</span>
-<span class="sd">        For documentation of the parameters, see ATS-SDK programmer&#39;s guide</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            clock_source:</span>
-<span class="sd">            sample_rate:</span>
-<span class="sd">            clock_edge:</span>
-<span class="sd">            external_sample_rate:</span>
-<span class="sd">            decimation:</span>
-<span class="sd">            coupling:</span>
-<span class="sd">            channel_range:</span>
-<span class="sd">            impedance:</span>
-<span class="sd">            bwlimit:</span>
-<span class="sd">            trigger_operation:</span>
-<span class="sd">            trigger_engine1:</span>
-<span class="sd">            trigger_source1:</span>
-<span class="sd">            trigger_slope1:</span>
-<span class="sd">            trigger_level1:</span>
-<span class="sd">            trigger_engine2:</span>
-<span class="sd">            trigger_source2:</span>
-<span class="sd">            trigger_slope2:</span>
-<span class="sd">            trigger_level2:</span>
-<span class="sd">            external_trigger_coupling:</span>
-<span class="sd">            external_trigger_range:</span>
-<span class="sd">            trigger_delay:</span>
-<span class="sd">            timeout_ticks:</span>
-<span class="sd">            aux_io_mode:</span>
-<span class="sd">            aux_io_param:</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            None</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># region set parameters from args</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Alazar config is deprecated. Please replace with setting &quot;</span>
-                      <span class="s2">&quot;of paramters directly with the syncing context manager&quot;</span><span class="p">,</span>
-                      <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;clock_source&#39;</span><span class="p">,</span> <span class="n">clock_source</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;sample_rate&#39;</span><span class="p">,</span> <span class="n">sample_rate</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;external_sample_rate&#39;</span><span class="p">,</span> <span class="n">external_sample_rate</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;clock_edge&#39;</span><span class="p">,</span> <span class="n">clock_edge</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;decimation&#39;</span><span class="p">,</span> <span class="n">decimation</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_list_if_present</span><span class="p">(</span><span class="s1">&#39;coupling&#39;</span><span class="p">,</span> <span class="n">coupling</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_list_if_present</span><span class="p">(</span><span class="s1">&#39;channel_range&#39;</span><span class="p">,</span> <span class="n">channel_range</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_list_if_present</span><span class="p">(</span><span class="s1">&#39;impedance&#39;</span><span class="p">,</span> <span class="n">impedance</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_list_if_present</span><span class="p">(</span><span class="s1">&#39;bwlimit&#39;</span><span class="p">,</span> <span class="n">bwlimit</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;trigger_operation&#39;</span><span class="p">,</span> <span class="n">trigger_operation</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;trigger_engine1&#39;</span><span class="p">,</span> <span class="n">trigger_engine1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;trigger_source1&#39;</span><span class="p">,</span> <span class="n">trigger_source1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;trigger_slope1&#39;</span><span class="p">,</span> <span class="n">trigger_slope1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;trigger_level1&#39;</span><span class="p">,</span> <span class="n">trigger_level1</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;trigger_engine2&#39;</span><span class="p">,</span> <span class="n">trigger_engine2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;trigger_source2&#39;</span><span class="p">,</span> <span class="n">trigger_source2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;trigger_slope2&#39;</span><span class="p">,</span> <span class="n">trigger_slope2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;trigger_level2&#39;</span><span class="p">,</span> <span class="n">trigger_level2</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;external_trigger_coupling&#39;</span><span class="p">,</span>
-                             <span class="n">external_trigger_coupling</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;external_trigger_range&#39;</span><span class="p">,</span>
-                             <span class="n">external_trigger_range</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;trigger_delay&#39;</span><span class="p">,</span> <span class="n">trigger_delay</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;timeout_ticks&#39;</span><span class="p">,</span> <span class="n">timeout_ticks</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;aux_io_mode&#39;</span><span class="p">,</span> <span class="n">aux_io_mode</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_if_present</span><span class="p">(</span><span class="s1">&#39;aux_io_param&#39;</span><span class="p">,</span> <span class="n">aux_io_param</span><span class="p">)</span>
-        <span class="c1"># endregion</span>
-
-        <span class="c1"># handle that external clock and internal clock uses</span>
-        <span class="c1"># two different ways of setting the sample rate.</span>
-        <span class="c1"># We use the matching one and mark the order one</span>
-        <span class="c1"># as up to date since it&#39;s not being pushed to</span>
-        <span class="c1"># the instrument at any time and is never used</span>
-        <span class="k">if</span> <span class="n">sample_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">external_sample_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-                <span class="s2">&quot;Both sample_rate and external_sample_rate supplied&quot;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">clock_source</span> <span class="o">==</span> <span class="s1">&#39;EXTERNAL_CLOCK_10MHz_REF&#39;</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">sample_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Using external 10 MHz ref clock &quot;</span>
-                                 <span class="s2">&quot;but internal sample rate supplied. &quot;</span>
-                                 <span class="s2">&quot;Please use &#39;external_sample_rate&#39;&quot;</span><span class="p">)</span>
-            <span class="n">sample_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">external_sample_rate</span>
-        <span class="k">elif</span> <span class="n">clock_source</span> <span class="o">==</span> <span class="s1">&#39;INTERNAL_CLOCK&#39;</span><span class="p">:</span>
-            <span class="n">sample_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_rate</span>
-            <span class="k">if</span> <span class="n">external_sample_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Using internal clock &quot;</span>
-                                 <span class="s2">&quot;but external sample rate supplied. &quot;</span>
-                                 <span class="s2">&quot;Please use &#39;external_sample_rate&#39;&quot;</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">sync_settings_to_card</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="AlazarTech_ATS.syncing"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.AlazarTech.html#qcodes.instrument_drivers.AlazarTech.ATS.AlazarTech_ATS.syncing">[docs]</a>    <span class="nd">@contextmanager</span>
     <span class="k">def</span> <span class="nf">syncing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
