@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+109.g8cb97b21d7
+                0.19.0+115.g2cbedf234c
               </div>
             
           
@@ -163,18 +163,20 @@
            <div itemprop="articleBody">
             
   <h1>Source code for qcodes.instrument_drivers.Minicircuits.RC_SPDT</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">IPInstrument</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">IPInstrument</span>
 <span class="kn">from</span> <span class="nn">qcodes.utils</span> <span class="kn">import</span> <span class="n">validators</span> <span class="k">as</span> <span class="n">vals</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.channel</span> <span class="kn">import</span> <span class="n">InstrumentChannel</span><span class="p">,</span> <span class="n">ChannelList</span>
 
 
 <div class="viewcode-block" id="MC_channel"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Minicircuits.html#qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel">[docs]</a><span class="k">class</span> <span class="nc">MC_channel</span><span class="p">(</span><span class="n">InstrumentChannel</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">channel_letter</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="s2">&quot;RC_SPDT&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel_letter</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
-<span class="sd">            parent (Instrument): The instrument the channel is a part of</span>
-<span class="sd">            name (str): the name of the channel</span>
-<span class="sd">            channel_letter (str): channel letter [&#39;a&#39;, &#39;b&#39;, &#39;c&#39; or &#39;d&#39;])</span>
+<span class="sd">            parent: The instrument the channel is a part of</span>
+<span class="sd">            name: the name of the channel</span>
+<span class="sd">            channel_letter: channel letter [&#39;a&#39;, &#39;b&#39;, &#39;c&#39; or &#39;d&#39;])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
@@ -189,10 +191,10 @@
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Ints</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
                            <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_set_switch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">switch</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_switch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">switch</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;SET</span><span class="si">{}</span><span class="s1">=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channel_letter</span><span class="p">,</span> <span class="n">switch</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">_get_switch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_switch</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="n">val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;SWPORT?&#39;</span><span class="p">))</span>
         <span class="c1"># select out bit in return number</span>
         <span class="c1"># corisponding to channel switch configuration</span>
@@ -206,11 +208,11 @@
 <span class="sd">    Mini-Circuits SPDT RF switch</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">            name (str): the name of the instrument</span>
-<span class="sd">            address (str): ip address ie &quot;10.0.0.1&quot;</span>
-<span class="sd">            port (int): port to connect to default Telnet:23</span>
+<span class="sd">        name: the name of the instrument</span>
+<span class="sd">        address: ip address ie &quot;10.0.0.1&quot;</span>
+<span class="sd">        port: port to connect to default Telnet:23</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">23</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">23</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">flush_connection</span><span class="p">()</span>
 
@@ -230,21 +232,23 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_message</span><span class="p">()</span>
 
-<div class="viewcode-block" id="RC_SPDT.ask"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Minicircuits.html#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.ask">[docs]</a>    <span class="k">def</span> <span class="nf">ask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
+<div class="viewcode-block" id="RC_SPDT.ask"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Minicircuits.html#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.ask">[docs]</a>    <span class="k">def</span> <span class="nf">ask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask_raw</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="n">ret</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
-<div class="viewcode-block" id="RC_SPDT.get_idn"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Minicircuits.html#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.get_idn">[docs]</a>    <span class="k">def</span> <span class="nf">get_idn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="RC_SPDT.get_idn"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Minicircuits.html#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.get_idn">[docs]</a>    <span class="k">def</span> <span class="nf">get_idn</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
 
         <span class="n">fw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;FIRMWARE?&#39;</span><span class="p">)</span>
         <span class="n">MN</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;MN?&#39;</span><span class="p">)</span>
         <span class="n">SN</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;SN?&#39;</span><span class="p">)</span>
 
-        <span class="n">id_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;firmware&#39;</span><span class="p">:</span> <span class="n">fw</span><span class="p">,</span>
-                   <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">MN</span><span class="p">[</span><span class="mi">3</span><span class="p">:],</span>
-                   <span class="s1">&#39;serial&#39;</span><span class="p">:</span> <span class="n">SN</span><span class="p">[</span><span class="mi">3</span><span class="p">:],</span>
-                   <span class="s1">&#39;vendor&#39;</span><span class="p">:</span> <span class="s1">&#39;Mini-Circuits&#39;</span><span class="p">}</span>
+        <span class="n">id_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;firmware&#39;</span><span class="p">:</span> <span class="n">fw</span><span class="p">,</span>
+            <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">MN</span><span class="p">[</span><span class="mi">3</span><span class="p">:],</span>
+            <span class="s1">&#39;serial&#39;</span><span class="p">:</span> <span class="n">SN</span><span class="p">[</span><span class="mi">3</span><span class="p">:],</span>
+            <span class="s1">&#39;vendor&#39;</span><span class="p">:</span> <span class="s1">&#39;Mini-Circuits&#39;</span>
+        <span class="p">}</span>
         <span class="k">return</span> <span class="n">id_dict</span></div></div>
 </pre></div>
 

@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+109.g8cb97b21d7
+                0.19.0+115.g2cbedf234c
               </div>
             
           
@@ -166,6 +166,7 @@
 <span></span><span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">,</span> <span class="n">Any</span>
 
 <span class="kn">from</span> <span class="nn">qcodes.instrument.base</span> <span class="kn">import</span> <span class="n">Instrument</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.channel</span> <span class="kn">import</span> <span class="n">ChannelList</span><span class="p">,</span> <span class="n">InstrumentChannel</span>
@@ -175,12 +176,12 @@
 
 
 <div class="viewcode-block" id="SwitchChannelBase"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Minicircuits.html#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase">[docs]</a><span class="k">class</span> <span class="nc">SwitchChannelBase</span><span class="p">(</span><span class="n">InstrumentChannel</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">channel_letter</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">Instrument</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel_letter</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
-<span class="sd">            parent (Instrument): The instrument the channel is a part of</span>
-<span class="sd">            name (str): the name of the channel</span>
-<span class="sd">            channel_letter (str): channel letter [&#39;a&#39;, &#39;b&#39;, &#39;c&#39; or &#39;d&#39;])</span>
+<span class="sd">            parent: The instrument the channel is a part of</span>
+<span class="sd">            name: the name of the channel</span>
+<span class="sd">            channel_letter: channel letter [&#39;a&#39;, &#39;b&#39;, &#39;c&#39; or &#39;d&#39;])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
@@ -195,33 +196,33 @@
             <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_switch</span><span class="p">,</span>
             <span class="n">vals</span><span class="o">=</span><span class="n">Ints</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">switch</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">return</span> <span class="kc">None</span>
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">switch</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
                 <span class="s1">&#39;Call channel with either one or zero arguments&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_set_switch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">switch</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_switch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">switch</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_get_switch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_switch</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="SPDT_Base"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Minicircuits.html#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base">[docs]</a><span class="k">class</span> <span class="nc">SPDT_Base</span><span class="p">(</span><span class="n">Instrument</span><span class="p">):</span>
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">CHANNEL_CLASS</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-<div class="viewcode-block" id="SPDT_Base.add_channels"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Minicircuits.html#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.add_channels">[docs]</a>    <span class="k">def</span> <span class="nf">add_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">CHANNEL_CLASS</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">SwitchChannelBase</span><span class="p">]</span>
+
+<div class="viewcode-block" id="SPDT_Base.add_channels"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Minicircuits.html#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.add_channels">[docs]</a>    <span class="k">def</span> <span class="nf">add_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">channels</span> <span class="o">=</span> <span class="n">ChannelList</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Channels&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">CHANNEL_CLASS</span><span class="p">,</span> <span class="n">snapshotable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="n">_chanlist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_deprecated_attributes</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_deprecated_attributes</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="sa">f</span><span class="s1">&#39;channel_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">k</span>
             <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">_chanlist</span>
         <span class="p">}</span>
@@ -239,11 +240,11 @@
         <span class="n">channels</span><span class="o">.</span><span class="n">lock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="s1">&#39;channels&#39;</span><span class="p">,</span> <span class="n">channels</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SPDT_Base.all"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Minicircuits.html#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.all">[docs]</a>    <span class="k">def</span> <span class="nf">all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">switch_to</span><span class="p">):</span>
+<div class="viewcode-block" id="SPDT_Base.all"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Minicircuits.html#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.all">[docs]</a>    <span class="k">def</span> <span class="nf">all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">switch_to</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">:</span>
             <span class="n">c</span><span class="o">.</span><span class="n">switch</span><span class="p">(</span><span class="n">switch_to</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deprecated_attributes</span><span class="p">:</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
                 <span class="p">(</span><span class="s2">&quot;Using &#39;</span><span class="si">{}</span><span class="s2">&#39; is deprecated and will be removed in future&quot;</span> <span class="o">+</span>
@@ -251,8 +252,13 @@
                 <span class="nb">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deprecated_attributes</span><span class="p">[</span><span class="n">key</span><span class="p">]),</span> <span class="ne">UserWarning</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattr__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SPDT_Base.get_number_of_channels"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Minicircuits.html#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.get_number_of_channels">[docs]</a>    <span class="k">def</span> <span class="nf">get_number_of_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SPDT_Base.get_number_of_channels"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Minicircuits.html#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.get_number_of_channels">[docs]</a>    <span class="k">def</span> <span class="nf">get_number_of_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_idn</span><span class="p">()[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s1">&#39;The driver could not get model information for the device, &#39;</span>
+                <span class="s1">&#39;it might not be supported.&#39;</span>
+            <span class="p">)</span>
         <span class="n">model_parts</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_parts</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
@@ -263,7 +269,13 @@
             <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
                 <span class="p">(</span><span class="s1">&#39;The model with the name </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> might not be supported by&#39;</span> <span class="o">+</span>
                  <span class="s1">&#39; the driver&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
-        <span class="n">channels</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;^[0-9]*&#39;</span><span class="p">,</span> <span class="n">model_parts</span><span class="p">[</span><span class="mi">1</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;^[0-9]*&#39;</span><span class="p">,</span> <span class="n">model_parts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">match</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s1">&#39;The driver could not determine the number of channels of&#39;</span> <span class="o">+</span>
+                <span class="sa">f</span><span class="s1">&#39; the model </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="se">\&#39;</span><span class="s1">, it might not be supported&#39;</span>
+            <span class="p">)</span>
+        <span class="n">channels</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">channels</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
                 <span class="s1">&#39;The driver could not determine the number of channels of&#39;</span> <span class="o">+</span>

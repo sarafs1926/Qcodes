@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+109.g8cb97b21d7
+                0.19.0+115.g2cbedf234c
               </div>
             
           
@@ -164,7 +164,7 @@
             
   <h1>Source code for qcodes.instrument_drivers.Minicircuits.USB_SPDT</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
 
 <span class="c1"># QCoDeS imports</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument_drivers.Minicircuits.Base_SPDT</span> <span class="kn">import</span> <span class="p">(</span>
@@ -179,10 +179,10 @@
 
 
 <div class="viewcode-block" id="SwitchChannelUSB"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Minicircuits.html#qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB">[docs]</a><span class="k">class</span> <span class="nc">SwitchChannelUSB</span><span class="p">(</span><span class="n">SwitchChannelBase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">_set_switch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">switch</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_switch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">switch</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">switch</span><span class="o">.</span><span class="n">Set_Switch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channel_letter</span><span class="p">,</span> <span class="n">switch</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_get_switch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_switch</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">switch</span><span class="o">.</span><span class="n">GetSwitchesStatus</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">address</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">status</span><span class="si">:</span><span class="s2">04b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel_number</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span></div>
 
@@ -202,12 +202,12 @@
     <span class="n">CHANNEL_CLASS</span> <span class="o">=</span> <span class="n">SwitchChannelUSB</span>
     <span class="n">PATH_TO_DRIVER</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;mcl_RF_Switch_Controller64&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">driver_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">serial_number</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">driver_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">serial_number</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
         <span class="c1"># we are eventually overwriting this but since it&#39;s called</span>
         <span class="c1"># in __getattr__ of `SPDT_Base` it&#39;s important that it&#39;s</span>
         <span class="c1"># always set to something to avoid infinite recursion</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_deprecated_attributes</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_deprecated_attributes</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="c1"># import .net exception so we can catch it below</span>
         <span class="c1"># we keep this import local so that the module can be imported</span>
         <span class="c1"># without a working .net install</span>
@@ -239,7 +239,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_message</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_channels</span><span class="p">()</span>
 
-<div class="viewcode-block" id="USB_SPDT.get_idn"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Minicircuits.html#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.get_idn">[docs]</a>    <span class="k">def</span> <span class="nf">get_idn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="USB_SPDT.get_idn"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Minicircuits.html#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.get_idn">[docs]</a>    <span class="k">def</span> <span class="nf">get_idn</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
         <span class="c1"># the arguments in those functions is the serial number or none if</span>
         <span class="c1"># there is only one switch.</span>
         <span class="n">fw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">switch</span><span class="o">.</span><span class="n">GetFirmware</span><span class="p">()</span>
