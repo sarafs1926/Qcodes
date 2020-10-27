@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+155.gf24e2d2489
+                0.19.0+162.gff38962ab0
               </div>
             
           
@@ -792,7 +792,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">sync_parameters</span><span class="p">()</span>
         <span class="n">sweep_len</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">QuerySweep</span><span class="p">()</span>
 
-
         <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">sweep_len</span><span class="p">)</span>
         <span class="n">Navg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Navg</span><span class="p">):</span>
@@ -838,7 +837,8 @@
         <span class="k">return</span> <span class="n">max_power</span>
 
 <div class="viewcode-block" id="SignalHound_USB_SA124B.check_for_error"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.signal_hound.html#qcodes.instrument_drivers.signal_hound.USB_SA124B.SignalHound_USB_SA124B.check_for_error">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">check_for_error</span><span class="p">(</span><span class="n">err</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">extrainfo</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">check_for_error</span><span class="p">(</span><span class="n">err</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                        <span class="n">extrainfo</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">saStatus</span><span class="o">.</span><span class="n">saNoError</span><span class="p">:</span>
             <span class="n">err_str</span> <span class="o">=</span> <span class="n">saStatus</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
             <span class="k">if</span> <span class="n">err</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>

@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+155.gf24e2d2489
+                0.19.0+162.gff38962ab0
               </div>
             
           
@@ -629,7 +629,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">output_level</span><span class="o">.</span><span class="n">inter_delay</span> <span class="o">=</span> <span class="n">saved_inter_delay</span>
 
     <span class="k">def</span> <span class="nf">_get_set_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                        <span class="n">output_level</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+                        <span class="n">output_level</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                        <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get or set the output level.</span>
 
@@ -688,8 +689,9 @@
         <span class="n">cmd_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;:SOUR:LEV</span><span class="si">{</span><span class="n">auto_str</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">output_level</span><span class="si">:</span><span class="s2">.5e</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd_str</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_update_measurement_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                                   <span class="n">source_range</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_update_measurement_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                   <span class="n">source_range</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                                   <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update validators/units as source mode/range changes.</span>
 

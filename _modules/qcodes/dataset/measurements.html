@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+155.gf24e2d2489
+                0.19.0+162.gff38962ab0
               </div>
             
           
@@ -598,17 +598,18 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="n">enteractions</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="n">exitactions</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
-            <span class="n">experiment</span><span class="p">:</span> <span class="n">Experiment</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">station</span><span class="p">:</span> <span class="n">Station</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">write_period</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">experiment</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Experiment</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">station</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Station</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">write_period</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">interdeps</span><span class="p">:</span> <span class="n">InterDependencies_</span> <span class="o">=</span> <span class="n">InterDependencies_</span><span class="p">(),</span>
             <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-            <span class="n">subscribers</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span>
+            <span class="n">subscribers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span>
                                         <span class="n">Union</span><span class="p">[</span><span class="n">MutableSequence</span><span class="p">,</span>
-                                              <span class="n">MutableMapping</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                              <span class="n">MutableMapping</span><span class="p">]]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">parent_datasets</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
             <span class="n">extra_log_info</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
             <span class="n">write_in_background</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-            <span class="n">shapes</span><span class="p">:</span> <span class="n">Shapes</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">shapes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Shapes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
         <span class="k">if</span> <span class="n">write_in_background</span> <span class="ow">and</span> <span class="p">(</span><span class="n">write_period</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The specified write period of </span><span class="si">{</span><span class="n">write_period</span><span class="si">}</span><span class="s2"> s &quot;</span>
@@ -783,8 +784,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_write_period</span> <span class="o">=</span> <span class="n">wp_float</span>
 
     <span class="k">def</span> <span class="nf">_paramspecbase_from_strings</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">setpoints</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">basis</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">setpoints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">basis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">ParamSpecBase</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">ParamSpecBase</span><span class="p">,</span> <span class="o">...</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Helper function to look up and get ParamSpecBases and to give a nice</span>
@@ -849,8 +850,8 @@
 
 <div class="viewcode-block" id="Measurement.register_parameter"><a class="viewcode-back" href="../../../api/dataset/measurements.html#qcodes.dataset.measurements.Measurement.register_parameter">[docs]</a>    <span class="k">def</span> <span class="nf">register_parameter</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">parameter</span><span class="p">:</span> <span class="n">_BaseParameter</span><span class="p">,</span>
-            <span class="n">setpoints</span><span class="p">:</span> <span class="n">setpoints_type</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">basis</span><span class="p">:</span> <span class="n">setpoints_type</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">setpoints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">setpoints_type</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">basis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">setpoints_type</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">paramtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add QCoDeS Parameter to the dataset produced by running this</span>
@@ -1132,9 +1133,9 @@
 
 <div class="viewcode-block" id="Measurement.register_custom_parameter"><a class="viewcode-back" href="../../../api/dataset/measurements.html#qcodes.dataset.measurements.Measurement.register_custom_parameter">[docs]</a>    <span class="k">def</span> <span class="nf">register_custom_parameter</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-            <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">basis</span><span class="p">:</span> <span class="n">setpoints_type</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">setpoints</span><span class="p">:</span> <span class="n">setpoints_type</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">basis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">setpoints_type</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">setpoints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">setpoints_type</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">paramtype</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;numeric&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Register a custom parameter with this measurement</span>

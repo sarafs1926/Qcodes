@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+155.gf24e2d2489
+                0.19.0+162.gff38962ab0
               </div>
             
           
@@ -299,7 +299,7 @@
 
 <div class="viewcode-block" id="capture_dataframe"><a class="viewcode-back" href="../../../api/logger/log_analysis.html#qcodes.logger.log_analysis.capture_dataframe">[docs]</a><span class="nd">@contextmanager</span>
 <span class="k">def</span> <span class="nf">capture_dataframe</span><span class="p">(</span><span class="n">level</span><span class="p">:</span> <span class="n">LevelType</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
-                      <span class="n">logger</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> \
+                      <span class="n">logger</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> \
         <span class="n">Iterator</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]]]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Context manager to capture the logs in a :class:`pandas.DataFrame`</span>

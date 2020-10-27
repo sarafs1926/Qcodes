@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+155.gf24e2d2489
+                0.19.0+162.gff38962ab0
               </div>
             
           
@@ -742,7 +742,7 @@
 <div class="viewcode-block" id="AutoLoadableInstrumentChannel.load_from_instrument"><a class="viewcode-back" href="../../../api/instrument/channel.html#qcodes.instrument_drivers.AimTTi.AimTTi_PL601P_channels.AutoLoadableInstrumentChannel.load_from_instrument">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">load_from_instrument</span><span class="p">(</span>
             <span class="bp">cls</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">Instrument</span><span class="p">,</span>
-            <span class="n">channel_list</span><span class="p">:</span> <span class="s1">&#39;AutoLoadableChannelList&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">channel_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;AutoLoadableChannelList&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="s1">&#39;AutoLoadableInstrumentChannel&#39;</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -792,7 +792,8 @@
 <div class="viewcode-block" id="AutoLoadableInstrumentChannel.new_instance"><a class="viewcode-back" href="../../../api/instrument/channel.html#qcodes.instrument_drivers.AimTTi.AimTTi_PL601P_channels.AutoLoadableInstrumentChannel.new_instance">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">new_instance</span><span class="p">(</span>
             <span class="bp">cls</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">Instrument</span><span class="p">,</span> <span class="n">create_on_instrument</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-            <span class="n">channel_list</span><span class="p">:</span> <span class="s1">&#39;AutoLoadableChannelList&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+            <span class="n">channel_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;AutoLoadableChannelList&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;AutoLoadableInstrumentChannel&#39;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a new instance of the channel on the instrument: This involves</span>
@@ -838,7 +839,7 @@
         <span class="k">return</span> <span class="n">new_instance</span></div>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">_get_new_instance_kwargs</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">Instrument</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">_get_new_instance_kwargs</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Instrument</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                                  <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a dictionary which is used as keyword args when instantiating a</span>
@@ -871,7 +872,7 @@
             <span class="n">parent</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Instrument</span><span class="p">,</span> <span class="s1">&#39;InstrumentChannel&#39;</span><span class="p">],</span>
             <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
             <span class="n">exists_on_instrument</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-            <span class="n">channel_list</span><span class="p">:</span> <span class="s1">&#39;AutoLoadableChannelList&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">channel_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;AutoLoadableChannelList&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Instantiate a channel object. Note that this is not the same as actually</span>
