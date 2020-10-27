@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+128.g2692df2007
+                0.19.0+131.g35db74d676
               </div>
             
           
@@ -285,11 +285,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">visabackend</span> <span class="o">=</span> <span class="s1">&#39;ni&#39;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">visa_log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Opening PyVISA resource at address: </span><span class="si">{</span><span class="n">address</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="n">resouce</span> <span class="o">=</span> <span class="n">resource_manager</span><span class="o">.</span><span class="n">open_resource</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">resouce</span><span class="p">,</span> <span class="n">visa</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">MessageBasedResource</span><span class="p">):</span>
+        <span class="n">resource</span> <span class="o">=</span> <span class="n">resource_manager</span><span class="o">.</span><span class="n">open_resource</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">visa</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">MessageBasedResource</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;QCoDeS only support MessageBasedResource &quot;</span>
                             <span class="s2">&quot;Visa resources&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span> <span class="o">=</span> <span class="n">resouce</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span> <span class="o">=</span> <span class="n">resource</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_address</span> <span class="o">=</span> <span class="n">address</span></div>
 
 <div class="viewcode-block" id="VisaInstrument.device_clear"><a class="viewcode-back" href="../../../api/instrument/visa.html#qcodes.instrument_drivers.AimTTi.AimTTi_PL601P_channels.VisaInstrument.device_clear">[docs]</a>    <span class="k">def</span> <span class="nf">device_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
