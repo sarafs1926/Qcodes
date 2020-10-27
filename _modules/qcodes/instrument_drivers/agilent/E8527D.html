@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+131.g35db74d676
+                0.19.0+137.gc9ed6404dd
               </div>
             
           
@@ -163,7 +163,9 @@
            <div itemprop="articleBody">
             
   <h1>Source code for qcodes.instrument_drivers.agilent.E8527D</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">pi</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">pi</span>
 
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">VisaInstrument</span><span class="p">,</span> <span class="n">validators</span> <span class="k">as</span> <span class="n">vals</span>
 <span class="kn">from</span> <span class="nn">qcodes.utils.validators</span> <span class="kn">import</span> <span class="n">numbertypes</span>
@@ -174,17 +176,13 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is the QCoDeS driver for the Agilent_E8527D signal generator.</span>
 
-<span class="sd">    Status: beta-version.</span>
-<span class="sd">        TODO:</span>
-<span class="sd">        - Add all parameters that are in the manual</span>
-
 <span class="sd">    This driver will most likely work for multiple Agilent sources.</span>
 
 <span class="sd">    This driver does not contain all commands available for the E8527D but</span>
 <span class="sd">    only the ones most commonly used.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                 <span class="n">step_attenuator</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+                 <span class="n">step_attenuator</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;frequency&#39;</span><span class="p">,</span>
@@ -232,10 +230,10 @@
         <span class="n">angle_rad</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">angle_deg</span><span class="p">)</span><span class="o">/</span><span class="mi">360</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span>
         <span class="k">return</span> <span class="n">angle_rad</span></div>
 
-<div class="viewcode-block" id="Agilent_E8527D.on"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.agilent.html#qcodes.instrument_drivers.agilent.E8527D.Agilent_E8527D.on">[docs]</a>    <span class="k">def</span> <span class="nf">on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Agilent_E8527D.on"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.agilent.html#qcodes.instrument_drivers.agilent.E8527D.Agilent_E8527D.on">[docs]</a>    <span class="k">def</span> <span class="nf">on</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Agilent_E8527D.off"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.agilent.html#qcodes.instrument_drivers.agilent.E8527D.Agilent_E8527D.off">[docs]</a>    <span class="k">def</span> <span class="nf">off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Agilent_E8527D.off"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.agilent.html#qcodes.instrument_drivers.agilent.E8527D.Agilent_E8527D.off">[docs]</a>    <span class="k">def</span> <span class="nf">off</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;off&#39;</span><span class="p">)</span></div></div>
 </pre></div>
 
