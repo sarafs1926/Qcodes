@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+221.g89e1562feb
+                0.19.0+231.ga3f2d256b5
               </div>
             
           
@@ -714,7 +714,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">__bound__</span> <span class="o">=</span> <span class="n">_type_check</span><span class="p">(</span><span class="n">bound</span><span class="p">,</span> <span class="s2">&quot;Bound must be a type.&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__bound__</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">def_mod</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">_getframe</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">f_globals</span><span class="p">[</span><span class="s1">&#39;__name__&#39;</span><span class="p">]</span>  <span class="c1"># for pickling</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">def_mod</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">_getframe</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">f_globals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;__name__&#39;</span><span class="p">,</span> <span class="s1">&#39;__main__&#39;</span><span class="p">)</span>  <span class="c1"># for pickling</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+            <span class="n">def_mod</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">def_mod</span> <span class="o">!=</span> <span class="s1">&#39;typing&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">=</span> <span class="n">def_mod</span>
 
