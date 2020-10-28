@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+207.g7cd635b5d9
+                0.19.0+211.g91a96c24a7
               </div>
             
           
@@ -167,7 +167,7 @@
 <span class="kn">import</span> <span class="nn">textwrap</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> \
     <span class="n">cast</span><span class="p">,</span> <span class="n">Sequence</span>
-<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">TypedDict</span><span class="p">,</span> <span class="n">Literal</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">TypedDict</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">overload</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">qcodes.utils.validators</span> <span class="k">as</span> <span class="nn">vals</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">Parameter</span><span class="p">,</span> <span class="n">ParamRawDataType</span>
@@ -436,7 +436,7 @@
 <span class="s2">        0.001 to 100 for UHVU</span>
 <span class="s2">                           &quot;&quot;&quot;</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">_set_sweep_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_set_sweep_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">constants</span><span class="o">.</span><span class="n">SweepMode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sweep_step_parameters</span><span class="p">[</span><span class="s2">&quot;sweep_mode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_from_sweep_step_parameters</span><span class="p">()</span>
 
@@ -444,7 +444,7 @@
         <span class="n">mode_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sweep_steps_parameters</span><span class="p">(</span><span class="s1">&#39;sweep_mode&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">constants</span><span class="o">.</span><span class="n">SweepMode</span><span class="p">(</span><span class="n">mode_val</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_set_sweep_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_set_sweep_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">constants</span><span class="o">.</span><span class="n">VOutputRange</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sweep_step_parameters</span><span class="p">[</span><span class="s2">&quot;sweep_range&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_from_sweep_step_parameters</span><span class="p">()</span>
 
@@ -452,7 +452,7 @@
         <span class="n">range_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sweep_steps_parameters</span><span class="p">(</span><span class="s1">&#39;sweep_range&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">constants</span><span class="o">.</span><span class="n">VOutputRange</span><span class="p">(</span><span class="n">range_val</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_set_sweep_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_set_sweep_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sweep_step_parameters</span><span class="p">[</span><span class="s2">&quot;sweep_start&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_from_sweep_step_parameters</span><span class="p">()</span>
 
@@ -460,7 +460,7 @@
         <span class="n">sweep_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sweep_steps_parameters</span><span class="p">(</span><span class="s1">&#39;sweep_start&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">sweep_start</span>
 
-    <span class="k">def</span> <span class="nf">_set_sweep_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_set_sweep_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sweep_step_parameters</span><span class="p">[</span><span class="s2">&quot;sweep_end&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_from_sweep_step_parameters</span><span class="p">()</span>
 
@@ -468,16 +468,15 @@
         <span class="n">sweep_end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sweep_steps_parameters</span><span class="p">(</span><span class="s1">&#39;sweep_end&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">sweep_end</span>
 
-    <span class="k">def</span> <span class="nf">_set_sweep_steps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_set_sweep_steps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sweep_step_parameters</span><span class="p">[</span><span class="s2">&quot;sweep_steps&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_from_sweep_step_parameters</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_get_sweep_steps</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="n">sweep_steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sweep_steps_parameters</span><span class="p">(</span><span class="s1">&#39;sweep_steps&#39;</span><span class="p">)</span>
-        <span class="n">sweep_steps</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">sweep_steps</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">sweep_steps</span>
 
-    <span class="k">def</span> <span class="nf">_set_current_compliance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_set_current_compliance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sweep_step_parameters</span><span class="p">[</span><span class="s2">&quot;current_compliance&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_from_sweep_step_parameters</span><span class="p">()</span>
 
@@ -486,7 +485,7 @@
             <span class="s1">&#39;current_compliance&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">current_compliance</span>
 
-    <span class="k">def</span> <span class="nf">_set_power_compliance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_set_power_compliance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sweep_step_parameters</span><span class="p">[</span><span class="s1">&#39;current_compliance&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Current compliance must be set before setting &#39;</span>
                              <span class="s1">&#39;power compliance&#39;</span><span class="p">)</span>
@@ -540,7 +539,7 @@
         <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">wm</span><span class="p">(</span><span class="n">abort</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sweep_auto_abort</span><span class="p">(),</span> <span class="n">post</span><span class="o">=</span><span class="n">val</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_get_sweep_auto_abort_setting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_sweep_auto_abort_setting</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">lrn_query</span><span class="p">(</span>
             <span class="n">type_id</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">LRN</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">STAIRCASE_SWEEP_MEASUREMENT_SETTINGS</span>
         <span class="p">)</span>
@@ -549,7 +548,9 @@
                           <span class="sa">r</span><span class="s1">&#39;(?P&lt;output_after_sweep&gt;.+?)&#39;</span>
                           <span class="sa">r</span><span class="s1">&#39;(;|$)&#39;</span><span class="p">,</span>
                           <span class="n">response</span><span class="p">)</span>
-
+        <span class="k">if</span> <span class="n">match</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Did not find expected response for sweep &quot;</span>
+                               <span class="s2">&quot;auto abort settings&quot;</span><span class="p">)</span>
         <span class="n">resp_dict</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">resp_dict</span>
 
@@ -561,14 +562,56 @@
         <span class="n">resp_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sweep_auto_abort_setting</span><span class="p">()</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">resp_dict</span><span class="p">[</span><span class="s1">&#39;output_after_sweep&#39;</span><span class="p">])</span>
 
-    <span class="k">def</span> <span class="nf">_get_sweep_steps_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;chan&#39;</span><span class="p">,</span>
-                                                        <span class="s1">&#39;sweep_mode&#39;</span><span class="p">,</span>
-                                                        <span class="s1">&#39;sweep_range&#39;</span><span class="p">,</span>
-                                                        <span class="s1">&#39;sweep_start&#39;</span><span class="p">,</span>
-                                                        <span class="s1">&#39;sweep_end&#39;</span><span class="p">,</span>
-                                                        <span class="s1">&#39;sweep_steps&#39;</span><span class="p">,</span>
-                                                        <span class="s1">&#39;current_compliance&#39;</span><span class="p">,</span>
-                                                        <span class="s1">&#39;power_compliance&#39;</span><span class="p">]):</span>
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">_get_sweep_steps_parameters</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;chan&#39;</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">constants</span><span class="o">.</span><span class="n">ChNr</span><span class="p">]:</span> <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">_get_sweep_steps_parameters</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;sweep_mode&#39;</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">SweepMode</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span> <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">_get_sweep_steps_parameters</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;sweep_range&#39;</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">VOutputRange</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span> <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">_get_sweep_steps_parameters</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;sweep_start&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;sweep_end&#39;</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span> <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">_get_sweep_steps_parameters</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;sweep_steps&#39;</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">_get_sweep_steps_parameters</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;current_compliance&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;power_compliance&#39;</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span> <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">_get_sweep_steps_parameters</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;chan&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;sweep_mode&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;sweep_range&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;sweep_start&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;sweep_end&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;sweep_steps&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;current_compliance&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;power_compliance&#39;</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">constants</span><span class="o">.</span><span class="n">ChNr</span><span class="p">,</span> <span class="n">constants</span><span class="o">.</span><span class="n">SweepMode</span><span class="p">,</span>
+               <span class="n">constants</span><span class="o">.</span><span class="n">VOutputRange</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">lrn_query</span><span class="p">(</span>
             <span class="n">type_id</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">LRN</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">STAIRCASE_SWEEP_MEASUREMENT_SETTINGS</span>
         <span class="p">)</span>
@@ -620,7 +663,7 @@
 
 
 <span class="k">class</span> <span class="nc">_ParameterWithStatus</span><span class="p">(</span><span class="n">Parameter</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_measurement_status</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">MeasurementStatus</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -744,7 +787,7 @@
     <span class="n">_interval_validator</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">Numbers</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">65.535</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="s1">&#39;KeysightB1500&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
-                 <span class="n">slot_nr</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                 <span class="n">slot_nr</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">slot_nr</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">channels</span> <span class="o">=</span> <span class="p">(</span><span class="n">ChNr</span><span class="p">(</span><span class="n">slot_nr</span><span class="p">),)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_measure_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>

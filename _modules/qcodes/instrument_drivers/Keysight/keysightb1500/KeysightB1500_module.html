@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+207.g7cd635b5d9
+                0.19.0+211.g91a96c24a7
               </div>
             
           
@@ -164,7 +164,7 @@
             
   <h1>Source code for qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">TypedDict</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -409,7 +409,7 @@
     <span class="k">return</span> <span class="n">summary</span></div>
 
 
-<div class="viewcode-block" id="convert_dummy_val_to_nan"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.convert_dummy_val_to_nan">[docs]</a><span class="k">def</span> <span class="nf">convert_dummy_val_to_nan</span><span class="p">(</span><span class="n">param</span><span class="p">:</span> <span class="n">_FMTResponse</span><span class="p">):</span>
+<div class="viewcode-block" id="convert_dummy_val_to_nan"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.convert_dummy_val_to_nan">[docs]</a><span class="k">def</span> <span class="nf">convert_dummy_val_to_nan</span><span class="p">(</span><span class="n">param</span><span class="p">:</span> <span class="n">_FMTResponse</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Converts dummy value to NaN. Instrument may output dummy value (</span>
 <span class="sd">    199.999E+99) if measurement data is over the measurement range. Or the</span>
@@ -448,8 +448,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">MODULE_KIND</span><span class="p">:</span> <span class="n">ModuleKind</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="s1">&#39;KeysightB1500&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">slot_nr</span><span class="p">,</span>
-                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="s1">&#39;KeysightB1500&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+                 <span class="n">slot_nr</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
         <span class="c1"># self.channels will be populated in the concrete module subclasses</span>
         <span class="c1"># because channel count is module specific</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">:</span> <span class="n">Tuple</span>
@@ -465,7 +466,7 @@
     <span class="n">parse_spot_measurement_response</span> <span class="o">=</span> <span class="n">parse_spot_measurement_response</span>
     <span class="n">parse_module_query_response</span> <span class="o">=</span> <span class="n">parse_module_query_response</span>
 
-<div class="viewcode-block" id="B1500Module.enable_outputs"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.B1500Module.enable_outputs">[docs]</a>    <span class="k">def</span> <span class="nf">enable_outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="B1500Module.enable_outputs"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.B1500Module.enable_outputs">[docs]</a>    <span class="k">def</span> <span class="nf">enable_outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Enables all outputs of this module by closing the output relays of its</span>
 <span class="sd">        channels.</span>
@@ -476,7 +477,7 @@
         <span class="n">msg</span> <span class="o">=</span> <span class="n">MessageBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">cn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">)</span><span class="o">.</span><span class="n">message</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="B1500Module.disable_outputs"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.B1500Module.disable_outputs">[docs]</a>    <span class="k">def</span> <span class="nf">disable_outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="B1500Module.disable_outputs"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.B1500Module.disable_outputs">[docs]</a>    <span class="k">def</span> <span class="nf">disable_outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Disables all outputs of this module by opening the output relays of its</span>
 <span class="sd">        channels.</span>
