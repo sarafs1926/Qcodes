@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+234.g442d5cd59e
+                0.19.0+242.g8de75773ed
               </div>
             
           
@@ -717,8 +717,10 @@
                                           <span class="n">exception_value</span><span class="p">,</span>
                                           <span class="n">traceback</span><span class="p">,</span>
                                           <span class="n">file</span><span class="o">=</span><span class="n">stream</span><span class="p">)</span>
+                <span class="n">exception_string</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
                 <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;An exception occured in measurement with guid: &#39;</span>
-                            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ds</span><span class="o">.</span><span class="n">guid</span><span class="si">}</span><span class="s1">;</span><span class="se">\n</span><span class="s1">Traceback:</span><span class="se">\n</span><span class="si">{</span><span class="n">stream</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ds</span><span class="o">.</span><span class="n">guid</span><span class="si">}</span><span class="s1">;</span><span class="se">\n</span><span class="s1">Traceback:</span><span class="se">\n</span><span class="si">{</span><span class="n">exception_string</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ds</span><span class="o">.</span><span class="n">add_metadata</span><span class="p">(</span><span class="s2">&quot;measurement_exception&quot;</span><span class="p">,</span> <span class="n">exception_string</span><span class="p">)</span>
 
             <span class="c1"># and finally mark the dataset as closed, thus</span>
             <span class="c1"># finishing the measurement</span>
