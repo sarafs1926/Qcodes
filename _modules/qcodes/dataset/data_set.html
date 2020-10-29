@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+247.g912861b335
+                0.19.0+251.ge2631b26cc
               </div>
             
           
@@ -944,6 +944,8 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Mark :class:`.DataSet` as complete and thus read only and notify the subscribers</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">completed</span><span class="p">:</span>
+            <span class="k">return</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pristine</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Can not mark DataSet as complete before it &#39;</span>
                                <span class="s1">&#39;has been marked as started.&#39;</span><span class="p">)</span>
@@ -1062,13 +1064,13 @@
             <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_id</span> <span class="ow">in</span> <span class="n">writer_status</span><span class="o">.</span><span class="n">active_datasets</span><span class="p">:</span>
                 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">background_sleep_time</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">writer_status</span><span class="o">.</span><span class="n">active_datasets</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run_id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_id</span> <span class="ow">in</span> <span class="n">writer_status</span><span class="o">.</span><span class="n">active_datasets</span><span class="p">:</span>
+                <span class="n">writer_status</span><span class="o">.</span><span class="n">active_datasets</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run_id</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">writer_status</span><span class="o">.</span><span class="n">active_datasets</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">writer_status</span><span class="o">.</span><span class="n">write_in_background</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">if</span> <span class="n">writer_status</span><span class="o">.</span><span class="n">bg_writer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">writer_status</span><span class="o">.</span><span class="n">bg_writer</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
                 <span class="n">writer_status</span><span class="o">.</span><span class="n">bg_writer</span> <span class="o">=</span> <span class="kc">None</span>
-
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_validate_parameters</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">_BaseParameter</span><span class="p">]</span>
