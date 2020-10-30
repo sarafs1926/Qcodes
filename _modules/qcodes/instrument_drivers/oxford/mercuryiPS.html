@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+275.gce5fef0344
+                0.19.0+282.gd0cd3b7164
               </div>
             
           
@@ -170,12 +170,15 @@
 
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">IPInstrument</span><span class="p">,</span> <span class="n">MultiParameter</span>
 <span class="kn">from</span> <span class="nn">qcodes.utils.validators</span> <span class="kn">import</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">Bool</span>
+<span class="kn">from</span> <span class="nn">qcodes.utils.deprecate</span> <span class="kn">import</span> <span class="n">deprecate</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<div class="viewcode-block" id="MercuryiPSArray"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.oxford.html#qcodes.instrument_drivers.oxford.mercuryiPS.MercuryiPSArray">[docs]</a><span class="k">class</span> <span class="nc">MercuryiPSArray</span><span class="p">(</span><span class="n">MultiParameter</span><span class="p">):</span>
+
+<div class="viewcode-block" id="MercuryiPSArray"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.oxford.html#qcodes.instrument_drivers.oxford.mercuryiPS.MercuryiPSArray">[docs]</a><span class="nd">@deprecate</span><span class="p">(</span><span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;MercuryiPS_VISA.MercuryiPS&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MercuryiPSArray</span><span class="p">(</span><span class="n">MultiParameter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This parameter holds the MercuryiPS&#39;s 3 dimensional parameters</span>
 
@@ -200,7 +203,8 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set</span><span class="p">(</span><span class="n">setpoint</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="MercuryiPS"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.oxford.html#qcodes.instrument_drivers.oxford.mercuryiPS.MercuryiPS">[docs]</a><span class="k">class</span> <span class="nc">MercuryiPS</span><span class="p">(</span><span class="n">IPInstrument</span><span class="p">):</span>
+<div class="viewcode-block" id="MercuryiPS"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.oxford.html#qcodes.instrument_drivers.oxford.mercuryiPS.MercuryiPS">[docs]</a><span class="nd">@deprecate</span><span class="p">(</span><span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;MercuryiPS_VISA.MercuryiPS&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MercuryiPS</span><span class="p">(</span><span class="n">IPInstrument</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is the qcodes driver for the Oxford MercuryiPS magnet power supply.</span>
 
