@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+285.gcd628c70d7
+                0.19.0+291.g076e8d4ed1
               </div>
             
           
@@ -163,12 +163,22 @@
            <div itemprop="articleBody">
             
   <h1>Source code for qcodes.instrument_drivers.rigol.private.DP8xx</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">VisaInstrument</span><span class="p">,</span> <span class="n">validators</span> <span class="k">as</span> <span class="n">vals</span>
-<span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">InstrumentChannel</span><span class="p">,</span> <span class="n">ChannelList</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">ChannelList</span><span class="p">,</span> <span class="n">InstrumentChannel</span><span class="p">,</span> <span class="n">VisaInstrument</span>
+<span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">validators</span> <span class="k">as</span> <span class="n">vals</span>
 
 
 <div class="viewcode-block" id="RigolDP8xxChannel"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.rigol.private.html#qcodes.instrument_drivers.rigol.DP821.RigolDP8xxChannel">[docs]</a><span class="k">class</span> <span class="nc">RigolDP8xxChannel</span><span class="p">(</span><span class="n">InstrumentChannel</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">ch_range</span><span class="p">,</span> <span class="n">ovp_range</span><span class="p">,</span> <span class="n">ocp_range</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">parent</span><span class="p">:</span> <span class="s2">&quot;_RigolDP8xx&quot;</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">ch_range</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+            <span class="n">ovp_range</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+            <span class="n">ocp_range</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
+    <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">vmax</span> <span class="o">=</span> <span class="n">ch_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -270,6 +280,7 @@
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">OnOff</span><span class="p">()</span>
                            <span class="p">)</span></div>
 
+
 <span class="k">class</span> <span class="nc">_RigolDP8xx</span><span class="p">(</span><span class="n">VisaInstrument</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is the general DP8xx Power Supply driver class that implements shared parameters and functionality</span>
@@ -278,23 +289,40 @@
 <span class="sd">    This driver was written to be inherited from by a specific driver (e.g. DP832).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">channels_ranges</span><span class="p">,</span> <span class="n">ovp_ranges</span><span class="p">,</span> <span class="n">ocp_ranges</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">channels_ranges</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+            <span class="n">ovp_ranges</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+                              <span class="n">Sequence</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]],</span>
+            <span class="n">ocp_ranges</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+                              <span class="n">Sequence</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]],</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="c1">#Check if precision extension has been installed</span>
+        <span class="c1"># Check if precision extension has been installed</span>
         <span class="n">opt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">installed_options</span><span class="p">()</span>
         <span class="k">if</span> <span class="s1">&#39;DP8-ACCURACY&#39;</span> <span class="ow">in</span> <span class="n">opt</span><span class="p">:</span>
-            <span class="n">ovp_ranges</span> <span class="o">=</span> <span class="n">ovp_ranges</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">ocp_ranges</span> <span class="o">=</span> <span class="n">ocp_ranges</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">ovp_ranges_selected</span> <span class="o">=</span> <span class="n">ovp_ranges</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">ocp_ranges_selected</span> <span class="o">=</span> <span class="n">ocp_ranges</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">ovp_ranges</span> <span class="o">=</span> <span class="n">ovp_ranges</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">ocp_ranges</span> <span class="o">=</span> <span class="n">ocp_ranges</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">ovp_ranges_selected</span> <span class="o">=</span> <span class="n">ovp_ranges</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">ocp_ranges_selected</span> <span class="o">=</span> <span class="n">ocp_ranges</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="c1"># channel-specific parameters</span>
         <span class="n">channels</span> <span class="o">=</span> <span class="n">ChannelList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;SupplyChannel&quot;</span><span class="p">,</span> <span class="n">RigolDP8xxChannel</span><span class="p">,</span> <span class="n">snapshotable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">ch_num</span><span class="p">,</span> <span class="n">channel_range</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">channels_ranges</span><span class="p">):</span>
             <span class="n">ch_name</span> <span class="o">=</span> <span class="s2">&quot;ch</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ch_num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">channel</span> <span class="o">=</span> <span class="n">RigolDP8xxChannel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ch_name</span><span class="p">,</span> <span class="n">ch_num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">channel_range</span><span class="p">,</span> <span class="n">ovp_ranges</span><span class="p">[</span><span class="n">ch_num</span><span class="p">],</span> <span class="n">ocp_ranges</span><span class="p">[</span><span class="n">ch_num</span><span class="p">])</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="n">RigolDP8xxChannel</span><span class="p">(</span>
+                <span class="bp">self</span><span class="p">,</span>
+                <span class="n">ch_name</span><span class="p">,</span>
+                <span class="n">ch_num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="n">channel_range</span><span class="p">,</span>
+                <span class="n">ovp_ranges_selected</span><span class="p">[</span><span class="n">ch_num</span><span class="p">],</span>
+                <span class="n">ocp_ranges_selected</span><span class="p">[</span><span class="n">ch_num</span><span class="p">]</span>
+            <span class="p">)</span>
             <span class="n">channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="n">ch_name</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
         <span class="n">channels</span><span class="o">.</span><span class="n">lock</span><span class="p">()</span>
@@ -302,7 +330,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_message</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">installed_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">installed_options</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Return the installed options&quot;&quot;&quot;</span>
 
         <span class="n">opt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">&quot;*OPT?&quot;</span><span class="p">)</span>

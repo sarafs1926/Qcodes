@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+285.gcd628c70d7
+                0.19.0+291.g076e8d4ed1
               </div>
             
           
@@ -163,17 +163,20 @@
            <div itemprop="articleBody">
             
   <h1>Source code for qcodes.instrument_drivers.rigol.DS4000</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">logging</span><span class="o">,</span> <span class="nn">warnings</span>
-
-<span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">VisaInstrument</span><span class="p">,</span> <span class="n">validators</span> <span class="k">as</span> <span class="n">vals</span>
-<span class="kn">from</span> <span class="nn">qcodes.utils.validators</span> <span class="kn">import</span> <span class="n">Ints</span><span class="p">,</span> <span class="n">Bool</span>
-<span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">ArrayParameter</span>
-<span class="kn">from</span> <span class="nn">qcodes.instrument.channel</span> <span class="kn">import</span> <span class="n">InstrumentChannel</span><span class="p">,</span> <span class="n">ChannelList</span>
-
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
-
 <span class="kn">from</span> <span class="nn">distutils.version</span> <span class="kn">import</span> <span class="n">LooseVersion</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">VisaInstrument</span>
+<span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">validators</span> <span class="k">as</span> <span class="n">vals</span>
+<span class="kn">from</span> <span class="nn">qcodes.instrument.channel</span> <span class="kn">import</span> <span class="n">ChannelList</span><span class="p">,</span> <span class="n">InstrumentChannel</span>
+<span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">ArrayParameter</span><span class="p">,</span> <span class="n">ParamRawDataType</span>
+<span class="kn">from</span> <span class="nn">qcodes.utils.validators</span> <span class="kn">import</span> <span class="n">Bool</span><span class="p">,</span> <span class="n">Ints</span>
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -182,7 +185,12 @@
 
 
 <div class="viewcode-block" id="ScopeArray"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rigol.html#qcodes.instrument_drivers.rigol.DS4000.ScopeArray">[docs]</a><span class="k">class</span> <span class="nc">ScopeArray</span><span class="p">(</span><span class="n">ArrayParameter</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">instrument</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">instrument</span><span class="p">:</span> <span class="s2">&quot;RigolDS4000Channel&quot;</span><span class="p">,</span>
+            <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">raw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
                          <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1400</span><span class="p">,),</span>
                          <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Voltage&#39;</span><span class="p">,</span>
@@ -197,16 +205,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">max_read_step</span> <span class="o">=</span> <span class="mi">50</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">trace_ready</span> <span class="o">=</span> <span class="kc">False</span>
 
-<div class="viewcode-block" id="ScopeArray.prepare_curvedata"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rigol.html#qcodes.instrument_drivers.rigol.DS4000.ScopeArray.prepare_curvedata">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_curvedata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ScopeArray.prepare_curvedata"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rigol.html#qcodes.instrument_drivers.rigol.DS4000.ScopeArray.prepare_curvedata">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_curvedata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prepare the scope for returning curve data</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span> <span class="n">RigolDS4000Channel</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:STOP&#39;</span><span class="p">)</span>          <span class="c1"># Stop acquisition</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:MODE RAW&#39;</span><span class="p">)</span>  <span class="c1"># Set RAW mode</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:STOP&#39;</span><span class="p">)</span>          <span class="c1"># Stop acquisition</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:MODE RAW&#39;</span><span class="p">)</span>  <span class="c1"># Set RAW mode</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:MODE NORM&#39;</span><span class="p">)</span>  <span class="c1"># Set normal mode</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:MODE NORM&#39;</span><span class="p">)</span>  <span class="c1"># Set normal mode</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">get_preamble</span><span class="p">()</span>
         <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">preamble</span>
@@ -218,49 +226,65 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">trace_ready</span> <span class="o">=</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="ScopeArray.get_raw"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rigol.html#qcodes.instrument_drivers.rigol.DS4000.ScopeArray.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ScopeArray.get_raw"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rigol.html#qcodes.instrument_drivers.rigol.DS4000.ScopeArray.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParamRawDataType</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span> <span class="n">RigolDS4000Channel</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="p">,</span> <span class="n">DS4000</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">trace_ready</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">TraceNotReady</span><span class="p">(</span><span class="s1">&#39;Please run prepare_curvedata to prepare &#39;</span>
                                 <span class="s1">&#39;the scope for giving a trace.&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">trace_ready</span> <span class="o">=</span> <span class="kc">False</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:FORMat BYTE&#39;</span><span class="p">)</span>                         <span class="c1"># Set the data type for waveforms to &quot;BYTE&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;:WAVeform:SOURce CHAN</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># Set read channel</span>
+        <span class="c1"># Set the data type for waveforms to &quot;BYTE&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:FORMat BYTE&#39;</span><span class="p">)</span>
+        <span class="c1"># Set read channel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;:WAVeform:SOURce CHAN</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
         <span class="n">data_bin</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw</span><span class="p">:</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Readout of raw waveform started, </span><span class="si">%g</span><span class="s1"> points&#39;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:POINts </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>  <span class="c1"># Ask for the right number of points</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:RESet&#39;</span><span class="p">)</span>                            <span class="c1"># Resets the waveform data reading</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:BEGin&#39;</span><span class="p">)</span>                            <span class="c1"># Starts the waveform data reading</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s1">&#39;Readout of raw waveform started, </span><span class="si">%g</span><span class="s1"> points&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="c1"># Ask for the right number of points</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;:WAVeform:POINts </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="c1"># Resets the waveform data reading</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:RESet&#39;</span><span class="p">)</span>
+            <span class="c1"># Starts the waveform data reading</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:BEGin&#39;</span><span class="p">)</span>
 
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_read_step</span><span class="p">):</span>
-                <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;:WAVeform:STATus?&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;:WAVeform:STATus?&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-                <span class="c1"># Ask and retrive waveform data</span>
-                <span class="c1"># It uses .read_raw() to get a byte string since our data is binary</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:DATA?&#39;</span><span class="p">)</span>
-                <span class="n">data_chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">read_raw</span><span class="p">()</span>
+                <span class="c1"># Ask and retrieve waveform data</span>
+                <span class="c1"># It uses .read_raw() to get a byte</span>
+                <span class="c1"># string since our data is binary</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:DATA?&#39;</span><span class="p">)</span>
+                <span class="n">data_chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">read_raw</span><span class="p">()</span>
                 <span class="n">data_chuck</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_strip_block</span><span class="p">(</span><span class="n">data_chunk</span><span class="p">)</span>
                 <span class="n">data_bin</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">data_chuck</span><span class="p">)</span>
 
                 <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;IDLE&#39;</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:END&#39;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:END&#39;</span><span class="p">)</span>
                     <span class="k">break</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="c1"># Wait some time to have the buffer re-filled</span>
                     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
-                <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;chucks read: </span><span class="si">%d</span><span class="s1">, last chuck points: </span><span class="si">%g</span><span class="s1">, total read size: </span><span class="si">%g</span><span class="s1">&#39;</span><span class="p">,</span>
-                         <span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_chuck</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_bin</span><span class="p">))</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                    <span class="s1">&#39;chucks read: </span><span class="si">%d</span><span class="s1">, last chuck points: &#39;</span>
+                    <span class="s1">&#39;</span><span class="si">%g</span><span class="s1">, total read size: </span><span class="si">%g</span><span class="s1">&#39;</span><span class="p">,</span>
+                    <span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_chuck</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_bin</span><span class="p">)</span>
+                <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Communication error&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># Ask and retrive waveform data</span>
+            <span class="c1"># Ask and retrieve waveform data</span>
             <span class="c1"># It uses .read_raw() to get a byte string since our data is binary</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Readout of display waveform started, </span><span class="si">%d</span><span class="s1"> points&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:DATA?&#39;</span><span class="p">)</span>  <span class="c1"># Query data</span>
-            <span class="n">data_chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">read_raw</span><span class="p">()</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s1">&#39;Readout of display waveform started, </span><span class="si">%d</span><span class="s1"> points&#39;</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;:WAVeform:DATA?&#39;</span><span class="p">)</span>  <span class="c1"># Query data</span>
+            <span class="n">data_chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">read_raw</span><span class="p">()</span>
             <span class="n">data_bin</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_validate_strip_block</span><span class="p">(</span><span class="n">data_chunk</span><span class="p">))</span>
 
         <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Readout ended, total read size: </span><span class="si">%g</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_bin</span><span class="p">))</span>
@@ -277,15 +301,16 @@
         <span class="k">return</span> <span class="n">data</span></div>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_validate_strip_block</span><span class="p">(</span><span class="n">block</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_validate_strip_block</span><span class="p">(</span><span class="n">block</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Given a block of raw data from the instrument, validate and then strip the header with</span>
+<span class="sd">        Given a block of raw data from the instrument, validate and</span>
+<span class="sd">        then strip the header with</span>
 <span class="sd">        size information. Raise ValueError if the sizes don&#39;t match.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            block (bytes): The data block</span>
+<span class="sd">            block: The data block</span>
 <span class="sd">        Returns:</span>
-<span class="sd">            bytes: the stripped data</span>
+<span class="sd">            The stripped data</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Validate header</span>
         <span class="n">header</span> <span class="o">=</span> <span class="n">block</span><span class="p">[:</span><span class="mi">11</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
@@ -300,19 +325,22 @@
 
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Malformed data&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ScopeArray.get_preamble"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rigol.html#qcodes.instrument_drivers.rigol.DS4000.ScopeArray.get_preamble">[docs]</a>    <span class="k">def</span> <span class="nf">get_preamble</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ScopeArray.get_preamble"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rigol.html#qcodes.instrument_drivers.rigol.DS4000.ScopeArray.get_preamble">[docs]</a>    <span class="k">def</span> <span class="nf">get_preamble</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span> <span class="n">RigolDS4000Channel</span><span class="p">)</span>
         <span class="n">preamble_nt</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;preamble&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;format&quot;</span><span class="p">,</span> <span class="s2">&quot;mode&quot;</span><span class="p">,</span> <span class="s2">&quot;points&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="s2">&quot;xincrement&quot;</span><span class="p">,</span> <span class="s2">&quot;xorigin&quot;</span><span class="p">,</span>
                                               <span class="s2">&quot;xreference&quot;</span><span class="p">,</span> <span class="s2">&quot;yincrement&quot;</span><span class="p">,</span> <span class="s2">&quot;yorigin&quot;</span><span class="p">,</span> <span class="s2">&quot;yreference&quot;</span><span class="p">])</span>
         <span class="n">conv</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-        <span class="n">preamble_raw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;:WAVeform:PREamble?&#39;</span><span class="p">)</span>
+        <span class="n">preamble_raw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;:WAVeform:PREamble?&#39;</span><span class="p">)</span>
         <span class="n">preamble_num</span> <span class="o">=</span> <span class="p">[</span><span class="n">conv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">preamble_raw</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">preamble</span> <span class="o">=</span> <span class="n">preamble_nt</span><span class="p">(</span><span class="o">*</span><span class="n">preamble_num</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="RigolDS4000Channel"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rigol.html#qcodes.instrument_drivers.rigol.DS4000.RigolDS4000Channel">[docs]</a><span class="k">class</span> <span class="nc">RigolDS4000Channel</span><span class="p">(</span><span class="n">InstrumentChannel</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="s2">&quot;DS4000&quot;</span><span class="p">,</span>
+                 <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s2">&quot;amplitude&quot;</span><span class="p">,</span>
@@ -344,15 +372,21 @@
 <span class="sd">    This is the QCoDeS driver for the Rigol DS4000 series oscilloscopes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialises the DS4000.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            name (str): Name of the instrument used by QCoDeS</span>
-<span class="sd">        address (string): Instrument address as used by VISA</span>
-<span class="sd">            timeout (float): visa timeout, in secs. long default (180)</span>
-<span class="sd">              to accommodate large waveforms</span>
+<span class="sd">            name: Name of the instrument used by QCoDeS</span>
+<span class="sd">            address: Instrument address as used by VISA</span>
+<span class="sd">            timeout: visa timeout, in secs. long default (180)</span>
+<span class="sd">                to accommodate large waveforms</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Init VisaInstrument. device_clear MUST NOT be issued, otherwise communications hangs</span>
@@ -420,7 +454,7 @@
         <span class="n">channels</span><span class="o">.</span><span class="n">lock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="s1">&#39;channels&#39;</span><span class="p">,</span> <span class="n">channels</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_check_firmware_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_check_firmware_version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1">#Require version 00.02.03</span>
 
         <span class="n">idn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_idn</span><span class="p">()</span>
