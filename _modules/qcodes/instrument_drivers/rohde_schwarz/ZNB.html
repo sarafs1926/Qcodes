@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.0+295.g0ef372ea94
+                0.19.0+304.gfe69bdf777
               </div>
             
           
@@ -165,13 +165,13 @@
   <h1>Source code for qcodes.instrument_drivers.rohde_schwarz.ZNB</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">VisaInstrument</span><span class="p">,</span> <span class="n">Instrument</span>
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">ChannelList</span><span class="p">,</span> <span class="n">InstrumentChannel</span>
 <span class="kn">from</span> <span class="nn">qcodes.utils</span> <span class="kn">import</span> <span class="n">validators</span> <span class="k">as</span> <span class="n">vals</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">MultiParameter</span><span class="p">,</span> <span class="n">ArrayParameter</span>
+<span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">MultiParameter</span><span class="p">,</span> <span class="n">ArrayParameter</span><span class="p">,</span> <span class="n">ParamRawDataType</span>
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -181,7 +181,7 @@
 <span class="sd">    Sweep that return magnitude and phase.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">instrument</span><span class="p">:</span> <span class="n">Instrument</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">instrument</span><span class="p">:</span> <span class="s2">&quot;ZNBChannel&quot;</span><span class="p">,</span>
                  <span class="n">start</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">stop</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">npts</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span> <span class="n">shapes</span><span class="o">=</span><span class="p">((),</span> <span class="p">()))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span> <span class="o">=</span> <span class="n">instrument</span>
@@ -209,11 +209,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">setpoints</span> <span class="o">=</span> <span class="p">((</span><span class="n">f</span><span class="p">,),</span> <span class="p">(</span><span class="n">f</span><span class="p">,))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shapes</span> <span class="o">=</span> <span class="p">((</span><span class="n">npts</span><span class="p">,),</span> <span class="p">(</span><span class="n">npts</span><span class="p">,))</span></div>
 
-<div class="viewcode-block" id="FrequencySweepMagPhase.get_raw"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rohde_schwarz.html#qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweepMagPhase.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">old_format</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">format</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Complex&#39;</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">_get_sweep_data</span><span class="p">(</span><span class="n">force_polar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">old_format</span><span class="p">)</span>
+<div class="viewcode-block" id="FrequencySweepMagPhase.get_raw"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rohde_schwarz.html#qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweepMagPhase.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">ParamRawDataType</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span> <span class="n">ZNBChannel</span><span class="p">)</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">format</span><span class="o">.</span><span class="n">set_to</span><span class="p">(</span><span class="s2">&quot;Complex&quot;</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">_get_sweep_data</span><span class="p">(</span><span class="n">force_polar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div></div>
 
 
@@ -267,8 +266,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">setpoints</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="p">,)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">npts</span><span class="p">,)</span></div>
 
-<div class="viewcode-block" id="FrequencySweep.get_raw"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rohde_schwarz.html#qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweep.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">_get_sweep_data</span><span class="p">()</span></div></div>
+<div class="viewcode-block" id="FrequencySweep.get_raw"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rohde_schwarz.html#qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweep.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParamRawDataType</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span> <span class="n">ZNBChannel</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">_get_sweep_data</span><span class="p">()</span></div></div>
 
 
 <div class="viewcode-block" id="ZNBChannel"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rohde_schwarz.html#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNBChannel">[docs]</a><span class="k">class</span> <span class="nc">ZNBChannel</span><span class="p">(</span><span class="n">InstrumentChannel</span><span class="p">):</span>
@@ -483,7 +483,7 @@
         <span class="sd">&quot;&quot;&quot;Strip newline and quotes from instrument reply.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">var</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">_set_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">channel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument_channel</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SENS</span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s1">:FREQ:START </span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s1">.7f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">stop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
@@ -498,7 +498,7 @@
                 <span class="sa">f</span><span class="s2">&quot;Could not set start to </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2"> setting it to </span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_traces</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_set_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">channel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument_channel</span>
         <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">val</span> <span class="o">&lt;=</span> <span class="n">start</span><span class="p">:</span>
@@ -513,34 +513,34 @@
                 <span class="sa">f</span><span class="s2">&quot;Could not set stop to </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2"> setting it to </span><span class="si">{</span><span class="n">stop</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_traces</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_set_npts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_npts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">channel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument_channel</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SENS</span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s1">:SWE:POIN </span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s1">.7f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_traces</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_set_span</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_span</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">channel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument_channel</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SENS</span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s1">:FREQ:SPAN </span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s1">.7f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_traces</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_set_center</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_center</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">channel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument_channel</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SENS</span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s1">:FREQ:CENT </span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s1">.7f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_traces</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ZNBChannel.update_traces"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rohde_schwarz.html#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNBChannel.update_traces">[docs]</a>    <span class="k">def</span> <span class="nf">update_traces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ZNBChannel.update_traces"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rohde_schwarz.html#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNBChannel.update_traces">[docs]</a>    <span class="k">def</span> <span class="nf">update_traces</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot; updates start, stop and npts of all trace parameters&quot;&quot;&quot;</span>
         <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
         <span class="n">stop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
         <span class="n">npts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">npts</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="p">(</span><span class="n">ArrayParameter</span><span class="p">,</span> <span class="n">MultiParameter</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="p">(</span><span class="n">FrequencySweep</span><span class="p">,</span> <span class="n">FrequencySweepMagPhase</span><span class="p">)):</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">parameter</span><span class="o">.</span><span class="n">set_sweep</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">npts</span><span class="p">)</span>
                 <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
                     <span class="k">pass</span></div>
 
-    <span class="k">def</span> <span class="nf">_get_sweep_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force_polar</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_sweep_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force_polar</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">rf_power</span><span class="p">():</span>
             <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;RF output is off when getting sweep data&quot;</span><span class="p">)</span>
@@ -610,7 +610,7 @@
     <span class="n">CHANNEL_CLASS</span> <span class="o">=</span> <span class="n">ZNBChannel</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">init_s_params</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-                 <span class="n">reset_channels</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+                 <span class="n">reset_channels</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="n">address</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -679,13 +679,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">rf_off</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_message</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ZNB.display_grid"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rohde_schwarz.html#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNB.display_grid">[docs]</a>    <span class="k">def</span> <span class="nf">display_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rows</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">cols</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<div class="viewcode-block" id="ZNB.display_grid"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rohde_schwarz.html#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNB.display_grid">[docs]</a>    <span class="k">def</span> <span class="nf">display_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rows</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">cols</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Display a grid of channels rows by columns.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;DISP:LAY GRID;:DISP:LAY:GRID </span><span class="si">{</span><span class="n">rows</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">cols</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ZNB.add_channel"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rohde_schwarz.html#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNB.add_channel">[docs]</a>    <span class="k">def</span> <span class="nf">add_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="ZNB.add_channel"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rohde_schwarz.html#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNB.add_channel">[docs]</a>    <span class="k">def</span> <span class="nf">add_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">i_channel</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="n">channel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CHANNEL_CLASS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_name</span><span class="p">,</span> <span class="n">i_channel</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
@@ -701,7 +701,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;TRIG</span><span class="si">{</span><span class="n">i_channel</span><span class="si">}</span><span class="s1">:SEQ:SOUR IMM&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SENS</span><span class="si">{</span><span class="n">i_channel</span><span class="si">}</span><span class="s1">:AVER:STAT ON&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ZNB.clear_channels"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rohde_schwarz.html#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNB.clear_channels">[docs]</a>    <span class="k">def</span> <span class="nf">clear_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ZNB.clear_channels"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rohde_schwarz.html#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNB.clear_channels">[docs]</a>    <span class="k">def</span> <span class="nf">clear_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Remove all channels from the instrument and channel list and</span>
 <span class="sd">        unlock the channel list.</span>

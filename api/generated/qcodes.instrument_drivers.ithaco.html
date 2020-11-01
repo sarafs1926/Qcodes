@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.19.0+295.g0ef372ea94
+                0.19.0+304.gfe69bdf777
               </div>
             
           
@@ -240,7 +240,7 @@
 <span id="qcodes-instrument-drivers-ithaco-ithaco-1211-module"></span><h2>qcodes.instrument_drivers.ithaco.Ithaco_1211 module<a class="headerlink" href="#module-qcodes.instrument_drivers.ithaco.Ithaco_1211" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="qcodes.instrument_drivers.ithaco.Ithaco_1211.CurrentParameter">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.ithaco.Ithaco_1211.</code><code class="sig-name descname">CurrentParameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">measured_param</span></em>, <em class="sig-param"><span class="n">c_amp_ins</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">'curr'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/ithaco/Ithaco_1211.html#CurrentParameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.ithaco.Ithaco_1211.CurrentParameter" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.ithaco.Ithaco_1211.</code><code class="sig-name descname">CurrentParameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">measured_param</span><span class="p">:</span> <span class="n"><a class="reference internal" href="../parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="qcodes.instrument.parameter.Parameter">qcodes.instrument.parameter.Parameter</a></span></em>, <em class="sig-param"><span class="n">c_amp_ins</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211" title="qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211">qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211</a></span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span> <span class="o">=</span> <span class="default_value">'curr'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/ithaco/Ithaco_1211.html#CurrentParameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.ithaco.Ithaco_1211.CurrentParameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../parameters/parameter.html#qcodes.instrument.parameter.MultiParameter" title="qcodes.instrument.parameter.MultiParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument.parameter.MultiParameter</span></code></a></p>
 <p>Current measurement via an Ithaco preamp and a measured voltage.</p>
 <p>To be used when you feed a current into the Ithaco, send the Ithaco’s
@@ -250,22 +250,22 @@ the voltage reading from that amplifier as a qcodes parameter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>measured_param</strong> (<a class="reference internal" href="../parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="qcodes.instrument.parameter.Parameter"><em>Parameter</em></a>) – a gettable parameter returning the
+<li><p><strong>measured_param</strong> – a gettable parameter returning the
 voltage read from the Ithaco output.</p></li>
-<li><p><strong>c_amp_ins</strong> (<a class="reference internal" href="#qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211" title="qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211"><em>Ithaco_1211</em></a>) – <p>an Ithaco instance where you manually
+<li><p><strong>c_amp_ins</strong> – <p>an Ithaco instance where you manually
 maintain the present settings of the real Ithaco amp.</p>
 <p>Note: it should be possible to use other current preamps, if they
 define parameters <code class="docutils literal notranslate"><span class="pre">sens</span></code> (sensitivity, in A/V), <code class="docutils literal notranslate"><span class="pre">sens_factor</span></code>
 (an additional gain) and <code class="docutils literal notranslate"><span class="pre">invert</span></code> (bool, output is inverted)</p>
 </p></li>
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – the name of the current output. Default ‘curr’.
+<li><p><strong>name</strong> – the name of the current output. Default ‘curr’.
 Also used as the name of the whole parameter.</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.ithaco.Ithaco_1211.CurrentParameter.get_raw">
-<code class="sig-name descname">get_raw</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/ithaco/Ithaco_1211.html#CurrentParameter.get_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.ithaco.Ithaco_1211.CurrentParameter.get_raw" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_raw</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>Any<span class="p">, </span><span class="p">…</span><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/ithaco/Ithaco_1211.html#CurrentParameter.get_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.ithaco.Ithaco_1211.CurrentParameter.get_raw" title="Permalink to this definition">¶</a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">get_raw</span></code> is called to perform the actual data acquisition from the
 instrument. This method should either be overwritten to perform the
 desired operation or alternatively for <a class="reference internal" href="../parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="qcodes.instrument.parameter.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parameter</span></code></a> a
@@ -609,13 +609,13 @@ If step is None stepping will not be used.</p>
 
 <dl class="py class">
 <dt id="qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.ithaco.Ithaco_1211.</code><code class="sig-name descname">Ithaco_1211</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/ithaco/Ithaco_1211.html#Ithaco_1211"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.ithaco.Ithaco_1211.</code><code class="sig-name descname">Ithaco_1211</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/ithaco/Ithaco_1211.html#Ithaco_1211"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../instrument/base.html#qcodes.instrument.base.Instrument" title="qcodes.instrument.base.Instrument"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument.base.Instrument</span></code></a></p>
 <p>This is the qcodes driver for the Ithaco 1211 Current-preamplifier.</p>
 <p>This is a virtual driver only and will not talk to your instrument.</p>
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211.get_idn">
-<code class="sig-name descname">get_idn</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/ithaco/Ithaco_1211.html#Ithaco_1211.get_idn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211.get_idn" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_idn</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/ithaco/Ithaco_1211.html#Ithaco_1211.get_idn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211.get_idn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse a standard VISA <code class="docutils literal notranslate"><span class="pre">*IDN?</span></code> response into an ID dict.</p>
 <p>Even though this is the VISA standard, it applies to various other
 types as well, such as IPInstruments, so it is included here in the
