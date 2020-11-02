@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Paramtypes explained &mdash; QCoDeS 0.19.0 documentation</title>
+  <title>Paramtypes explained &mdash; QCoDeS 0.19.2 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.19.0+304.gfe69bdf777
+                0.19.2+306.g04820cf855
               </div>
             
           
@@ -545,7 +545,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201101-16120-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201102-15852-qcodes.log
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -564,14 +564,14 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/201101-16120-qcodes.log
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Upgrading database; v0 -&gt; v1: : 0it [00:00, ?it/s]
-Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 424.14it/s]
+Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 479.62it/s]
 Upgrading database; v2 -&gt; v3: : 0it [00:00, ?it/s]
 Upgrading database; v3 -&gt; v4: : 0it [00:00, ?it/s]
-Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 405.25it/s]
+Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 418.26it/s]
 Upgrading database; v5 -&gt; v6: : 0it [00:00, ?it/s]
-Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 247.83it/s]
-Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 997.93it/s]
-Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 433.25it/s]
+Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 288.72it/s]
+Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 1123.88it/s]
+Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 1120.57it/s]
 </pre></div></div>
 </div>
 <p>Let us, now, create two dummy instruments to be used in our experiment.</p>
@@ -696,7 +696,7 @@ Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Starting experimental run with id: 1.
-Finished run in 0.015 s
+Finished run in 0.013 s
 </pre></div></div>
 </div>
 <p>The data may be retrieved using the <code class="docutils literal notranslate"><span class="pre">get_data_by_id</span></code> function. This function will always bring back the data <strong>as if</strong> it had been stored in a point-by-point format. That is to say, all parameters come out as array of the same length, with setpoints values appropriately repeated.</p>
@@ -732,15 +732,13 @@ Finished run in 0.015 s
    &#39;unit&#39;: &#39;Hz&#39;,
    &#39;label&#39;: &#39;&#39;},
   {&#39;name&#39;: &#39;SA_spectrum&#39;,
-   &#39;data&#39;: array([ 2.36681538e+00,  1.17422228e+00,  7.72488925e-01,  2.38605364e-01,
-          -1.92095427e-01, -3.93276542e-01, -5.73116319e-01, -3.41951612e+00,
-           1.34860414e+00, -5.37364369e-01, -1.03198506e+00, -4.31967095e-01,
-          -1.16260671e+00,  4.33348798e-01,  5.44108174e-01,  8.55609002e-01,
-          -1.83092291e+00,  3.66628302e-01,  1.53544904e+00,  2.17380282e-01,
-           1.43939583e+00, -2.25792647e-01,  5.46834539e-01, -1.25260173e+00,
-           2.01012484e+00,  6.25033649e-01,  3.68323884e-01, -2.70165029e-03,
-           2.00186541e+00, -7.98717665e-01,  2.55227489e+00, -9.92105694e-01,
-          -1.00745846e+00,  6.76463138e-01,  1.09261711e+00]),
+   &#39;data&#39;: array([ 0.22422884,  0.27182377, -0.03955062,  0.44175805,  0.63390113,
+          -0.70996766,  0.01885246, -0.43975289, -0.64127331,  0.99874598,
+          -0.64961226,  0.45824722,  0.68576607,  0.80739489, -0.00859333,
+           0.34818423, -0.17887095,  1.39803118,  0.12909114,  0.32450754,
+           0.7099834 , -0.09503466,  0.48118376, -1.86531893, -0.60382613,
+          -0.35791431, -1.52392453, -0.06562472,  0.18023171, -2.48148528,
+          -0.80236948, -0.51531033, -0.96270057,  1.43437524,  1.53736388]),
    &#39;unit&#39;: &#39;V/sqrt(Hz)&#39;,
    &#39;label&#39;: &#39;Noisy spectrum&#39;}]]
 </pre></div></div>
@@ -783,7 +781,7 @@ Finished run in 0.015 s
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Starting experimental run with id: 2.
-Finished run in 0.015 s
+Finished run in 0.012 s
 </pre></div></div>
 </div>
 <p>Reading back out the data, we can <strong>not</strong> see whether they were stored as <code class="docutils literal notranslate"><span class="pre">numeric</span></code> or <code class="docutils literal notranslate"><span class="pre">array</span></code> type.</p>
@@ -819,13 +817,13 @@ Finished run in 0.015 s
    &#39;unit&#39;: &#39;Hz&#39;,
    &#39;label&#39;: &#39;&#39;},
   {&#39;name&#39;: &#39;SA_spectrum&#39;,
-   &#39;data&#39;: array([-0.0607513 ,  0.4500847 ,  0.91044336,  1.31461749, -2.03217021,
-           1.50640842,  0.23974524, -0.152383  , -1.55343562, -0.93079823,
-           0.20853566, -0.15224232, -1.59593718, -0.76350654,  0.58441741,
-          -0.98589833, -1.299537  , -0.31864076, -0.12329399,  0.21474706,
-          -0.4578132 , -1.43915703,  1.29661719, -0.31153785,  0.2051218 ,
-           0.07036147,  0.28090818,  0.35814049,  0.32913234,  0.45989677,
-           1.0048002 ,  0.33585481, -0.35076637, -1.30720657,  0.88407817]),
+   &#39;data&#39;: array([-0.45497166, -0.46253994, -0.73317522,  1.65501561,  1.72578628,
+          -0.68734166, -1.3709099 , -1.37130656, -0.54428255, -0.85338644,
+          -0.73525094, -0.20365702,  0.74824993,  0.03142574, -0.81202434,
+           0.13984818,  0.88561796, -0.33281036, -1.5903033 , -0.77814983,
+          -1.30123124, -0.51291157,  1.06068643,  0.36450014,  1.5165073 ,
+           0.66263112, -0.94992623, -0.14828836, -1.05122065, -0.08862404,
+          -0.34878325, -0.63059589,  0.03016012, -0.67872345,  0.8979943 ]),
    &#39;unit&#39;: &#39;V/sqrt(Hz)&#39;,
    &#39;label&#39;: &#39;Noisy spectrum&#39;}]]
 </pre></div></div>
