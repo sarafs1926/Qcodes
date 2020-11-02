@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.2+338.gafc66cf5c5
+                0.19.2+344.g133bbeaf81
               </div>
             
           
@@ -169,8 +169,10 @@
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">abc</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">NamedTuple</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Literal</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">array</span> <span class="k">as</span> <span class="nn">arr</span>
@@ -195,7 +197,12 @@
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="parsestr"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.parsestr">[docs]</a><span class="k">def</span> <span class="nf">parsestr</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">_MarkerDescriptor</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">marker</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span>
+
+
+<div class="viewcode-block" id="parsestr"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.parsestr">[docs]</a><span class="k">def</span> <span class="nf">parsestr</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">v</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span></div>
 
 
@@ -307,26 +314,30 @@
         <span class="s1">&#39;DC_OUTPUT_LEVEL_N&#39;</span><span class="p">:</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span>  <span class="c1"># V</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span> <span class="n">num_channels</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">180</span><span class="p">,</span>
+            <span class="n">num_channels</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the AWG5014.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            name (str): name of the instrument</span>
-<span class="sd">            address (str): GPIB or ethernet address as used by VISA</span>
-<span class="sd">            timeout (float): visa timeout, in secs. long default (180)</span>
+<span class="sd">            name: name of the instrument</span>
+<span class="sd">            address: GPIB or ethernet address as used by VISA</span>
+<span class="sd">            timeout: visa timeout, in secs. long default (180)</span>
 <span class="sd">                to accommodate large waveforms</span>
-<span class="sd">            num_channels (int): number of channels on the device</span>
+<span class="sd">            num_channels: number of channels on the device</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_address</span> <span class="o">=</span> <span class="n">address</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num_channels</span> <span class="o">=</span> <span class="n">num_channels</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_values</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]]]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_function</span><span class="p">(</span><span class="s1">&#39;reset&#39;</span><span class="p">,</span> <span class="n">call_cmd</span><span class="o">=</span><span class="s1">&#39;*RST&#39;</span><span class="p">)</span>
@@ -573,13 +584,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_message</span><span class="p">()</span>
 
     <span class="c1"># Convenience parser</span>
-<div class="viewcode-block" id="Tektronix_AWG5014.newlinestripper"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.newlinestripper">[docs]</a>    <span class="k">def</span> <span class="nf">newlinestripper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.newlinestripper"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.newlinestripper">[docs]</a>    <span class="k">def</span> <span class="nf">newlinestripper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">string</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">string</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">string</span></div>
 
-    <span class="k">def</span> <span class="nf">_tek_outofrange_get_parser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_tek_outofrange_get_parser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="n">val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
         <span class="c1"># note that 9.9e37 is used as a generic out of range value</span>
         <span class="c1"># in tektronix instruments</span>
@@ -588,34 +599,13 @@
         <span class="k">return</span> <span class="n">val</span>
 
     <span class="c1"># Functions</span>
-<div class="viewcode-block" id="Tektronix_AWG5014.get_all"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_all">[docs]</a>    <span class="nd">@deprecate</span><span class="p">(</span><span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;snapshot(update=update)&#39;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">get_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Deprecated function. Please don&#39;t use.</span>
-
-<span class="sd">        Function to get a snapshot of the state of all parameters and</span>
-<span class="sd">        functions of the instrument.</span>
-<span class="sd">        Note: methods of the Tektronix_AWG5014 class are not included.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            update (bool): whether to return an updated state. Default: True</span>
-
-<span class="sd">        Returns:</span>
-
-<span class="sd">            dict: a JSON-serialisable dict with all information.</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            DeprecationWarning</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">snapshot</span><span class="p">(</span><span class="n">update</span><span class="o">=</span><span class="n">update</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Tektronix_AWG5014.get_state"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_state">[docs]</a>    <span class="k">def</span> <span class="nf">get_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.get_state"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_state">[docs]</a>    <span class="k">def</span> <span class="nf">get_state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;Idle&#39;</span><span class="p">,</span> <span class="s1">&#39;Waiting for trigger&#39;</span><span class="p">,</span> <span class="s1">&#39;Running&#39;</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This query returns the run state of the arbitrary waveform</span>
 <span class="sd">        generator or the sequencer.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: either &#39;Idle&#39;, &#39;Waiting for trigger&#39;, or &#39;Running&#39;.</span>
+<span class="sd">            Either &#39;Idle&#39;, &#39;Waiting for trigger&#39;, or &#39;Running&#39;.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            ValueError: if none of the three states above apply.</span>
@@ -631,11 +621,11 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="vm">__name__</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39; : AWG in undefined &#39;</span> <span class="o">+</span>
                                          <span class="s1">&#39;state &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">state</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.start"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.start"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Convenience function, identical to self.run()&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.run"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.run"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This command initiates the output of a waveform or a sequence.</span>
 <span class="sd">        This is equivalent to pressing Run/Stop button on the front panel.</span>
@@ -648,24 +638,24 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;AWGControl:RUN&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.stop"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.stop"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;This command stops the output of a waveform or a sequence.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;AWGControl:STOP&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.force_trigger"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.force_trigger">[docs]</a>    <span class="k">def</span> <span class="nf">force_trigger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.force_trigger"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.force_trigger">[docs]</a>    <span class="k">def</span> <span class="nf">force_trigger</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This command generates a trigger event. This is equivalent to</span>
 <span class="sd">        pressing the Force Trigger button on front panel.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;*TRG&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.get_folder_contents"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_folder_contents">[docs]</a>    <span class="k">def</span> <span class="nf">get_folder_contents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">print_contents</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.get_folder_contents"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_folder_contents">[docs]</a>    <span class="k">def</span> <span class="nf">get_folder_contents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">print_contents</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This query returns the current contents and state of the mass storage</span>
 <span class="sd">        media (on the AWG Windows machine).</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            print_contents (bool): If True, the folder name and the query</span>
+<span class="sd">            print_contents: If True, the folder name and the query</span>
 <span class="sd">                output are printed. Default: True.</span>
 
 <span class="sd">        Returns:</span>
@@ -679,7 +669,7 @@
                   <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">contents</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.get_current_folder_name"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_current_folder_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_current_folder_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.get_current_folder_name"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_current_folder_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_current_folder_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This query returns the current directory of the file system on the</span>
 <span class="sd">        arbitrary waveform generator. The current directory for the</span>
@@ -687,11 +677,11 @@
 <span class="sd">        directory in the Windows Explorer on the instrument.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: A string with the full path of the current folder.</span>
+<span class="sd">            A string with the full path of the current folder.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;MMEMory:CDIRectory?&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.set_current_folder_name"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_current_folder_name">[docs]</a>    <span class="k">def</span> <span class="nf">set_current_folder_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.set_current_folder_name"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_current_folder_name">[docs]</a>    <span class="k">def</span> <span class="nf">set_current_folder_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the current directory of the file system on the arbitrary</span>
 <span class="sd">        waveform generator. The current directory for the programmatic</span>
@@ -699,40 +689,38 @@
 <span class="sd">        Windows Explorer on the instrument.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            file_path (str): The full path.</span>
+<span class="sd">            file_path: The full path.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            tuple: tuple containing:</span>
-<span class="sd">              - int: The number of bytes written,</span>
-<span class="sd">              - enum &#39;Statuscode&#39;: whether the write was succesful</span>
+<span class="sd">            The number of bytes written to instrument</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">writecmd</span> <span class="o">=</span> <span class="s1">&#39;MMEMory:CDIRectory &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">writecmd</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_path</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.change_folder"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.change_folder">[docs]</a>    <span class="k">def</span> <span class="nf">change_folder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.change_folder"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.change_folder">[docs]</a>    <span class="k">def</span> <span class="nf">change_folder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Duplicate of self.set_current_folder_name&quot;&quot;&quot;</span>
         <span class="n">writecmd</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;MMEMory:CDIRectory &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">writecmd</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">folder</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.goto_root"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.goto_root">[docs]</a>    <span class="k">def</span> <span class="nf">goto_root</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.goto_root"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.goto_root">[docs]</a>    <span class="k">def</span> <span class="nf">goto_root</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the current directory of the file system on the arbitrary</span>
 <span class="sd">        waveform generator to C: (the &#39;root&#39; location in Windows).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;MMEMory:CDIRectory &quot;c:</span><span class="se">\\</span><span class="s1">..&quot;&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.create_and_goto_dir"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.create_and_goto_dir">[docs]</a>    <span class="k">def</span> <span class="nf">create_and_goto_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.create_and_goto_dir"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.create_and_goto_dir">[docs]</a>    <span class="k">def</span> <span class="nf">create_and_goto_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the current directory of the file system on the arbitrary</span>
 <span class="sd">        waveform generator. Creates the directory if if doesn&#39;t exist.</span>
 <span class="sd">        Queries the resulting folder for its contents.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            folder (str): The path of the directory to set as current.</span>
+<span class="sd">            folder: The path of the directory to set as current.</span>
 <span class="sd">                Note: this function expects only root level directories.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: A comma-seperated string of the folder contents.</span>
+<span class="sd">            A comma-seperated string of the folder contents.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">dircheck</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">, DIR&#39;</span> <span class="o">%</span> <span class="n">folder</span>
@@ -752,7 +740,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_folder_contents</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.all_channels_on"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.all_channels_on">[docs]</a>    <span class="k">def</span> <span class="nf">all_channels_on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.all_channels_on"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.all_channels_on">[docs]</a>    <span class="k">def</span> <span class="nf">all_channels_on</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the state of all channels to be ON. Note: only channels with</span>
 <span class="sd">        defined waveforms can be ON.</span>
@@ -760,7 +748,7 @@
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_channels</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ch</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">_state&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.all_channels_off"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.all_channels_off">[docs]</a>    <span class="k">def</span> <span class="nf">all_channels_off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.all_channels_off"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.all_channels_off">[docs]</a>    <span class="k">def</span> <span class="nf">all_channels_off</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Set the state of all channels to be OFF.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_channels</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ch</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">_state&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
@@ -769,14 +757,14 @@
     <span class="c1"># Sequences section #</span>
     <span class="c1">#####################</span>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.force_trigger_event"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.force_trigger_event">[docs]</a>    <span class="k">def</span> <span class="nf">force_trigger_event</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.force_trigger_event"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.force_trigger_event">[docs]</a>    <span class="k">def</span> <span class="nf">force_trigger_event</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This command generates a trigger event. Equivalent to</span>
 <span class="sd">        self.force_trigger.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;TRIGger:IMMediate&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.force_event"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.force_event">[docs]</a>    <span class="k">def</span> <span class="nf">force_event</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.force_event"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.force_event">[docs]</a>    <span class="k">def</span> <span class="nf">force_event</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This command generates a forced event. This is used to generate the</span>
 <span class="sd">        event when the sequence is waiting for an event jump. This is</span>
@@ -785,7 +773,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;EVENt:IMMediate&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_event_target_index"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_event_target_index">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_event_target_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_no</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_event_target_index"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_event_target_index">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_event_target_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_no</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This command sets the target index for</span>
 <span class="sd">        the sequencer’s event jump operation. Note that this will take</span>
@@ -793,13 +781,17 @@
 <span class="sd">        INDEX.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            element_no (int): The sequence element number</span>
-<span class="sd">            index (int): The index to set the target to</span>
+<span class="sd">            element_no: The sequence element number</span>
+<span class="sd">            index: The index to set the target to</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;SEQuence:&#39;</span> <span class="o">+</span>
                    <span class="sa">f</span><span class="s1">&#39;ELEMent</span><span class="si">{</span><span class="n">element_no</span><span class="si">}</span><span class="s1">:JTARGet:INDex </span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_goto_target_index"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_goto_target_index">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_goto_target_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_no</span><span class="p">,</span> <span class="n">goto_to_index_no</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_goto_target_index"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_goto_target_index">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_goto_target_index</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">element_no</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">goto_to_index_no</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This command sets the target index for the GOTO command of the</span>
 <span class="sd">        sequencer.  After generating the waveform specified in a</span>
@@ -814,22 +806,22 @@
 
 
 <span class="sd">        Args:</span>
-<span class="sd">            element_no (int): The sequence element number</span>
-<span class="sd">            goto_to_index_no (int) The target index number</span>
+<span class="sd">            element_no: The sequence element number</span>
+<span class="sd">            goto_to_index_no: The target index number</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;SEQuence:&#39;</span> <span class="o">+</span>
                    <span class="s1">&#39;ELEMent</span><span class="si">{}</span><span class="s1">:GOTO:INDex </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">element_no</span><span class="p">,</span>
                                                     <span class="n">goto_to_index_no</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_goto_state"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_goto_state">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_goto_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_no</span><span class="p">,</span> <span class="n">goto_state</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_goto_state"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_goto_state">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_goto_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_no</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">goto_state</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This command sets the GOTO state of the sequencer for the specified</span>
 <span class="sd">        sequence element.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            element_no (int): The sequence element number</span>
-<span class="sd">            goto_state (int): The GOTO state of the sequencer. Must be either</span>
+<span class="sd">            element_no: The sequence element number</span>
+<span class="sd">            goto_state: The GOTO state of the sequencer. Must be either</span>
 <span class="sd">                0 (OFF) or 1 (ON).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">allowed_states</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
@@ -840,7 +832,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;SEQuence:ELEMent</span><span class="si">{}</span><span class="s1">:GOTO:STATe </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">element_no</span><span class="p">,</span>
                                                              <span class="nb">int</span><span class="p">(</span><span class="n">goto_state</span><span class="p">)))</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_loopcnt_to_inf"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_loopcnt_to_inf">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_loopcnt_to_inf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_no</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_loopcnt_to_inf"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_loopcnt_to_inf">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_loopcnt_to_inf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                                <span class="n">element_no</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                                <span class="n">state</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This command sets the infinite looping state for a sequence</span>
 <span class="sd">        element. When an infinite loop is set on an element, the</span>
@@ -861,61 +855,73 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;SEQuence:ELEMent</span><span class="si">{}</span><span class="s1">:LOOP:INFinite </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">element_no</span><span class="p">,</span>
                                                                 <span class="nb">int</span><span class="p">(</span><span class="n">state</span><span class="p">)))</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.get_sqel_loopcnt"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sqel_loopcnt">[docs]</a>    <span class="k">def</span> <span class="nf">get_sqel_loopcnt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_no</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.get_sqel_loopcnt"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sqel_loopcnt">[docs]</a>    <span class="k">def</span> <span class="nf">get_sqel_loopcnt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_no</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This query returns the loop count (number of repetitions) of a</span>
 <span class="sd">        sequence element. Loop count setting for an element is ignored</span>
 <span class="sd">        if the infinite looping state is set to ON.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            element_no (int): The sequence element number. Default: 1.</span>
+<span class="sd">            element_no: The sequence element number. Default: 1.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SEQuence:ELEMent</span><span class="si">{</span><span class="n">element_no</span><span class="si">}</span><span class="s1">:LOOP:COUNt?&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_loopcnt"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_loopcnt">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_loopcnt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loopcount</span><span class="p">,</span> <span class="n">element_no</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_loopcnt"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_loopcnt">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_loopcnt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loopcount</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">element_no</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This command sets the loop count. Loop count setting for an</span>
 <span class="sd">        element is ignored if the infinite looping state is set to ON.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            loopcount (int): The number of times the sequence is being output.</span>
+<span class="sd">            loopcount: The number of times the sequence is being output.</span>
 <span class="sd">                The maximal possible number is 65536, beyond that: infinity.</span>
-<span class="sd">            element_no (int): The sequence element number. Default: 1.</span>
+<span class="sd">            element_no: The sequence element number. Default: 1.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;SEQuence:ELEMent</span><span class="si">{}</span><span class="s1">:LOOP:COUNt </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">element_no</span><span class="p">,</span>
                                                              <span class="n">loopcount</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_waveform"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_waveform">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_waveform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waveform_name</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">element_no</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_waveform"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_waveform">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_waveform</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">waveform_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">element_no</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This command sets the waveform for a sequence element on the specified</span>
 <span class="sd">        channel.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            waveform_name (str): Name of the waveform. Must be in the waveform</span>
+<span class="sd">            waveform_name: Name of the waveform. Must be in the waveform</span>
 <span class="sd">                list (either User Defined or Predefined).</span>
-<span class="sd">            channel (int): The output channel (1-4)</span>
-<span class="sd">            element_no (int): The sequence element number. Default: 1.</span>
+<span class="sd">            channel: The output channel (1-4)</span>
+<span class="sd">            element_no: The sequence element number. Default: 1.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;SEQuence:ELEMent</span><span class="si">{}</span><span class="s1">:WAVeform</span><span class="si">{}</span><span class="s1"> &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">element_no</span><span class="p">,</span>
                                                                <span class="n">channel</span><span class="p">,</span>
                                                                <span class="n">waveform_name</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.get_sqel_waveform"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sqel_waveform">[docs]</a>    <span class="k">def</span> <span class="nf">get_sqel_waveform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">element_no</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.get_sqel_waveform"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sqel_waveform">[docs]</a>    <span class="k">def</span> <span class="nf">get_sqel_waveform</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">element_no</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This query returns the waveform for a sequence element on the</span>
 <span class="sd">        specified channel.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            channel (int): The output channel (1-4)</span>
-<span class="sd">            element_no (int): The sequence element number. Default: 1.</span>
+<span class="sd">            channel: The output channel (1-4)</span>
+<span class="sd">            element_no: The sequence element number. Default: 1.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: The name of the waveform.</span>
+<span class="sd">            The name of the waveform.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;SEQuence:ELEMent</span><span class="si">{}</span><span class="s1">:WAVeform</span><span class="si">{}</span><span class="s1">?&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">element_no</span><span class="p">,</span>
                                                                 <span class="n">channel</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_trigger_wait"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_trigger_wait">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_trigger_wait</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_no</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_trigger_wait"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_trigger_wait">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_trigger_wait</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">element_no</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">state</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This command sets the wait trigger state for an element. Send</span>
 <span class="sd">        a trigger signal in one of the following ways:</span>
@@ -925,18 +931,18 @@
 <span class="sd">          * By using self.force_trigger or self.force_trigger_event</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            element_no (int): The sequence element number.</span>
-<span class="sd">            state (int): The wait trigger state. Must be either 0 (OFF)</span>
+<span class="sd">            element_no: The sequence element number.</span>
+<span class="sd">            state: The wait trigger state. Must be either 0 (OFF)</span>
 <span class="sd">                or 1 (ON). Default: 1.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: The current state (after setting it).</span>
+<span class="sd">            The current state (after setting it).</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SEQuence:ELEMent</span><span class="si">{</span><span class="n">element_no</span><span class="si">}</span><span class="s1">:TWAit </span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sqel_trigger_wait</span><span class="p">(</span><span class="n">element_no</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.get_sqel_trigger_wait"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sqel_trigger_wait">[docs]</a>    <span class="k">def</span> <span class="nf">get_sqel_trigger_wait</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_no</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.get_sqel_trigger_wait"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sqel_trigger_wait">[docs]</a>    <span class="k">def</span> <span class="nf">get_sqel_trigger_wait</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_no</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This query returns the wait trigger state for an element. Send</span>
 <span class="sd">        a trigger signal in one of the following ways:</span>
@@ -946,19 +952,25 @@
 <span class="sd">          * By using self.force_trigger or self.force_trigger_event</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            element_no (int): The sequence element number.</span>
+<span class="sd">            element_no: The sequence element number.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: The current state. Example: &#39;1&#39;.</span>
+<span class="sd">            The current state. Example: &#39;1&#39;.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SEQuence:ELEMent</span><span class="si">{</span><span class="n">element_no</span><span class="si">}</span><span class="s1">:TWAit?&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_event_jump_target_index"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_event_jump_target_index">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_event_jump_target_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_no</span><span class="p">,</span> <span class="n">jtar_index_no</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_event_jump_target_index"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_event_jump_target_index">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_event_jump_target_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                                         <span class="n">element_no</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                                         <span class="n">jtar_index_no</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Duplicate of set_sqel_event_target_index&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;SEQuence:ELEMent</span><span class="si">{}</span><span class="s1">:JTARget:INDex </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">element_no</span><span class="p">,</span>
                                                                 <span class="n">jtar_index_no</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_event_jump_type"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_event_jump_type">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_event_jump_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_no</span><span class="p">,</span> <span class="n">jtar_state</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.set_sqel_event_jump_type"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_event_jump_type">[docs]</a>    <span class="k">def</span> <span class="nf">set_sqel_event_jump_type</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">element_no</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">jtar_state</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This command sets the event jump target type for the jump for</span>
 <span class="sd">        the specified sequence element.  Generate an event in one of</span>
@@ -971,14 +983,14 @@
 <span class="sd">        * By using self.force_event</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            element_no (int): The sequence element number</span>
-<span class="sd">            jtar_state (str): The jump target type. Must be either &#39;INDEX&#39;,</span>
+<span class="sd">            element_no: The sequence element number</span>
+<span class="sd">            jtar_state: The jump target type. Must be either &#39;INDEX&#39;,</span>
 <span class="sd">                &#39;NEXT&#39;, or &#39;OFF&#39;.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;SEQuence:ELEMent</span><span class="si">{}</span><span class="s1">:JTARget:TYPE </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">element_no</span><span class="p">,</span>
                                                                <span class="n">jtar_state</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.get_sq_mode"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sq_mode">[docs]</a>    <span class="k">def</span> <span class="nf">get_sq_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.get_sq_mode"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sq_mode">[docs]</a>    <span class="k">def</span> <span class="nf">get_sq_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This query returns the type of the arbitrary waveform</span>
 <span class="sd">        generator&#39;s sequencer. The sequence is executed by the</span>
@@ -994,7 +1006,12 @@
     <span class="c1"># AWG file functions #</span>
     <span class="c1">######################</span>
 
-    <span class="k">def</span> <span class="nf">_pack_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_pack_record</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+            <span class="n">dtype</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        packs awg_file record into a struct in the folowing way:</span>
 <span class="sd">            struct.pack(fmtstring, namesize, datasize, name, data)</span>
@@ -1011,18 +1028,19 @@
 <span class="sd">        characters denoted in the documentation of the struct package</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            name (str): Name of the record (Example: &#39;MAGIC&#39; or</span>
-<span class="sd">            &#39;SAMPLING_RATE&#39;)</span>
-<span class="sd">            value (Union[int, str]): The value of that record.</span>
-<span class="sd">            dtype (str): String specifying the data type of the record.</span>
+<span class="sd">            name: Name of the record (Example: &#39;MAGIC&#39; or &#39;SAMPLING_RATE&#39;)</span>
+<span class="sd">            value: The value of that record.</span>
+<span class="sd">            dtype: String specifying the data type of the record.</span>
 <span class="sd">                Allowed values: &#39;h&#39;, &#39;d&#39;, &#39;s&#39;.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">record_data</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;&lt;&#39;</span> <span class="o">+</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">dtype</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;s&#39;</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
                 <span class="n">record_data</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ASCII&#39;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">Sequence</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">))</span>
                 <span class="n">record_data</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;&lt;&#39;</span> <span class="o">+</span> <span class="n">dtype</span><span class="p">,</span> <span class="o">*</span><span class="n">value</span><span class="p">)</span>
 
         <span class="c1"># the zero byte at the end the record name is the &quot;(Include NULL.)&quot;</span>
@@ -1034,7 +1052,7 @@
 
         <span class="k">return</span> <span class="n">packed_record</span>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.generate_sequence_cfg"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.generate_sequence_cfg">[docs]</a>    <span class="k">def</span> <span class="nf">generate_sequence_cfg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.generate_sequence_cfg"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.generate_sequence_cfg">[docs]</a>    <span class="k">def</span> <span class="nf">generate_sequence_cfg</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This function is used to generate a config file, that is used when</span>
 <span class="sd">        generating sequence files, from existing settings in the awg.</span>
@@ -1075,7 +1093,7 @@
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">AWG_sequence_cfg</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.generate_channel_cfg"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.generate_channel_cfg">[docs]</a>    <span class="k">def</span> <span class="nf">generate_channel_cfg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.generate_channel_cfg"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.generate_channel_cfg">[docs]</a>    <span class="k">def</span> <span class="nf">generate_channel_cfg</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to query if the current channel settings that have</span>
 <span class="sd">        been changed from their default value and put them in a</span>
@@ -1086,7 +1104,7 @@
 <span class="sd">        QCoDeS parameter.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            dict: A dict with the current setting for each entry in</span>
+<span class="sd">            A dict with the current setting for each entry in</span>
 <span class="sd">            AWG_FILE_FORMAT_HEAD iff this entry applies to the</span>
 <span class="sd">            AWG5014 AND has been changed from its default value.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1147,7 +1165,7 @@
 
         <span class="c1"># the return value of the parameter is different from what goes</span>
         <span class="c1"># into the .awg file, so we translate it</span>
-        <span class="k">def</span> <span class="nf">mrkdeltrans</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">mrkdeltrans</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
             <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">None</span>
             <span class="k">else</span><span class="p">:</span>
@@ -1161,7 +1179,7 @@
                       <span class="n">mrkdeltrans</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ch3_m2_del</span><span class="o">.</span><span class="n">get_latest</span><span class="p">()),</span>
                       <span class="n">mrkdeltrans</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ch4_m2_del</span><span class="o">.</span><span class="n">get_latest</span><span class="p">())]</span>
 
-        <span class="n">AWG_channel_cfg</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">AWG_channel_cfg</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="k">for</span> <span class="n">chan</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_channels</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">dirouts</span><span class="p">[</span><span class="n">chan</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1201,7 +1219,7 @@
         <span class="k">return</span> <span class="n">AWG_channel_cfg</span></div>
 
 <div class="viewcode-block" id="Tektronix_AWG5014.parse_marker_channel_name"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.parse_marker_channel_name">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">parse_marker_channel_name</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">parse_marker_channel_name</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_MarkerDescriptor</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        returns from the channel index and marker index from a marker</span>
 <span class="sd">        descriptor string e.g. &#39;1M1&#39;-&gt;(1,1)</span>
@@ -1209,15 +1227,15 @@
         <span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^(?P&lt;channel&gt;\d+)M(?P&lt;marker&gt;\d+)$&#39;</span><span class="p">,</span>
                        <span class="n">name</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">MarkerDescriptor</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;MarkerDescriptor&#39;</span><span class="p">,</span>
-                                      <span class="p">(</span><span class="s1">&#39;marker&#39;</span><span class="p">,</span> <span class="s1">&#39;channel&#39;</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">MarkerDescriptor</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;marker&#39;</span><span class="p">)),</span>
-                                <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;channel&#39;</span><span class="p">)))</span></div>
+
+        <span class="k">return</span> <span class="n">_MarkerDescriptor</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;marker&#39;</span><span class="p">)),</span>
+                                 <span class="n">channel</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;channel&#39;</span><span class="p">)))</span></div>
 
 <div class="viewcode-block" id="Tektronix_AWG5014.make_send_and_load_awg_file_from_forged_sequence"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_send_and_load_awg_file_from_forged_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">make_send_and_load_awg_file_from_forged_sequence</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span>
-            <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;customawgfile.awg&#39;</span><span class="p">,</span>
-            <span class="n">preservechannelsettings</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">seq</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+            <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;customawgfile.awg&#39;</span><span class="p">,</span>
+            <span class="n">preservechannelsettings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Makes an awg file form a forged sequence as produced by</span>
 <span class="sd">        broadbean.sequence.Sequence.forge. The forged sequence is a dictionary</span>
@@ -1236,8 +1254,8 @@
                 <span class="s1">&#39;The method &quot;make_send_and_load_awg_file_from_forged_sequence&quot; is &#39;</span>
                 <span class="s1">&#39; only available with the `lomentum` module installed&#39;</span><span class="p">)</span>
         <span class="n">n_channels</span> <span class="o">=</span> <span class="mi">4</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">available_waveform_channels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_channels</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">available_marker_channels</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">available_waveform_channels</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_channels</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">available_marker_channels</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">M</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">&#39;</span>
             <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">available_waveform_channels</span>
             <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
@@ -1284,6 +1302,7 @@
             <span class="c1"># Split up the dictionary into two, one for the markers the other</span>
             <span class="c1"># for the waveforms</span>
             <span class="n">step_waveforms</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">step_markers</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
             <span class="n">step_markers</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="n">defaultdict</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">channel</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">datadict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">channel</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">available_marker_channels</span><span class="p">:</span>
@@ -1347,47 +1366,52 @@
                                          <span class="n">preservechannelsettings</span><span class="o">=</span><span class="n">preservechannelsettings</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_generate_awg_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                           <span class="n">packed_waveforms</span><span class="p">,</span> <span class="n">wfname_l</span><span class="p">,</span> <span class="n">nrep</span><span class="p">,</span> <span class="n">trig_wait</span><span class="p">,</span>
-                           <span class="n">goto_state</span><span class="p">,</span> <span class="n">jump_to</span><span class="p">,</span> <span class="n">channel_cfg</span><span class="p">,</span>
-                           <span class="n">sequence_cfg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                           <span class="n">preservechannelsettings</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+                           <span class="n">packed_waveforms</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+                           <span class="n">wfname_l</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+                           <span class="n">nrep</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+                           <span class="n">trig_wait</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+                           <span class="n">goto_state</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+                           <span class="n">jump_to</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+                           <span class="n">channel_cfg</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+                           <span class="n">sequence_cfg</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                           <span class="n">preservechannelsettings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This function generates an .awg-file for uploading to the AWG.</span>
 <span class="sd">        The .awg-file contains a waveform list, full sequencing information</span>
 <span class="sd">        and instrument configuration settings.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            packed_waveforms (dict): dictionary containing packed waveforms</span>
+<span class="sd">            packed_waveforms: dictionary containing packed waveforms</span>
 <span class="sd">                with keys wfname_l</span>
 
-<span class="sd">            wfname_l (numpy.ndarray): array of waveform names, e.g.</span>
+<span class="sd">            wfname_l: array of waveform names, e.g.</span>
 <span class="sd">                array([[segm1_ch1,segm2_ch1..], [segm1_ch2,segm2_ch2..],...])</span>
 
-<span class="sd">            nrep (list): list of len(segments) of integers specifying the</span>
+<span class="sd">            nrep: list of len(segments) of integers specifying the</span>
 <span class="sd">                no. of repetions per sequence element.</span>
 <span class="sd">                Allowed values: 1 to 65536.</span>
 
-<span class="sd">            trig_wait (list): list of len(segments) of integers specifying the</span>
+<span class="sd">            trig_wait: list of len(segments) of integers specifying the</span>
 <span class="sd">                trigger wait state of each sequence element.</span>
 <span class="sd">                Allowed values: 0 (OFF) or 1 (ON).</span>
 
-<span class="sd">            goto_state (list): list of len(segments) of integers specifying the</span>
+<span class="sd">            goto_state: list of len(segments) of integers specifying the</span>
 <span class="sd">                goto state of each sequence element. Allowed values: 0 to 65536</span>
 <span class="sd">                (0 means next)</span>
 
-<span class="sd">            jump_to (list): list of len(segments) of integers specifying</span>
+<span class="sd">            jump_to: list of len(segments) of integers specifying</span>
 <span class="sd">                the logic jump state for each sequence element. Allowed values:</span>
 <span class="sd">                0 (OFF) or 1 (ON).</span>
 
-<span class="sd">            channel_cfg (dict): dictionary of valid channel configuration</span>
+<span class="sd">            channel_cfg: dictionary of valid channel configuration</span>
 <span class="sd">                records. See self.AWG_FILE_FORMAT_CHANNEL for a complete</span>
 <span class="sd">                overview of valid configuration parameters.</span>
 
-<span class="sd">            preservechannelsettings (bool): If True, the current channel</span>
+<span class="sd">            preservechannelsettings: If True, the current channel</span>
 <span class="sd">                settings are queried from the instrument and added to</span>
 <span class="sd">                channel_cfg (does not overwrite). Default: False.</span>
 
-<span class="sd">            sequence_cfg (dict): dictionary of valid head configuration records</span>
+<span class="sd">            sequence_cfg: dictionary of valid head configuration records</span>
 <span class="sd">                     (see self.AWG_FILE_FORMAT_HEAD)</span>
 <span class="sd">                     When an awg file is uploaded these settings will be set</span>
 <span class="sd">                     onto the AWG, any parameter not specified will be set to</span>
@@ -1487,23 +1511,21 @@
                     <span class="n">wf_record_str</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span> <span class="o">+</span> <span class="n">seq_record_str</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">awg_file</span>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.generate_awg_file"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.generate_awg_file">[docs]</a>    <span class="nd">@deprecate</span><span class="p">(</span><span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;make_awg_file, _generate_awg_file&#39;</span><span class="p">)</span>
-    <span class="nd">@wraps</span><span class="p">(</span><span class="n">_generate_awg_file</span><span class="p">,</span> <span class="n">assigned</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">WRAPPER_ASSIGNMENTS</span>
-                                              <span class="k">if</span> <span class="n">v</span> <span class="o">!=</span> <span class="s1">&#39;__name__&#39;</span><span class="p">))</span>
-    <span class="k">def</span> <span class="nf">generate_awg_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_awg_file</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Tektronix_AWG5014.send_awg_file"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.send_awg_file">[docs]</a>    <span class="k">def</span> <span class="nf">send_awg_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">awg_file</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.send_awg_file"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.send_awg_file">[docs]</a>    <span class="k">def</span> <span class="nf">send_awg_file</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">awg_file</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Writes an .awg-file onto the disk of the AWG.</span>
 <span class="sd">        Overwrites existing files.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            filename (str): The name that the file will get on</span>
+<span class="sd">            filename: The name that the file will get on</span>
 <span class="sd">                the AWG.</span>
-<span class="sd">            awg_file (bytes): A byte sequence containing the awg_file.</span>
+<span class="sd">            awg_file: A byte sequence containing the awg_file.</span>
 <span class="sd">                Usually the output of self.make_awg_file.</span>
-<span class="sd">            verbose (bool): A boolean to allow/suppress printing of messages</span>
+<span class="sd">            verbose: A boolean to allow/suppress printing of messages</span>
 <span class="sd">                about the status of the filw writing. Default: False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
@@ -1517,57 +1539,65 @@
         <span class="n">mes</span> <span class="o">=</span> <span class="n">name_str</span> <span class="o">+</span> <span class="n">size_str</span> <span class="o">+</span> <span class="n">awg_file</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">write_raw</span><span class="p">(</span><span class="n">mes</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.load_awg_file"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.load_awg_file">[docs]</a>    <span class="k">def</span> <span class="nf">load_awg_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.load_awg_file"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.load_awg_file">[docs]</a>    <span class="k">def</span> <span class="nf">load_awg_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Loads an .awg-file from the disc of the AWG into the AWG memory.</span>
 <span class="sd">        This may overwrite all instrument settings, the waveform list, and the</span>
 <span class="sd">        sequence in the sequencer.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            filename (str): The filename of the .awg-file to load.</span>
+<span class="sd">            filename: The filename of the .awg-file to load.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">s</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;AWGControl:SREStore &quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">&quot;&#39;</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;ASCII&quot;</span><span class="p">)</span>
         <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Loading awg file using </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">write_raw</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">write_raw</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
         <span class="c1"># we must update the appropriate parameter(s) for the sequence</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sequence_length</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence_length</span><span class="o">.</span><span class="n">get</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.make_awg_file"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_awg_file">[docs]</a>    <span class="k">def</span> <span class="nf">make_awg_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waveforms</span><span class="p">,</span> <span class="n">m1s</span><span class="p">,</span> <span class="n">m2s</span><span class="p">,</span>
-                      <span class="n">nreps</span><span class="p">,</span> <span class="n">trig_waits</span><span class="p">,</span>
-                      <span class="n">goto_states</span><span class="p">,</span> <span class="n">jump_tos</span><span class="p">,</span>
-                      <span class="n">channels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">preservechannelsettings</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.make_awg_file"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_awg_file">[docs]</a>    <span class="k">def</span> <span class="nf">make_awg_file</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">waveforms</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span>
+            <span class="n">m1s</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span>
+            <span class="n">m2s</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span>
+            <span class="n">nreps</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+            <span class="n">trig_waits</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+            <span class="n">goto_states</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+            <span class="n">jump_tos</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+            <span class="n">channels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">preservechannelsettings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
-<span class="sd">            waveforms (list): A list of the waveforms to be packed. The list</span>
+<span class="sd">            waveforms: A list of the waveforms to be packed. The list</span>
 <span class="sd">                should be filled like so:</span>
 <span class="sd">                [[wfm1ch1, wfm2ch1, ...], [wfm1ch2, wfm2ch2], ...]</span>
 <span class="sd">                Each waveform should be a numpy array with values in the range</span>
 <span class="sd">                -1 to 1 (inclusive). If you do not wish to send waveforms to</span>
 <span class="sd">                channels 1 and 2, use the channels parameter.</span>
 
-<span class="sd">            m1s (list): A list of marker 1&#39;s. The list should be filled</span>
+<span class="sd">            m1s: A list of marker 1&#39;s. The list should be filled</span>
 <span class="sd">                like so:</span>
 <span class="sd">                [[elem1m1ch1, elem2m1ch1, ...], [elem1m1ch2, elem2m1ch2], ...]</span>
 <span class="sd">                Each marker should be a numpy array containing only 0&#39;s and 1&#39;s</span>
 
-<span class="sd">            m2s (list): A list of marker 2&#39;s. The list should be filled</span>
+<span class="sd">            m2s: A list of marker 2&#39;s. The list should be filled</span>
 <span class="sd">                like so:</span>
 <span class="sd">                [[elem1m2ch1, elem2m2ch1, ...], [elem1m2ch2, elem2m2ch2], ...]</span>
 <span class="sd">                Each marker should be a numpy array containing only 0&#39;s and 1&#39;s</span>
 
-<span class="sd">            nreps (list): List of integers specifying the no. of</span>
-<span class="sd">                repetions per sequence element.  Allowed values: 0 to</span>
-<span class="sd">                65536. O corresponds to Infinite repetions.</span>
+<span class="sd">            nreps: List of integers specifying the no. of</span>
+<span class="sd">                repetitions per sequence element.  Allowed values: 0 to</span>
+<span class="sd">                65536. O corresponds to Infinite repetitions.</span>
 
-<span class="sd">            trig_waits (list): List of len(segments) of integers specifying the</span>
+<span class="sd">            trig_waits: List of len(segments) of integers specifying the</span>
 <span class="sd">                trigger wait state of each sequence element.</span>
 <span class="sd">                Allowed values: 0 (OFF) or 1 (ON).</span>
 
-<span class="sd">            goto_states (list): List of len(segments) of integers</span>
+<span class="sd">            goto_states: List of len(segments) of integers</span>
 <span class="sd">                specifying the goto state of each sequence</span>
 <span class="sd">                element. Allowed values: 0 to 65536 (0 means next)</span>
 
-<span class="sd">            jump_tos (list): List of len(segments) of integers specifying</span>
+<span class="sd">            jump_tos: List of len(segments) of integers specifying</span>
 <span class="sd">                the logic jump state for each sequence element. Allowed values:</span>
 <span class="sd">                0 (OFF) or 1 (ON).</span>
 
@@ -1582,87 +1612,99 @@
 <span class="sd">            &quot;&quot;&quot;</span>
         <span class="n">packed_wfs</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">waveform_names</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">waveforms</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
-            <span class="n">waveforms</span> <span class="o">=</span> <span class="p">[</span><span class="n">waveforms</span><span class="p">]</span>
-            <span class="n">m1s</span> <span class="o">=</span> <span class="p">[</span><span class="n">m1s</span><span class="p">]</span>
-            <span class="n">m2s</span> <span class="o">=</span> <span class="p">[</span><span class="n">m2s</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">waveforms</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">waveforms</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">abc</span><span class="o">.</span><span class="n">Sequence</span><span class="p">):</span>
+            <span class="n">waveforms_int</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="n">cast</span><span class="p">(</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">waveforms</span><span class="p">)]</span>
+            <span class="n">m1s_int</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="n">cast</span><span class="p">(</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">m1s</span><span class="p">)]</span>
+            <span class="n">m2s_int</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="n">cast</span><span class="p">(</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">m2s</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">waveforms_int</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span> <span class="n">waveforms</span><span class="p">)</span>
+            <span class="n">m1s_int</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span> <span class="n">m1s</span><span class="p">)</span>
+            <span class="n">m2s_int</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span> <span class="n">m2s</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">waveforms_int</span><span class="p">)):</span>
             <span class="n">namelist</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">jj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">waveforms</span><span class="p">[</span><span class="n">ii</span><span class="p">])):</span>
+            <span class="k">for</span> <span class="n">jj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">waveforms_int</span><span class="p">[</span><span class="n">ii</span><span class="p">])):</span>
                 <span class="k">if</span> <span class="n">channels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">thisname</span> <span class="o">=</span> <span class="s1">&#39;wfm</span><span class="si">{:03d}</span><span class="s1">ch</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">jj</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ii</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">thisname</span> <span class="o">=</span> <span class="s1">&#39;wfm</span><span class="si">{:03d}</span><span class="s1">ch</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">jj</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">channels</span><span class="p">[</span><span class="n">ii</span><span class="p">])</span>
                 <span class="n">namelist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thisname</span><span class="p">)</span>
 
-                <span class="n">package</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pack_waveform</span><span class="p">(</span><span class="n">waveforms</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">],</span>
-                                              <span class="n">m1s</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">],</span>
-                                              <span class="n">m2s</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">])</span>
+                <span class="n">package</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pack_waveform</span><span class="p">(</span><span class="n">waveforms_int</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">],</span>
+                                              <span class="n">m1s_int</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">],</span>
+                                              <span class="n">m2s_int</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">])</span>
 
                 <span class="n">packed_wfs</span><span class="p">[</span><span class="n">thisname</span><span class="p">]</span> <span class="o">=</span> <span class="n">package</span>
             <span class="n">waveform_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">namelist</span><span class="p">)</span>
 
         <span class="n">wavenamearray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">waveform_names</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;str&#39;</span><span class="p">)</span>
 
-        <span class="n">channel_cfg</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">channel_cfg</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_awg_file</span><span class="p">(</span>
             <span class="n">packed_wfs</span><span class="p">,</span> <span class="n">wavenamearray</span><span class="p">,</span> <span class="n">nreps</span><span class="p">,</span> <span class="n">trig_waits</span><span class="p">,</span> <span class="n">goto_states</span><span class="p">,</span>
             <span class="n">jump_tos</span><span class="p">,</span> <span class="n">channel_cfg</span><span class="p">,</span>
             <span class="n">preservechannelsettings</span><span class="o">=</span><span class="n">preservechannelsettings</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.make_send_and_load_awg_file"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_send_and_load_awg_file">[docs]</a>    <span class="k">def</span> <span class="nf">make_send_and_load_awg_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waveforms</span><span class="p">,</span> <span class="n">m1s</span><span class="p">,</span> <span class="n">m2s</span><span class="p">,</span>
-                                    <span class="n">nreps</span><span class="p">,</span> <span class="n">trig_waits</span><span class="p">,</span>
-                                    <span class="n">goto_states</span><span class="p">,</span> <span class="n">jump_tos</span><span class="p">,</span>
-                                    <span class="n">channels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                    <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;customawgfile.awg&#39;</span><span class="p">,</span>
-                                    <span class="n">preservechannelsettings</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.make_send_and_load_awg_file"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_send_and_load_awg_file">[docs]</a>    <span class="k">def</span> <span class="nf">make_send_and_load_awg_file</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">waveforms</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span>
+            <span class="n">m1s</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span>
+            <span class="n">m2s</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span>
+            <span class="n">nreps</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+            <span class="n">trig_waits</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+            <span class="n">goto_states</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+            <span class="n">jump_tos</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+            <span class="n">channels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;customawgfile.awg&#39;</span><span class="p">,</span>
+            <span class="n">preservechannelsettings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Makes an .awg-file, sends it to the AWG and loads it. The .awg-file</span>
 <span class="sd">        is uploaded to C:\\\\Users\\\\OEM\\\\Documents. The waveforms appear in</span>
 <span class="sd">        the user defined waveform list with names wfm001ch1, wfm002ch1, ...</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            waveforms (list): A list of the waveforms to upload. The list</span>
+<span class="sd">            waveforms: A list of the waveforms to upload. The list</span>
 <span class="sd">                should be filled like so:</span>
 <span class="sd">                [[wfm1ch1, wfm2ch1, ...], [wfm1ch2, wfm2ch2], ...]</span>
 <span class="sd">                Each waveform should be a numpy array with values in the range</span>
 <span class="sd">                -1 to 1 (inclusive). If you do not wish to send waveforms to</span>
 <span class="sd">                channels 1 and 2, use the channels parameter.</span>
 
-<span class="sd">            m1s (list): A list of marker 1&#39;s. The list should be filled</span>
+<span class="sd">            m1s: A list of marker 1&#39;s. The list should be filled</span>
 <span class="sd">                like so:</span>
 <span class="sd">                [[elem1m1ch1, elem2m1ch1, ...], [elem1m1ch2, elem2m1ch2], ...]</span>
 <span class="sd">                Each marker should be a numpy array containing only 0&#39;s and 1&#39;s</span>
 
-<span class="sd">            m2s (list): A list of marker 2&#39;s. The list should be filled</span>
+<span class="sd">            m2s: A list of marker 2&#39;s. The list should be filled</span>
 <span class="sd">                like so:</span>
 <span class="sd">                [[elem1m2ch1, elem2m2ch1, ...], [elem1m2ch2, elem2m2ch2], ...]</span>
 <span class="sd">                Each marker should be a numpy array containing only 0&#39;s and 1&#39;s</span>
 
-<span class="sd">            nreps (list): List of integers specifying the no. of</span>
+<span class="sd">            nreps: List of integers specifying the no. of</span>
 <span class="sd">                repetions per sequence element.  Allowed values: 0 to</span>
 <span class="sd">                65536. 0 corresponds to Infinite repetions.</span>
 
-<span class="sd">            trig_waits (list): List of len(segments) of integers specifying the</span>
+<span class="sd">            trig_waits: List of len(segments) of integers specifying the</span>
 <span class="sd">                trigger wait state of each sequence element.</span>
 <span class="sd">                Allowed values: 0 (OFF) or 1 (ON).</span>
 
-<span class="sd">            goto_states (list): List of len(segments) of integers</span>
+<span class="sd">            goto_states: List of len(segments) of integers</span>
 <span class="sd">                specifying the goto state of each sequence</span>
 <span class="sd">                element. Allowed values: 0 to 65536 (0 means next)</span>
 
-<span class="sd">            jump_tos (list): List of len(segments) of integers specifying</span>
+<span class="sd">            jump_tos: List of len(segments) of integers specifying</span>
 <span class="sd">                the logic jump state for each sequence element. Allowed values:</span>
 <span class="sd">                0 (OFF) or 1 (ON).</span>
 
-<span class="sd">            channels (list): List of channels to send the waveforms to.</span>
+<span class="sd">            channels: List of channels to send the waveforms to.</span>
 <span class="sd">                Example: [1, 3, 2]</span>
 
-<span class="sd">            filename (str): The name of the .awg-file. Should end with the .awg</span>
+<span class="sd">            filename: The name of the .awg-file. Should end with the .awg</span>
 <span class="sd">                extension. Default: &#39;customawgfile.awg&#39;</span>
 
-<span class="sd">            preservechannelsettings (bool): If True, the current channel</span>
+<span class="sd">            preservechannelsettings: If True, the current channel</span>
 <span class="sd">                settings are found from the parameter history and added to</span>
 <span class="sd">                the .awg file. Else, channel settings are reset to the factory</span>
 <span class="sd">                default values. Default: True.</span>
@@ -1685,59 +1727,64 @@
         <span class="n">loadfrom</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">currentdir</span><span class="si">}{</span><span class="n">filename</span><span class="si">}</span><span class="s1">&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">load_awg_file</span><span class="p">(</span><span class="n">loadfrom</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.make_and_save_awg_file"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_and_save_awg_file">[docs]</a>    <span class="k">def</span> <span class="nf">make_and_save_awg_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waveforms</span><span class="p">,</span> <span class="n">m1s</span><span class="p">,</span> <span class="n">m2s</span><span class="p">,</span>
-                               <span class="n">nreps</span><span class="p">,</span> <span class="n">trig_waits</span><span class="p">,</span>
-                               <span class="n">goto_states</span><span class="p">,</span> <span class="n">jump_tos</span><span class="p">,</span>
-                               <span class="n">channels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                               <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;customawgfile.awg&#39;</span><span class="p">,</span>
-                               <span class="n">preservechannelsettings</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.make_and_save_awg_file"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_and_save_awg_file">[docs]</a>    <span class="k">def</span> <span class="nf">make_and_save_awg_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                               <span class="n">waveforms</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span>
+                               <span class="n">m1s</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span>
+                               <span class="n">m2s</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span>
+                               <span class="n">nreps</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+                               <span class="n">trig_waits</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+                               <span class="n">goto_states</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+                               <span class="n">jump_tos</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+                               <span class="n">channels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                               <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;customawgfile.awg&#39;</span><span class="p">,</span>
+                               <span class="n">preservechannelsettings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Makes an .awg-file and saves it locally.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            waveforms (list): A list of the waveforms to upload. The list</span>
+<span class="sd">            waveforms: A list of the waveforms to upload. The list</span>
 <span class="sd">                should be filled like so:</span>
 <span class="sd">                [[wfm1ch1, wfm2ch1, ...], [wfm1ch2, wfm2ch2], ...]</span>
 <span class="sd">                Each waveform should be a numpy array with values in the range</span>
 <span class="sd">                -1 to 1 (inclusive). If you do not wish to send waveforms to</span>
 <span class="sd">                channels 1 and 2, use the channels parameter.</span>
 
-<span class="sd">            m1s (list): A list of marker 1&#39;s. The list should be filled</span>
+<span class="sd">            m1s: A list of marker 1&#39;s. The list should be filled</span>
 <span class="sd">                like so:</span>
 <span class="sd">                [[elem1m1ch1, elem2m1ch1, ...], [elem1m1ch2, elem2m1ch2], ...]</span>
 <span class="sd">                Each marker should be a numpy array containing only 0&#39;s and 1&#39;s</span>
 
-<span class="sd">            m2s (list): A list of marker 2&#39;s. The list should be filled</span>
+<span class="sd">            m2s: A list of marker 2&#39;s. The list should be filled</span>
 <span class="sd">                like so:</span>
 <span class="sd">                [[elem1m2ch1, elem2m2ch1, ...], [elem1m2ch2, elem2m2ch2], ...]</span>
 <span class="sd">                Each marker should be a numpy array containing only 0&#39;s and 1&#39;s</span>
 
-<span class="sd">            nreps (list): List of integers specifying the no. of</span>
+<span class="sd">            nreps: List of integers specifying the no. of</span>
 <span class="sd">                repetions per sequence element.  Allowed values: 0 to</span>
 <span class="sd">                65536. O corresponds to Infinite repetions.</span>
 
-<span class="sd">            trig_waits (list): List of len(segments) of integers specifying the</span>
+<span class="sd">            trig_waits: List of len(segments) of integers specifying the</span>
 <span class="sd">                trigger wait state of each sequence element.</span>
 <span class="sd">                Allowed values: 0 (OFF) or 1 (ON).</span>
 
-<span class="sd">            goto_states (list): List of len(segments) of integers</span>
+<span class="sd">            goto_states: List of len(segments) of integers</span>
 <span class="sd">                specifying the goto state of each sequence</span>
 <span class="sd">                element. Allowed values: 0 to 65536 (0 means next)</span>
 
-<span class="sd">            jump_tos (list): List of len(segments) of integers specifying</span>
+<span class="sd">            jump_tos: List of len(segments) of integers specifying</span>
 <span class="sd">                the logic jump state for each sequence element. Allowed values:</span>
 <span class="sd">                0 (OFF) or 1 (ON).</span>
 
-<span class="sd">            channels (list): List of channels to send the waveforms to.</span>
+<span class="sd">            channels: List of channels to send the waveforms to.</span>
 <span class="sd">                Example: [1, 3, 2]</span>
 
-<span class="sd">            preservechannelsettings (bool): If True, the current channel</span>
+<span class="sd">            preservechannelsettings: If True, the current channel</span>
 <span class="sd">                settings are found from the parameter history and added to</span>
 <span class="sd">                the .awg file. Else, channel settings are not written in the</span>
 <span class="sd">                file and will be reset to factory default when the file is</span>
 <span class="sd">                loaded. Default: True.</span>
 
-<span class="sd">            filename (str): The full path of the .awg-file. Should end with the</span>
+<span class="sd">            filename: The full path of the .awg-file. Should end with the</span>
 <span class="sd">                .awg extension. Default: &#39;customawgfile.awg&#39;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">awg_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_awg_file</span><span class="p">(</span>
@@ -1747,18 +1794,23 @@
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fid</span><span class="p">:</span>
             <span class="n">fid</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">awg_file</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.get_error"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_error">[docs]</a>    <span class="k">def</span> <span class="nf">get_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.get_error"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_error">[docs]</a>    <span class="k">def</span> <span class="nf">get_error</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This function retrieves and returns data from the error and</span>
 <span class="sd">        event queues.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: String containing the error/event number, the error/event\</span>
-<span class="sd">                description.</span>
+<span class="sd">            String containing the error/event number, the error/event</span>
+<span class="sd">            description.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;SYSTEM:ERRor:NEXT?&#39;</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">_pack_waveform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wf</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_pack_waveform</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">wf</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+            <span class="n">m1</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+            <span class="n">m2</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Converts/packs a waveform and two markers into a 16-bit format</span>
 <span class="sd">        according to the AWG Integer format specification.</span>
@@ -1769,13 +1821,13 @@
 <span class="sd">        arrays should consist only of 0&#39;s and 1&#39;s.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            wf (numpy.ndarray): A numpy array containing the waveform. The</span>
+<span class="sd">            wf: A numpy array containing the waveform. The</span>
 <span class="sd">                data type of wf is unimportant.</span>
-<span class="sd">            m1 (numpy.ndarray): A numpy array containing the first marker.</span>
-<span class="sd">            m2 (numpy.ndarray): A numpy array containing the second marker.</span>
+<span class="sd">            m1: A numpy array containing the first marker.</span>
+<span class="sd">            m2: A numpy array containing the second marker.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            numpy.ndarray: An array of unsigned 16 bit integers.</span>
+<span class="sd">            An array of unsigned 16 bit integers.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            Exception: if the lengths of w, m1, and m2 don&#39;t match</span>
@@ -1805,26 +1857,25 @@
             <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">packed_wf</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">packed_wf</span>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.pack_waveform"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.pack_waveform">[docs]</a>    <span class="nd">@deprecate</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s1">&#39;this function is for private use only.&#39;</span><span class="p">)</span>
-    <span class="nd">@wraps</span><span class="p">(</span><span class="n">_pack_waveform</span><span class="p">,</span> <span class="n">assigned</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">WRAPPER_ASSIGNMENTS</span>
-                                          <span class="k">if</span> <span class="n">v</span> <span class="o">!=</span> <span class="s1">&#39;__name__&#39;</span><span class="p">))</span>
-    <span class="k">def</span> <span class="nf">pack_waveform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pack_waveform</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
-
     <span class="c1">###########################</span>
     <span class="c1"># Waveform file functions #</span>
     <span class="c1">###########################</span>
 
-    <span class="k">def</span> <span class="nf">_file_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wf</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">clock</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_file_dict</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">wf</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+            <span class="n">m1</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+            <span class="n">m2</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+            <span class="n">clock</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Make a file dictionary as used by self.send_waveform_to_list</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            wf (numpy.ndarray): A numpy array containing the waveform. The</span>
+<span class="sd">            wf: A numpy array containing the waveform. The</span>
 <span class="sd">                data type of wf is unimportant.</span>
-<span class="sd">            m1 (numpy.ndarray): A numpy array containing the first marker.</span>
-<span class="sd">            m2 (numpy.ndarray): A numpy array containing the second marker.</span>
-<span class="sd">            clock (float): The desired clock frequency</span>
+<span class="sd">            m1: A numpy array containing the first marker.</span>
+<span class="sd">            m2: A numpy array containing the second marker.</span>
+<span class="sd">            clock: The desired clock frequency</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            dict: A dictionary with keys &#39;w&#39;, &#39;m1&#39;, &#39;m2&#39;, &#39;clock_freq&#39;, and</span>
@@ -1841,7 +1892,7 @@
 
         <span class="k">return</span> <span class="n">outdict</span>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.delete_all_waveforms_from_list"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.delete_all_waveforms_from_list">[docs]</a>    <span class="k">def</span> <span class="nf">delete_all_waveforms_from_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.delete_all_waveforms_from_list"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.delete_all_waveforms_from_list">[docs]</a>    <span class="k">def</span> <span class="nf">delete_all_waveforms_from_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete all user-defined waveforms in the list in a single</span>
 <span class="sd">        action. Note that there is no “UNDO” action once the waveforms</span>
@@ -1854,11 +1905,14 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;WLISt:WAVeform:DELete ALL&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.get_filenames"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_filenames">[docs]</a>    <span class="k">def</span> <span class="nf">get_filenames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.get_filenames"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_filenames">[docs]</a>    <span class="k">def</span> <span class="nf">get_filenames</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Duplicate of self.get_folder_contents&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;MMEMory:CATalog?&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.send_DC_pulse"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.send_DC_pulse">[docs]</a>    <span class="k">def</span> <span class="nf">send_DC_pulse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">DC_channel_number</span><span class="p">,</span> <span class="n">set_level</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.send_DC_pulse"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.send_DC_pulse">[docs]</a>    <span class="k">def</span> <span class="nf">send_DC_pulse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                      <span class="n">DC_channel_number</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                      <span class="n">set_level</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                      <span class="n">length</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sets the DC level on the specified channel, waits a while and then</span>
 <span class="sd">        resets it to what it was before.</span>
@@ -1879,12 +1933,12 @@
         <span class="n">sleep</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
         <span class="n">chandcs</span><span class="p">[</span><span class="n">DC_channel_number</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">restore</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.is_awg_ready"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.is_awg_ready">[docs]</a>    <span class="k">def</span> <span class="nf">is_awg_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.is_awg_ready"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.is_awg_ready">[docs]</a>    <span class="k">def</span> <span class="nf">is_awg_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Assert if the AWG is ready.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            bool: True, irrespective of anything.</span>
+<span class="sd">            True, irrespective of anything.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;*OPC?&#39;</span><span class="p">)</span>
@@ -1895,7 +1949,12 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
         <span class="k">return</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.send_waveform_to_list"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.send_waveform_to_list">[docs]</a>    <span class="k">def</span> <span class="nf">send_waveform_to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">wfmname</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.send_waveform_to_list"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.send_waveform_to_list">[docs]</a>    <span class="k">def</span> <span class="nf">send_waveform_to_list</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">w</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+            <span class="n">m1</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+            <span class="n">m2</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+            <span class="n">wfmname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Send a single complete waveform directly to the &quot;User defined&quot;</span>
 <span class="sd">        waveform list (prepend it). The data type of the input arrays</span>
@@ -1903,10 +1962,10 @@
 <span class="sd">        and 0&#39;s.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            w (numpy.ndarray): The waveform</span>
-<span class="sd">            m1 (numpy.ndarray): Marker1</span>
-<span class="sd">            m2 (numpy.ndarray): Marker2</span>
-<span class="sd">            wfmname (str): waveform name</span>
+<span class="sd">            w: The waveform</span>
+<span class="sd">            m1: Marker1</span>
+<span class="sd">            m2: Marker2</span>
+<span class="sd">            wfmname: waveform name</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            Exception: if the lengths of w, m1, and m2 don&#39;t match</span>
@@ -1946,25 +2005,25 @@
         <span class="n">number</span> <span class="o">=</span> <span class="p">((</span><span class="mi">2</span><span class="o">**</span><span class="mi">13</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">13</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">w</span> <span class="o">+</span> <span class="mi">2</span><span class="o">**</span><span class="mi">14</span> <span class="o">*</span>
                   <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">m1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">**</span><span class="mi">15</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">m2</span><span class="p">))</span>
         <span class="n">number</span> <span class="o">=</span> <span class="n">number</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
-        <span class="n">ws</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span>
+        <span class="n">ws_array</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span>
 
-        <span class="n">ws</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
-        <span class="n">s1</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;WLISt:WAVeform:DATA &quot;</span><span class="si">{</span><span class="n">wfmname</span><span class="si">}</span><span class="s1">&quot;,&#39;</span>
-        <span class="n">s1</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span>
+        <span class="n">ws</span> <span class="o">=</span> <span class="n">ws_array</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
+        <span class="n">s1_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;WLISt:WAVeform:DATA &quot;</span><span class="si">{</span><span class="n">wfmname</span><span class="si">}</span><span class="s1">&quot;,&#39;</span>
+        <span class="n">s1</span> <span class="o">=</span> <span class="n">s1_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span>
         <span class="n">s3</span> <span class="o">=</span> <span class="n">ws</span>
-        <span class="n">s2</span> <span class="o">=</span> <span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s3</span><span class="p">))))</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s3</span><span class="p">))</span>
-        <span class="n">s2</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span>
+        <span class="n">s2_str</span> <span class="o">=</span> <span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s3</span><span class="p">))))</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s3</span><span class="p">))</span>
+        <span class="n">s2</span> <span class="o">=</span> <span class="n">s2_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span>
 
         <span class="n">mes</span> <span class="o">=</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span> <span class="o">+</span> <span class="n">s3</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">write_raw</span><span class="p">(</span><span class="n">mes</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Tektronix_AWG5014.clear_message_queue"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.clear_message_queue">[docs]</a>    <span class="k">def</span> <span class="nf">clear_message_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Tektronix_AWG5014.clear_message_queue"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.clear_message_queue">[docs]</a>    <span class="k">def</span> <span class="nf">clear_message_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to clear up (flush) the VISA message queue of the AWG</span>
 <span class="sd">        instrument. Reads all messages in the the queue.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            verbose (Bool): If True, the read messages are printed.</span>
+<span class="sd">            verbose: If True, the read messages are printed.</span>
 <span class="sd">                Default: False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">original_timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">timeout</span>

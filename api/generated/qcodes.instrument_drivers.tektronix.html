@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.19.2+338.gafc66cf5c5
+                0.19.2+344.g133bbeaf81
               </div>
             
           
@@ -254,12 +254,12 @@
 <span id="qcodes-instrument-drivers-tektronix-awg5014-module"></span><h2>qcodes.instrument_drivers.tektronix.AWG5014 module<a class="headerlink" href="#module-qcodes.instrument_drivers.tektronix.AWG5014" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.parsestr">
-<code class="sig-prename descclassname">qcodes.instrument_drivers.tektronix.AWG5014.</code><code class="sig-name descname">parsestr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">v</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#parsestr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.parsestr" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.instrument_drivers.tektronix.AWG5014.</code><code class="sig-name descname">parsestr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">v</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#parsestr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.parsestr" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.tektronix.AWG5014.</code><code class="sig-name descname">Tektronix_AWG5014</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">address</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">180</span></em>, <em class="sig-param"><span class="n">num_channels</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.tektronix.AWG5014.</code><code class="sig-name descname">Tektronix_AWG5014</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">address</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">timeout</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span> <span class="o">=</span> <span class="default_value">180</span></em>, <em class="sig-param"><span class="n">num_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span> <span class="o">=</span> <span class="default_value">4</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../instrument/visa.html#qcodes.instrument.visa.VisaInstrument" title="qcodes.instrument.visa.VisaInstrument"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument.visa.VisaInstrument</span></code></a></p>
 <p>This is the QCoDeS driver for the Tektronix AWG5014
 Arbitrary Waveform Generator.</p>
@@ -292,15 +292,12 @@ corresponding parameters.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – name of the instrument</p></li>
-<li><p><strong>address</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – GPIB or ethernet address as used by VISA</p></li>
-<li><p><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – visa timeout, in secs. long default (180)
+<li><p><strong>name</strong> – name of the instrument</p></li>
+<li><p><strong>address</strong> – GPIB or ethernet address as used by VISA</p></li>
+<li><p><strong>timeout</strong> – visa timeout, in secs. long default (180)
 to accommodate large waveforms</p></li>
-<li><p><strong>num_channels</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – number of channels on the device</p></li>
+<li><p><strong>num_channels</strong> – number of channels on the device</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 <dl class="py attribute">
@@ -315,59 +312,33 @@ to accommodate large waveforms</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.newlinestripper">
-<code class="sig-name descname">newlinestripper</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">string</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.newlinestripper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.newlinestripper" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">newlinestripper</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">string</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.newlinestripper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.newlinestripper" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_all">
-<code class="sig-name descname">get_all</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_all" title="Permalink to this definition">¶</a></dt>
-<dd><p>Deprecated function. Please don’t use.</p>
-<p>Function to get a snapshot of the state of all parameters and
-functions of the instrument.
-Note: methods of the Tektronix_AWG5014 class are not included.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>update</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – whether to return an updated state. Default: True</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a JSON-serialisable dict with all information.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#DeprecationWarning" title="(in Python v3.7)"><strong>DeprecationWarning</strong></a> – </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_state">
-<code class="sig-name descname">get_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_state" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; typing_extensions.Literal[Idle, Waiting for trigger, Running]<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_state" title="Permalink to this definition">¶</a></dt>
 <dd><p>This query returns the run state of the arbitrary waveform
 generator or the sequencer.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>either ‘Idle’, ‘Waiting for trigger’, or ‘Running’.</p>
+<dd class="field-odd"><p>Either ‘Idle’, ‘Waiting for trigger’, or ‘Running’.</p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
-</dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#ValueError" title="(in Python v3.7)"><strong>ValueError</strong></a> – if none of the three states above apply.</p>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#ValueError" title="(in Python v3.7)"><strong>ValueError</strong></a> – if none of the three states above apply.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.start">
-<code class="sig-name descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.start" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.start" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convenience function, identical to self.run()</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>This command initiates the output of a waveform or a sequence.
 This is equivalent to pressing Run/Stop button on the front panel.
 The instrument can be put in the run state only when output waveforms
@@ -381,25 +352,25 @@ are assigned to channels.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.stop">
-<code class="sig-name descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.stop" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.stop" title="Permalink to this definition">¶</a></dt>
 <dd><p>This command stops the output of a waveform or a sequence.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.force_trigger">
-<code class="sig-name descname">force_trigger</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.force_trigger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.force_trigger" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">force_trigger</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.force_trigger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.force_trigger" title="Permalink to this definition">¶</a></dt>
 <dd><p>This command generates a trigger event. This is equivalent to
 pressing the Force Trigger button on front panel.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_folder_contents">
-<code class="sig-name descname">get_folder_contents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">print_contents</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_folder_contents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_folder_contents" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_folder_contents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">print_contents</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_folder_contents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_folder_contents" title="Permalink to this definition">¶</a></dt>
 <dd><p>This query returns the current contents and state of the mass storage
 media (on the AWG Windows machine).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>print_contents</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If True, the folder name and the query
+<dd class="field-odd"><p><strong>print_contents</strong> – If True, the folder name and the query
 output are printed. Default: True.</p>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -413,7 +384,7 @@ output are printed. Default: True.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_current_folder_name">
-<code class="sig-name descname">get_current_folder_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_current_folder_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_current_folder_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_current_folder_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_current_folder_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_current_folder_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>This query returns the current directory of the file system on the
 arbitrary waveform generator. The current directory for the
 programmatic interface is different from the currently selected
@@ -422,95 +393,79 @@ directory in the Windows Explorer on the instrument.</p>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A string with the full path of the current folder.</p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
-</dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_current_folder_name">
-<code class="sig-name descname">set_current_folder_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_current_folder_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_current_folder_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_current_folder_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_path</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_current_folder_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_current_folder_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the current directory of the file system on the arbitrary
 waveform generator. The current directory for the programmatic
 interface is different from the currently selected directory in the
 Windows Explorer on the instrument.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file_path</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The full path.</p>
+<dd class="field-odd"><p><strong>file_path</strong> – The full path.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>tuple containing:</dt><dd><ul class="simple">
-<li><p>int: The number of bytes written,</p></li>
-<li><p>enum ‘Statuscode’: whether the write was succesful</p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#tuple" title="(in Python v3.7)">tuple</a></p>
+<dd class="field-even"><p>The number of bytes written to instrument</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.change_folder">
-<code class="sig-name descname">change_folder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">folder</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.change_folder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.change_folder" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">change_folder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">folder</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.change_folder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.change_folder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Duplicate of self.set_current_folder_name</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.goto_root">
-<code class="sig-name descname">goto_root</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.goto_root"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.goto_root" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">goto_root</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.goto_root"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.goto_root" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the current directory of the file system on the arbitrary
 waveform generator to C: (the ‘root’ location in Windows).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.create_and_goto_dir">
-<code class="sig-name descname">create_and_goto_dir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">folder</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.create_and_goto_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.create_and_goto_dir" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_and_goto_dir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">folder</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.create_and_goto_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.create_and_goto_dir" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the current directory of the file system on the arbitrary
 waveform generator. Creates the directory if if doesn’t exist.
 Queries the resulting folder for its contents.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>folder</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The path of the directory to set as current.
+<dd class="field-odd"><p><strong>folder</strong> – The path of the directory to set as current.
 Note: this function expects only root level directories.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A comma-seperated string of the folder contents.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.all_channels_on">
-<code class="sig-name descname">all_channels_on</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.all_channels_on"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.all_channels_on" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">all_channels_on</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.all_channels_on"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.all_channels_on" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the state of all channels to be ON. Note: only channels with
 defined waveforms can be ON.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.all_channels_off">
-<code class="sig-name descname">all_channels_off</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.all_channels_off"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.all_channels_off" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">all_channels_off</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.all_channels_off"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.all_channels_off" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the state of all channels to be OFF.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.force_trigger_event">
-<code class="sig-name descname">force_trigger_event</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.force_trigger_event"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.force_trigger_event" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">force_trigger_event</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.force_trigger_event"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.force_trigger_event" title="Permalink to this definition">¶</a></dt>
 <dd><p>This command generates a trigger event. Equivalent to
 self.force_trigger.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.force_event">
-<code class="sig-name descname">force_event</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.force_event"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.force_event" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">force_event</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.force_event"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.force_event" title="Permalink to this definition">¶</a></dt>
 <dd><p>This command generates a forced event. This is used to generate the
 event when the sequence is waiting for an event jump. This is
 equivalent to pressing the Force Event button on the front panel of the
@@ -519,7 +474,7 @@ instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_event_target_index">
-<code class="sig-name descname">set_sqel_event_target_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span></em>, <em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_event_target_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_event_target_index" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_sqel_event_target_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em>, <em class="sig-param"><span class="n">index</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_event_target_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_event_target_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>This command sets the target index for
 the sequencer’s event jump operation. Note that this will take
 effect only when the event jump target type is set to
@@ -527,8 +482,8 @@ INDEX.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element_no</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The sequence element number</p></li>
-<li><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The index to set the target to</p></li>
+<li><p><strong>element_no</strong> – The sequence element number</p></li>
+<li><p><strong>index</strong> – The index to set the target to</p></li>
 </ul>
 </dd>
 </dl>
@@ -536,7 +491,7 @@ INDEX.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_goto_target_index">
-<code class="sig-name descname">set_sqel_goto_target_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span></em>, <em class="sig-param"><span class="n">goto_to_index_no</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_goto_target_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_goto_target_index" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_sqel_goto_target_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em>, <em class="sig-param"><span class="n">goto_to_index_no</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_goto_target_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_goto_target_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>This command sets the target index for the GOTO command of the
 sequencer.  After generating the waveform specified in a
 sequence element, the sequencer jumps to the element specified
@@ -550,8 +505,8 @@ Note that the first element of a sequence is taken to be 1 not 0.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element_no</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The sequence element number</p></li>
-<li><p><strong>goto_to_index_no</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – </p></li>
+<li><p><strong>element_no</strong> – The sequence element number</p></li>
+<li><p><strong>goto_to_index_no</strong> – The target index number</p></li>
 </ul>
 </dd>
 </dl>
@@ -559,14 +514,14 @@ Note that the first element of a sequence is taken to be 1 not 0.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_goto_state">
-<code class="sig-name descname">set_sqel_goto_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span></em>, <em class="sig-param"><span class="n">goto_state</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_goto_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_goto_state" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_sqel_goto_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em>, <em class="sig-param"><span class="n">goto_state</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_goto_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_goto_state" title="Permalink to this definition">¶</a></dt>
 <dd><p>This command sets the GOTO state of the sequencer for the specified
 sequence element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element_no</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The sequence element number</p></li>
-<li><p><strong>goto_state</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The GOTO state of the sequencer. Must be either
+<li><p><strong>element_no</strong> – The sequence element number</p></li>
+<li><p><strong>goto_state</strong> – The GOTO state of the sequencer. Must be either
 0 (OFF) or 1 (ON).</p></li>
 </ul>
 </dd>
@@ -575,7 +530,7 @@ sequence element.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_loopcnt_to_inf">
-<code class="sig-name descname">set_sqel_loopcnt_to_inf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span></em>, <em class="sig-param"><span class="n">state</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_loopcnt_to_inf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_loopcnt_to_inf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_sqel_loopcnt_to_inf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em>, <em class="sig-param"><span class="n">state</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_loopcnt_to_inf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_loopcnt_to_inf" title="Permalink to this definition">¶</a></dt>
 <dd><p>This command sets the infinite looping state for a sequence
 element. When an infinite loop is set on an element, the
 sequencer continuously executes that element. To break the
@@ -593,28 +548,28 @@ infinite loop, issue self.stop()</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sqel_loopcnt">
-<code class="sig-name descname">get_sqel_loopcnt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_sqel_loopcnt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sqel_loopcnt" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_sqel_loopcnt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_sqel_loopcnt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sqel_loopcnt" title="Permalink to this definition">¶</a></dt>
 <dd><p>This query returns the loop count (number of repetitions) of a
 sequence element. Loop count setting for an element is ignored
 if the infinite looping state is set to ON.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>element_no</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The sequence element number. Default: 1.</p>
+<dd class="field-odd"><p><strong>element_no</strong> – The sequence element number. Default: 1.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_loopcnt">
-<code class="sig-name descname">set_sqel_loopcnt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">loopcount</span></em>, <em class="sig-param"><span class="n">element_no</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_loopcnt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_loopcnt" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_sqel_loopcnt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">loopcount</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em>, <em class="sig-param"><span class="n">element_no</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_loopcnt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_loopcnt" title="Permalink to this definition">¶</a></dt>
 <dd><p>This command sets the loop count. Loop count setting for an
 element is ignored if the infinite looping state is set to ON.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>loopcount</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The number of times the sequence is being output.
+<li><p><strong>loopcount</strong> – The number of times the sequence is being output.
 The maximal possible number is 65536, beyond that: infinity.</p></li>
-<li><p><strong>element_no</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The sequence element number. Default: 1.</p></li>
+<li><p><strong>element_no</strong> – The sequence element number. Default: 1.</p></li>
 </ul>
 </dd>
 </dl>
@@ -622,16 +577,16 @@ The maximal possible number is 65536, beyond that: infinity.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_waveform">
-<code class="sig-name descname">set_sqel_waveform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">waveform_name</span></em>, <em class="sig-param"><span class="n">channel</span></em>, <em class="sig-param"><span class="n">element_no</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_waveform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_waveform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_sqel_waveform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">waveform_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">channel</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em>, <em class="sig-param"><span class="n">element_no</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_waveform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_waveform" title="Permalink to this definition">¶</a></dt>
 <dd><p>This command sets the waveform for a sequence element on the specified
 channel.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>waveform_name</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the waveform. Must be in the waveform
+<li><p><strong>waveform_name</strong> – Name of the waveform. Must be in the waveform
 list (either User Defined or Predefined).</p></li>
-<li><p><strong>channel</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The output channel (1-4)</p></li>
-<li><p><strong>element_no</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The sequence element number. Default: 1.</p></li>
+<li><p><strong>channel</strong> – The output channel (1-4)</p></li>
+<li><p><strong>element_no</strong> – The sequence element number. Default: 1.</p></li>
 </ul>
 </dd>
 </dl>
@@ -639,28 +594,25 @@ list (either User Defined or Predefined).</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sqel_waveform">
-<code class="sig-name descname">get_sqel_waveform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channel</span></em>, <em class="sig-param"><span class="n">element_no</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_sqel_waveform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sqel_waveform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_sqel_waveform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channel</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em>, <em class="sig-param"><span class="n">element_no</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_sqel_waveform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sqel_waveform" title="Permalink to this definition">¶</a></dt>
 <dd><p>This query returns the waveform for a sequence element on the
 specified channel.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>channel</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The output channel (1-4)</p></li>
-<li><p><strong>element_no</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The sequence element number. Default: 1.</p></li>
+<li><p><strong>channel</strong> – The output channel (1-4)</p></li>
+<li><p><strong>element_no</strong> – The sequence element number. Default: 1.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The name of the waveform.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_trigger_wait">
-<code class="sig-name descname">set_sqel_trigger_wait</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span></em>, <em class="sig-param"><span class="n">state</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_trigger_wait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_trigger_wait" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_sqel_trigger_wait</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em>, <em class="sig-param"><span class="n">state</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_trigger_wait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_trigger_wait" title="Permalink to this definition">¶</a></dt>
 <dd><p>This command sets the wait trigger state for an element. Send
 a trigger signal in one of the following ways:</p>
 <blockquote>
@@ -673,23 +625,20 @@ a trigger signal in one of the following ways:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element_no</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The sequence element number.</p></li>
-<li><p><strong>state</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The wait trigger state. Must be either 0 (OFF)
+<li><p><strong>element_no</strong> – The sequence element number.</p></li>
+<li><p><strong>state</strong> – The wait trigger state. Must be either 0 (OFF)
 or 1 (ON). Default: 1.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The current state (after setting it).</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
-</dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sqel_trigger_wait">
-<code class="sig-name descname">get_sqel_trigger_wait</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_sqel_trigger_wait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sqel_trigger_wait" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_sqel_trigger_wait</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_sqel_trigger_wait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sqel_trigger_wait" title="Permalink to this definition">¶</a></dt>
 <dd><p>This query returns the wait trigger state for an element. Send
 a trigger signal in one of the following ways:</p>
 <blockquote>
@@ -701,26 +650,26 @@ a trigger signal in one of the following ways:</p>
 </div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>element_no</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The sequence element number.</p>
+<dd class="field-odd"><p><strong>element_no</strong> – The sequence element number.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The current state. Example: ‘1’.</p>
+<dd class="field-even"><p>‘1’.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
+<dd class="field-odd"><p>The current state. Example</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_event_jump_target_index">
-<code class="sig-name descname">set_sqel_event_jump_target_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span></em>, <em class="sig-param"><span class="n">jtar_index_no</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_event_jump_target_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_event_jump_target_index" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_sqel_event_jump_target_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em>, <em class="sig-param"><span class="n">jtar_index_no</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_event_jump_target_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_event_jump_target_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Duplicate of set_sqel_event_target_index</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_event_jump_type">
-<code class="sig-name descname">set_sqel_event_jump_type</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span></em>, <em class="sig-param"><span class="n">jtar_state</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_event_jump_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_event_jump_type" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_sqel_event_jump_type</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_no</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em>, <em class="sig-param"><span class="n">jtar_state</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.set_sqel_event_jump_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.set_sqel_event_jump_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>This command sets the event jump target type for the jump for
 the specified sequence element.  Generate an event in one of
 the following ways:</p>
@@ -734,8 +683,8 @@ front panel.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element_no</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The sequence element number</p></li>
-<li><p><strong>jtar_state</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The jump target type. Must be either ‘INDEX’,
+<li><p><strong>element_no</strong> – The sequence element number</p></li>
+<li><p><strong>jtar_state</strong> – The jump target type. Must be either ‘INDEX’,
 ‘NEXT’, or ‘OFF’.</p></li>
 </ul>
 </dd>
@@ -744,7 +693,7 @@ front panel.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sq_mode">
-<code class="sig-name descname">get_sq_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_sq_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sq_mode" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_sq_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_sq_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_sq_mode" title="Permalink to this definition">¶</a></dt>
 <dd><p>This query returns the type of the arbitrary waveform
 generator’s sequencer. The sequence is executed by the
 hardware sequencer whenever possible.</p>
@@ -760,7 +709,7 @@ hardware sequencer whenever possible.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.generate_sequence_cfg">
-<code class="sig-name descname">generate_sequence_cfg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.generate_sequence_cfg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.generate_sequence_cfg" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">generate_sequence_cfg</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.generate_sequence_cfg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.generate_sequence_cfg" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function is used to generate a config file, that is used when
 generating sequence files, from existing settings in the awg.
 Querying the AWG for these settings takes ~0.7 seconds</p>
@@ -768,7 +717,7 @@ Querying the AWG for these settings takes ~0.7 seconds</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.generate_channel_cfg">
-<code class="sig-name descname">generate_channel_cfg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.generate_channel_cfg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.generate_channel_cfg" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">generate_channel_cfg</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><span class="p">]</span><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.generate_channel_cfg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.generate_channel_cfg" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to query if the current channel settings that have
 been changed from their default value and put them in a
 dictionary that can easily be written into an awg file, so as
@@ -782,22 +731,19 @@ QCoDeS parameter.</p>
 AWG_FILE_FORMAT_HEAD iff this entry applies to the
 AWG5014 AND has been changed from its default value.</p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></p>
-</dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.parse_marker_channel_name">
-<em class="property">static </em><code class="sig-name descname">parse_marker_channel_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.parse_marker_channel_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.parse_marker_channel_name" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">parse_marker_channel_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; qcodes.instrument_drivers.tektronix.AWG5014._MarkerDescriptor<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.parse_marker_channel_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.parse_marker_channel_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns from the channel index and marker index from a marker
 descriptor string e.g. ‘1M1’-&gt;(1,1)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_send_and_load_awg_file_from_forged_sequence">
-<code class="sig-name descname">make_send_and_load_awg_file_from_forged_sequence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seq</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">'customawgfile.awg'</span></em>, <em class="sig-param"><span class="n">preservechannelsettings</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.make_send_and_load_awg_file_from_forged_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_send_and_load_awg_file_from_forged_sequence" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">make_send_and_load_awg_file_from_forged_sequence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seq</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em>, <em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span> <span class="o">=</span> <span class="default_value">'customawgfile.awg'</span></em>, <em class="sig-param"><span class="n">preservechannelsettings</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.make_send_and_load_awg_file_from_forged_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_send_and_load_awg_file_from_forged_sequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Makes an awg file form a forged sequence as produced by
 broadbean.sequence.Sequence.forge. The forged sequence is a dictionary
 (see <code class="xref py py-attr docutils literal notranslate"><span class="pre">fs_schmea</span></code>) that does not
@@ -815,61 +761,18 @@ See <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG
 </dd></dl>
 
 <dl class="py method">
-<dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.generate_awg_file">
-<code class="sig-name descname">generate_awg_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">packed_waveforms</span></em>, <em class="sig-param"><span class="n">wfname_l</span></em>, <em class="sig-param"><span class="n">nrep</span></em>, <em class="sig-param"><span class="n">trig_wait</span></em>, <em class="sig-param"><span class="n">goto_state</span></em>, <em class="sig-param"><span class="n">jump_to</span></em>, <em class="sig-param"><span class="n">channel_cfg</span></em>, <em class="sig-param"><span class="n">sequence_cfg</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">preservechannelsettings</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.generate_awg_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.generate_awg_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function generates an .awg-file for uploading to the AWG.
-The .awg-file contains a waveform list, full sequencing information
-and instrument configuration settings.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>packed_waveforms</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – dictionary containing packed waveforms
-with keys wfname_l</p></li>
-<li><p><strong>wfname_l</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – array of waveform names, e.g.
-array([[segm1_ch1,segm2_ch1..], [segm1_ch2,segm2_ch2..],…])</p></li>
-<li><p><strong>nrep</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – list of len(segments) of integers specifying the
-no. of repetions per sequence element.
-Allowed values: 1 to 65536.</p></li>
-<li><p><strong>trig_wait</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – list of len(segments) of integers specifying the
-trigger wait state of each sequence element.
-Allowed values: 0 (OFF) or 1 (ON).</p></li>
-<li><p><strong>goto_state</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – list of len(segments) of integers specifying the
-goto state of each sequence element. Allowed values: 0 to 65536
-(0 means next)</p></li>
-<li><p><strong>jump_to</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – list of len(segments) of integers specifying
-the logic jump state for each sequence element. Allowed values:
-0 (OFF) or 1 (ON).</p></li>
-<li><p><strong>channel_cfg</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – dictionary of valid channel configuration
-records. See self.AWG_FILE_FORMAT_CHANNEL for a complete
-overview of valid configuration parameters.</p></li>
-<li><p><strong>preservechannelsettings</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If True, the current channel
-settings are queried from the instrument and added to
-channel_cfg (does not overwrite). Default: False.</p></li>
-<li><p><strong>sequence_cfg</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – dictionary of valid head configuration records
-(see self.AWG_FILE_FORMAT_HEAD)
-When an awg file is uploaded these settings will be set
-onto the AWG, any parameter not specified will be set to
-its default value (even overwriting current settings)</p></li>
-</ul>
-</dd>
-</dl>
-<p>for info on filestructure and valid record names, see AWG Help,
-File and Record Format (Under ‘Record Name List’ in Help)</p>
-</dd></dl>
-
-<dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.send_awg_file">
-<code class="sig-name descname">send_awg_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">awg_file</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.send_awg_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.send_awg_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">send_awg_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">awg_file</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#bytes" title="(in Python v3.7)">bytes</a></span></em>, <em class="sig-param"><span class="n">verbose</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.send_awg_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.send_awg_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes an .awg-file onto the disk of the AWG.
 Overwrites existing files.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name that the file will get on
+<li><p><strong>filename</strong> – The name that the file will get on
 the AWG.</p></li>
-<li><p><strong>awg_file</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#bytes" title="(in Python v3.7)"><em>bytes</em></a>) – A byte sequence containing the awg_file.
+<li><p><strong>awg_file</strong> – A byte sequence containing the awg_file.
 Usually the output of self.make_awg_file.</p></li>
-<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – A boolean to allow/suppress printing of messages
+<li><p><strong>verbose</strong> – A boolean to allow/suppress printing of messages
 about the status of the filw writing. Default: False.</p></li>
 </ul>
 </dd>
@@ -878,47 +781,47 @@ about the status of the filw writing. Default: False.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.load_awg_file">
-<code class="sig-name descname">load_awg_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.load_awg_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.load_awg_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_awg_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.load_awg_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.load_awg_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads an .awg-file from the disc of the AWG into the AWG memory.
 This may overwrite all instrument settings, the waveform list, and the
 sequence in the sequencer.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The filename of the .awg-file to load.</p>
+<dd class="field-odd"><p><strong>filename</strong> – The filename of the .awg-file to load.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_awg_file">
-<code class="sig-name descname">make_awg_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">waveforms</span></em>, <em class="sig-param"><span class="n">m1s</span></em>, <em class="sig-param"><span class="n">m2s</span></em>, <em class="sig-param"><span class="n">nreps</span></em>, <em class="sig-param"><span class="n">trig_waits</span></em>, <em class="sig-param"><span class="n">goto_states</span></em>, <em class="sig-param"><span class="n">jump_tos</span></em>, <em class="sig-param"><span class="n">channels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">preservechannelsettings</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.make_awg_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_awg_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">make_awg_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">waveforms</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span><span class="p">, </span>Sequence<span class="p">[</span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">m1s</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span><span class="p">, </span>Sequence<span class="p">[</span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">m2s</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Sequence<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span><span class="p">, </span>Sequence<span class="p">[</span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">nreps</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">trig_waits</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">goto_states</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">jump_tos</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">channels</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">preservechannelsettings</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#bytes" title="(in Python v3.7)">bytes</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.make_awg_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_awg_file" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>waveforms</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A list of the waveforms to be packed. The list
+<li><p><strong>waveforms</strong> – A list of the waveforms to be packed. The list
 should be filled like so:
 [[wfm1ch1, wfm2ch1, …], [wfm1ch2, wfm2ch2], …]
 Each waveform should be a numpy array with values in the range
 -1 to 1 (inclusive). If you do not wish to send waveforms to
 channels 1 and 2, use the channels parameter.</p></li>
-<li><p><strong>m1s</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A list of marker 1’s. The list should be filled
+<li><p><strong>m1s</strong> – A list of marker 1’s. The list should be filled
 like so:
 [[elem1m1ch1, elem2m1ch1, …], [elem1m1ch2, elem2m1ch2], …]
 Each marker should be a numpy array containing only 0’s and 1’s</p></li>
-<li><p><strong>m2s</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A list of marker 2’s. The list should be filled
+<li><p><strong>m2s</strong> – A list of marker 2’s. The list should be filled
 like so:
 [[elem1m2ch1, elem2m2ch1, …], [elem1m2ch2, elem2m2ch2], …]
 Each marker should be a numpy array containing only 0’s and 1’s</p></li>
-<li><p><strong>nreps</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of integers specifying the no. of
-repetions per sequence element.  Allowed values: 0 to
-65536. O corresponds to Infinite repetions.</p></li>
-<li><p><strong>trig_waits</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of len(segments) of integers specifying the
+<li><p><strong>nreps</strong> – List of integers specifying the no. of
+repetitions per sequence element.  Allowed values: 0 to
+65536. O corresponds to Infinite repetitions.</p></li>
+<li><p><strong>trig_waits</strong> – List of len(segments) of integers specifying the
 trigger wait state of each sequence element.
 Allowed values: 0 (OFF) or 1 (ON).</p></li>
-<li><p><strong>goto_states</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of len(segments) of integers
+<li><p><strong>goto_states</strong> – List of len(segments) of integers
 specifying the goto state of each sequence
 element. Allowed values: 0 to 65536 (0 means next)</p></li>
-<li><p><strong>jump_tos</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of len(segments) of integers specifying
+<li><p><strong>jump_tos</strong> – List of len(segments) of integers specifying
 the logic jump state for each sequence element. Allowed values:
 0 (OFF) or 1 (ON).</p></li>
 <li><p><strong>channels</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of channels to send the waveforms to.
@@ -935,44 +838,44 @@ loaded. Default: True.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_send_and_load_awg_file">
-<code class="sig-name descname">make_send_and_load_awg_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">waveforms</span></em>, <em class="sig-param"><span class="n">m1s</span></em>, <em class="sig-param"><span class="n">m2s</span></em>, <em class="sig-param"><span class="n">nreps</span></em>, <em class="sig-param"><span class="n">trig_waits</span></em>, <em class="sig-param"><span class="n">goto_states</span></em>, <em class="sig-param"><span class="n">jump_tos</span></em>, <em class="sig-param"><span class="n">channels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">'customawgfile.awg'</span></em>, <em class="sig-param"><span class="n">preservechannelsettings</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.make_send_and_load_awg_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_send_and_load_awg_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">make_send_and_load_awg_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">waveforms</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">m1s</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">m2s</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">nreps</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">trig_waits</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">goto_states</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">jump_tos</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">channels</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span> <span class="o">=</span> <span class="default_value">'customawgfile.awg'</span></em>, <em class="sig-param"><span class="n">preservechannelsettings</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.make_send_and_load_awg_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_send_and_load_awg_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Makes an .awg-file, sends it to the AWG and loads it. The .awg-file
 is uploaded to C:\Users\OEM\Documents. The waveforms appear in
 the user defined waveform list with names wfm001ch1, wfm002ch1, …</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>waveforms</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A list of the waveforms to upload. The list
+<li><p><strong>waveforms</strong> – A list of the waveforms to upload. The list
 should be filled like so:
 [[wfm1ch1, wfm2ch1, …], [wfm1ch2, wfm2ch2], …]
 Each waveform should be a numpy array with values in the range
 -1 to 1 (inclusive). If you do not wish to send waveforms to
 channels 1 and 2, use the channels parameter.</p></li>
-<li><p><strong>m1s</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A list of marker 1’s. The list should be filled
+<li><p><strong>m1s</strong> – A list of marker 1’s. The list should be filled
 like so:
 [[elem1m1ch1, elem2m1ch1, …], [elem1m1ch2, elem2m1ch2], …]
 Each marker should be a numpy array containing only 0’s and 1’s</p></li>
-<li><p><strong>m2s</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A list of marker 2’s. The list should be filled
+<li><p><strong>m2s</strong> – A list of marker 2’s. The list should be filled
 like so:
 [[elem1m2ch1, elem2m2ch1, …], [elem1m2ch2, elem2m2ch2], …]
 Each marker should be a numpy array containing only 0’s and 1’s</p></li>
-<li><p><strong>nreps</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of integers specifying the no. of
+<li><p><strong>nreps</strong> – List of integers specifying the no. of
 repetions per sequence element.  Allowed values: 0 to
 65536. 0 corresponds to Infinite repetions.</p></li>
-<li><p><strong>trig_waits</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of len(segments) of integers specifying the
+<li><p><strong>trig_waits</strong> – List of len(segments) of integers specifying the
 trigger wait state of each sequence element.
 Allowed values: 0 (OFF) or 1 (ON).</p></li>
-<li><p><strong>goto_states</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of len(segments) of integers
+<li><p><strong>goto_states</strong> – List of len(segments) of integers
 specifying the goto state of each sequence
 element. Allowed values: 0 to 65536 (0 means next)</p></li>
-<li><p><strong>jump_tos</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of len(segments) of integers specifying
+<li><p><strong>jump_tos</strong> – List of len(segments) of integers specifying
 the logic jump state for each sequence element. Allowed values:
 0 (OFF) or 1 (ON).</p></li>
-<li><p><strong>channels</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of channels to send the waveforms to.
+<li><p><strong>channels</strong> – List of channels to send the waveforms to.
 Example: [1, 3, 2]</p></li>
-<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the .awg-file. Should end with the .awg
+<li><p><strong>filename</strong> – The name of the .awg-file. Should end with the .awg
 extension. Default: ‘customawgfile.awg’</p></li>
-<li><p><strong>preservechannelsettings</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If True, the current channel
+<li><p><strong>preservechannelsettings</strong> – If True, the current channel
 settings are found from the parameter history and added to
 the .awg file. Else, channel settings are reset to the factory
 default values. Default: True.</p></li>
@@ -983,45 +886,45 @@ default values. Default: True.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_and_save_awg_file">
-<code class="sig-name descname">make_and_save_awg_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">waveforms</span></em>, <em class="sig-param"><span class="n">m1s</span></em>, <em class="sig-param"><span class="n">m2s</span></em>, <em class="sig-param"><span class="n">nreps</span></em>, <em class="sig-param"><span class="n">trig_waits</span></em>, <em class="sig-param"><span class="n">goto_states</span></em>, <em class="sig-param"><span class="n">jump_tos</span></em>, <em class="sig-param"><span class="n">channels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">'customawgfile.awg'</span></em>, <em class="sig-param"><span class="n">preservechannelsettings</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.make_and_save_awg_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_and_save_awg_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">make_and_save_awg_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">waveforms</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">m1s</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">m2s</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">nreps</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">trig_waits</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">goto_states</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">jump_tos</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">channels</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span> <span class="o">=</span> <span class="default_value">'customawgfile.awg'</span></em>, <em class="sig-param"><span class="n">preservechannelsettings</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.make_and_save_awg_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_and_save_awg_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Makes an .awg-file and saves it locally.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>waveforms</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A list of the waveforms to upload. The list
+<li><p><strong>waveforms</strong> – A list of the waveforms to upload. The list
 should be filled like so:
 [[wfm1ch1, wfm2ch1, …], [wfm1ch2, wfm2ch2], …]
 Each waveform should be a numpy array with values in the range
 -1 to 1 (inclusive). If you do not wish to send waveforms to
 channels 1 and 2, use the channels parameter.</p></li>
-<li><p><strong>m1s</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A list of marker 1’s. The list should be filled
+<li><p><strong>m1s</strong> – A list of marker 1’s. The list should be filled
 like so:
 [[elem1m1ch1, elem2m1ch1, …], [elem1m1ch2, elem2m1ch2], …]
 Each marker should be a numpy array containing only 0’s and 1’s</p></li>
-<li><p><strong>m2s</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A list of marker 2’s. The list should be filled
+<li><p><strong>m2s</strong> – A list of marker 2’s. The list should be filled
 like so:
 [[elem1m2ch1, elem2m2ch1, …], [elem1m2ch2, elem2m2ch2], …]
 Each marker should be a numpy array containing only 0’s and 1’s</p></li>
-<li><p><strong>nreps</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of integers specifying the no. of
+<li><p><strong>nreps</strong> – List of integers specifying the no. of
 repetions per sequence element.  Allowed values: 0 to
 65536. O corresponds to Infinite repetions.</p></li>
-<li><p><strong>trig_waits</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of len(segments) of integers specifying the
+<li><p><strong>trig_waits</strong> – List of len(segments) of integers specifying the
 trigger wait state of each sequence element.
 Allowed values: 0 (OFF) or 1 (ON).</p></li>
-<li><p><strong>goto_states</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of len(segments) of integers
+<li><p><strong>goto_states</strong> – List of len(segments) of integers
 specifying the goto state of each sequence
 element. Allowed values: 0 to 65536 (0 means next)</p></li>
-<li><p><strong>jump_tos</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of len(segments) of integers specifying
+<li><p><strong>jump_tos</strong> – List of len(segments) of integers specifying
 the logic jump state for each sequence element. Allowed values:
 0 (OFF) or 1 (ON).</p></li>
-<li><p><strong>channels</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of channels to send the waveforms to.
+<li><p><strong>channels</strong> – List of channels to send the waveforms to.
 Example: [1, 3, 2]</p></li>
-<li><p><strong>preservechannelsettings</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If True, the current channel
+<li><p><strong>preservechannelsettings</strong> – If True, the current channel
 settings are found from the parameter history and added to
 the .awg file. Else, channel settings are not written in the
 file and will be reset to factory default when the file is
 loaded. Default: True.</p></li>
-<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The full path of the .awg-file. Should end with the
+<li><p><strong>filename</strong> – The full path of the .awg-file. Should end with the
 .awg extension. Default: ‘customawgfile.awg’</p></li>
 </ul>
 </dd>
@@ -1030,56 +933,20 @@ loaded. Default: True.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_error">
-<code class="sig-name descname">get_error</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_error" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_error</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_error" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function retrieves and returns data from the error and
 event queues.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>String containing the error/event number, the error/event                description.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.pack_waveform">
-<code class="sig-name descname">pack_waveform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">wf</span></em>, <em class="sig-param"><span class="n">m1</span></em>, <em class="sig-param"><span class="n">m2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.pack_waveform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.pack_waveform" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts/packs a waveform and two markers into a 16-bit format
-according to the AWG Integer format specification.
-The waveform occupies 14 bits and the markers one bit each.
-See Table 2-25 in the Programmer’s manual for more information</p>
-<p>Since markers can only be in one of two states, the marker input
-arrays should consist only of 0’s and 1’s.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>wf</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – A numpy array containing the waveform. The
-data type of wf is unimportant.</p></li>
-<li><p><strong>m1</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – A numpy array containing the first marker.</p></li>
-<li><p><strong>m2</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – A numpy array containing the second marker.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>An array of unsigned 16 bit integers.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#Exception" title="(in Python v3.7)"><strong>Exception</strong></a> – if the lengths of w, m1, and m2 don’t match</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#TypeError" title="(in Python v3.7)"><strong>TypeError</strong></a> – if the waveform contains values outside (-1, 1)</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3.7/library/exceptions.html#TypeError" title="(in Python v3.7)"><strong>TypeError</strong></a> – if the markers contain values that are not 0 or 1</p></li>
-</ul>
+<dd class="field-odd"><p>String containing the error/event number, the error/event
+description.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.delete_all_waveforms_from_list">
-<code class="sig-name descname">delete_all_waveforms_from_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.delete_all_waveforms_from_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.delete_all_waveforms_from_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delete_all_waveforms_from_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.delete_all_waveforms_from_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.delete_all_waveforms_from_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delete all user-defined waveforms in the list in a single
 action. Note that there is no “UNDO” action once the waveforms
 are deleted. Use caution before issuing this command.</p>
@@ -1091,13 +958,13 @@ channel is on, it will be switched off.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_filenames">
-<code class="sig-name descname">get_filenames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_filenames"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_filenames" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_filenames</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.get_filenames"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.get_filenames" title="Permalink to this definition">¶</a></dt>
 <dd><p>Duplicate of self.get_folder_contents</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.send_DC_pulse">
-<code class="sig-name descname">send_DC_pulse</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">DC_channel_number</span></em>, <em class="sig-param"><span class="n">set_level</span></em>, <em class="sig-param"><span class="n">length</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.send_DC_pulse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.send_DC_pulse" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">send_DC_pulse</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">DC_channel_number</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em>, <em class="sig-param"><span class="n">set_level</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a></span></em>, <em class="sig-param"><span class="n">length</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.send_DC_pulse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.send_DC_pulse" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the DC level on the specified channel, waits a while and then
 resets it to what it was before.</p>
 <p>Note: Make sure that the output DC state is ON.</p>
@@ -1114,21 +981,18 @@ resets it to what it was before.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.is_awg_ready">
-<code class="sig-name descname">is_awg_ready</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.is_awg_ready"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.is_awg_ready" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">is_awg_ready</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.is_awg_ready"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.is_awg_ready" title="Permalink to this definition">¶</a></dt>
 <dd><p>Assert if the AWG is ready.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>True, irrespective of anything.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.send_waveform_to_list">
-<code class="sig-name descname">send_waveform_to_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">w</span></em>, <em class="sig-param"><span class="n">m1</span></em>, <em class="sig-param"><span class="n">m2</span></em>, <em class="sig-param"><span class="n">wfmname</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.send_waveform_to_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.send_waveform_to_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">send_waveform_to_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">w</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></span></em>, <em class="sig-param"><span class="n">m1</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></span></em>, <em class="sig-param"><span class="n">m2</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></span></em>, <em class="sig-param"><span class="n">wfmname</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.send_waveform_to_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.send_waveform_to_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Send a single complete waveform directly to the “User defined”
 waveform list (prepend it). The data type of the input arrays
 is unimportant, but the marker arrays must contain only 1’s
@@ -1136,10 +1000,10 @@ and 0’s.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>w</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – The waveform</p></li>
-<li><p><strong>m1</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – Marker1</p></li>
-<li><p><strong>m2</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – Marker2</p></li>
-<li><p><strong>wfmname</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – waveform name</p></li>
+<li><p><strong>w</strong> – The waveform</p></li>
+<li><p><strong>m1</strong> – Marker1</p></li>
+<li><p><strong>m2</strong> – Marker2</p></li>
+<li><p><strong>wfmname</strong> – waveform name</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
@@ -1154,12 +1018,12 @@ and 0’s.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.clear_message_queue">
-<code class="sig-name descname">clear_message_queue</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.clear_message_queue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.clear_message_queue" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">clear_message_queue</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">verbose</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG5014.html#Tektronix_AWG5014.clear_message_queue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.clear_message_queue" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to clear up (flush) the VISA message queue of the AWG
 instrument. Reads all messages in the the queue.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>verbose</strong> (<a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Bool" title="qcodes.utils.validators.Bool"><em>Bool</em></a>) – If True, the read messages are printed.
+<dd class="field-odd"><p><strong>verbose</strong> – If True, the read messages are printed.
 Default: False.</p>
 </dd>
 </dl>
