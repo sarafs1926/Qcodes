@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.2+318.g2d31820629
+                0.19.2+333.g23dfdd82fb
               </div>
             
           
@@ -166,7 +166,7 @@
 <span></span><span class="c1"># awg file -&gt; (what, we, put, into, make_send_and_load_awg_file)</span>
 <span class="c1"># This module parses an awg file using THREE sub-parser. This code could</span>
 <span class="c1"># probably be streamlined somewhat.</span>
-
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
 <span class="kn">import</span> <span class="nn">struct</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -459,22 +459,35 @@
     <span class="s1">&#39;WAIT_VALUE&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;First&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Last&#39;</span><span class="p">}</span>
     <span class="p">}</span>
 
+<span class="n">_parser3_output</span> <span class="o">=</span> <span class="n">Tuple</span><span class="p">[</span>
+    <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]],</span>
+    <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]],</span>
+    <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]],</span>
+    <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
+    <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
+    <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
+    <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
+    <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+<span class="p">]</span>
 
-<span class="k">def</span> <span class="nf">_unpacker</span><span class="p">(</span><span class="n">binaryarray</span><span class="p">,</span> <span class="n">dacbitdepth</span><span class="o">=</span><span class="mi">14</span><span class="p">):</span>
+
+<span class="k">def</span> <span class="nf">_unpacker</span><span class="p">(</span>
+        <span class="n">binaryarray</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">dacbitdepth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Unpacks an awg-file integer wave into a waveform and two markers</span>
 <span class="sd">    in the same way as the AWG does. This can be useful for checking</span>
 <span class="sd">    how the signals are going to be interpreted by the instrument.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        binaryarray (numpy.ndarray): A numpy array containing the</span>
+<span class="sd">        binaryarray: A numpy array containing the</span>
 <span class="sd">            packed waveform and markers.</span>
-<span class="sd">        dacbitdepth (int): Specifies the bit depth for the digitisation</span>
-<span class="sd">        of the waveform. Allowed values: 14, 8. Default: 14.</span>
+<span class="sd">        dacbitdepth: Specifies the bit depth for the digitisation</span>
+<span class="sd">            of the waveform. Allowed values: 14, 8. Default: 14.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        tuple (numpy.ndarray, numpy.ndarray, numpy.ndarray): The waveform</span>
-<span class="sd">            scaled to have values from -1 to 1, marker 1, marker 2.</span>
+<span class="sd">        The waveform scaled to have values from -1 to 1, marker 1, marker 2.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">wflength</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">binaryarray</span><span class="p">)</span>
@@ -492,18 +505,16 @@
     <span class="k">return</span> <span class="n">wf</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span>
 
 
-<span class="k">def</span> <span class="nf">_unwrap</span><span class="p">(</span><span class="n">bites</span><span class="p">,</span> <span class="n">fmt</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_unwrap</span><span class="p">(</span><span class="n">bites</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">fmt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper function for interpreting the bytes from the awg file.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        bites (bytes): a bytes object</span>
-<span class="sd">        fmt (str): the format string (either &#39;s&#39;, &#39;h&#39; or &#39;d&#39;)</span>
+<span class="sd">        bites: a bytes object</span>
+<span class="sd">        fmt: the format string (either &#39;s&#39;, &#39;h&#39; or &#39;d&#39;)</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        Union[str, int, tuple]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
+    <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">fmt</span> <span class="o">==</span> <span class="s1">&#39;s&#39;</span><span class="p">:</span>
         <span class="n">value</span> <span class="o">=</span> <span class="n">bites</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">fmt</span> <span class="o">==</span> <span class="s1">&#39;ignore&#39;</span><span class="p">:</span>
@@ -516,16 +527,16 @@
     <span class="k">return</span> <span class="n">value</span>
 
 
-<span class="k">def</span> <span class="nf">_getendingnumber</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_getendingnumber</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper function to extract the last number of a string</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        string (str): A .awg field name, like SEQUENCE_JUMP_23</span>
+<span class="sd">        string: A .awg field name, like SEQUENCE_JUMP_23</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">        (int, str): The number and the shortened string,</span>
-<span class="sd">          e.g. &#39;SEQUENCE_JUMP_23&#39; -&gt; (23, &#39;SEQUENCE_JUMP_&#39;)</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        The number and the shortened string,</span>
+<span class="sd">        e.g. &#39;SEQUENCE_JUMP_23&#39; -&gt; (23, &#39;SEQUENCE_JUMP_&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">num</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
@@ -536,7 +547,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">break</span>
 
-    <span class="k">return</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">string</span><span class="p">[:</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">num</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">string</span><span class="p">[:</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">num</span><span class="p">)]</span>
 
 
 <span class="n">awgfilepath</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;/Users/william/AuxiliaryQCoDeS/AWGhelpers/awgfiles/&#39;</span> <span class="o">+</span>
@@ -546,21 +557,24 @@
                 <span class="s1">&#39;machinemadefortest.awg&#39;</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_parser1</span><span class="p">(</span><span class="n">awgfilepath</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_parser1</span><span class="p">(</span>
+        <span class="n">awgfilepath</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">]],</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">]]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper function doing the heavy lifting of reading and understanding the</span>
 <span class="sd">    binary .awg file format.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        awgfilepath (str): The absolute path of the awg file to read</span>
+<span class="sd">        awgfilepath: The absolute path of the awg file to read</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        (dict, list, list): Instrument settings, waveforms, sequencer settings</span>
+<span class="sd">        Tuple of instrument settings (a dict), waveforms (list of lists), sequencer settings (list of lists)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">instdict</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">waveformlist</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
-    <span class="n">sequencelist</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
+    <span class="n">waveformlist</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
+    <span class="n">sequencelist</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
+    <span class="n">wfmlen</span><span class="p">:</span> <span class="nb">int</span>
 
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">awgfilepath</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fid</span><span class="p">:</span>
 
@@ -585,13 +599,16 @@
                     <span class="n">fmtstr</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">wfmlen</span><span class="si">}</span><span class="s1">H&#39;</span>
                     <span class="n">AWG_FILE_FORMAT_WAV</span><span class="p">[</span><span class="s1">&#39;WAVEFORM_DATA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fmtstr</span>
 
-                <span class="n">value</span> <span class="o">=</span> <span class="n">_unwrap</span><span class="p">(</span><span class="n">rawvalue</span><span class="p">,</span> <span class="n">AWG_FILE_FORMAT_WAV</span><span class="p">[</span><span class="n">lookupname</span><span class="p">])</span>
+                <span class="n">file_format</span> <span class="o">=</span> <span class="n">AWG_FILE_FORMAT_WAV</span><span class="p">[</span><span class="n">lookupname</span><span class="p">]</span>
+                <span class="k">assert</span> <span class="n">file_format</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">_unwrap</span><span class="p">(</span><span class="n">rawvalue</span><span class="p">,</span> <span class="n">file_format</span><span class="p">)</span>
                 <span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">barename</span><span class="p">)</span> <span class="o">=</span> <span class="n">_getendingnumber</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
                 <span class="n">fieldname</span> <span class="o">=</span> <span class="n">barename</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">number</span><span class="o">-</span><span class="mi">20</span><span class="p">)</span>
                 <span class="n">waveformlist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fieldname</span><span class="p">)</span>
                 <span class="n">waveformlist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
                 <span class="k">if</span> <span class="s1">&#39;LENGTH&#39;</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
                     <span class="n">wfmlen</span> <span class="o">=</span> <span class="n">value</span>
 
                 <span class="k">continue</span>
@@ -610,6 +627,7 @@
                 <span class="n">value</span> <span class="o">=</span> <span class="n">_unwrap</span><span class="p">(</span><span class="n">rawvalue</span><span class="p">,</span> <span class="n">AWG_FILE_FORMAT</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
 
             <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">AWG_TRANSLATER</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
                 <span class="n">value</span> <span class="o">=</span> <span class="n">AWG_TRANSLATER</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">value</span><span class="p">]</span>
 
             <span class="n">instdict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">name</span><span class="p">:</span> <span class="n">value</span><span class="p">})</span>
@@ -617,13 +635,12 @@
     <span class="k">return</span> <span class="n">instdict</span><span class="p">,</span> <span class="n">waveformlist</span><span class="p">,</span> <span class="n">sequencelist</span>
 
 
-<span class="k">def</span> <span class="nf">_parser2</span><span class="p">(</span><span class="n">waveformlist</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_parser2</span><span class="p">(</span><span class="n">waveformlist</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Cast the waveformlist from _parser1 into a dict used by _parser3.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        waveformlist (list[list, list]): A list of lists of waveforms from</span>
-<span class="sd">          _parser1</span>
+<span class="sd">        waveformlist: A list of lists of waveforms from ``_parser1``</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: A dictionary with keys waveform name and values for marker1,</span>
@@ -643,19 +660,23 @@
     <span class="k">return</span> <span class="n">outdict</span>
 
 
-<span class="k">def</span> <span class="nf">_parser3</span><span class="p">(</span><span class="n">sequencelist</span><span class="p">,</span> <span class="n">wfmdict</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_parser3</span><span class="p">(</span>
+        <span class="n">sequencelist</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
+        <span class="n">wfmdict</span><span class="p">:</span> <span class="n">Dict</span>
+             <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_parser3_output</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The final parser! OMG+1</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">sequencedict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SEQUENCE_WAIT&#39;</span><span class="p">:</span> <span class="p">[],</span>
-                    <span class="s1">&#39;SEQUENCE_LOOP&#39;</span><span class="p">:</span> <span class="p">[],</span>
-                    <span class="s1">&#39;SEQUENCE_JUMP&#39;</span><span class="p">:</span> <span class="p">[],</span>
-                    <span class="s1">&#39;SEQUENCE_GOTO&#39;</span><span class="p">:</span> <span class="p">[],</span>
-                    <span class="s1">&#39;SEQUENCE_WAVEFORM_NAME_CH_1&#39;</span><span class="p">:</span> <span class="p">[],</span>
-                    <span class="s1">&#39;SEQUENCE_WAVEFORM_NAME_CH_2&#39;</span><span class="p">:</span> <span class="p">[],</span>
-                    <span class="s1">&#39;SEQUENCE_WAVEFORM_NAME_CH_3&#39;</span><span class="p">:</span> <span class="p">[],</span>
-                    <span class="s1">&#39;SEQUENCE_WAVEFORM_NAME_CH_4&#39;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="n">sequencedict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;SEQUENCE_WAIT&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;SEQUENCE_LOOP&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;SEQUENCE_JUMP&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;SEQUENCE_GOTO&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;SEQUENCE_WAVEFORM_NAME_CH_1&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;SEQUENCE_WAVEFORM_NAME_CH_2&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;SEQUENCE_WAVEFORM_NAME_CH_3&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;SEQUENCE_WAVEFORM_NAME_CH_4&#39;</span><span class="p">:</span> <span class="p">[]</span>
     <span class="p">}</span>
 
     <span class="k">for</span> <span class="n">fieldname</span><span class="p">,</span> <span class="n">fieldvalue</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sequencelist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sequencelist</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
@@ -697,10 +718,12 @@
     <span class="n">gotos</span> <span class="o">=</span> <span class="n">sequencedict</span><span class="p">[</span><span class="s1">&#39;SEQUENCE_GOTO&#39;</span><span class="p">]</span>
     <span class="n">jumps</span> <span class="o">=</span> <span class="n">sequencedict</span><span class="p">[</span><span class="s1">&#39;SEQUENCE_JUMP&#39;</span><span class="p">]</span>
 
-    <span class="k">return</span> <span class="p">(</span><span class="n">wfms</span><span class="p">,</span> <span class="n">m1s</span><span class="p">,</span> <span class="n">m2s</span><span class="p">,</span> <span class="n">nreps</span><span class="p">,</span> <span class="n">waits</span><span class="p">,</span> <span class="n">gotos</span><span class="p">,</span> <span class="n">jumps</span><span class="p">,</span> <span class="n">channels</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wfms</span><span class="p">,</span> <span class="n">m1s</span><span class="p">,</span> <span class="n">m2s</span><span class="p">,</span> <span class="n">nreps</span><span class="p">,</span> <span class="n">waits</span><span class="p">,</span> <span class="n">gotos</span><span class="p">,</span> <span class="n">jumps</span><span class="p">,</span> <span class="n">channels</span>
 
 
-<div class="viewcode-block" id="parse_awg_file"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWGFileParser.parse_awg_file">[docs]</a><span class="k">def</span> <span class="nf">parse_awg_file</span><span class="p">(</span><span class="n">awgfilepath</span><span class="p">):</span>
+<div class="viewcode-block" id="parse_awg_file"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWGFileParser.parse_awg_file">[docs]</a><span class="k">def</span> <span class="nf">parse_awg_file</span><span class="p">(</span>
+        <span class="n">awgfilepath</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">_parser3_output</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">]]]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parser for a binary .awg file. Returns a tuple matching the call signature</span>
 <span class="sd">    of make_send_and_load_awg_file and a dictionary with instrument settings</span>
@@ -708,19 +731,19 @@
 <span class="sd">    NOTE: Build-in waveforms are not stored in .awg files. Blame tektronix.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        awgfilepath (str): The absolute path to the awg file</span>
+<span class="sd">        awgfilepath: The absolute path to the awg file</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        tuple: (tuple, dict), where the first tuple is \</span>
-<span class="sd">          (wfms, m1s, m2s, nreps, trigs, gotos, jumps, channels) \</span>
-<span class="sd">          and the dict contains all instrument settings from the file</span>
+<span class="sd">        A tuple and a dict, where the tuple is</span>
+<span class="sd">        (wfms, m1s, m2s, nreps, trigs, gotos, jumps, channels)</span>
+<span class="sd">        and the dict contains all instrument settings from the file</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">instdict</span><span class="p">,</span> <span class="n">waveformlist</span><span class="p">,</span> <span class="n">sequencelist</span> <span class="o">=</span> <span class="n">_parser1</span><span class="p">(</span><span class="n">awgfilepath</span><span class="p">)</span>
     <span class="n">wfmdict</span> <span class="o">=</span> <span class="n">_parser2</span><span class="p">(</span><span class="n">waveformlist</span><span class="p">)</span>
     <span class="n">callsigtuple</span> <span class="o">=</span> <span class="n">_parser3</span><span class="p">(</span><span class="n">sequencelist</span><span class="p">,</span> <span class="n">wfmdict</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="p">(</span><span class="n">callsigtuple</span><span class="p">,</span> <span class="n">instdict</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">callsigtuple</span><span class="p">,</span> <span class="n">instdict</span></div>
 </pre></div>
 
            </div>

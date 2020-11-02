@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.2+318.g2d31820629
+                0.19.2+333.g23dfdd82fb
               </div>
             
           
@@ -165,6 +165,8 @@
   <h1>Source code for qcodes.instrument_drivers.tektronix.TPS2012</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">binascii</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">TypedDict</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">pyvisa.errors</span> <span class="kn">import</span> <span class="n">VisaIOError</span>
@@ -172,7 +174,7 @@
 
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">VisaInstrument</span><span class="p">,</span> <span class="n">validators</span> <span class="k">as</span> <span class="n">vals</span>
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">InstrumentChannel</span><span class="p">,</span> <span class="n">ChannelList</span>
-<span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">ArrayParameter</span>
+<span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">ArrayParameter</span><span class="p">,</span> <span class="n">ParamRawDataType</span>
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -181,8 +183,28 @@
     <span class="k">pass</span></div>
 
 
+<div class="viewcode-block" id="OutputDict"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.TPS2012.OutputDict">[docs]</a><span class="k">class</span> <span class="nc">OutputDict</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="n">no_of_bytes</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">no_of_bits</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">binary_format</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">byte_order</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">no_of_points</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">waveform_ID</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">point_format</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">x_incr</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">x_zero</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">x_unit</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">y_multiplier</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">y_zero</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">y_offset</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">y_unit</span><span class="p">:</span> <span class="nb">str</span></div>
+
+
 <div class="viewcode-block" id="ScopeArray"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.TPS2012.ScopeArray">[docs]</a><span class="k">class</span> <span class="nc">ScopeArray</span><span class="p">(</span><span class="n">ArrayParameter</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">instrument</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">instrument</span><span class="p">:</span> <span class="s2">&quot;TPS2012Channel&quot;</span><span class="p">,</span>
+                 <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
                          <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2500</span><span class="p">,),</span>
                          <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Voltage&#39;</span><span class="p">,</span>
@@ -190,12 +212,13 @@
                          <span class="n">setpoint_names</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="p">),</span>
                          <span class="n">setpoint_labels</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="p">),</span>
                          <span class="n">setpoint_units</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,),</span>
-                         <span class="n">docstring</span><span class="o">=</span><span class="s1">&#39;holds an array from scope&#39;</span><span class="p">)</span>
+                         <span class="n">docstring</span><span class="o">=</span><span class="s1">&#39;holds an array from scope&#39;</span><span class="p">,</span>
+                         <span class="n">instrument</span><span class="o">=</span><span class="n">instrument</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span> <span class="o">=</span> <span class="n">instrument</span>
 
-<div class="viewcode-block" id="ScopeArray.calc_set_points"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.TPS2012.ScopeArray.calc_set_points">[docs]</a>    <span class="k">def</span> <span class="nf">calc_set_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;WFMPre?&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="ScopeArray.calc_set_points"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.TPS2012.ScopeArray.calc_set_points">[docs]</a>    <span class="k">def</span> <span class="nf">calc_set_points</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span> <span class="n">TPS2012Channel</span><span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;WFMPre?&#39;</span><span class="p">)</span>
         <span class="n">preamble</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_preambleparser</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
         <span class="n">xstart</span> <span class="o">=</span> <span class="n">preamble</span><span class="p">[</span><span class="s1">&#39;x_zero&#39;</span><span class="p">]</span>
         <span class="n">xinc</span> <span class="o">=</span> <span class="n">preamble</span><span class="p">[</span><span class="s1">&#39;x_incr&#39;</span><span class="p">]</span>
@@ -203,25 +226,27 @@
         <span class="n">xdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xstart</span><span class="p">,</span> <span class="n">no_of_points</span> <span class="o">*</span> <span class="n">xinc</span> <span class="o">+</span> <span class="n">xstart</span><span class="p">,</span> <span class="n">no_of_points</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">no_of_points</span></div>
 
-<div class="viewcode-block" id="ScopeArray.prepare_curvedata"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.TPS2012.ScopeArray.prepare_curvedata">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_curvedata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ScopeArray.prepare_curvedata"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.TPS2012.ScopeArray.prepare_curvedata">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_curvedata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prepare the scope for returning curve data</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># To calculate set points, we must have the full preamble</span>
         <span class="c1"># For the instrument to return the full preamble, the channel</span>
         <span class="c1"># in question must be displayed</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;ON&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">data_source</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;CH</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span> <span class="n">TPS2012Channel</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="p">,</span> <span class="n">TPS2012</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;ON&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="o">.</span><span class="n">data_source</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;CH</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
         <span class="n">xdata</span><span class="p">,</span> <span class="n">no_of_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_set_points</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setpoints</span> <span class="o">=</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">xdata</span><span class="p">),</span> <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">no_of_points</span><span class="p">,</span> <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">trace_ready</span> <span class="o">=</span> <span class="kc">True</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="o">.</span><span class="n">trace_ready</span> <span class="o">=</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="ScopeArray.get_raw"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.TPS2012.ScopeArray.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">trace_ready</span><span class="p">:</span>
+<div class="viewcode-block" id="ScopeArray.get_raw"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.TPS2012.ScopeArray.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParamRawDataType</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="p">,</span> <span class="n">TPS2012</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_instrument</span><span class="o">.</span><span class="n">trace_ready</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">TraceNotReady</span><span class="p">(</span><span class="s1">&#39;Please run prepare_curvedata to prepare &#39;</span>
                                 <span class="s1">&#39;the scope for giving a trace.&#39;</span><span class="p">)</span>
         <span class="n">message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_curveasker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="p">)</span>
@@ -234,84 +259,90 @@
         <span class="c1"># self.shape = (npoints,)</span>
         <span class="k">return</span> <span class="n">ydata</span></div>
 
-    <span class="k">def</span> <span class="nf">_curveasker</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ch</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;DATa:SOURce CH</span><span class="si">{</span><span class="n">ch</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="n">message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;WAVFrm?&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;*WAI&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_curveasker</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ch</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span> <span class="n">TPS2012Channel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;DATa:SOURce CH</span><span class="si">{</span><span class="n">ch</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;WAVFrm?&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;*WAI&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">message</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_binaryparser</span><span class="p">(</span><span class="n">curve</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_binaryparser</span><span class="p">(</span><span class="n">curve</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Helper function for parsing the curve data</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            curve (str): the return value of &#39;CURVe?&#39; when</span>
+<span class="sd">            curve: the return value of &#39;CURVe?&#39; when</span>
 <span class="sd">              DATa:ENCdg is set to RPBinary.</span>
 <span class="sd">              Note: The header and final newline character</span>
 <span class="sd">              must be removed.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            nparray: the curve in units where the digitisation range</span>
-<span class="sd">              is mapped to (-32768, 32767).</span>
+<span class="sd">            The curve in units where the digitisation range</span>
+<span class="sd">            is mapped to (-32768, 32767).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO: Add support for data width = 1 mode?</span>
         <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">curve</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># data width 2</span>
         <span class="c1"># output = np.zeros(int(len(curve)))  # data width 1</span>
         <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
             <span class="c1"># casting FTWs</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">curve</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">ii</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;latin-1&#39;</span><span class="p">)</span>  <span class="c1"># data width 2</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">binascii</span><span class="o">.</span><span class="n">b2a_hex</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span><span class="o">-</span><span class="mi">128</span><span class="p">)</span><span class="o">*</span><span class="mi">256</span>  <span class="c1"># data width 2 (1)</span>
-            <span class="n">output</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+            <span class="n">temp_1</span> <span class="o">=</span> <span class="n">curve</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">ii</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;latin-1&#39;</span><span class="p">)</span>  <span class="c1"># data width 2</span>
+            <span class="n">temp_2</span> <span class="o">=</span> <span class="n">binascii</span><span class="o">.</span><span class="n">b2a_hex</span><span class="p">(</span><span class="n">temp_1</span><span class="p">)</span>
+            <span class="n">temp_3</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">temp_2</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span><span class="o">-</span><span class="mi">128</span><span class="p">)</span><span class="o">*</span><span class="mi">256</span>  <span class="c1"># data width 2 (1)</span>
+            <span class="n">output</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_3</span>
         <span class="k">return</span> <span class="n">output</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_preambleparser</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_preambleparser</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OutputDict</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parser function for the curve preamble</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            response (str): The response of WFMPre?</span>
+<span class="sd">            response: The response of WFMPre?</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            dict: a dictionary containing the following keys:</span>
+<span class="sd">            A dictionary containing the following keys:</span>
 <span class="sd">              no_of_bytes, no_of_bits, encoding, binary_format,</span>
 <span class="sd">              byte_order, no_of_points, waveform_ID, point_format,</span>
 <span class="sd">              x_incr, x_zero, x_unit, y_multiplier, y_zero, y_offset, y_unit</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
-        <span class="n">outdict</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">outdict</span><span class="p">[</span><span class="s1">&#39;no_of_bytes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">outdict</span><span class="p">[</span><span class="s1">&#39;no_of_bits&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">outdict</span><span class="p">[</span><span class="s1">&#39;encoding&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-        <span class="n">outdict</span><span class="p">[</span><span class="s1">&#39;binary_format&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-        <span class="n">outdict</span><span class="p">[</span><span class="s1">&#39;byte_order&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
-        <span class="n">outdict</span><span class="p">[</span><span class="s1">&#39;no_of_points&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
-        <span class="n">outdict</span><span class="p">[</span><span class="s1">&#39;waveform_ID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
-        <span class="n">outdict</span><span class="p">[</span><span class="s1">&#39;point_format&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
-        <span class="n">outdict</span><span class="p">[</span><span class="s1">&#39;x_incr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span>
-        <span class="c1"># outdict[&#39;point_offset&#39;] = response[9]  # Always zero</span>
-        <span class="n">outdict</span><span class="p">[</span><span class="s1">&#39;x_zero&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span>
-        <span class="n">outdict</span><span class="p">[</span><span class="s1">&#39;x_unit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span>
-        <span class="n">outdict</span><span class="p">[</span><span class="s1">&#39;y_multiplier&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="mi">12</span><span class="p">])</span>
-        <span class="n">outdict</span><span class="p">[</span><span class="s1">&#39;y_zero&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="mi">13</span><span class="p">])</span>
-        <span class="n">outdict</span><span class="p">[</span><span class="s1">&#39;y_offset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="mi">14</span><span class="p">])</span>
-        <span class="n">outdict</span><span class="p">[</span><span class="s1">&#39;y_unit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span>
+        <span class="n">response_list</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
 
+        <span class="n">outdict</span><span class="p">:</span> <span class="n">OutputDict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;no_of_bytes&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">response_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+            <span class="s1">&#39;no_of_bits&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">response_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="s1">&#39;encoding&#39;</span><span class="p">:</span>  <span class="n">response_list</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+            <span class="s1">&#39;binary_format&#39;</span><span class="p">:</span> <span class="n">response_list</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+            <span class="s1">&#39;byte_order&#39;</span><span class="p">:</span> <span class="n">response_list</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+            <span class="s1">&#39;no_of_points&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">response_list</span><span class="p">[</span><span class="mi">5</span><span class="p">]),</span>
+            <span class="s1">&#39;waveform_ID&#39;</span><span class="p">:</span>  <span class="n">response_list</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span>
+            <span class="s1">&#39;point_format&#39;</span><span class="p">:</span> <span class="n">response_list</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span>
+            <span class="s1">&#39;x_incr&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">response_list</span><span class="p">[</span><span class="mi">8</span><span class="p">]),</span>
+            <span class="c1"># outdict[&#39;point_offset&#39;] = response_list[9]  # Always zero</span>
+            <span class="s1">&#39;x_zero&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">response_list</span><span class="p">[</span><span class="mi">10</span><span class="p">]),</span>
+            <span class="s1">&#39;x_unit&#39;</span><span class="p">:</span> <span class="n">response_list</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span>
+            <span class="s1">&#39;y_multiplier&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">response_list</span><span class="p">[</span><span class="mi">12</span><span class="p">]),</span>
+            <span class="s1">&#39;y_zero&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">response_list</span><span class="p">[</span><span class="mi">13</span><span class="p">]),</span>
+            <span class="s1">&#39;y_offset&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">response_list</span><span class="p">[</span><span class="mi">14</span><span class="p">]),</span>
+            <span class="s1">&#39;y_unit&#39;</span><span class="p">:</span> <span class="n">response_list</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span>
+        <span class="p">}</span>
         <span class="k">return</span> <span class="n">outdict</span>
 
-    <span class="k">def</span> <span class="nf">_curveparameterparser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waveform</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_curveparameterparser</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">waveform</span><span class="p">:</span> <span class="nb">str</span>
+            <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The parser for the curve parameter. Note that WAVFrm? is equivalent</span>
 <span class="sd">        to WFMPre?; CURVe?</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            waveform (str): The return value of WAVFrm?</span>
+<span class="sd">            waveform: The return value of WAVFrm?</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            (np.array, np.array): Two numpy arrays with the time axis in units</span>
-<span class="sd">            of s and curve values in units of V; (time, voltages)</span>
+<span class="sd">            Two numpy arrays with the time axis in units</span>
+<span class="sd">            of s and curve values in units of V; (time, voltages) and</span>
+<span class="sd">            the number of points as an integer</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">fulldata</span> <span class="o">=</span> <span class="n">waveform</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
         <span class="n">preamblestr</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fulldata</span><span class="p">[:</span><span class="mi">16</span><span class="p">])</span>
@@ -341,7 +372,7 @@
 
 <div class="viewcode-block" id="TPS2012Channel"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012Channel">[docs]</a><span class="k">class</span> <span class="nc">TPS2012Channel</span><span class="p">(</span><span class="n">InstrumentChannel</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="s2">&quot;TPS2012&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;scale&#39;</span><span class="p">,</span>
@@ -370,7 +401,7 @@
                            <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Enum</span><span class="p">(</span><span class="s1">&#39;ON&#39;</span><span class="p">,</span> <span class="s1">&#39;OFF&#39;</span><span class="p">)</span>
                            <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_get_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ch</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ch</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        get_cmd for the chX_state parameter</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -387,14 +418,15 @@
 <span class="sd">    This is the QCoDeS driver for the Tektronix 2012B oscilloscope.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialises the TPS2012.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            name (str): Name of the instrument used by QCoDeS</span>
-<span class="sd">        address (string): Instrument address as used by VISA</span>
-<span class="sd">            timeout (float): visa timeout, in secs. long default (180)</span>
+<span class="sd">            name: Name of the instrument used by QCoDeS</span>
+<span class="sd">            address: Instrument address as used by VISA</span>
+<span class="sd">            timeout: visa timeout, in secs. long default (180)</span>
 <span class="sd">              to accommodate large waveforms</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -483,7 +515,7 @@
         <span class="c1"># significantly to transfer times. The maximal length</span>
         <span class="c1"># of an array in one transfer is 2500 points.</span>
 
-    <span class="k">def</span> <span class="nf">_set_timescale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_timescale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        set_cmd for the horizontal_scale</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -494,13 +526,13 @@
     <span class="c1"># METHODS FOR THE USER                           #</span>
     <span class="c1">##################################################</span>
 
-<div class="viewcode-block" id="TPS2012.clear_message_queue"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.clear_message_queue">[docs]</a>    <span class="k">def</span> <span class="nf">clear_message_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="TPS2012.clear_message_queue"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.clear_message_queue">[docs]</a>    <span class="k">def</span> <span class="nf">clear_message_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function to clear up (flush) the VISA message queue of the AWG</span>
 <span class="sd">        instrument. Reads all messages in the the queue.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            verbose (Bool): If True, the read messages are printed.</span>
+<span class="sd">            verbose: If True, the read messages are printed.</span>
 <span class="sd">                Default: False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">original_timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">timeout</span>

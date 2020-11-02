@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.2+318.g2d31820629
+                0.19.2+333.g23dfdd82fb
               </div>
             
           
@@ -163,14 +163,17 @@
            <div itemprop="articleBody">
             
   <h1>Source code for qcodes.instrument_drivers.tektronix.Keithley_6500</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">VisaInstrument</span>
 <span class="kn">from</span> <span class="nn">qcodes.utils.validators</span> <span class="kn">import</span> <span class="n">Bool</span><span class="p">,</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">Ints</span><span class="p">,</span> <span class="n">MultiType</span><span class="p">,</span> <span class="n">Numbers</span>
 
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">_parse_output_string</span><span class="p">(</span><span class="n">string_value</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+
+<span class="k">def</span> <span class="nf">_parse_output_string</span><span class="p">(</span><span class="n">string_value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot; Parses and cleans string output of the multimeter. Removes the surrounding</span>
 <span class="sd">        whitespace, newline characters and quotes from the parsed data. Some results</span>
 <span class="sd">        are converted for readablitity (e.g. mov changes to moving).</span>
@@ -191,7 +194,7 @@
     <span class="k">return</span> <span class="n">s</span>
 
 
-<span class="k">def</span> <span class="nf">_parse_output_bool</span><span class="p">(</span><span class="n">numeric_value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]):</span>
+<span class="k">def</span> <span class="nf">_parse_output_bool</span><span class="p">(</span><span class="n">numeric_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot; Parses and converts the value to boolean type. True is 1.</span>
 
 <span class="sd">    Args:</span>
@@ -209,7 +212,12 @@
 
 <div class="viewcode-block" id="Keithley_6500"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500">[docs]</a><span class="k">class</span> <span class="nc">Keithley_6500</span><span class="p">(</span><span class="n">VisaInstrument</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">reset_device</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">reset_device</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Driver for the Keithley 6500 multimeter. Based on the Keithley 2000 driver,</span>
 <span class="sd">            commands have been adapted for the Keithley 6500. This driver does not contain</span>
 <span class="sd">            all commands available, but only the ones most commonly used.</span>
@@ -350,19 +358,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;FORM:DATA ASCII&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_message</span><span class="p">()</span>
 
-<div class="viewcode-block" id="Keithley_6500.reset"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Keithley_6500.reset"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot; Reset the device &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;*RST&#39;</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">_read_next_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_read_next_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;READ?&#39;</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">_get_mode_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">parser</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_mode_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parser</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot; Reads the current mode of the multimeter and ask for the given parameter.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            parameter (str): The asked parameter after getting the current mode.</span>
-<span class="sd">            parser (function): A function that parses the input buffer read.</span>
+<span class="sd">            parameter: The asked parameter after getting the current mode.</span>
+<span class="sd">            parser: A function that parses the input buffer read.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Any: the parsed ask command. The parser determines the return data-type.</span>
@@ -371,12 +379,12 @@
         <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">parameter</span><span class="si">}</span><span class="s1">?&#39;</span>
         <span class="k">return</span> <span class="n">parser</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="n">cmd</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">_set_mode_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_mode_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot; Gets the current mode of the multimeter and sets the given parameter.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            parameter (str): The set parameter after getting the current mode.</span>
-<span class="sd">            value (obj): Value to set</span>
+<span class="sd">            parameter: The set parameter after getting the current mode.</span>
+<span class="sd">            value: Value to set</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
             <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
