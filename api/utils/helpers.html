@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.19.2+360.g5e9445e49c
+                0.19.2+366.gb52e50fe17
               </div>
             
           
@@ -260,7 +260,7 @@ that can’t otherwise be serialized.  It should return a JSON encodable
 version of the object or raise a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.</p>
 <dl class="py method">
 <dt id="qcodes.utils.helpers.NumpyJSONEncoder.default">
-<code class="sig-name descname">default</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#NumpyJSONEncoder.default"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.NumpyJSONEncoder.default" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">default</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; Any<a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#NumpyJSONEncoder.default"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.NumpyJSONEncoder.default" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of conversions that this encoder performs:
 * <code class="docutils literal notranslate"><span class="pre">numpy.generic</span></code> (all integer, floating, and other types) gets
 converted to its python equivalent using its <code class="docutils literal notranslate"><span class="pre">item</span></code> method (see
@@ -317,13 +317,13 @@ representation as available.</p>
 
 <dl class="py function">
 <dt id="qcodes.utils.helpers.tprint">
-<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">tprint</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">string</span></em>, <em class="sig-param"><span class="n">dt</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">'default'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#tprint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.tprint" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">tprint</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">string</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">dt</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">tag</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span> <span class="o">=</span> <span class="default_value">'default'</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#tprint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.tprint" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print progress of a loop every <code class="docutils literal notranslate"><span class="pre">dt</span></code> seconds.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="qcodes.utils.helpers.is_sequence">
-<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">is_sequence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#is_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.is_sequence" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">is_sequence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#is_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.is_sequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test if an object is a sequence.</p>
 <p>We do not consider strings or unordered collections like sets to be
 sequences, but we do accept iterators (such as generators).</p>
@@ -379,19 +379,19 @@ type casting “functions” are allowed, but only in the 1-argument form.</p>
 
 <dl class="py function">
 <dt id="qcodes.utils.helpers.full_class">
-<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">full_class</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#full_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.full_class" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">full_class</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#object" title="(in Python v3.7)">object</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#full_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.full_class" title="Permalink to this definition">¶</a></dt>
 <dd><p>The full importable path to an object’s class.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="qcodes.utils.helpers.named_repr">
-<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">named_repr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#named_repr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.named_repr" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">named_repr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#named_repr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.named_repr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enhance the standard repr() with the object’s name attribute.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="qcodes.utils.helpers.deep_update">
-<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">deep_update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dest</span></em>, <em class="sig-param"><span class="n">update</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#deep_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.deep_update" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">deep_update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dest</span><span class="p">:</span> <span class="n">MutableMapping</span></em>, <em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Mapping</span></em><span class="sig-paren">)</span> &#x2192; MutableMapping<a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#deep_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.deep_update" title="Permalink to this definition">¶</a></dt>
 <dd><p>Recursively update one JSON structure with another.</p>
 <p>Only dives into nested dicts; lists get replaced completely.
 If the original value is a dictionary and the new value is not, or vice versa,
@@ -450,7 +450,7 @@ The sign of <code class="docutils literal notranslate"><span class="pre">step</s
 
 <dl class="py function">
 <dt id="qcodes.utils.helpers.wait_secs">
-<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">wait_secs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">finish_clock</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#wait_secs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.wait_secs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">wait_secs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">finish_clock</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#wait_secs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.wait_secs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the number of seconds until a given clock time.
 The clock time should be the result of <code class="docutils literal notranslate"><span class="pre">time.perf_counter()</span></code>.
 Does NOT wait for this time.</p>
@@ -499,14 +499,14 @@ to <em>not</em> delegate to any other dictionary or object.</p>
 
 <dl class="py function">
 <dt id="qcodes.utils.helpers.strip_attrs">
-<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">strip_attrs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em>, <em class="sig-param"><span class="n">whitelist</span><span class="o">=</span><span class="default_value">()</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#strip_attrs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.strip_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">strip_attrs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#object" title="(in Python v3.7)">object</a></span></em>, <em class="sig-param"><span class="n">whitelist</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">()</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#strip_attrs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.strip_attrs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Irreversibly remove all direct instance attributes of object, to help with
 disposal, breaking circular references.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>obj</strong> – Object to be stripped.</p></li>
-<li><p><strong>whitelist</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – List of names that are not stripped from the object.</p></li>
+<li><p><strong>whitelist</strong> – List of names that are not stripped from the object.</p></li>
 </ul>
 </dd>
 </dl>
@@ -542,12 +542,12 @@ differences string.</p></li>
 
 <dl class="py function">
 <dt id="qcodes.utils.helpers.warn_units">
-<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">warn_units</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">class_name</span></em>, <em class="sig-param"><span class="n">instance</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#warn_units"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.warn_units" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">warn_units</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">class_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">instance</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#object" title="(in Python v3.7)">object</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#warn_units"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.warn_units" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="qcodes.utils.helpers.foreground_qt_window">
-<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">foreground_qt_window</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">window</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#foreground_qt_window"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.foreground_qt_window" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">foreground_qt_window</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">window</span><span class="p">:</span> <span class="n">QMainWindow</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#foreground_qt_window"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.foreground_qt_window" title="Permalink to this definition">¶</a></dt>
 <dd><p>Try as hard as possible to bring a qt window to the front. This
 will use pywin32 if installed and running on windows as this
 seems to be the only reliable way to foreground a window. The
@@ -567,7 +567,7 @@ as in the example below.</p>
 
 <dl class="py function">
 <dt id="qcodes.utils.helpers.add_to_spyder_UMR_excludelist">
-<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">add_to_spyder_UMR_excludelist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">modulename</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#add_to_spyder_UMR_excludelist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.add_to_spyder_UMR_excludelist" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">add_to_spyder_UMR_excludelist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">modulename</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#add_to_spyder_UMR_excludelist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.add_to_spyder_UMR_excludelist" title="Permalink to this definition">¶</a></dt>
 <dd><p>Spyder tries to reload any user module. This does not work well for
 qcodes because it overwrites Class variables. QCoDeS uses these to
 store global attributes such as default station, monitor and list of
@@ -581,7 +581,7 @@ TODO is there a better way to detect if we are in spyder?</p>
 
 <dl class="py function">
 <dt id="qcodes.utils.helpers.attribute_set_to">
-<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">attribute_set_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">object_</span><span class="p">:</span> <span class="n">Any</span></em>, <em class="sig-param"><span class="n">attribute_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">new_value</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#attribute_set_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.attribute_set_to" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">attribute_set_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">object_</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#object" title="(in Python v3.7)">object</a></span></em>, <em class="sig-param"><span class="n">attribute_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">new_value</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; Iterator<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#attribute_set_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.attribute_set_to" title="Permalink to this definition">¶</a></dt>
 <dd><p>This context manager allows to change a given attribute of a given object
 to a new value, and the original value is reverted upon exit of the context
 manager.</p>
@@ -599,7 +599,7 @@ to be changed.</p></li>
 
 <dl class="py function">
 <dt id="qcodes.utils.helpers.partial_with_docstring">
-<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">partial_with_docstring</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span></em>, <em class="sig-param"><span class="n">docstring</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#partial_with_docstring"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.partial_with_docstring" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">partial_with_docstring</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span></em>, <em class="sig-param"><span class="n">docstring</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; Callable<a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#partial_with_docstring"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.partial_with_docstring" title="Permalink to this definition">¶</a></dt>
 <dd><p>We want to have a partial function which will allow us access the docstring
 through the python built-in help function. This is particularly important
 for client-facing driver methods, whose arguments might not be obvious.</p>

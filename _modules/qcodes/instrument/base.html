@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.2+360.g5e9445e49c
+                0.19.2+366.gb52e50fe17
               </div>
             
           
@@ -356,7 +356,7 @@
         <span class="k">if</span> <span class="n">params_to_skip_update</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">params_to_skip_update</span> <span class="o">=</span> <span class="p">[]</span>
 
-        <span class="n">snap</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">snap</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;functions&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">func</span><span class="o">.</span><span class="n">snapshot</span><span class="p">(</span><span class="n">update</span><span class="o">=</span><span class="n">update</span><span class="p">)</span>
                           <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">functions</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
             <span class="s2">&quot;submodules&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">subm</span><span class="o">.</span><span class="n">snapshot</span><span class="p">(</span><span class="n">update</span><span class="o">=</span><span class="n">update</span><span class="p">)</span>
@@ -372,7 +372,6 @@
                 <span class="n">update_par</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">update_par</span> <span class="o">=</span> <span class="n">update</span>
-
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">snap</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">snapshot</span><span class="p">(</span><span class="n">update</span><span class="o">=</span><span class="n">update_par</span><span class="p">)</span>
             <span class="k">except</span><span class="p">:</span>
