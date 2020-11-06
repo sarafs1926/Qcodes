@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.2+368.gc4940dd9e9
+                0.19.2+372.gd36c423ad4
               </div>
             
           
@@ -166,7 +166,7 @@
 <span></span><span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">import</span> <span class="nn">types</span>
 <span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">List</span>
 
 <span class="kn">import</span> <span class="nn">wrapt</span>
 
@@ -215,8 +215,8 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@wrapt</span><span class="o">.</span><span class="n">decorator</span>
-    <span class="k">def</span> <span class="nf">decorate_callable</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+    <span class="nd">@wrapt</span><span class="o">.</span><span class="n">decorator</span>  <span class="c1"># type: ignore[misc]</span>
+    <span class="k">def</span> <span class="nf">decorate_callable</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">instance</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
         <span class="n">t</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__init__&#39;</span>
                 <span class="k">else</span> <span class="p">(</span><span class="s1">&#39;function&#39;</span><span class="p">,</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
@@ -234,7 +234,7 @@
             <span class="k">for</span> <span class="n">m_name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
                 <span class="n">m</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">m_name</span><span class="p">)</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="p">(</span><span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">MethodType</span><span class="p">)):</span>
-                    <span class="c1"># skip static methods, since they are not wrapped corectly</span>
+                    <span class="c1"># skip static methods, since they are not wrapped correctly</span>
                     <span class="c1"># by wrapt.</span>
                     <span class="c1"># if anyone reading this knows how the following line</span>
                     <span class="c1"># works please let me know.</span>
@@ -249,7 +249,7 @@
 
 
 <span class="nd">@contextmanager</span>
-<span class="k">def</span> <span class="nf">_catch_deprecation_warnings</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">_catch_deprecation_warnings</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">warnings</span><span class="o">.</span><span class="n">WarningMessage</span><span class="p">]]:</span>
     <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">(</span><span class="n">record</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
         <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;always&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">QCoDeSDeprecationWarning</span><span class="p">)</span>
@@ -257,18 +257,20 @@
 
 
 <div class="viewcode-block" id="assert_not_deprecated"><a class="viewcode-back" href="../../../api/utils/deprecate.html#qcodes.utils.deprecate.assert_not_deprecated">[docs]</a><span class="nd">@contextmanager</span>
-<span class="k">def</span> <span class="nf">assert_not_deprecated</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">assert_not_deprecated</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="kc">None</span><span class="p">]:</span>
     <span class="k">with</span> <span class="n">_catch_deprecation_warnings</span><span class="p">()</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">yield</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span></div>
 
 
 <div class="viewcode-block" id="assert_deprecated"><a class="viewcode-back" href="../../../api/utils/deprecate.html#qcodes.utils.deprecate.assert_deprecated">[docs]</a><span class="nd">@contextmanager</span>
-<span class="k">def</span> <span class="nf">assert_deprecated</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">assert_deprecated</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="kc">None</span><span class="p">]:</span>
     <span class="k">with</span> <span class="n">_catch_deprecation_warnings</span><span class="p">()</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">yield</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-    <span class="k">assert</span> <span class="n">ws</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">message</span></div>
+    <span class="n">recorded_message</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">recorded_message</span><span class="p">,</span> <span class="ne">Warning</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">recorded_message</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">message</span></div>
 </pre></div>
 
            </div>
