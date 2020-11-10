@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.2+467.g108ddff93d
+                0.19.2+474.gd4c373a63d
               </div>
             
           
@@ -235,6 +235,19 @@
 <span class="sd">            location (None or str): Location to write the data. If no location</span>
 <span class="sd">                is provided will use the location specified in the dataset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">decode_bytes_if_needed</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            h5py 2 stores strings encoded as bytestrings</span>
+<span class="sd">            h5py 3 fixes this and stores them as regular utf8 strings</span>
+
+<span class="sd">            This is a simple wrapper to always convert to regular strings</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">return</span> <span class="n">s</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_open_file</span><span class="p">(</span><span class="n">data_set</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="s1">&#39;__format_tag&#39;</span> <span class="ow">in</span> <span class="n">data_set</span><span class="o">.</span><span class="n">_h5_base_group</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
@@ -250,19 +263,20 @@
             <span class="n">dat_arr</span> <span class="o">=</span> <span class="n">data_set</span><span class="o">.</span><span class="n">_h5_base_group</span><span class="p">[</span><span class="s1">&#39;Data Arrays&#39;</span><span class="p">][</span><span class="n">array_id</span><span class="p">]</span>
 
             <span class="c1"># write ensures these attributes always exist</span>
-            <span class="n">name</span> <span class="o">=</span> <span class="n">dat_arr</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
-            <span class="n">label</span> <span class="o">=</span> <span class="n">dat_arr</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">decode_bytes_if_needed</span><span class="p">(</span><span class="n">dat_arr</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">decode_bytes_if_needed</span><span class="p">(</span><span class="n">dat_arr</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">])</span>
 
             <span class="c1"># get unit from units if no unit field, for backward compatibility</span>
             <span class="k">if</span> <span class="s1">&#39;unit&#39;</span> <span class="ow">in</span> <span class="n">dat_arr</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
-                <span class="n">unit</span> <span class="o">=</span> <span class="n">dat_arr</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;unit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+                <span class="n">unit</span> <span class="o">=</span> <span class="n">decode_bytes_if_needed</span><span class="p">(</span><span class="n">dat_arr</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;unit&#39;</span><span class="p">])</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">unit</span> <span class="o">=</span> <span class="n">dat_arr</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+                <span class="n">unit</span> <span class="o">=</span> <span class="n">decode_bytes_if_needed</span><span class="p">(</span><span class="n">dat_arr</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">])</span>
 
-            <span class="n">is_setpoint</span> <span class="o">=</span> <span class="n">str_to_bool</span><span class="p">(</span><span class="n">dat_arr</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;is_setpoint&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+            <span class="n">is_setpoint_str</span> <span class="o">=</span> <span class="n">decode_bytes_if_needed</span><span class="p">(</span><span class="n">dat_arr</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;is_setpoint&#39;</span><span class="p">])</span>
+            <span class="n">is_setpoint</span> <span class="o">=</span> <span class="n">str_to_bool</span><span class="p">(</span><span class="n">is_setpoint_str</span><span class="p">)</span>
             <span class="c1"># if not is_setpoint:</span>
             <span class="n">set_arrays</span> <span class="o">=</span> <span class="n">dat_arr</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;set_arrays&#39;</span><span class="p">]</span>
-            <span class="n">set_arrays</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">set_arrays</span><span class="p">]</span>
+            <span class="n">set_arrays</span> <span class="o">=</span> <span class="p">[</span><span class="n">decode_bytes_if_needed</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">set_arrays</span><span class="p">]</span>
             <span class="c1"># else:</span>
             <span class="c1">#     set_arrays = ()</span>
             <span class="n">vals</span> <span class="o">=</span> <span class="n">dat_arr</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
@@ -403,13 +417,13 @@
             <span class="n">data_set</span><span class="o">.</span><span class="n">_h5_base_group</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="nf">_create_dataarray_dset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">group</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        input arguments</span>
 <span class="sd">        array:  Dataset data array</span>
 <span class="sd">        group:  group in the hdf5 file where the dset will be created</span>
 
 <span class="sd">        creates a hdf5 datasaset that represents the data array.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Check for empty meta attributes, use array_id if name and/or label</span>
         <span class="c1"># is not specified</span>
         <span class="k">if</span> <span class="n">array</span><span class="o">.</span><span class="n">label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -472,7 +486,7 @@
         <span class="k">elif</span> <span class="n">list_type</span> <span class="o">==</span> <span class="s1">&#39;list&#39;</span><span class="p">:</span>
             <span class="n">item</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;type </span><span class="si">%s</span><span class="s1"> not supported&#39;</span> <span class="o">%</span> <span class="nb">type</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;type </span><span class="si">%s</span><span class="s1"> not supported&#39;</span> <span class="o">%</span> <span class="n">list_type</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">item</span>
 
