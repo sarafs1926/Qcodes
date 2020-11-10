@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.2+474.gd4c373a63d
+                0.19.2+477.g14d2ebfa5b
               </div>
             
           
@@ -172,13 +172,13 @@
 
 <div class="viewcode-block" id="CurrentParameter"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.ithaco.html#qcodes.instrument_drivers.ithaco.Ithaco_1211.CurrentParameter">[docs]</a><span class="k">class</span> <span class="nc">CurrentParameter</span><span class="p">(</span><span class="n">MultiParameter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Current measurement via an Ithaco preamp and a measured voltage.</span>
+<span class="sd">    Voltage measurement via an Ithaco preamp and converting volt to current.</span>
 
 <span class="sd">    To be used when you feed a current into the Ithaco, send the Ithaco&#39;s</span>
 <span class="sd">    output voltage to a lockin or other voltage amplifier, and you have</span>
 <span class="sd">    the voltage reading from that amplifier as a qcodes parameter.</span>
 
-<span class="sd">    ``CurrentParameter.get()`` returns ``(voltage_raw, current)``</span>
+<span class="sd">    ``CurrentParameter.get()`` returns ``(volt_raw, curr)``</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        measured_param: a gettable parameter returning the</span>
