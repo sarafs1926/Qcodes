@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>QCoDeS Example with Ithaco &mdash; QCoDeS 0.19.2 documentation</title>
+  <title>QCoDeS Example with Itacho &mdash; QCoDeS 0.19.2 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.19.2+457.gee5e730f2d
+                0.19.2+467.g108ddff93d
               </div>
             
           
@@ -119,7 +119,13 @@
 <li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Alazar%209360.html">QCoDeS Example with Alazar ATS 9360</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20DynaCool%20PPMS.html">QCoDeS Example with DynaCool PPMS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20HP8753D.html">QCoDeS Example with HP8753D</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">QCoDeS Example with Ithaco</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">QCoDeS Example with Itacho</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Required-imports">Required imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Connecting-to-the-instruments">Connecting to the instruments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Setting-up-qcodes-database-and-performing-a-simple-measurement">Setting up qcodes database and performing a simple measurement</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Keithley%202600.html">QCoDeS Example with with Keithley 2600</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Keithley%207510.html">QCoDeS Example with Tektronix Keithley 7510 Multimeter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Keysight%2033500B.html">QCoDeS Example with Keysight 33500B</a></li>
@@ -209,7 +215,7 @@
         
           <li><a href="../index.html">Examples of using QCoDeS</a> &raquo;</li>
         
-      <li>QCoDeS Example with Ithaco</li>
+      <li>QCoDeS Example with Itacho</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -523,29 +529,39 @@ alt="Binder badge"
       p.appendChild(document.createTextNode('.'));
     }
   </script>
-</div><div class="section" id="QCoDeS-Example-with-Ithaco">
-<h1>QCoDeS Example with Ithaco<a class="headerlink" href="#QCoDeS-Example-with-Ithaco" title="Permalink to this headline">¶</a></h1>
-<div class="nbinput docutils container">
+</div><div class="section" id="QCoDeS-Example-with-Itacho">
+<h1>QCoDeS Example with Itacho<a class="headerlink" href="#QCoDeS-Example-with-Itacho" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook, we show how to use Itacho in a simple setup. We sweep the current using a Keithley 2614B sourcemeter as the current source. Itacho 1211 will convert the current to voltage and we readout the voltage using a DMM Agilent 34401A. Our test setup is as the following picture:</p>
+<p><img alt="title" src="../../_images/ithaco_setup.png" /></p>
+<div class="section" id="Required-imports">
+<h2>Required imports<a class="headerlink" href="#Required-imports" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># %matplotlib nbagg</span>
-<span class="o">%</span><span class="k">gui</span> qt
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="kn">import</span> <span class="nn">qcodes</span> <span class="k">as</span> <span class="nn">qc</span>
-<span class="kn">from</span> <span class="nn">qcodes.utils.validators</span> <span class="kn">import</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">Strings</span>
-<span class="kn">import</span> <span class="nn">qcodes.instrument_drivers.tektronix.Keithley_2600_channels</span> <span class="k">as</span> <span class="nn">keith</span>
-<span class="kn">import</span> <span class="nn">qcodes.instrument_drivers.agilent.Agilent_34400A</span> <span class="k">as</span> <span class="nn">agi</span>
-<span class="kn">import</span> <span class="nn">qcodes.instrument_drivers.ithaco.Ithaco_1211</span> <span class="k">as</span> <span class="nn">ithaco</span>
-
+<span></span><span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">Parameter</span>
 
-<span class="kn">from</span> <span class="nn">qcodes.plots.pyqtgraph</span> <span class="kn">import</span> <span class="n">QtPlot</span>
-<span class="kn">from</span> <span class="nn">qcodes.loops</span> <span class="kn">import</span> <span class="n">Loop</span>
+<span class="kn">from</span> <span class="nn">qcodes.utils.dataset.doNd</span> <span class="kn">import</span> <span class="n">do1d</span>
+<span class="kn">from</span> <span class="nn">qcodes.dataset.plotting</span> <span class="kn">import</span> <span class="n">plot_dataset</span>
+<span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">load_by_run_spec</span><span class="p">,</span> <span class="n">load_or_create_experiment</span><span class="p">,</span>\
+<span class="n">initialise_or_create_database_at</span>
+
+<span class="kn">from</span> <span class="nn">qcodes.instrument_drivers.tektronix.Keithley_2600_channels</span> <span class="kn">import</span>\
+<span class="n">Keithley_2600</span> <span class="k">as</span> <span class="n">keith</span>
+<span class="kn">import</span> <span class="nn">qcodes.instrument_drivers.agilent.Agilent_34400A</span> <span class="k">as</span> <span class="nn">agi</span>
+<span class="kn">import</span> <span class="nn">qcodes.instrument_drivers.ithaco.Ithaco_1211</span> <span class="k">as</span> <span class="nn">ithaco</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">qcodes.logger</span> <span class="kn">import</span> <span class="n">start_all_logging</span>
+<span class="n">start_all_logging</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -556,104 +572,92 @@ alt="Binder badge"
 <div class="highlight"><pre>
 Logging hadn&#39;t been started.
 Activating auto-logging. Current session state plus future input saved.
-Filename       : C:\Users\Jens-Work\.qcodes\logs\command_history.log
+Filename       : C:\Users\QCoDeS_Public\.qcodes\logs\command_history.log
 Mode           : append
 Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : C:\Users\Jens-Work\.qcodes\logs\201006-17520-qcodes.log
+Qcodes Logfile : C:\Users\QCoDeS_Public\.qcodes\logs\201109-10868-qcodes.log
 </pre></div></div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
-</pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">time</span>
-<span class="k">class</span> <span class="nc">Timer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-
-    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tstart</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[</span><span class="si">%s</span><span class="s1">]&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Elapsed: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">tstart</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
+<div class="section" id="Connecting-to-the-instruments">
+<h2>Connecting to the instruments<a class="headerlink" href="#Connecting-to-the-instruments" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># create Instruments</span>
-<span class="n">k1</span> <span class="o">=</span> <span class="n">keith</span><span class="o">.</span><span class="n">Keithley_2600</span><span class="p">(</span><span class="s1">&#39;Keithley1&#39;</span><span class="p">,</span> <span class="s1">&#39;GPIB0::15::INSTR&#39;</span><span class="p">)</span>
-
-<span class="n">a1</span> <span class="o">=</span> <span class="n">agi</span><span class="o">.</span><span class="n">Agilent_34400A</span><span class="p">(</span><span class="s1">&#39;Agilent1&#39;</span><span class="p">,</span> <span class="s1">&#39;GPIB0::11::INSTR&#39;</span><span class="p">)</span>
-<span class="n">a2</span> <span class="o">=</span> <span class="n">agi</span><span class="o">.</span><span class="n">Agilent_34400A</span><span class="p">(</span><span class="s1">&#39;Agilent2&#39;</span><span class="p">,</span> <span class="s1">&#39;GPIB0::6::INSTR&#39;</span><span class="p">)</span>
-
-<span class="n">camp</span> <span class="o">=</span> <span class="n">ithaco</span><span class="o">.</span><span class="n">Ithaco_1211</span><span class="p">(</span><span class="s1">&#39;camp1&#39;</span><span class="p">)</span>
-<span class="n">camp</span><span class="o">.</span><span class="n">sens</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">)</span>
-
-<span class="n">curr</span> <span class="o">=</span> <span class="n">ithaco</span><span class="o">.</span><span class="n">CurrentParameter</span><span class="p">(</span><span class="n">a2</span><span class="o">.</span><span class="n">volt</span><span class="p">,</span> <span class="n">camp</span><span class="p">)</span>
-
-<span class="c1"># set integration time (number of line cycles)</span>
-<span class="n">a1</span><span class="o">.</span><span class="n">NPLC</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">a2</span><span class="o">.</span><span class="n">NPLC</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">camp</span><span class="o">.</span><span class="n">snapshot</span><span class="p">()</span>
+<span></span><span class="n">a1</span> <span class="o">=</span> <span class="n">agi</span><span class="o">.</span><span class="n">Agilent_34400A</span><span class="p">(</span><span class="s1">&#39;Agilent1&#39;</span><span class="p">,</span> <span class="s1">&#39;GPIB0::4::INSTR&#39;</span><span class="p">)</span>
+<span class="n">k1</span> <span class="o">=</span> <span class="n">keith</span><span class="p">(</span><span class="s1">&#39;Keithley&#39;</span><span class="p">,</span> <span class="s1">&#39;GPIB0::26::INSTR&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;functions&#39;: {},
- &#39;metadata&#39;: {&#39;info&#39;: {&#39;model&#39;: &#39;1211&#39;,
-   &#39;serial_number&#39;: None,
-   &#39;software_revision&#39;: None,
-   &#39;vendor&#39;: &#39;Ithaco (DL Instruments)&#39;}},
- &#39;parameters&#39;: {&#39;invert&#39;: {&#39;ts&#39;: &#39;2016-04-21 15:56:06&#39;, &#39;value&#39;: True},
-  &#39;risetime&#39;: {&#39;ts&#39;: &#39;2016-04-21 15:56:06&#39;, &#39;value&#39;: 0.3},
-  &#39;sens&#39;: {&#39;ts&#39;: &#39;2016-04-21 15:56:06&#39;, &#39;value&#39;: 0.0001},
-  &#39;sens_x&#39;: {&#39;ts&#39;: &#39;2016-04-21 15:56:06&#39;, &#39;value&#39;: 1},
-  &#39;suppression&#39;: {&#39;ts&#39;: &#39;2016-04-21 15:56:06&#39;, &#39;value&#39;: 1e-07}}}
+Connected to: HEWLETT-PACKARD 34401A (serial:0, firmware:10-5-2) in 0.21s
+Connected to: Keithley Instruments Inc. 2614B (serial:4305420, firmware:3.2.2) in 0.08s
 </pre></div></div>
 </div>
-<div class="nbinput docutils container">
+<p>Itacho QCoDeS driver is only a virtual driver without any communication with the instrument. The instrument setting are only controlled via the front and back panel and the used QCoDeS setting must match its corresponding setting on the panel. Now, we instantiate an instance of the instrument:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">camp</span> <span class="o">=</span> <span class="n">ithaco</span><span class="o">.</span><span class="n">Ithaco_1211</span><span class="p">(</span><span class="s1">&#39;camp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Configuration">
+<h2>Configuration<a class="headerlink" href="#Configuration" title="Permalink to this headline">¶</a></h2>
+<p>We set Ampere per Volt Sensitivity here, which match with the setting on the instrument panel (the rest of the setting are set according to their default values in the driver):</p>
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">a2</span><span class="o">.</span><span class="n">volt</span><span class="o">.</span><span class="n">units</span>
+<span></span><span class="n">camp</span><span class="o">.</span><span class="n">sens</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&#39;V&#39;
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
+<p>Now, we use CurrentParameter class of Itacho to setup the following parameter, which is showing the fed current to the instantiated camp and converted voltage sent to our connected DMM via a1.volt.</p>
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">curr</span> <span class="o">=</span> <span class="n">ithaco</span><span class="o">.</span><span class="n">CurrentParameter</span><span class="p">(</span><span class="n">a1</span><span class="o">.</span><span class="n">volt</span><span class="p">,</span> <span class="n">camp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s look at the present value of curr (the sourcemeter is not connected yet):</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">curr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(6.409e-05, -6.4090000000000005e-09)
+</pre></div></div>
+</div>
+<p>The current value is practically zero. The voltage value is the current value divided by 1e-4 A/V according to the setting camp.sens.set(1e-4). Thus, Itacho converts the feed to voltage and amplifies it. Let’s look at the units of curr:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -662,7 +666,7 @@ Qcodes Logfile : C:\Users\Jens-Work\.qcodes\logs\201006-17520-qcodes.log
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -670,62 +674,13 @@ Qcodes Logfile : C:\Users\Jens-Work\.qcodes\logs\201006-17520-qcodes.log
 (&#39;V&#39;, &#39;A&#39;)
 </pre></div></div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">data</span> <span class="o">=</span> <span class="n">Loop</span><span class="p">(</span><span class="n">k1</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">volt</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="s1">&#39;testsweep&#39;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">plotQ</span> <span class="o">=</span> <span class="n">QtPlot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">current</span><span class="p">,</span><span class="n">windowTitle</span><span class="o">=</span><span class="s1">&#39;YEAH&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-DataSet: DataMode.PULL_FROM_SERVER, location=&#39;testsweep&#39;
-   current: current
-   volt: volt
-   volt_set: volt
-started at 2016-04-21 15:56:10
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plotQ</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;qcodes.plots.pyqtgraph.QtPlot at 0x7ed0668&gt;
-</pre></div></div>
-</div>
+<p>Our connected DMM reads a similar voltage value:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">data</span><span class="o">.</span><span class="n">sync</span><span class="p">()</span>
-<span class="n">data</span><span class="o">.</span><span class="n">arrays</span>
+<span></span><span class="n">a1</span><span class="o">.</span><span class="n">volt</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -735,118 +690,153 @@ started at 2016-04-21 15:56:10
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;current&#39;: DataArray[10]: current
- array([ -4.98941000e-04,  -3.99618000e-04,  -3.00370000e-04,
-         -2.01084000e-04,  -1.01763000e-04,  -2.42637000e-06,
-          9.69014000e-05,   1.96216000e-04,   2.95535000e-04,
-          3.94851000e-04]), &#39;volt&#39;: DataArray[10]: volt
- array([ 4.98941  ,  3.99618  ,  3.0037   ,  2.01084  ,  1.01763  ,
-         0.0242637, -0.969014 , -1.96216  , -2.95535  , -3.94851  ]), &#39;volt_set&#39;: DataArray[10]: volt_set
- array([-5., -4., -3., -2., -1.,  0.,  1.,  2.,  3.,  4.])}
+6.4838e-05
 </pre></div></div>
 </div>
+<p>We set the integration time of our DMM as below:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">station1</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">Station</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">)</span>
-<span class="n">station1</span><span class="o">.</span><span class="n">set_measurement</span><span class="p">(</span><span class="n">a1</span><span class="o">.</span><span class="n">volt</span><span class="p">)</span>
-<span class="n">station2</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">Station</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">)</span>
-<span class="n">station2</span><span class="o">.</span><span class="n">set_measurement</span><span class="p">(</span><span class="n">a1</span><span class="o">.</span><span class="n">volt</span><span class="p">,</span> <span class="n">a2</span><span class="o">.</span><span class="n">volt</span><span class="p">)</span>
+<span></span><span class="n">a1</span><span class="o">.</span><span class="n">NPLC</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<p>Let’s look at the snapshot of our created Itacho instance</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Time single readings</span>
-<span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="s1">&#39;Time s1&#39;</span><span class="p">):</span>
-    <span class="n">station1</span><span class="o">.</span><span class="n">measure</span><span class="p">()</span>
-<span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="s1">&#39;Time s2&#39;</span><span class="p">):</span>
-    <span class="n">station2</span><span class="o">.</span><span class="n">measure</span><span class="p">()</span>
+<span></span><span class="n">camp</span><span class="o">.</span><span class="n">snapshot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[Time s1]
-Elapsed: 0.05600309371948242
-[Time s2]
-Elapsed: 0.10500597953796387
+{&#39;functions&#39;: {},
+ &#39;submodules&#39;: {},
+ &#39;__class__&#39;: &#39;qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211&#39;,
+ &#39;parameters&#39;: {&#39;IDN&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;camp_IDN&#39;,
+   &#39;value&#39;: None,
+   &#39;raw_value&#39;: None,
+   &#39;ts&#39;: None,
+   &#39;label&#39;: &#39;IDN&#39;,
+   &#39;unit&#39;: &#39;&#39;,
+   &#39;vals&#39;: &#39;&lt;Anything&gt;&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211&#39;,
+   &#39;instrument_name&#39;: &#39;camp&#39;,
+   &#39;inter_delay&#39;: 0,
+   &#39;name&#39;: &#39;IDN&#39;},
+  &#39;sens&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;camp_sens&#39;,
+   &#39;value&#39;: 0.0001,
+   &#39;raw_value&#39;: 0.0001,
+   &#39;ts&#39;: &#39;2020-11-09 12:02:45&#39;,
+   &#39;label&#39;: &#39;Sensitivity&#39;,
+   &#39;unit&#39;: &#39;A/V&#39;,
+   &#39;vals&#39;: &#39;&lt;Enum: {1e-09, 1e-05, 1e-08, 1e-10, 0.0001, 0.001, 1e-07, 1e-06, 1e-11}&gt;&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211&#39;,
+   &#39;instrument_name&#39;: &#39;camp&#39;,
+   &#39;inter_delay&#39;: 0,
+   &#39;name&#39;: &#39;sens&#39;},
+  &#39;invert&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;camp_invert&#39;,
+   &#39;value&#39;: True,
+   &#39;raw_value&#39;: True,
+   &#39;ts&#39;: &#39;2020-11-09 12:02:45&#39;,
+   &#39;label&#39;: &#39;Inverted output&#39;,
+   &#39;unit&#39;: &#39;&#39;,
+   &#39;vals&#39;: &#39;&lt;Boolean&gt;&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211&#39;,
+   &#39;instrument_name&#39;: &#39;camp&#39;,
+   &#39;inter_delay&#39;: 0,
+   &#39;name&#39;: &#39;invert&#39;},
+  &#39;sens_factor&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;camp_sens_factor&#39;,
+   &#39;value&#39;: 1,
+   &#39;raw_value&#39;: 1,
+   &#39;ts&#39;: &#39;2020-11-09 12:02:45&#39;,
+   &#39;label&#39;: &#39;Sensitivity factor&#39;,
+   &#39;unit&#39;: &#39;&#39;,
+   &#39;vals&#39;: &#39;&lt;Enum: {0.1, 1, 10}&gt;&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211&#39;,
+   &#39;instrument_name&#39;: &#39;camp&#39;,
+   &#39;inter_delay&#39;: 0,
+   &#39;name&#39;: &#39;sens_factor&#39;},
+  &#39;suppression&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;camp_suppression&#39;,
+   &#39;value&#39;: 1e-07,
+   &#39;raw_value&#39;: 1e-07,
+   &#39;ts&#39;: &#39;2020-11-09 12:02:39&#39;,
+   &#39;label&#39;: &#39;Suppression&#39;,
+   &#39;unit&#39;: &#39;A&#39;,
+   &#39;vals&#39;: &#39;&lt;Enum: {1e-09, 1e-05, 1e-08, 1e-10, 0.0001, 1e-07, 1e-06, 0.001}&gt;&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211&#39;,
+   &#39;instrument_name&#39;: &#39;camp&#39;,
+   &#39;inter_delay&#39;: 0,
+   &#39;name&#39;: &#39;suppression&#39;},
+  &#39;risetime&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
+   &#39;full_name&#39;: &#39;camp_risetime&#39;,
+   &#39;value&#39;: 0.3,
+   &#39;raw_value&#39;: 0.3,
+   &#39;ts&#39;: &#39;2020-11-09 12:02:39&#39;,
+   &#39;label&#39;: &#39;Rise Time&#39;,
+   &#39;unit&#39;: &#39;msec&#39;,
+   &#39;vals&#39;: &#39;&lt;Enum: {0.03, 1, 0.1, 0.3, 3, 100, 1000, 10, 0.01, 300, 30}&gt;&#39;,
+   &#39;post_delay&#39;: 0,
+   &#39;instrument&#39;: &#39;qcodes.instrument_drivers.ithaco.Ithaco_1211.Ithaco_1211&#39;,
+   &#39;instrument_name&#39;: &#39;camp&#39;,
+   &#39;inter_delay&#39;: 0,
+   &#39;name&#39;: &#39;risetime&#39;}},
+ &#39;name&#39;: &#39;camp&#39;}
 </pre></div></div>
 </div>
-<div class="nbinput docutils container">
+</div>
+<div class="section" id="Setting-up-qcodes-database-and-performing-a-simple-measurement">
+<h2>Setting up qcodes database and performing a simple measurement<a class="headerlink" href="#Setting-up-qcodes-database-and-performing-a-simple-measurement" title="Permalink to this headline">¶</a></h2>
+<p>Now, we want to feed our Itacho using our Keithley sourcemeter and run a simple qcodes measurement to see the output of the swept values passing through Itacho (for knowing how our sourcemeter works, you can refer to its qcodes notebook in the following: <a class="reference internal" href="Qcodes%20example%20with%20Keithley%202600.html"><span class="doc">Qcodes example with Keithley 2600</span></a></p>
+<p>We initilize a database named “itacho_db.db” and save our measured data there. Then, we create an experiment named “Itacho_measurement” or load it if is already created:</p>
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Time single readings</span>
-<span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="s1">&#39;Time a1&#39;</span><span class="p">):</span>
-    <span class="n">a1</span><span class="o">.</span><span class="n">volt</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-<span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="s1">&#39;Time a2&#39;</span><span class="p">):</span>
-    <span class="n">a2</span><span class="o">.</span><span class="n">volt</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span></span><span class="n">initialise_or_create_database_at</span><span class="p">(</span><span class="s1">&#39;itacho_db.db&#39;</span><span class="p">)</span>
+<span class="n">exp</span> <span class="o">=</span> <span class="n">load_or_create_experiment</span><span class="p">(</span><span class="s1">&#39;Itacho_measurement&#39;</span><span class="p">,</span> <span class="n">sample_name</span><span class="o">=</span><span class="s1">&#39;no sample&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[Time a1]
-Elapsed: 0.05600309371948242
-[Time a2]
-Elapsed: 0.049002885818481445
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
+<p>Now, we would like to use qcodes do1d function to sweep over current values generated by our sourcemeter. The current is fed to Itacho and we measure the converted and amplified voltage using the instantiated curr parameter. Qcodes Measurement can be also used for the same reason, instead. We set our sourcemeter in the ‘current’ mode and sweep from 1e-6 A to 1e-3 A in 20 steps with 1 second interdelay between each two consecutive steps:</p>
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="s1">&#39;Time Loop 1&#39;</span><span class="p">):</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">Loop</span><span class="p">(</span><span class="n">k1</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">volt</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="n">a1</span><span class="o">.</span><span class="n">volt</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="s1">&#39;testsweep&#39;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">background</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="s1">&#39;Time Loop 2&#39;</span><span class="p">):</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">Loop</span><span class="p">(</span><span class="n">k1</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">volt</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="n">a1</span><span class="o">.</span><span class="n">volt</span><span class="p">,</span> <span class="n">a2</span><span class="o">.</span><span class="n">volt</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="s1">&#39;testsweep&#39;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">background</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span></span><span class="n">k1</span><span class="o">.</span><span class="n">smua</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s1">&#39;current&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-DataSet: DataMode.PUSH_TO_SERVER, location=&#39;testsweep&#39;
-   volt_set: volt
-   volt: volt
-started at 2016-04-21 15:51:15
-[Time Loop 1]
-Elapsed: 0.5770328044891357
-DataSet: DataMode.PUSH_TO_SERVER, location=&#39;testsweep&#39;
-   volt_set: volt
-   volt_0: volt
-   volt_1: volt
-started at 2016-04-21 15:51:16
-[Time Loop 2]
-Elapsed: 1.0900623798370361
-</pre></div></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="s1">&#39;Time Loop 1&#39;</span><span class="p">):</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">Loop</span><span class="p">(</span><span class="n">k1</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">volt</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="n">a1</span><span class="o">.</span><span class="n">volt</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="s1">&#39;testsweep&#39;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">while</span> <span class="n">data</span><span class="o">.</span><span class="n">sync</span><span class="p">():</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span></span><span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">do1d</span><span class="p">(</span><span class="n">k1</span><span class="o">.</span><span class="n">smua</span><span class="o">.</span><span class="n">curr</span><span class="p">,</span> <span class="mf">1e-6</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">curr</span><span class="p">,</span> <span class="n">do_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Measurement took </span><span class="si">{</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="si">}</span><span class="s1"> seconds&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -855,40 +845,136 @@ Elapsed: 1.0900623798370361
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-DataSet: DataMode.PULL_FROM_SERVER, location=&#39;testsweep&#39;
-   volt_set: volt
-   volt: volt
-started at 2016-04-21 15:51:16
-[Time Loop 1]
-Elapsed: 1.075061559677124
+Starting experimental run with id: 4.
+Measurement took 21.38200354576111 seconds
 </pre></div></div>
 </div>
+<p>As expected, the measurement took around 20 seconds. Now, we want to plot our measured dataset. We use qcodes to find the dataset that we want to plot in the database, and tweak plotting axes for showing it in a scatter plot.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="s1">&#39;Time Loop 2&#39;</span><span class="p">):</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">Loop</span><span class="p">(</span><span class="n">k1</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">volt</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="n">a1</span><span class="o">.</span><span class="n">volt</span><span class="p">,</span> <span class="n">a2</span><span class="o">.</span><span class="n">volt</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="s1">&#39;testsweep&#39;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">while</span> <span class="n">data</span><span class="o">.</span><span class="n">sync</span><span class="p">():</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span></span><span class="n">exp</span><span class="o">.</span><span class="n">data_set</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;bound method Experiment.data_set of Itacho_measurement#no sample#1@C:\Users\a-fbonabi\Desktop\FilesToFarzad\itacho_db.db
+------------------------------------------------------------------------------------
+1-results-1-Keithley_smua_curr,volt_raw,curr-40
+2-results-2-Keithley_smua_curr,volt_raw,curr-40
+3-results-3-Keithley_smua_curr,volt_raw,curr-40
+4-results-4-Keithley_smua_curr,volt_raw,curr-40&gt;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_by_run_spec</span><span class="p">(</span><span class="n">experiment_name</span><span class="o">=</span><span class="s1">&#39;Itacho_measurement&#39;</span><span class="p">,</span>\
+                           <span class="n">captured_run_id</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">axes</span><span class="p">,</span> <span class="n">cbax</span> <span class="o">=</span> <span class="n">plot_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_marker</span><span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_markerfacecolor</span><span class="p">((</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">))</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_markeredgecolor</span><span class="p">((</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">))</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">((</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/examples_driver_examples_Qcodes_example_with_Ithaco_35_0.png" src="../../_images/examples_driver_examples_Qcodes_example_with_Ithaco_35_0.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
+<img alt="../../_images/examples_driver_examples_Qcodes_example_with_Ithaco_35_1.png" src="../../_images/examples_driver_examples_Qcodes_example_with_Ithaco_35_1.png" />
+</div>
+</div>
+<p>We see two results in the figure above; the first and second figures are the converted voltages and fed current, respectively against the swept current. If we look at our attached DMM, we see that it is showing -10.00 V DC, which is the same as the final voltage value in the first figure. Therefore, both results are as expected and showing that our Ithaco’s virtual driver is performing as it should.</p>
+<p>Let’s explore our dataset, because why not :)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">dataset</span><span class="o">.</span><span class="n">get_data_as_pandas_dataframe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
 <div class="highlight"><pre>
-DataSet: DataMode.PULL_FROM_SERVER, location=&#39;testsweep&#39;
-   volt_set: volt
-   volt_0: volt
-   volt_1: volt
-started at 2016-04-21 15:51:17
-[Time Loop 2]
-Elapsed: 1.569089651107788
+{&#39;curr&#39;:                             curr
+ Keithley_smua_curr
+ 0.000001            9.443364e-07
+ 0.000054            5.357243e-05
+ 0.000106            1.062108e-04
+ 0.000159            1.588324e-04
+ 0.000211            2.114506e-04
+ 0.000264            2.640623e-04
+ 0.000316            3.166975e-04
+ 0.000369            3.693167e-04
+ 0.000422            4.219315e-04
+ 0.000474            4.745453e-04
+ 0.000527            5.271591e-04
+ 0.000579            5.797739e-04
+ 0.000632            6.324015e-04
+ 0.000685            6.850098e-04
+ 0.000737            7.376224e-04
+ 0.000790            7.902317e-04
+ 0.000842            8.428346e-04
+ 0.000895            8.954364e-04
+ 0.000947            9.480564e-04
+ 0.001000            1.000660e-03,
+ &#39;volt_raw&#39;:                      volt_raw
+ Keithley_smua_curr
+ 0.000001            -0.009443
+ 0.000054            -0.535724
+ 0.000106            -1.062108
+ 0.000159            -1.588324
+ 0.000211            -2.114506
+ 0.000264            -2.640623
+ 0.000316            -3.166975
+ 0.000369            -3.693167
+ 0.000422            -4.219316
+ 0.000474            -4.745453
+ 0.000527            -5.271591
+ 0.000579            -5.797739
+ 0.000632            -6.324014
+ 0.000685            -6.850098
+ 0.000737            -7.376224
+ 0.000790            -7.902317
+ 0.000842            -8.428346
+ 0.000895            -8.954364
+ 0.000947            -9.480564
+ 0.001000           -10.006602}
 </pre></div></div>
 </div>
+<p>In the above two tables, Keithley_smua_curr in both tables are the swept current values generated by our sourcemeter. The top table’s second column (with the title curr) is showing the current values and the bottom table’s second column (volt_raw) is showing voltage values of our Itacho’s curr parameter.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -896,6 +982,7 @@ Elapsed: 1.569089651107788
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>
