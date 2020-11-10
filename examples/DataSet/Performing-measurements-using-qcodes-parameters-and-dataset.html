@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.19.2+387.g59af290dbd
+                0.19.2+457.gee5e730f2d
               </div>
             
           
@@ -119,6 +119,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Performing measurements using QCoDeS parameters and DataSet</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#Exporting-data">Exporting data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#GUID">GUID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Specifying-shape-of-measurement">Specifying shape of measurement</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Subscription-example-1:-simple-printing">Subscription example 1: simple printing</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Subscription-example-2:-using-the-state">Subscription example 2: using the state</a></li>
 </ul>
@@ -526,6 +527,7 @@ alt="Binder badge"
     <span class="n">initialise_database</span><span class="p">,</span> <span class="n">Measurement</span><span class="p">,</span> <span class="n">load_by_run_spec</span><span class="p">,</span> <span class="n">load_by_guid</span>
 <span class="kn">from</span> <span class="nn">qcodes.tests.instrument_mocks</span> <span class="kn">import</span> <span class="n">DummyInstrument</span><span class="p">,</span> <span class="n">DummyInstrumentWithMeasurement</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.plotting</span> <span class="kn">import</span> <span class="n">plot_dataset</span>
+<span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.detect_shapes</span> <span class="kn">import</span> <span class="n">detect_shape_of_measurement</span>
 
 <span class="n">qc</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">start_all_logging</span><span class="p">()</span>
 </pre></div>
@@ -544,7 +546,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201109-15897-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201110-15754-qcodes.log
 Activating auto-logging. Current session state plus future input saved.
 Filename       : /home/vsts/.qcodes/logs/command_history.log
 Mode           : append
@@ -552,7 +554,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201109-15897-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201110-15754-qcodes.log
 </pre></div></div>
 </div>
 <p>In what follows, we shall define some utility functions as well as declare our dummy instruments. We, then, add these instruments to a <code class="docutils literal notranslate"><span class="pre">Station</span></code> object.</p>
@@ -680,8 +682,8 @@ End of experiment
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;dmm_v1&#39;: {&#39;dmm_v1&#39;: array([ 5.07961713,  2.90362987,  1.69848665,  0.87169039,  0.56122355,
-          0.22427015,  0.16470564,  0.11321451, -0.18070518,  0.07341288]),
+{&#39;dmm_v1&#39;: {&#39;dmm_v1&#39;: array([5.06895042, 3.0163361 , 1.77309981, 0.87548164, 0.703456  ,
+         0.30153982, 0.13800453, 0.1179588 , 0.13211696, 0.00873852]),
   &#39;dac_ch1&#39;: array([ 0.        ,  2.77777778,  5.55555556,  8.33333333, 11.11111111,
          13.88888889, 16.66666667, 19.44444444, 22.22222222, 25.        ])}}
 </pre></div></div>
@@ -702,8 +704,8 @@ End of experiment
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;dmm_v1&#39;: {&#39;dmm_v1&#39;: array([ 5.07961713,  2.90362987,  1.69848665,  0.87169039,  0.56122355,
-          0.22427015,  0.16470564,  0.11321451, -0.18070518,  0.07341288]),
+{&#39;dmm_v1&#39;: {&#39;dmm_v1&#39;: array([5.06895042, 3.0163361 , 1.77309981, 0.87548164, 0.703456  ,
+         0.30153982, 0.13800453, 0.1179588 , 0.13211696, 0.00873852]),
   &#39;dac_ch1&#39;: array([ 0.        ,  2.77777778,  5.55555556,  8.33333333, 11.11111111,
          13.88888889, 16.66666667, 19.44444444, 22.22222222, 25.        ])}}
 </pre></div></div>
@@ -772,43 +774,43 @@ End of experiment
   <tbody>
     <tr>
       <th>0.000000</th>
-      <td>5.079617</td>
+      <td>5.068950</td>
     </tr>
     <tr>
       <th>2.777778</th>
-      <td>2.903630</td>
+      <td>3.016336</td>
     </tr>
     <tr>
       <th>5.555556</th>
-      <td>1.698487</td>
+      <td>1.773100</td>
     </tr>
     <tr>
       <th>8.333333</th>
-      <td>0.871690</td>
+      <td>0.875482</td>
     </tr>
     <tr>
       <th>11.111111</th>
-      <td>0.561224</td>
+      <td>0.703456</td>
     </tr>
     <tr>
       <th>13.888889</th>
-      <td>0.224270</td>
+      <td>0.301540</td>
     </tr>
     <tr>
       <th>16.666667</th>
-      <td>0.164706</td>
+      <td>0.138005</td>
     </tr>
     <tr>
       <th>19.444444</th>
-      <td>0.113215</td>
+      <td>0.117959</td>
     </tr>
     <tr>
       <th>22.222222</th>
-      <td>-0.180705</td>
+      <td>0.132117</td>
     </tr>
     <tr>
       <th>25.000000</th>
-      <td>0.073413</td>
+      <td>0.008739</td>
     </tr>
   </tbody>
 </table>
@@ -884,7 +886,7 @@ True
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Dataset GUID is: aaaaaaaa-0000-0000-0000-0175ad3bbccf
+Dataset GUID is: aaaaaaaa-0000-0000-0000-0175b1ab1b18
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1055,7 +1057,7 @@ End of experiment
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;qcodes.dataset.measurements.Measurement at 0x7f78dc8d52d0&gt;
+&lt;qcodes.dataset.measurements.Measurement at 0x7f0ffbe56110&gt;
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1134,43 +1136,43 @@ Starting experimental run with id: 36.
     <tr>
       <th rowspan="10" valign="top">-1.0</th>
       <th>-1.000000</th>
-      <td>0.000618</td>
+      <td>-0.000302</td>
     </tr>
     <tr>
       <th>-0.989950</th>
-      <td>0.000128</td>
+      <td>0.000240</td>
     </tr>
     <tr>
       <th>-0.979899</th>
-      <td>0.000175</td>
+      <td>0.000206</td>
     </tr>
     <tr>
       <th>-0.969849</th>
-      <td>-0.000481</td>
+      <td>0.000503</td>
     </tr>
     <tr>
       <th>-0.959799</th>
-      <td>-0.000567</td>
+      <td>-0.000613</td>
     </tr>
     <tr>
       <th>-0.949749</th>
-      <td>-0.000184</td>
+      <td>0.000242</td>
     </tr>
     <tr>
       <th>-0.939698</th>
-      <td>0.000102</td>
+      <td>-0.000663</td>
     </tr>
     <tr>
       <th>-0.929648</th>
-      <td>0.000520</td>
+      <td>0.001378</td>
     </tr>
     <tr>
       <th>-0.919598</th>
-      <td>0.000109</td>
+      <td>0.000475</td>
     </tr>
     <tr>
       <th>-0.909548</th>
-      <td>0.000052</td>
+      <td>0.001047</td>
     </tr>
   </tbody>
 </table>
@@ -1547,7 +1549,7 @@ Coordinates:
   * dac_ch1  (dac_ch1) float64 -1.0 -0.9899 -0.9799 ... 0.9799 0.9899 1.0
   * dac_ch2  (dac_ch2) float64 -1.0 -0.9899 -0.9799 ... 0.9799 0.9899 1.0
 Data variables:
-    dmm_v2   (dac_ch1, dac_ch2) float64 0.0006182 0.0001282 ... -0.0001031</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-a7eaa67c-a8ef-4b9a-886e-c16006cf9dce' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-a7eaa67c-a8ef-4b9a-886e-c16006cf9dce' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>dac_ch1</span>: 200</li><li><span class='xr-has-index'>dac_ch2</span>: 200</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-3e26e98e-19b0-49fc-bf0f-e02e80f9ed96' class='xr-section-summary-in' type='checkbox'  checked><label for='section-3e26e98e-19b0-49fc-bf0f-e02e80f9ed96' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>dac_ch1</span></div><div class='xr-var-dims'>(dac_ch1)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.0 -0.9899 -0.9799 ... 0.9899 1.0</div><input id='attrs-05253bda-4db0-49af-a34e-f6ceae3a4817' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-05253bda-4db0-49af-a34e-f6ceae3a4817' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3cb3c799-7361-49e8-913b-b3877d16dd60' class='xr-var-data-in' type='checkbox'><label for='data-3cb3c799-7361-49e8-913b-b3877d16dd60' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-1.      , -0.98995 , -0.979899, -0.969849, -0.959799, -0.949749,
+    dmm_v2   (dac_ch1, dac_ch2) float64 -0.000302 0.0002402 ... -0.000569</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-70c4dfbe-b8fe-4750-9a77-67137d55ce35' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-70c4dfbe-b8fe-4750-9a77-67137d55ce35' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>dac_ch1</span>: 200</li><li><span class='xr-has-index'>dac_ch2</span>: 200</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-2b1e2840-64fe-45ab-9dfd-14053d9849a3' class='xr-section-summary-in' type='checkbox'  checked><label for='section-2b1e2840-64fe-45ab-9dfd-14053d9849a3' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>dac_ch1</span></div><div class='xr-var-dims'>(dac_ch1)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.0 -0.9899 -0.9799 ... 0.9899 1.0</div><input id='attrs-95a173e7-9565-49fd-8804-9fdc4baee340' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-95a173e7-9565-49fd-8804-9fdc4baee340' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-62c30738-6180-487d-a3d6-8c47763291ae' class='xr-var-data-in' type='checkbox'><label for='data-62c30738-6180-487d-a3d6-8c47763291ae' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-1.      , -0.98995 , -0.979899, -0.969849, -0.959799, -0.949749,
        -0.939698, -0.929648, -0.919598, -0.909548, -0.899497, -0.889447,
        -0.879397, -0.869347, -0.859296, -0.849246, -0.839196, -0.829146,
        -0.819095, -0.809045, -0.798995, -0.788945, -0.778894, -0.768844,
@@ -1580,7 +1582,7 @@ Data variables:
         0.809045,  0.819095,  0.829146,  0.839196,  0.849246,  0.859296,
         0.869347,  0.879397,  0.889447,  0.899497,  0.909548,  0.919598,
         0.929648,  0.939698,  0.949749,  0.959799,  0.969849,  0.979899,
-        0.98995 ,  1.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>dac_ch2</span></div><div class='xr-var-dims'>(dac_ch2)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.0 -0.9899 -0.9799 ... 0.9899 1.0</div><input id='attrs-80f32f58-ba38-4da5-a9a4-46d187db8909' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-80f32f58-ba38-4da5-a9a4-46d187db8909' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1c1f4c07-bc5c-4fa6-b8ae-1125f7a0bd80' class='xr-var-data-in' type='checkbox'><label for='data-1c1f4c07-bc5c-4fa6-b8ae-1125f7a0bd80' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-1.      , -0.98995 , -0.979899, -0.969849, -0.959799, -0.949749,
+        0.98995 ,  1.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>dac_ch2</span></div><div class='xr-var-dims'>(dac_ch2)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.0 -0.9899 -0.9799 ... 0.9899 1.0</div><input id='attrs-7834069f-ee3b-4be9-ac94-dddfb84c9437' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7834069f-ee3b-4be9-ac94-dddfb84c9437' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e7640b2f-2a11-4e71-8aea-206a44872bc5' class='xr-var-data-in' type='checkbox'><label for='data-e7640b2f-2a11-4e71-8aea-206a44872bc5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-1.      , -0.98995 , -0.979899, -0.969849, -0.959799, -0.949749,
        -0.939698, -0.929648, -0.919598, -0.909548, -0.899497, -0.889447,
        -0.879397, -0.869347, -0.859296, -0.849246, -0.839196, -0.829146,
        -0.819095, -0.809045, -0.798995, -0.788945, -0.778894, -0.768844,
@@ -1613,19 +1615,19 @@ Data variables:
         0.809045,  0.819095,  0.829146,  0.839196,  0.849246,  0.859296,
         0.869347,  0.879397,  0.889447,  0.899497,  0.909548,  0.919598,
         0.929648,  0.939698,  0.949749,  0.959799,  0.969849,  0.979899,
-        0.98995 ,  1.      ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-5dae9eb2-0873-4710-b8b7-f33650d8f350' class='xr-section-summary-in' type='checkbox'  checked><label for='section-5dae9eb2-0873-4710-b8b7-f33650d8f350' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>dmm_v2</span></div><div class='xr-var-dims'>(dac_ch1, dac_ch2)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0006182 0.0001282 ... -0.0001031</div><input id='attrs-d76a39ad-5193-4e4d-8dce-328e5c9960fb' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-d76a39ad-5193-4e4d-8dce-328e5c9960fb' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5c60adb0-64e1-453a-80e8-65fd4011bcce' class='xr-var-data-in' type='checkbox'><label for='data-5c60adb0-64e1-453a-80e8-65fd4011bcce' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[ 6.18203747e-04,  1.28176499e-04,  1.75297680e-04, ...,
-        -1.26949766e-04, -8.56876457e-05,  1.00320977e-03],
-       [-1.94114014e-04,  1.80103858e-04, -1.87499181e-06, ...,
-        -1.69954322e-04,  4.80623553e-05,  2.52328630e-04],
-       [-1.67399318e-04, -5.70671024e-04, -5.24330772e-04, ...,
-         1.62471748e-04,  2.49594806e-04, -2.04344588e-05],
+        0.98995 ,  1.      ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-3ef253ab-7796-45c9-9fdc-e80a371993d0' class='xr-section-summary-in' type='checkbox'  checked><label for='section-3ef253ab-7796-45c9-9fdc-e80a371993d0' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>dmm_v2</span></div><div class='xr-var-dims'>(dac_ch1, dac_ch2)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-0.000302 0.0002402 ... -0.000569</div><input id='attrs-feea3fcb-bae4-4a5d-b1c0-68b700f87264' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-feea3fcb-bae4-4a5d-b1c0-68b700f87264' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-69285d13-5202-463e-a732-2a18da09d6d7' class='xr-var-data-in' type='checkbox'><label for='data-69285d13-5202-463e-a732-2a18da09d6d7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[-3.01995165e-04,  2.40194036e-04,  2.06411569e-04, ...,
+         3.07209737e-04, -3.91597502e-04, -6.02717522e-04],
+       [ 1.93721255e-04, -6.90041548e-04, -5.72036685e-04, ...,
+         4.58350022e-04,  8.47158555e-06,  2.99579262e-05],
+       [-5.62965131e-06,  6.32982657e-04, -1.66172618e-04, ...,
+         4.04925667e-04, -7.63518744e-04,  3.27299358e-04],
        ...,
-       [-3.87123791e-04,  1.81426426e-04,  3.09402756e-04, ...,
-         1.31432854e-04, -6.21723918e-04,  5.51356508e-04],
-       [-6.53220813e-05, -8.78488763e-04,  1.74099258e-04, ...,
-         7.05825746e-04,  6.79877298e-04, -2.79853456e-04],
-       [ 4.11453220e-04,  2.42518321e-04, -3.05415079e-04, ...,
-        -5.28668912e-04, -3.16839276e-05, -1.03113743e-04]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-5ee7954c-8a05-419f-8451-e62e38b1b8e7' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-5ee7954c-8a05-419f-8451-e62e38b1b8e7' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div>
+       [ 9.91505836e-04,  8.18123911e-04, -6.61470314e-04, ...,
+        -1.28754334e-03, -2.00393913e-05,  1.00742866e-03],
+       [-2.40323557e-04,  1.68566375e-04, -7.61757083e-05, ...,
+         1.56428429e-04,  1.03934004e-04,  4.88325390e-04],
+       [ 1.35256578e-04, -2.60946994e-05, -3.68977978e-04, ...,
+         5.37364632e-04,  1.07642430e-04, -5.69000599e-04]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-6c33b932-1241-4d29-9276-6b79bfcbb987' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-6c33b932-1241-4d29-9276-6b79bfcbb987' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div>
 </div>
 <p>Note, however, that XArray is only suited for data that is on a rectangular grid with few or no missing values.</p>
 <div class="nbinput docutils container">
@@ -1767,7 +1769,7 @@ Starting experimental run with id: 37.
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Starting experimental run with id: 38.
-130 46 0.2502628242777233
+130 46 0.25000082968200577
 ----------
 </pre></div></div>
 </div>
@@ -1785,7 +1787,7 @@ Starting experimental run with id: 38.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-11-09 13:40:00,409 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/dataset/data_export.py:172: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray
+2020-11-10 10:20:12,546 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/dataset/data_export.py:172: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray
   return np.array(rows)
 
 </pre></div></div>
@@ -1798,11 +1800,79 @@ Starting experimental run with id: 38.
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="Specifying-shape-of-measurement">
+<h2>Specifying shape of measurement<a class="headerlink" href="#Specifying-shape-of-measurement" title="Permalink to this headline">¶</a></h2>
+<p>As the context manager allows you to store data of any shape (with the only restriction being that you supply values for both dependent and independent parameters together), it cannot know if the data is being measured on a grid. As a consequence, the Numpy array of data loaded from the dataset may not be of the shape that you expect. <code class="docutils literal notranslate"><span class="pre">plot_dataset</span></code> and <code class="docutils literal notranslate"><span class="pre">DataSet.get_data_as_pandas_dataframe</span></code> contain logic that can detect the shape of the data measured at load time. However, if you know the
+shape of the measurement that you are going to perform up front, you can choose to specify it before initializing the measurement using <code class="docutils literal notranslate"><span class="pre">Measurement.set_shapes</span></code> method.</p>
+<p><code class="docutils literal notranslate"><span class="pre">dataset.get_parameter_data</span></code> and <code class="docutils literal notranslate"><span class="pre">dataset.cache.data</span></code> automatically makes use of this information to return shaped data when loaded from the database. Note that these two methods behave slightly different when loading data on a partially completed dataset. <code class="docutils literal notranslate"><span class="pre">dataset.get_parameter_data</span></code> will only reshape the data if the number of points measured matches the number of points expected according to the metadata. <code class="docutils literal notranslate"><span class="pre">dataset.cache.data</span></code> will however return a dataset with empty placeholders
+(either NaN, zeros or empty strings depending on the datatypes) for missing values in a partially filled dataset.</p>
+<p>Note that if you use the doNd functions demonstrated in <a class="reference internal" href="Using_the_doNd_functions_for_running_experiments.html"><span class="doc">Using doNd functions for performing measurements</span></a> the shape information will be detected and stored automatically.</p>
+<p>In the example below we show how the shape can be specified manually.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">n_points_1</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">n_points_2</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="n">meas_with_shape</span> <span class="o">=</span> <span class="n">Measurement</span><span class="p">(</span><span class="n">exp</span><span class="o">=</span><span class="n">exp</span><span class="p">)</span>
+<span class="n">meas_with_shape</span><span class="o">.</span><span class="n">register_parameter</span><span class="p">(</span><span class="n">dac</span><span class="o">.</span><span class="n">ch1</span><span class="p">)</span>  <span class="c1"># register the first independent parameter</span>
+<span class="n">meas_with_shape</span><span class="o">.</span><span class="n">register_parameter</span><span class="p">(</span><span class="n">dac</span><span class="o">.</span><span class="n">ch2</span><span class="p">)</span>  <span class="c1"># register the second independent parameter</span>
+<span class="n">meas_with_shape</span><span class="o">.</span><span class="n">register_parameter</span><span class="p">(</span><span class="n">dmm</span><span class="o">.</span><span class="n">v2</span><span class="p">,</span> <span class="n">setpoints</span><span class="o">=</span><span class="p">(</span><span class="n">dac</span><span class="o">.</span><span class="n">ch1</span><span class="p">,</span> <span class="n">dac</span><span class="o">.</span><span class="n">ch2</span><span class="p">))</span>  <span class="c1"># now register the dependent oone</span>
+
+<span class="n">meas_with_shape</span><span class="o">.</span><span class="n">set_shapes</span><span class="p">(</span><span class="n">detect_shape_of_measurement</span><span class="p">((</span><span class="n">dmm</span><span class="o">.</span><span class="n">v2</span><span class="p">,),</span> <span class="p">(</span><span class="n">n_points_1</span><span class="p">,</span> <span class="n">n_points_2</span><span class="p">)))</span>
+
+<span class="k">with</span> <span class="n">meas_with_shape</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="k">as</span> <span class="n">datasaver</span><span class="p">:</span>
+
+    <span class="k">for</span> <span class="n">v1</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_points_1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">v2</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_points_2</span><span class="p">):</span>
+            <span class="n">dac</span><span class="o">.</span><span class="n">ch1</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span>
+            <span class="n">dac</span><span class="o">.</span><span class="n">ch2</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">dmm</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="n">datasaver</span><span class="o">.</span><span class="n">add_result</span><span class="p">((</span><span class="n">dac</span><span class="o">.</span><span class="n">ch1</span><span class="p">,</span> <span class="n">v1</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="n">dac</span><span class="o">.</span><span class="n">ch2</span><span class="p">,</span> <span class="n">v2</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="n">dmm</span><span class="o">.</span><span class="n">v2</span><span class="p">,</span> <span class="n">val</span><span class="p">))</span>
+
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">datasaver</span><span class="o">.</span><span class="n">dataset</span>  <span class="c1"># convenient to have for plotting</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Starting experimental run with id: 39.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_parameter_data</span><span class="p">()[</span><span class="s1">&#39;dmm_v2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: data.shape=</span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, expected_shape=(</span><span class="si">{</span><span class="n">n_points_1</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">n_points_2</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">n_points_1</span><span class="p">,</span> <span class="n">n_points_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+dmm_v2: data.shape=(100, 200), expected_shape=(100,200)
+dac_ch1: data.shape=(100, 200), expected_shape=(100,200)
+dac_ch2: data.shape=(100, 200), expected_shape=(100,200)
+</pre></div></div>
+</div>
 <div class="section" id="Performing-several-measuments-concurrently">
 <h3>Performing several measuments concurrently<a class="headerlink" href="#Performing-several-measuments-concurrently" title="Permalink to this headline">¶</a></h3>
 <p>It is possible to perform two or more measurements at the same time. This may be convenient if you need to measure several parameters as a function of the same independent parameters.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1847,12 +1917,12 @@ Starting experimental run with id: 38.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Starting experimental run with id: 39.
 Starting experimental run with id: 40.
+Starting experimental run with id: 41.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1864,11 +1934,11 @@ Starting experimental run with id: 40.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_55_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_55_0.png" />
+<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_58_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_58_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1880,7 +1950,7 @@ Starting experimental run with id: 40.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_56_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_56_0.png" />
+<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_59_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_59_0.png" />
 </div>
 </div>
 </div>
@@ -1893,7 +1963,7 @@ do so.</p>
 <h3>Random sampling<a class="headerlink" href="#Random-sampling" title="Permalink to this headline">¶</a></h3>
 <p>We may also chose to sample completely randomly across the phase space</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1925,11 +1995,11 @@ do so.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Starting experimental run with id: 41.
+Starting experimental run with id: 42.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1941,11 +2011,11 @@ Starting experimental run with id: 41.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_61_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_61_0.png" />
+<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_64_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_64_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1954,7 +2024,7 @@ Starting experimental run with id: 41.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1987,54 +2057,54 @@ Starting experimental run with id: 41.
   </thead>
   <tbody>
     <tr>
-      <th>-0.141118</th>
-      <th>0.391404</th>
-      <td>0.531141</td>
+      <th>-0.634116</th>
+      <th>-0.073489</th>
+      <td>0.008392</td>
     </tr>
     <tr>
-      <th>-0.419852</th>
-      <th>0.730985</th>
-      <td>0.013047</td>
+      <th>-0.937625</th>
+      <th>-0.666347</th>
+      <td>-0.000265</td>
     </tr>
     <tr>
-      <th>0.654919</th>
-      <th>0.131338</th>
-      <td>0.093836</td>
+      <th>0.143082</th>
+      <th>-0.468976</th>
+      <td>0.030564</td>
     </tr>
     <tr>
-      <th>-0.222088</th>
-      <th>-0.915511</th>
-      <td>0.000010</td>
+      <th>-0.323922</th>
+      <th>-0.886442</th>
+      <td>0.000481</td>
     </tr>
     <tr>
-      <th>0.292566</th>
-      <th>0.079955</th>
-      <td>0.750576</td>
+      <th>-0.959132</th>
+      <th>0.630595</th>
+      <td>-0.000107</td>
     </tr>
     <tr>
-      <th>0.458257</th>
-      <th>0.034429</th>
-      <td>0.325651</td>
+      <th>0.032152</th>
+      <th>0.149492</th>
+      <td>1.070525</td>
     </tr>
     <tr>
-      <th>-0.921629</th>
-      <th>-0.460374</th>
-      <td>-0.000701</td>
+      <th>-0.242800</th>
+      <th>0.247580</th>
+      <td>0.434316</td>
     </tr>
     <tr>
-      <th>0.445065</th>
-      <th>0.796887</th>
-      <td>0.026263</td>
+      <th>0.435977</th>
+      <th>-0.966497</th>
+      <td>-0.000286</td>
     </tr>
     <tr>
-      <th>0.409719</th>
-      <th>-0.109157</th>
-      <td>0.243917</td>
+      <th>-0.125997</th>
+      <th>-0.272243</th>
+      <td>0.126516</td>
     </tr>
     <tr>
-      <th>0.539026</th>
-      <th>-0.715969</th>
-      <td>0.000921</td>
+      <th>-0.610257</th>
+      <th>0.998993</th>
+      <td>0.000438</td>
     </tr>
   </tbody>
 </table>
@@ -2042,7 +2112,7 @@ Starting experimental run with id: 41.
 </div>
 <p>Unlike the data measured above, which lies on a grid, here, all the measured data points have an unique combination of the two dependent parameters. When exporting to XArray NaN’s will therefore replace all the missing combinations of <code class="docutils literal notranslate"><span class="pre">dac_ch1</span></code> and <code class="docutils literal notranslate"><span class="pre">dac_ch2</span></code> and the data is unlikely to be useful in this format.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2057,7 +2127,7 @@ Starting experimental run with id: 41.
 <h3>Optimiser<a class="headerlink" href="#Optimiser" title="Permalink to this headline">¶</a></h3>
 <p>An example to show that the algorithm is flexible enough to be used with completely unstructured data such as the output of an downhill simplex optimization. The downhill simplex is somewhat more sensitive to noise and it is important that ‘fatol’ is set to match the expected noise.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2066,7 +2136,7 @@ Starting experimental run with id: 41.
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2096,11 +2166,11 @@ Starting experimental run with id: 41.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Starting experimental run with id: 42.
+Starting experimental run with id: 43.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2109,25 +2179,25 @@ Starting experimental run with id: 42.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- final_simplex: (array([[0.10780068, 0.2020205 ],
-       [0.10780068, 0.2020205 ],
-       [0.10780068, 0.2020205 ]]), array([-1.13443245, -1.13275312, -1.13152766]))
-           fun: -1.1344324548942892
+ final_simplex: (array([[0.1002154 , 0.20080288],
+       [0.1002154 , 0.20080288],
+       [0.1002154 , 0.20080288]]), array([-1.13461882, -1.13316783, -1.13257986]))
+           fun: -1.1346188245820235
        message: &#39;Maximum number of function evaluations has been exceeded.&#39;
-          nfev: 403
-           nit: 152
+          nfev: 401
+           nit: 154
         status: 1
        success: False
-             x: array([0.10780068, 0.2020205 ])
+             x: array([0.1002154 , 0.20080288])
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2140,7 +2210,7 @@ Starting experimental run with id: 42.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2020-11-09 13:40:12,870 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/dataset/data_export.py:172: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray
+2020-11-10 10:20:32,084 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/dataset/data_export.py:172: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray
   return np.array(rows)
 
 </pre></div></div>
@@ -2149,7 +2219,7 @@ Starting experimental run with id: 42.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_70_1.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_70_1.png" />
+<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_73_1.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_73_1.png" />
 </div>
 </div>
 </div>
@@ -2163,7 +2233,7 @@ Starting experimental run with id: 42.
 <div class="section" id="Subscription-example-1:-simple-printing">
 <h2>Subscription example 1: simple printing<a class="headerlink" href="#Subscription-example-1:-simple-printing" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2198,10 +2268,10 @@ Starting experimental run with id: 42.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Starting experimental run with id: 43.
+Starting experimental run with id: 44.
 Added points to measurement, step 0.
 Added points to measurement, step 1.
-The run now holds 2 rows
+The run now holds 3 rows
 Added points to measurement, step 2.
 Added points to measurement, step 3.
 The run now holds 5 rows
@@ -2223,7 +2293,7 @@ The run now holds 10 rows
 <h2>Subscription example 2: using the state<a class="headerlink" href="#Subscription-example-2:-using-the-state" title="Permalink to this headline">¶</a></h2>
 <p>We add two subscribers now.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2262,19 +2332,19 @@ The run now holds 10 rows
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Starting experimental run with id: 44.
+Starting experimental run with id: 45.
 Added points to measurement, step 0.
 First parameter value list: []
 Added points to measurement, step 1.
 First parameter value list: []
-The run now holds 3 rows
 Added points to measurement, step 2.
 First parameter value list: [0, 1, 2]
+The run now holds 3 rows
 Added points to measurement, step 3.
 First parameter value list: [0, 1, 2]
-The run now holds 5 rows
-Added points to measurement, step 4.
+The run now holds 5 rowsAdded points to measurement, step 4.
 First parameter value list: [0, 1, 2, 3, 4]
+
 Added points to measurement, step 5.
 First parameter value list: [0, 1, 2, 3, 4]
 The run now holds 7 rowsAdded points to measurement, step 6.
@@ -2287,8 +2357,8 @@ Added points to measurement, step 8.
 First parameter value list: [0, 1, 2, 3, 4, 5, 6, 7, 8]
 Added points to measurement, step 9.
 First parameter value list: [0, 1, 2, 3, 4, 5, 6, 7, 8]
-The run now holds 10 rows
-The run now holds 10 rows
+The run now holds 10 rowsThe run now holds 10 rows
+
 The run now holds 10 rows
 </pre></div></div>
 </div>
@@ -2297,7 +2367,7 @@ The run now holds 10 rows
 <p>The <code class="docutils literal notranslate"><span class="pre">Measurement</span></code> object supports automatic handling of <code class="docutils literal notranslate"><span class="pre">Array</span></code> and <code class="docutils literal notranslate"><span class="pre">MultiParameters</span></code>. When registering these parameters the individual components are unpacked and added to the dataset as if they were separate parameters. Lets consider a <code class="docutils literal notranslate"><span class="pre">MultiParamter</span></code> with array components as the most general case.</p>
 <p>First lets use a dummy instrument that produces data as <code class="docutils literal notranslate"><span class="pre">Array</span></code> and <code class="docutils literal notranslate"><span class="pre">MultiParameters</span></code>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2306,7 +2376,7 @@ The run now holds 10 rows
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2316,7 +2386,7 @@ The run now holds 10 rows
 </div>
 <p>This instrument produces two <code class="docutils literal notranslate"><span class="pre">Array</span></code>s with the names, shapes and setpoints given below.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2325,7 +2395,7 @@ The run now holds 10 rows
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2334,7 +2404,7 @@ The run now holds 10 rows
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2343,7 +2413,7 @@ The run now holds 10 rows
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2352,7 +2422,7 @@ The run now holds 10 rows
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2361,7 +2431,7 @@ The run now holds 10 rows
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2373,7 +2443,7 @@ The run now holds 10 rows
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2385,7 +2455,7 @@ The run now holds 10 rows
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2398,7 +2468,7 @@ The run now holds 10 rows
 </div>
 <p>When adding the MultiParameter to the measurement we can see that we add each of the individual components as a separate parameter.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2412,12 +2482,12 @@ The run now holds 10 rows
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Starting experimental run with id: 45.
+Starting experimental run with id: 46.
 </pre></div></div>
 </div>
 <p>And when adding the result of a <code class="docutils literal notranslate"><span class="pre">MultiParameter</span></code> it is automatically unpacked into its components.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2426,33 +2496,33 @@ Starting experimental run with id: 45.
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-([&lt;AxesSubplot:title={&#39;center&#39;:&#39;Run #45, Experiment performing_meas_using_parameters_and_dataset (no sample)&#39;}, xlabel=&#39;this setpoint (this setpointunit)&#39;, ylabel=&#39;that setpoint (that setpointunit)&#39;&gt;,
-  &lt;AxesSubplot:title={&#39;center&#39;:&#39;Run #45, Experiment performing_meas_using_parameters_and_dataset (no sample)&#39;}, xlabel=&#39;this setpoint (this setpointunit)&#39;, ylabel=&#39;that setpoint (that setpointunit)&#39;&gt;],
- [&lt;matplotlib.colorbar.Colorbar at 0x7f78d5a195d0&gt;,
-  &lt;matplotlib.colorbar.Colorbar at 0x7f78d59de9d0&gt;])
+([&lt;AxesSubplot:title={&#39;center&#39;:&#39;Run #46, Experiment performing_meas_using_parameters_and_dataset (no sample)&#39;}, xlabel=&#39;this setpoint (this setpointunit)&#39;, ylabel=&#39;that setpoint (that setpointunit)&#39;&gt;,
+  &lt;AxesSubplot:title={&#39;center&#39;:&#39;Run #46, Experiment performing_meas_using_parameters_and_dataset (no sample)&#39;}, xlabel=&#39;this setpoint (this setpointunit)&#39;, ylabel=&#39;that setpoint (that setpointunit)&#39;&gt;],
+ [&lt;matplotlib.colorbar.Colorbar at 0x7f0ff4993190&gt;,
+  &lt;matplotlib.colorbar.Colorbar at 0x7f0ff487df90&gt;])
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_88_1.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_88_1.png" />
+<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_91_1.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_91_1.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_88_2.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_88_2.png" />
+<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_91_2.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_91_2.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2461,18 +2531,19 @@ Starting experimental run with id: 45.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;MyDummy_ChanA_that&#39;: {&#39;MyDummy_ChanA_that&#39;: array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]),
-  &#39;MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint&#39;: array([5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 9]),
-  &#39;MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint&#39;: array([ 9, 10, 11,  9, 10, 11,  9, 10, 11,  9, 10, 11,  9, 10, 11])}}
+{&#39;MyDummy_ChanA_that&#39;: {&#39;MyDummy_ChanA_that&#39;: array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]),
+  &#39;MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint&#39;: array([5., 5., 5., 6., 6., 6., 7., 7., 7., 8., 8., 8., 9., 9., 9.]),
+  &#39;MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint&#39;: array([ 9., 10., 11.,  9., 10., 11.,  9., 10., 11.,  9., 10., 11.,  9.,
+         10., 11.])}}
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2481,7 +2552,7 @@ Starting experimental run with id: 45.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2514,76 +2585,76 @@ Starting experimental run with id: 45.
   </thead>
   <tbody>
     <tr>
-      <th rowspan="3" valign="top">5</th>
-      <th>9</th>
-      <td>1</td>
+      <th rowspan="3" valign="top">5.0</th>
+      <th>9.0</th>
+      <td>1.0</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>1</td>
+      <th>10.0</th>
+      <td>1.0</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>1</td>
+      <th>11.0</th>
+      <td>1.0</td>
     </tr>
     <tr>
-      <th rowspan="3" valign="top">6</th>
-      <th>9</th>
-      <td>1</td>
+      <th rowspan="3" valign="top">6.0</th>
+      <th>9.0</th>
+      <td>1.0</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>1</td>
+      <th>10.0</th>
+      <td>1.0</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>1</td>
+      <th>11.0</th>
+      <td>1.0</td>
     </tr>
     <tr>
-      <th rowspan="3" valign="top">7</th>
-      <th>9</th>
-      <td>1</td>
+      <th rowspan="3" valign="top">7.0</th>
+      <th>9.0</th>
+      <td>1.0</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>1</td>
+      <th>10.0</th>
+      <td>1.0</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>1</td>
+      <th>11.0</th>
+      <td>1.0</td>
     </tr>
     <tr>
-      <th rowspan="3" valign="top">8</th>
-      <th>9</th>
-      <td>1</td>
+      <th rowspan="3" valign="top">8.0</th>
+      <th>9.0</th>
+      <td>1.0</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>1</td>
+      <th>10.0</th>
+      <td>1.0</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>1</td>
+      <th>11.0</th>
+      <td>1.0</td>
     </tr>
     <tr>
-      <th rowspan="3" valign="top">9</th>
-      <th>9</th>
-      <td>1</td>
+      <th rowspan="3" valign="top">9.0</th>
+      <th>9.0</th>
+      <td>1.0</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>1</td>
+      <th>10.0</th>
+      <td>1.0</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>1</td>
+      <th>11.0</th>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2592,7 +2663,7 @@ Starting experimental run with id: 45.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2949,14 +3020,14 @@ dl.xr-attrs {
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
 Dimensions:                                              (MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint: 3, MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint: 5)
 Coordinates:
-  * MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint  (MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint) int64 ...
-  * MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint  (MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint) int64 ...
+  * MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint  (MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint) float64 ...
+  * MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint  (MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint) float64 ...
 Data variables:
-    MyDummy_ChanA_that                                   (MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint, MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint) int64 ...</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-64531d19-b780-4aa2-bb26-7b8a802c4312' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-64531d19-b780-4aa2-bb26-7b8a802c4312' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint</span>: 3</li><li><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint</span>: 5</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-5891f1da-3a93-4cf1-a316-3be300bd9452' class='xr-section-summary-in' type='checkbox'  checked><label for='section-5891f1da-3a93-4cf1-a316-3be300bd9452' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>5 6 7 8 9</div><input id='attrs-b7f72d31-dedc-4491-947f-0c0e6922cc92' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-b7f72d31-dedc-4491-947f-0c0e6922cc92' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-172e2ece-271a-4f28-9c0f-cc72e5be8c0b' class='xr-var-data-in' type='checkbox'><label for='data-172e2ece-271a-4f28-9c0f-cc72e5be8c0b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([5, 6, 7, 8, 9])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>9 10 11</div><input id='attrs-31da1708-efed-4748-88f3-484121212f04' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-31da1708-efed-4748-88f3-484121212f04' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b449f4ce-a7ab-47d8-9105-e4054e1657ec' class='xr-var-data-in' type='checkbox'><label for='data-b449f4ce-a7ab-47d8-9105-e4054e1657ec' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([ 9, 10, 11])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-05b52432-56a8-4356-a307-c55689c777ef' class='xr-section-summary-in' type='checkbox'  checked><label for='section-05b52432-56a8-4356-a307-c55689c777ef' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>MyDummy_ChanA_that</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint, MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</div><input id='attrs-ba048d94-6447-4e88-9fd8-25f21d29954f' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-ba048d94-6447-4e88-9fd8-25f21d29954f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3ae299c1-3b33-4637-bb46-71dda2f3838f' class='xr-var-data-in' type='checkbox'><label for='data-3ae299c1-3b33-4637-bb46-71dda2f3838f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[1, 1, 1],
-       [1, 1, 1],
-       [1, 1, 1],
-       [1, 1, 1],
-       [1, 1, 1]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a7dedf4e-c301-4c02-9e6d-358001c95349' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-a7dedf4e-c301-4c02-9e6d-358001c95349' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div>
+    MyDummy_ChanA_that                                   (MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint, MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint) float64 ...</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-44ab0640-f979-4a39-8c57-316a5f39967b' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-44ab0640-f979-4a39-8c57-316a5f39967b' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint</span>: 3</li><li><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint</span>: 5</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-55e327b1-44fe-4cda-9de0-a083d6d81292' class='xr-section-summary-in' type='checkbox'  checked><label for='section-55e327b1-44fe-4cda-9de0-a083d6d81292' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>5.0 6.0 7.0 8.0 9.0</div><input id='attrs-55d194af-6b3d-4944-9b7c-d3d8d7cd3046' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-55d194af-6b3d-4944-9b7c-d3d8d7cd3046' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-729d4625-59e8-4a32-887e-15c30ffea4e1' class='xr-var-data-in' type='checkbox'><label for='data-729d4625-59e8-4a32-887e-15c30ffea4e1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([5., 6., 7., 8., 9.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>9.0 10.0 11.0</div><input id='attrs-58848089-beef-44af-b4cc-d0fefa7aff46' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-58848089-beef-44af-b4cc-d0fefa7aff46' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-08ef558c-a3d4-48f8-bb48-4f56c375672e' class='xr-var-data-in' type='checkbox'><label for='data-08ef558c-a3d4-48f8-bb48-4f56c375672e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([ 9., 10., 11.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c326f794-f4fd-46ba-87aa-daae2478cb6f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c326f794-f4fd-46ba-87aa-daae2478cb6f' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>MyDummy_ChanA_that</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint, MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.0 1.0 1.0 1.0 ... 1.0 1.0 1.0 1.0</div><input id='attrs-4141119e-cf46-4bc4-baa3-885ed90b474c' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-4141119e-cf46-4bc4-baa3-885ed90b474c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-06472a91-27c5-4d6f-a876-7ea9f89b2e2a' class='xr-var-data-in' type='checkbox'><label for='data-06472a91-27c5-4d6f-a876-7ea9f89b2e2a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[1., 1., 1.],
+       [1., 1., 1.],
+       [1., 1., 1.],
+       [1., 1., 1.],
+       [1., 1., 1.]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-404dc44f-4cdd-4c42-8bfa-5e51028be36d' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-404dc44f-4cdd-4c42-8bfa-5e51028be36d' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:

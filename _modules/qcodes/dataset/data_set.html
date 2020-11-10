@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.2+387.g59af290dbd
+                0.19.2+457.gee5e730f2d
               </div>
             
           
@@ -1109,10 +1109,21 @@
 <span class="sd">        The values are returned as a dictionary with names of the requested</span>
 <span class="sd">        parameters as keys and values consisting of dictionaries with the</span>
 <span class="sd">        names of the parameters and its dependencies as keys and numpy arrays</span>
-<span class="sd">        of the data as values. If some of the parameters are stored as arrays</span>
+<span class="sd">        of the data as values. If the dataset has a shape recorded</span>
+<span class="sd">        in its metadata and the number of datapoints recorded matches the</span>
+<span class="sd">        expected number of points the data will be returned as numpy arrays</span>
+<span class="sd">        in this shape. If there are less datapoints recorded than expected</span>
+<span class="sd">        from the metadata the dataset will be returned as is. This could happen</span>
+<span class="sd">        if you call `get_parameter_data` on an incomplete dataset. See</span>
+<span class="sd">        :py:meth:`dataset.cache.data &lt;.DataSetCache.data&gt;` for an implementation that</span>
+<span class="sd">        returns the data with the expected shape using `NaN` or zeros as</span>
+<span class="sd">        placeholders.</span>
+
+<span class="sd">        If there are more datapoints than expected the dataset will be returned</span>
+<span class="sd">        as is and a warning raised.</span>
+
+<span class="sd">        If some of the parameters are stored as arrays</span>
 <span class="sd">        the remaining parameters are expanded to the same shape as these.</span>
-<span class="sd">        Apart from this expansion the data returned by this method</span>
-<span class="sd">        is the transpose of the date returned by ``get_data``.</span>
 
 <span class="sd">        If provided, the start and end arguments select a range of results</span>
 <span class="sd">        by result count (index). If the range is empty - that is, if the end is</span>
