@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.19.2+499.g6eae7035cb
+                0.19.2+508.g5b81db18d5
               </div>
             
           
@@ -262,7 +262,7 @@ defining the combined voltage and current range.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.Mode.get_label">
-<code class="sig-name descname">get_label</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#Mode.get_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.Mode.get_label" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_label</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#Mode.get_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.Mode.get_label" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -300,13 +300,13 @@ defining the combined voltage and current range.</p>
 
 <dl class="py class">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.Generator">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.QDevil.QDevil_QDAC.</code><code class="sig-name descname">Generator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">generator_number</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#Generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.Generator" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.QDevil.QDevil_QDAC.</code><code class="sig-name descname">Generator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">generator_number</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#Generator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.Generator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacChannel">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.QDevil.QDevil_QDAC.</code><code class="sig-name descname">QDacChannel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parent</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">channum</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDacChannel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacChannel" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.QDevil.QDevil_QDAC.</code><code class="sig-name descname">QDacChannel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parent</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac" title="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac">qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac</a></span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">channum</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDacChannel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacChannel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../instrument/channel.html#qcodes.instrument.channel.InstrumentChannel" title="qcodes.instrument.channel.InstrumentChannel"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument.channel.InstrumentChannel</span></code></a></p>
 <p>A single output channel of the QDac.</p>
 <p>Exposes chan.v, chan.i, chan.mode, chan.slope,
@@ -316,15 +316,15 @@ mode_force lfag is False (default).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>parent</strong> (<a class="reference internal" href="../instrument/base.html#qcodes.instrument.base.Instrument" title="qcodes.instrument.base.Instrument"><em>Instrument</em></a>) – The instrument to which the channel belongs.</p></li>
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the channel</p></li>
-<li><p><strong>channum</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The number of the channel (1-24 or 1-48)</p></li>
+<li><p><strong>parent</strong> – The instrument to which the channel belongs.</p></li>
+<li><p><strong>name</strong> – The name of the channel</p></li>
+<li><p><strong>channum</strong> – The number of the channel (1-24 or 1-48)</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacChannel.snapshot_base">
-<code class="sig-name descname">snapshot_base</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">params_to_skip_update</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDacChannel.snapshot_base"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacChannel.snapshot_base" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot_base</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">params_to_skip_update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDacChannel.snapshot_base"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacChannel.snapshot_base" title="Permalink to this definition">¶</a></dt>
 <dd><p>State of the instrument as a JSON-compatible dict (everything that
 the custom JSON encoder class
 <a class="reference internal" href="../utils/helpers.html#qcodes.utils.helpers.NumpyJSONEncoder" title="qcodes.utils.helpers.NumpyJSONEncoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.helpers.NumpyJSONEncoder</span></code></a>
@@ -644,13 +644,13 @@ parameters that are being check is printed.</p>
 
 <dl class="py class">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacMultiChannelParameter">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.QDevil.QDevil_QDAC.</code><code class="sig-name descname">QDacMultiChannelParameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channels</span></em>, <em class="sig-param"><span class="n">param_name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDacMultiChannelParameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacMultiChannelParameter" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.QDevil.QDevil_QDAC.</code><code class="sig-name descname">QDacMultiChannelParameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channels</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference internal" href="../instrument/channel.html#qcodes.instrument.channel.InstrumentChannel" title="qcodes.instrument.channel.InstrumentChannel">qcodes.instrument.channel.InstrumentChannel</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">param_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDacMultiChannelParameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacMultiChannelParameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../instrument/channel.html#qcodes.instrument.channel.MultiChannelInstrumentParameter" title="qcodes.instrument.channel.MultiChannelInstrumentParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument.channel.MultiChannelInstrumentParameter</span></code></a></p>
 <p>The class to be returned by __getattr__ of the ChannelList. Here customised
 for fast multi-readout of voltages.</p>
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacMultiChannelParameter.get_raw">
-<code class="sig-name descname">get_raw</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDacMultiChannelParameter.get_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacMultiChannelParameter.get_raw" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_raw</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>Any<span class="p">, </span><span class="p">…</span><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDacMultiChannelParameter.get_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacMultiChannelParameter.get_raw" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a tuple containing the data from each of the channels in the
 list.</p>
 </dd></dl>
@@ -991,7 +991,7 @@ If step is None stepping will not be used.</p>
 
 <dl class="py class">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.QDevil.QDevil_QDAC.</code><code class="sig-name descname">QDac</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">address</span></em>, <em class="sig-param"><span class="n">update_currents</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.QDevil.QDevil_QDAC.</code><code class="sig-name descname">QDac</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">address</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">update_currents</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../instrument/visa.html#qcodes.instrument.visa.VisaInstrument" title="qcodes.instrument.visa.VisaInstrument"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument.visa.VisaInstrument</span></code></a></p>
 <p>Channelised driver for the QDevil QDAC voltage source.</p>
 <p>Exposes channels, temperature sensors and calibration output,
@@ -1006,9 +1006,9 @@ and sets this as part of the initialization, so please do not change this.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The instrument name used by qcodes</p></li>
-<li><p><strong>address</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The VISA name of the resource</p></li>
-<li><p><strong>update_currents</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Whether to query all channels for their
+<li><p><strong>name</strong> – The instrument name used by qcodes</p></li>
+<li><p><strong>address</strong> – The VISA name of the resource</p></li>
+<li><p><strong>update_currents</strong> – Whether to query all channels for their
 current sensor value on startup, which takes about 0.5 sec
 per channel. Default: False.</p></li>
 </ul>
@@ -1024,7 +1024,7 @@ per channel. Default: False.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update_currents</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update_currents</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the instrument setting all channels to zero output voltage
 and all parameters to their default values, including removing any
 assigned sync putputs, function generators, triggers etc.</p>
@@ -1032,7 +1032,7 @@ assigned sync putputs, function generators, triggers etc.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.snapshot_base">
-<code class="sig-name descname">snapshot_base</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">params_to_skip_update</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.snapshot_base"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.snapshot_base" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot_base</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">params_to_skip_update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.snapshot_base"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.snapshot_base" title="Permalink to this definition">¶</a></dt>
 <dd><p>State of the instrument as a JSON-compatible dict (everything that
 the custom JSON encoder class <a class="reference internal" href="../utils/helpers.html#qcodes.utils.helpers.NumpyJSONEncoder" title="qcodes.utils.helpers.NumpyJSONEncoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.helpers.NumpyJSONEncoder</span></code></a>
 supports).</p>
@@ -1062,19 +1062,19 @@ update of certain parameters in all snapshots, use the
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.print_syncs">
-<code class="sig-name descname">print_syncs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.print_syncs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.print_syncs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">print_syncs</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.print_syncs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.print_syncs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print assigned SYNC ports, sorted by channel number</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.print_slopes">
-<code class="sig-name descname">print_slopes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.print_slopes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.print_slopes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">print_slopes</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.print_slopes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.print_slopes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print the finite slopes assigned to channels, sorted by channel number</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.write">
-<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.write" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.write" title="Permalink to this definition">¶</a></dt>
 <dd><p>QDac always returns something even from set commands, even when
 verbose mode is off, so we’ll override write to take this out
 if you want to use this response, we put it in self._write_response
@@ -1088,12 +1088,12 @@ available in <cite>_write_response</cite></p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.read">
-<code class="sig-name descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.read" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.read" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.connect_message">
-<code class="sig-name descname">connect_message</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">idn_param</span><span class="o">=</span><span class="default_value">'IDN'</span></em>, <em class="sig-param"><span class="n">begin_time</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.connect_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.connect_message" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">connect_message</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">idn_param</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span> <span class="o">=</span> <span class="default_value">'IDN'</span></em>, <em class="sig-param"><span class="n">begin_time</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.connect_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.connect_message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Override of the standard Instrument class connect_message.
 Usually, the response to <cite>*IDN?</cite> is printed. Here, the
 software version is printed.</p>
@@ -1101,13 +1101,13 @@ software version is printed.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.print_overview">
-<code class="sig-name descname">print_overview</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update_currents</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.print_overview"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.print_overview" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">print_overview</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update_currents</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.print_overview"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.print_overview" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pretty-prints the status of the QDac</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.ramp_voltages">
-<code class="sig-name descname">ramp_voltages</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channellist</span></em>, <em class="sig-param"><span class="n">v_startlist</span></em>, <em class="sig-param"><span class="n">v_endlist</span></em>, <em class="sig-param"><span class="n">ramptime</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.ramp_voltages"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.ramp_voltages" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ramp_voltages</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channellist</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">v_startlist</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">v_endlist</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">ramptime</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.ramp_voltages"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.ramp_voltages" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function for smoothly ramping one channel or more channels
 simultaneously (max. 8). This is a shallow interface to
 ramp_voltages_2d. Function generators and triggers are
@@ -1134,31 +1134,31 @@ to wait for ‘ramptime’ until measuring….</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.ramp_voltages_2d">
-<code class="sig-name descname">ramp_voltages_2d</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">slow_chans</span></em>, <em class="sig-param"><span class="n">slow_vstart</span></em>, <em class="sig-param"><span class="n">slow_vend</span></em>, <em class="sig-param"><span class="n">fast_chans</span></em>, <em class="sig-param"><span class="n">fast_vstart</span></em>, <em class="sig-param"><span class="n">fast_vend</span></em>, <em class="sig-param"><span class="n">step_length</span></em>, <em class="sig-param"><span class="n">slow_steps</span></em>, <em class="sig-param"><span class="n">fast_steps</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.ramp_voltages_2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.ramp_voltages_2d" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ramp_voltages_2d</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">slow_chans</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">slow_vstart</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">slow_vend</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">fast_chans</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">fast_vstart</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">fast_vend</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">step_length</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a></span></em>, <em class="sig-param"><span class="n">slow_steps</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em>, <em class="sig-param"><span class="n">fast_steps</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/QDevil/QDevil_QDAC.html#QDac.ramp_voltages_2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.ramp_voltages_2d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function for smoothly ramping two channel groups simultaneously with
 one slow (x) and one fast (y) group. used by ‘ramp_voltages’ where x is
 empty. Function generators and triggers are assigned automatically.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>slow_chans</strong> – List (int) of channels to be ramped (1 indexed) in
+<li><p><strong>slow_chans</strong> – List of channels to be ramped (1 indexed) in
 the slow-group</p></li>
-<li><p><strong>slow_vstart</strong> – List (int) of voltages to ramp from in the
+<li><p><strong>slow_vstart</strong> – List of voltages to ramp from in the
 slow-group.
 MAY BE EMPTY. But if provided, time is saved by NOT
 reading the present values from the instrument.</p></li>
-<li><p><strong>slow_vend</strong> – list (int) of voltages to ramp to in the slow-group.</p></li>
-<li><p><strong>fast_chans</strong> – List (int) of channels to be ramped (1 indexed) in
+<li><p><strong>slow_vend</strong> – list of voltages to ramp to in the slow-group.</p></li>
+<li><p><strong>fast_chans</strong> – List of channels to be ramped (1 indexed) in
 the fast-group.</p></li>
-<li><p><strong>fast_vstart</strong> – List (int) of voltages to ramp from in the
+<li><p><strong>fast_vstart</strong> – List of voltages to ramp from in the
 fast-group.
 MAY BE EMPTY. But if provided, time is saved by NOT
 reading the present values from the instrument.</p></li>
-<li><p><strong>fast_vend</strong> – list (int) of voltages to ramp to in the fast-group.</p></li>
-<li><p><strong>step_length</strong> – (float) Time spent at each step in seconds
+<li><p><strong>fast_vend</strong> – list of voltages to ramp to in the fast-group.</p></li>
+<li><p><strong>step_length</strong> – Time spent at each step in seconds
 (min. 0.001) multiple of 1 ms.</p></li>
-<li><p><strong>slow_steps</strong> – (int) number of steps in the slow direction.</p></li>
-<li><p><strong>fast_steps</strong> – (int) number of steps in the fast direction.</p></li>
+<li><p><strong>slow_steps</strong> – number of steps in the slow direction.</p></li>
+<li><p><strong>fast_steps</strong> – number of steps in the fast direction.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
