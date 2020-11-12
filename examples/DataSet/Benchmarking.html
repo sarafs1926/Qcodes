@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.19.2+508.g5b81db18d5
+                0.19.2+517.g543c8f4cc7
               </div>
             
           
@@ -536,7 +536,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201112-13912-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201112-13855-qcodes.log
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -645,8 +645,8 @@ benchmarking#the sample is a lie#1@/home/vsts/experiments.db
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CPU times: user 14.9 ms, sys: 0 ns, total: 14.9 ms
-Wall time: 14.6 ms
+CPU times: user 15.6 ms, sys: 0 ns, total: 15.6 ms
+Wall time: 15.3 ms
 </pre></div></div>
 </div>
 <p>and store in memory</p>
@@ -680,8 +680,8 @@ Wall time: 14.6 ms
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CPU times: user 8.28 ms, sys: 23 µs, total: 8.3 ms
-Wall time: 8.21 ms
+CPU times: user 10.3 ms, sys: 0 ns, total: 10.3 ms
+Wall time: 10.2 ms
 </pre></div></div>
 </div>
 </div>
@@ -709,27 +709,17 @@ Wall time: 8.21 ms
 <span></span><span class="o">%%time</span>
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x_shape</span><span class="o">//</span><span class="mi">10</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y_shape</span><span class="p">):</span>
-        <span class="n">double_dataset</span><span class="o">.</span><span class="n">add_result</span><span class="p">({</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">()})</span>
+        <span class="n">double_dataset</span><span class="o">.</span><span class="n">add_results</span><span class="p">([{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">()}])</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-2020-11-12 17:36:40,140 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/utils/deprecate.py:58: QCoDeSDeprecationWarning: The function &lt;add_result&gt; is deprecated. Use &#34;add_results&#34; as an alternative.
-  issue_deprecation_warning(f&#39;{t} &lt;{n}&gt;&#39;, reason, alternative)
-
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CPU times: user 349 ms, sys: 69.3 ms, total: 418 ms
-Wall time: 1.4 s
+CPU times: user 459 ms, sys: 84 ms, total: 543 ms
+Wall time: 1.75 s
 </pre></div></div>
 </div>
 </div>
@@ -762,7 +752,7 @@ Wall time: 1.4 s
         <span class="n">x_data</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
         <span class="n">y_data</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
         <span class="n">z_data</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">single_dataset</span><span class="o">.</span><span class="n">add_result</span><span class="p">({</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">x_data</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y_data</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="n">z_data</span><span class="p">})</span>
+    <span class="n">single_dataset</span><span class="o">.</span><span class="n">add_results</span><span class="p">([{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">x_data</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y_data</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="n">z_data</span><span class="p">}])</span>
 </pre></div>
 </div>
 </div>
@@ -771,8 +761,8 @@ Wall time: 1.4 s
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CPU times: user 106 ms, sys: 1.33 ms, total: 108 ms
-Wall time: 127 ms
+CPU times: user 117 ms, sys: 16.1 ms, total: 133 ms
+Wall time: 166 ms
 </pre></div></div>
 </div>
 </div>
@@ -805,26 +795,17 @@ Wall time: 127 ms
         <span class="n">x_data</span><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
         <span class="n">y_data</span><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
         <span class="n">z_data</span><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">zero_dataset</span><span class="o">.</span><span class="n">add_result</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="n">x_data</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="n">y_data</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span><span class="n">z_data</span><span class="p">})</span>
+<span class="n">zero_dataset</span><span class="o">.</span><span class="n">add_results</span><span class="p">([{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="n">x_data</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="n">y_data</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span><span class="n">z_data</span><span class="p">}])</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
+<div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CPU times: user 23.5 ms, sys: 0 ns, total: 23.5 ms
-Wall time: 23.8 ms
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-1
+CPU times: user 25.2 ms, sys: 136 µs, total: 25.4 ms
+Wall time: 26.6 ms
 </pre></div></div>
 </div>
 </div>
@@ -852,7 +833,7 @@ Wall time: 23.8 ms
 <span></span><span class="o">%%time</span>it
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x_shape</span><span class="p">):</span>
     <span class="n">x_data</span><span class="p">[</span><span class="n">x</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">x</span>
-    <span class="n">array1D_dataset</span><span class="o">.</span><span class="n">add_result</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="n">x_data</span><span class="p">[</span><span class="n">x</span><span class="p">,:],</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="n">y_setpoints</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="n">y_shape</span><span class="p">)})</span>
+    <span class="n">array1D_dataset</span><span class="o">.</span><span class="n">add_results</span><span class="p">([{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="n">x_data</span><span class="p">[</span><span class="n">x</span><span class="p">,:],</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="n">y_setpoints</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="n">y_shape</span><span class="p">)}])</span>
 </pre></div>
 </div>
 </div>
@@ -861,7 +842,7 @@ Wall time: 23.8 ms
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-134 ms ± 7.74 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+152 ms ± 1.95 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -899,7 +880,7 @@ Wall time: 23.8 ms
     <span class="n">x_data</span><span class="p">[</span><span class="n">x</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">x</span>
     <span class="n">y_data</span><span class="p">[</span><span class="n">x</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">y_setpoints</span>
     <span class="n">z_data</span><span class="p">[</span><span class="n">x</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="n">y_shape</span><span class="p">)</span>
-<span class="n">array0D_dataset</span><span class="o">.</span><span class="n">add_result</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="n">x_data</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="n">y_data</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span><span class="n">z_data</span><span class="p">})</span>
+<span class="n">array0D_dataset</span><span class="o">.</span><span class="n">add_results</span><span class="p">([{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="n">x_data</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="n">y_data</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span><span class="n">z_data</span><span class="p">}])</span>
 </pre></div>
 </div>
 </div>
@@ -908,7 +889,7 @@ Wall time: 23.8 ms
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-6.93 ms ± 87 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+6.93 ms ± 237 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div></div>
 </div>
 </div>
@@ -954,7 +935,7 @@ Wall time: 23.8 ms
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-37.7 ms ± 2.64 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+44.2 ms ± 2.29 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div></div>
 </div>
 </div>

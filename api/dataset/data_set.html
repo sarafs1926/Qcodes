@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.19.2+508.g5b81db18d5
+                0.19.2+517.g543c8f4cc7
               </div>
             
           
@@ -582,26 +582,6 @@ database in a separate thread.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="qcodes.dataset.data_set.DataSet.add_result">
-<code class="sig-name descname">add_result</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">results</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Optional<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#complex" title="(in Python v3.7)">complex</a><span class="p">, </span>List<span class="p">, </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><a class="reference internal" href="../../_modules/qcodes/dataset/data_set.html#DataSet.add_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.add_result" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a logically single result to existing parameters</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>results</strong> – dictionary with name of a parameter as the key and the
-value to associate as the value.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>index in the DataSet that the result was stored at</p>
-</dd>
-</dl>
-<p>If a parameter exist in the <a class="reference internal" href="#qcodes.dataset.data_set.DataSet" title="qcodes.dataset.data_set.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> and it’s not in the results
-dictionary, “Null” values are inserted.</p>
-<p>It is an error to provide a value for a key or keyword that is not
-the name of a parameter in this <a class="reference internal" href="#qcodes.dataset.data_set.DataSet" title="qcodes.dataset.data_set.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a>.</p>
-<p>It is an error to add results to a completed <a class="reference internal" href="#qcodes.dataset.data_set.DataSet" title="qcodes.dataset.data_set.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a>.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt id="qcodes.dataset.data_set.DataSet.add_results">
 <code class="sig-name descname">add_results</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">results</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Mapping<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Optional<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#complex" title="(in Python v3.7)">complex</a><span class="p">, </span>List<span class="p">, </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span><span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/dataset/data_set.html#DataSet.add_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.add_results" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a sequence of results to the <a class="reference internal" href="#qcodes.dataset.data_set.DataSet" title="qcodes.dataset.data_set.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a>.</p>
@@ -616,13 +596,6 @@ to be None</p>
 <p>It is an error to provide a value for a key or keyword that is not
 the name of a parameter in this <a class="reference internal" href="#qcodes.dataset.data_set.DataSet" title="qcodes.dataset.data_set.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a>.</p>
 <p>It is an error to add results to a completed <a class="reference internal" href="#qcodes.dataset.data_set.DataSet" title="qcodes.dataset.data_set.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qcodes.dataset.data_set.DataSet.add_result_to_queue">
-<code class="sig-name descname">add_result_to_queue</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">results</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Mapping<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Optional<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#complex" title="(in Python v3.7)">complex</a><span class="p">, </span>List<span class="p">, </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span><span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/dataset/data_set.html#DataSet.add_result_to_queue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.add_result_to_queue" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add result to the output Queue from which a worker in a separate thread
-consumes</p>
 </dd></dl>
 
 <dl class="py method">
@@ -751,18 +724,6 @@ dependent parameters to a single file.</p></li>
 <li><p><a class="reference internal" href="#qcodes.dataset.data_set.DataPathException" title="qcodes.dataset.data_set.DataPathException"><strong>DataPathException</strong></a> – If the data of multiple parameters are wanted to be merged
     in a single file but no filename provided.</p></li>
 </ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qcodes.dataset.data_set.DataSet.get_setpoints">
-<code class="sig-name descname">get_setpoints</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">param_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>List<span class="p">[</span>List<span class="p">[</span>Any<span class="p">]</span><span class="p">]</span><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/dataset/data_set.html#DataSet.get_setpoints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.get_setpoints" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the setpoints for the specified parameter</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>param_name</strong> – The name of the parameter for which to get the
-setpoints</p>
 </dd>
 </dl>
 </dd></dl>

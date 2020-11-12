@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.19.2+508.g5b81db18d5
+                0.19.2+517.g543c8f4cc7
               </div>
             
           
@@ -202,15 +202,14 @@
     <span class="n">get_guids_from_run_spec</span><span class="p">,</span> <span class="n">get_last_experiment</span><span class="p">,</span> <span class="n">get_metadata</span><span class="p">,</span>
     <span class="n">get_metadata_from_run_id</span><span class="p">,</span> <span class="n">get_parameter_data</span><span class="p">,</span> <span class="n">get_parent_dataset_links</span><span class="p">,</span>
     <span class="n">get_run_description</span><span class="p">,</span> <span class="n">get_run_timestamp_from_run_id</span><span class="p">,</span> <span class="n">get_runid_from_guid</span><span class="p">,</span>
-    <span class="n">get_sample_name_from_experiment_id</span><span class="p">,</span> <span class="n">get_setpoints</span><span class="p">,</span> <span class="n">mark_run_complete</span><span class="p">,</span>
+    <span class="n">get_sample_name_from_experiment_id</span><span class="p">,</span> <span class="n">mark_run_complete</span><span class="p">,</span>
     <span class="n">remove_trigger</span><span class="p">,</span> <span class="n">run_exists</span><span class="p">,</span> <span class="n">set_run_timestamp</span><span class="p">,</span> <span class="n">update_parent_datasets</span><span class="p">,</span>
     <span class="n">update_run_description</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.sqlite.query_helpers</span> <span class="kn">import</span> <span class="p">(</span><span class="n">VALUE</span><span class="p">,</span> <span class="n">VALUES</span><span class="p">,</span>
                                                  <span class="n">insert_many_values</span><span class="p">,</span>
-                                                 <span class="n">insert_values</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span>
+                                                 <span class="n">length</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span>
                                                  <span class="n">select_one_where</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">_BaseParameter</span>
-<span class="kn">from</span> <span class="nn">qcodes.utils.deprecate</span> <span class="kn">import</span> <span class="n">deprecate</span>
 
 <span class="kn">from</span> <span class="nn">.data_set_cache</span> <span class="kn">import</span> <span class="n">DataSetCache</span>
 <span class="kn">from</span> <span class="nn">.descriptions.versioning</span> <span class="kn">import</span> <span class="n">serialization</span> <span class="k">as</span> <span class="n">serial</span>
@@ -222,9 +221,6 @@
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-
-<span class="c1"># TODO: as of now every time a result is inserted with add_result the db is</span>
-<span class="c1"># saved same for add_results. IS THIS THE BEHAVIOUR WE WANT?</span>
 
 <span class="c1"># TODO: storing parameters in separate table as an extension (dropping</span>
 <span class="c1"># the column parametenrs would be much nicer</span>
@@ -961,43 +957,6 @@
             <span class="n">sub</span><span class="o">.</span><span class="n">done_callback</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_dataset_written</span><span class="p">()</span>
 
-<div class="viewcode-block" id="DataSet.add_result"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.add_result">[docs]</a>    <span class="nd">@deprecate</span><span class="p">(</span><span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;add_results&#39;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">add_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">VALUE</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add a logically single result to existing parameters</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            results: dictionary with name of a parameter as the key and the</span>
-<span class="sd">                value to associate as the value.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            index in the DataSet that the result was stored at</span>
-
-<span class="sd">        If a parameter exist in the :class:`.DataSet` and it&#39;s not in the results</span>
-<span class="sd">        dictionary, &quot;Null&quot; values are inserted.</span>
-
-<span class="sd">        It is an error to provide a value for a key or keyword that is not</span>
-<span class="sd">        the name of a parameter in this :class:`.DataSet`.</span>
-
-<span class="sd">        It is an error to add results to a completed :class:`.DataSet`.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_raise_if_not_writable</span><span class="p">()</span>
-
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_rundescriber</span><span class="o">.</span><span class="n">interdeps</span><span class="o">.</span><span class="n">_id_to_paramspec</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-                          <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_rundescriber</span><span class="o">.</span><span class="n">interdeps</span><span class="o">.</span><span class="n">validate_subset</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">DependencyError</span> <span class="k">as</span> <span class="n">de</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s1">&#39;Can not add result, missing setpoint values&#39;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">de</span>
-
-        <span class="n">index</span> <span class="o">=</span> <span class="n">insert_values</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span>
-                              <span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
-                              <span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-                              <span class="p">)</span>
-        <span class="k">return</span> <span class="n">index</span></div>
-
 <div class="viewcode-block" id="DataSet.add_results"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.add_results">[docs]</a>    <span class="k">def</span> <span class="nf">add_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">VALUE</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Adds a sequence of results to the :class:`.DataSet`.</span>
@@ -1037,24 +996,6 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">completed</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">CompletedError</span><span class="p">(</span><span class="s1">&#39;This DataSet is complete, no further &#39;</span>
                                  <span class="s1">&#39;results can be added to it.&#39;</span><span class="p">)</span>
-
-<div class="viewcode-block" id="DataSet.add_result_to_queue"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.add_result_to_queue">[docs]</a>    <span class="nd">@deprecate</span><span class="p">(</span><span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;add_results&#39;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">add_result_to_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                            <span class="n">results</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">VALUE</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add result to the output Queue from which a worker in a separate thread</span>
-<span class="sd">        consumes</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_raise_if_not_writable</span><span class="p">()</span>
-
-        <span class="n">expected_keys</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">results</span><span class="p">])</span>
-        <span class="n">values</span> <span class="o">=</span> <span class="p">[[</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">expected_keys</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
-
-        <span class="n">item</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;keys&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">expected_keys</span><span class="p">),</span> <span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="n">values</span><span class="p">,</span>
-                <span class="s2">&quot;table_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">}</span>
-        <span class="n">writer_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_writer_status</span>
-
-        <span class="n">writer_status</span><span class="o">.</span><span class="n">data_write_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_ensure_dataset_written</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">writer_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_writer_status</span>
@@ -1307,28 +1248,6 @@
                 <span class="n">df_to_save</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dfs_to_save</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
                 <span class="n">df_to_save</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path_or_buf</span><span class="o">=</span><span class="n">dst</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataSet.get_setpoints"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.get_setpoints">[docs]</a>    <span class="nd">@deprecate</span><span class="p">(</span><span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;get_parameter_data&quot;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">get_setpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the setpoints for the specified parameter</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            param_name: The name of the parameter for which to get the</span>
-<span class="sd">                setpoints</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">paramspec</span><span class="p">:</span> <span class="n">ParamSpecBase</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rundescriber</span><span class="o">.</span><span class="n">interdeps</span><span class="o">.</span><span class="n">_id_to_paramspec</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span>
-
-        <span class="k">if</span> <span class="n">param_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unknown parameter, not in this DataSet&#39;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">paramspec</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rundescriber</span><span class="o">.</span><span class="n">interdeps</span><span class="o">.</span><span class="n">dependencies</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Parameter </span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s1"> has no setpoints.&#39;</span><span class="p">)</span>
-
-        <span class="n">setpoints</span> <span class="o">=</span> <span class="n">get_setpoints</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span> <span class="n">param_name</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">setpoints</span></div>
-
 <div class="viewcode-block" id="DataSet.subscribe"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.subscribe">[docs]</a>    <span class="k">def</span> <span class="nf">subscribe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                   <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]],</span> <span class="kc">None</span><span class="p">],</span>
                   <span class="n">min_wait</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -1425,7 +1344,7 @@
 
 <span class="sd">        Before we can enqueue the results, all values of the results dict</span>
 <span class="sd">        must have the same length. We enqueue each parameter tree seperately,</span>
-<span class="sd">        effectively mimicking making one call to add_result per parameter</span>
+<span class="sd">        effectively mimicking making one call to add_results per parameter</span>
 <span class="sd">        tree.</span>
 
 <span class="sd">        Deal with &#39;numeric&#39; type parameters. If a &#39;numeric&#39; top level parameter</span>
