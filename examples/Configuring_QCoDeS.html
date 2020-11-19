@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.20.0+31.g35ffee8fb3
+                0.20.0+46.g10b1b119bb
               </div>
             
           
@@ -508,7 +508,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/201119-12700-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/201119-12925-qcodes.log
 </pre></div></div>
 </div>
 <div class="section" id="QCoDeS-config">
@@ -932,11 +932,11 @@ save_to_home() -&gt; None method of qcodes.configuration.config.Config instance
 <span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-red-fg"># NOTE that you how have a broken config!</span>
 
 <span class="ansi-green-fg">~/work/1/s/qcodes/configuration/config.py</span> in <span class="ansi-cyan-fg">validate</span><span class="ansi-blue-fg">(self, json_config, schema, extra_schema_path)</span>
-<span class="ansi-green-intense-fg ansi-bold">    209</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    210</span>             <span class="ansi-green-fg">if</span> json_config <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span> <span class="ansi-green-fg">and</span> schema <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 211</span><span class="ansi-red-fg">                 </span>jsonschema<span class="ansi-blue-fg">.</span>validate<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>current_config<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>current_schema<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    212</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    213</span>                 jsonschema<span class="ansi-blue-fg">.</span>validate<span class="ansi-blue-fg">(</span>json_config<span class="ansi-blue-fg">,</span> schema<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    211</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    212</span>             <span class="ansi-green-fg">if</span> json_config <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span> <span class="ansi-green-fg">and</span> schema <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 213</span><span class="ansi-red-fg">                 </span>jsonschema<span class="ansi-blue-fg">.</span>validate<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>current_config<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>current_schema<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    214</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    215</span>                 jsonschema<span class="ansi-blue-fg">.</span>validate<span class="ansi-blue-fg">(</span>json_config<span class="ansi-blue-fg">,</span> schema<span class="ansi-blue-fg">)</span>
 
 <span class="ansi-green-fg">/usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/jsonschema/validators.py</span> in <span class="ansi-cyan-fg">validate</span><span class="ansi-blue-fg">(instance, schema, cls, *args, **kwargs)</span>
 <span class="ansi-green-intense-fg ansi-bold">    932</span>     error <span class="ansi-blue-fg">=</span> exceptions<span class="ansi-blue-fg">.</span>best_match<span class="ansi-blue-fg">(</span>validator<span class="ansi-blue-fg">.</span>iter_errors<span class="ansi-blue-fg">(</span>instance<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>

@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.20.0+31.g35ffee8fb3
+                0.20.0+46.g10b1b119bb
               </div>
             
           
@@ -516,7 +516,7 @@ parameters that are being check is printed.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument.base.InstrumentBase.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument.base.InstrumentBase.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument.base.InstrumentBase.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -532,7 +532,7 @@ parameters that are being check is printed.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument.base.InstrumentBase.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument.base.InstrumentBase.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument.base.InstrumentBase.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument.base.InstrumentBase.snapshot_base" title="qcodes.instrument.base.InstrumentBase.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -950,7 +950,7 @@ hardware communication should instead override <code class="docutils literal not
 
 <dl class="py method">
 <dt id="qcodes.instrument.base.Instrument.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument.base.Instrument.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument.base.Instrument.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1031,7 +1031,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument.base.Instrument.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument.base.Instrument.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument.base.Instrument.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument.base.Instrument.snapshot_base" title="qcodes.instrument.base.Instrument.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>

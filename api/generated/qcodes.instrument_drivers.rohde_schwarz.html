@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.20.0+31.g35ffee8fb3
+                0.20.0+46.g10b1b119bb
               </div>
             
           
@@ -352,7 +352,7 @@ ramp rate, but can also be used without a <cite>step</cite> to enforce a delay
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeTrace.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeTrace.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeTrace.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -499,7 +499,7 @@ full name refer to <a class="reference internal" href="#qcodes.instrument_driver
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeTrace.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeTrace.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeTrace.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeTrace.snapshot_base" title="qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeTrace.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -777,7 +777,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeMeasurement.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeMeasurement.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeMeasurement.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -858,7 +858,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeMeasurement.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeMeasurement.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeMeasurement.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeMeasurement.snapshot_base" title="qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeMeasurement.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -1114,7 +1114,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeChannel.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeChannel.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeChannel.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1195,7 +1195,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeChannel.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeChannel.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeChannel.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeChannel.snapshot_base" title="qcodes.instrument_drivers.rohde_schwarz.RTO1000.ScopeChannel.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -1660,7 +1660,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.RTO1000.RTO1000.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.RTO1000.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.RTO1000.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1799,7 +1799,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.RTO1000.RTO1000.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.RTO1000.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.RTO1000.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.rohde_schwarz.RTO1000.RTO1000.snapshot_base" title="qcodes.instrument_drivers.rohde_schwarz.RTO1000.RTO1000.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -2276,7 +2276,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.SGS100A.RohdeSchwarz_SGS100A.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.SGS100A.RohdeSchwarz_SGS100A.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.SGS100A.RohdeSchwarz_SGS100A.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2415,7 +2415,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.SGS100A.RohdeSchwarz_SGS100A.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.SGS100A.RohdeSchwarz_SGS100A.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.SGS100A.RohdeSchwarz_SGS100A.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.rohde_schwarz.SGS100A.RohdeSchwarz_SGS100A.snapshot_base" title="qcodes.instrument_drivers.rohde_schwarz.SGS100A.RohdeSchwarz_SGS100A.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -2630,7 +2630,7 @@ ramp rate, but can also be used without a <cite>step</cite> to enforce a delay
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyTraceIQ.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyTraceIQ.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyTraceIQ.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2785,7 +2785,7 @@ parts but does not add the instrument name.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyTraceIQ.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyTraceIQ.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyTraceIQ.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyTraceIQ.snapshot_base" title="qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyTraceIQ.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -2991,7 +2991,7 @@ ramp rate, but can also be used without a <cite>step</cite> to enforce a delay
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyPointIQ.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyPointIQ.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyPointIQ.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3146,7 +3146,7 @@ parts but does not add the instrument name.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyPointIQ.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyPointIQ.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyPointIQ.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyPointIQ.snapshot_base" title="qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyPointIQ.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -3351,7 +3351,7 @@ ramp rate, but can also be used without a <cite>step</cite> to enforce a delay
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyPointMagPhase.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyPointMagPhase.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyPointMagPhase.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3506,7 +3506,7 @@ parts but does not add the instrument name.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyPointMagPhase.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyPointMagPhase.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyPointMagPhase.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyPointMagPhase.snapshot_base" title="qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyPointMagPhase.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -3705,7 +3705,7 @@ ramp rate, but can also be used without a <cite>step</cite> to enforce a delay
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweepMagPhase.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweepMagPhase.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweepMagPhase.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3860,7 +3860,7 @@ parts but does not add the instrument name.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweepMagPhase.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweepMagPhase.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweepMagPhase.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweepMagPhase.snapshot_base" title="qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweepMagPhase.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -4081,7 +4081,7 @@ ramp rate, but can also be used without a <cite>step</cite> to enforce a delay
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweep.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweep.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweep.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -4228,7 +4228,7 @@ full name refer to <a class="reference internal" href="#qcodes.instrument_driver
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweep.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweep.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweep.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweep.snapshot_base" title="qcodes.instrument_drivers.rohde_schwarz.ZNB.FrequencySweep.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -4546,7 +4546,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNBChannel.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNBChannel.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNBChannel.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -4627,7 +4627,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNBChannel.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNBChannel.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNBChannel.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNBChannel.snapshot_base" title="qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNBChannel.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -5074,7 +5074,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNB.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNB.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNB.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -5213,7 +5213,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNB.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNB.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNB.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNB.snapshot_base" title="qcodes.instrument_drivers.rohde_schwarz.ZNB.ZNB.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>

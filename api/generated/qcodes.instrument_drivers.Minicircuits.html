@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.20.0+31.g35ffee8fb3
+                0.20.0+46.g10b1b119bb
               </div>
             
           
@@ -424,7 +424,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -505,7 +505,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.snapshot_base" title="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -920,7 +920,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1033,7 +1033,7 @@ that there are no other instruments with the same name.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.snapshot_base" title="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -1315,7 +1315,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1396,7 +1396,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.snapshot_base" title="qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -1804,7 +1804,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1965,7 +1965,7 @@ Default ‘n’.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.snapshot_base" title="qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -2245,7 +2245,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2326,7 +2326,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.snapshot_base" title="qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -2734,7 +2734,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2895,7 +2895,7 @@ Default ‘n’.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.snapshot_base" title="qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -3323,7 +3323,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3436,7 +3436,7 @@ that there are no other instruments with the same name.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.snapshot_base" title="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -3878,7 +3878,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3991,7 +3991,7 @@ that there are no other instruments with the same name.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.snapshot_base" title="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -4462,7 +4462,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -4575,7 +4575,7 @@ that there are no other instruments with the same name.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.snapshot_base" title="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -5009,7 +5009,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -5127,7 +5127,7 @@ that there are no other instruments with the same name.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.snapshot_base" title="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -5414,7 +5414,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -5495,7 +5495,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.snapshot_base" title="qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -5928,7 +5928,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -6041,7 +6041,7 @@ that there are no other instruments with the same name.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.snapshot_base" title="qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>

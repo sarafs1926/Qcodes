@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.0+31.g35ffee8fb3
+                0.20.0+46.g10b1b119bb
               </div>
             
           
@@ -180,7 +180,7 @@
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span><span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span>
                     <span class="n">Mapping</span><span class="p">,</span> <span class="n">MutableMapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">SupportsAbs</span><span class="p">,</span>
-                    <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span><span class="p">)</span>
+                    <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -331,7 +331,8 @@
     <span class="k">return</span> <span class="kc">True</span></div>
 
 
-<div class="viewcode-block" id="is_function"><a class="viewcode-back" href="../../../api/utils/helpers.html#qcodes.utils.helpers.is_function">[docs]</a><span class="k">def</span> <span class="nf">is_function</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">arg_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">coroutine</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="is_function"><a class="viewcode-back" href="../../../api/utils/helpers.html#qcodes.utils.helpers.is_function">[docs]</a><span class="k">def</span> <span class="nf">is_function</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+                <span class="n">arg_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">coroutine</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Check and require a function that can accept the specified number of</span>
 <span class="sd">    positional arguments, which either is or is not a coroutine</span>
@@ -388,7 +389,10 @@
     <span class="k">return</span> <span class="n">s</span></div>
 
 
-<div class="viewcode-block" id="deep_update"><a class="viewcode-back" href="../../../api/utils/helpers.html#qcodes.utils.helpers.deep_update">[docs]</a><span class="k">def</span> <span class="nf">deep_update</span><span class="p">(</span><span class="n">dest</span><span class="p">:</span> <span class="n">MutableMapping</span><span class="p">,</span> <span class="n">update</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MutableMapping</span><span class="p">:</span>
+<div class="viewcode-block" id="deep_update"><a class="viewcode-back" href="../../../api/utils/helpers.html#qcodes.utils.helpers.deep_update">[docs]</a><span class="k">def</span> <span class="nf">deep_update</span><span class="p">(</span>
+        <span class="n">dest</span><span class="p">:</span> <span class="n">MutableMapping</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">update</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MutableMapping</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Recursively update one JSON structure with another.</span>
 
@@ -600,7 +604,8 @@
         <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="compare_dictionaries"><a class="viewcode-back" href="../../../api/utils/helpers.html#qcodes.utils.helpers.compare_dictionaries">[docs]</a><span class="k">def</span> <span class="nf">compare_dictionaries</span><span class="p">(</span><span class="n">dict_1</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">dict_2</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
+<div class="viewcode-block" id="compare_dictionaries"><a class="viewcode-back" href="../../../api/utils/helpers.html#qcodes.utils.helpers.compare_dictionaries">[docs]</a><span class="k">def</span> <span class="nf">compare_dictionaries</span><span class="p">(</span><span class="n">dict_1</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+                         <span class="n">dict_2</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
                          <span class="n">dict_1_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;d1&#39;</span><span class="p">,</span>
                          <span class="n">dict_2_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;d2&#39;</span><span class="p">,</span>
                          <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
@@ -772,9 +777,9 @@
         <span class="nb">setattr</span><span class="p">(</span><span class="n">object_</span><span class="p">,</span> <span class="n">attribute_name</span><span class="p">,</span> <span class="n">old_value</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="partial_with_docstring"><a class="viewcode-back" href="../../../api/utils/helpers.html#qcodes.utils.helpers.partial_with_docstring">[docs]</a><span class="k">def</span> <span class="nf">partial_with_docstring</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+<div class="viewcode-block" id="partial_with_docstring"><a class="viewcode-back" href="../../../api/utils/helpers.html#qcodes.utils.helpers.partial_with_docstring">[docs]</a><span class="k">def</span> <span class="nf">partial_with_docstring</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
                            <span class="n">docstring</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                           <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+                           <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    We want to have a partial function which will allow us access the docstring</span>
 <span class="sd">    through the python built-in help function. This is particularly important</span>
@@ -804,7 +809,7 @@
 
 
 <div class="viewcode-block" id="create_on_off_val_mapping"><a class="viewcode-back" href="../../../api/utils/helpers.html#qcodes.utils.helpers.create_on_off_val_mapping">[docs]</a><span class="k">def</span> <span class="nf">create_on_off_val_mapping</span><span class="p">(</span><span class="n">on_val</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">off_val</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">False</span>
-                              <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+                              <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">],</span> <span class="n">Any</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns a value mapping which maps inputs which reasonably mean &quot;on&quot;/&quot;off&quot;</span>
 <span class="sd">    to the specified ``on_val``/``off_val`` which are to be sent to the</span>
@@ -831,7 +836,7 @@
                        <span class="o">+</span> <span class="p">[(</span><span class="n">off</span><span class="p">,</span> <span class="n">off_val</span><span class="p">)</span> <span class="k">for</span> <span class="n">off</span> <span class="ow">in</span> <span class="n">offs</span><span class="p">])</span></div>
 
 
-<div class="viewcode-block" id="abstractmethod"><a class="viewcode-back" href="../../../api/utils/helpers.html#qcodes.utils.helpers.abstractmethod">[docs]</a><span class="k">def</span> <span class="nf">abstractmethod</span><span class="p">(</span><span class="n">funcobj</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+<div class="viewcode-block" id="abstractmethod"><a class="viewcode-back" href="../../../api/utils/helpers.html#qcodes.utils.helpers.abstractmethod">[docs]</a><span class="k">def</span> <span class="nf">abstractmethod</span><span class="p">(</span><span class="n">funcobj</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A decorator indicating abstract methods.</span>
 

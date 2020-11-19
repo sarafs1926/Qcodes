@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.20.0+31.g35ffee8fb3
+                0.20.0+46.g10b1b119bb
               </div>
             
           
@@ -426,7 +426,7 @@ ramp rate, but can also be used without a <cite>step</cite> to enforce a delay
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Infiniium.RawTrace.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.RawTrace.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.RawTrace.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -573,7 +573,7 @@ full name refer to <a class="reference internal" href="#qcodes.instrument_driver
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Infiniium.RawTrace.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.RawTrace.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.RawTrace.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Infiniium.RawTrace.snapshot_base" title="qcodes.instrument_drivers.Keysight.Infiniium.RawTrace.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -842,7 +842,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -923,7 +923,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.snapshot_base" title="qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -1166,7 +1166,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1247,7 +1247,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.snapshot_base" title="qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -1711,7 +1711,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1850,7 +1850,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.snapshot_base" title="qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -2130,7 +2130,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2211,7 +2211,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.snapshot_base" title="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -2456,7 +2456,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2537,7 +2537,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.snapshot_base" title="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -3001,7 +3001,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3140,7 +3140,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.snapshot_base" title="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -3709,7 +3709,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3869,7 +3869,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.snapshot_base" title="qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -4438,7 +4438,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -4598,7 +4598,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.snapshot_base" title="qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -5167,7 +5167,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -5327,7 +5327,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.snapshot_base" title="qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -5896,7 +5896,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -6056,7 +6056,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.snapshot_base" title="qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -6625,7 +6625,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -6785,7 +6785,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.snapshot_base" title="qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -7063,7 +7063,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -7144,7 +7144,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.snapshot_base" title="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -7574,7 +7574,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -7713,7 +7713,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.snapshot_base" title="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -7985,7 +7985,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -8066,7 +8066,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.snapshot_base" title="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -8487,7 +8487,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -8626,7 +8626,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.snapshot_base" title="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -9075,7 +9075,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N51x1.N51x1.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -9214,7 +9214,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N51x1.N51x1.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.snapshot_base" title="qcodes.instrument_drivers.Keysight.N51x1.N51x1.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -9689,7 +9689,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N5230C.N5230C.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -9845,7 +9845,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N5230C.N5230C.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.snapshot_base" title="qcodes.instrument_drivers.Keysight.N5230C.N5230C.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -10326,7 +10326,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N5245A.N5245A.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -10482,7 +10482,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N5245A.N5245A.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.snapshot_base" title="qcodes.instrument_drivers.Keysight.N5245A.N5245A.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -10685,7 +10685,7 @@ ramp rate, but can also be used without a <cite>step</cite> to enforce a delay
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNASweep.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNASweep.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNASweep.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -10832,7 +10832,7 @@ full name refer to <a class="reference internal" href="#qcodes.instrument_driver
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNASweep.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNASweep.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNASweep.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.PNASweep.snapshot_base" title="qcodes.instrument_drivers.Keysight.N52xx.PNASweep.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -11019,7 +11019,7 @@ ramp rate, but can also be used without a <cite>step</cite> to enforce a delay
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.FormattedSweep.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.FormattedSweep.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.FormattedSweep.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -11176,7 +11176,7 @@ full name refer to <a class="reference internal" href="#qcodes.instrument_driver
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.FormattedSweep.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.FormattedSweep.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.FormattedSweep.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.FormattedSweep.snapshot_base" title="qcodes.instrument_drivers.Keysight.N52xx.FormattedSweep.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -11445,7 +11445,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNAPort.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAPort.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAPort.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -11526,7 +11526,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNAPort.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAPort.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAPort.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAPort.snapshot_base" title="qcodes.instrument_drivers.Keysight.N52xx.PNAPort.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -11784,7 +11784,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNATrace.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNATrace.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNATrace.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -11865,7 +11865,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNATrace.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNATrace.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNATrace.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.PNATrace.snapshot_base" title="qcodes.instrument_drivers.Keysight.N52xx.PNATrace.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -12339,7 +12339,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNABase.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -12478,7 +12478,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNABase.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.snapshot_base" title="qcodes.instrument_drivers.Keysight.N52xx.PNABase.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -12950,7 +12950,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -13106,7 +13106,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.snapshot_base" title="qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -13569,7 +13569,7 @@ False if it’s closed/connected.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -13650,7 +13650,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.snapshot_base" title="qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -14169,7 +14169,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -14308,7 +14308,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.snapshot_base" title="qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -14569,7 +14569,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -14650,7 +14650,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.snapshot_base" title="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -15049,7 +15049,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -15130,7 +15130,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.snapshot_base" title="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -15732,7 +15732,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -15871,7 +15871,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.snapshot_base" title="qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -16098,7 +16098,7 @@ ramp rate, but can also be used without a <cite>step</cite> to enforce a delay
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -16242,7 +16242,7 @@ parts but does not add the instrument name.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair.snapshot_base" title="qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -16345,112 +16345,112 @@ If step is None stepping will not be used.</p>
 <a class="reference external" href="https://literature.cdn.keysight.com/litweb/pdf/E4980-90230.pdf?id=789356">https://literature.cdn.keysight.com/litweb/pdf/E4980-90230.pdf?id=789356</a></p>
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPD">
-<code class="sig-name descname">CPD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CPD at 140560344295376&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CPD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CPD at 139751573957328&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPD" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPQ">
-<code class="sig-name descname">CPQ</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CPQ at 140560344296208&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPQ" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CPQ</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CPQ at 139751575283600&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPQ" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPG">
-<code class="sig-name descname">CPG</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CPG at 140560344296848&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPG" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CPG</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CPG at 139751573958480&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPG" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPRP">
-<code class="sig-name descname">CPRP</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CPRP at 140560344297296&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPRP" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CPRP</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CPRP at 139751573987664&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPRP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSD">
-<code class="sig-name descname">CSD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CSD at 140560344342864&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CSD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CSD at 139751573988112&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSD" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSQ">
-<code class="sig-name descname">CSQ</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CSQ at 140560344343312&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSQ" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CSQ</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CSQ at 139751573988560&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSQ" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSRS">
-<code class="sig-name descname">CSRS</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CSRS at 140560344343760&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSRS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CSRS</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CSRS at 139751573989008&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSRS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPD">
-<code class="sig-name descname">LPD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LPD at 140560344344208&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LPD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LPD at 139751573989456&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPD" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPQ">
-<code class="sig-name descname">LPQ</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LPQ at 140560344344656&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPQ" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LPQ</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LPQ at 139751573989904&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPQ" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPG">
-<code class="sig-name descname">LPG</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LPG at 140560344345104&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPG" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LPG</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LPG at 139751573990352&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPG" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPRP">
-<code class="sig-name descname">LPRP</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LPRP at 140560344345552&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPRP" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LPRP</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LPRP at 139751573990800&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPRP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSD">
-<code class="sig-name descname">LSD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LSD at 140560344346000&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LSD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LSD at 139751573991248&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSD" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSQ">
-<code class="sig-name descname">LSQ</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LSQ at 140560344346448&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSQ" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LSQ</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LSQ at 139751574012240&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSQ" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSRS">
-<code class="sig-name descname">LSRS</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LSRS at 140560344359248&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSRS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LSRS</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LSRS at 139751574012688&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSRS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSRD">
-<code class="sig-name descname">LSRD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LSRD at 140560344359696&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSRD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LSRD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LSRD at 139751574013136&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSRD" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.RX">
-<code class="sig-name descname">RX</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: RX at 140560344360144&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.RX" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">RX</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: RX at 139751574013584&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.RX" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.ZTD">
-<code class="sig-name descname">ZTD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: ZTD at 140560344360592&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.ZTD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ZTD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: ZTD at 139751574014032&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.ZTD" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.ZTR">
-<code class="sig-name descname">ZTR</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: ZTR at 140560344361040&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.ZTR" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ZTR</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: ZTR at 139751574014480&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.ZTR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.GB">
-<code class="sig-name descname">GB</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: GB at 140560344361488&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.GB" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">GB</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: GB at 139751574014928&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.GB" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.YTD">
-<code class="sig-name descname">YTD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: YTD at 140560344361936&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.YTD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">YTD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: YTD at 139751574015376&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.YTD" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.YTR">
-<code class="sig-name descname">YTR</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: YTR at 140560344362384&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.YTR" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">YTR</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: YTR at 139751574015824&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.YTR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.VDID">
-<code class="sig-name descname">VDID</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: VDID at 140560344362832&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.VDID" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">VDID</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: VDID at 139751574036816&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.VDID" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -16628,7 +16628,7 @@ instrument until the root instrument is reached.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -16709,7 +16709,7 @@ Defaults to 80 to be consistent with default terminal width.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.snapshot_base" title="qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
@@ -17181,7 +17181,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.load_metadata">
-<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.load_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.load_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load metadata into this classes metadata dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -17320,7 +17320,7 @@ eg. <code class="docutils literal notranslate"><span class="pre">\r\n</span></co
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.snapshot">
-<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a snapshot dictionary with metadata.
 DO NOT override this method if you want metadata in the snapshot
 instead, override <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.snapshot_base" title="qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.snapshot_base"><code class="xref py py-meth docutils literal notranslate"><span class="pre">snapshot_base()</span></code></a>.</p>
