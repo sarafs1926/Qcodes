@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.0+52.gf97d91585f
+                0.20.0+63.g1962234c1d
               </div>
             
           
@@ -221,7 +221,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">metadata_timestamp</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="c1"># group metadata by instrument</span>
-    <span class="n">metas</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">metas</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
         <span class="c1"># Get the latest value from the parameter,</span>
         <span class="c1"># respecting the max_val_age parameter</span>

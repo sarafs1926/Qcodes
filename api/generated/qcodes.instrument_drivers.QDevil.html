@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.20.0+52.gf97d91585f
+                0.20.0+63.g1962234c1d
               </div>
             
           
@@ -355,7 +355,7 @@ update of certain parameters in all snapshots, use the
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacChannel.__getitem__">
-<code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>Callable<span class="p">, </span><a class="reference internal" href="../parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="qcodes.instrument.parameter.Parameter">qcodes.instrument.parameter.Parameter</a><span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacChannel.__getitem__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>Callable<span class="p">[</span><span class="p">[</span><span class="p">…</span><span class="p">]</span><span class="p">, </span>Any<span class="p">]</span><span class="p">, </span><a class="reference internal" href="../parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="qcodes.instrument.parameter.Parameter">qcodes.instrument.parameter.Parameter</a><span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacChannel.__getitem__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delegate instrument[‘name’] to parameter or function ‘name’.</p>
 </dd></dl>
 
@@ -910,7 +910,7 @@ instead, override <a class="reference internal" href="#qcodes.instrument_drivers
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacMultiChannelParameter.snapshot_base">
-<code class="sig-name descname">snapshot_base</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">params_to_skip_update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacMultiChannelParameter.snapshot_base" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">snapshot_base</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)">bool</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">params_to_skip_update</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacMultiChannelParameter.snapshot_base" title="Permalink to this definition">¶</a></dt>
 <dd><p>State of the parameter as a JSON-compatible dict (everything that
 the custom JSON encoder class
 <a class="reference internal" href="../utils/helpers.html#qcodes.utils.helpers.NumpyJSONEncoder" title="qcodes.utils.helpers.NumpyJSONEncoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.helpers.NumpyJSONEncoder</span></code></a> supports).</p>
@@ -1176,7 +1176,7 @@ reading the present values from the instrument.</p></li>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.__getitem__">
-<code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>Callable<span class="p">, </span><a class="reference internal" href="../parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="qcodes.instrument.parameter.Parameter">qcodes.instrument.parameter.Parameter</a><span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.__getitem__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>Callable<span class="p">[</span><span class="p">[</span><span class="p">…</span><span class="p">]</span><span class="p">, </span>Any<span class="p">]</span><span class="p">, </span><a class="reference internal" href="../parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="qcodes.instrument.parameter.Parameter">qcodes.instrument.parameter.Parameter</a><span class="p">]</span><a class="headerlink" href="#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.__getitem__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delegate instrument[‘name’] to parameter or function ‘name’.</p>
 </dd></dl>
 

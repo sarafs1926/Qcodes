@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.0+52.gf97d91585f
+                0.20.0+63.g1962234c1d
               </div>
             
           
@@ -306,7 +306,7 @@
 
 <div class="viewcode-block" id="Station.snapshot_base"><a class="viewcode-back" href="../../api/station.html#qcodes.station.Station.snapshot_base">[docs]</a>    <span class="k">def</span> <span class="nf">snapshot_base</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
                       <span class="n">params_to_skip_update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
-                      <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+                      <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        State of the station as a JSON-compatible dictionary (everything that</span>
 <span class="sd">        the custom JSON encoder class :class:`qcodes.utils.helpers.NumpyJSONEncoder`</span>
@@ -328,7 +328,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            dict: Base snapshot.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">snap</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">snap</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;instruments&#39;</span><span class="p">:</span> <span class="p">{},</span>
             <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="p">{},</span>
             <span class="s1">&#39;components&#39;</span><span class="p">:</span> <span class="p">{},</span>

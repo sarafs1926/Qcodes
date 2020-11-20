@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.0+52.gf97d91585f
+                0.20.0+63.g1962234c1d
               </div>
             
           
@@ -292,7 +292,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">state</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">data_queue</span><span class="p">:</span> <span class="n">Queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_queue</span><span class="p">:</span> <span class="s2">&quot;Queue[Any]&quot;</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_queue_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stop_signal</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="c1"># convert milliseconds to seconds</span>
@@ -333,7 +333,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_loop</span><span class="p">()</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_exhaust_queue</span><span class="p">(</span><span class="n">queue</span><span class="p">:</span> <span class="n">Queue</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_exhaust_queue</span><span class="p">(</span><span class="n">queue</span><span class="p">:</span> <span class="s2">&quot;Queue[Any]&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
         <span class="n">result_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
@@ -379,7 +379,7 @@
 <span class="sd">    Write the results from the DataSet&#39;s dataqueue in a new thread</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="n">Queue</span><span class="p">,</span> <span class="n">conn</span><span class="p">:</span> <span class="n">ConnectionPlus</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="s2">&quot;Queue[Any]&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">:</span> <span class="n">ConnectionPlus</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">queue</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">path_to_dbfile</span>
@@ -423,7 +423,7 @@
 <span class="k">class</span> <span class="nc">_WriterStatus</span><span class="p">:</span>
     <span class="n">bg_writer</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_BackgroundWriter</span><span class="p">]</span>
     <span class="n">write_in_background</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span>
-    <span class="n">data_write_queue</span><span class="p">:</span> <span class="n">Queue</span>
+    <span class="n">data_write_queue</span><span class="p">:</span> <span class="s2">&quot;Queue[Any]&quot;</span>
     <span class="n">active_datasets</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
 
 
@@ -539,7 +539,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent_dataset_links</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">if</span> <span class="n">_WRITERS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path_to_db</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">queue</span><span class="p">:</span> <span class="n">Queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+            <span class="n">queue</span><span class="p">:</span> <span class="s2">&quot;Queue[Any]&quot;</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
             <span class="n">ws</span><span class="p">:</span> <span class="n">_WriterStatus</span> <span class="o">=</span> <span class="n">_WriterStatus</span><span class="p">(</span>
                 <span class="n">bg_writer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                 <span class="n">write_in_background</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -575,7 +575,7 @@
         <span class="k">return</span> <span class="n">get_guid_from_run_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_id</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">snapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">snapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;Snapshot of the run as dictionary (or None)&quot;&quot;&quot;</span>
         <span class="n">snapshot_json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">snapshot_raw</span>
         <span class="k">if</span> <span class="n">snapshot_json</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -654,7 +654,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rundescriber</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
 
     <span class="nd">@property</span>
