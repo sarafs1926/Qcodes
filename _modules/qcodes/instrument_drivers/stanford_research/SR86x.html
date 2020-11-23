@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+87.g78ba8a3479
+                0.20.1+93.gd0635dce48
               </div>
             
           
@@ -322,7 +322,7 @@
 
 <div class="viewcode-block" id="SR86xBuffer.snapshot_base"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.stanford_research.html#qcodes.instrument_drivers.stanford_research.SR860.SR86xBuffer.snapshot_base">[docs]</a>    <span class="k">def</span> <span class="nf">snapshot_base</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
                       <span class="n">params_to_skip_update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
-                      <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+                      <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="k">if</span> <span class="n">params_to_skip_update</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">params_to_skip_update</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c1"># we omit count_capture_kilobytes from the snapshot because</span>
@@ -487,7 +487,7 @@
         <span class="k">while</span> <span class="n">n_captured_bytes</span> <span class="o">&lt;</span> <span class="n">n_bytes_to_capture</span><span class="p">:</span>
             <span class="n">n_captured_bytes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">count_capture_bytes</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="SR86xBuffer.get_capture_data"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.stanford_research.html#qcodes.instrument_drivers.stanford_research.SR860.SR86xBuffer.get_capture_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_capture_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<div class="viewcode-block" id="SR86xBuffer.get_capture_data"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.stanford_research.html#qcodes.instrument_drivers.stanford_research.SR860.SR86xBuffer.get_capture_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_capture_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Read the given number of samples of the capture data from the buffer.</span>
 
@@ -628,10 +628,11 @@
 
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SR86xBuffer.capture_one_sample_per_trigger"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.stanford_research.html#qcodes.instrument_drivers.stanford_research.SR860.SR86xBuffer.capture_one_sample_per_trigger">[docs]</a>    <span class="k">def</span> <span class="nf">capture_one_sample_per_trigger</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                                       <span class="n">trigger_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-                                       <span class="n">start_triggers_pulsetrain</span><span class="p">:</span> <span class="n">Callable</span>
-                                       <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<div class="viewcode-block" id="SR86xBuffer.capture_one_sample_per_trigger"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.stanford_research.html#qcodes.instrument_drivers.stanford_research.SR860.SR86xBuffer.capture_one_sample_per_trigger">[docs]</a>    <span class="k">def</span> <span class="nf">capture_one_sample_per_trigger</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">trigger_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">start_triggers_pulsetrain</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Capture one sample per each trigger, and return when the specified</span>
 <span class="sd">        number of triggers has been received.</span>
@@ -657,8 +658,8 @@
 
 <div class="viewcode-block" id="SR86xBuffer.capture_samples_after_trigger"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.stanford_research.html#qcodes.instrument_drivers.stanford_research.SR860.SR86xBuffer.capture_samples_after_trigger">[docs]</a>    <span class="k">def</span> <span class="nf">capture_samples_after_trigger</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                                       <span class="n">sample_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-                                      <span class="n">send_trigger</span><span class="p">:</span> <span class="n">Callable</span>
-                                      <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+                                      <span class="n">send_trigger</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+                                      <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Capture a number of samples after a trigger has been received.</span>
 <span class="sd">        Please refer to page 135 of the manual for details.</span>
@@ -682,7 +683,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">stop_capture</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_capture_data</span><span class="p">(</span><span class="n">sample_count</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SR86xBuffer.capture_samples"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.stanford_research.html#qcodes.instrument_drivers.stanford_research.SR860.SR86xBuffer.capture_samples">[docs]</a>    <span class="k">def</span> <span class="nf">capture_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<div class="viewcode-block" id="SR86xBuffer.capture_samples"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.stanford_research.html#qcodes.instrument_drivers.stanford_research.SR860.SR86xBuffer.capture_samples">[docs]</a>    <span class="k">def</span> <span class="nf">capture_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Capture a number of samples at a capture rate, starting immediately.</span>
 <span class="sd">        Unlike the &quot;continuous&quot; capture mode, here the buffer does not get</span>

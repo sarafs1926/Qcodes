@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+87.g78ba8a3479
+                0.20.1+93.gd0635dce48
               </div>
             
           
@@ -305,7 +305,8 @@
 <div class="viewcode-block" id="QDacChannel.snapshot_base"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.QDevil.html#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDacChannel.snapshot_base">[docs]</a>    <span class="k">def</span> <span class="nf">snapshot_base</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-            <span class="n">params_to_skip_update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+            <span class="n">params_to_skip_update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="n">update_currents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">_update_currents</span> <span class="ow">and</span> <span class="n">update</span>
         <span class="k">if</span> <span class="n">update</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">_get_status_performed</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">_update_cache</span><span class="p">(</span><span class="n">update_currents</span><span class="o">=</span><span class="n">update_currents</span><span class="p">)</span>
@@ -586,9 +587,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">mode_force</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_reset_bookkeeping</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="QDac.snapshot_base"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.QDevil.html#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.snapshot_base">[docs]</a>    <span class="k">def</span> <span class="nf">snapshot_base</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                      <span class="n">update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-                      <span class="n">params_to_skip_update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<div class="viewcode-block" id="QDac.snapshot_base"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.QDevil.html#qcodes.instrument_drivers.QDevil.QDevil_QDAC.QDac.snapshot_base">[docs]</a>    <span class="k">def</span> <span class="nf">snapshot_base</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="n">params_to_skip_update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="n">update_currents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_currents</span> <span class="ow">and</span> <span class="n">update</span> <span class="ow">is</span> <span class="kc">True</span>
         <span class="k">if</span> <span class="n">update</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_update_cache</span><span class="p">(</span><span class="n">update_currents</span><span class="o">=</span><span class="n">update_currents</span><span class="p">)</span>
