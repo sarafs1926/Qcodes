@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+81.gc3cfcd40a8
+                0.20.1+84.gf58096d11f
               </div>
             
           
@@ -169,7 +169,7 @@
 
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">VisaInstrument</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.channel</span> <span class="kn">import</span> <span class="n">InstrumentChannel</span><span class="p">,</span> <span class="n">ChannelList</span>
-<span class="kn">from</span> <span class="nn">qcodes.utils.validators</span> <span class="kn">import</span> <span class="n">Numbers</span><span class="p">,</span> <span class="n">Ints</span><span class="p">,</span> <span class="n">Enum</span>
+<span class="kn">from</span> <span class="nn">qcodes.utils.validators</span> <span class="kn">import</span> <span class="n">Numbers</span><span class="p">,</span> <span class="n">Ints</span><span class="p">,</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">ComplexNumbers</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">ArrayParameter</span>
 
 
@@ -1040,6 +1040,11 @@
                            <span class="n">get_cmd</span><span class="o">=</span><span class="s1">&#39;OUTP? 3&#39;</span><span class="p">,</span>
                            <span class="n">get_parser</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
                            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;deg&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;complex_voltage&#39;</span><span class="p">,</span>
+                           <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Voltage&#39;</span><span class="p">,</span>
+                           <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_complex_voltage</span><span class="p">,</span>
+                           <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span>
+                           <span class="n">vals</span><span class="o">=</span><span class="n">ComplexNumbers</span><span class="p">())</span>
 
         <span class="c1"># CH1/CH2 Output Commands</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="s1">&#39;X_offset&#39;</span><span class="p">,</span>
@@ -1133,6 +1138,10 @@
     <span class="k">def</span> <span class="nf">_set_units</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sensitivity</span><span class="p">]:</span>
             <span class="n">param</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">unit</span>
+
+    <span class="k">def</span> <span class="nf">_get_complex_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">complex</span><span class="p">:</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_values</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">1.0</span><span class="n">j</span><span class="o">*</span><span class="n">y</span>
 
     <span class="k">def</span> <span class="nf">_get_input_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_N_TO_INPUT_SIGNAL</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">)]</span>
