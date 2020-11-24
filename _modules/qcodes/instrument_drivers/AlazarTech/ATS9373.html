@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+97.gd76eadd51e
+                0.20.1+102.g3809fed441
               </div>
             
           
@@ -506,8 +506,7 @@
 
     <span class="k">def</span> <span class="nf">_get_trigger_holdoff</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="n">fwversion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_idn</span><span class="p">()[</span><span class="s1">&#39;firmware&#39;</span><span class="p">]</span>
-
-        <span class="k">if</span> <span class="n">LooseVersion</span><span class="p">(</span><span class="n">fwversion</span><span class="p">)</span> <span class="o">&lt;</span> \
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fwversion</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="n">LooseVersion</span><span class="p">(</span><span class="n">fwversion</span><span class="p">)</span> <span class="o">&lt;</span> \
                 <span class="n">LooseVersion</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_trigger_holdoff_min_fw_version</span><span class="p">):</span>
             <span class="k">return</span> <span class="kc">False</span>
 
@@ -526,7 +525,7 @@
 
     <span class="k">def</span> <span class="nf">_set_trigger_holdoff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">fwversion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_idn</span><span class="p">()[</span><span class="s1">&#39;firmware&#39;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">LooseVersion</span><span class="p">(</span><span class="n">fwversion</span><span class="p">)</span> <span class="o">&lt;</span> \
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fwversion</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="n">LooseVersion</span><span class="p">(</span><span class="n">fwversion</span><span class="p">)</span> <span class="o">&lt;</span> \
                 <span class="n">LooseVersion</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_trigger_holdoff_min_fw_version</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Alazar 9373 requires at least firmware &quot;</span>
                                <span class="sa">f</span><span class="s2">&quot;version </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_trigger_holdoff_min_fw_version</span><span class="si">}</span><span class="s2">&quot;</span>

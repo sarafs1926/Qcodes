@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+97.gd76eadd51e
+                0.20.1+102.g3809fed441
               </div>
             
           
@@ -224,7 +224,7 @@
 
 <span class="k">def</span> <span class="nf">_check_error_code</span><span class="p">(</span>
         <span class="n">return_code</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+        <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
         <span class="n">arguments</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">return_code</span> <span class="o">!=</span> <span class="n">API_SUCCESS</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">return_code</span> <span class="o">!=</span> <span class="n">API_DMA_IN_PROGRESS</span><span class="p">):</span>
@@ -251,7 +251,7 @@
 
 <span class="k">def</span> <span class="nf">_convert_bytes_to_str</span><span class="p">(</span>
         <span class="n">output</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
-        <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+        <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
         <span class="n">arguments</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
@@ -261,15 +261,15 @@
 
 
 <div class="viewcode-block" id="Signature"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.AlazarTech.html#qcodes.instrument_drivers.AlazarTech.dll_wrapper.Signature">[docs]</a><span class="k">class</span> <span class="nc">Signature</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
-    <span class="n">return_type</span><span class="p">:</span> <span class="n">Type</span> <span class="o">=</span> <span class="n">RETURN_CODE</span>
-    <span class="n">argument_types</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Type</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span></div>
+    <span class="n">return_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">RETURN_CODE</span>
+    <span class="n">argument_types</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="DllWrapperMeta"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.AlazarTech.html#qcodes.instrument_drivers.AlazarTech.dll_wrapper.DllWrapperMeta">[docs]</a><span class="k">class</span> <span class="nc">DllWrapperMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;DLL-path-based &#39;singleton&#39; metaclass for DLL wrapper classes&quot;&quot;&quot;</span>
 
     <span class="c1"># Only allow a single instance per DLL path.</span>
-    <span class="n">_instances</span><span class="p">:</span> <span class="n">WeakValueDictionary</span> <span class="o">=</span> <span class="n">WeakValueDictionary</span><span class="p">()</span>  <span class="c1"># of [str, Any]</span>
+    <span class="n">_instances</span><span class="p">:</span> <span class="s2">&quot;WeakValueDictionary[str, Any]&quot;</span> <span class="o">=</span> <span class="n">WeakValueDictionary</span><span class="p">()</span>
 
     <span class="c1"># Note: without the &#39;type: ignore&#39; for the ``__call__`` method below, mypy</span>
     <span class="c1"># generates &#39;Signature of &quot;__call__&quot; incompatible with supertype &quot;type&quot;&#39;</span>

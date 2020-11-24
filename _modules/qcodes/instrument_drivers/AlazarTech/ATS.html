@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+97.gd76eadd51e
+                0.20.1+102.g3809fed441
               </div>
             
           
@@ -218,7 +218,7 @@
     <span class="n">channels</span> <span class="o">=</span> <span class="mi">2</span>
 
 <div class="viewcode-block" id="AlazarTech_ATS.find_boards"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.AlazarTech.html#qcodes.instrument_drivers.AlazarTech.ATS.AlazarTech_ATS.find_boards">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">find_boards</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dll_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">find_boards</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dll_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Find connected Alazar boards</span>
 
@@ -297,9 +297,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">buffer_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="s1">&#39;Buffer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
-<div class="viewcode-block" id="AlazarTech_ATS.get_idn"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.AlazarTech.html#qcodes.instrument_drivers.AlazarTech.ATS.AlazarTech_ATS.get_idn">[docs]</a>    <span class="k">def</span> <span class="nf">get_idn</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-        <span class="c1"># TODO this is really Dict[str, Optional[Union[str,int]]]</span>
-        <span class="c1"># But that is inconsistent with the super class. We should consider</span>
+<div class="viewcode-block" id="AlazarTech_ATS.get_idn"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.AlazarTech.html#qcodes.instrument_drivers.AlazarTech.ATS.AlazarTech_ATS.get_idn">[docs]</a>    <span class="k">def</span> <span class="nf">get_idn</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]:</span>  <span class="c1"># type: ignore[override]</span>
+        <span class="c1"># TODO return type is inconsistent with the super class. We should consider</span>
         <span class="c1"># if ints and floats are allowed as values in the dict</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This methods gets the most relevant information of this instrument</span>
@@ -459,7 +458,7 @@
             <span class="n">get_processed_data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">allocated_buffers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">buffer_timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">acquisition_controller</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;AcquisitionController&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">acquisition_controller</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;AcquisitionController[Any]&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OutputType</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        perform a single acquisition with the Alazar board, and set certain</span>
@@ -493,7 +492,7 @@
 
         <span class="c1"># region set parameters from args</span>
         <span class="n">start_func</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameters_synced</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameters_synced</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;You must sync parameters to Alazar card &quot;</span>
                                <span class="s2">&quot;before calling acquire by calling &quot;</span>
                                <span class="s2">&quot;sync_settings_to_card&quot;</span><span class="p">)</span>
@@ -1018,7 +1017,7 @@
         <span class="k">pass</span></div></div>
 
 
-<div class="viewcode-block" id="AcquisitionController"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.AlazarTech.html#qcodes.instrument_drivers.AlazarTech.ATS.AcquisitionController">[docs]</a><span class="k">class</span> <span class="nc">AcquisitionController</span><span class="p">(</span><span class="n">Instrument</span><span class="p">,</span> <span class="n">AcquisitionInterface</span><span class="p">,</span> <span class="n">Generic</span><span class="p">[</span><span class="n">OutputType</span><span class="p">]):</span>
+<div class="viewcode-block" id="AcquisitionController"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.AlazarTech.html#qcodes.instrument_drivers.AlazarTech.ATS.AcquisitionController">[docs]</a><span class="k">class</span> <span class="nc">AcquisitionController</span><span class="p">(</span><span class="n">Instrument</span><span class="p">,</span> <span class="n">AcquisitionInterface</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Generic</span><span class="p">[</span><span class="n">OutputType</span><span class="p">]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compatibility class. The methods of :class:`AcquisitionController`</span>
 <span class="sd">    have been extracted. This class is the base class fro AcquisitionInterfaces</span>
