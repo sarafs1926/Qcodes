@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+102.g3809fed441
+                0.20.1+111.gb1a93809e3
               </div>
             
           
@@ -170,7 +170,7 @@
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Dict</span>
 
 <span class="kn">from</span> <span class="nn">qcodes.utils.helpers</span> <span class="kn">import</span> <span class="n">create_on_off_val_mapping</span>
 
@@ -510,7 +510,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_instrument</span> <span class="o">=</span> <span class="n">instrument</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_scopeactions</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># list of callables</span>
 
-<div class="viewcode-block" id="Scope.add_post_trigger_action"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.ZI.html#qcodes.instrument_drivers.ZI.ZIUHFLI.Scope.add_post_trigger_action">[docs]</a>    <span class="k">def</span> <span class="nf">add_post_trigger_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="Scope.add_post_trigger_action"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.ZI.html#qcodes.instrument_drivers.ZI.ZIUHFLI.Scope.add_post_trigger_action">[docs]</a>    <span class="k">def</span> <span class="nf">add_post_trigger_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add an action to be performed immediately after the trigger</span>
 <span class="sd">        has been armed. The action must be a callable taking zero</span>
@@ -520,7 +520,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_scopeactions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">post_trigger_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">post_trigger_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scopeactions</span>
 
 <div class="viewcode-block" id="Scope.prepare_scope"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.ZI.html#qcodes.instrument_drivers.ZI.ZIUHFLI.Scope.prepare_scope">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_scope</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1821,7 +1821,7 @@
 
 <div class="viewcode-block" id="ZIUHFLI.snapshot_base"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.ZI.html#qcodes.instrument_drivers.ZI.ZIUHFLI.ZIUHFLI.snapshot_base">[docs]</a>    <span class="k">def</span> <span class="nf">snapshot_base</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
                       <span class="n">params_to_skip_update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
-                      <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+                      <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot; Override the base method to ignore &#39;sweeper_sweeptime&#39; if no signals selected.&quot;&quot;&quot;</span>
         <span class="n">params_to_skip</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sweeper_signals</span><span class="p">:</span>
@@ -1856,7 +1856,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">daq</span><span class="o">.</span><span class="n">setDouble</span><span class="p">(</span><span class="n">setstr</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_getter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">number</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-                <span class="n">mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">setting</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
+                <span class="n">mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">setting</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        General get function for generic parameters. Note that some parameters</span>
 <span class="sd">        use more specialised setter/getters.</span>
@@ -1896,7 +1896,7 @@
         <span class="n">setting</span> <span class="o">=</span> <span class="s1">&#39;sample&#39;</span>
         <span class="k">if</span> <span class="n">demod_param</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;phi&#39;</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Invalid demodulator parameter&quot;</span><span class="p">)</span>
-        <span class="n">datadict</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getter</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">setting</span><span class="p">))</span>
+        <span class="n">datadict</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getter</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">setting</span><span class="p">))</span>
         <span class="n">datadict</span><span class="p">[</span><span class="s1">&#39;R&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">datadict</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">datadict</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
         <span class="n">datadict</span><span class="p">[</span><span class="s1">&#39;phi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">datadict</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">datadict</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">deg</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">datadict</span><span class="p">[</span><span class="n">demod_param</span><span class="p">]</span>

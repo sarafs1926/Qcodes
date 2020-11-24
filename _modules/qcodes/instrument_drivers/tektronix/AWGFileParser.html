@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+102.g3809fed441
+                0.20.1+111.gb1a93809e3
               </div>
             
           
@@ -166,7 +166,7 @@
 <span></span><span class="c1"># awg file -&gt; (what, we, put, into, make_send_and_load_awg_file)</span>
 <span class="c1"># This module parses an awg file using THREE sub-parser. This code could</span>
 <span class="c1"># probably be streamlined somewhat.</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
 <span class="kn">import</span> <span class="nn">struct</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -460,9 +460,9 @@
     <span class="p">}</span>
 
 <span class="n">_parser3_output</span> <span class="o">=</span> <span class="n">Tuple</span><span class="p">[</span>
-    <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]],</span>
-    <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]],</span>
-    <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]],</span>
+    <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]],</span>
+    <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]],</span>
+    <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]],</span>
     <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
     <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
     <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
@@ -505,7 +505,7 @@
     <span class="k">return</span> <span class="n">wf</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span>
 
 
-<span class="k">def</span> <span class="nf">_unwrap</span><span class="p">(</span><span class="n">bites</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">fmt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">_unwrap</span><span class="p">(</span><span class="n">bites</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">fmt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper function for interpreting the bytes from the awg file.</span>
 
@@ -514,7 +514,7 @@
 <span class="sd">        fmt: the format string (either &#39;s&#39;, &#39;h&#39; or &#39;d&#39;)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">]</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]]</span>
     <span class="k">if</span> <span class="n">fmt</span> <span class="o">==</span> <span class="s1">&#39;s&#39;</span><span class="p">:</span>
         <span class="n">value</span> <span class="o">=</span> <span class="n">bites</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">fmt</span> <span class="o">==</span> <span class="s1">&#39;ignore&#39;</span><span class="p">:</span>
@@ -559,7 +559,7 @@
 
 <span class="k">def</span> <span class="nf">_parser1</span><span class="p">(</span>
         <span class="n">awgfilepath</span><span class="p">:</span> <span class="nb">str</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">]],</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">]]:</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]]],</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]],</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper function doing the heavy lifting of reading and understanding the</span>
 <span class="sd">    binary .awg file format.</span>
@@ -572,8 +572,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">instdict</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">waveformlist</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
-    <span class="n">sequencelist</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
+    <span class="n">waveformlist</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
+    <span class="n">sequencelist</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
     <span class="n">wfmlen</span><span class="p">:</span> <span class="nb">int</span>
 
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">awgfilepath</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fid</span><span class="p">:</span>
@@ -635,7 +635,7 @@
     <span class="k">return</span> <span class="n">instdict</span><span class="p">,</span> <span class="n">waveformlist</span><span class="p">,</span> <span class="n">sequencelist</span>
 
 
-<span class="k">def</span> <span class="nf">_parser2</span><span class="p">(</span><span class="n">waveformlist</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">_parser2</span><span class="p">(</span><span class="n">waveformlist</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Cast the waveformlist from _parser1 into a dict used by _parser3.</span>
 
@@ -661,14 +661,14 @@
 
 
 <span class="k">def</span> <span class="nf">_parser3</span><span class="p">(</span>
-        <span class="n">sequencelist</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
-        <span class="n">wfmdict</span><span class="p">:</span> <span class="n">Dict</span>
+        <span class="n">sequencelist</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]],</span>
+        <span class="n">wfmdict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
              <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_parser3_output</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The final parser! OMG+1</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">sequencedict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">sequencedict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;SEQUENCE_WAIT&#39;</span><span class="p">:</span> <span class="p">[],</span>
         <span class="s1">&#39;SEQUENCE_LOOP&#39;</span><span class="p">:</span> <span class="p">[],</span>
         <span class="s1">&#39;SEQUENCE_JUMP&#39;</span><span class="p">:</span> <span class="p">[],</span>
@@ -723,7 +723,7 @@
 
 <div class="viewcode-block" id="parse_awg_file"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWGFileParser.parse_awg_file">[docs]</a><span class="k">def</span> <span class="nf">parse_awg_file</span><span class="p">(</span>
         <span class="n">awgfilepath</span><span class="p">:</span> <span class="nb">str</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">_parser3_output</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">]]]:</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">_parser3_output</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]]]]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parser for a binary .awg file. Returns a tuple matching the call signature</span>
 <span class="sd">    of make_send_and_load_awg_file and a dictionary with instrument settings</span>

@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+102.g3809fed441
+                0.20.1+111.gb1a93809e3
               </div>
             
           
@@ -1036,11 +1036,11 @@
 
 <div class="viewcode-block" id="AWG70000A.make_SEQX_from_forged_sequence"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5208.AWG70000A.make_SEQX_from_forged_sequence">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">make_SEQX_from_forged_sequence</span><span class="p">(</span>
-            <span class="n">seq</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span>
+            <span class="n">seq</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
             <span class="n">amplitudes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
             <span class="n">seqname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-            <span class="n">channel_mapping</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
-                                           <span class="nb">int</span><span class="p">]]</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+            <span class="n">channel_mapping</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Make a .seqx from a forged broadbean sequence.</span>
 <span class="sd">        Supports subsequences.</span>

@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.20.1+102.g3809fed441
+                0.20.1+111.gb1a93809e3
               </div>
             
           
@@ -243,7 +243,7 @@
 <span id="qcodes-instrument-drivers-lakeshore-model-325-module"></span><h2>qcodes.instrument_drivers.Lakeshore.Model_325 module<a class="headerlink" href="#module-qcodes.instrument_drivers.Lakeshore.Model_325" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="qcodes.instrument_drivers.Lakeshore.Model_325.read_curve_file">
-<code class="sig-prename descclassname">qcodes.instrument_drivers.Lakeshore.Model_325.</code><code class="sig-name descname">read_curve_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">curve_file</span><span class="p">:</span> <span class="n">TextIO</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Lakeshore/Model_325.html#read_curve_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Lakeshore.Model_325.read_curve_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.instrument_drivers.Lakeshore.Model_325.</code><code class="sig-name descname">read_curve_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">curve_file</span><span class="p">:</span> <span class="n">TextIO</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Lakeshore/Model_325.html#read_curve_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Lakeshore.Model_325.read_curve_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read a curve file with extension .330
 The file format of this file is shown in test_lakeshore_file_parser.py
 in the test module</p>
@@ -255,7 +255,7 @@ curve data.</p>
 
 <dl class="py function">
 <dt id="qcodes.instrument_drivers.Lakeshore.Model_325.get_sanitize_data">
-<code class="sig-prename descclassname">qcodes.instrument_drivers.Lakeshore.Model_325.</code><code class="sig-name descname">get_sanitize_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_data</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Lakeshore/Model_325.html#get_sanitize_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Lakeshore.Model_325.get_sanitize_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.instrument_drivers.Lakeshore.Model_325.</code><code class="sig-name descname">get_sanitize_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_data</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Lakeshore/Model_325.html#get_sanitize_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Lakeshore.Model_325.get_sanitize_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Data as found in the curve files are slightly different then
 the dictionary as expected by the ‘upload_curve’ method of the
 driver</p>
@@ -309,12 +309,12 @@ driver</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Lakeshore.Model_325.Model_325_Curve.get_data">
-<code class="sig-name descname">get_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Lakeshore/Model_325.html#Model_325_Curve.get_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Lakeshore.Model_325.Model_325_Curve.get_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Lakeshore/Model_325.html#Model_325_Curve.get_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Lakeshore.Model_325.Model_325_Curve.get_data" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Lakeshore.Model_325.Model_325_Curve.validate_datadict">
-<em class="property">classmethod </em><code class="sig-name descname">validate_datadict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_dict</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Lakeshore/Model_325.html#Model_325_Curve.validate_datadict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Lakeshore.Model_325.Model_325_Curve.validate_datadict" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">validate_datadict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_dict</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Lakeshore/Model_325.html#Model_325_Curve.validate_datadict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Lakeshore.Model_325.Model_325_Curve.validate_datadict" title="Permalink to this definition">¶</a></dt>
 <dd><p>A data dict has two keys, one of which is ‘Temperature (K)’. The other
 contains the units in which the curve is defined and must be one of:
 ‘mV’, ‘V’, ‘Ohm’ or ‘log Ohm’</p>
@@ -324,7 +324,7 @@ the data dict</p>
 
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Lakeshore.Model_325.Model_325_Curve.set_data">
-<code class="sig-name descname">set_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_dict</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em>, <em class="sig-param"><span class="n">sensor_unit</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Lakeshore/Model_325.html#Model_325_Curve.set_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Lakeshore.Model_325.Model_325_Curve.set_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_dict</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">sensor_unit</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Lakeshore/Model_325.html#Model_325_Curve.set_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Lakeshore.Model_325.Model_325_Curve.set_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the curve data according to the values found the the dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1343,16 +1343,16 @@ parameters that are being check is printed.</p>
 <p>Lakeshore Model 325 Temperature Controller Driver</p>
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.Lakeshore.Model_325.Model_325.upload_curve">
-<code class="sig-name descname">upload_curve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">serial_number</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">data_dict</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Lakeshore/Model_325.html#Model_325.upload_curve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Lakeshore.Model_325.Model_325.upload_curve" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">upload_curve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">serial_number</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">data_dict</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Lakeshore/Model_325.html#Model_325.upload_curve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Lakeshore.Model_325.Model_325.upload_curve" title="Permalink to this definition">¶</a></dt>
 <dd><p>Upload a curve to the given index</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The index to upload the curve to. We can only use
+<li><p><strong>index</strong> – The index to upload the curve to. We can only use
 indices reserved for user defined curves, 21-35</p></li>
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – </p></li>
-<li><p><strong>serial_number</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – </p></li>
-<li><p><strong>data_dict</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – A dictionary containing the curve data</p></li>
+<li><p><strong>name</strong> – </p></li>
+<li><p><strong>serial_number</strong> – </p></li>
+<li><p><strong>data_dict</strong> – A dictionary containing the curve data</p></li>
 </ul>
 </dd>
 </dl>

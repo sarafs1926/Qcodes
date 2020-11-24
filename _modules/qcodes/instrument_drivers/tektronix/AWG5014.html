@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+102.g3809fed441
+                0.20.1+111.gb1a93809e3
               </div>
             
           
@@ -1009,7 +1009,7 @@
     <span class="k">def</span> <span class="nf">_pack_record</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-            <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+            <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
             <span class="n">dtype</span><span class="p">:</span> <span class="nb">str</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1233,7 +1233,7 @@
 
 <div class="viewcode-block" id="Tektronix_AWG5014.make_send_and_load_awg_file_from_forged_sequence"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.make_send_and_load_awg_file_from_forged_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">make_send_and_load_awg_file_from_forged_sequence</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
-            <span class="n">seq</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+            <span class="n">seq</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
             <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;customawgfile.awg&#39;</span><span class="p">,</span>
             <span class="n">preservechannelsettings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>

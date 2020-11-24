@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+102.g3809fed441
+                0.20.1+111.gb1a93809e3
               </div>
             
           
@@ -164,7 +164,7 @@
             
   <h1>Source code for qcodes.instrument_drivers.tektronix.Keithley_2450</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">TracebackType</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Set</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">InstrumentChannel</span><span class="p">,</span> <span class="n">ParameterWithSetpoints</span><span class="p">,</span> <span class="n">VisaInstrument</span>
@@ -182,9 +182,9 @@
 
 <span class="sd">    This customized class is used for the &quot;sweep&quot; parameter.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">_user_selected_data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_user_selected_data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="ParameterWithSetpointsCustomized.get_selected"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.Keithley_2450.ParameterWithSetpointsCustomized.get_selected">[docs]</a>    <span class="k">def</span> <span class="nf">get_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">]:</span>
+<div class="viewcode-block" id="ParameterWithSetpointsCustomized.get_selected"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.Keithley_2450.ParameterWithSetpointsCustomized.get_selected">[docs]</a>    <span class="k">def</span> <span class="nf">get_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_user_selected_data</span></div></div>
 
 
@@ -286,7 +286,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">available_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">available_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer_elements</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
 <div class="viewcode-block" id="Buffer2450.get_last_reading"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.Keithley_2450.Buffer2450.get_last_reading">[docs]</a>    <span class="k">def</span> <span class="nf">get_last_reading</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -308,7 +308,7 @@
             <span class="n">start_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
             <span class="n">end_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
             <span class="n">readings_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This command returns specified data elements from reading buffer.</span>
 

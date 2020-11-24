@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+102.g3809fed441
+                0.20.1+111.gb1a93809e3
               </div>
             
           
@@ -355,7 +355,7 @@
     <span class="k">def</span> <span class="nf">_get_mode_param</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">parameter</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-            <span class="n">parser</span><span class="p">:</span> <span class="n">Callable</span>
+            <span class="n">parser</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot; Read the current Keithley mode and ask for a parameter &quot;&quot;&quot;</span>
         <span class="n">mode</span> <span class="o">=</span> <span class="n">parse_output_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mode_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">()])</span>

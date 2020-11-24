@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+102.g3809fed441
+                0.20.1+111.gb1a93809e3
               </div>
             
           
@@ -164,7 +164,7 @@
             
   <h1>Source code for qcodes.instrument_drivers.Lakeshore.Model_325</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">IntFlag</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">TextIO</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">TextIO</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">takewhile</span>
 
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">VisaInstrument</span><span class="p">,</span> <span class="n">InstrumentChannel</span><span class="p">,</span> <span class="n">ChannelList</span>
@@ -172,7 +172,7 @@
 <span class="kn">from</span> <span class="nn">qcodes.instrument.group_parameter</span> <span class="kn">import</span> <span class="n">GroupParameter</span><span class="p">,</span> <span class="n">Group</span>
 
 
-<div class="viewcode-block" id="read_curve_file"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Lakeshore.html#qcodes.instrument_drivers.Lakeshore.Model_325.read_curve_file">[docs]</a><span class="k">def</span> <span class="nf">read_curve_file</span><span class="p">(</span><span class="n">curve_file</span><span class="p">:</span> <span class="n">TextIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<div class="viewcode-block" id="read_curve_file"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Lakeshore.html#qcodes.instrument_drivers.Lakeshore.Model_325.read_curve_file">[docs]</a><span class="k">def</span> <span class="nf">read_curve_file</span><span class="p">(</span><span class="n">curve_file</span><span class="p">:</span> <span class="n">TextIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Read a curve file with extension .330</span>
 <span class="sd">    The file format of this file is shown in test_lakeshore_file_parser.py</span>
@@ -184,28 +184,27 @@
 <span class="sd">    curve data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">split_data_line</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parser</span><span class="p">:</span> <span class="nb">type</span> <span class="o">=</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">split_data_line</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parser</span><span class="p">:</span> <span class="nb">type</span> <span class="o">=</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">parser</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;  &quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">strip</span><span class="p">(</span><span class="n">strings</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">strip</span><span class="p">(</span><span class="n">strings</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">strings</span><span class="p">)</span>
 
     <span class="n">lines</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">curve_file</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
     <span class="c1"># Meta data lines contain a colon</span>
     <span class="n">metadata_lines</span> <span class="o">=</span> <span class="n">takewhile</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="s2">&quot;:&quot;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">,</span> <span class="n">lines</span><span class="p">)</span>
     <span class="c1"># Data from the file is collected in the following dict</span>
-    <span class="n">file_data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">file_data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
     <span class="c1"># Capture meta data</span>
     <span class="n">parsed_lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">strip</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">metadata_lines</span><span class="p">]</span>
     <span class="n">file_data</span><span class="p">[</span><span class="s2">&quot;metadata&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">parsed_lines</span><span class="p">}</span>
     <span class="c1"># After meta data we have a data header</span>
     <span class="n">header_items</span> <span class="o">=</span> <span class="n">strip</span><span class="p">(</span><span class="n">split_data_line</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">)))</span>
     <span class="c1"># After that we have the curve data</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">split_data_line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span>
     <span class="p">]</span>
-
     <span class="n">file_data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="nb">zip</span><span class="p">(</span><span class="n">header_items</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">data</span><span class="p">))</span>
     <span class="p">)</span>
@@ -213,7 +212,7 @@
     <span class="k">return</span> <span class="n">file_data</span></div>
 
 
-<div class="viewcode-block" id="get_sanitize_data"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Lakeshore.html#qcodes.instrument_drivers.Lakeshore.Model_325.get_sanitize_data">[docs]</a><span class="k">def</span> <span class="nf">get_sanitize_data</span><span class="p">(</span><span class="n">file_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<div class="viewcode-block" id="get_sanitize_data"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Lakeshore.html#qcodes.instrument_drivers.Lakeshore.Model_325.get_sanitize_data">[docs]</a><span class="k">def</span> <span class="nf">get_sanitize_data</span><span class="p">(</span><span class="n">file_data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Data as found in the curve files are slightly different then</span>
 <span class="sd">    the dictionary as expected by the &#39;upload_curve&#39; method of the</span>
@@ -297,7 +296,7 @@
             <span class="n">get_cmd</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;CRVHDR? </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="p">)</span>
 
-<div class="viewcode-block" id="Model_325_Curve.get_data"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Lakeshore.html#qcodes.instrument_drivers.Lakeshore.Model_325.Model_325_Curve.get_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<div class="viewcode-block" id="Model_325_Curve.get_data"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Lakeshore.html#qcodes.instrument_drivers.Lakeshore.Model_325.Model_325_Curve.get_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="n">curve</span> <span class="o">=</span> <span class="p">[</span>
             <span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">point_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CRVPT? </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">point_index</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
@@ -310,7 +309,7 @@
         <span class="k">return</span> <span class="n">d</span></div>
 
 <div class="viewcode-block" id="Model_325_Curve.validate_datadict"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Lakeshore.html#qcodes.instrument_drivers.Lakeshore.Model_325.Model_325_Curve.validate_datadict">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">validate_datadict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">validate_datadict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A data dict has two keys, one of which is &#39;Temperature (K)&#39;. The other</span>
 <span class="sd">        contains the units in which the curve is defined and must be one of:</span>
@@ -347,7 +346,7 @@
 
         <span class="k">return</span> <span class="n">sensor_unit</span></div>
 
-<div class="viewcode-block" id="Model_325_Curve.set_data"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Lakeshore.html#qcodes.instrument_drivers.Lakeshore.Model_325.Model_325_Curve.set_data">[docs]</a>    <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+<div class="viewcode-block" id="Model_325_Curve.set_data"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Lakeshore.html#qcodes.instrument_drivers.Lakeshore.Model_325.Model_325_Curve.set_data">[docs]</a>    <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
                  <span class="n">sensor_unit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the curve data according to the values found the the dictionary.</span>
@@ -670,17 +669,18 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_message</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Model_325.upload_curve"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.Lakeshore.html#qcodes.instrument_drivers.Lakeshore.Model_325.Model_325.upload_curve">[docs]</a>    <span class="k">def</span> <span class="nf">upload_curve</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">serial_number</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">:</span> <span class="nb">dict</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">serial_number</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Upload a curve to the given index</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">             index (int): The index to upload the curve to. We can only use</span>
+<span class="sd">             index: The index to upload the curve to. We can only use</span>
 <span class="sd">                            indices reserved for user defined curves, 21-35</span>
-<span class="sd">             name (str)</span>
-<span class="sd">             serial_number (str)</span>
-<span class="sd">             data_dict (dict): A dictionary containing the curve data</span>
+<span class="sd">             name</span>
+<span class="sd">             serial_number</span>
+<span class="sd">             data_dict: A dictionary containing the curve data</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">index</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">36</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;index value should be between 21 and 35&quot;</span><span class="p">)</span>
