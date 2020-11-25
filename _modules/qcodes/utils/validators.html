@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+115.gf2f36fe6bf
+                0.20.1+124.g4c0919b50a
               </div>
             
           
@@ -168,7 +168,7 @@
 <span class="sd">value belongs to the given type and is in the provided range.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Hashable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">cast</span>
 <span class="c1"># rename on import since this file implements its own classes</span>
 <span class="c1"># with these names.</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span> <span class="k">as</span> <span class="n">TCallable</span>
@@ -190,7 +190,9 @@
 <span class="n">shape_tuple_type</span> <span class="o">=</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">shape_type</span><span class="p">,</span> <span class="o">...</span><span class="p">]]</span>
 
 
-<div class="viewcode-block" id="validate_all"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.validate_all">[docs]</a><span class="k">def</span> <span class="nf">validate_all</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="validate_all"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.validate_all">[docs]</a><span class="k">def</span> <span class="nf">validate_all</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="s2">&quot;Validator[Any]&quot;</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+                 <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Takes a list of (validator, value) couplets and tests whether they are</span>
 <span class="sd">    all valid, raising ValueError otherwise.</span>
@@ -226,7 +228,10 @@
         <span class="k">return</span> <span class="s1">&#39;&#39;</span></div>
 
 
-<div class="viewcode-block" id="Validator"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Validator">[docs]</a><span class="k">class</span> <span class="nc">Validator</span><span class="p">:</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Validator"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Validator">[docs]</a><span class="k">class</span> <span class="nc">Validator</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base class for all value validators</span>
 <span class="sd">    each validator should implement:</span>
@@ -260,24 +265,24 @@
 <span class="sd">    Alternatively you may override ``_valid_values`` and provide your own</span>
 <span class="sd">    implementation of getting valid values.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">_valid_values</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">_valid_values</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
     <span class="n">is_numeric</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># is this a numeric type (so it can be swept)?</span>
 
-<div class="viewcode-block" id="Validator.validate"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Validator.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Validator.validate"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Validator.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">valid_values</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">valid_values</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_valid_values</span></div>
 
 
-<div class="viewcode-block" id="Anything"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Anything">[docs]</a><span class="k">class</span> <span class="nc">Anything</span><span class="p">(</span><span class="n">Validator</span><span class="p">):</span>
+<div class="viewcode-block" id="Anything"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Anything">[docs]</a><span class="k">class</span> <span class="nc">Anything</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="n">Any</span><span class="p">]):</span>
     <span class="sd">&quot;&quot;&quot;Allow any value to pass.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_valid_values</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,)</span>
 
-<div class="viewcode-block" id="Anything.validate"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Anything.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Anything.validate"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Anything.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">pass</span></div>
 
     <span class="c1"># NOTE(giulioungaretti): why is_numeric?</span>
@@ -289,7 +294,7 @@
         <span class="k">return</span> <span class="s1">&#39;&lt;Anything&gt;&#39;</span></div>
 
 
-<div class="viewcode-block" id="Nothing"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Nothing">[docs]</a><span class="k">class</span> <span class="nc">Nothing</span><span class="p">(</span><span class="n">Validator</span><span class="p">):</span>
+<div class="viewcode-block" id="Nothing"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Nothing">[docs]</a><span class="k">class</span> <span class="nc">Nothing</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="n">Any</span><span class="p">]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Allow no value to pass.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -300,14 +305,14 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">reason</span> <span class="o">=</span> <span class="s2">&quot;Nothing Validator&quot;</span>
 
-<div class="viewcode-block" id="Nothing.validate"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Nothing.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Nothing.validate"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Nothing.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">reason</span><span class="si">}</span><span class="s2">; </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;Nothing(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">reason</span><span class="si">}</span><span class="s1">)&gt;&#39;</span></div>
 
 
-<div class="viewcode-block" id="Bool"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Bool">[docs]</a><span class="k">class</span> <span class="nc">Bool</span><span class="p">(</span><span class="n">Validator</span><span class="p">):</span>
+<div class="viewcode-block" id="Bool"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Bool">[docs]</a><span class="k">class</span> <span class="nc">Bool</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="nb">bool</span><span class="p">]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Requires a boolean.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -334,7 +339,7 @@
         <span class="k">return</span> <span class="s1">&#39;&lt;Boolean&gt;&#39;</span></div>
 
 
-<div class="viewcode-block" id="Strings"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Strings">[docs]</a><span class="k">class</span> <span class="nc">Strings</span><span class="p">(</span><span class="n">Validator</span><span class="p">):</span>
+<div class="viewcode-block" id="Strings"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Strings">[docs]</a><span class="k">class</span> <span class="nc">Strings</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Requires a string</span>
 <span class="sd">    optional parameters min_length and max_length limit the allowed length</span>
@@ -358,7 +363,7 @@
                             <span class="s1">&#39;no smaller than min_length&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_valid_values</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;.&#39;</span> <span class="o">*</span> <span class="n">min_length</span><span class="p">,)</span>
 
-<div class="viewcode-block" id="Strings.validate"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Strings.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Strings.validate"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Strings.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Validates if string else raises error.</span>
 
@@ -388,7 +393,7 @@
         <span class="k">return</span> <span class="s1">&#39;&lt;Strings</span><span class="si">{}</span><span class="s1">&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">range_str</span><span class="p">(</span><span class="n">minv</span><span class="p">,</span> <span class="n">maxv</span><span class="p">,</span> <span class="s1">&#39;len&#39;</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="Numbers"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Numbers">[docs]</a><span class="k">class</span> <span class="nc">Numbers</span><span class="p">(</span><span class="n">Validator</span><span class="p">):</span>
+<div class="viewcode-block" id="Numbers"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Numbers">[docs]</a><span class="k">class</span> <span class="nc">Numbers</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="n">numbertypes</span><span class="p">]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Requires a number  of type int, float, numpy.integer or numpy.floating.</span>
 
@@ -450,7 +455,7 @@
         <span class="k">return</span> <span class="s1">&#39;&lt;Numbers</span><span class="si">{}</span><span class="s1">&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">range_str</span><span class="p">(</span><span class="n">minv</span><span class="p">,</span> <span class="n">maxv</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="Ints"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Ints">[docs]</a><span class="k">class</span> <span class="nc">Ints</span><span class="p">(</span><span class="n">Validator</span><span class="p">):</span>
+<div class="viewcode-block" id="Ints"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Ints">[docs]</a><span class="k">class</span> <span class="nc">Ints</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">]]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Requires an integer.</span>
 <span class="sd">    Optional parameters min_value and max_value, enforce</span>
@@ -550,7 +555,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">castvalue</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="ComplexNumbers"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.ComplexNumbers">[docs]</a><span class="k">class</span> <span class="nc">ComplexNumbers</span><span class="p">(</span><span class="n">Validator</span><span class="p">):</span>
+<div class="viewcode-block" id="ComplexNumbers"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.ComplexNumbers">[docs]</a><span class="k">class</span> <span class="nc">ComplexNumbers</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">complex</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complexfloating</span><span class="p">]]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A validator for complex numbers.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -561,7 +566,11 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_valid_values</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="n">j</span><span class="p">),</span> <span class="p">)</span>
 
-<div class="viewcode-block" id="ComplexNumbers.validate"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.ComplexNumbers.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">numbertypes</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ComplexNumbers.validate"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.ComplexNumbers.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">complex</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complexfloating</span><span class="p">],</span>
+            <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Validates if complex number else raises error.</span>
 
@@ -582,7 +591,7 @@
         <span class="k">return</span> <span class="s1">&#39;&lt;Complex Number&gt;&#39;</span></div>
 
 
-<div class="viewcode-block" id="Enum"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Enum">[docs]</a><span class="k">class</span> <span class="nc">Enum</span><span class="p">(</span><span class="n">Validator</span><span class="p">):</span>
+<div class="viewcode-block" id="Enum"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Enum">[docs]</a><span class="k">class</span> <span class="nc">Enum</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="n">Hashable</span><span class="p">]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Requires one of a provided set of values.</span>
 <span class="sd">    eg. Enum(val1, val2, val3)</span>
@@ -598,7 +607,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_values</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_valid_values</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Enum.validate"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Enum.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="Enum.validate"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Enum.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Hashable</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> is not in </span><span class="si">{}</span><span class="s1">; </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -613,14 +622,15 @@
         <span class="k">return</span> <span class="s1">&#39;&lt;Enum: </span><span class="si">{}</span><span class="s1">&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="OnOff"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.OnOff">[docs]</a><span class="k">class</span> <span class="nc">OnOff</span><span class="p">(</span><span class="n">Validator</span><span class="p">):</span>
+<div class="viewcode-block" id="OnOff"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.OnOff">[docs]</a><span class="k">class</span> <span class="nc">OnOff</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Requires either the string &#39;on&#39; or &#39;off&#39;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="s1">&#39;on&#39;</span><span class="p">,</span> <span class="s1">&#39;off&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_valid_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="o">.</span><span class="n">_valid_values</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_valid_values</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+                                  <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="o">.</span><span class="n">_valid_values</span><span class="p">)</span>
 
 <div class="viewcode-block" id="OnOff.validate"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.OnOff.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div></div>
@@ -641,7 +651,7 @@
 <span class="sd">        min_value: value must be &gt;= min_value</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">divisor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">divisor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">divisor</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="n">divisor</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;divisor must be a positive integer&#39;</span><span class="p">)</span>
@@ -673,7 +683,7 @@
     <span class="n">is_numeric</span> <span class="o">=</span> <span class="kc">True</span></div>
 
 
-<div class="viewcode-block" id="PermissiveMultiples"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.PermissiveMultiples">[docs]</a><span class="k">class</span> <span class="nc">PermissiveMultiples</span><span class="p">(</span><span class="n">Validator</span><span class="p">):</span>
+<div class="viewcode-block" id="PermissiveMultiples"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.PermissiveMultiples">[docs]</a><span class="k">class</span> <span class="nc">PermissiveMultiples</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="n">numbertypes</span><span class="p">]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A validator that checks whether a value is an integer multiple</span>
 <span class="sd">    of a fixed divisor (to within some precision). If both value and</span>
@@ -742,7 +752,7 @@
     <span class="n">is_numeric</span> <span class="o">=</span> <span class="kc">True</span></div>
 
 
-<div class="viewcode-block" id="MultiType"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.MultiType">[docs]</a><span class="k">class</span> <span class="nc">MultiType</span><span class="p">(</span><span class="n">Validator</span><span class="p">):</span>
+<div class="viewcode-block" id="MultiType"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.MultiType">[docs]</a><span class="k">class</span> <span class="nc">MultiType</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="n">Any</span><span class="p">]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Allow the union of several different validators.</span>
 <span class="sd">    For example, to allow numbers as well as &quot;off&quot;:</span>
@@ -755,7 +765,7 @@
 <span class="sd">            argument is not a valid validator.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">validators</span><span class="p">:</span> <span class="n">Validator</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">validators</span><span class="p">:</span> <span class="n">Validator</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">validators</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;MultiType needs at least one Validator&#39;</span><span class="p">)</span>
 
@@ -793,7 +803,7 @@
         <span class="k">return</span> <span class="s1">&#39;&lt;MultiType: </span><span class="si">{}</span><span class="s1">&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="Arrays"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Arrays">[docs]</a><span class="k">class</span> <span class="nc">Arrays</span><span class="p">(</span><span class="n">Validator</span><span class="p">):</span>
+<div class="viewcode-block" id="Arrays"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Arrays">[docs]</a><span class="k">class</span> <span class="nc">Arrays</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Validator for numerical numpy arrays of numeric types (int, float, complex).</span>
 <span class="sd">    By default it validates int and float arrays.</span>
@@ -898,7 +908,6 @@
         <span class="k">if</span> <span class="n">shape</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
 
-
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">valid_values</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
         <span class="n">valid_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_types</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -988,7 +997,7 @@
                                               <span class="bp">self</span><span class="o">.</span><span class="n">shape_unevaluated</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Lists"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Lists">[docs]</a><span class="k">class</span> <span class="nc">Lists</span><span class="p">(</span><span class="n">Validator</span><span class="p">):</span>
+<div class="viewcode-block" id="Lists"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Lists">[docs]</a><span class="k">class</span> <span class="nc">Lists</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="n">TList</span><span class="p">[</span><span class="n">Any</span><span class="p">]]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Validator for lists</span>
 
@@ -996,7 +1005,7 @@
 <span class="sd">        elt_validator: Used to validate the individual elements of the list.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elt_validator</span><span class="p">:</span> <span class="n">Validator</span> <span class="o">=</span> <span class="n">Anything</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elt_validator</span><span class="p">:</span> <span class="n">Validator</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">Anything</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_elt_validator</span> <span class="o">=</span> <span class="n">elt_validator</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_valid_values</span> <span class="o">=</span> <span class="p">([</span><span class="n">vval</span> <span class="k">for</span> <span class="n">vval</span> <span class="ow">in</span> <span class="n">elt_validator</span><span class="o">.</span><span class="n">_valid_values</span><span class="p">],)</span>
 
@@ -1025,7 +1034,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_elt_validator</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">elt</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="Sequence"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Sequence">[docs]</a><span class="k">class</span> <span class="nc">Sequence</span><span class="p">(</span><span class="n">Validator</span><span class="p">):</span>
+<div class="viewcode-block" id="Sequence"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Sequence">[docs]</a><span class="k">class</span> <span class="nc">Sequence</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="n">TSequence</span><span class="p">[</span><span class="n">Any</span><span class="p">]]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Validator for Sequences.</span>
 
@@ -1036,7 +1045,7 @@
 <span class="sd">        require_sorted: True or False.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elt_validator</span><span class="p">:</span> <span class="n">Validator</span> <span class="o">=</span> <span class="n">Anything</span><span class="p">(),</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elt_validator</span><span class="p">:</span> <span class="n">Validator</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">Anything</span><span class="p">(),</span>
                  <span class="n">length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">require_sorted</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_elt_validator</span> <span class="o">=</span> <span class="n">elt_validator</span>
@@ -1079,7 +1088,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_elt_validator</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">elt</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="Callable"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Callable">[docs]</a><span class="k">class</span> <span class="nc">Callable</span><span class="p">(</span><span class="n">Validator</span><span class="p">):</span>
+<div class="viewcode-block" id="Callable"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Callable">[docs]</a><span class="k">class</span> <span class="nc">Callable</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="n">TCallable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Validator for callables such as functions.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1106,7 +1115,7 @@
         <span class="k">return</span> <span class="s1">&#39;&lt;Callable&gt;&#39;</span></div>
 
 
-<div class="viewcode-block" id="Dict"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Dict">[docs]</a><span class="k">class</span> <span class="nc">Dict</span><span class="p">(</span><span class="n">Validator</span><span class="p">):</span>
+<div class="viewcode-block" id="Dict"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Dict">[docs]</a><span class="k">class</span> <span class="nc">Dict</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="n">TDict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Validator for dictionaries.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
