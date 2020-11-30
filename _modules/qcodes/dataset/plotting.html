@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+139.g1389da88fb
+                0.20.1+144.g2ff8127e91
               </div>
             
           
@@ -169,7 +169,6 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span><span class="n">Optional</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span>
                     <span class="n">Any</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">cast</span><span class="p">)</span>
@@ -182,7 +181,8 @@
 
 <span class="kn">import</span> <span class="nn">qcodes</span> <span class="k">as</span> <span class="nn">qc</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.data_set</span> <span class="kn">import</span> <span class="n">load_by_run_spec</span><span class="p">,</span> <span class="n">DataSet</span>
-<span class="kn">from</span> <span class="nn">qcodes.utils.plotting</span> <span class="kn">import</span> <span class="n">auto_color_scale_from_config</span>
+<span class="kn">from</span> <span class="nn">qcodes.utils.plotting</span> <span class="kn">import</span> <span class="p">(</span><span class="n">auto_color_scale_from_config</span><span class="p">,</span>
+                                   <span class="n">find_scale_and_prefix</span><span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">.data_export</span> <span class="kn">import</span> <span class="p">(</span><span class="n">get_data_by_id</span><span class="p">,</span> <span class="n">flatten_1D_data_for_plot</span><span class="p">,</span>
                           <span class="n">get_1D_plottype</span><span class="p">,</span> <span class="n">get_2D_plottype</span><span class="p">,</span> <span class="n">reshape_2D_data</span><span class="p">,</span>
@@ -792,40 +792,6 @@
     <span class="k">return</span> <span class="n">ax</span><span class="p">,</span> <span class="n">colorbar</span></div>
 
 
-<span class="n">_UNITS_FOR_RESCALING</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="c1"># SI units (without some irrelevant ones like candela)</span>
-    <span class="c1"># &#39;kg&#39; is not included because it is &#39;kilo&#39; and rarely used</span>
-    <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="s1">&#39;mol&#39;</span><span class="p">,</span> <span class="s1">&#39;rad&#39;</span><span class="p">,</span> <span class="s1">&#39;Hz&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="s1">&#39;Pa&#39;</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;ohm&#39;</span><span class="p">,</span> <span class="s1">&#39;Ohm&#39;</span><span class="p">,</span> <span class="s1">&#39;Ω&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;</span><span class="se">\N{GREEK CAPITAL LETTER OMEGA}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;Wb&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span>
-    <span class="c1"># non-SI units as well, for convenience</span>
-    <span class="s1">&#39;eV&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span>
-<span class="p">}</span>
-
-<span class="n">_ENGINEERING_PREFIXES</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">({</span>
-    <span class="o">-</span><span class="mi">24</span><span class="p">:</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span>
-    <span class="o">-</span><span class="mi">21</span><span class="p">:</span> <span class="s2">&quot;z&quot;</span><span class="p">,</span>
-    <span class="o">-</span><span class="mi">18</span><span class="p">:</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span>
-    <span class="o">-</span><span class="mi">15</span><span class="p">:</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span>
-    <span class="o">-</span><span class="mi">12</span><span class="p">:</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span>
-     <span class="o">-</span><span class="mi">9</span><span class="p">:</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span>
-     <span class="o">-</span><span class="mi">6</span><span class="p">:</span> <span class="s2">&quot;</span><span class="se">\N{GREEK SMALL LETTER MU}</span><span class="s2">&quot;</span><span class="p">,</span>
-     <span class="o">-</span><span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span>
-      <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-      <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span>
-      <span class="mi">6</span><span class="p">:</span> <span class="s2">&quot;M&quot;</span><span class="p">,</span>
-      <span class="mi">9</span><span class="p">:</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span>
-     <span class="mi">12</span><span class="p">:</span> <span class="s2">&quot;T&quot;</span><span class="p">,</span>
-     <span class="mi">15</span><span class="p">:</span> <span class="s2">&quot;P&quot;</span><span class="p">,</span>
-     <span class="mi">18</span><span class="p">:</span> <span class="s2">&quot;E&quot;</span><span class="p">,</span>
-     <span class="mi">21</span><span class="p">:</span> <span class="s2">&quot;Z&quot;</span><span class="p">,</span>
-     <span class="mi">24</span><span class="p">:</span> <span class="s2">&quot;Y&quot;</span>
-<span class="p">})</span>
-
-<span class="n">_THRESHOLDS</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span>
-    <span class="p">{</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">scale</span> <span class="o">+</span> <span class="mi">3</span><span class="p">):</span> <span class="n">scale</span> <span class="k">for</span> <span class="n">scale</span> <span class="ow">in</span> <span class="n">_ENGINEERING_PREFIXES</span><span class="o">.</span><span class="n">keys</span><span class="p">()})</span>
-
-
 <span class="k">def</span> <span class="nf">_scale_formatter</span><span class="p">(</span><span class="n">tick_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function for matplotlib.ticker.FuncFormatter that scales the tick values</span>
@@ -846,8 +812,9 @@
 <span class="sd">    are changed from &quot;V&quot; to &quot;nV&quot; (&#39;n&#39; is for &#39;nano&#39;).</span>
 
 <span class="sd">    The units for which unit prefixes are added can be found in</span>
-<span class="sd">    `_UNITS_FOR_RESCALING`. For all other units an exponential scaling factor</span>
-<span class="sd">    is added to the label i.e. `(10^3 x e^2/hbar)`.</span>
+<span class="sd">    `qcodes.utils.plotting._UNITS_FOR_RESCALING`. For all other units</span>
+<span class="sd">    an exponential scaling factor is added to the label i.e.</span>
+<span class="sd">    `(10^3 x e^2/hbar)`.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        data_dict: A dictionary of the following structure</span>
@@ -865,26 +832,7 @@
     <span class="n">unit</span> <span class="o">=</span> <span class="n">data_dict</span><span class="p">[</span><span class="s1">&#39;unit&#39;</span><span class="p">]</span>
 
     <span class="n">maxval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data_dict</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]))</span>
-    <span class="k">if</span> <span class="n">unit</span> <span class="ow">in</span> <span class="n">_UNITS_FOR_RESCALING</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">scale</span> <span class="ow">in</span> <span class="n">_THRESHOLDS</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">maxval</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">:</span>
-                <span class="n">selected_scale</span> <span class="o">=</span> <span class="n">scale</span>
-                <span class="n">prefix</span> <span class="o">=</span> <span class="n">_ENGINEERING_PREFIXES</span><span class="p">[</span><span class="n">scale</span><span class="p">]</span>
-                <span class="k">break</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># here, maxval is larger than the largest threshold</span>
-            <span class="n">largest_scale</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">_ENGINEERING_PREFIXES</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
-            <span class="n">selected_scale</span> <span class="o">=</span> <span class="n">largest_scale</span>
-            <span class="n">prefix</span> <span class="o">=</span> <span class="n">_ENGINEERING_PREFIXES</span><span class="p">[</span><span class="n">largest_scale</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">maxval</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">selected_scale</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">maxval</span><span class="p">))</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">selected_scale</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">if</span> <span class="n">selected_scale</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">prefix</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;$10^</span><span class="se">{{</span><span class="si">{</span><span class="n">selected_scale</span><span class="si">:</span><span class="s1">.0f</span><span class="se">}}</span><span class="si">}</span><span class="s1">$ &#39;</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">prefix</span><span class="p">,</span> <span class="n">selected_scale</span> <span class="o">=</span> <span class="n">find_scale_and_prefix</span><span class="p">(</span><span class="n">maxval</span><span class="p">,</span> <span class="n">unit</span><span class="p">)</span>
 
     <span class="n">new_unit</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="n">unit</span>
     <span class="n">label</span> <span class="o">=</span> <span class="n">_get_label_of_data</span><span class="p">(</span><span class="n">data_dict</span><span class="p">)</span>

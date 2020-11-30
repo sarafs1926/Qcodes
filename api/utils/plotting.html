@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.20.1+139.g1389da88fb
+                0.20.1+144.g2ff8127e91
               </div>
             
           
@@ -347,6 +347,28 @@ by the upper limit. Default value is read from
 by the lower limit. Default value is read from
 <code class="docutils literal notranslate"><span class="pre">config.plotting.auto_color_scale.color_under</span></code>.</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="qcodes.utils.plotting.find_scale_and_prefix">
+<code class="sig-prename descclassname">qcodes.utils.plotting.</code><code class="sig-name descname">find_scale_and_prefix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></span></em>, <em class="sig-param"><span class="n">unit</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/utils/plotting.html#find_scale_and_prefix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.plotting.find_scale_and_prefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a numpy array of data and a unit find the best engineering prefix
+and matching scale that best describes the data.</p>
+<p>The units for which unit prefixes are added can be found in
+<code class="docutils literal notranslate"><span class="pre">_UNITS_FOR_RESCALING</span></code>. For all other units
+the prefix is an exponential scaling factor e.g. <code class="docutils literal notranslate"><span class="pre">10^3</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – A numpy array of data.</p></li>
+<li><p><strong>unit</strong> – The unit the data is measured in.
+Should not contain a prefix already.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple of prefix and exponential scale</p>
 </dd>
 </dl>
 </dd></dl>
