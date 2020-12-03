@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+154.g4fc488d2ea
+                0.20.1+161.gda474e3a78
               </div>
             
           
@@ -482,6 +482,7 @@
 <span class="sd">    The units for which unit prefixes are added can be found in</span>
 <span class="sd">    ``_UNITS_FOR_RESCALING``. For all other units</span>
 <span class="sd">    the prefix is an exponential scaling factor e.g. ``10^3``.</span>
+<span class="sd">    If no unit is given (i.e. an empty string) no scaling is performed.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        data: A numpy array of data.</span>
@@ -509,7 +510,7 @@
             <span class="n">largest_scale</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">_ENGINEERING_PREFIXES</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
             <span class="n">selected_scale</span> <span class="o">=</span> <span class="n">largest_scale</span>
             <span class="n">prefix</span> <span class="o">=</span> <span class="n">_ENGINEERING_PREFIXES</span><span class="p">[</span><span class="n">largest_scale</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">unit</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">maxval</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">selected_scale</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">maxval</span><span class="p">))</span> <span class="o">/</span> <span class="mi">3</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
@@ -518,6 +519,9 @@
             <span class="n">prefix</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;$10^</span><span class="se">{{</span><span class="si">{</span><span class="n">selected_scale</span><span class="si">:</span><span class="s1">.0f</span><span class="se">}}</span><span class="si">}</span><span class="s1">$ &#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">selected_scale</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">return</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">selected_scale</span></div>
 </pre></div>
 
