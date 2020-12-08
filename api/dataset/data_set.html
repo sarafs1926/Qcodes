@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.20.1+168.gd68639d812
+                0.20.1+176.g1d4d94aa7c
               </div>
             
           
@@ -649,11 +649,11 @@ array or string.</p>
 <dt id="qcodes.dataset.data_set.DataSet.get_data_as_pandas_dataframe">
 <code class="sig-name descname">get_data_as_pandas_dataframe</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>qcodes.dataset.descriptions.param_spec.ParamSpec<span class="p">, </span>qcodes.instrument.parameter._BaseParameter<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">start</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">end</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>pd.DataFrame<span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/dataset/data_set.html#DataSet.get_data_as_pandas_dataframe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set.DataSet.get_data_as_pandas_dataframe" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the values stored in the <a class="reference internal" href="#qcodes.dataset.data_set.DataSet" title="qcodes.dataset.data_set.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> for the specified parameters
-and their dependencies as a dict of <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> s
+and their dependencies as a dict of <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.1.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> s
 Each element in the dict is indexed by the names of the requested
 parameters.</p>
 <p>Each DataFrame contains a column for the data and is indexed by a
-<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="(in pandas v1.1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.MultiIndex</span></code></a> formed from all the setpoints
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="(in pandas v1.1.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.MultiIndex</span></code></a> formed from all the setpoints
 of the parameter.</p>
 <p>If no parameters are supplied data will be be
 returned for all parameters in the <a class="reference internal" href="#qcodes.dataset.data_set.DataSet" title="qcodes.dataset.data_set.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> that are not them self
@@ -661,7 +661,7 @@ dependencies of other parameters.</p>
 <p>If provided, the start and end arguments select a range of results
 by result count (index). If the range is empty - that is, if the end is
 less than or equal to the start, or if start is after the current end
-of the <a class="reference internal" href="#qcodes.dataset.data_set.DataSet" title="qcodes.dataset.data_set.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> – then a dict of empty <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> s is
+of the <a class="reference internal" href="#qcodes.dataset.data_set.DataSet" title="qcodes.dataset.data_set.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> – then a dict of empty <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.1.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> s is
 returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -678,8 +678,8 @@ None</p></li>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Dictionary from requested parameter names to
-<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> s with the requested parameter as
-a column and a indexed by a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="(in pandas v1.1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.MultiIndex</span></code></a> formed
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.1.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> s with the requested parameter as
+a column and a indexed by a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="(in pandas v1.1.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.MultiIndex</span></code></a> formed
 by the dependencies.</p>
 </dd>
 </dl>
