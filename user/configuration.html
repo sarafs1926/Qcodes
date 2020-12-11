@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.20.1+192.ge79c35e731
+                0.20.1+211.g98771f8f1d
               </div>
             
           
@@ -730,37 +730,72 @@ The configuration is modeled after the module structure plus some higher level s
 <tr class="row-even"><td><p>default</p></td>
 <td colspan="3"><p>0</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="8"><ul class="simple">
+<tr class="row-odd"><td rowspan="9"><ul class="simple">
+<li><p><strong>dataset</strong></p></li>
+</ul>
+</td>
+<td colspan="5"><p>Settings related to the DataSet and Measurement Context manager</p></td>
+</tr>
+<tr class="row-even"><td><p>type</p></td>
+<td colspan="4"><p><em>object</em></p></td>
+</tr>
+<tr class="row-odd"><td colspan="5"><p>properties</p></td>
+</tr>
+<tr class="row-even"><td rowspan="3"><ul class="simple">
+<li><p><strong>write_in_background</strong></p></li>
+</ul>
+</td>
+<td colspan="4"><p>Should the data be written from a background thread</p></td>
+</tr>
+<tr class="row-odd"><td><p>type</p></td>
+<td colspan="3"><p><em>boolean</em></p></td>
+</tr>
+<tr class="row-even"><td><p>default</p></td>
+<td colspan="3"><p>False</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><ul class="simple">
+<li><p><strong>write_period</strong></p></li>
+</ul>
+</td>
+<td colspan="4"><p>How often should data be written to disk (s)</p></td>
+</tr>
+<tr class="row-even"><td><p>type</p></td>
+<td colspan="3"><p><em>number</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>default</p></td>
+<td colspan="3"><p>5.0</p></td>
+</tr>
+<tr class="row-even"><td rowspan="8"><ul class="simple">
 <li><p><strong>telemetry</strong></p></li>
 </ul>
 </td>
 <td><p>type</p></td>
 <td colspan="4"><p><em>object</em></p></td>
 </tr>
-<tr class="row-even"><td colspan="5"><p>properties</p></td>
+<tr class="row-odd"><td colspan="5"><p>properties</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="3"><ul class="simple">
+<tr class="row-even"><td rowspan="3"><ul class="simple">
 <li><p>enabled</p></li>
 </ul>
 </td>
 <td colspan="4"><p>Whether or not to enable sending telemetry data to the developers of QCoDeS (or elsewhere)</p></td>
 </tr>
-<tr class="row-even"><td><p>type</p></td>
+<tr class="row-odd"><td><p>type</p></td>
 <td colspan="3"><p><em>boolean</em></p></td>
 </tr>
-<tr class="row-odd"><td><p>default</p></td>
+<tr class="row-even"><td><p>default</p></td>
 <td colspan="3"><p>False</p></td>
 </tr>
-<tr class="row-even"><td rowspan="3"><ul class="simple">
+<tr class="row-odd"><td rowspan="3"><ul class="simple">
 <li><p>instrumentation_key</p></li>
 </ul>
 </td>
 <td colspan="4"><p>A valid Azure Application Insights instrumentation key</p></td>
 </tr>
-<tr class="row-odd"><td><p>type</p></td>
+<tr class="row-even"><td><p>type</p></td>
 <td colspan="3"><p><em>string</em></p></td>
 </tr>
-<tr class="row-even"><td><p>default</p></td>
+<tr class="row-odd"><td><p>default</p></td>
 <td colspan="3"><p>00000000-0000-0000-0000-000000000000</p></td>
 </tr>
 </tbody>

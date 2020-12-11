@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+192.ge79c35e731
+                0.20.1+211.g98771f8f1d
               </div>
             
           
@@ -624,9 +624,17 @@
     <span class="k">def</span> <span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="s1">&#39;DotDict&#39;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">DotDict</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
 
-    <span class="c1"># dot access baby</span>
-    <span class="fm">__setattr__</span> <span class="o">=</span> <span class="fm">__setitem__</span>
-    <span class="fm">__getattr__</span> <span class="o">=</span> <span class="fm">__getitem__</span></div>
+<div class="viewcode-block" id="DotDict.__getattr__"><a class="viewcode-back" href="../../../api/configuration/config.html#qcodes.configuration.config.DotDict.__getattr__">[docs]</a>    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Overwrite ``__getattr__`` to provide dot access</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DotDict.__setattr__"><a class="viewcode-back" href="../../../api/configuration/config.html#qcodes.configuration.config.DotDict.__setattr__">[docs]</a>    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Overwrite ``__setattr__`` to provide dot access</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="fm">__setitem__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="update"><a class="viewcode-back" href="../../../api/configuration/config.html#qcodes.configuration.config.update">[docs]</a><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">d</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
