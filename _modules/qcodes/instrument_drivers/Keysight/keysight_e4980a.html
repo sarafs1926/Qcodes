@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+265.gab844b6526
+                0.20.1+272.gd11c5cbce5
               </div>
             
           
@@ -417,11 +417,20 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span>
             <span class="s2">&quot;range&quot;</span><span class="p">,</span>
             <span class="n">get_cmd</span><span class="o">=</span><span class="s2">&quot;:FUNCtion:IMPedance:RANGe?&quot;</span><span class="p">,</span>
-            <span class="n">set_cmd</span><span class="o">=</span><span class="s2">&quot;:FUNCtion:IMPedance:RANGe </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">set_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_range</span><span class="p">,</span>
             <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;Ohm&#39;</span><span class="p">,</span>
             <span class="n">vals</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_imp_range</span><span class="p">,</span>
             <span class="n">docstring</span><span class="o">=</span><span class="s2">&quot;Selects the impedance measurement range, also turns &quot;</span>
                       <span class="s2">&quot;the auto range function OFF.&quot;</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span>
+            <span class="s2">&quot;imp_autorange_enabled&quot;</span><span class="p">,</span>
+            <span class="n">get_cmd</span><span class="o">=</span><span class="s2">&quot;:FUNCtion:IMPedance:RANGe:AUTO?&quot;</span><span class="p">,</span>
+            <span class="n">set_cmd</span><span class="o">=</span><span class="s2">&quot;:FUNCtion:IMPedance:RANGe:AUTO </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">val_mapping</span><span class="o">=</span><span class="n">create_on_off_val_mapping</span><span class="p">(</span><span class="n">on_val</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+                                                  <span class="n">off_val</span><span class="o">=</span><span class="s2">&quot;0&quot;</span><span class="p">),</span>
+            <span class="n">docstring</span><span class="o">=</span><span class="s2">&quot;Enables the auto-range for impedance measurement.&quot;</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span>
@@ -500,6 +509,10 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MeasurementPair</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_measurement</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_set_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;:FUNCtion:IMPedance:RANGe </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imp_autorange_enabled</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_get_complex_impedance</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MeasurementPair</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
