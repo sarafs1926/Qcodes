@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.20.1+283.gf57730618a
+                0.20.1+288.g7669ce9929
               </div>
             
           
@@ -402,22 +402,19 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">st</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_time</span><span class="o">.</span><span class="n">get_latest</span><span class="p">()</span>
-        <span class="n">old_timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">timeout</span>
 
         <span class="k">if</span> <span class="n">N</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Can not run </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1"> times.&#39;</span> <span class="o">+</span>
                              <span class="s1">&#39; please select a number from 1-999.&#39;</span><span class="p">)</span>
 
         <span class="c1"># set a longer timeout, to not timeout during the sweep</span>
-        <span class="n">new_timeout</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">*</span><span class="n">st</span><span class="o">*</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1000</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">new_timeout</span>
+        <span class="n">new_timeout</span> <span class="o">=</span> <span class="n">st</span><span class="o">*</span><span class="n">N</span> <span class="o">+</span> <span class="mi">2</span>
 
-        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Making </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1"> blocking sweeps.&#39;</span> <span class="o">+</span>
-                  <span class="s1">&#39; Setting VISA timeout to </span><span class="si">{}</span><span class="s1"> s.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">new_timeout</span><span class="o">/</span><span class="mi">1000</span><span class="p">))</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="o">.</span><span class="n">set_to</span><span class="p">(</span><span class="n">new_timeout</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Making </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1"> blocking sweeps.&#39;</span> <span class="o">+</span>
+                      <span class="sa">f</span><span class="s1">&#39; Setting VISA timeout to </span><span class="si">{</span><span class="n">new_timeout</span><span class="si">}</span><span class="s1"> s.&#39;</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;OPC?;NUMG</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">old_timeout</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;OPC?;NUMG</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="HP8753D.invalidate_trace"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.HP.html#qcodes.instrument_drivers.HP.HP8753D.HP8753D.invalidate_trace">[docs]</a>    <span class="k">def</span> <span class="nf">invalidate_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
                          <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
