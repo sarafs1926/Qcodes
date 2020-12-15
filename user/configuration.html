@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.20.1+274.ga2e6f35671
+                0.20.1+283.gf57730618a
               </div>
             
           
@@ -730,7 +730,7 @@ The configuration is modeled after the module structure plus some higher level s
 <tr class="row-even"><td><p>default</p></td>
 <td colspan="3"><p>0</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="9"><ul class="simple">
+<tr class="row-odd"><td rowspan="12"><ul class="simple">
 <li><p><strong>dataset</strong></p></li>
 </ul>
 </td>
@@ -765,20 +765,11 @@ The configuration is modeled after the module structure plus some higher level s
 <tr class="row-odd"><td><p>default</p></td>
 <td colspan="3"><p>5.0</p></td>
 </tr>
-<tr class="row-even"><td rowspan="8"><ul class="simple">
-<li><p><strong>telemetry</strong></p></li>
-</ul>
-</td>
-<td><p>type</p></td>
-<td colspan="4"><p><em>object</em></p></td>
-</tr>
-<tr class="row-odd"><td colspan="5"><p>properties</p></td>
-</tr>
 <tr class="row-even"><td rowspan="3"><ul class="simple">
-<li><p>enabled</p></li>
+<li><p><strong>dond_plot</strong></p></li>
 </ul>
 </td>
-<td colspan="4"><p>Whether or not to enable sending telemetry data to the developers of QCoDeS (or elsewhere)</p></td>
+<td colspan="4"><p>Should dond functions automatically open a plot after the measurement completes</p></td>
 </tr>
 <tr class="row-odd"><td><p>type</p></td>
 <td colspan="3"><p><em>boolean</em></p></td>
@@ -786,16 +777,37 @@ The configuration is modeled after the module structure plus some higher level s
 <tr class="row-even"><td><p>default</p></td>
 <td colspan="3"><p>False</p></td>
 </tr>
+<tr class="row-odd"><td rowspan="8"><ul class="simple">
+<li><p><strong>telemetry</strong></p></li>
+</ul>
+</td>
+<td><p>type</p></td>
+<td colspan="4"><p><em>object</em></p></td>
+</tr>
+<tr class="row-even"><td colspan="5"><p>properties</p></td>
+</tr>
 <tr class="row-odd"><td rowspan="3"><ul class="simple">
+<li><p>enabled</p></li>
+</ul>
+</td>
+<td colspan="4"><p>Whether or not to enable sending telemetry data to the developers of QCoDeS (or elsewhere)</p></td>
+</tr>
+<tr class="row-even"><td><p>type</p></td>
+<td colspan="3"><p><em>boolean</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>default</p></td>
+<td colspan="3"><p>False</p></td>
+</tr>
+<tr class="row-even"><td rowspan="3"><ul class="simple">
 <li><p>instrumentation_key</p></li>
 </ul>
 </td>
 <td colspan="4"><p>A valid Azure Application Insights instrumentation key</p></td>
 </tr>
-<tr class="row-even"><td><p>type</p></td>
+<tr class="row-odd"><td><p>type</p></td>
 <td colspan="3"><p><em>string</em></p></td>
 </tr>
-<tr class="row-odd"><td><p>default</p></td>
+<tr class="row-even"><td><p>default</p></td>
 <td colspan="3"><p>00000000-0000-0000-0000-000000000000</p></td>
 </tr>
 </tbody>
