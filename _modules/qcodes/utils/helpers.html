@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.21.0+20.gc6cfc4828b
+                0.21.0+23.g6a88661c8a
               </div>
             
           
@@ -180,7 +180,7 @@
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span><span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span>
                     <span class="n">Mapping</span><span class="p">,</span> <span class="n">MutableMapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">SupportsAbs</span><span class="p">,</span>
-                    <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">)</span>
+                    <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -389,10 +389,14 @@
     <span class="k">return</span> <span class="n">s</span></div>
 
 
+<span class="n">K</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">Hashable</span><span class="p">)</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">Hashable</span><span class="p">)</span>
+
+
 <div class="viewcode-block" id="deep_update"><a class="viewcode-back" href="../../../api/utils/helpers.html#qcodes.utils.helpers.deep_update">[docs]</a><span class="k">def</span> <span class="nf">deep_update</span><span class="p">(</span>
-        <span class="n">dest</span><span class="p">:</span> <span class="n">MutableMapping</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
-        <span class="n">update</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MutableMapping</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="n">dest</span><span class="p">:</span> <span class="n">MutableMapping</span><span class="p">[</span><span class="n">K</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">update</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">L</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MutableMapping</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">],</span> <span class="n">Any</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Recursively update one JSON structure with another.</span>
 
@@ -400,13 +404,14 @@
 <span class="sd">    If the original value is a dictionary and the new value is not, or vice versa,</span>
 <span class="sd">    we also replace the value completely.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dest_int</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">MutableMapping</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">],</span> <span class="n">Any</span><span class="p">],</span> <span class="n">dest</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v_update</span> <span class="ow">in</span> <span class="n">update</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">v_dest</span> <span class="o">=</span> <span class="n">dest</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">v_dest</span> <span class="o">=</span> <span class="n">dest_int</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v_update</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">Mapping</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v_dest</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">MutableMapping</span><span class="p">):</span>
             <span class="n">deep_update</span><span class="p">(</span><span class="n">v_dest</span><span class="p">,</span> <span class="n">v_update</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">dest</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">v_update</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">dest</span></div>
+            <span class="n">dest_int</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">v_update</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dest_int</span></div>
 
 
 <span class="c1"># could use numpy.arange here, but</span>

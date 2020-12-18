@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.21.0+20.gc6cfc4828b
+                0.21.0+23.g6a88661c8a
               </div>
             
           
@@ -391,7 +391,7 @@ type casting “functions” are allowed, but only in the 1-argument form.</p>
 
 <dl class="py function">
 <dt id="qcodes.utils.helpers.deep_update">
-<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">deep_update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dest</span><span class="p">:</span> <span class="n">MutableMapping<span class="p">[</span>Hashable<span class="p">, </span>Any<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span>Hashable<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; MutableMapping<span class="p">[</span>Hashable<span class="p">, </span>Any<span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#deep_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.deep_update" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.utils.helpers.</code><code class="sig-name descname">deep_update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dest</span><span class="p">:</span> <span class="n">MutableMapping<span class="p">[</span>K<span class="p">, </span>Any<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">update</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span>L<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; MutableMapping<span class="p">[</span>Union<span class="p">[</span>K<span class="p">, </span>L<span class="p">]</span><span class="p">, </span>Any<span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/utils/helpers.html#deep_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.helpers.deep_update" title="Permalink to this definition">¶</a></dt>
 <dd><p>Recursively update one JSON structure with another.</p>
 <p>Only dives into nested dicts; lists get replaced completely.
 If the original value is a dictionary and the new value is not, or vice versa,
