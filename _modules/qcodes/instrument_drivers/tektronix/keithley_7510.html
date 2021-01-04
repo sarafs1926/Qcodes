@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.21.0+103.g52d7e69781
+                0.21.0+139.g9517c191c5
               </div>
             
           
@@ -214,7 +214,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_n_points</span> <span class="o">=</span> <span class="n">n_points</span>
 
 <div class="viewcode-block" id="GeneratedSetPoints.get_raw"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.keithley_7510.GeneratedSetPoints.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_start</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_points</span><span class="p">())</span></div></div>
+        <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">stop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">stop</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">n_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_points</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">n_points</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">n_points</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="Buffer7510"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.keithley_7510.Buffer7510">[docs]</a><span class="k">class</span> <span class="nc">Buffer7510</span><span class="p">(</span><span class="n">InstrumentChannel</span><span class="p">):</span>

@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.21.0+103.g52d7e69781
+                0.21.0+139.g9517c191c5
               </div>
             
           
@@ -533,7 +533,7 @@
                                <span class="n">get_cmd</span><span class="o">=</span><span class="n">filter_cmd</span> <span class="o">+</span> <span class="s1">&#39;?&#39;</span><span class="p">,</span>
                                <span class="n">set_cmd</span><span class="o">=</span><span class="n">filter_cmd</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">,</span>
                                <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="o">.</span><span class="n">Enum</span><span class="p">(</span><span class="mf">20e6</span><span class="p">,</span> <span class="mf">100e6</span><span class="p">,</span>
-                                              <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">),</span>
+                                              <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">),</span>
                                               <span class="s1">&#39;INF&#39;</span><span class="p">,</span> <span class="s1">&#39;INFinity&#39;</span><span class="p">),</span>
                                <span class="n">get_parser</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_tek_outofrange_get_parser</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ch</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">_DC_out&#39;</span><span class="p">,</span>
@@ -595,7 +595,7 @@
         <span class="c1"># note that 9.9e37 is used as a generic out of range value</span>
         <span class="c1"># in tektronix instruments</span>
         <span class="k">if</span> <span class="n">val</span> <span class="o">&gt;=</span> <span class="mf">9.9e37</span><span class="p">:</span>
-            <span class="n">val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">(</span><span class="s1">&#39;INF&#39;</span><span class="p">)</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;INF&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">val</span>
 
     <span class="c1"># Functions</span>

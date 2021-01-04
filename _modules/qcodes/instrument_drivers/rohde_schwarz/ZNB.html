@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.21.0+103.g52d7e69781
+                0.21.0+139.g9517c191c5
               </div>
             
           
@@ -280,7 +280,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span> <span class="n">ZNBChannel</span><span class="p">)</span>
         <span class="n">i</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">_get_cw_data</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">q</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">q</span><span class="p">))</span></div></div>
 
 
 <div class="viewcode-block" id="FixedFrequencyPointMagPhase"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rohde_schwarz.html#qcodes.instrument_drivers.rohde_schwarz.ZNB.FixedFrequencyPointMagPhase">[docs]</a><span class="k">class</span> <span class="nc">FixedFrequencyPointMagPhase</span><span class="p">(</span><span class="n">MultiParameter</span><span class="p">):</span>

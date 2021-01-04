@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.21.0+103.g52d7e69781
+                0.21.0+139.g9517c191c5
               </div>
             
           
@@ -208,9 +208,11 @@
         <span class="n">validator</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;argument &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">context</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="range_str"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.range_str">[docs]</a><span class="k">def</span> <span class="nf">range_str</span><span class="p">(</span><span class="n">min_val</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">]],</span>
-              <span class="n">max_val</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">]],</span>
-              <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="range_str"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.range_str">[docs]</a><span class="k">def</span> <span class="nf">range_str</span><span class="p">(</span>
+        <span class="n">min_val</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;np.floating[Any]&quot;</span><span class="p">,</span> <span class="s2">&quot;np.integer[Any]&quot;</span><span class="p">]],</span>
+        <span class="n">max_val</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;np.floating[Any]&quot;</span><span class="p">,</span> <span class="s2">&quot;np.integer[Any]&quot;</span><span class="p">]],</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Utility to represent ranges in Validator repr&#39;s.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -455,7 +457,7 @@
         <span class="k">return</span> <span class="s1">&#39;&lt;Numbers</span><span class="si">{}</span><span class="s1">&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">range_str</span><span class="p">(</span><span class="n">minv</span><span class="p">,</span> <span class="n">maxv</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="Ints"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Ints">[docs]</a><span class="k">class</span> <span class="nc">Ints</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">]]):</span>
+<div class="viewcode-block" id="Ints"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Ints">[docs]</a><span class="k">class</span> <span class="nc">Ints</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;np.integer[Any]&quot;</span><span class="p">]]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Requires an integer.</span>
 <span class="sd">    Optional parameters min_value and max_value, enforce</span>
@@ -541,10 +543,10 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            TypeError: If not an int or close to it.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">castvalue</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">]</span>
+        <span class="n">castvalue</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;np.integer[Any]&quot;</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">)):</span>
-            <span class="n">intrepr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
-            <span class="n">remainder</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span> <span class="o">-</span> <span class="n">intrepr</span><span class="p">)</span>
+            <span class="n">intrepr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+            <span class="n">remainder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">value</span> <span class="o">-</span> <span class="n">intrepr</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">remainder</span> <span class="o">&lt;</span> <span class="mf">1e-05</span><span class="p">:</span>
                 <span class="n">castvalue</span> <span class="o">=</span> <span class="n">intrepr</span>
             <span class="k">else</span><span class="p">:</span>
@@ -555,7 +557,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">castvalue</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="ComplexNumbers"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.ComplexNumbers">[docs]</a><span class="k">class</span> <span class="nc">ComplexNumbers</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">complex</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complexfloating</span><span class="p">]]):</span>
+<div class="viewcode-block" id="ComplexNumbers"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.ComplexNumbers">[docs]</a><span class="k">class</span> <span class="nc">ComplexNumbers</span><span class="p">(</span><span class="n">Validator</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">complex</span><span class="p">,</span> <span class="s2">&quot;np.complexfloating[Any,Any]&quot;</span><span class="p">]]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A validator for complex numbers.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -568,7 +570,7 @@
 
 <div class="viewcode-block" id="ComplexNumbers.validate"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.ComplexNumbers.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
-            <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">complex</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complexfloating</span><span class="p">],</span>
+            <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">complex</span><span class="p">,</span> <span class="s2">&quot;np.complexfloating[Any,Any]&quot;</span><span class="p">],</span>
             <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -659,7 +661,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_valid_values</span> <span class="o">=</span> <span class="p">(</span><span class="n">divisor</span><span class="p">,)</span>
 
 <div class="viewcode-block" id="Multiples.validate"><a class="viewcode-back" href="../../../api/utils/validators.html#qcodes.utils.validators.Multiples.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                 <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">],</span>
+                 <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;np.integer[Any]&quot;</span><span class="p">],</span>
                  <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Validates if the value is a integer multiple of divisor else raises</span>
@@ -736,7 +738,7 @@
             <span class="c1"># multiply our way out of the problem by constructing true</span>
             <span class="c1"># multiples in the relevant range and see if `value` is one</span>
             <span class="c1"># of them (within rounding errors)</span>
-            <span class="n">divs</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">divmod</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">divisor</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">divs</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">divmod</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">divisor</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
             <span class="n">true_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
                 <span class="p">[</span><span class="n">n</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">divisor</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">divs</span><span class="p">,</span> <span class="n">divs</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)])</span>
             <span class="n">abs_errs</span> <span class="o">=</span> <span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">tv</span> <span class="o">-</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">tv</span> <span class="ow">in</span> <span class="n">true_vals</span><span class="p">]</span>
@@ -918,8 +920,7 @@
         <span class="k">if</span> <span class="n">valid_type</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">complexfloating</span><span class="p">:</span>
             <span class="n">valid_type</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">complex128</span>
 
-        <span class="n">shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span>
-        <span class="k">if</span> <span class="n">shape</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_min_value</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">valid_type</span><span class="p">),)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">val_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">valid_type</span><span class="p">)</span>

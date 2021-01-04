@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.21.0+103.g52d7e69781
+                0.21.0+139.g9517c191c5
               </div>
             
           
@@ -486,9 +486,11 @@
                 <span class="s1">&#39;the the given `start`, `stop`, and `step` &#39;</span>
                 <span class="s1">&#39;values. </span><span class="se">\n</span><span class="s1">Number of points is </span><span class="si">{:d}</span><span class="s1"> or </span><span class="si">{:d}</span><span class="s1">.&#39;</span>
                 <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">steps_lo</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">steps_hi</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-        <span class="n">num</span> <span class="o">=</span> <span class="n">steps_lo</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">num_steps</span> <span class="o">=</span> <span class="n">steps_lo</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">num</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">num_steps</span> <span class="o">=</span> <span class="n">num</span>
 
-    <span class="n">output_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">output_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num_steps</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">output_list</span><span class="p">)</span></div>
 
 

@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.21.0+103.g52d7e69781
+                0.21.0+139.g9517c191c5
               </div>
             
           
@@ -649,11 +649,10 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">&quot;Please setup the sweep before getting values of this parameter&quot;</span>
             <span class="p">)</span>
-
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span>
             <span class="n">start</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_sweep_arguments</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">],</span>
             <span class="n">stop</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_sweep_arguments</span><span class="p">[</span><span class="s2">&quot;stop&quot;</span><span class="p">],</span>
-            <span class="n">num</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_sweep_arguments</span><span class="p">[</span><span class="s2">&quot;step_count&quot;</span><span class="p">]</span>
+            <span class="n">num</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sweep_arguments</span><span class="p">[</span><span class="s2">&quot;step_count&quot;</span><span class="p">])</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Source2450.sweep_setup"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.tektronix.html#qcodes.instrument_drivers.tektronix.Keithley_2450.Source2450.sweep_setup">[docs]</a>    <span class="k">def</span> <span class="nf">sweep_setup</span><span class="p">(</span>
