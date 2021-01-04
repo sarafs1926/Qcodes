@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.21.0+76.gc97c464f23
+                0.21.0+103.g52d7e69781
               </div>
             
           
@@ -554,7 +554,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/210104-26003-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/210104-25748-qcodes.log
 Activating auto-logging. Current session state plus future input saved.
 Filename       : /home/vsts/.qcodes/logs/command_history.log
 Mode           : append
@@ -562,7 +562,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/210104-26003-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/210104-25748-qcodes.log
 </pre></div></div>
 </div>
 <p>The call to <code class="docutils literal notranslate"><span class="pre">start_all_logging</span></code> does two things: 1. Create handlers to output logging messages from the root logger to the console and to a log file. 2. Enable logging of the IPython commands into a separate log file.</p>
@@ -626,7 +626,7 @@ passed to an instrument with an individual message). On the other hand setting t
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-01-04 11:12:41,265 ¦ example_logger ¦ DEBUG ¦ &lt;ipython-input-1-c7e8205cb86b&gt; ¦ &lt;module&gt; ¦ 8 ¦ This message is visible as the logging level is temporarily elevated to `DEBUG`
+2021-01-04 12:51:49,206 ¦ example_logger ¦ DEBUG ¦ &lt;ipython-input-1-c7e8205cb86b&gt; ¦ &lt;module&gt; ¦ 8 ¦ This message is visible as the logging level is temporarily elevated to `DEBUG`
 </pre></div></div>
 </div>
 <p>For other handlers than the console handler, you can do the same thing using the <code class="docutils literal notranslate"><span class="pre">handler_level</span></code> context manager.</p>
@@ -694,12 +694,12 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-01-04 11:12:41,349 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 243 ¦ [x(AMI430_VISA)] Querying: STATE?
-2021-01-04 11:12:41,350 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 245 ¦ [x(AMI430_VISA)] Response: 2
-2021-01-04 11:12:41,351 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 243 ¦ [x(AMI430_VISA)] Querying: FIELD:MAG?
-2021-01-04 11:12:41,352 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 245 ¦ [x(AMI430_VISA)] Response: 0.0
-2021-01-04 11:12:41,353 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 243 ¦ [x(AMI430_VISA)] Querying: FIELD:MAG?
-2021-01-04 11:12:41,354 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 245 ¦ [x(AMI430_VISA)] Response: 0.0
+2021-01-04 12:51:49,284 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 234 ¦ [x(AMI430_VISA)] Querying: STATE?
+2021-01-04 12:51:49,285 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 236 ¦ [x(AMI430_VISA)] Response: 2
+2021-01-04 12:51:49,286 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 234 ¦ [x(AMI430_VISA)] Querying: FIELD:MAG?
+2021-01-04 12:51:49,287 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 236 ¦ [x(AMI430_VISA)] Response: 0.0
+2021-01-04 12:51:49,288 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 234 ¦ [x(AMI430_VISA)] Querying: FIELD:MAG?
+2021-01-04 12:51:49,289 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 236 ¦ [x(AMI430_VISA)] Response: 0.0
 </pre></div></div>
 </div>
 <p>The output on the console shows as expected only messages from the <code class="docutils literal notranslate"><span class="pre">x</span></code> instrument. For multiple instruments pass a sequence of instruments to <code class="docutils literal notranslate"><span class="pre">filter_instrument</span></code> we write:</p>
@@ -720,18 +720,18 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-01-04 11:12:41,373 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 243 ¦ [x(AMI430_VISA)] Querying: STATE?
-2021-01-04 11:12:41,375 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 245 ¦ [x(AMI430_VISA)] Response: 2
-2021-01-04 11:12:41,375 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 243 ¦ [y(AMI430_VISA)] Querying: STATE?
-2021-01-04 11:12:41,377 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 245 ¦ [y(AMI430_VISA)] Response: 2
-2021-01-04 11:12:41,379 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 243 ¦ [x(AMI430_VISA)] Querying: FIELD:MAG?
-2021-01-04 11:12:41,380 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 245 ¦ [x(AMI430_VISA)] Response: 0.0
-2021-01-04 11:12:41,381 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 243 ¦ [y(AMI430_VISA)] Querying: FIELD:MAG?
-2021-01-04 11:12:41,382 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 245 ¦ [y(AMI430_VISA)] Response: 0.0
-2021-01-04 11:12:41,385 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 243 ¦ [x(AMI430_VISA)] Querying: FIELD:MAG?
-2021-01-04 11:12:41,386 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 245 ¦ [x(AMI430_VISA)] Response: 0.0
-2021-01-04 11:12:41,387 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 243 ¦ [y(AMI430_VISA)] Querying: FIELD:MAG?
-2021-01-04 11:12:41,387 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 245 ¦ [y(AMI430_VISA)] Response: 0.0
+2021-01-04 12:51:49,301 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 234 ¦ [x(AMI430_VISA)] Querying: STATE?
+2021-01-04 12:51:49,302 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 236 ¦ [x(AMI430_VISA)] Response: 2
+2021-01-04 12:51:49,303 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 234 ¦ [y(AMI430_VISA)] Querying: STATE?
+2021-01-04 12:51:49,303 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 236 ¦ [y(AMI430_VISA)] Response: 2
+2021-01-04 12:51:49,304 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 234 ¦ [x(AMI430_VISA)] Querying: FIELD:MAG?
+2021-01-04 12:51:49,304 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 236 ¦ [x(AMI430_VISA)] Response: 0.0
+2021-01-04 12:51:49,305 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 234 ¦ [y(AMI430_VISA)] Querying: FIELD:MAG?
+2021-01-04 12:51:49,306 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 236 ¦ [y(AMI430_VISA)] Response: 0.0
+2021-01-04 12:51:49,307 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 234 ¦ [x(AMI430_VISA)] Querying: FIELD:MAG?
+2021-01-04 12:51:49,307 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 236 ¦ [x(AMI430_VISA)] Response: 0.0
+2021-01-04 12:51:49,309 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 234 ¦ [y(AMI430_VISA)] Querying: FIELD:MAG?
+2021-01-04 12:51:49,309 ¦ qcodes.instrument.base.com.visa ¦ DEBUG ¦ visa ¦ ask_raw ¦ 236 ¦ [y(AMI430_VISA)] Response: 0.0
 </pre></div></div>
 </div>
 </div>
@@ -807,7 +807,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
   <tbody>
     <tr>
       <th>0</th>
-      <td>2021-01-04 11:12:41,588</td>
+      <td>2021-01-04 12:51:49,521</td>
       <td>qcodes.instrument.base</td>
       <td>DEBUG</td>
       <td>AMI430</td>
@@ -817,67 +817,67 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>1</th>
-      <td>2021-01-04 11:12:41,588</td>
+      <td>2021-01-04 12:51:49,521</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[x(AMI430_VISA)] Querying: STATE?</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2021-01-04 11:12:41,589</td>
+      <td>2021-01-04 12:51:49,521</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[x(AMI430_VISA)] Response: 2</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2021-01-04 11:12:41,589</td>
+      <td>2021-01-04 12:51:49,521</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[y(AMI430_VISA)] Querying: STATE?</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>2021-01-04 11:12:41,589</td>
+      <td>2021-01-04 12:51:49,521</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[y(AMI430_VISA)] Response: 2</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>2021-01-04 11:12:41,589</td>
+      <td>2021-01-04 12:51:49,522</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[z(AMI430_VISA)] Querying: STATE?</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>2021-01-04 11:12:41,589</td>
+      <td>2021-01-04 12:51:49,522</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[z(AMI430_VISA)] Response: 2</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>2021-01-04 11:12:41,589</td>
+      <td>2021-01-04 12:51:49,522</td>
       <td>qcodes.instrument.base</td>
       <td>DEBUG</td>
       <td>AMI430</td>
@@ -887,317 +887,317 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>8</th>
-      <td>2021-01-04 11:12:41,589</td>
+      <td>2021-01-04 12:51:49,522</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[x(AMI430_VISA)] Querying: FIELD:MAG?</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>2021-01-04 11:12:41,589</td>
+      <td>2021-01-04 12:51:49,522</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[x(AMI430_VISA)] Response: 0.0</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>2021-01-04 11:12:41,589</td>
+      <td>2021-01-04 12:51:49,522</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[y(AMI430_VISA)] Querying: FIELD:MAG?</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>2021-01-04 11:12:41,589</td>
+      <td>2021-01-04 12:51:49,522</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[y(AMI430_VISA)] Response: 0.0</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>2021-01-04 11:12:41,590</td>
+      <td>2021-01-04 12:51:49,522</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[z(AMI430_VISA)] Querying: FIELD:MAG?</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>2021-01-04 11:12:41,590</td>
+      <td>2021-01-04 12:51:49,522</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[z(AMI430_VISA)] Response: 0.0</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>2021-01-04 11:12:41,590</td>
+      <td>2021-01-04 12:51:49,522</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[x(AMI430_VISA)] Querying: FIELD:MAG?</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>2021-01-04 11:12:41,590</td>
+      <td>2021-01-04 12:51:49,523</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[x(AMI430_VISA)] Response: 0.0</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>2021-01-04 11:12:41,590</td>
+      <td>2021-01-04 12:51:49,523</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[y(AMI430_VISA)] Querying: FIELD:MAG?</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>2021-01-04 11:12:41,590</td>
+      <td>2021-01-04 12:51:49,523</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[y(AMI430_VISA)] Response: 0.0</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>2021-01-04 11:12:41,591</td>
+      <td>2021-01-04 12:51:49,523</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[z(AMI430_VISA)] Querying: FIELD:MAG?</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>2021-01-04 11:12:41,591</td>
+      <td>2021-01-04 12:51:49,523</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[z(AMI430_VISA)] Response: 0.0</td>
     </tr>
     <tr>
       <th>20</th>
-      <td>2021-01-04 11:12:41,591</td>
+      <td>2021-01-04 12:51:49,523</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[z(AMI430_VISA)] Querying: COIL?</td>
     </tr>
     <tr>
       <th>21</th>
-      <td>2021-01-04 11:12:41,591</td>
+      <td>2021-01-04 12:51:49,523</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[z(AMI430_VISA)] Response: 2.0</td>
     </tr>
     <tr>
       <th>22</th>
-      <td>2021-01-04 11:12:41,591</td>
+      <td>2021-01-04 12:51:49,524</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[z(AMI430_VISA)] Querying: CURR:LIMIT?</td>
     </tr>
     <tr>
       <th>23</th>
-      <td>2021-01-04 11:12:41,591</td>
+      <td>2021-01-04 12:51:49,524</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[z(AMI430_VISA)] Response: 80</td>
     </tr>
     <tr>
       <th>24</th>
-      <td>2021-01-04 11:12:41,591</td>
+      <td>2021-01-04 12:51:49,524</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[z(AMI430_VISA)] Querying: QU?</td>
     </tr>
     <tr>
       <th>25</th>
-      <td>2021-01-04 11:12:41,591</td>
+      <td>2021-01-04 12:51:49,524</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[z(AMI430_VISA)] Response: 0</td>
     </tr>
     <tr>
       <th>26</th>
-      <td>2021-01-04 11:12:41,591</td>
+      <td>2021-01-04 12:51:49,524</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[z(AMI430_VISA)] Querying: PERS?</td>
     </tr>
     <tr>
       <th>27</th>
-      <td>2021-01-04 11:12:41,592</td>
+      <td>2021-01-04 12:51:49,524</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[z(AMI430_VISA)] Response: 0</td>
     </tr>
     <tr>
       <th>28</th>
-      <td>2021-01-04 11:12:41,592</td>
+      <td>2021-01-04 12:51:49,524</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[z(AMI430_VISA)] Querying: STATE?</td>
     </tr>
     <tr>
       <th>29</th>
-      <td>2021-01-04 11:12:41,592</td>
+      <td>2021-01-04 12:51:49,524</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[z(AMI430_VISA)] Response: 2</td>
     </tr>
     <tr>
       <th>30</th>
-      <td>2021-01-04 11:12:41,592</td>
+      <td>2021-01-04 12:51:49,524</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>write_raw</td>
-      <td>229</td>
+      <td>220</td>
       <td>[z(AMI430_VISA)] Writing: PAUSE</td>
     </tr>
     <tr>
       <th>31</th>
-      <td>2021-01-04 11:12:41,592</td>
+      <td>2021-01-04 12:51:49,524</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>write_raw</td>
-      <td>229</td>
+      <td>220</td>
       <td>[z(AMI430_VISA)] Writing: CONF:FIELD:TARG 1.0</td>
     </tr>
     <tr>
       <th>32</th>
-      <td>2021-01-04 11:12:41,592</td>
+      <td>2021-01-04 12:51:49,524</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[z(AMI430_VISA)] Querying: PS:INST?</td>
     </tr>
     <tr>
       <th>33</th>
-      <td>2021-01-04 11:12:41,593</td>
+      <td>2021-01-04 12:51:49,525</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[z(AMI430_VISA)] Response: ERROR</td>
     </tr>
     <tr>
       <th>34</th>
-      <td>2021-01-04 11:12:41,593</td>
+      <td>2021-01-04 12:51:49,525</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[z(AMI430_VISA)] Querying: PS:INST?</td>
     </tr>
     <tr>
       <th>35</th>
-      <td>2021-01-04 11:12:41,593</td>
+      <td>2021-01-04 12:51:49,525</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[z(AMI430_VISA)] Response: ERROR</td>
     </tr>
     <tr>
       <th>36</th>
-      <td>2021-01-04 11:12:41,593</td>
+      <td>2021-01-04 12:51:49,525</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[z(AMI430_VISA)] Querying: PS?</td>
     </tr>
     <tr>
       <th>37</th>
-      <td>2021-01-04 11:12:41,593</td>
+      <td>2021-01-04 12:51:49,525</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[z(AMI430_VISA)] Response: 0</td>
     </tr>
     <tr>
       <th>38</th>
-      <td>2021-01-04 11:12:41,593</td>
+      <td>2021-01-04 12:51:49,525</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>write_raw</td>
-      <td>229</td>
+      <td>220</td>
       <td>[z(AMI430_VISA)] Writing: RAMP</td>
     </tr>
     <tr>
       <th>39</th>
-      <td>2021-01-04 11:12:41,593</td>
+      <td>2021-01-04 12:51:49,525</td>
       <td>qcodes.instrument.base</td>
       <td>DEBUG</td>
       <td>AMI430</td>
@@ -1207,47 +1207,47 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>40</th>
-      <td>2021-01-04 11:12:41,593</td>
+      <td>2021-01-04 12:51:49,525</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[z(AMI430_VISA)] Querying: STATE?</td>
     </tr>
     <tr>
       <th>41</th>
-      <td>2021-01-04 11:12:41,593</td>
+      <td>2021-01-04 12:51:49,525</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[z(AMI430_VISA)] Response: 2</td>
     </tr>
     <tr>
       <th>42</th>
-      <td>2021-01-04 11:12:41,593</td>
+      <td>2021-01-04 12:51:49,525</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[z(AMI430_VISA)] Querying: STATE?</td>
     </tr>
     <tr>
       <th>43</th>
-      <td>2021-01-04 11:12:41,594</td>
+      <td>2021-01-04 12:51:49,525</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[z(AMI430_VISA)] Response: 2</td>
     </tr>
     <tr>
       <th>44</th>
-      <td>2021-01-04 11:12:41,594</td>
+      <td>2021-01-04 12:51:49,525</td>
       <td>qcodes.instrument.base</td>
       <td>DEBUG</td>
       <td>AMI430</td>
@@ -1303,7 +1303,7 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
   <tbody>
     <tr>
       <th>0</th>
-      <td>2021-01-04 11:12:41,588</td>
+      <td>2021-01-04 12:51:49,521</td>
       <td>qcodes.instrument.base</td>
       <td>DEBUG</td>
       <td>AMI430</td>
@@ -1313,42 +1313,42 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>1</th>
-      <td>2021-01-04 11:12:41,588</td>
+      <td>2021-01-04 12:51:49,521</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[x(AMI430_VISA)] Querying: STATE?</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2021-01-04 11:12:41,589</td>
+      <td>2021-01-04 12:51:49,521</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[x(AMI430_VISA)] Response: 2</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2021-01-04 11:12:41,589</td>
+      <td>2021-01-04 12:51:49,521</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[y(AMI430_VISA)] Querying: STATE?</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>2021-01-04 11:12:41,589</td>
+      <td>2021-01-04 12:51:49,521</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[y(AMI430_VISA)] Response: 2</td>
     </tr>
     <tr>
@@ -1363,47 +1363,47 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
     </tr>
     <tr>
       <th>85</th>
-      <td>2021-01-04 11:12:41,600</td>
+      <td>2021-01-04 12:51:49,531</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[z(AMI430_VISA)] Querying: STATE?</td>
     </tr>
     <tr>
       <th>86</th>
-      <td>2021-01-04 11:12:41,600</td>
+      <td>2021-01-04 12:51:49,531</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[z(AMI430_VISA)] Response: 2</td>
     </tr>
     <tr>
       <th>87</th>
-      <td>2021-01-04 11:12:41,601</td>
+      <td>2021-01-04 12:51:49,531</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[z(AMI430_VISA)] Querying: STATE?</td>
     </tr>
     <tr>
       <th>88</th>
-      <td>2021-01-04 11:12:41,601</td>
+      <td>2021-01-04 12:51:49,531</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[z(AMI430_VISA)] Response: 2</td>
     </tr>
     <tr>
       <th>89</th>
-      <td>2021-01-04 11:12:41,601</td>
+      <td>2021-01-04 12:51:49,531</td>
       <td>qcodes.instrument.base</td>
       <td>DEBUG</td>
       <td>AMI430</td>
@@ -1467,62 +1467,62 @@ Connected to: QCoDeS AMI430_simulation (serial:1337, firmware:0.0.01) in 0.00s
   <tbody>
     <tr>
       <th>0</th>
-      <td>2021-01-04 11:12:41,665</td>
+      <td>2021-01-04 12:51:49,588</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[x(AMI430_VISA)] Querying: STATE?</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2021-01-04 11:12:41,665</td>
+      <td>2021-01-04 12:51:49,588</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[x(AMI430_VISA)] Response: 2</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2021-01-04 11:12:41,667</td>
+      <td>2021-01-04 12:51:49,588</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[x(AMI430_VISA)] Querying: FIELD:MAG?</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2021-01-04 11:12:41,667</td>
+      <td>2021-01-04 12:51:49,588</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[x(AMI430_VISA)] Response: 0.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>2021-01-04 11:12:41,667</td>
+      <td>2021-01-04 12:51:49,589</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>243</td>
+      <td>234</td>
       <td>[x(AMI430_VISA)] Querying: FIELD:MAG?</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>2021-01-04 11:12:41,667</td>
+      <td>2021-01-04 12:51:49,589</td>
       <td>qcodes.instrument.base.com.visa</td>
       <td>DEBUG</td>
       <td>visa</td>
       <td>ask_raw</td>
-      <td>245</td>
+      <td>236</td>
       <td>[x(AMI430_VISA)] Response: 0.0</td>
     </tr>
   </tbody>

@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.21.0+76.gc97c464f23
+                0.21.0+103.g52d7e69781
               </div>
             
           
@@ -179,8 +179,6 @@
 <span class="kn">from</span> <span class="nn">qcodes.utils.deprecate</span> <span class="kn">import</span> <span class="n">deprecate</span>
 <span class="kn">from</span> <span class="nn">qcodes.logger.instrument_logger</span> <span class="kn">import</span> <span class="n">get_instrument_logger</span>
 <span class="kn">from</span> <span class="nn">qcodes.utils.delaykeyboardinterrupt</span> <span class="kn">import</span> <span class="n">DelayedKeyboardInterrupt</span>
-
-<span class="n">pyvisa_is_1_11_or_higher</span> <span class="o">=</span> <span class="n">Version</span><span class="p">(</span><span class="n">pyvisa</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">Version</span><span class="p">(</span><span class="s1">&#39;1.11.0&#39;</span><span class="p">)</span>
 
 <span class="n">VISA_LOGGER</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">InstrumentBase</span><span class="o">.</span><span class="vm">__module__</span><span class="p">,</span> <span class="s1">&#39;com&#39;</span><span class="p">,</span> <span class="s1">&#39;visa&#39;</span><span class="p">))</span>
 
@@ -307,17 +305,10 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">visabackend</span> <span class="o">==</span> <span class="s1">&#39;sim&#39;</span><span class="p">:</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="n">pyvisa_is_1_11_or_higher</span><span class="p">:</span>
-            <span class="n">flush_operation</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="n">vi_const</span><span class="o">.</span><span class="n">BufferOperation</span><span class="o">.</span><span class="n">discard_read_buffer_no_io</span> <span class="o">|</span>
-                    <span class="n">vi_const</span><span class="o">.</span><span class="n">BufferOperation</span><span class="o">.</span><span class="n">discard_write_buffer</span>
-            <span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># This can be dropped once we drop support for pyvisa 1.10</span>
-            <span class="n">flush_operation</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
-                <span class="n">Any</span><span class="p">,</span>
-                <span class="n">vi_const</span><span class="o">.</span><span class="n">VI_READ_BUF_DISCARD</span> <span class="o">|</span> <span class="n">vi_const</span><span class="o">.</span><span class="n">VI_WRITE_BUF_DISCARD</span>
-            <span class="p">)</span>
+        <span class="n">flush_operation</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">vi_const</span><span class="o">.</span><span class="n">BufferOperation</span><span class="o">.</span><span class="n">discard_read_buffer_no_io</span> <span class="o">|</span>
+                <span class="n">vi_const</span><span class="o">.</span><span class="n">BufferOperation</span><span class="o">.</span><span class="n">discard_write_buffer</span>
+        <span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="p">,</span> <span class="n">pyvisa</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">SerialInstrument</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">visa_handle</span><span class="o">.</span><span class="n">flush</span><span class="p">(</span><span class="n">flush_operation</span><span class="p">)</span>
