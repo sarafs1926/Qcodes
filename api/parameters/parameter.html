@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>qcodes.instrument.parameter &mdash; QCoDeS 0.21.0 documentation</title>
   
@@ -16,7 +16,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -29,7 +32,6 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -56,7 +58,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> QCoDeS
+            <a href="../../index.html" class="icon icon-home"> QCoDeS
           
 
           
@@ -66,7 +68,7 @@
             
             
               <div class="version">
-                0.21.0+145.g7f39433b92
+                0.21.0+157.gc60463131e
               </div>
             
           
@@ -161,6 +163,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -176,7 +180,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/api/parameters/parameter.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -1196,6 +1200,38 @@ iterated over.</p>
 </div>
 </dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ParameterWithSetpoints.label">
+<code class="sig-name descname">label</code><em class="property">: <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></em><a class="headerlink" href="#qcodes.instrument.parameter.ParameterWithSetpoints.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label of the data used for plots etc.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ParameterWithSetpoints.cache">
+<code class="sig-name descname">cache</code><em class="property">: qcodes.instrument.parameter._CacheProtocol</em><a class="headerlink" href="#qcodes.instrument.parameter.ParameterWithSetpoints.cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ParameterWithSetpoints.get_latest">
+<code class="sig-name descname">get_latest</code><em class="property">: <a class="reference internal" href="#qcodes.instrument.parameter.GetLatest" title="qcodes.instrument.parameter.GetLatest">qcodes.instrument.parameter.GetLatest</a></em><a class="headerlink" href="#qcodes.instrument.parameter.ParameterWithSetpoints.get_latest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ParameterWithSetpoints.get">
+<code class="sig-name descname">get</code><em class="property">: Callable<span class="p">[</span><span class="p">[</span><span class="p">…</span><span class="p">]</span><span class="p">, </span>Any<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument.parameter.ParameterWithSetpoints.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ParameterWithSetpoints.set">
+<code class="sig-name descname">set</code><em class="property">: Callable<span class="p">[</span><span class="p">[</span><span class="p">…</span><span class="p">]</span><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument.parameter.ParameterWithSetpoints.set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ParameterWithSetpoints.unit">
+<code class="sig-name descname">unit</code><a class="headerlink" href="#qcodes.instrument.parameter.ParameterWithSetpoints.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit of measure. Use <code class="docutils literal notranslate"><span class="pre">''</span></code> for unitless.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -1217,7 +1253,7 @@ parameter. If source is set to <code class="docutils literal notranslate"><span 
 <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter.settable" title="qcodes.instrument.parameter.DelegateParameter.settable"><code class="xref py py-attr docutils literal notranslate"><span class="pre">settable</span></code></a> will always be <code class="docutils literal notranslate"><span class="pre">False</span></code>. It is therefore an error
 to call get and set on a <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter" title="qcodes.instrument.parameter.DelegateParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelegateParameter</span></code></a> without a <cite>source</cite>.
 Note that a parameter without a source can be snapshotted correctly.</p>
-<p><a class="reference internal" href="#qcodes.instrument.parameter.Parameter.unit" title="qcodes.instrument.parameter.Parameter.unit"><code class="xref py py-attr docutils literal notranslate"><span class="pre">unit</span></code></a> and <a class="reference internal" href="#qcodes.instrument.parameter.Parameter.label" title="qcodes.instrument.parameter.Parameter.label"><code class="xref py py-attr docutils literal notranslate"><span class="pre">label</span></code></a> can either be set when constructing
+<p><a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter.unit" title="qcodes.instrument.parameter.DelegateParameter.unit"><code class="xref py py-attr docutils literal notranslate"><span class="pre">unit</span></code></a> and <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter.label" title="qcodes.instrument.parameter.DelegateParameter.label"><code class="xref py py-attr docutils literal notranslate"><span class="pre">label</span></code></a> can either be set when constructing
 a <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter" title="qcodes.instrument.parameter.DelegateParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelegateParameter</span></code></a> or inherited from the source
 <a class="reference internal" href="#qcodes.instrument.parameter.Parameter" title="qcodes.instrument.parameter.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parameter</span></code></a>. If inherited they will automatically change when
 changing the source. Otherwise they will remain fixed.</p>
@@ -1229,6 +1265,11 @@ changing the source. Otherwise they will remain fixed.</p>
 <a class="reference internal" href="#qcodes.instrument.parameter.DelegateParameter" title="qcodes.instrument.parameter.DelegateParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelegateParameter</span></code></a> that performs non invertible
 transforms in its <code class="docutils literal notranslate"><span class="pre">get_raw</span></code> method.</p>
 </div>
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.DelegateParameter.cache">
+<code class="sig-name descname">cache</code><em class="property">: qcodes.instrument.parameter._CacheProtocol</em><a class="headerlink" href="#qcodes.instrument.parameter.DelegateParameter.cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt id="qcodes.instrument.parameter.DelegateParameter.source">
 <em class="property">property </em><code class="sig-name descname">source</code><a class="headerlink" href="#qcodes.instrument.parameter.DelegateParameter.source" title="Permalink to this definition">¶</a></dt>
@@ -1614,6 +1655,33 @@ iterated over.</p>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.DelegateParameter.label">
+<code class="sig-name descname">label</code><em class="property">: <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></em><a class="headerlink" href="#qcodes.instrument.parameter.DelegateParameter.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label of the data used for plots etc.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.DelegateParameter.get_latest">
+<code class="sig-name descname">get_latest</code><em class="property">: <a class="reference internal" href="#qcodes.instrument.parameter.GetLatest" title="qcodes.instrument.parameter.GetLatest">qcodes.instrument.parameter.GetLatest</a></em><a class="headerlink" href="#qcodes.instrument.parameter.DelegateParameter.get_latest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.DelegateParameter.get">
+<code class="sig-name descname">get</code><em class="property">: Callable<span class="p">[</span><span class="p">[</span><span class="p">…</span><span class="p">]</span><span class="p">, </span>Any<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument.parameter.DelegateParameter.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.DelegateParameter.set">
+<code class="sig-name descname">set</code><em class="property">: Callable<span class="p">[</span><span class="p">[</span><span class="p">…</span><span class="p">]</span><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument.parameter.DelegateParameter.set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.DelegateParameter.unit">
+<code class="sig-name descname">unit</code><a class="headerlink" href="#qcodes.instrument.parameter.DelegateParameter.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit of measure. Use <code class="docutils literal notranslate"><span class="pre">''</span></code> for unitless.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3029,6 +3097,38 @@ iterated over.</p>
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.InstrumentRefParameter.label">
+<code class="sig-name descname">label</code><em class="property">: <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></em><a class="headerlink" href="#qcodes.instrument.parameter.InstrumentRefParameter.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label of the data used for plots etc.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.InstrumentRefParameter.cache">
+<code class="sig-name descname">cache</code><em class="property">: qcodes.instrument.parameter._CacheProtocol</em><a class="headerlink" href="#qcodes.instrument.parameter.InstrumentRefParameter.cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.InstrumentRefParameter.get_latest">
+<code class="sig-name descname">get_latest</code><em class="property">: <a class="reference internal" href="#qcodes.instrument.parameter.GetLatest" title="qcodes.instrument.parameter.GetLatest">qcodes.instrument.parameter.GetLatest</a></em><a class="headerlink" href="#qcodes.instrument.parameter.InstrumentRefParameter.get_latest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.InstrumentRefParameter.get">
+<code class="sig-name descname">get</code><em class="property">: Callable<span class="p">[</span><span class="p">[</span><span class="p">…</span><span class="p">]</span><span class="p">, </span>Any<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument.parameter.InstrumentRefParameter.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.InstrumentRefParameter.set">
+<code class="sig-name descname">set</code><em class="property">: Callable<span class="p">[</span><span class="p">[</span><span class="p">…</span><span class="p">]</span><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument.parameter.InstrumentRefParameter.set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.InstrumentRefParameter.unit">
+<code class="sig-name descname">unit</code><a class="headerlink" href="#qcodes.instrument.parameter.InstrumentRefParameter.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit of measure. Use <code class="docutils literal notranslate"><span class="pre">''</span></code> for unitless.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt id="qcodes.instrument.parameter.InstrumentRefParameter.get_instr">
 <code class="sig-name descname">get_instr</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; InstrumentBase<a class="reference internal" href="../../_modules/qcodes/instrument/parameter.html#InstrumentRefParameter.get_instr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument.parameter.InstrumentRefParameter.get_instr" title="Permalink to this definition">¶</a></dt>
@@ -3415,6 +3515,38 @@ iterated over.</p>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ManualParameter.label">
+<code class="sig-name descname">label</code><em class="property">: <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></em><a class="headerlink" href="#qcodes.instrument.parameter.ManualParameter.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label of the data used for plots etc.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ManualParameter.cache">
+<code class="sig-name descname">cache</code><em class="property">: qcodes.instrument.parameter._CacheProtocol</em><a class="headerlink" href="#qcodes.instrument.parameter.ManualParameter.cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ManualParameter.get_latest">
+<code class="sig-name descname">get_latest</code><em class="property">: <a class="reference internal" href="#qcodes.instrument.parameter.GetLatest" title="qcodes.instrument.parameter.GetLatest">qcodes.instrument.parameter.GetLatest</a></em><a class="headerlink" href="#qcodes.instrument.parameter.ManualParameter.get_latest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ManualParameter.get">
+<code class="sig-name descname">get</code><em class="property">: Callable<span class="p">[</span><span class="p">[</span><span class="p">…</span><span class="p">]</span><span class="p">, </span>Any<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument.parameter.ManualParameter.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ManualParameter.set">
+<code class="sig-name descname">set</code><em class="property">: Callable<span class="p">[</span><span class="p">[</span><span class="p">…</span><span class="p">]</span><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument.parameter.ManualParameter.set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ManualParameter.unit">
+<code class="sig-name descname">unit</code><a class="headerlink" href="#qcodes.instrument.parameter.ManualParameter.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit of measure. Use <code class="docutils literal notranslate"><span class="pre">''</span></code> for unitless.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3805,6 +3937,26 @@ iterated over.</p>
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ScaledParameter.cache">
+<code class="sig-name descname">cache</code><em class="property">: qcodes.instrument.parameter._CacheProtocol</em><a class="headerlink" href="#qcodes.instrument.parameter.ScaledParameter.cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ScaledParameter.get_latest">
+<code class="sig-name descname">get_latest</code><em class="property">: <a class="reference internal" href="#qcodes.instrument.parameter.GetLatest" title="qcodes.instrument.parameter.GetLatest">qcodes.instrument.parameter.GetLatest</a></em><a class="headerlink" href="#qcodes.instrument.parameter.ScaledParameter.get_latest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ScaledParameter.get">
+<code class="sig-name descname">get</code><em class="property">: Callable<span class="p">[</span><span class="p">[</span><span class="p">…</span><span class="p">]</span><span class="p">, </span>Any<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument.parameter.ScaledParameter.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ScaledParameter.set">
+<code class="sig-name descname">set</code><em class="property">: Callable<span class="p">[</span><span class="p">[</span><span class="p">…</span><span class="p">]</span><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument.parameter.ScaledParameter.set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py class">
 <dt id="qcodes.instrument.parameter.ScaledParameter.Role">
 <em class="property">class </em><code class="sig-name descname">Role</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument/parameter.html#ScaledParameter.Role"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument.parameter.ScaledParameter.Role" title="Permalink to this definition">¶</a></dt>
@@ -3820,6 +3972,18 @@ iterated over.</p>
 <code class="sig-name descname">DIVISION</code><em class="property"> = 2</em><a class="headerlink" href="#qcodes.instrument.parameter.ScaledParameter.Role.DIVISION" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ScaledParameter.label">
+<code class="sig-name descname">label</code><em class="property">: <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></em><a class="headerlink" href="#qcodes.instrument.parameter.ScaledParameter.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label of the data used for plots etc.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument.parameter.ScaledParameter.unit">
+<code class="sig-name descname">unit</code><a class="headerlink" href="#qcodes.instrument.parameter.ScaledParameter.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit of measure. Use <code class="docutils literal notranslate"><span class="pre">''</span></code> for unitless.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -3896,16 +4060,10 @@ and its setpoints.</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="group_parameter.html" class="btn btn-neutral float-right" title="qcodes.instrument.group_parameter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="index.html" class="btn btn-neutral float-left" title="qcodes.instrument (Parameters)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="group_parameter.html" class="btn btn-neutral float-right" title="qcodes.instrument.group_parameter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="qcodes.instrument (Parameters)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -3917,14 +4075,13 @@ and its setpoints.</p>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

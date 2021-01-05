@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>qcodes.utils.validators &mdash; QCoDeS 0.21.0 documentation</title>
   
@@ -16,7 +16,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -29,7 +32,6 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -56,7 +58,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> QCoDeS
+            <a href="../../index.html" class="icon icon-home"> QCoDeS
           
 
           
@@ -66,7 +68,7 @@
             
             
               <div class="version">
-                0.21.0+145.g7f39433b92
+                0.21.0+157.gc60463131e
               </div>
             
           
@@ -167,6 +169,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -182,7 +186,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/api/utils/validators.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -226,7 +230,7 @@
 value belongs to the given type and is in the provided range.</p>
 <dl class="py function">
 <dt id="qcodes.utils.validators.validate_all">
-<code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">validate_all</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span><a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator">Validator</a><span class="p">[</span>Any<span class="p">]</span><span class="p">, </span>Any<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span> <span class="o">=</span> <span class="default_value">''</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#validate_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.validate_all" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">validate_all</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span><a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator">qcodes.utils.validators.Validator</a><span class="p">[</span>Any<span class="p">]</span><span class="p">, </span>Any<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span> <span class="o">=</span> <span class="default_value">''</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#validate_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.validate_all" title="Permalink to this definition">¶</a></dt>
 <dd><p>Takes a list of (validator, value) couplets and tests whether they are
 all valid, raising ValueError otherwise.</p>
 <dl class="field-list simple">
@@ -246,7 +250,7 @@ giving the user context for the error.</p>
 <dl class="py class">
 <dt id="qcodes.utils.validators.Validator">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">Validator</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#Validator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.Validator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.7/library/typing.html#typing.Generic" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">typing.Generic</span></code></a></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Generic</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">qcodes.utils.validators.T</span></code>]</p>
 <p>Base class for all value validators
 each validator should implement:</p>
 <dl>
@@ -295,7 +299,7 @@ implementation of getting valid values.</p>
 <dl class="py class">
 <dt id="qcodes.utils.validators.Anything">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">Anything</code><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#Anything"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.Anything" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">Any</span></code>]</p>
 <p>Allow any value to pass.</p>
 <dl class="py method">
 <dt id="qcodes.utils.validators.Anything.validate">
@@ -317,7 +321,7 @@ implementation of getting valid values.</p>
 <dl class="py class">
 <dt id="qcodes.utils.validators.Nothing">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">Nothing</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reason</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#Nothing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.Nothing" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">Any</span></code>]</p>
 <p>Allow no value to pass.</p>
 <dl class="py method">
 <dt id="qcodes.utils.validators.Nothing.validate">
@@ -339,7 +343,7 @@ implementation of getting valid values.</p>
 <dl class="py class">
 <dt id="qcodes.utils.validators.Bool">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">Bool</code><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#Bool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.Bool" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>]</p>
 <p>Requires a boolean.</p>
 <dl class="py method">
 <dt id="qcodes.utils.validators.Bool.validate">
@@ -373,7 +377,7 @@ implementation of getting valid values.</p>
 <dl class="py class">
 <dt id="qcodes.utils.validators.Strings">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">Strings</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">min_length</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">max_length</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span> <span class="o">=</span> <span class="default_value">1000000000</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#Strings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.Strings" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
 <p>Requires a string
 optional parameters min_length and max_length limit the allowed length
 to min_length &lt;= len(value) &lt;= max_length</p>
@@ -418,7 +422,7 @@ to min_length &lt;= len(value) &lt;= max_length</p>
 <dl class="py class">
 <dt id="qcodes.utils.validators.Numbers">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">Numbers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">min_value</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">, </span>numpy.floating<span class="p">, </span>numpy.integer<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">- inf</span></em>, <em class="sig-param"><span class="n">max_value</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">, </span>numpy.floating<span class="p">, </span>numpy.integer<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">inf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#Numbers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.Numbers" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.floating</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.integer</span></code>]]</p>
 <p>Requires a number  of type int, float, numpy.integer or numpy.floating.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -472,7 +476,7 @@ to min_length &lt;= len(value) &lt;= max_length</p>
 <dl class="py class">
 <dt id="qcodes.utils.validators.Ints">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">Ints</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">min_value</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">, </span>numpy.integer<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">- 1000000000000000000</span></em>, <em class="sig-param"><span class="n">max_value</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">, </span>numpy.integer<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">1000000000000000000</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#Ints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.Ints" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">np.integer[Any]</span></code>]]</p>
 <p>Requires an integer.
 Optional parameters min_value and max_value, enforce
 min_value &lt;= value &lt;= max_value.</p>
@@ -495,8 +499,9 @@ min_value &lt;= value &lt;= max_value.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.utils.validators.Ints.inttypes">
-<code class="sig-name descname">inttypes</code><em class="property"> = typing.Union[int, numpy.integer]</em><a class="headerlink" href="#qcodes.utils.validators.Ints.inttypes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">inttypes</code><a class="headerlink" href="#qcodes.utils.validators.Ints.inttypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of Union[int, numpy.integer]</p>
+</dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.utils.validators.Ints.validate">
@@ -533,7 +538,7 @@ min_value &lt;= value &lt;= max_value.</p>
 <dl class="py class">
 <dt id="qcodes.utils.validators.PermissiveInts">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">PermissiveInts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">min_value</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">, </span>numpy.integer<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">- 1000000000000000000</span></em>, <em class="sig-param"><span class="n">max_value</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">, </span>numpy.integer<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">1000000000000000000</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#PermissiveInts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.PermissiveInts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Ints" title="qcodes.utils.validators.Ints"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Ints</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">np.integer[Any]</span></code>]]</p>
 <p>Requires an integer or a float close to an integer
 optional parameters min_value and max_value enforce
 min_value &lt;= value &lt;= max_value.
@@ -559,8 +564,9 @@ less than 1e-5) else raises error.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.utils.validators.PermissiveInts.inttypes">
-<code class="sig-name descname">inttypes</code><em class="property"> = typing.Union[int, numpy.integer]</em><a class="headerlink" href="#qcodes.utils.validators.PermissiveInts.inttypes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">inttypes</code><a class="headerlink" href="#qcodes.utils.validators.PermissiveInts.inttypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of Union[int, numpy.integer]</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.utils.validators.PermissiveInts.is_numeric">
@@ -582,7 +588,7 @@ less than 1e-5) else raises error.</p>
 <dl class="py class">
 <dt id="qcodes.utils.validators.ComplexNumbers">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">ComplexNumbers</code><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#ComplexNumbers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.ComplexNumbers" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#complex" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">complex</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">np.complexfloating[Any,Any]</span></code>]]</p>
 <p>A validator for complex numbers.</p>
 <dl class="py attribute">
 <dt id="qcodes.utils.validators.ComplexNumbers.validtypes">
@@ -621,7 +627,7 @@ less than 1e-5) else raises error.</p>
 <dl class="py class">
 <dt id="qcodes.utils.validators.Enum">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">Enum</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">values</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Hashable<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#Enum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.Enum" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Hashable</span></code>]</p>
 <p>Requires one of a provided set of values.
 eg. Enum(val1, val2, val3)</p>
 <dl class="field-list simple">
@@ -649,7 +655,7 @@ eg. Enum(val1, val2, val3)</p>
 <dl class="py class">
 <dt id="qcodes.utils.validators.OnOff">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">OnOff</code><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#OnOff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.OnOff" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
 <p>Requires either the string ‘on’ or ‘off’.</p>
 <dl class="py method">
 <dt id="qcodes.utils.validators.OnOff.validate">
@@ -671,7 +677,7 @@ eg. Enum(val1, val2, val3)</p>
 <dl class="py class">
 <dt id="qcodes.utils.validators.Multiples">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">Multiples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">divisor</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#Multiples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.Multiples" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Ints" title="qcodes.utils.validators.Ints"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Ints</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">np.integer[Any]</span></code>]]</p>
 <p>A validator that checks if a value is an integer multiple of a
 fixed divisor. This class extends validators.Ints such that the
 value is also checked for being integer between an optional
@@ -712,8 +718,9 @@ error.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.utils.validators.Multiples.inttypes">
-<code class="sig-name descname">inttypes</code><em class="property"> = typing.Union[int, numpy.integer]</em><a class="headerlink" href="#qcodes.utils.validators.Multiples.inttypes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">inttypes</code><a class="headerlink" href="#qcodes.utils.validators.Multiples.inttypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of Union[int, numpy.integer]</p>
+</dd></dl>
 
 <dl class="py method">
 <dt id="qcodes.utils.validators.Multiples.valid_values">
@@ -730,7 +737,7 @@ error.</p>
 <dl class="py class">
 <dt id="qcodes.utils.validators.PermissiveMultiples">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">PermissiveMultiples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">divisor</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">, </span>numpy.floating<span class="p">, </span>numpy.integer<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">precision</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a></span> <span class="o">=</span> <span class="default_value">1e-09</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#PermissiveMultiples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.PermissiveMultiples" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.floating</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.integer</span></code>]]</p>
 <p>A validator that checks whether a value is an integer multiple
 of a fixed divisor (to within some precision). If both value and
 divisor are integers, the (exact) Multiples validator is used.</p>
@@ -776,7 +783,7 @@ context for anything.</p>
 <dl class="py class">
 <dt id="qcodes.utils.validators.MultiType">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">MultiType</code><span class="sig-paren">(</span><em class="sig-param">Numbers()</em>, <em class="sig-param">Enum(&quot;off&quot;)</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#MultiType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.MultiType" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">Any</span></code>]</p>
 <p>The resulting validator acts as a logical OR between the
 different validators.</p>
 <dl class="field-list simple">
@@ -805,7 +812,7 @@ different validators.</p>
 <dl class="py class">
 <dt id="qcodes.utils.validators.Arrays">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">Arrays</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">min_value</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">, </span>numpy.floating<span class="p">, </span>numpy.integer<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_value</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">, </span>numpy.floating<span class="p">, </span>numpy.integer<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">shape</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="#qcodes.utils.validators.Sequence" title="qcodes.utils.validators.Sequence">Sequence</a><span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">, </span><a class="reference internal" href="#qcodes.utils.validators.Callable" title="qcodes.utils.validators.Callable">Callable</a><span class="p">[</span><span class="p">]</span><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span><span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">valid_types</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="#qcodes.utils.validators.Sequence" title="qcodes.utils.validators.Sequence">Sequence</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#type" title="(in Python v3.7)">type</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#Arrays"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.Arrays" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>]</p>
 <p>Validator for numerical numpy arrays of numeric types (int, float, complex).
 By default it validates int and float arrays.</p>
 <p>Min and max validation is not supported for complex numbers.</p>
@@ -857,7 +864,7 @@ all real datatypes will validate.</p></li>
 <dl class="py class">
 <dt id="qcodes.utils.validators.Lists">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">Lists</code><span class="sig-paren">(</span><em class="sig-param">elt_validator: qcodes.utils.validators.Validator[Any] = &lt;Anything&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#Lists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.Lists" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">Any</span></code>]]</p>
 <p>Validator for lists</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -896,7 +903,7 @@ all real datatypes will validate.</p></li>
 <dl class="py class">
 <dt id="qcodes.utils.validators.Sequence">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">Sequence</code><span class="sig-paren">(</span><em class="sig-param">elt_validator: qcodes.utils.validators.Validator[Any] = &lt;Anything&gt;</em>, <em class="sig-param">length: Optional[int] = None</em>, <em class="sig-param">require_sorted: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#Sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.Sequence" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<a class="reference internal" href="#qcodes.utils.validators.Sequence" title="qcodes.utils.validators.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">Any</span></code>]]</p>
 <p>Validator for Sequences.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -943,7 +950,7 @@ all real datatypes will validate.</p></li>
 <dl class="py class">
 <dt id="qcodes.utils.validators.Callable">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">Callable</code><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#Callable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.Callable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<a class="reference internal" href="#qcodes.utils.validators.Callable" title="qcodes.utils.validators.Callable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[…], <code class="xref py py-obj docutils literal notranslate"><span class="pre">Any</span></code>]]</p>
 <p>Validator for callables such as functions.</p>
 <dl class="py method">
 <dt id="qcodes.utils.validators.Callable.validate">
@@ -977,7 +984,7 @@ all real datatypes will validate.</p></li>
 <dl class="py class">
 <dt id="qcodes.utils.validators.Dict">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.utils.validators.</code><code class="sig-name descname">Dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">allowed_keys</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="#qcodes.utils.validators.Sequence" title="qcodes.utils.validators.Sequence">Sequence</a><span class="p">[</span>Hashable<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/utils/validators.html#Dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.utils.validators.Dict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<a class="reference internal" href="#qcodes.utils.validators.Dict" title="qcodes.utils.validators.Dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Hashable</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Any</span></code>]]</p>
 <p>Validator for dictionaries.</p>
 <p>Validator for dictionary keys</p>
 <dl class="field-list simple">
@@ -1024,16 +1031,10 @@ all real datatypes will validate.</p></li>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../loops.html" class="btn btn-neutral float-right" title="qcodes.loops" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="threading.html" class="btn btn-neutral float-left" title="qcodes.utils.threading" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../loops.html" class="btn btn-neutral float-right" title="qcodes.loops" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="threading.html" class="btn btn-neutral float-left" title="qcodes.utils.threading" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -1045,14 +1046,13 @@ all real datatypes will validate.</p></li>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

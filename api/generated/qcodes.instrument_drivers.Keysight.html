@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>qcodes.instrument_drivers.Keysight package &mdash; QCoDeS 0.21.0 documentation</title>
   
@@ -16,7 +16,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -29,7 +32,6 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -56,7 +58,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> QCoDeS
+            <a href="../../index.html" class="icon icon-home"> QCoDeS
           
 
           
@@ -66,7 +68,7 @@
             
             
               <div class="version">
-                0.21.0+145.g7f39433b92
+                0.21.0+157.gc60463131e
               </div>
             
           
@@ -199,6 +201,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -212,7 +216,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/api/generated/qcodes.instrument_drivers.Keysight.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -984,6 +988,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.add_parameter" title="qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.add_function" title="qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.add_submodule" title="qcodes.instrument_drivers.Keysight.Infiniium.MeasurementSubsystem.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -1308,6 +1334,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.add_parameter" title="qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.add_function" title="qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.add_submodule" title="qcodes.instrument_drivers.Keysight.Infiniium.InfiniiumChannel.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -1584,12 +1632,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1725,7 +1773,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1930,8 +1978,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.add_parameter" title="qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.add_function" title="qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.add_submodule" title="qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Infiniium.Infiniium.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -2272,6 +2342,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.add_parameter" title="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.add_function" title="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.add_submodule" title="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.OutputChannel.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -2598,6 +2690,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.add_parameter" title="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.add_function" title="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.add_submodule" title="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.SyncChannel.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -2843,12 +2957,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -3015,7 +3129,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -3221,8 +3335,30 @@ hardware communication should instead override <code class="docutils literal not
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.add_parameter" title="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.add_function" title="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.add_submodule" title="qcodes.instrument_drivers.Keysight.KeysightAgilent_33XXX.WaveformGenerator_33XXX.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -3503,12 +3639,12 @@ is by a step of one.</p></li>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -3723,7 +3859,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -3950,8 +4086,30 @@ hardware communication should instead override <code class="docutils literal not
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.add_parameter" title="qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.add_function" title="qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.add_submodule" title="qcodes.instrument_drivers.Keysight.Keysight_34410A_submodules.Keysight_34410A.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -4232,12 +4390,12 @@ is by a step of one.</p></li>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -4452,7 +4610,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -4679,8 +4837,30 @@ hardware communication should instead override <code class="docutils literal not
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.add_parameter" title="qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.add_function" title="qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.add_submodule" title="qcodes.instrument_drivers.Keysight.Keysight_34460A_submodules.Keysight_34460A.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -4961,12 +5141,12 @@ is by a step of one.</p></li>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -5181,7 +5361,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -5408,8 +5588,30 @@ hardware communication should instead override <code class="docutils literal not
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.add_parameter" title="qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.add_function" title="qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.add_submodule" title="qcodes.instrument_drivers.Keysight.Keysight_34461A_submodules.Keysight_34461A.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -5690,12 +5892,12 @@ is by a step of one.</p></li>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -5910,7 +6112,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -6137,8 +6339,30 @@ hardware communication should instead override <code class="docutils literal not
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.add_parameter" title="qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.add_function" title="qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.add_submodule" title="qcodes.instrument_drivers.Keysight.Keysight_34465A_submodules.Keysight_34465A.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -6419,12 +6643,12 @@ is by a step of one.</p></li>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -6639,7 +6863,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -6866,8 +7090,30 @@ hardware communication should instead override <code class="docutils literal not
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.add_parameter" title="qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.add_function" title="qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.add_submodule" title="qcodes.instrument_drivers.Keysight.Keysight_34470A_submodules.Keysight_34470A.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -7205,6 +7451,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.add_parameter" title="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.add_function" title="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.add_submodule" title="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962AChannel.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -7466,12 +7734,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -7588,7 +7856,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -7793,8 +8061,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.add_parameter" title="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.add_function" title="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.add_submodule" title="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_B2962A.B2962A.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -8127,6 +8417,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.add_parameter" title="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.add_function" title="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.add_submodule" title="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705BChannel.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -8379,12 +8691,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -8501,7 +8813,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -8706,8 +9018,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.add_parameter" title="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.add_function" title="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.add_submodule" title="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.Keysight_N6705B.N6705B.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -8967,12 +9301,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N51x1.N51x1.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N51x1.N51x1.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -9089,7 +9423,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N51x1.N51x1.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -9294,8 +9628,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N51x1.N51x1.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.add_parameter" title="qcodes.instrument_drivers.Keysight.N51x1.N51x1.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N51x1.N51x1.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.add_function" title="qcodes.instrument_drivers.Keysight.N51x1.N51x1.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N51x1.N51x1.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.add_submodule" title="qcodes.instrument_drivers.Keysight.N51x1.N51x1.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N51x1.N51x1.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N51x1.N51x1.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -9546,12 +9902,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N5230C.N5230C.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N5230C.N5230C.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -9703,7 +10059,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N5230C.N5230C.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -9931,8 +10287,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N5230C.N5230C.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.add_parameter" title="qcodes.instrument_drivers.Keysight.N5230C.N5230C.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N5230C.N5230C.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.add_function" title="qcodes.instrument_drivers.Keysight.N5230C.N5230C.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N5230C.N5230C.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.add_submodule" title="qcodes.instrument_drivers.Keysight.N5230C.N5230C.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N5230C.N5230C.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5230C.N5230C.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -10183,12 +10561,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N5245A.N5245A.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N5245A.N5245A.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -10340,7 +10718,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N5245A.N5245A.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -10568,8 +10946,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N5245A.N5245A.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.add_parameter" title="qcodes.instrument_drivers.Keysight.N5245A.N5245A.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N5245A.N5245A.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.add_function" title="qcodes.instrument_drivers.Keysight.N5245A.N5245A.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N5245A.N5245A.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.add_submodule" title="qcodes.instrument_drivers.Keysight.N5245A.N5245A.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N5245A.N5245A.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N5245A.N5245A.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -11587,6 +11987,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAPort.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N52xx.PNAPort.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAPort.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAPort.add_parameter" title="qcodes.instrument_drivers.Keysight.N52xx.PNAPort.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N52xx.PNAPort.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAPort.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAPort.add_function" title="qcodes.instrument_drivers.Keysight.N52xx.PNAPort.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N52xx.PNAPort.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAPort.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAPort.add_submodule" title="qcodes.instrument_drivers.Keysight.N52xx.PNAPort.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -11921,6 +12343,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNATrace.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N52xx.PNATrace.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNATrace.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.PNATrace.add_parameter" title="qcodes.instrument_drivers.Keysight.N52xx.PNATrace.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N52xx.PNATrace.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNATrace.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.PNATrace.add_function" title="qcodes.instrument_drivers.Keysight.N52xx.PNATrace.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N52xx.PNATrace.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNATrace.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.PNATrace.add_submodule" title="qcodes.instrument_drivers.Keysight.N52xx.PNATrace.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -12212,12 +12656,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNABase.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNABase.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -12353,7 +12797,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNABase.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -12558,8 +13002,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N52xx.PNABase.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.add_parameter" title="qcodes.instrument_drivers.Keysight.N52xx.PNABase.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N52xx.PNABase.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.add_function" title="qcodes.instrument_drivers.Keysight.N52xx.PNABase.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N52xx.PNABase.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.add_submodule" title="qcodes.instrument_drivers.Keysight.N52xx.PNABase.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNABase.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNABase.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -12807,12 +13273,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -12964,7 +13430,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -13192,8 +13658,45 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.visabackend">
+<code class="sig-name descname">visabackend</code><em class="property">: <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.visabackend" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.visa_handle">
+<code class="sig-name descname">visa_handle</code><em class="property">: visa.resources.MessageBasedResource</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.visa_handle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.visalib">
+<code class="sig-name descname">visalib</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.visalib" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.add_parameter" title="qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.add_function" title="qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.add_submodule" title="qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.N52xx.PNAxBase.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -13706,6 +14209,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.add_parameter" title="qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.add_function" title="qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.add_submodule" title="qcodes.instrument_drivers.Keysight.keysight_34934a.Keysight34934A.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -14042,12 +14567,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -14183,7 +14708,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -14370,8 +14895,30 @@ parameters that are being check is printed.</p>
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.add_parameter" title="qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.add_function" title="qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.add_submodule" title="qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a.Keysight34980A.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -14710,6 +15257,28 @@ parameters that are being check is printed.</p>
 <dt id="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.write_raw">
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.add_parameter" title="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.add_function" title="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.add_submodule" title="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSubModule.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -15191,6 +15760,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.add_parameter" title="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.add_function" title="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.add_submodule" title="qcodes.instrument_drivers.Keysight.keysight_34980a_submodules.KeysightSwitchMatrixSubModule.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -15605,12 +16196,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -15746,7 +16337,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -15951,8 +16542,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.add_parameter" title="qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.add_function" title="qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.add_submodule" title="qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_b220x.KeysightB220X.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -16337,112 +16950,112 @@ If step is None stepping will not be used.</p>
 <a class="reference external" href="https://literature.cdn.keysight.com/litweb/pdf/E4980-90230.pdf?id=789356">https://literature.cdn.keysight.com/litweb/pdf/E4980-90230.pdf?id=789356</a></p>
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPD">
-<code class="sig-name descname">CPD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CPD at 139876842218640&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CPD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CPD at 140079799404432&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPD" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPQ">
-<code class="sig-name descname">CPQ</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CPQ at 139876842219536&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPQ" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CPQ</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CPQ at 140079814778192&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPQ" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPG">
-<code class="sig-name descname">CPG</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CPG at 139876842219984&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPG" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CPG</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CPG at 140079799405840&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPG" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPRP">
-<code class="sig-name descname">CPRP</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CPRP at 139876842220432&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPRP" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CPRP</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CPRP at 140079799406288&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CPRP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSD">
-<code class="sig-name descname">CSD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CSD at 139876842220880&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CSD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CSD at 140079798931664&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSD" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSQ">
-<code class="sig-name descname">CSQ</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CSQ at 139876842221328&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSQ" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CSQ</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CSQ at 140079798932112&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSQ" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSRS">
-<code class="sig-name descname">CSRS</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CSRS at 139876842258704&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSRS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CSRS</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: CSRS at 140079798932560&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.CSRS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPD">
-<code class="sig-name descname">LPD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LPD at 139876842259152&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LPD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LPD at 140079798933008&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPD" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPQ">
-<code class="sig-name descname">LPQ</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LPQ at 139876842259600&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPQ" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LPQ</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LPQ at 140079798933456&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPQ" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPG">
-<code class="sig-name descname">LPG</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LPG at 139876842260048&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPG" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LPG</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LPG at 140079798933904&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPG" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPRP">
-<code class="sig-name descname">LPRP</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LPRP at 139876842260496&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPRP" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LPRP</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LPRP at 140079798934352&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LPRP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSD">
-<code class="sig-name descname">LSD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LSD at 139876842260944&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LSD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LSD at 140079798934800&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSD" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSQ">
-<code class="sig-name descname">LSQ</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LSQ at 139876842261392&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSQ" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LSQ</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LSQ at 140079798935248&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSQ" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSRS">
-<code class="sig-name descname">LSRS</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LSRS at 139876842261840&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSRS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LSRS</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LSRS at 140079798952144&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSRS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSRD">
-<code class="sig-name descname">LSRD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LSRD at 139876842262288&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSRD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LSRD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: LSRD at 140079798952592&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.LSRD" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.RX">
-<code class="sig-name descname">RX</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: RX at 139876842279184&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.RX" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">RX</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: RX at 140079798953040&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.RX" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.ZTD">
-<code class="sig-name descname">ZTD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: ZTD at 139876842279632&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.ZTD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ZTD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: ZTD at 140079798953488&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.ZTD" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.ZTR">
-<code class="sig-name descname">ZTR</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: ZTR at 139876842280080&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.ZTR" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ZTR</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: ZTR at 140079798953936&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.ZTR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.GB">
-<code class="sig-name descname">GB</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: GB at 139876842280528&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.GB" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">GB</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: GB at 140079798954384&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.GB" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.YTD">
-<code class="sig-name descname">YTD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: YTD at 139876842280976&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.YTD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">YTD</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: YTD at 140079798954832&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.YTD" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.YTR">
-<code class="sig-name descname">YTR</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: YTR at 139876842281424&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.YTR" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">YTR</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: YTR at 140079798955280&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.YTR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.VDID">
-<code class="sig-name descname">VDID</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: VDID at 139876842281872&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.VDID" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">VDID</code><em class="property"> = &lt;qcodes.instrument_drivers.Keysight.keysight_e4980a.MeasurementPair: VDID at 140079798955728&gt;</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.E4980AMeasurements.VDID" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -16770,6 +17383,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.add_parameter" title="qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.add_function" title="qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.add_submodule" title="qcodes.instrument_drivers.Keysight.keysight_e4980a.Correction4980A.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -17028,12 +17663,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -17169,7 +17804,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -17374,8 +18009,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.add_parameter" title="qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.add_function" title="qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.add_submodule" title="qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysight_e4980a.KeysightE4980A.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -17417,16 +18074,10 @@ Questionable Status Event Register (No Query)</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qcodes.instrument_drivers.Keysight.keysightb1500.html" class="btn btn-neutral float-right" title="qcodes.instrument_drivers.Keysight.keysightb1500 package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qcodes.instrument_drivers.Harvard.html" class="btn btn-neutral float-left" title="qcodes.instrument_drivers.Harvard package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="qcodes.instrument_drivers.Keysight.keysightb1500.html" class="btn btn-neutral float-right" title="qcodes.instrument_drivers.Keysight.keysightb1500 package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qcodes.instrument_drivers.Harvard.html" class="btn btn-neutral float-left" title="qcodes.instrument_drivers.Harvard package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -17438,14 +18089,13 @@ Questionable Status Event Register (No Query)</p>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

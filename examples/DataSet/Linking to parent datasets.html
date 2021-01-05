@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Linking to parent datasets &mdash; QCoDeS 0.21.0 documentation</title>
   
@@ -16,7 +16,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -29,7 +32,6 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -56,7 +58,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> QCoDeS
+            <a href="../../index.html" class="icon icon-home"> QCoDeS
           
 
           
@@ -66,7 +68,7 @@
             
             
               <div class="version">
-                0.21.0+145.g7f39433b92
+                0.21.0+157.gc60463131e
               </div>
             
           
@@ -179,6 +181,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -192,7 +196,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/examples/DataSet/Linking to parent datasets.ipynb.txt" rel="nofollow"> View page source</a>
           
         
@@ -537,7 +541,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/210105-13983-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/210105-14073-qcodes.log
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -558,14 +562,14 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/210105-13983-qcodes.log
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Upgrading database; v0 -&gt; v1: : 0it [00:00, ?it/s]
-Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 397.26it/s]
+Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 433.56it/s]
 Upgrading database; v2 -&gt; v3: : 0it [00:00, ?it/s]
 Upgrading database; v3 -&gt; v4: : 0it [00:00, ?it/s]
-Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 446.01it/s]
+Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 867.31it/s]
 Upgrading database; v5 -&gt; v6: : 0it [00:00, ?it/s]
-Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 320.22it/s]
-Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 917.99it/s]
-Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 648.97it/s]
+Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 351.84it/s]
+Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 476.63it/s]
+Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 560.14it/s]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -574,7 +578,7 @@ Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-tutorial 2021-01-05 11:22:14.121211#no sample#1@/home/vsts/work/1/s/docs/examples/DataSet/linking_datasets_tutorial.db
+tutorial 2021-01-05 16:43:11.020092#no sample#1@/home/vsts/work/1/s/docs/examples/DataSet/linking_datasets_tutorial.db
 ----------------------------------------------------------------------------------------------------------------------
 </pre></div></div>
 </div>
@@ -679,7 +683,7 @@ Starting experimental run with id: 1.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;qcodes.dataset.measurements.Measurement at 0x7fc067ac9210&gt;
+&lt;qcodes.dataset.measurements.Measurement at 0x7f0637efd110&gt;
 </pre></div></div>
 </div>
 <p>As we now run the measurement, the parent datasets become available via the datasaver. The datasets appear in the order they were registered.</p>
@@ -752,7 +756,7 @@ Starting experimental run with id: 2.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x7fc06790d650&gt;
+&lt;matplotlib.legend.Legend at 0x7f0637e856d0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -780,16 +784,10 @@ Starting experimental run with id: 2.
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="Measuring%20X%20as%20a%20function%20of%20time.html" class="btn btn-neutral float-right" title="Measuring X as a function of time" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="Extracting-runs-from-one-DB-file-to-another.html" class="btn btn-neutral float-left" title="Extracting runs from one DB file to another" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="Measuring%20X%20as%20a%20function%20of%20time.html" class="btn btn-neutral float-right" title="Measuring X as a function of time" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Extracting-runs-from-one-DB-file-to-another.html" class="btn btn-neutral float-left" title="Extracting runs from one DB file to another" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -801,14 +799,13 @@ Starting experimental run with id: 2.
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

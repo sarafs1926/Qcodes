@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Offline Plotting Tutorial &mdash; QCoDeS 0.21.0 documentation</title>
   
@@ -16,7 +16,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -29,7 +32,6 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -56,7 +58,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> QCoDeS
+            <a href="../../index.html" class="icon icon-home"> QCoDeS
           
 
           
@@ -66,7 +68,7 @@
             
             
               <div class="version">
-                0.21.0+145.g7f39433b92
+                0.21.0+157.gc60463131e
               </div>
             
           
@@ -185,6 +187,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -198,7 +202,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/examples/DataSet/Offline Plotting Tutorial.ipynb.txt" rel="nofollow"> View page source</a>
           
         
@@ -542,7 +546,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/210105-14149-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/210105-14236-qcodes.log
 </pre></div></div>
 </div>
 <p>Let us first initialise our database and create an experiment which shall produce the data to be visualise.</p>
@@ -1025,7 +1029,7 @@ Starting experimental run with id: 14.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-01-05 11:22:24,948 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/dataset/data_export.py:172: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray
+2021-01-05 16:43:22,401 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/dataset/data_export.py:172: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray
   return np.array(rows)
 
 </pre></div></div>
@@ -1204,8 +1208,8 @@ Starting experimental run with id: 17.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CPU times: user 1.03 s, sys: 15.6 ms, total: 1.05 s
-Wall time: 1.05 s
+CPU times: user 982 ms, sys: 23.9 ms, total: 1.01 s
+Wall time: 1 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1231,8 +1235,8 @@ Wall time: 1.05 s
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CPU times: user 7 s, sys: 22.4 ms, total: 7.02 s
-Wall time: 7.02 s
+CPU times: user 7.99 s, sys: 59.2 ms, total: 8.04 s
+Wall time: 8.04 s
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1250,16 +1254,10 @@ Wall time: 7.02 s
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="Offline%20plotting%20with%20categorical%20data.html" class="btn btn-neutral float-right" title="Offline plotting with categorical data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="Measuring%20X%20as%20a%20function%20of%20time.html" class="btn btn-neutral float-left" title="Measuring X as a function of time" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="Offline%20plotting%20with%20categorical%20data.html" class="btn btn-neutral float-right" title="Offline plotting with categorical data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Measuring%20X%20as%20a%20function%20of%20time.html" class="btn btn-neutral float-left" title="Measuring X as a function of time" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -1271,14 +1269,13 @@ Wall time: 7.02 s
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

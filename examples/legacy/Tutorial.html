@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>QCoDeS tutorial &mdash; QCoDeS 0.21.0 documentation</title>
   
@@ -16,7 +16,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -29,7 +32,6 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -55,7 +57,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> QCoDeS
+            <a href="../../index.html" class="icon icon-home"> QCoDeS
           
 
           
@@ -65,7 +67,7 @@
             
             
               <div class="version">
-                0.21.0+145.g7f39433b92
+                0.21.0+157.gc60463131e
               </div>
             
           
@@ -167,6 +169,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -180,7 +184,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/examples/legacy/Tutorial.ipynb.txt" rel="nofollow"> View page source</a>
           
         
@@ -547,7 +551,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/210105-25895-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/210105-25973-qcodes.log
 </pre></div></div>
 </div>
 </div>
@@ -760,13 +764,13 @@ specialized <code class="docutils literal notranslate"><span class="pre">Task</s
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Started at 2021-01-05 11:28:04
+Started at 2021-01-05 16:49:02
 DataSet:
-   location = &#39;data/2021-01-05/#012_testsweep_11-28-02&#39;
+   location = &#39;data/2021-01-05/#012_testsweep_16-49-00&#39;
    &lt;Type&gt;   | &lt;array_id&gt;  | &lt;array.name&gt; | &lt;array.shape&gt;
    Setpoint | dac_ch1_set | ch1          | (201,)
    Measured | dmm_voltage | voltage      | (201,)
-Finished at 2021-01-05 11:28:14
+Finished at 2021-01-05 16:49:11
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -821,53 +825,53 @@ Finished at 2021-01-05 11:28:14
     &#39;model&#39;: &#39;dac&#39;,
     &#39;serial&#39;: None,
     &#39;firmware&#39;: None},
-   &#39;ts&#39;: &#39;2021-01-05 11:28:01&#39;,
-   &#39;instrument&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrument&#39;,
-   &#39;instrument_name&#39;: &#39;dac&#39;,
-   &#39;name&#39;: &#39;IDN&#39;,
+   &#39;ts&#39;: &#39;2021-01-05 16:48:59&#39;,
    &#39;inter_delay&#39;: 0,
-   &#39;vals&#39;: &#39;&lt;Anything&gt;&#39;,
+   &#39;name&#39;: &#39;IDN&#39;,
+   &#39;unit&#39;: &#39;&#39;,
    &#39;label&#39;: &#39;IDN&#39;,
+   &#39;vals&#39;: &#39;&lt;Anything&gt;&#39;,
    &#39;post_delay&#39;: 0,
-   &#39;unit&#39;: &#39;&#39;},
+   &#39;instrument&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrument&#39;,
+   &#39;instrument_name&#39;: &#39;dac&#39;},
   &#39;ch1&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
    &#39;full_name&#39;: &#39;dac_ch1&#39;,
    &#39;value&#39;: 20.0,
    &#39;raw_value&#39;: 20.0,
-   &#39;ts&#39;: &#39;2021-01-05 11:28:13&#39;,
-   &#39;instrument&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrument&#39;,
-   &#39;instrument_name&#39;: &#39;dac&#39;,
-   &#39;name&#39;: &#39;ch1&#39;,
+   &#39;ts&#39;: &#39;2021-01-05 16:49:11&#39;,
    &#39;inter_delay&#39;: 0,
-   &#39;vals&#39;: &#39;&lt;Numbers -800&lt;=v&lt;=400&gt;&#39;,
+   &#39;name&#39;: &#39;ch1&#39;,
+   &#39;unit&#39;: &#39;V&#39;,
    &#39;label&#39;: &#39;Gate ch1&#39;,
+   &#39;vals&#39;: &#39;&lt;Numbers -800&lt;=v&lt;=400&gt;&#39;,
    &#39;post_delay&#39;: 0,
-   &#39;unit&#39;: &#39;V&#39;},
+   &#39;instrument&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrument&#39;,
+   &#39;instrument_name&#39;: &#39;dac&#39;},
   &#39;ch2&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
    &#39;full_name&#39;: &#39;dac_ch2&#39;,
    &#39;value&#39;: 0,
    &#39;raw_value&#39;: 0,
-   &#39;ts&#39;: &#39;2021-01-05 11:28:01&#39;,
-   &#39;instrument&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrument&#39;,
-   &#39;instrument_name&#39;: &#39;dac&#39;,
-   &#39;name&#39;: &#39;ch2&#39;,
+   &#39;ts&#39;: &#39;2021-01-05 16:48:59&#39;,
    &#39;inter_delay&#39;: 0,
-   &#39;vals&#39;: &#39;&lt;Numbers -800&lt;=v&lt;=400&gt;&#39;,
+   &#39;name&#39;: &#39;ch2&#39;,
+   &#39;unit&#39;: &#39;V&#39;,
    &#39;label&#39;: &#39;Gate ch2&#39;,
+   &#39;vals&#39;: &#39;&lt;Numbers -800&lt;=v&lt;=400&gt;&#39;,
    &#39;post_delay&#39;: 0,
-   &#39;unit&#39;: &#39;V&#39;},
+   &#39;instrument&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrument&#39;,
+   &#39;instrument_name&#39;: &#39;dac&#39;},
   &#39;verbose_channel&#39;: {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.Parameter&#39;,
    &#39;full_name&#39;: &#39;dac_verbose_channel&#39;,
    &#39;value&#39;: 5,
    &#39;raw_value&#39;: 5,
-   &#39;ts&#39;: &#39;2021-01-05 11:28:02&#39;,
-   &#39;instrument&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrument&#39;,
-   &#39;instrument_name&#39;: &#39;dac&#39;,
-   &#39;name&#39;: &#39;verbose_channel&#39;,
+   &#39;ts&#39;: &#39;2021-01-05 16:49:00&#39;,
    &#39;inter_delay&#39;: 0,
+   &#39;name&#39;: &#39;verbose_channel&#39;,
+   &#39;unit&#39;: &#39;V&#39;,
    &#39;label&#39;: &#39;Verbose Channel&#39;,
    &#39;post_delay&#39;: 0,
-   &#39;unit&#39;: &#39;V&#39;}},
+   &#39;instrument&#39;: &#39;qcodes.tests.instrument_mocks.DummyInstrument&#39;,
+   &#39;instrument_name&#39;: &#39;dac&#39;}},
  &#39;name&#39;: &#39;dac&#39;}
 </pre></div></div>
 </div>
@@ -953,14 +957,14 @@ verbose_channel :       5 (V)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Started at 2021-01-05 11:28:16
+Started at 2021-01-05 16:49:13
 DataSet:
-   location = &#39;data/2021-01-05/#013_2D_test_11-28-14&#39;
+   location = &#39;data/2021-01-05/#013_2D_test_16-49-12&#39;
    &lt;Type&gt;   | &lt;array_id&gt;  | &lt;array.name&gt; | &lt;array.shape&gt;
    Setpoint | dac_ch1_set | ch1          | (6,)
    Setpoint | dac_ch2_set | ch2          | (6, 6)
    Measured | dmm_voltage | voltage      | (6, 6)
-Finished at 2021-01-05 11:28:20
+Finished at 2021-01-05 16:49:18
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -988,14 +992,9 @@ Finished at 2021-01-05 11:28:20
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-      
-        <a href="The%20Snapshot.html" class="btn btn-neutral float-left" title="The Snapshot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="The%20Snapshot.html" class="btn btn-neutral float-left" title="The Snapshot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -1007,14 +1006,13 @@ Finished at 2021-01-05 11:28:20
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

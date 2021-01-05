@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>qcodes.instrument_drivers.Minicircuits package &mdash; QCoDeS 0.21.0 documentation</title>
   
@@ -16,7 +16,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -29,7 +32,6 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -56,7 +58,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> QCoDeS
+            <a href="../../index.html" class="icon icon-home"> QCoDeS
           
 
           
@@ -66,7 +68,7 @@
             
             
               <div class="version">
-                0.21.0+145.g7f39433b92
+                0.21.0+157.gc60463131e
               </div>
             
           
@@ -185,6 +187,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -198,7 +202,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/api/generated/qcodes.instrument_drivers.Minicircuits.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -574,6 +578,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.add_parameter" title="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.add_function" title="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.add_submodule" title="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SwitchChannelBase.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -807,12 +833,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -942,7 +968,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1125,8 +1151,30 @@ override <code class="docutils literal notranslate"><span class="pre">write</spa
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.add_parameter" title="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.add_function" title="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.add_submodule" title="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.Base_SPDT.SPDT_Base.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1465,6 +1513,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.add_parameter" title="qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.add_function" title="qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.add_submodule" title="qcodes.instrument_drivers.Minicircuits.RC_SP4T.MC_channel.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -1705,12 +1775,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1826,7 +1896,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -2055,8 +2125,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.add_parameter" title="qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.add_function" title="qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.add_submodule" title="qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SP4T.RC_SP4T.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -2395,6 +2487,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.add_parameter" title="qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.add_function" title="qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.add_submodule" title="qcodes.instrument_drivers.Minicircuits.RC_SPDT.MC_channel.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -2635,12 +2749,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -2756,7 +2870,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -2985,8 +3099,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.add_parameter" title="qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.add_function" title="qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.add_submodule" title="qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RC_SPDT.RC_SPDT.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -3229,12 +3365,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -3345,7 +3481,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -3528,8 +3664,30 @@ override <code class="docutils literal notranslate"><span class="pre">write</spa
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.add_parameter" title="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.add_function" title="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.add_submodule" title="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -3758,12 +3916,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -3900,7 +4058,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -4083,8 +4241,30 @@ Subclasses must implement <cite>_pack_string</cite> method.</p>
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.add_parameter" title="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.add_function" title="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.add_submodule" title="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90.RUDAT_13G_90_USB.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -4349,12 +4529,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -4484,7 +4664,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -4653,8 +4833,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.add_parameter" title="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.add_function" title="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.add_submodule" title="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.USBHIDMixin.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -4889,12 +5091,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -5031,7 +5233,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -5224,8 +5426,30 @@ Subclasses must implement <cite>_pack_string</cite> method.</p>
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.add_parameter" title="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.add_function" title="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.add_submodule" title="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USBHIDMixin.MiniCircuitsHIDMixin.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -5564,6 +5788,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.add_parameter" title="qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.add_function" title="qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.add_submodule" title="qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -5585,7 +5831,7 @@ parameters that are being check is printed.</p>
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.CHANNEL_CLASS">
 <code class="sig-name descname">CHANNEL_CLASS</code><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.CHANNEL_CLASS" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB" title="qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SwitchChannelUSB</span></code></a></p>
+<dd><p>alias of <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB" title="qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument_drivers.Minicircuits.USB_SPDT.SwitchChannelUSB</span></code></a></p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -5829,12 +6075,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -5950,7 +6196,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -6133,8 +6379,30 @@ override <code class="docutils literal notranslate"><span class="pre">write</spa
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.add_parameter" title="qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.add_function" title="qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.add_submodule" title="qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.Minicircuits.USB_SPDT.USB_SPDT.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -6150,16 +6418,10 @@ override <code class="docutils literal notranslate"><span class="pre">write</spa
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qcodes.instrument_drivers.QDev.html" class="btn btn-neutral float-right" title="qcodes.instrument_drivers.QDev package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qcodes.instrument_drivers.Lakeshore.html" class="btn btn-neutral float-left" title="qcodes.instrument_drivers.Lakeshore package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="qcodes.instrument_drivers.QDev.html" class="btn btn-neutral float-right" title="qcodes.instrument_drivers.QDev package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qcodes.instrument_drivers.Lakeshore.html" class="btn btn-neutral float-left" title="qcodes.instrument_drivers.Lakeshore package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -6171,14 +6433,13 @@ override <code class="docutils literal notranslate"><span class="pre">write</spa
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

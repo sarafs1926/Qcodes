@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>qcodes.instrument_drivers.tektronix package &mdash; QCoDeS 0.21.0 documentation</title>
   
@@ -16,7 +16,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -29,7 +32,6 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -56,7 +58,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> QCoDeS
+            <a href="../../index.html" class="icon icon-home"> QCoDeS
           
 
           
@@ -66,7 +68,7 @@
             
             
               <div class="version">
-                0.21.0+145.g7f39433b92
+                0.21.0+157.gc60463131e
               </div>
             
           
@@ -194,6 +196,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -207,7 +211,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/api/generated/qcodes.instrument_drivers.tektronix.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -1256,12 +1260,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1397,7 +1401,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1602,8 +1606,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.add_parameter" title="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.add_function" title="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.add_submodule" title="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5014.Tektronix_AWG5014.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1864,12 +1890,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -2159,7 +2185,7 @@ sequence list. Used for loading the sequence.</p></li>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -2442,8 +2468,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.add_parameter" title="qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.add_function" title="qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.add_submodule" title="qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG5208.AWG5208.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -2454,7 +2502,7 @@ hardware communication should instead override <code class="docutils literal not
 <dl class="py class">
 <dt id="qcodes.instrument_drivers.tektronix.AWG70000A.SRValidator">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.tektronix.AWG70000A.</code><code class="sig-name descname">SRValidator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">awg</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A" title="qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A">qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/tektronix/AWG70000A.html#SRValidator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70000A.SRValidator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Validator" title="qcodes.utils.validators.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.utils.validators.Validator</span></code></a>[<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
 <p>Validator to validate the AWG clock sample rate</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2836,6 +2884,28 @@ parameters that are being check is printed.</p>
 <dt id="qcodes.instrument_drivers.tektronix.AWG70000A.AWGChannel.write_raw">
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWGChannel.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG70000A.AWGChannel.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWGChannel.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWGChannel.add_parameter" title="qcodes.instrument_drivers.tektronix.AWG70000A.AWGChannel.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG70000A.AWGChannel.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWGChannel.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWGChannel.add_function" title="qcodes.instrument_drivers.tektronix.AWG70000A.AWGChannel.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG70000A.AWGChannel.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWGChannel.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWGChannel.add_submodule" title="qcodes.instrument_drivers.tektronix.AWG70000A.AWGChannel.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -3250,12 +3320,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -3419,7 +3489,7 @@ sequence list. Used for loading the sequence.</p></li>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -3624,8 +3694,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.add_parameter" title="qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.add_function" title="qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.add_submodule" title="qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70000A.AWG70000A.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -3936,12 +4028,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -4231,7 +4323,7 @@ sequence list. Used for loading the sequence.</p></li>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -4514,8 +4606,45 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.visabackend">
+<code class="sig-name descname">visabackend</code><em class="property">: <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.visabackend" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.visa_handle">
+<code class="sig-name descname">visa_handle</code><em class="property">: visa.resources.MessageBasedResource</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.visa_handle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.visalib">
+<code class="sig-name descname">visalib</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.visalib" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.add_parameter" title="qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.add_function" title="qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.add_submodule" title="qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.AWG70002A.AWG70002A.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -4808,12 +4937,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -4949,7 +5078,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -5154,8 +5283,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.add_parameter" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.add_function" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.add_submodule" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPO7000xx.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -5484,6 +5635,28 @@ parameters that are being check is printed.</p>
 <dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOData.write_raw">
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOData.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOData.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOData.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOData.add_parameter" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOData.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOData.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOData.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOData.add_function" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOData.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOData.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOData.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOData.add_submodule" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOData.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -5816,6 +5989,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOWaveform.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOWaveform.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOWaveform.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOWaveform.add_parameter" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOWaveform.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOWaveform.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOWaveform.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOWaveform.add_function" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOWaveform.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOWaveform.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOWaveform.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOWaveform.add_submodule" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOWaveform.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -6145,6 +6340,28 @@ parameters that are being check is printed.</p>
 <dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOWaveformFormat.write_raw">
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOWaveformFormat.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOWaveformFormat.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOWaveformFormat.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOWaveformFormat.add_parameter" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOWaveformFormat.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOWaveformFormat.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOWaveformFormat.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOWaveformFormat.add_function" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOWaveformFormat.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOWaveformFormat.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOWaveformFormat.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOWaveformFormat.add_submodule" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOWaveformFormat.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -6495,6 +6712,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOChannel.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOChannel.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOChannel.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOChannel.add_parameter" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOChannel.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOChannel.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOChannel.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOChannel.add_function" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOChannel.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOChannel.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOChannel.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOChannel.add_submodule" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOChannel.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -6819,6 +7058,28 @@ parameters that are being check is printed.</p>
 <dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOHorizontal.write_raw">
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOHorizontal.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOHorizontal.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOHorizontal.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOHorizontal.add_parameter" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOHorizontal.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOHorizontal.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOHorizontal.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOHorizontal.add_function" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOHorizontal.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOHorizontal.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOHorizontal.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOHorizontal.add_submodule" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOHorizontal.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -7155,6 +7416,28 @@ parameters that are being check is printed.</p>
 <dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOTrigger.write_raw">
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOTrigger.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOTrigger.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOTrigger.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOTrigger.add_parameter" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOTrigger.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOTrigger.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOTrigger.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOTrigger.add_function" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOTrigger.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOTrigger.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOTrigger.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOTrigger.add_submodule" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TekronixDPOTrigger.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -7560,6 +7843,18 @@ iterated over.</p>
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurementParameter.label">
+<code class="sig-name descname">label</code><em class="property">: <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurementParameter.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label of the data used for plots etc.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurementParameter.unit">
+<code class="sig-name descname">unit</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurementParameter.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit of measure. Use <code class="docutils literal notranslate"><span class="pre">''</span></code> for unitless.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -7902,6 +8197,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurement.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurement.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurement.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurement.add_parameter" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurement.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurement.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurement.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurement.add_function" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurement.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurement.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurement.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurement.add_submodule" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurement.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -8231,6 +8548,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurementStatistics.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurementStatistics.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurementStatistics.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurementStatistics.add_parameter" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurementStatistics.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurementStatistics.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurementStatistics.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurementStatistics.add_function" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurementStatistics.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurementStatistics.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurementStatistics.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurementStatistics.add_submodule" title="qcodes.instrument_drivers.tektronix.DPO7200xx.TektronixDPOMeasurementStatistics.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -8484,12 +8823,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -8625,7 +8964,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -8830,8 +9169,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.add_parameter" title="qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.add_function" title="qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.add_submodule" title="qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2000.Keithley_2000.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -9083,12 +9444,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -9224,7 +9585,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -9429,8 +9790,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.add_parameter" title="qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.add_function" title="qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.add_submodule" title="qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2400.Keithley_2400.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -9841,6 +10224,18 @@ both the setpoints and the actual parameters have validators
 of type Arrays with a defined shape.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.ParameterWithSetpointsCustomized.label">
+<code class="sig-name descname">label</code><em class="property">: <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.ParameterWithSetpointsCustomized.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label of the data used for plots etc.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.ParameterWithSetpointsCustomized.unit">
+<code class="sig-name descname">unit</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.ParameterWithSetpointsCustomized.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit of measure. Use <code class="docutils literal notranslate"><span class="pre">''</span></code> for unitless.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -10239,6 +10634,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Buffer2450.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.Buffer2450.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Buffer2450.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Buffer2450.add_parameter" title="qcodes.instrument_drivers.tektronix.Keithley_2450.Buffer2450.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.Buffer2450.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Buffer2450.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Buffer2450.add_function" title="qcodes.instrument_drivers.tektronix.Keithley_2450.Buffer2450.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.Buffer2450.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Buffer2450.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Buffer2450.add_submodule" title="qcodes.instrument_drivers.tektronix.Keithley_2450.Buffer2450.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -10595,6 +11012,28 @@ parameters that are being check is printed.</p>
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.Sense2450.write_raw">
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Sense2450.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.Sense2450.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Sense2450.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Sense2450.add_parameter" title="qcodes.instrument_drivers.tektronix.Keithley_2450.Sense2450.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.Sense2450.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Sense2450.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Sense2450.add_function" title="qcodes.instrument_drivers.tektronix.Keithley_2450.Sense2450.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.Sense2450.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Sense2450.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Sense2450.add_submodule" title="qcodes.instrument_drivers.tektronix.Keithley_2450.Sense2450.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -10962,6 +11401,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Source2450.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.Source2450.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Source2450.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Source2450.add_parameter" title="qcodes.instrument_drivers.tektronix.Keithley_2450.Source2450.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.Source2450.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Source2450.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Source2450.add_function" title="qcodes.instrument_drivers.tektronix.Keithley_2450.Source2450.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.Source2450.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Source2450.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Source2450.add_submodule" title="qcodes.instrument_drivers.tektronix.Keithley_2450.Source2450.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -11266,12 +11727,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -11407,7 +11868,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -11612,8 +12073,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.add_parameter" title="qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.add_function" title="qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.add_submodule" title="qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2450.Keithley2450.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -12367,6 +12850,18 @@ both the setpoints and the actual parameters have validators
 of type Arrays with a defined shape.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.TimeTrace.label">
+<code class="sig-name descname">label</code><em class="property">: <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.TimeTrace.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label of the data used for plots etc.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.TimeTrace.unit">
+<code class="sig-name descname">unit</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.TimeTrace.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit of measure. Use <code class="docutils literal notranslate"><span class="pre">''</span></code> for unitless.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -12747,6 +13242,18 @@ iterated over.</p>
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.TimeAxis.label">
+<code class="sig-name descname">label</code><em class="property">: <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.TimeAxis.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label of the data used for plots etc.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.TimeAxis.unit">
+<code class="sig-name descname">unit</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.TimeAxis.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit of measure. Use <code class="docutils literal notranslate"><span class="pre">''</span></code> for unitless.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -13109,6 +13616,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.KeithleyChannel.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.KeithleyChannel.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.KeithleyChannel.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.KeithleyChannel.add_parameter" title="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.KeithleyChannel.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.KeithleyChannel.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.KeithleyChannel.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.KeithleyChannel.add_function" title="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.KeithleyChannel.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.KeithleyChannel.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.KeithleyChannel.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.KeithleyChannel.add_submodule" title="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.KeithleyChannel.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -13383,12 +13912,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -13505,7 +14034,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -13710,8 +14239,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.add_parameter" title="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.add_function" title="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.add_submodule" title="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_2600_channels.Keithley_2600.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -14329,12 +14880,12 @@ closed.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -14451,7 +15002,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -14656,8 +15207,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.add_parameter" title="qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.add_function" title="qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.add_submodule" title="qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_3706A.Keithley_3706A.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -14935,12 +15508,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -15076,7 +15649,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -15281,8 +15854,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.add_parameter" title="qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.add_function" title="qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.add_submodule" title="qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_6500.Keithley_6500.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -15733,6 +16328,18 @@ iterated over.</p>
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_s46.S46Parameter.label">
+<code class="sig-name descname">label</code><em class="property">: <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_s46.S46Parameter.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label of the data used for plots etc.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_s46.S46Parameter.unit">
+<code class="sig-name descname">unit</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_s46.S46Parameter.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit of measure. Use <code class="docutils literal notranslate"><span class="pre">''</span></code> for unitless.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -15998,12 +16605,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_s46.S46.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_s46.S46.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_s46.S46.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_s46.S46.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_s46.S46.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_s46.S46.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -16139,7 +16746,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_s46.S46.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_s46.S46.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_s46.S46.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -16344,8 +16951,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_s46.S46.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_s46.S46.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_s46.S46.add_parameter" title="qcodes.instrument_drivers.tektronix.Keithley_s46.S46.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_s46.S46.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_s46.S46.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_s46.S46.add_function" title="qcodes.instrument_drivers.tektronix.Keithley_s46.S46.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.Keithley_s46.S46.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_s46.S46.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.Keithley_s46.S46.add_submodule" title="qcodes.instrument_drivers.tektronix.Keithley_s46.S46.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.Keithley_s46.S46.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_s46.S46.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.Keithley_s46.S46.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -17181,6 +17810,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012Channel.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.TPS2012.TPS2012Channel.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012Channel.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012Channel.add_parameter" title="qcodes.instrument_drivers.tektronix.TPS2012.TPS2012Channel.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.TPS2012.TPS2012Channel.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012Channel.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012Channel.add_function" title="qcodes.instrument_drivers.tektronix.TPS2012.TPS2012Channel.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.TPS2012.TPS2012Channel.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012Channel.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012Channel.add_submodule" title="qcodes.instrument_drivers.tektronix.TPS2012.TPS2012Channel.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -17439,12 +18090,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -17580,7 +18231,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -17785,8 +18436,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.add_parameter" title="qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.add_function" title="qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.add_submodule" title="qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.TPS2012.TPS2012.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -18521,6 +19194,18 @@ iterated over.</p>
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.keithley_7510.GeneratedSetPoints.label">
+<code class="sig-name descname">label</code><em class="property">: <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.GeneratedSetPoints.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label of the data used for plots etc.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.keithley_7510.GeneratedSetPoints.unit">
+<code class="sig-name descname">unit</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.GeneratedSetPoints.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unit of measure. Use <code class="docutils literal notranslate"><span class="pre">''</span></code> for unitless.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -18905,6 +19590,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Buffer7510.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.keithley_7510.Buffer7510.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Buffer7510.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Buffer7510.add_parameter" title="qcodes.instrument_drivers.tektronix.keithley_7510.Buffer7510.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.keithley_7510.Buffer7510.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Buffer7510.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Buffer7510.add_function" title="qcodes.instrument_drivers.tektronix.keithley_7510.Buffer7510.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.keithley_7510.Buffer7510.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Buffer7510.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Buffer7510.add_submodule" title="qcodes.instrument_drivers.tektronix.keithley_7510.Buffer7510.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -19262,6 +19969,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Sense7510.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.keithley_7510.Sense7510.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Sense7510.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Sense7510.add_parameter" title="qcodes.instrument_drivers.tektronix.keithley_7510.Sense7510.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.keithley_7510.Sense7510.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Sense7510.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Sense7510.add_function" title="qcodes.instrument_drivers.tektronix.keithley_7510.Sense7510.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.keithley_7510.Sense7510.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Sense7510.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Sense7510.add_submodule" title="qcodes.instrument_drivers.tektronix.keithley_7510.Sense7510.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -19592,6 +20321,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.DigitizeSense7510.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.keithley_7510.DigitizeSense7510.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.DigitizeSense7510.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.keithley_7510.DigitizeSense7510.add_parameter" title="qcodes.instrument_drivers.tektronix.keithley_7510.DigitizeSense7510.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.keithley_7510.DigitizeSense7510.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.DigitizeSense7510.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.keithley_7510.DigitizeSense7510.add_function" title="qcodes.instrument_drivers.tektronix.keithley_7510.DigitizeSense7510.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.keithley_7510.DigitizeSense7510.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.DigitizeSense7510.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.keithley_7510.DigitizeSense7510.add_submodule" title="qcodes.instrument_drivers.tektronix.keithley_7510.DigitizeSense7510.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -19882,12 +20633,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -20023,7 +20774,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -20228,8 +20979,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.add_parameter" title="qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.add_function" title="qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.add_submodule" title="qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.tektronix.keithley_7510.Keithley7510.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -20245,16 +21018,10 @@ hardware communication should instead override <code class="docutils literal not
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qcodes.instrument_drivers.weinschel.html" class="btn btn-neutral float-right" title="qcodes.instrument_drivers.weinschel package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qcodes.instrument_drivers.stanford_research.html" class="btn btn-neutral float-left" title="qcodes.instrument_drivers.stanford_research package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="qcodes.instrument_drivers.weinschel.html" class="btn btn-neutral float-right" title="qcodes.instrument_drivers.weinschel package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qcodes.instrument_drivers.stanford_research.html" class="btn btn-neutral float-left" title="qcodes.instrument_drivers.stanford_research package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -20266,14 +21033,13 @@ hardware communication should instead override <code class="docutils literal not
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

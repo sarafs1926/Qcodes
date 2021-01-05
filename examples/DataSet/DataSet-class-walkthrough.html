@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>DataSet class walkthrough &mdash; QCoDeS 0.21.0 documentation</title>
   
@@ -16,7 +16,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -29,7 +32,6 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -56,7 +58,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> QCoDeS
+            <a href="../../index.html" class="icon icon-home"> QCoDeS
           
 
           
@@ -66,7 +68,7 @@
             
             
               <div class="version">
-                0.21.0+145.g7f39433b92
+                0.21.0+157.gc60463131e
               </div>
             
           
@@ -186,6 +188,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -199,7 +203,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/examples/DataSet/DataSet-class-walkthrough.ipynb.txt" rel="nofollow"> View page source</a>
           
         
@@ -573,7 +577,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/210105-13123-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/210105-13214-qcodes.log
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -697,8 +701,8 @@ Starting experimental run with id: 2.
 <div class="highlight"><pre>
 ([&lt;AxesSubplot:title={&#39;center&#39;:&#39;Run #2, Experiment greco (draco)&#39;}, xlabel=&#39;Voltage (V)&#39;, ylabel=&#39;Time (ks)&#39;&gt;,
   &lt;AxesSubplot:title={&#39;center&#39;:&#39;Run #2, Experiment greco (draco)&#39;}, xlabel=&#39;Voltage (V)&#39;, ylabel=&#39;Time (ks)&#39;&gt;],
- [&lt;matplotlib.colorbar.Colorbar at 0x7ff73d8a2510&gt;,
-  &lt;matplotlib.colorbar.Colorbar at 0x7ff73d809d50&gt;])
+ [&lt;matplotlib.colorbar.Colorbar at 0x7f857e8d4450&gt;,
+  &lt;matplotlib.colorbar.Colorbar at 0x7f857e7ef6d0&gt;])
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -742,7 +746,7 @@ Starting experimental run with id: 2.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&#39;aaaaaaaa-0000-0000-0000-0176d24715e8&#39;
+&#39;aaaaaaaa-0000-0000-0000-0176d36d191e&#39;
 </pre></div></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">guid</span></code> is generated when a dataset is created, and is globally unique.</p>
@@ -978,7 +982,7 @@ Starting experimental run with id: 2.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-1609845642.7411733
+1609864911.1479871
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -996,7 +1000,7 @@ Starting experimental run with id: 2.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&#39;2021-01-05 11:20:42&#39;
+&#39;2021-01-05 16:41:51&#39;
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1014,7 +1018,7 @@ Starting experimental run with id: 2.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-1609845643.850831
+1609864912.275854
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1032,7 +1036,7 @@ Starting experimental run with id: 2.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&#39;2021-01-05 11:20:43&#39;
+&#39;2021-01-05 16:41:52&#39;
 </pre></div></div>
 </div>
 </div>
@@ -1059,12 +1063,12 @@ Starting experimental run with id: 2.
     &#39;full_name&#39;: &#39;force_side&#39;,
     &#39;value&#39;: &#39;dark&#39;,
     &#39;raw_value&#39;: &#39;dark&#39;,
-    &#39;ts&#39;: &#39;2021-01-05 11:20:42&#39;,
+    &#39;ts&#39;: &#39;2021-01-05 16:41:51&#39;,
     &#39;label&#39;: &#39;Side of the Force&#39;,
-    &#39;unit&#39;: &#39;&#39;,
+    &#39;inter_delay&#39;: 0,
     &#39;name&#39;: &#39;force_side&#39;,
     &#39;post_delay&#39;: 0,
-    &#39;inter_delay&#39;: 0}},
+    &#39;unit&#39;: &#39;&#39;}},
   &#39;components&#39;: {},
   &#39;config&#39;: None}}
 </pre></div></div>
@@ -1085,7 +1089,7 @@ Starting experimental run with id: 2.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&#39;{&#34;station&#34;: {&#34;instruments&#34;: {}, &#34;parameters&#34;: {&#34;force_side&#34;: {&#34;__class__&#34;: &#34;qcodes.instrument.parameter.Parameter&#34;, &#34;full_name&#34;: &#34;force_side&#34;, &#34;value&#34;: &#34;dark&#34;, &#34;raw_value&#34;: &#34;dark&#34;, &#34;ts&#34;: &#34;2021-01-05 11:20:42&#34;, &#34;label&#34;: &#34;Side of the Force&#34;, &#34;unit&#34;: &#34;&#34;, &#34;name&#34;: &#34;force_side&#34;, &#34;post_delay&#34;: 0, &#34;inter_delay&#34;: 0}}, &#34;components&#34;: {}, &#34;config&#34;: null}}&#39;
+&#39;{&#34;station&#34;: {&#34;instruments&#34;: {}, &#34;parameters&#34;: {&#34;force_side&#34;: {&#34;__class__&#34;: &#34;qcodes.instrument.parameter.Parameter&#34;, &#34;full_name&#34;: &#34;force_side&#34;, &#34;value&#34;: &#34;dark&#34;, &#34;raw_value&#34;: &#34;dark&#34;, &#34;ts&#34;: &#34;2021-01-05 16:41:51&#34;, &#34;label&#34;: &#34;Side of the Force&#34;, &#34;inter_delay&#34;: 0, &#34;name&#34;: &#34;force_side&#34;, &#34;post_delay&#34;: 0, &#34;unit&#34;: &#34;&#34;}}, &#34;components&#34;: {}, &#34;config&#34;: null}}&#39;
 </pre></div></div>
 </div>
 </div>
@@ -1505,16 +1509,10 @@ information is stored only in the <code class="docutils literal notranslate"><sp
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="Dataset_Performance.html" class="btn btn-neutral float-right" title="DataSet Performance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="Benchmarking.html" class="btn btn-neutral float-left" title="Dataset Benchmarking" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="Dataset_Performance.html" class="btn btn-neutral float-right" title="DataSet Performance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Benchmarking.html" class="btn btn-neutral float-left" title="Dataset Benchmarking" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -1526,14 +1524,13 @@ information is stored only in the <code class="docutils literal notranslate"><sp
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

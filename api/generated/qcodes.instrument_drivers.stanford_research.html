@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>qcodes.instrument_drivers.stanford_research package &mdash; QCoDeS 0.21.0 documentation</title>
   
@@ -16,7 +16,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -29,7 +32,6 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -56,7 +58,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> QCoDeS
+            <a href="../../index.html" class="icon icon-home"> QCoDeS
           
 
           
@@ -66,7 +68,7 @@
             
             
               <div class="version">
-                0.21.0+145.g7f39433b92
+                0.21.0+157.gc60463131e
               </div>
             
           
@@ -186,6 +188,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -199,7 +203,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/api/generated/qcodes.instrument_drivers.stanford_research.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -478,12 +482,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -619,7 +623,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -824,8 +828,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.add_parameter" title="qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.add_function" title="qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.add_submodule" title="qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SG384.SRS_SG384.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1443,12 +1469,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR560.SR560.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR560.SR560.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR560.SR560.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR560.SR560.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR560.SR560.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR560.SR560.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1559,7 +1585,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR560.SR560.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR560.SR560.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR560.SR560.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1742,8 +1768,30 @@ override <code class="docutils literal notranslate"><span class="pre">write</spa
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR560.SR560.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR560.SR560.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR560.SR560.add_parameter" title="qcodes.instrument_drivers.stanford_research.SR560.SR560.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR560.SR560.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR560.SR560.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR560.SR560.add_function" title="qcodes.instrument_drivers.stanford_research.SR560.SR560.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR560.SR560.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR560.SR560.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR560.SR560.add_submodule" title="qcodes.instrument_drivers.stanford_research.SR560.SR560.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR560.SR560.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR560.SR560.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR560.SR560.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -2412,12 +2460,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR830.SR830.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR830.SR830.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR830.SR830.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR830.SR830.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR830.SR830.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR830.SR830.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -2553,7 +2601,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR830.SR830.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR830.SR830.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR830.SR830.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -2758,8 +2806,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR830.SR830.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR830.SR830.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR830.SR830.add_parameter" title="qcodes.instrument_drivers.stanford_research.SR830.SR830.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR830.SR830.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR830.SR830.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR830.SR830.add_function" title="qcodes.instrument_drivers.stanford_research.SR830.SR830.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR830.SR830.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR830.SR830.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR830.SR830.add_submodule" title="qcodes.instrument_drivers.stanford_research.SR830.SR830.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR830.SR830.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR830.SR830.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR830.SR830.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -3004,12 +3074,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR860.SR860.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR860.SR860.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR860.SR860.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR860.SR860.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR860.SR860.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR860.SR860.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -3214,7 +3284,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR860.SR860.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR860.SR860.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR860.SR860.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -3419,8 +3489,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR860.SR860.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR860.SR860.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR860.SR860.add_parameter" title="qcodes.instrument_drivers.stanford_research.SR860.SR860.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR860.SR860.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR860.SR860.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR860.SR860.add_function" title="qcodes.instrument_drivers.stanford_research.SR860.SR860.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR860.SR860.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR860.SR860.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR860.SR860.add_submodule" title="qcodes.instrument_drivers.stanford_research.SR860.SR860.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR860.SR860.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR860.SR860.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR860.SR860.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -3665,12 +3757,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR865.SR865.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865.SR865.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865.SR865.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR865.SR865.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865.SR865.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865.SR865.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -3875,7 +3967,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR865.SR865.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865.SR865.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865.SR865.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -4080,8 +4172,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR865.SR865.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865.SR865.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR865.SR865.add_parameter" title="qcodes.instrument_drivers.stanford_research.SR865.SR865.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR865.SR865.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865.SR865.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR865.SR865.add_function" title="qcodes.instrument_drivers.stanford_research.SR865.SR865.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR865.SR865.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865.SR865.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR865.SR865.add_submodule" title="qcodes.instrument_drivers.stanford_research.SR865.SR865.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR865.SR865.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865.SR865.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865.SR865.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -4327,12 +4441,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR865A.SR865A.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865A.SR865A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865A.SR865A.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR865A.SR865A.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865A.SR865A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865A.SR865A.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -4537,7 +4651,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR865A.SR865A.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865A.SR865A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865A.SR865A.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -4742,8 +4856,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR865A.SR865A.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865A.SR865A.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR865A.SR865A.add_parameter" title="qcodes.instrument_drivers.stanford_research.SR865A.SR865A.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR865A.SR865A.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865A.SR865A.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR865A.SR865A.add_function" title="qcodes.instrument_drivers.stanford_research.SR865A.SR865A.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR865A.SR865A.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865A.SR865A.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR865A.SR865A.add_submodule" title="qcodes.instrument_drivers.stanford_research.SR865A.SR865A.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR865A.SR865A.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865A.SR865A.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR865A.SR865A.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -5564,6 +5700,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86xBuffer.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR86x.SR86xBuffer.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86xBuffer.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86xBuffer.add_parameter" title="qcodes.instrument_drivers.stanford_research.SR86x.SR86xBuffer.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR86x.SR86xBuffer.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86xBuffer.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86xBuffer.add_function" title="qcodes.instrument_drivers.stanford_research.SR86x.SR86xBuffer.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR86x.SR86xBuffer.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86xBuffer.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86xBuffer.add_submodule" title="qcodes.instrument_drivers.stanford_research.SR86x.SR86xBuffer.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -5926,6 +6084,28 @@ parameters that are being check is printed.</p>
 <code class="sig-name descname">write_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86xDataChannel.write_raw" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR86x.SR86xDataChannel.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86xDataChannel.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86xDataChannel.add_parameter" title="qcodes.instrument_drivers.stanford_research.SR86x.SR86xDataChannel.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR86x.SR86xDataChannel.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86xDataChannel.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86xDataChannel.add_function" title="qcodes.instrument_drivers.stanford_research.SR86x.SR86xDataChannel.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR86x.SR86xDataChannel.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86xDataChannel.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86xDataChannel.add_submodule" title="qcodes.instrument_drivers.stanford_research.SR86x.SR86xDataChannel.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -6234,12 +6414,12 @@ Default is <code class="docutils literal notranslate"><span class="pre">self._t0
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR86x.SR86x.delegate_attr_dicts">
-<code class="sig-name descname">delegate_attr_dicts</code><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86x.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_dicts</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = ['parameters', 'functions', 'submodules']</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86x.delegate_attr_dicts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR86x.SR86x.delegate_attr_objects">
-<code class="sig-name descname">delegate_attr_objects</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86x.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delegate_attr_objects</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86x.delegate_attr_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -6375,7 +6555,7 @@ has been closed, its instance is not longer a “valid” instrument.</p>
 
 <dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR86x.SR86x.omit_delegate_attrs">
-<code class="sig-name descname">omit_delegate_attrs</code><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86x.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">omit_delegate_attrs</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></em><em class="property"> = []</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86x.omit_delegate_attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -6580,8 +6760,30 @@ hardware communication should instead override <code class="docutils literal not
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR86x.SR86x.parameters">
+<code class="sig-name descname">parameters</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>_BaseParameter<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86x.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the parameters supported by this instrument.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86x.add_parameter" title="qcodes.instrument_drivers.stanford_research.SR86x.SR86x.add_parameter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_parameter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR86x.SR86x.functions">
+<code class="sig-name descname">functions</code><em class="property">: Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Function<span class="p">]</span></em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86x.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the functions supported by this
+instrument. Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86x.add_function" title="qcodes.instrument_drivers.stanford_research.SR86x.SR86x.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="qcodes.instrument_drivers.stanford_research.SR86x.SR86x.submodules">
+<code class="sig-name descname">submodules</code><em class="property">: Dict[str, Union[‘InstrumentBase’, ‘ChannelList’]]</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86x.submodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the submodules of this instrument
+such as channel lists or logical groupings of parameters.
+Usually populated via <a class="reference internal" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86x.add_submodule" title="qcodes.instrument_drivers.stanford_research.SR86x.SR86x.add_submodule"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_submodule()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="qcodes.instrument_drivers.stanford_research.SR86x.SR86x.log">
-<code class="sig-name descname">log</code><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86x.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><em class="property">: InstrumentLoggerAdapter</em><a class="headerlink" href="#qcodes.instrument_drivers.stanford_research.SR86x.SR86x.log" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -6597,16 +6799,10 @@ hardware communication should instead override <code class="docutils literal not
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qcodes.instrument_drivers.tektronix.html" class="btn btn-neutral float-right" title="qcodes.instrument_drivers.tektronix package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qcodes.instrument_drivers.stahl.html" class="btn btn-neutral float-left" title="qcodes.instrument_drivers.stahl package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="qcodes.instrument_drivers.tektronix.html" class="btn btn-neutral float-right" title="qcodes.instrument_drivers.tektronix package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qcodes.instrument_drivers.stahl.html" class="btn btn-neutral float-left" title="qcodes.instrument_drivers.stahl package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -6618,14 +6814,13 @@ hardware communication should instead override <code class="docutils literal not
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
