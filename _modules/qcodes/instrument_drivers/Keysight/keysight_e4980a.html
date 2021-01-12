@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.21.0+215.g831a830611
+                0.21.0+245.g5e85f02124
               </div>
             
           
@@ -171,7 +171,8 @@
 <span class="kn">from</span> <span class="nn">distutils.version</span> <span class="kn">import</span> <span class="n">LooseVersion</span>
 
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">VisaInstrument</span><span class="p">,</span> <span class="n">InstrumentChannel</span>
-<span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">MultiParameter</span><span class="p">,</span> <span class="n">ParamRawDataType</span>
+<span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="p">(</span><span class="n">MultiParameter</span><span class="p">,</span> <span class="n">ParamRawDataType</span><span class="p">,</span>
+                                         <span class="n">ManualParameter</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qcodes.utils.helpers</span> <span class="kn">import</span> <span class="n">create_on_off_val_mapping</span>
 <span class="kn">from</span> <span class="nn">qcodes.utils.validators</span> <span class="kn">import</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">Numbers</span><span class="p">,</span> <span class="n">Bool</span><span class="p">,</span> <span class="n">Ints</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.group_parameter</span> <span class="kn">import</span> <span class="n">GroupParameter</span><span class="p">,</span> <span class="n">Group</span>
@@ -357,8 +358,9 @@
 
         <span class="n">idn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">IDN</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">has_firmware_a_02_10_or_above</span> <span class="o">=</span> <span class="n">LooseVersion</span><span class="p">(</span><span class="n">idn</span><span class="p">[</span><span class="s2">&quot;firmware&quot;</span><span class="p">])</span> <span class="o">&gt;=</span>\
-                                             <span class="n">LooseVersion</span><span class="p">(</span><span class="s2">&quot;A.02.10&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">has_firmware_a_02_10_or_above</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">LooseVersion</span><span class="p">(</span><span class="n">idn</span><span class="p">[</span><span class="s2">&quot;firmware&quot;</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="n">LooseVersion</span><span class="p">(</span><span class="s2">&quot;A.02.10&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">has_option_001</span> <span class="o">=</span> <span class="s1">&#39;001&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_dc_bias_v_level_range</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Numbers</span><span class="p">,</span> <span class="n">Enum</span><span class="p">]</span>
@@ -393,9 +395,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span>
             <span class="s2">&quot;current_level&quot;</span><span class="p">,</span>
-            <span class="n">get_cmd</span><span class="o">=</span><span class="s2">&quot;:CURRent:LEVel?&quot;</span><span class="p">,</span>
-            <span class="n">set_cmd</span><span class="o">=</span><span class="s2">&quot;:CURRent:LEVel </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">get_parser</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+            <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_current_level</span><span class="p">,</span>
+            <span class="n">set_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_current_level</span><span class="p">,</span>
             <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">,</span>
             <span class="n">vals</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_i_level_range</span><span class="p">,</span>
             <span class="n">docstring</span><span class="o">=</span><span class="s2">&quot;Gets and sets the current level for measurement signal.&quot;</span>
@@ -403,9 +404,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span>
             <span class="s2">&quot;voltage_level&quot;</span><span class="p">,</span>
-            <span class="n">get_cmd</span><span class="o">=</span><span class="s2">&quot;:VOLTage:LEVel?&quot;</span><span class="p">,</span>
-            <span class="n">set_cmd</span><span class="o">=</span><span class="s2">&quot;:VOLTage:LEVel </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">get_parser</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+            <span class="n">get_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_voltage_level</span><span class="p">,</span>
+            <span class="n">set_cmd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_set_voltage_level</span><span class="p">,</span>
             <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;V&quot;</span><span class="p">,</span>
             <span class="n">vals</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_v_level_range</span><span class="p">,</span>
             <span class="n">docstring</span><span class="o">=</span><span class="s2">&quot;Gets and sets the AC bias voltage level for measurement &quot;</span>
@@ -461,16 +461,15 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span>
             <span class="s2">&quot;meas_time_mode&quot;</span><span class="p">,</span>
-            <span class="n">initial_value</span><span class="o">=</span><span class="s2">&quot;medium&quot;</span><span class="p">,</span>
             <span class="n">val_mapping</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;short&quot;</span><span class="p">:</span> <span class="s2">&quot;SHOR&quot;</span><span class="p">,</span> <span class="s2">&quot;medium&quot;</span><span class="p">:</span> <span class="s2">&quot;MED&quot;</span><span class="p">,</span> <span class="s2">&quot;long&quot;</span><span class="p">:</span> <span class="s2">&quot;LONG&quot;</span><span class="p">},</span>
             <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span>
             <span class="s2">&quot;averaging_rate&quot;</span><span class="p">,</span>
-            <span class="n">initial_value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
             <span class="n">vals</span><span class="o">=</span><span class="n">Ints</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
             <span class="n">parameter_class</span><span class="o">=</span><span class="n">GroupParameter</span><span class="p">,</span>
+            <span class="n">get_parser</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
             <span class="n">docstring</span><span class="o">=</span><span class="s2">&quot;Averaging rate for the measurement.&quot;</span>
         <span class="p">)</span>
 
@@ -494,11 +493,19 @@
                           <span class="s2">&quot;the BIAS field of the display.&quot;</span>
             <span class="p">)</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span>
+            <span class="s2">&quot;signal_mode&quot;</span><span class="p">,</span>
+            <span class="n">initial_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">vals</span><span class="o">=</span><span class="n">Enum</span><span class="p">(</span><span class="s2">&quot;Voltage&quot;</span><span class="p">,</span> <span class="s2">&quot;Current&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="n">parameter_class</span><span class="o">=</span><span class="n">ManualParameter</span><span class="p">,</span>
+            <span class="n">docstring</span><span class="o">=</span><span class="s2">&quot;This parameter tracks the signal mode which is being &quot;</span>
+                      <span class="s2">&quot;set.&quot;</span>
+        <span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span>
             <span class="s2">&quot;_correction&quot;</span><span class="p">,</span>
             <span class="n">Correction4980A</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;correction&quot;</span><span class="p">)</span>
         <span class="p">)</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_message</span><span class="p">()</span>
 
     <span class="nd">@property</span>
@@ -554,6 +561,46 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_measurement_pair</span> <span class="o">=</span> <span class="n">measurement_pair</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;:FUNCtion:IMPedance </span><span class="si">{</span><span class="n">measurement_pair</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_voltage_level</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets voltage level if signal is set with voltage level parameter</span>
+<span class="sd">        otherwise raises an error.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">signal_mode</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Current&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Cannot get voltage level as signal is set &quot;</span>
+                               <span class="s2">&quot;with current level parameter.&quot;</span><span class="p">)</span>
+
+        <span class="n">v_level</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">&quot;:VOLTage:LEVel?&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">v_level</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_voltage_level</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets voltage level</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">signal_mode</span><span class="p">(</span><span class="s2">&quot;Voltage&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;:VOLTage:LEVel </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_current_level</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets current level</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">signal_mode</span><span class="p">(</span><span class="s2">&quot;Current&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;:CURRent:LEVel </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_current_level</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets current level if signal is set with current level parameter</span>
+<span class="sd">        otherwise raises an error.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">signal_mode</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Voltage&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Cannot get current level as signal is set &quot;</span>
+                               <span class="s2">&quot;with voltage level parameter.&quot;</span><span class="p">)</span>
+
+        <span class="n">i_level</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">&quot;:CURRent:LEVel?&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">i_level</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_options</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
