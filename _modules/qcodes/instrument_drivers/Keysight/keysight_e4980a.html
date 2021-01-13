@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.21.0+245.g5e85f02124
+                0.21.0+252.g5f79160e66
               </div>
             
           
@@ -169,6 +169,7 @@
   <h1>Source code for qcodes.instrument_drivers.Keysight.keysight_e4980a</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span>
 <span class="kn">from</span> <span class="nn">distutils.version</span> <span class="kn">import</span> <span class="n">LooseVersion</span>
+<span class="kn">from</span> <span class="nn">pyvisa.errors</span> <span class="kn">import</span> <span class="n">VisaIOError</span>
 
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">VisaInstrument</span><span class="p">,</span> <span class="n">InstrumentChannel</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="p">(</span><span class="n">MultiParameter</span><span class="p">,</span> <span class="n">ParamRawDataType</span><span class="p">,</span>
@@ -506,6 +507,7 @@
             <span class="s2">&quot;_correction&quot;</span><span class="p">,</span>
             <span class="n">Correction4980A</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;correction&quot;</span><span class="p">)</span>
         <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_signal_mode_on_driver_initialization</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_message</span><span class="p">()</span>
 
     <span class="nd">@property</span>
@@ -580,6 +582,9 @@
 <span class="sd">        Sets voltage level</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">signal_mode</span><span class="p">(</span><span class="s2">&quot;Voltage&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">voltage_level</span><span class="o">.</span><span class="n">snapshot_exclude</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_level</span><span class="o">.</span><span class="n">snapshot_exclude</span> <span class="o">=</span> <span class="kc">True</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;:VOLTage:LEVel </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_set_current_level</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -587,6 +592,9 @@
 <span class="sd">        Sets current level</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">signal_mode</span><span class="p">(</span><span class="s2">&quot;Current&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">voltage_level</span><span class="o">.</span><span class="n">snapshot_exclude</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_level</span><span class="o">.</span><span class="n">snapshot_exclude</span> <span class="o">=</span> <span class="kc">False</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;:CURRent:LEVel </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_get_current_level</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
@@ -601,6 +609,31 @@
         <span class="n">i_level</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s2">&quot;:CURRent:LEVel?&quot;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">i_level</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_is_signal_mode_voltage_on_driver_initialization</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if signal is set with voltage_level param at instrument driver</span>
+<span class="sd">        initialization</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">signal_mode</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">voltage_level</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="n">VisaIOError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">_set_signal_mode_on_driver_initialization</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets signal mode on driver initialization</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_signal_mode_voltage_on_driver_initialization</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">signal_mode</span><span class="p">(</span><span class="s2">&quot;Voltage&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">voltage_level</span><span class="o">.</span><span class="n">snapshot_exclude</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_level</span><span class="o">.</span><span class="n">snapshot_exclude</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">signal_mode</span><span class="p">(</span><span class="s2">&quot;Current&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">voltage_level</span><span class="o">.</span><span class="n">snapshot_exclude</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_level</span><span class="o">.</span><span class="n">snapshot_exclude</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">_options</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
