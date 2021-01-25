@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                0.21.0+317.g366b381db1
+                0.21.0+331.gbc7c9ebe14
               </div>
             
           
@@ -1520,7 +1520,7 @@ set self.__traceback__ to tb and return self.</p>
 
 <dl class="py function">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.fmt_response_base_parser">
-<code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.</code><code class="sig-name descname">fmt_response_base_parser</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">raw_data_val</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.FMTResponse<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_module.html#fmt_response_base_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.fmt_response_base_parser" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.</code><code class="sig-name descname">fmt_response_base_parser</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">raw_data_val</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em><span class="sig-paren">)</span> &#x2192; qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module._FMTResponse<a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_module.html#fmt_response_base_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.fmt_response_base_parser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse the response from SPA for <cite>FMT 1,0</cite> format  into a named tuple
 with names, value (value of the data), status (Normal or with compliance
 error such as C, T, V), channel (channel number of the output data such
@@ -1700,7 +1700,7 @@ calibration values.</p>
 
 <dl class="py function">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.convert_dummy_val_to_nan">
-<code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.</code><code class="sig-name descname">convert_dummy_val_to_nan</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">param</span><span class="p">:</span> <span class="n">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.FMTResponse</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_module.html#convert_dummy_val_to_nan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.convert_dummy_val_to_nan" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.</code><code class="sig-name descname">convert_dummy_val_to_nan</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">param</span><span class="p">:</span> <span class="n">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module._FMTResponse</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_module.html#convert_dummy_val_to_nan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.convert_dummy_val_to_nan" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts dummy value to NaN. Instrument may output dummy value (
 199.999E+99) if measurement data is over the measurement range. Or the
 sweep measurement was aborted by the automatic stop function or power

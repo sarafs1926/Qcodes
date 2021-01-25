@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.21.0+317.g366b381db1
+                0.21.0+331.gbc7c9ebe14
               </div>
             
           
@@ -331,7 +331,7 @@
 
 <div class="viewcode-block" id="ScopeArray.get_preamble"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rigol.html#qcodes.instrument_drivers.rigol.DS4000.ScopeArray.get_preamble">[docs]</a>    <span class="k">def</span> <span class="nf">get_preamble</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span> <span class="n">RigolDS4000Channel</span><span class="p">)</span>
-        <span class="n">preamble_nt</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;preamble&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;format&quot;</span><span class="p">,</span> <span class="s2">&quot;mode&quot;</span><span class="p">,</span> <span class="s2">&quot;points&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="s2">&quot;xincrement&quot;</span><span class="p">,</span> <span class="s2">&quot;xorigin&quot;</span><span class="p">,</span>
+        <span class="n">preamble_nt</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;preamble_nt&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;format&quot;</span><span class="p">,</span> <span class="s2">&quot;mode&quot;</span><span class="p">,</span> <span class="s2">&quot;points&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="s2">&quot;xincrement&quot;</span><span class="p">,</span> <span class="s2">&quot;xorigin&quot;</span><span class="p">,</span>
                                               <span class="s2">&quot;xreference&quot;</span><span class="p">,</span> <span class="s2">&quot;yincrement&quot;</span><span class="p">,</span> <span class="s2">&quot;yorigin&quot;</span><span class="p">,</span> <span class="s2">&quot;yreference&quot;</span><span class="p">])</span>
         <span class="n">conv</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
@@ -370,6 +370,7 @@
                            <span class="n">parameter_class</span><span class="o">=</span><span class="n">ScopeArray</span><span class="p">,</span>
                            <span class="n">raw</span><span class="o">=</span><span class="kc">True</span>
                            <span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="DS4000"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.rigol.html#qcodes.instrument_drivers.rigol.DS4000.DS4000">[docs]</a><span class="k">class</span> <span class="nc">DS4000</span><span class="p">(</span><span class="n">VisaInstrument</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
