@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.21.0+428.g25d4ba153d
+                0.21.0+431.g5e7153500d
               </div>
             
           
@@ -1010,13 +1010,14 @@
                 <span class="n">writer_status</span><span class="o">.</span><span class="n">bg_writer</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_validate_parameters</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">_BaseParameter</span><span class="p">]</span>
-                             <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">_validate_parameters</span><span class="p">(</span>
+            <span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ParamSpecBase</span><span class="p">,</span> <span class="n">_BaseParameter</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Validate that the provided parameters have a name and return those</span>
 <span class="sd">        names as a list.</span>
-<span class="sd">        The Parameters may be a mix of strings, ParamSpecs or ordinary</span>
-<span class="sd">        QCoDeS parameters.</span>
+<span class="sd">        The Parameters may be a mix of strings, ParamSpecBase or</span>
+<span class="sd">        ordinary QCoDeS parameters.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">valid_param_names</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1035,7 +1036,7 @@
 
 <div class="viewcode-block" id="DataSet.get_parameter_data"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.get_parameter_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_parameter_data</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
-            <span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">_BaseParameter</span><span class="p">],</span>
+            <span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ParamSpecBase</span><span class="p">,</span> <span class="n">_BaseParameter</span><span class="p">],</span>
             <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParameterData</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1069,9 +1070,9 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            *params: string parameter names, QCoDeS Parameter objects, and</span>
-<span class="sd">                ParamSpec objects. If no parameters are supplied data for</span>
-<span class="sd">                all parameters that are not a dependency of another</span>
-<span class="sd">                parameter will be returned.</span>
+<span class="sd">                ParamSpecBase objects. If no parameters are</span>
+<span class="sd">                supplied, data for all parameters that are not a dependency</span>
+<span class="sd">                of another parameter will be returned.</span>
 <span class="sd">            start: start value of selection range (by result count); ignored</span>
 <span class="sd">                if None</span>
 <span class="sd">            end: end value of selection range (by results count); ignored if</span>
@@ -1092,7 +1093,7 @@
 
 <div class="viewcode-block" id="DataSet.get_data_as_pandas_dataframe"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.get_data_as_pandas_dataframe">[docs]</a>    <span class="k">def</span> <span class="nf">get_data_as_pandas_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                                      <span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span>
-                                                    <span class="n">ParamSpec</span><span class="p">,</span>
+                                                    <span class="n">ParamSpecBase</span><span class="p">,</span>
                                                     <span class="n">_BaseParameter</span><span class="p">],</span>
                                      <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                                      <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> \
@@ -1119,9 +1120,9 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            *params: string parameter names, QCoDeS Parameter objects, and</span>
-<span class="sd">                ParamSpec objects. If no parameters are supplied data for</span>
-<span class="sd">                all parameters that are not a dependency of another</span>
-<span class="sd">                parameter will be returned.</span>
+<span class="sd">                ParamSpecBase objects. If no parameters are</span>
+<span class="sd">                supplied, data for all parameters that are not a dependency</span>
+<span class="sd">                of another parameter will be returned.</span>
 <span class="sd">            start: start value of selection range (by result count); ignored</span>
 <span class="sd">                if None</span>
 <span class="sd">            end: end value of selection range (by results count); ignored if</span>
