@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                0.21.0+487.gafbcadf9bb
+                0.21.0+501.g56730d5e97
               </div>
             
           
@@ -244,18 +244,33 @@
 <span id="qcodes-instrument-drivers-basel-sp983c-module"></span><h2>qcodes.instrument_drivers.basel.sp983c module<a class="headerlink" href="#module-qcodes.instrument_drivers.basel.sp983c" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="qcodes.instrument_drivers.basel.sp983c.SP983C">
-<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.basel.sp983c.</code><code class="sig-name descname">SP983C</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/basel/sp983c.html#SP983C"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.basel.sp983c.SP983C" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.basel.sp983c.</code><code class="sig-name descname">SP983C</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">input_offset_voltage</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="../parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="qcodes.instrument.parameter.Parameter">qcodes.instrument.parameter.Parameter</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/basel/sp983c.html#SP983C"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.basel.sp983c.SP983C" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../instrument/base.html#qcodes.instrument.base.Instrument" title="qcodes.instrument.base.Instrument"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument.base.Instrument</span></code></a></p>
 <p>A virtual driver for the Basel SP 983 and SP 983C current to voltage
 converter.</p>
 <p>This driver supports both the SP 983 and SP 983C models. These differ only
 in their handling of input offset voltage. It is the responsibility of the
 user to capture the input offset, (from the voltage supply) and compensate
-that as needed depending on the model.</p>
+that as needed for SP 983. For SP 983C model, ‘input_offset_voltage’
+argument can be used to set up offset (This doesn’t work for SP 983c01
+model).</p>
 <p>Note that, as this is a purely virtual driver, there is no support
 for the the remote control interface (SP 983a). It is the responsibility of
 the user to ensure that values set here are in accordance with the values
 set on the instrument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – </p></li>
+<li><p><strong>input_offset_voltage</strong> – (Optional) A source input offset voltage
+parameter. The range for input is -10 to 10 Volts and it is
+user’s responsibility to ensure this. This source parameter is
+used to set offset voltage parameter of the preamp and the
+source parameter should represent a voltage source that is
+connected to the “Offset Input Volgate” connector of the SP983C.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="qcodes.instrument_drivers.basel.sp983c.SP983C.get_idn">
 <code class="sig-name descname">get_idn</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/basel/sp983c.html#SP983C.get_idn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.basel.sp983c.SP983C.get_idn" title="Permalink to this definition">¶</a></dt>
