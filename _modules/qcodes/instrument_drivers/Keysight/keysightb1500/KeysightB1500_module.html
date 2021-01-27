@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.21.0+501.g56730d5e97
+                0.21.0+514.g6017845347
               </div>
             
           
@@ -526,20 +526,26 @@
 
 <div class="viewcode-block" id="StatusMixin"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.StatusMixin">[docs]</a><span class="k">class</span> <span class="nc">StatusMixin</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">param1</span> <span class="o">=</span> <span class="n">_FMTResponse</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">param2</span> <span class="o">=</span> <span class="n">_FMTResponse</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="s1">&#39;param1&#39;</span><span class="p">,</span> <span class="s1">&#39;param2&#39;</span><span class="p">])</span>
 
 <div class="viewcode-block" id="StatusMixin.status_summary"><a class="viewcode-back" href="../../../../../api/generated/qcodes.instrument_drivers.Keysight.keysightb1500.html#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.StatusMixin.status_summary">[docs]</a>    <span class="k">def</span> <span class="nf">status_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-        <span class="n">status_array_param1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">param1</span><span class="o">.</span><span class="n">status</span>
-        <span class="n">status_array_param2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">param2</span><span class="o">.</span><span class="n">status</span>
+        <span class="n">return_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="k">if</span> <span class="n">status_array_param1</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">MeasurementNotTaken</span><span class="p">(</span><span class="s2">&quot;First run_sweep to generate the data&quot;</span><span class="p">)</span>
-        <span class="n">summary_param1</span> <span class="o">=</span> <span class="n">get_measurement_summary</span><span class="p">(</span><span class="n">status_array_param1</span><span class="p">)</span>
-        <span class="n">summary_param2</span> <span class="o">=</span> <span class="n">get_measurement_summary</span><span class="p">(</span><span class="n">status_array_param2</span><span class="p">)</span>
-        <span class="n">return_dict</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">summary_param1</span><span class="p">,</span>
-                       <span class="bp">self</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">summary_param2</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">name_index</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">names</span><span class="p">):</span>
+            <span class="n">param_data</span><span class="p">:</span> <span class="n">_FMTResponse</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;param</span><span class="si">{</span><span class="n">name_index</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">status_array</span> <span class="o">=</span> <span class="n">param_data</span><span class="o">.</span><span class="n">status</span>
+            <span class="k">if</span> <span class="n">status_array</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">self_full_name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;full_name&quot;</span><span class="p">,</span> <span class="s2">&quot;this&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">MeasurementNotTaken</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;First run sweep measurement with </span><span class="si">{</span><span class="n">self_full_name</span><span class="si">}</span><span class="s2"> &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;parameter to obtain the data; then it will be possible &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;to obtain status summary for that data.&quot;</span>
+                <span class="p">)</span>
+
+            <span class="n">summary</span> <span class="o">=</span> <span class="n">get_measurement_summary</span><span class="p">(</span><span class="n">status_array</span><span class="p">)</span>
+            <span class="n">return_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">summary</span>
+
         <span class="k">return</span> <span class="n">return_dict</span></div></div>
 </pre></div>
 

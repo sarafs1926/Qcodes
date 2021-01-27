@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                0.21.0+501.g56730d5e97
+                0.21.0+514.g6017845347
               </div>
             
           
@@ -1201,7 +1201,7 @@ Starting experimental run with id: 2330.
 </pre></div>
 </div>
 </div>
-<p>Setting up smu1 and smu2 for running the staircase sweep. One of the smu’s is used for sweep. Both the smu’s are used for acquiring data. In the setup below, smu1 is used to sweep over the sweep voltages -3 to 3 in 201 steps.</p>
+<p>Setting up smu1 and smu2 for running the staircase sweep. One of the smu’s is used for sweep. Both the smu’s are used for acquiring data. It is possible to acquire data with more SMUs, that depends on the measurement mode (see below), so refer to the instrument manual for information on how many ‘channels’ can be measured with which measurement mode. In the setup below, smu1 is used to sweep over the sweep voltages -3 to 3 in 201 steps.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -1268,9 +1268,18 @@ Starting experimental run with id: 2330.
 
 <span class="c1"># As per user needs, names and labels of the parameters inside the</span>
 <span class="c1"># MultiParameter can be adjusted to reflect what is actually being</span>
-<span class="c1"># measured, here we do that in order to provide an example:</span>
-<span class="n">b1500</span><span class="o">.</span><span class="n">run_iv_staircase_sweep</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;gate_current&#39;</span><span class="p">,</span> <span class="s1">&#39;source_drain_current&#39;</span><span class="p">)</span>
-<span class="n">b1500</span><span class="o">.</span><span class="n">run_iv_staircase_sweep</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Gate current&#39;</span><span class="p">,</span> <span class="s1">&#39;Source-drain current&#39;</span><span class="p">)</span>
+<span class="c1"># measured using the convenient `set_names_labels_and_units` method.</span>
+<span class="c1"># The setpoint name/label/unit (the independent sweep &#39;parameter&#39;)</span>
+<span class="c1"># can be additionally customized using `set_setpoint_name_label_and_unit`</span>
+<span class="c1"># method.</span>
+<span class="c1"># Below is an example of using `set_names_labels_and_units`:</span>
+<span class="n">b1500</span><span class="o">.</span><span class="n">run_iv_staircase_sweep</span><span class="o">.</span><span class="n">set_names_labels_and_units</span><span class="p">(</span>
+    <span class="n">names</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;gate_current&#39;</span><span class="p">,</span> <span class="s1">&#39;source_drain_current&#39;</span><span class="p">),</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Gate current&#39;</span><span class="p">,</span> <span class="s1">&#39;Source-drain current&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="c1"># The number of names (and labels) MUST be the same as the number of channels,</span>
+<span class="c1"># and the order of the names should match the order of channels, as passed to</span>
+<span class="c1"># `set_measurement_mode` method.</span>
 
 <span class="n">meas</span><span class="o">.</span><span class="n">register_parameter</span><span class="p">(</span><span class="n">b1500</span><span class="o">.</span><span class="n">run_iv_staircase_sweep</span><span class="p">)</span>
 

@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                0.21.0+501.g56730d5e97
+                0.21.0+514.g6017845347
               </div>
             
           
@@ -1139,8 +1139,8 @@ Usually populated via <a class="reference internal" href="#qcodes.instrument_dri
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.IVSweepMeasurement">
 <em class="property">class </em><code class="sig-prename descclassname">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.</code><code class="sig-name descname">IVSweepMeasurement</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">instrument</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.B1517A" title="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.B1517A">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1517A.B1517A</a></span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_base.html#IVSweepMeasurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.IVSweepMeasurement" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../parameters/parameter.html#qcodes.instrument.parameter.MultiParameter" title="qcodes.instrument.parameter.MultiParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument.parameter.MultiParameter</span></code></a>, <a class="reference internal" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.StatusMixin" title="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.StatusMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_module.StatusMixin</span></code></a></p>
-<p>IV sweep measurement outputs a list of primary and secondary
-parameter.</p>
+<p>IV sweep measurement outputs a list of measured current parameters
+as a result of voltage sweep.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1168,8 +1168,46 @@ fundamental instrument that that channel belongs to. Use
 </dd></dl>
 
 <dl class="py method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.IVSweepMeasurement.set_names_labels_and_units">
+<code class="sig-name descname">set_names_labels_and_units</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">names</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">labels</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">units</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_base.html#IVSweepMeasurement.set_names_labels_and_units"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.IVSweepMeasurement.set_names_labels_and_units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set names, labels, and units of the measured parts of the MultiParameter.</p>
+<p>If units are not provided, “A” will be used because this parameter
+measures currents.</p>
+<p>If labels are not provided, names will be used.</p>
+<p>If names are not provided, <code class="docutils literal notranslate"><span class="pre">param#</span></code> will be used as names; the number
+of those names will be the same as the number of measured channels
+that <code class="docutils literal notranslate"><span class="pre">B1500.get_measurement_mode</span></code> method returns. Note that it is
+possible to not provide names and provide labels at the same time.
+In case, neither names nor labels are provided, the labels will be
+generated as <code class="docutils literal notranslate"><span class="pre">Param#</span> <span class="pre">Current</span></code>.</p>
+<p>The number of provided names, labels, and units must be the same.
+Moreover, that number has to be equal to the number of channels
+that <code class="docutils literal notranslate"><span class="pre">B1500.get_measurement_mode</span></code> method returns. It is
+recommended to set measurement mode and number of channels first,
+and only then call this method to provide names/labels/units.</p>
+<p>The name/label/unit of the setpoint of this parameter will also be
+updated to defaults dictated by the
+<code class="docutils literal notranslate"><span class="pre">set_setpoint_name_label_and_unit</span></code> method.</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">.shapes</span></code> of this parameter will also be updated to
+be in sync with the number of names.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.IVSweepMeasurement.set_setpoint_name_label_and_unit">
+<code class="sig-name descname">set_setpoint_name_label_and_unit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">label</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">unit</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3.7/library/constants.html#None" title="(in Python v3.7)">None</a><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_base.html#IVSweepMeasurement.set_setpoint_name_label_and_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.IVSweepMeasurement.set_setpoint_name_label_and_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set name, label, and unit of the setpoint of the MultiParameter.</p>
+<p>If unit is not provided, “V” will be used because this parameter
+sweeps voltage.</p>
+<p>If label is not provided, “Voltage” will be used.</p>
+<p>If name are not provided, <code class="docutils literal notranslate"><span class="pre">voltage</span></code> will be used.</p>
+<p>The attributes describing the setpoints of this MultiParameter
+will be updated to match the number of measured parameters of
+this MultiParameter, as dictated by <code class="docutils literal notranslate"><span class="pre">.names</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.IVSweepMeasurement.get_raw">
-<code class="sig-name descname">get_raw</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><span class="p">, </span><span class="p">…</span><span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><span class="p">, </span><span class="p">…</span><span class="p">]</span><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_base.html#IVSweepMeasurement.get_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.IVSweepMeasurement.get_raw" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_raw</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#float" title="(in Python v3.7)">float</a><span class="p">, </span><span class="p">…</span><span class="p">]</span><span class="p">, </span><span class="p">…</span><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/instrument_drivers/Keysight/keysightb1500/KeysightB1500_base.html#IVSweepMeasurement.get_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.instrument_drivers.Keysight.keysightb1500.KeysightB1500_base.IVSweepMeasurement.get_raw" title="Permalink to this definition">¶</a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">get_raw</span></code> is called to perform the actual data acquisition from the
 instrument. This method should either be overwritten to perform the
 desired operation or alternatively for <a class="reference internal" href="../parameters/parameter.html#qcodes.instrument.parameter.Parameter" title="qcodes.instrument.parameter.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parameter</span></code></a> a
