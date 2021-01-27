@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.21.0+435.g26ef173dd5
+                0.21.0+487.gafbcadf9bb
               </div>
             
           
@@ -171,20 +171,21 @@
 <span class="kn">import</span> <span class="nn">importlib</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">uuid</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">Empty</span><span class="p">,</span> <span class="n">Queue</span>
 <span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span><span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span>
-                    <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Sized</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span>
+                    <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span>
+                    <span class="n">Sized</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span>
 
 <span class="kn">import</span> <span class="nn">qcodes</span>
-<span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.dependencies</span> <span class="kn">import</span> <span class="p">(</span><span class="n">DependencyError</span><span class="p">,</span>
-                                                      <span class="n">InterDependencies_</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.dependencies</span> <span class="kn">import</span> <span class="n">InterDependencies_</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.param_spec</span> <span class="kn">import</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">ParamSpecBase</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.rundescriber</span> <span class="kn">import</span> <span class="n">RunDescriber</span>
 <span class="kn">from</span> <span class="nn">qcodes.dataset.descriptions.versioning.converters</span> <span class="kn">import</span> <span class="p">(</span><span class="n">new_to_old</span><span class="p">,</span>
@@ -214,13 +215,14 @@
                                                  <span class="n">length</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span>
                                                  <span class="n">select_one_where</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">_BaseParameter</span>
+<span class="kn">from</span> <span class="nn">qcodes.utils.deprecate</span> <span class="kn">import</span> <span class="n">deprecate</span>
 
 <span class="kn">from</span> <span class="nn">.data_set_cache</span> <span class="kn">import</span> <span class="n">DataSetCache</span>
 <span class="kn">from</span> <span class="nn">.descriptions.versioning</span> <span class="kn">import</span> <span class="n">serialization</span> <span class="k">as</span> <span class="n">serial</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
+    <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -257,8 +259,10 @@
 <div class="viewcode-block" id="CompletedError"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.CompletedError">[docs]</a><span class="k">class</span> <span class="nc">CompletedError</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">):</span>
     <span class="k">pass</span></div>
 
+
 <div class="viewcode-block" id="DataLengthException"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataLengthException">[docs]</a><span class="k">class</span> <span class="nc">DataLengthException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="k">pass</span></div>
+
 
 <div class="viewcode-block" id="DataPathException"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataPathException">[docs]</a><span class="k">class</span> <span class="nc">DataPathException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="k">pass</span></div>
@@ -277,6 +281,7 @@
 <span class="sd">    NOTE: Special care shall be taken when using the *state* object: it is the</span>
 <span class="sd">    user&#39;s responsibility to operate with it in a thread-safe way.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">dataSet</span><span class="p">:</span> <span class="s1">&#39;DataSet&#39;</span><span class="p">,</span>
                  <span class="n">id_</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -402,7 +407,8 @@
             <span class="k">elif</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;keys&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;finalize&#39;</span><span class="p">:</span>
                 <span class="n">_WRITERS</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">]</span><span class="o">.</span><span class="n">active_datasets</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">])</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">write_results</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;keys&#39;</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;table_name&#39;</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">write_results</span><span class="p">(</span>
+                    <span class="n">item</span><span class="p">[</span><span class="s1">&#39;keys&#39;</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;table_name&#39;</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">write_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keys</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
@@ -463,22 +469,23 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            path_to_db: path to the sqlite file on disk. If not provided, the</span>
-<span class="sd">              path will be read from the config.</span>
+<span class="sd">                path will be read from the config.</span>
 <span class="sd">            run_id: provide this when loading an existing run, leave it</span>
-<span class="sd">              as None when creating a new run</span>
+<span class="sd">                as None when creating a new run</span>
 <span class="sd">            conn: connection to the DB; if provided and ``path_to_db`` is</span>
-<span class="sd">              provided as well, then a ``ValueError`` is raised (this is to</span>
-<span class="sd">              prevent the possibility of providing a connection to a DB</span>
-<span class="sd">              file that is different from ``path_to_db``)</span>
+<span class="sd">                provided as well, then a ``ValueError`` is raised (this is to</span>
+<span class="sd">                prevent the possibility of providing a connection to a DB</span>
+<span class="sd">                file that is different from ``path_to_db``)</span>
 <span class="sd">            exp_id: the id of the experiment in which to create a new run.</span>
-<span class="sd">              Ignored if ``run_id`` is provided.</span>
+<span class="sd">                Ignored if ``run_id`` is provided.</span>
 <span class="sd">            name: the name of the dataset. Ignored if ``run_id`` is provided.</span>
 <span class="sd">            specs: paramspecs belonging to the dataset or an ``InterDependencies_``</span>
-<span class="sd">              object that describes the dataset. Ignored if ``run_id`` is provided.</span>
+<span class="sd">                object that describes the dataset. Ignored if ``run_id``</span>
+<span class="sd">                is provided.</span>
 <span class="sd">            values: values to insert into the dataset. Ignored if ``run_id`` is</span>
-<span class="sd">              provided.</span>
+<span class="sd">                provided.</span>
 <span class="sd">            metadata: metadata to insert into the dataset. Ignored if ``run_id``</span>
-<span class="sd">              is provided.</span>
+<span class="sd">                is provided.</span>
 <span class="sd">            shapes:</span>
 <span class="sd">                An optional dict from names of dependent parameters to the shape</span>
 <span class="sd">                of the data captured as a list of integers. The list is in the</span>
@@ -924,7 +931,8 @@
         <span class="k">if</span> <span class="n">start_bg_writer</span><span class="p">:</span>
             <span class="n">writer_status</span><span class="o">.</span><span class="n">write_in_background</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">if</span> <span class="n">writer_status</span><span class="o">.</span><span class="n">bg_writer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">writer_status</span><span class="o">.</span><span class="n">bg_writer</span> <span class="o">=</span> <span class="n">_BackgroundWriter</span><span class="p">(</span><span class="n">writer_status</span><span class="o">.</span><span class="n">data_write_queue</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+                <span class="n">writer_status</span><span class="o">.</span><span class="n">bg_writer</span> <span class="o">=</span> <span class="n">_BackgroundWriter</span><span class="p">(</span>
+                    <span class="n">writer_status</span><span class="o">.</span><span class="n">data_write_queue</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">writer_status</span><span class="o">.</span><span class="n">bg_writer</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
                 <span class="n">writer_status</span><span class="o">.</span><span class="n">bg_writer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
@@ -997,7 +1005,8 @@
         <span class="n">writer_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_writer_status</span>
 
         <span class="k">if</span> <span class="n">writer_status</span><span class="o">.</span><span class="n">write_in_background</span><span class="p">:</span>
-            <span class="n">writer_status</span><span class="o">.</span><span class="n">data_write_queue</span><span class="o">.</span><span class="n">put</span><span class="p">({</span><span class="s1">&#39;keys&#39;</span><span class="p">:</span> <span class="s1">&#39;finalize&#39;</span><span class="p">,</span> <span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_id</span><span class="p">})</span>
+            <span class="n">writer_status</span><span class="o">.</span><span class="n">data_write_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+                <span class="p">{</span><span class="s1">&#39;keys&#39;</span><span class="p">:</span> <span class="s1">&#39;finalize&#39;</span><span class="p">,</span> <span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_id</span><span class="p">})</span>
             <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_id</span> <span class="ow">in</span> <span class="n">writer_status</span><span class="o">.</span><span class="n">active_datasets</span><span class="p">:</span>
                 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">background_sleep_time</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -1010,14 +1019,13 @@
                 <span class="n">writer_status</span><span class="o">.</span><span class="n">bg_writer</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_validate_parameters</span><span class="p">(</span>
-            <span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ParamSpecBase</span><span class="p">,</span> <span class="n">_BaseParameter</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">_validate_parameters</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">_BaseParameter</span><span class="p">]</span>
+                             <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Validate that the provided parameters have a name and return those</span>
 <span class="sd">        names as a list.</span>
-<span class="sd">        The Parameters may be a mix of strings, ParamSpecBase or</span>
-<span class="sd">        ordinary QCoDeS parameters.</span>
+<span class="sd">        The Parameters may be a mix of strings, ParamSpecs or ordinary</span>
+<span class="sd">        QCoDeS parameters.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">valid_param_names</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1036,7 +1044,7 @@
 
 <div class="viewcode-block" id="DataSet.get_parameter_data"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.get_parameter_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_parameter_data</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
-            <span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ParamSpecBase</span><span class="p">,</span> <span class="n">_BaseParameter</span><span class="p">],</span>
+            <span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">_BaseParameter</span><span class="p">],</span>
             <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParameterData</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1070,9 +1078,9 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            *params: string parameter names, QCoDeS Parameter objects, and</span>
-<span class="sd">                ParamSpecBase objects. If no parameters are</span>
-<span class="sd">                supplied, data for all parameters that are not a dependency</span>
-<span class="sd">                of another parameter will be returned.</span>
+<span class="sd">                ParamSpec objects. If no parameters are supplied data for</span>
+<span class="sd">                all parameters that are not a dependency of another</span>
+<span class="sd">                parameter will be returned.</span>
 <span class="sd">            start: start value of selection range (by result count); ignored</span>
 <span class="sd">                if None</span>
 <span class="sd">            end: end value of selection range (by results count); ignored if</span>
@@ -1091,9 +1099,91 @@
         <span class="k">return</span> <span class="n">get_parameter_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span>
                                   <span class="n">valid_param_names</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataSet.get_data_as_pandas_dataframe"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.get_data_as_pandas_dataframe">[docs]</a>    <span class="k">def</span> <span class="nf">get_data_as_pandas_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_parameter_data_identical</span><span class="p">(</span><span class="n">param_dict_a</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+                                  <span class="n">param_dict_b</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">numpy</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_equal</span><span class="p">(</span><span class="n">param_dict_a</span><span class="p">,</span> <span class="n">param_dict_b</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">_same_setpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datadict</span><span class="p">:</span> <span class="n">ParameterData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+
+        <span class="k">def</span> <span class="nf">_get_setpoints</span><span class="p">(</span><span class="n">dd</span><span class="p">:</span> <span class="n">ParameterData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
+
+            <span class="k">for</span> <span class="n">dep_name</span><span class="p">,</span> <span class="n">param_dict</span> <span class="ow">in</span> <span class="n">dd</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">out</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="n">name</span><span class="p">:</span> <span class="n">vals</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">vals</span> <span class="ow">in</span> <span class="n">param_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">name</span> <span class="o">!=</span> <span class="n">dep_name</span>
+                <span class="p">}</span>
+                <span class="k">yield</span> <span class="n">out</span>
+
+        <span class="n">sp_iterator</span> <span class="o">=</span> <span class="n">_get_setpoints</span><span class="p">(</span><span class="n">datadict</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">first</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">sp_iterator</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parameter_data_identical</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">rest</span><span class="p">)</span> <span class="k">for</span> <span class="n">rest</span> <span class="ow">in</span> <span class="n">sp_iterator</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DataSet.to_pandas_dataframe_dict"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.to_pandas_dataframe_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_pandas_dataframe_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                                 <span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span>
+                                                <span class="n">ParamSpec</span><span class="p">,</span>
+                                                <span class="n">_BaseParameter</span><span class="p">],</span>
+                                 <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                 <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span>\
+            <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;pd.DataFrame&quot;</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the values stored in the :class:`.DataSet` for the specified parameters</span>
+<span class="sd">        and their dependencies as a dict of :py:class:`pandas.DataFrame` s</span>
+<span class="sd">        Each element in the dict is indexed by the names of the requested</span>
+<span class="sd">        parameters.</span>
+
+<span class="sd">        Each DataFrame contains a column for the data and is indexed by a</span>
+<span class="sd">        :py:class:`pandas.MultiIndex` formed from all the setpoints</span>
+<span class="sd">        of the parameter.</span>
+
+<span class="sd">        If no parameters are supplied data will be be</span>
+<span class="sd">        returned for all parameters in the :class:`.DataSet` that are not them self</span>
+<span class="sd">        dependencies of other parameters.</span>
+
+<span class="sd">        If provided, the start and end arguments select a range of results</span>
+<span class="sd">        by result count (index). If the range is empty - that is, if the end is</span>
+<span class="sd">        less than or equal to the start, or if start is after the current end</span>
+<span class="sd">        of the :class:`.DataSet` – then a dict of empty :py:class:`pandas.DataFrame` s is</span>
+<span class="sd">        returned.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            *params: string parameter names, QCoDeS Parameter objects, and</span>
+<span class="sd">                ParamSpec objects. If no parameters are supplied data for</span>
+<span class="sd">                all parameters that are not a dependency of another</span>
+<span class="sd">                parameter will be returned.</span>
+<span class="sd">            start: start value of selection range (by result count); ignored</span>
+<span class="sd">                if None</span>
+<span class="sd">            end: end value of selection range (by results count); ignored if</span>
+<span class="sd">                None</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary from requested parameter names to</span>
+<span class="sd">            :py:class:`pandas.DataFrame` s with the requested parameter as</span>
+<span class="sd">            a column and a indexed by a :py:class:`pandas.MultiIndex` formed</span>
+<span class="sd">            by the dependencies.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">datadict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_parameter_data</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">,</span>
+                                           <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+                                           <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+        <span class="n">dfs_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_to_dataframe_dict</span><span class="p">(</span><span class="n">datadict</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">dfs_dict</span></div>
+
+<div class="viewcode-block" id="DataSet.get_data_as_pandas_dataframe"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.get_data_as_pandas_dataframe">[docs]</a>    <span class="nd">@deprecate</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s1">&#39;This method will be removed due to inconcise naming, please &#39;</span>
+               <span class="s1">&#39;use the renamed method to_pandas_dataframe_dict&#39;</span><span class="p">,</span>
+               <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;to_pandas_dataframe_dict&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_data_as_pandas_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                                      <span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span>
-                                                    <span class="n">ParamSpecBase</span><span class="p">,</span>
+                                                    <span class="n">ParamSpec</span><span class="p">,</span>
                                                     <span class="n">_BaseParameter</span><span class="p">],</span>
                                      <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                                      <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> \
@@ -1120,9 +1210,9 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            *params: string parameter names, QCoDeS Parameter objects, and</span>
-<span class="sd">                ParamSpecBase objects. If no parameters are</span>
-<span class="sd">                supplied, data for all parameters that are not a dependency</span>
-<span class="sd">                of another parameter will be returned.</span>
+<span class="sd">                ParamSpec objects. If no parameters are supplied data for</span>
+<span class="sd">                all parameters that are not a dependency of another</span>
+<span class="sd">                parameter will be returned.</span>
 <span class="sd">            start: start value of selection range (by result count); ignored</span>
 <span class="sd">                if None</span>
 <span class="sd">            end: end value of selection range (by results count); ignored if</span>
@@ -1137,8 +1227,175 @@
         <span class="n">datadict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_parameter_data</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">,</span>
                                            <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
                                            <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
-        <span class="n">dfs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_to_dataframes</span><span class="p">(</span><span class="n">datadict</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">dfs</span></div>
+        <span class="n">dfs_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_to_dataframe_dict</span><span class="p">(</span><span class="n">datadict</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">dfs_dict</span></div>
+
+<div class="viewcode-block" id="DataSet.to_pandas_dataframe"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.to_pandas_dataframe">[docs]</a>    <span class="k">def</span> <span class="nf">to_pandas_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                            <span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span>
+                                           <span class="n">ParamSpec</span><span class="p">,</span>
+                                           <span class="n">_BaseParameter</span><span class="p">],</span>
+                            <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                            <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;pd.DataFrame&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the values stored in the :class:`.DataSet` for the specified parameters</span>
+<span class="sd">        and their dependencies as a concatinated :py:class:`pandas.DataFrame` s</span>
+
+<span class="sd">        The DataFrame contains a column for the data and is indexed by a</span>
+<span class="sd">        :py:class:`pandas.MultiIndex` formed from all the setpoints</span>
+<span class="sd">        of the parameter.</span>
+
+<span class="sd">        If no parameters are supplied data will be be</span>
+<span class="sd">        returned for all parameters in the :class:`.DataSet` that are not them self</span>
+<span class="sd">        dependencies of other parameters.</span>
+
+<span class="sd">        If provided, the start and end arguments select a range of results</span>
+<span class="sd">        by result count (index). If the range is empty - that is, if the end is</span>
+<span class="sd">        less than or equal to the start, or if start is after the current end</span>
+<span class="sd">        of the :class:`.DataSet` – then a dict of empty :py:class:`pandas.DataFrame` s is</span>
+<span class="sd">        returned.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            *params: string parameter names, QCoDeS Parameter objects, and</span>
+<span class="sd">                ParamSpec objects. If no parameters are supplied data for</span>
+<span class="sd">                all parameters that are not a dependency of another</span>
+<span class="sd">                parameter will be returned.</span>
+<span class="sd">            start: start value of selection range (by result count); ignored</span>
+<span class="sd">                if None</span>
+<span class="sd">            end: end value of selection range (by results count); ignored if</span>
+<span class="sd">                None</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :py:class:`pandas.DataFrame` s with the requested parameter as</span>
+<span class="sd">            a column and a indexed by a :py:class:`pandas.MultiIndex` formed</span>
+<span class="sd">            by the dependencies.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Return a pandas DataFrame with</span>
+<span class="sd">                df = ds.get_data_as_pandas_dataframe()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+        <span class="n">datadict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_parameter_data</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">,</span>
+                                           <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+                                           <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_same_setpoints</span><span class="p">(</span><span class="n">datadict</span><span class="p">):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s1">&#39;Independent parameter setpoints are not equal. </span><span class="se">\</span>
+<span class="s1">                Check concatenated output carefully.&#39;</span><span class="p">)</span>
+
+        <span class="n">dfs_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_to_dataframe_dict</span><span class="p">(</span><span class="n">datadict</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">dfs_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">df</span></div>
+
+<div class="viewcode-block" id="DataSet.to_xarray_dataarray_dict"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.to_xarray_dataarray_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_xarray_dataarray_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                                 <span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span>
+                                                <span class="n">ParamSpec</span><span class="p">,</span>
+                                                <span class="n">_BaseParameter</span><span class="p">],</span>
+                                 <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                 <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> \
+            <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;xr.DataArray&quot;</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the values stored in the :class:`.DataSet` for the specified parameters</span>
+<span class="sd">        and their dependencies as a dict of :py:class:`xr.DataArray` s</span>
+<span class="sd">        Each element in the dict is indexed by the names of the requested</span>
+<span class="sd">        parameters.</span>
+
+<span class="sd">        If no parameters are supplied data will be be</span>
+<span class="sd">        returned for all parameters in the :class:`.DataSet` that are not them self</span>
+<span class="sd">        dependencies of other parameters.</span>
+
+<span class="sd">        If provided, the start and end arguments select a range of results</span>
+<span class="sd">        by result count (index). If the range is empty - that is, if the end is</span>
+<span class="sd">        less than or equal to the start, or if start is after the current end</span>
+<span class="sd">        of the :class:`.DataSet` – then a dict of empty :py:class:`xr.DataArray` s is</span>
+<span class="sd">        returned.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            *params: string parameter names, QCoDeS Parameter objects, and</span>
+<span class="sd">                ParamSpec objects. If no parameters are supplied data for</span>
+<span class="sd">                all parameters that are not a dependency of another</span>
+<span class="sd">                parameter will be returned.</span>
+<span class="sd">            start: start value of selection range (by result count); ignored</span>
+<span class="sd">                if None</span>
+<span class="sd">            end: end value of selection range (by results count); ignored if</span>
+<span class="sd">                None</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary from requested parameter names to :py:class:`xr.DataArray` s</span>
+<span class="sd">            with the requested parameter(s) as a column(s) and coordinates</span>
+<span class="sd">            formed by the dependencies.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Return a dict of xr.DataArray with</span>
+
+<span class="sd">                dataarray_dict = ds.to_xarray_dataarray_dict()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_to_xarray_dataarray_dict</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DataSet.to_xarray_dataset"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.to_xarray_dataset">[docs]</a>    <span class="k">def</span> <span class="nf">to_xarray_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span>
+                                               <span class="n">ParamSpec</span><span class="p">,</span>
+                                               <span class="n">_BaseParameter</span><span class="p">],</span>
+                          <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                          <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;xr.Dataset&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the values stored in the :class:`.DataSet` for the specified parameters</span>
+<span class="sd">        and their dependencies as a :py:class:`xr.Dataset` object.</span>
+
+<span class="sd">        If no parameters are supplied data will be be</span>
+<span class="sd">        returned for all parameters in the :class:`.DataSet` that are not then self</span>
+<span class="sd">        dependencies of other parameters.</span>
+
+<span class="sd">        If provided, the start and end arguments select a range of results</span>
+<span class="sd">        by result count (index). If the range is empty - that is, if the end is</span>
+<span class="sd">        less than or equal to the start, or if start is after the current end</span>
+<span class="sd">        of the :class:`.DataSet` – then a empty :py:class:`xr.Dataset` s is</span>
+<span class="sd">        returned.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            *params: string parameter names, QCoDeS Parameter objects, and</span>
+<span class="sd">                ParamSpec objects. If no parameters are supplied data for</span>
+<span class="sd">                all parameters that are not a dependency of another</span>
+<span class="sd">                parameter will be returned.</span>
+<span class="sd">            start: start value of selection range (by result count); ignored</span>
+<span class="sd">                if None</span>
+<span class="sd">            end: end value of selection range (by results count); ignored if</span>
+<span class="sd">                None</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :py:class:`xr.Dataset` with the requested parameter(s) data as</span>
+<span class="sd">            :py:class:`xr.DataArray` s and coordinates formed by the dependencies.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Return a concatenated xr.Dataset with</span>
+
+<span class="sd">                xds = ds.to_xarray_dataset()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_same_setpoints</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_parameter_data</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">,</span>
+                                                            <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+                                                            <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s1">&#39;Independent parameter setpoints are not equal. </span><span class="se">\</span>
+<span class="s1">                Check concatenated output carefully.&#39;</span><span class="p">)</span>
+
+        <span class="n">data_xrdarray_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_to_xarray_dataarray_dict</span><span class="p">(</span>
+            <span class="o">*</span><span class="n">params</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+
+        <span class="c1"># Casting Hashable for the key type until python/mypy#1114</span>
+        <span class="c1"># and python/typing#445 are resolved.</span>
+        <span class="n">xrdataset</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">],</span> <span class="n">data_xrdarray_dict</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">xrdataset</span><span class="o">.</span><span class="n">dims</span><span class="p">:</span>
+            <span class="n">paramspec_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paramspecs</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">dim</span><span class="p">)]</span><span class="o">.</span><span class="n">_to_dict</span><span class="p">()</span>
+            <span class="n">xrdataset</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">dim</span><span class="p">)]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">paramspec_dict</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+
+        <span class="n">xrdataset</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;sample_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_name</span>
+        <span class="n">xrdataset</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;exp_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp_name</span>
+
+        <span class="k">return</span> <span class="n">xrdataset</span></div>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_data_to_dataframe</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">index</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;pd.Index&quot;</span><span class="p">,</span> <span class="s2">&quot;pd.MultiIndex&quot;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;pd.DataFrame&quot;</span><span class="p">:</span>
@@ -1179,12 +1436,36 @@
                 <span class="n">names</span><span class="o">=</span><span class="n">keys</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
         <span class="k">return</span> <span class="n">index</span>
 
-    <span class="k">def</span> <span class="nf">_load_to_dataframes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datadict</span><span class="p">:</span> <span class="n">ParameterData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;pd.DataFrame&quot;</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">_load_to_dataframe_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datadict</span><span class="p">:</span> <span class="n">ParameterData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;pd.DataFrame&quot;</span><span class="p">]:</span>
         <span class="n">dfs</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">subdict</span> <span class="ow">in</span> <span class="n">datadict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_pandas_index</span><span class="p">(</span><span class="n">subdict</span><span class="p">)</span>
             <span class="n">dfs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_to_dataframe</span><span class="p">(</span><span class="n">subdict</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">dfs</span>
+
+    <span class="k">def</span> <span class="nf">_load_to_xarray_dataarray_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                                       <span class="o">*</span><span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span>
+                                                      <span class="n">ParamSpec</span><span class="p">,</span>
+                                                      <span class="n">_BaseParameter</span><span class="p">],</span>
+                                       <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                       <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> \
+            <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;xr.DataArray&quot;</span><span class="p">]:</span>
+        <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+        <span class="n">datadict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_parameter_data</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">,</span>
+                                           <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+                                           <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+
+        <span class="n">data_xrdarray_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">subdict</span> <span class="ow">in</span> <span class="n">datadict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_pandas_index</span><span class="p">(</span><span class="n">subdict</span><span class="p">)</span>
+            <span class="n">xrdarray</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_to_dataframe</span><span class="p">(</span>
+                <span class="n">subdict</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">()[</span><span class="n">name</span><span class="p">]</span>
+            <span class="n">paramspec_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paramspecs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">_to_dict</span><span class="p">()</span>
+            <span class="n">xrdarray</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">paramspec_dict</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+            <span class="n">data_xrdarray_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">xrdarray</span>
+
+        <span class="k">return</span> <span class="n">data_xrdarray_dict</span>
 
 <div class="viewcode-block" id="DataSet.write_data_to_text_file"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set.DataSet.write_data_to_text_file">[docs]</a>    <span class="k">def</span> <span class="nf">write_data_to_text_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
                                 <span class="n">single_file</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -1365,8 +1646,8 @@
                     <span class="n">result_dict</span><span class="p">,</span> <span class="n">all_params</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">toplevel_param</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;numeric&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;complex&#39;</span><span class="p">):</span>
                 <span class="n">res_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_finalize_res_dict_numeric_text_or_complex</span><span class="p">(</span>
-                               <span class="n">result_dict</span><span class="p">,</span> <span class="n">toplevel_param</span><span class="p">,</span>
-                               <span class="n">inff_params</span><span class="p">,</span> <span class="n">deps_params</span><span class="p">)</span>
+                    <span class="n">result_dict</span><span class="p">,</span> <span class="n">toplevel_param</span><span class="p">,</span>
+                    <span class="n">inff_params</span><span class="p">,</span> <span class="n">deps_params</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">res_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">ps</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">result_dict</span><span class="p">[</span><span class="n">ps</span><span class="p">]</span> <span class="k">for</span> <span class="n">ps</span> <span class="ow">in</span> <span class="n">all_params</span><span class="p">}</span>
                 <span class="n">res_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">res_dict</span><span class="p">]</span>
