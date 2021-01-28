@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>qcodes.dataset.data_set &mdash; QCoDeS 0.21.0 documentation</title>
+  <title>qcodes.dataset.data_set &mdash; QCoDeS 0.22.0 documentation</title>
   
 
   
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                0.21.0+532.g5daac6253d
+                0.22.0+6.gd99cc54eef
               </div>
             
           
@@ -1120,6 +1120,57 @@ represents one parameter tree.</p>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt id="qcodes.dataset.data_set_cache.load_new_data_from_db_and_append">
+<code class="sig-prename descclassname">qcodes.dataset.data_set_cache.</code><code class="sig-name descname">load_new_data_from_db_and_append</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conn</span><span class="p">:</span> <span class="n">qcodes.dataset.sqlite.connection.ConnectionPlus</span></em>, <em class="sig-param"><span class="n">table_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a></span></em>, <em class="sig-param"><span class="n">rundescriber</span><span class="p">:</span> <span class="n">qcodes.dataset.descriptions.rundescriber.RunDescriber</span></em>, <em class="sig-param"><span class="n">write_status</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">read_status</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">existing_data</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Mapping<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span><span class="p">]</span><span class="p">, </span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span><span class="p">, </span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/dataset/data_set_cache.html#load_new_data_from_db_and_append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set_cache.load_new_data_from_db_and_append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append any new data in the db to an already existing datadict and return the merged
+data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conn</strong> – The connection to the sqlite database</p></li>
+<li><p><strong>table_name</strong> – The name of the table the data is stored in</p></li>
+<li><p><strong>rundescriber</strong> – The rundescriber that describes the run</p></li>
+<li><p><strong>write_status</strong> – Mapping from dependent parameter name to number of rows
+written to the cache previously.</p></li>
+<li><p><strong>read_status</strong> – Mapping from dependent parameter name to number of rows
+read from the db previously.</p></li>
+<li><p><strong>existing_data</strong> – Mapping from dependent parameter name to mapping
+from parameter name to numpy arrays that the data should be
+inserted into.
+appended to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Updated write and read status, and the updated <code class="docutils literal notranslate"><span class="pre">data</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="qcodes.dataset.data_set_cache.append_shaped_parameter_data_to_existing_arrays">
+<code class="sig-prename descclassname">qcodes.dataset.data_set_cache.</code><code class="sig-name descname">append_shaped_parameter_data_to_existing_arrays</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rundescriber</span><span class="p">:</span> <span class="n">qcodes.dataset.descriptions.rundescriber.RunDescriber</span></em>, <em class="sig-param"><span class="n">write_status</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">existing_data</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Mapping<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">new_data</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Mapping<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/functions.html#int" title="(in Python v3.7)">int</a><span class="p">]</span><span class="p">]</span><span class="p">, </span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span>Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)">str</a><span class="p">, </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a><span class="p">]</span><span class="p">]</span><span class="p">]</span><a class="reference internal" href="../../_modules/qcodes/dataset/data_set_cache.html#append_shaped_parameter_data_to_existing_arrays"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qcodes.dataset.data_set_cache.append_shaped_parameter_data_to_existing_arrays" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append datadict to an already existing datadict and return the merged
+data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rundescriber</strong> – The rundescriber that describes the run</p></li>
+<li><p><strong>write_status</strong> – Mapping from dependent parameter name to number of rows
+written to the cache previously.</p></li>
+<li><p><strong>new_data</strong> – Mapping from dependent parameter name to mapping
+from parameter name to numpy arrays that the data should be
+appended to.</p></li>
+<li><p><strong>existing_data</strong> – Mapping from dependent parameter name to mapping
+from parameter name to numpy arrays of new data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Updated write and read status, and the updated <code class="docutils literal notranslate"><span class="pre">data</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
