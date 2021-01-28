@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.21.0+521.g59bb6d230b
+                0.21.0+530.ga7b65a9bbc
               </div>
             
           
@@ -323,8 +323,8 @@
                 <span class="k">if</span> <span class="p">(</span><span class="n">parameter</span><span class="o">.</span><span class="n">vals</span><span class="o">.</span><span class="n">shape</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
                         <span class="ow">and</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">parameter</span><span class="o">.</span><span class="n">vals</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
                     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                        <span class="s2">&quot;Expected data with shape </span><span class="si">{parameter.vals.shape}</span><span class="s2">, &quot;</span>
-                        <span class="s2">&quot;but got </span><span class="si">{data.shape}</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;Expected data with shape </span><span class="si">{</span><span class="n">parameter</span><span class="o">.</span><span class="n">vals</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;but got </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> for parameter: </span><span class="si">{</span><span class="n">parameter</span><span class="o">.</span><span class="n">full_name</span><span class="si">}</span><span class="s2">&quot;</span>
                     <span class="p">)</span>
 
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">ArrayParameter</span><span class="p">):</span>
