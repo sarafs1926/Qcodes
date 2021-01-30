@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.22.0+24.g6f92943293
+                0.22.0+36.gbcf2279ff6
               </div>
             
           
@@ -192,7 +192,7 @@
 <span class="sd">    The DataSetCache contains a in memory representation of the</span>
 <span class="sd">    data in this dataset as well a a method to progressively read data</span>
 <span class="sd">    from the db as it is written. The cache is available in the same formats</span>
-<span class="sd">    as :py:class:`.DataSet.get_parameter_data` and :py:class:`.DataSet.get_data_as_pandas_dataframe`</span>
+<span class="sd">    as :py:class:`.DataSet.get_parameter_data` and :py:class:`.DataSet.to_pandas_dataframe_dict`</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -254,7 +254,7 @@
 <div class="viewcode-block" id="DataSetCache.to_pandas"><a class="viewcode-back" href="../../../api/dataset/data_set.html#qcodes.dataset.data_set_cache.DataSetCache.to_pandas">[docs]</a>    <span class="k">def</span> <span class="nf">to_pandas</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;pd.DataFrame&quot;</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert the cached dataset to Pandas dataframes. The returned dataframes</span>
-<span class="sd">        are in the same format :py:class:`.DataSet.get_data_as_pandas_dataframe`.</span>
+<span class="sd">        are in the same format :py:class:`.DataSet.to_pandas_dataframe_dict`.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            A dict from parameter name to Pandas Dataframes. Each dataframe</span>

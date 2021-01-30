@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                0.22.0+24.g6f92943293
+                0.22.0+36.gbcf2279ff6
               </div>
             
           
@@ -557,7 +557,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/210129-15194-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/210130-15963-qcodes.log
 Activating auto-logging. Current session state plus future input saved.
 Filename       : /home/vsts/.qcodes/logs/command_history.log
 Mode           : append
@@ -565,7 +565,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/210129-15194-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/210130-15963-qcodes.log
 </pre></div></div>
 </div>
 <p>In what follows, we shall define some utility functions as well as declare our dummy instruments. We, then, add these instruments to a <code class="docutils literal notranslate"><span class="pre">Station</span></code> object.</p>
@@ -701,7 +701,7 @@ End of experiment
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;qcodes.dataset.measurements.Measurement at 0x7f434c681b90&gt;
+&lt;qcodes.dataset.measurements.Measurement at 0x7f7c641f4b90&gt;
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -722,7 +722,7 @@ End of experiment
                                  <span class="p">(</span><span class="n">dac</span><span class="o">.</span><span class="n">ch2</span><span class="p">,</span> <span class="n">v2</span><span class="p">),</span>
                                  <span class="p">(</span><span class="n">dmm</span><span class="o">.</span><span class="n">v2</span><span class="p">,</span> <span class="n">val</span><span class="p">))</span>
 
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">datasaver</span><span class="o">.</span><span class="n">dataset</span>
+    <span class="n">dataset2D</span> <span class="o">=</span> <span class="n">datasaver</span><span class="o">.</span><span class="n">dataset</span>
 </pre></div>
 </div>
 </div>
@@ -734,17 +734,8 @@ End of experiment
 Starting experimental run with id: 34.
 </pre></div></div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">dataset2D</span> <span class="o">=</span> <span class="n">dataset</span>  <span class="c1"># we&#39;ll need this dataset in further sections</span>
-</pre></div>
-</div>
-</div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -756,7 +747,7 @@ Starting experimental run with id: 34.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_18_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_18_0.png" />
+<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_17_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_17_0.png" />
 </div>
 </div>
 </div>
@@ -765,7 +756,7 @@ Starting experimental run with id: 34.
 <p>QCoDeS <code class="docutils literal notranslate"><span class="pre">DataSet</span></code> implements a number of methods for accessing the data of a given dataset. Here we will concentrate on the two most user friendly methods. For a more detailed walkthrough of the <code class="docutils literal notranslate"><span class="pre">DataSet</span></code> class, refer to <a class="reference internal" href="DataSet-class-walkthrough.html"><span class="doc">DataSet class walkthrough</span></a> notebook.</p>
 <p>The method <code class="docutils literal notranslate"><span class="pre">get_parameter_data</span></code> returns the data as a dictionary of <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays. The dictionary is indexed by the measured (dependent) parameter in the outermost level and the names of the dependent and independent parameters in the innermost level. The first parameter in the innermost level is always the dependent parameter.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -774,20 +765,20 @@ Starting experimental run with id: 34.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;dmm_v1&#39;: {&#39;dmm_v1&#39;: array([ 4.91815364,  2.82727215,  1.48790258,  0.89204487,  0.54942115,
-          0.33634125,  0.10497452, -0.02755417,  0.11400254, -0.12159065]),
+{&#39;dmm_v1&#39;: {&#39;dmm_v1&#39;: array([ 4.94533245,  2.91586588,  1.76216725,  0.87255692,  0.4728903 ,
+          0.25325225,  0.17686293,  0.22541735, -0.11094683,  0.06680309]),
   &#39;dac_ch1&#39;: array([ 0.        ,  2.77777778,  5.55555556,  8.33333333, 11.11111111,
          13.88888889, 16.66666667, 19.44444444, 22.22222222, 25.        ])}}
 </pre></div></div>
 </div>
 <p>By default <code class="docutils literal notranslate"><span class="pre">get_parameter_data</span></code> returns all data stored in the dataset. The data that is specific to one or more measured parameters can be returned by passing the parameter name(s) or by using <code class="docutils literal notranslate"><span class="pre">ParamSpec</span></code> object:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -796,20 +787,20 @@ Starting experimental run with id: 34.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;dmm_v1&#39;: {&#39;dmm_v1&#39;: array([ 4.91815364,  2.82727215,  1.48790258,  0.89204487,  0.54942115,
-          0.33634125,  0.10497452, -0.02755417,  0.11400254, -0.12159065]),
+{&#39;dmm_v1&#39;: {&#39;dmm_v1&#39;: array([ 4.94533245,  2.91586588,  1.76216725,  0.87255692,  0.4728903 ,
+          0.25325225,  0.17686293,  0.22541735, -0.11094683,  0.06680309]),
   &#39;dac_ch1&#39;: array([ 0.        ,  2.77777778,  5.55555556,  8.33333333, 11.11111111,
          13.88888889, 16.66666667, 19.44444444, 22.22222222, 25.        ])}}
 </pre></div></div>
 </div>
 <p>You can also simply fetch the data for one or more dependent parameter</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -818,7 +809,7 @@ Starting experimental run with id: 34.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -828,28 +819,18 @@ Starting experimental run with id: 34.
 </pre></div></div>
 </div>
 <p>For more details about accessing data of a given <code class="docutils literal notranslate"><span class="pre">DataSet</span></code>, see <a class="reference internal" href="Accessing-data-in-DataSet.html"><span class="doc">Accessing data in DataSet notebook</span></a>.</p>
-<p>The data can also be exported as one or more <a class="reference external" href="https://pandas.pydata.org/">Pandas</a> DataFrames. The DataFrames are returned as a dictionary from measured parameters to DataFrames.</p>
+<p>The data can also be exported as one or more <a class="reference external" href="https://pandas.pydata.org/">Pandas</a> DataFrames. The DataFrames cane be returned either as a single dataframe or as a dictionary from measured parameters to DataFrames. If you measure all parameters as a function of the same set of parameters you probably want to export to a single dataframe.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">dataset1D</span><span class="o">.</span><span class="n">get_data_as_pandas_dataframe</span><span class="p">()[</span><span class="s1">&#39;dmm_v1&#39;</span><span class="p">]</span>
+<span></span><span class="n">dataset1D</span><span class="o">.</span><span class="n">to_pandas_dataframe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-2021-01-29 16:58:22,913 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/utils/deprecate.py:59: QCoDeSDeprecationWarning: The function &lt;get_data_as_pandas_dataframe&gt; is deprecated, because This method will be removed due to inconcise naming, please use the renamed method to_pandas_dataframe_dict. Use &#34;to_pandas_dataframe_dict&#34; as an alternative.
-  issue_deprecation_warning(f&#39;{t} &lt;{n}&gt;&#39;, reason, alternative)
-
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -881,47 +862,77 @@ Starting experimental run with id: 34.
   <tbody>
     <tr>
       <th>0.000000</th>
-      <td>4.918154</td>
+      <td>4.945332</td>
     </tr>
     <tr>
       <th>2.777778</th>
-      <td>2.827272</td>
+      <td>2.915866</td>
     </tr>
     <tr>
       <th>5.555556</th>
-      <td>1.487903</td>
+      <td>1.762167</td>
     </tr>
     <tr>
       <th>8.333333</th>
-      <td>0.892045</td>
+      <td>0.872557</td>
     </tr>
     <tr>
       <th>11.111111</th>
-      <td>0.549421</td>
+      <td>0.472890</td>
     </tr>
     <tr>
       <th>13.888889</th>
-      <td>0.336341</td>
+      <td>0.253252</td>
     </tr>
     <tr>
       <th>16.666667</th>
-      <td>0.104975</td>
+      <td>0.176863</td>
     </tr>
     <tr>
       <th>19.444444</th>
-      <td>-0.027554</td>
+      <td>0.225417</td>
     </tr>
     <tr>
       <th>22.222222</th>
-      <td>0.114003</td>
+      <td>-0.110947</td>
     </tr>
     <tr>
       <th>25.000000</th>
-      <td>-0.121591</td>
+      <td>0.066803</td>
     </tr>
   </tbody>
 </table>
 </div></div>
+</div>
+<p>However, there may be cases where the data within a dataset cannot be put into a single dataframe. In those cases you can use the other method to export the dataset to a dictionary from name of the measured parameter to Pandas dataframes.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">dataset1D</span><span class="o">.</span><span class="n">to_pandas_dataframe_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;dmm_v1&#39;:              dmm_v1
+ dac_ch1
+ 0.000000   4.945332
+ 2.777778   2.915866
+ 5.555556   1.762167
+ 8.333333   0.872557
+ 11.111111  0.472890
+ 13.888889  0.253252
+ 16.666667  0.176863
+ 19.444444  0.225417
+ 22.222222 -0.110947
+ 25.000000  0.066803}
+</pre></div></div>
 </div>
 <p>When exporting a two or higher dimensional datasets as a Pandas DataFrame a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/advanced.html">MultiIndex</a> is used to index the measured parameter based on all the dependencies</p>
 <div class="nbinput docutils container">
@@ -929,19 +940,9 @@ Starting experimental run with id: 34.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">dataset2D</span><span class="o">.</span><span class="n">get_data_as_pandas_dataframe</span><span class="p">()[</span><span class="s1">&#39;dmm_v2&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+<span></span><span class="n">dataset2D</span><span class="o">.</span><span class="n">to_pandas_dataframe</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-2021-01-29 16:58:23,155 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/utils/deprecate.py:59: QCoDeSDeprecationWarning: The function &lt;get_data_as_pandas_dataframe&gt; is deprecated, because This method will be removed due to inconcise naming, please use the renamed method to_pandas_dataframe_dict. Use &#34;to_pandas_dataframe_dict&#34; as an alternative.
-  issue_deprecation_warning(f&#39;{t} &lt;{n}&gt;&#39;, reason, alternative)
-
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
@@ -979,67 +980,57 @@ Starting experimental run with id: 34.
     <tr>
       <th rowspan="10" valign="top">-1.0</th>
       <th>-1.000000</th>
-      <td>-0.000047</td>
+      <td>-0.000938</td>
     </tr>
     <tr>
       <th>-0.989950</th>
-      <td>0.000421</td>
+      <td>-0.000281</td>
     </tr>
     <tr>
       <th>-0.979899</th>
-      <td>-0.000390</td>
+      <td>0.000186</td>
     </tr>
     <tr>
       <th>-0.969849</th>
-      <td>0.000253</td>
+      <td>-0.000794</td>
     </tr>
     <tr>
       <th>-0.959799</th>
-      <td>-0.000382</td>
+      <td>-0.000557</td>
     </tr>
     <tr>
       <th>-0.949749</th>
-      <td>-0.000206</td>
+      <td>-0.000165</td>
     </tr>
     <tr>
       <th>-0.939698</th>
-      <td>0.000825</td>
+      <td>-0.000819</td>
     </tr>
     <tr>
       <th>-0.929648</th>
-      <td>0.000780</td>
+      <td>0.000150</td>
     </tr>
     <tr>
       <th>-0.919598</th>
-      <td>0.000489</td>
+      <td>0.000240</td>
     </tr>
     <tr>
       <th>-0.909548</th>
-      <td>-0.000484</td>
+      <td>0.000039</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
-<p>If your data is on a regular grid it may make sense to view the data as an <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/advanced.html">XArray</a> Dataset. The Pandas DataFrame can be directly exported to a XArray Dataset.</p>
+<p>If your data is on a regular grid it may make sense to view the data as an <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/advanced.html">XArray</a> Dataset. The dataset can be directly exported to a XArray Dataset.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">dataset2D</span><span class="o">.</span><span class="n">get_data_as_pandas_dataframe</span><span class="p">()[</span><span class="s1">&#39;dmm_v2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">()</span>
+<span></span><span class="n">dataset2D</span><span class="o">.</span><span class="n">to_xarray_dataset</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-2021-01-29 16:58:23,737 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/utils/deprecate.py:59: QCoDeSDeprecationWarning: The function &lt;get_data_as_pandas_dataframe&gt; is deprecated, because This method will be removed due to inconcise naming, please use the renamed method to_pandas_dataframe_dict. Use &#34;to_pandas_dataframe_dict&#34; as an alternative.
-  issue_deprecation_warning(f&#39;{t} &lt;{n}&gt;&#39;, reason, alternative)
-
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
@@ -1403,7 +1394,10 @@ Coordinates:
   * dac_ch1  (dac_ch1) float64 -1.0 -0.9899 -0.9799 ... 0.9799 0.9899 1.0
   * dac_ch2  (dac_ch2) float64 -1.0 -0.9899 -0.9799 ... 0.9799 0.9899 1.0
 Data variables:
-    dmm_v2   (dac_ch1, dac_ch2) float64 -4.692e-05 0.0004207 ... -0.0002089</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-45066208-f276-4c43-ae01-3d39accb4cdd' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-45066208-f276-4c43-ae01-3d39accb4cdd' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>dac_ch1</span>: 200</li><li><span class='xr-has-index'>dac_ch2</span>: 200</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-013202fd-9d41-4085-8d3f-38ce436beaee' class='xr-section-summary-in' type='checkbox'  checked><label for='section-013202fd-9d41-4085-8d3f-38ce436beaee' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>dac_ch1</span></div><div class='xr-var-dims'>(dac_ch1)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.0 -0.9899 -0.9799 ... 0.9899 1.0</div><input id='attrs-eda2d878-d18f-4d4c-b649-190849420da8' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-eda2d878-d18f-4d4c-b649-190849420da8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0a0d7b79-f466-428c-aca7-686a13f4250f' class='xr-var-data-in' type='checkbox'><label for='data-0a0d7b79-f466-428c-aca7-686a13f4250f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-1.      , -0.98995 , -0.979899, -0.969849, -0.959799, -0.949749,
+    dmm_v2   (dac_ch1, dac_ch2) float64 -0.0009382 -0.0002809 ... 0.0004269
+Attributes:
+    sample_name:  no sample
+    exp_name:     performing_meas_using_parameters_and_dataset</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-7dcbcd9e-a0a9-4e58-9eb7-9a30ea11289d' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-7dcbcd9e-a0a9-4e58-9eb7-9a30ea11289d' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>dac_ch1</span>: 200</li><li><span class='xr-has-index'>dac_ch2</span>: 200</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-956b55ac-ae9c-4fba-8e1e-f5b99b2a4b28' class='xr-section-summary-in' type='checkbox'  checked><label for='section-956b55ac-ae9c-4fba-8e1e-f5b99b2a4b28' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>dac_ch1</span></div><div class='xr-var-dims'>(dac_ch1)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.0 -0.9899 -0.9799 ... 0.9899 1.0</div><input id='attrs-36808548-8295-4c87-b754-25fe872c3aac' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-36808548-8295-4c87-b754-25fe872c3aac' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c63ec05c-7567-4a55-9037-c785969e8238' class='xr-var-data-in' type='checkbox'><label for='data-c63ec05c-7567-4a55-9037-c785969e8238' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>name :</span></dt><dd>dac_ch1</dd><dt><span>paramtype :</span></dt><dd>numeric</dd><dt><span>label :</span></dt><dd>Gate ch1</dd><dt><span>unit :</span></dt><dd>V</dd><dt><span>inferred_from :</span></dt><dd>[]</dd><dt><span>depends_on :</span></dt><dd>[]</dd></dl></div><div class='xr-var-data'><pre>array([-1.      , -0.98995 , -0.979899, -0.969849, -0.959799, -0.949749,
        -0.939698, -0.929648, -0.919598, -0.909548, -0.899497, -0.889447,
        -0.879397, -0.869347, -0.859296, -0.849246, -0.839196, -0.829146,
        -0.819095, -0.809045, -0.798995, -0.788945, -0.778894, -0.768844,
@@ -1436,7 +1430,7 @@ Data variables:
         0.809045,  0.819095,  0.829146,  0.839196,  0.849246,  0.859296,
         0.869347,  0.879397,  0.889447,  0.899497,  0.909548,  0.919598,
         0.929648,  0.939698,  0.949749,  0.959799,  0.969849,  0.979899,
-        0.98995 ,  1.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>dac_ch2</span></div><div class='xr-var-dims'>(dac_ch2)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.0 -0.9899 -0.9799 ... 0.9899 1.0</div><input id='attrs-a038f48c-6a88-4fd7-9937-751a3e4234eb' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-a038f48c-6a88-4fd7-9937-751a3e4234eb' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-db26f53f-b8e3-46d3-9cc3-e23d1ac647be' class='xr-var-data-in' type='checkbox'><label for='data-db26f53f-b8e3-46d3-9cc3-e23d1ac647be' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-1.      , -0.98995 , -0.979899, -0.969849, -0.959799, -0.949749,
+        0.98995 ,  1.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>dac_ch2</span></div><div class='xr-var-dims'>(dac_ch2)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.0 -0.9899 -0.9799 ... 0.9899 1.0</div><input id='attrs-609a5b4b-e1c2-4fe7-abfe-059555deb1d8' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-609a5b4b-e1c2-4fe7-abfe-059555deb1d8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-76b1de9d-2012-4114-b0ee-c84fa79b2882' class='xr-var-data-in' type='checkbox'><label for='data-76b1de9d-2012-4114-b0ee-c84fa79b2882' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>name :</span></dt><dd>dac_ch2</dd><dt><span>paramtype :</span></dt><dd>numeric</dd><dt><span>label :</span></dt><dd>Gate ch2</dd><dt><span>unit :</span></dt><dd>V</dd><dt><span>inferred_from :</span></dt><dd>[]</dd><dt><span>depends_on :</span></dt><dd>[]</dd></dl></div><div class='xr-var-data'><pre>array([-1.      , -0.98995 , -0.979899, -0.969849, -0.959799, -0.949749,
        -0.939698, -0.929648, -0.919598, -0.909548, -0.899497, -0.889447,
        -0.879397, -0.869347, -0.859296, -0.849246, -0.839196, -0.829146,
        -0.819095, -0.809045, -0.798995, -0.788945, -0.778894, -0.768844,
@@ -1469,19 +1463,19 @@ Data variables:
         0.809045,  0.819095,  0.829146,  0.839196,  0.849246,  0.859296,
         0.869347,  0.879397,  0.889447,  0.899497,  0.909548,  0.919598,
         0.929648,  0.939698,  0.949749,  0.959799,  0.969849,  0.979899,
-        0.98995 ,  1.      ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-b98e7000-81cb-4aa8-832a-d05b7b9c0bcf' class='xr-section-summary-in' type='checkbox'  checked><label for='section-b98e7000-81cb-4aa8-832a-d05b7b9c0bcf' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>dmm_v2</span></div><div class='xr-var-dims'>(dac_ch1, dac_ch2)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-4.692e-05 0.0004207 ... -0.0002089</div><input id='attrs-d6d0dd7e-3a70-43e7-b8c0-dcd7240cfe32' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-d6d0dd7e-3a70-43e7-b8c0-dcd7240cfe32' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9d2ca66c-e12e-4689-bcaf-442d783d9946' class='xr-var-data-in' type='checkbox'><label for='data-9d2ca66c-e12e-4689-bcaf-442d783d9946' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[-4.69165978e-05,  4.20657330e-04, -3.90238245e-04, ...,
-         9.97669186e-05,  4.02051170e-04, -2.05560446e-04],
-       [ 6.45976942e-04, -6.56111661e-04, -1.06770815e-03, ...,
-         3.57703007e-04,  3.01342072e-04, -3.60697340e-04],
-       [-6.09769592e-04,  1.25596822e-04,  3.51623687e-04, ...,
-        -2.78077796e-04, -3.69105483e-04, -3.01170920e-04],
+        0.98995 ,  1.      ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-13b7672a-801e-4ec8-a595-b6aa157fb5e0' class='xr-section-summary-in' type='checkbox'  checked><label for='section-13b7672a-801e-4ec8-a595-b6aa157fb5e0' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>dmm_v2</span></div><div class='xr-var-dims'>(dac_ch1, dac_ch2)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-0.0009382 -0.0002809 ... 0.0004269</div><input id='attrs-00dc63e9-f35b-47a8-a06b-405f32c968b1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-00dc63e9-f35b-47a8-a06b-405f32c968b1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8923557c-326d-49d6-9f5e-eb5c576b0cb1' class='xr-var-data-in' type='checkbox'><label for='data-8923557c-326d-49d6-9f5e-eb5c576b0cb1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>name :</span></dt><dd>dmm_v2</dd><dt><span>paramtype :</span></dt><dd>numeric</dd><dt><span>label :</span></dt><dd>Gate v2</dd><dt><span>unit :</span></dt><dd>V</dd><dt><span>inferred_from :</span></dt><dd>[]</dd><dt><span>depends_on :</span></dt><dd>[&#x27;dac_ch1&#x27;, &#x27;dac_ch2&#x27;]</dd></dl></div><div class='xr-var-data'><pre>array([[-9.38165978e-04, -2.80873512e-04,  1.86446639e-04, ...,
+         7.38206685e-04, -8.05395741e-04, -2.65710768e-04],
+       [-3.32684045e-05, -1.04236614e-03,  1.43414327e-04, ...,
+         1.28207391e-03,  2.06639577e-04,  8.25636366e-04],
+       [-5.72179066e-04, -9.27783653e-04,  1.22613722e-04, ...,
+         4.81223576e-04, -3.10799749e-04,  3.40366030e-05],
        ...,
-       [ 1.65094827e-05,  9.16700633e-06,  2.89867870e-04, ...,
-         8.88771886e-04,  2.12318930e-06,  4.24093895e-04],
-       [-9.36612553e-05,  4.18584800e-04,  6.98850131e-04, ...,
-         4.08322388e-04, -5.27021527e-04, -2.04881106e-04],
-       [ 3.88007494e-04, -5.17912199e-05,  4.91709698e-04, ...,
-         4.51927366e-04,  2.50415233e-04, -2.08881730e-04]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-ec62e0cc-df70-45e3-a770-de54e46d371e' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-ec62e0cc-df70-45e3-a770-de54e46d371e' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div>
+       [ 3.23216366e-04, -8.95632909e-04,  6.81055207e-05, ...,
+        -1.39170727e-04, -1.72515919e-04,  9.00095880e-04],
+       [-2.67029588e-04,  1.15507036e-04,  3.71133534e-04, ...,
+        -3.51664157e-04,  8.07689207e-04, -1.21940421e-04],
+       [ 3.34632242e-04,  4.90110663e-04, -4.48104021e-04, ...,
+         2.06388981e-04,  2.81452306e-04,  4.26883531e-04]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-696a9fdc-3923-4624-8f79-ae59a81898be' class='xr-section-summary-in' type='checkbox'  checked><label for='section-696a9fdc-3923-4624-8f79-ae59a81898be' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>sample_name :</span></dt><dd>no sample</dd><dt><span>exp_name :</span></dt><dd>performing_meas_using_parameters_and_dataset</dd></dl></div></li></ul></div></div></div>
 </div>
 <p>Note, however, that XArray is only suited for data that is on a rectangular grid with few or no missing values. If the data does not lie on a grid, all the measured data points will have an unique combination of the two dependent parameters. When exporting to XArray, NaN’s will therefore replace all the missing combinations of <code class="docutils literal notranslate"><span class="pre">dac_ch1</span></code> and <code class="docutils literal notranslate"><span class="pre">dac_ch2</span></code> and the data is unlikely to be useful in this format.</p>
 <p>For more details about using Pandas and XArray see <a class="reference internal" href="Working-With-Pandas-and-XArray.html"><span class="doc">Working With Pandas and XArray</span></a></p>
@@ -1553,7 +1547,7 @@ True
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Dataset GUID is: aaaaaaaa-0000-0000-0000-01774f14c54e
+Dataset GUID is: aaaaaaaa-0000-0000-0000-017752d587ec
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1587,8 +1581,8 @@ True
 </div>
 <div class="section" id="Specifying-shape-of-measurement">
 <h2>Specifying shape of measurement<a class="headerlink" href="#Specifying-shape-of-measurement" title="Permalink to this headline">¶</a></h2>
-<p>As the context manager allows you to store data of any shape (with the only restriction being that you supply values for both dependent and independent parameters together), it cannot know if the data is being measured on a grid. As a consequence, the Numpy array of data loaded from the dataset may not be of the shape that you expect. <code class="docutils literal notranslate"><span class="pre">plot_dataset</span></code> and <code class="docutils literal notranslate"><span class="pre">DataSet.get_data_as_pandas_dataframe</span></code> contain logic that can detect the shape of the data measured at load time. However, if you know the
-shape of the measurement that you are going to perform up front, you can choose to specify it before initializing the measurement using <code class="docutils literal notranslate"><span class="pre">Measurement.set_shapes</span></code> method.</p>
+<p>As the context manager allows you to store data of any shape (with the only restriction being that you supply values for both dependent and independent parameters together), it cannot know if the data is being measured on a grid. As a consequence, the Numpy array of data loaded from the dataset may not be of the shape that you expect. <code class="docutils literal notranslate"><span class="pre">plot_dataset</span></code>, <code class="docutils literal notranslate"><span class="pre">DataSet.to_pandas...</span></code> and <code class="docutils literal notranslate"><span class="pre">DataSet.to_xarray...</span></code> contain logic that can detect the shape of the data measured at load time. However, if you
+know the shape of the measurement that you are going to perform up front, you can choose to specify it before initializing the measurement using <code class="docutils literal notranslate"><span class="pre">Measurement.set_shapes</span></code> method.</p>
 <p><code class="docutils literal notranslate"><span class="pre">dataset.get_parameter_data</span></code> and <code class="docutils literal notranslate"><span class="pre">dataset.cache.data</span></code> automatically makes use of this information to return shaped data when loaded from the database. Note that these two methods behave slightly different when loading data on a partially completed dataset. <code class="docutils literal notranslate"><span class="pre">dataset.get_parameter_data</span></code> will only reshape the data if the number of points measured matches the number of points expected according to the metadata. <code class="docutils literal notranslate"><span class="pre">dataset.cache.data</span></code> will however return a dataset with empty placeholders
 (either NaN, zeros or empty strings depending on the datatypes) for missing values in a partially filled dataset.</p>
 <p>Note that if you use the doNd functions demonstrated in <a class="reference internal" href="Using_doNd_functions_in_comparison_to_Measurement_context_manager_for_performing_measurements.html"><span class="doc">Using doNd functions in comparison to Measurement context manager for performing measurements</span></a> the shape information will be detected and stored automatically.</p>
@@ -1719,7 +1713,7 @@ Starting experimental run with id: 37.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_54_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_54_0.png" />
+<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_55_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_55_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -1735,7 +1729,7 @@ Starting experimental run with id: 37.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_55_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_55_0.png" />
+<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_56_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_56_0.png" />
 </div>
 </div>
 </div>
@@ -1885,22 +1879,22 @@ Starting experimental run with id: 38.
 <div class="highlight"><pre>
 ([&lt;AxesSubplot:title={&#39;center&#39;:&#39;Run #38, Experiment performing_meas_using_parameters_and_dataset (no sample)&#39;}, xlabel=&#39;this setpoint (this setpointunit)&#39;, ylabel=&#39;that setpoint (that setpointunit)&#39;&gt;,
   &lt;AxesSubplot:title={&#39;center&#39;:&#39;Run #38, Experiment performing_meas_using_parameters_and_dataset (no sample)&#39;}, xlabel=&#39;this setpoint (this setpointunit)&#39;, ylabel=&#39;that setpoint (that setpointunit)&#39;&gt;],
- [&lt;matplotlib.colorbar.Colorbar at 0x7f4349cdbb10&gt;,
-  &lt;matplotlib.colorbar.Colorbar at 0x7f43492b6e10&gt;])
+ [&lt;matplotlib.colorbar.Colorbar at 0x7f7c61372fd0&gt;,
+  &lt;matplotlib.colorbar.Colorbar at 0x7f7c6163df50&gt;])
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_69_1.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_69_1.png" />
+<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_70_1.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_70_1.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_69_2.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_69_2.png" />
+<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_70_2.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_70_2.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -1929,19 +1923,9 @@ Starting experimental run with id: 38.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">datasaver</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_data_as_pandas_dataframe</span><span class="p">()[</span><span class="s1">&#39;MyDummy_ChanA_that&#39;</span><span class="p">]</span>
+<span></span><span class="n">datasaver</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">to_pandas_dataframe</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-2021-01-29 16:58:38,909 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/utils/deprecate.py:59: QCoDeSDeprecationWarning: The function &lt;get_data_as_pandas_dataframe&gt; is deprecated, because This method will be removed due to inconcise naming, please use the renamed method to_pandas_dataframe_dict. Use &#34;to_pandas_dataframe_dict&#34; as an alternative.
-  issue_deprecation_warning(f&#39;{t} &lt;{n}&gt;&#39;, reason, alternative)
-
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
@@ -1968,10 +1952,12 @@ Starting experimental run with id: 38.
       <th></th>
       <th></th>
       <th>MyDummy_ChanA_that</th>
+      <th>MyDummy_ChanA_this</th>
     </tr>
     <tr>
       <th>MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint</th>
       <th>MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint</th>
+      <th></th>
       <th></th>
     </tr>
   </thead>
@@ -1980,66 +1966,81 @@ Starting experimental run with id: 38.
       <th rowspan="3" valign="top">5.0</th>
       <th>9.0</th>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>10.0</th>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>11.0</th>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th rowspan="3" valign="top">6.0</th>
       <th>9.0</th>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>10.0</th>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>11.0</th>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th rowspan="3" valign="top">7.0</th>
       <th>9.0</th>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>10.0</th>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>11.0</th>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th rowspan="3" valign="top">8.0</th>
       <th>9.0</th>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>10.0</th>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>11.0</th>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th rowspan="3" valign="top">9.0</th>
       <th>9.0</th>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>10.0</th>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>11.0</th>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
@@ -2050,19 +2051,9 @@ Starting experimental run with id: 38.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">datasaver</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_data_as_pandas_dataframe</span><span class="p">()[</span><span class="s1">&#39;MyDummy_ChanA_that&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">()</span>
+<span></span><span class="n">datasaver</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">to_xarray_dataset</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-2021-01-29 16:58:38,929 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/utils/deprecate.py:59: QCoDeSDeprecationWarning: The function &lt;get_data_as_pandas_dataframe&gt; is deprecated, because This method will be removed due to inconcise naming, please use the renamed method to_pandas_dataframe_dict. Use &#34;to_pandas_dataframe_dict&#34; as an alternative.
-  issue_deprecation_warning(f&#39;{t} &lt;{n}&gt;&#39;, reason, alternative)
-
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
@@ -2426,11 +2417,19 @@ Coordinates:
   * MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint  (MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint) float64 ...
   * MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint  (MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint) float64 ...
 Data variables:
-    MyDummy_ChanA_that                                   (MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint, MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint) float64 ...</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-178a4b15-ad5e-4144-84c6-d88ed5a32114' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-178a4b15-ad5e-4144-84c6-d88ed5a32114' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint</span>: 3</li><li><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint</span>: 5</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-a677a199-3c19-49e3-838d-02560c6d4972' class='xr-section-summary-in' type='checkbox'  checked><label for='section-a677a199-3c19-49e3-838d-02560c6d4972' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>5.0 6.0 7.0 8.0 9.0</div><input id='attrs-9e5746fd-299b-49bd-87f3-08f3aef5d342' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-9e5746fd-299b-49bd-87f3-08f3aef5d342' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5af7702d-d17e-40c4-a333-4ea58f26cc6c' class='xr-var-data-in' type='checkbox'><label for='data-5af7702d-d17e-40c4-a333-4ea58f26cc6c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([5., 6., 7., 8., 9.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>9.0 10.0 11.0</div><input id='attrs-621bdb16-2b54-4526-a6a2-f2f55888547b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-621bdb16-2b54-4526-a6a2-f2f55888547b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b370cc44-113f-45d6-a4f3-aa2381dec82e' class='xr-var-data-in' type='checkbox'><label for='data-b370cc44-113f-45d6-a4f3-aa2381dec82e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([ 9., 10., 11.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-1da878fa-d1ae-43fb-a0a2-9946e2c3650c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-1da878fa-d1ae-43fb-a0a2-9946e2c3650c' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>MyDummy_ChanA_that</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint, MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.0 1.0 1.0 1.0 ... 1.0 1.0 1.0 1.0</div><input id='attrs-15c86cf3-0937-406a-969c-97d7190867ba' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-15c86cf3-0937-406a-969c-97d7190867ba' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5baa547d-19df-43e8-ac08-677241d5cfbd' class='xr-var-data-in' type='checkbox'><label for='data-5baa547d-19df-43e8-ac08-677241d5cfbd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[1., 1., 1.],
+    MyDummy_ChanA_that                                   (MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint, MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint) float64 ...
+    MyDummy_ChanA_this                                   (MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint, MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint) float64 ...
+Attributes:
+    sample_name:  no sample
+    exp_name:     performing_meas_using_parameters_and_dataset</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-5e64fea6-9393-48dd-aa3c-ac329020929b' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-5e64fea6-9393-48dd-aa3c-ac329020929b' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint</span>: 3</li><li><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint</span>: 5</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-196a1cd1-8b16-4662-957d-169a84704e9f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-196a1cd1-8b16-4662-957d-169a84704e9f' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>5.0 6.0 7.0 8.0 9.0</div><input id='attrs-7ed49101-4f2c-4969-813a-fbef67624c2a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-7ed49101-4f2c-4969-813a-fbef67624c2a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ba6def1a-0f54-461e-a381-8947a5d2e41c' class='xr-var-data-in' type='checkbox'><label for='data-ba6def1a-0f54-461e-a381-8947a5d2e41c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>name :</span></dt><dd>MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint</dd><dt><span>paramtype :</span></dt><dd>numeric</dd><dt><span>label :</span></dt><dd>this setpoint</dd><dt><span>unit :</span></dt><dd>this setpointunit</dd><dt><span>inferred_from :</span></dt><dd>[]</dd><dt><span>depends_on :</span></dt><dd>[]</dd></dl></div><div class='xr-var-data'><pre>array([5., 6., 7., 8., 9.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>9.0 10.0 11.0</div><input id='attrs-24a25b97-ae7e-4500-9db8-0aacdd2a3dc0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-24a25b97-ae7e-4500-9db8-0aacdd2a3dc0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-35fc7c3b-6ba7-45bf-809d-69b8deef4141' class='xr-var-data-in' type='checkbox'><label for='data-35fc7c3b-6ba7-45bf-809d-69b8deef4141' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>name :</span></dt><dd>MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint</dd><dt><span>paramtype :</span></dt><dd>numeric</dd><dt><span>label :</span></dt><dd>that setpoint</dd><dt><span>unit :</span></dt><dd>that setpointunit</dd><dt><span>inferred_from :</span></dt><dd>[]</dd><dt><span>depends_on :</span></dt><dd>[]</dd></dl></div><div class='xr-var-data'><pre>array([ 9., 10., 11.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-aec3b106-f5ed-4710-ab68-e811993be3e6' class='xr-section-summary-in' type='checkbox'  checked><label for='section-aec3b106-f5ed-4710-ab68-e811993be3e6' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>MyDummy_ChanA_that</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint, MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.0 1.0 1.0 1.0 ... 1.0 1.0 1.0 1.0</div><input id='attrs-32fe0117-1d2c-4cf1-8026-0519dfcf1391' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-32fe0117-1d2c-4cf1-8026-0519dfcf1391' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a4a01682-f466-49c6-86ea-355e6e53882d' class='xr-var-data-in' type='checkbox'><label for='data-a4a01682-f466-49c6-86ea-355e6e53882d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>name :</span></dt><dd>MyDummy_ChanA_that</dd><dt><span>paramtype :</span></dt><dd>numeric</dd><dt><span>label :</span></dt><dd>that label</dd><dt><span>unit :</span></dt><dd>that unit</dd><dt><span>inferred_from :</span></dt><dd>[]</dd><dt><span>depends_on :</span></dt><dd>[&#x27;MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint&#x27;, &#x27;MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint&#x27;]</dd></dl></div><div class='xr-var-data'><pre>array([[1., 1., 1.],
        [1., 1., 1.],
        [1., 1., 1.],
        [1., 1., 1.],
-       [1., 1., 1.]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-4ee4559f-b55c-4bb4-a6f4-fd85587c8c74' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-4ee4559f-b55c-4bb4-a6f4-fd85587c8c74' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div>
+       [1., 1., 1.]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>MyDummy_ChanA_this</span></div><div class='xr-var-dims'>(MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint, MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0 0.0 0.0 0.0 ... 0.0 0.0 0.0 0.0</div><input id='attrs-f999c7b9-69f6-4955-9705-bf0dcfc91084' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f999c7b9-69f6-4955-9705-bf0dcfc91084' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ed5d46ac-6e2f-466e-a29c-fceda2e53e19' class='xr-var-data-in' type='checkbox'><label for='data-ed5d46ac-6e2f-466e-a29c-fceda2e53e19' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>name :</span></dt><dd>MyDummy_ChanA_this</dd><dt><span>paramtype :</span></dt><dd>numeric</dd><dt><span>label :</span></dt><dd>this label</dd><dt><span>unit :</span></dt><dd>this unit</dd><dt><span>inferred_from :</span></dt><dd>[]</dd><dt><span>depends_on :</span></dt><dd>[&#x27;MyDummy_ChanA_multi_2d_setpoint_param_this_setpoint&#x27;, &#x27;MyDummy_ChanA_multi_2d_setpoint_param_that_setpoint&#x27;]</dd></dl></div><div class='xr-var-data'><pre>array([[0., 0., 0.],
+       [0., 0., 0.],
+       [0., 0., 0.],
+       [0., 0., 0.],
+       [0., 0., 0.]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-d5c3c20c-e294-48fc-adae-fd5de5892bef' class='xr-section-summary-in' type='checkbox'  checked><label for='section-d5c3c20c-e294-48fc-adae-fd5de5892bef' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>sample_name :</span></dt><dd>no sample</dd><dt><span>exp_name :</span></dt><dd>performing_meas_using_parameters_and_dataset</dd></dl></div></li></ul></div></div></div>
 </div>
 </div>
 <div class="section" id="Avoiding-verbosity-of-the-Measurement-context-manager-for-simple-measurements">
@@ -2494,7 +2493,7 @@ Starting experimental run with id: 39.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_78_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_78_0.png" />
+<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_79_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_79_0.png" />
 </div>
 </div>
 <p>Or we might want to simply get as many points as possible in 10 s randomly sampling the region between 0 V and 10 V (for the setpoint axis).</p>
@@ -2550,7 +2549,7 @@ Starting experimental run with id: 40.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_81_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_81_0.png" />
+<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_82_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_82_0.png" />
 </div>
 </div>
 <div class="section" id="Finer-sampling-in-2D">
@@ -2574,7 +2573,7 @@ Starting experimental run with id: 40.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;qcodes.dataset.measurements.Measurement at 0x7f434a2e2390&gt;
+&lt;qcodes.dataset.measurements.Measurement at 0x7f7c60bf1c90&gt;
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -2625,7 +2624,7 @@ Starting experimental run with id: 41.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_86_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_86_0.png" />
+<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_87_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_87_0.png" />
 </div>
 </div>
 </div>
@@ -2694,7 +2693,7 @@ Starting experimental run with id: 41.
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Starting experimental run with id: 42.
-130 46 0.2506603091388271
+130 46 0.2503737592608495
 ----------
 </pre></div></div>
 </div>
@@ -2712,7 +2711,7 @@ Starting experimental run with id: 42.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-01-29 16:58:51,312 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/dataset/data_export.py:172: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray
+2021-01-30 10:28:14,681 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/dataset/data_export.py:172: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray
   return np.array(rows)
 
 </pre></div></div>
@@ -2721,7 +2720,7 @@ Starting experimental run with id: 42.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_90_1.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_90_1.png" />
+<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_91_1.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_91_1.png" />
 </div>
 </div>
 </div>
@@ -2742,7 +2741,7 @@ Starting experimental run with id: 42.
 
 <span class="n">npoints</span> <span class="o">=</span> <span class="mi">5000</span>
 
-<span class="k">with</span> <span class="n">meas</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="k">as</span> <span class="n">datasaver</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">meas2</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="k">as</span> <span class="n">datasaver</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">npoints</span><span class="p">):</span>
         <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span><span class="o">-.</span><span class="mi">5</span><span class="p">)</span>
         <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span><span class="o">-.</span><span class="mi">5</span><span class="p">)</span>
@@ -2777,7 +2776,7 @@ Starting experimental run with id: 43.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_94_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_94_0.png" />
+<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_95_0.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_95_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -2785,19 +2784,9 @@ Starting experimental run with id: 43.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">datasaver</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_data_as_pandas_dataframe</span><span class="p">()[</span><span class="s1">&#39;dmm_v2&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+<span></span><span class="n">datasaver</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">to_pandas_dataframe</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-2021-01-29 16:58:52,666 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/utils/deprecate.py:59: QCoDeSDeprecationWarning: The function &lt;get_data_as_pandas_dataframe&gt; is deprecated, because This method will be removed due to inconcise naming, please use the renamed method to_pandas_dataframe_dict. Use &#34;to_pandas_dataframe_dict&#34; as an alternative.
-  issue_deprecation_warning(f&#39;{t} &lt;{n}&gt;&#39;, reason, alternative)
-
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
@@ -2833,70 +2822,441 @@ Starting experimental run with id: 43.
   </thead>
   <tbody>
     <tr>
-      <th>-0.626494</th>
-      <th>-0.754656</th>
-      <td>0.000092</td>
+      <th>0.347483</th>
+      <th>0.007825</th>
+      <td>0.517220</td>
     </tr>
     <tr>
-      <th>0.578169</th>
-      <th>-0.909825</th>
-      <td>-0.000364</td>
+      <th>-0.438618</th>
+      <th>0.067079</th>
+      <td>0.096750</td>
     </tr>
     <tr>
-      <th>-0.163439</th>
-      <th>0.340656</th>
-      <td>0.554832</td>
+      <th>-0.726838</th>
+      <th>-0.199110</th>
+      <td>0.002360</td>
     </tr>
     <tr>
-      <th>-0.489080</th>
-      <th>0.777003</th>
-      <td>0.004076</td>
+      <th>0.793529</th>
+      <th>0.625874</th>
+      <td>0.005211</td>
     </tr>
     <tr>
-      <th>-0.414105</th>
-      <th>-0.049514</th>
-      <td>0.082989</td>
+      <th>-0.333382</th>
+      <th>0.227744</th>
+      <td>0.250787</td>
     </tr>
     <tr>
-      <th>0.823809</th>
-      <th>-0.727416</th>
-      <td>0.000380</td>
+      <th>0.544605</th>
+      <th>0.405773</th>
+      <td>0.166097</td>
     </tr>
     <tr>
-      <th>0.607069</th>
-      <th>0.280094</th>
-      <td>0.138153</td>
+      <th>0.144400</th>
+      <th>-0.792330</th>
+      <td>0.000425</td>
     </tr>
     <tr>
-      <th>0.923331</th>
-      <th>-0.367649</th>
-      <td>0.000887</td>
+      <th>0.050482</th>
+      <th>-0.542604</th>
+      <td>0.012876</td>
     </tr>
     <tr>
-      <th>-0.701658</th>
-      <th>-0.416548</th>
-      <td>-0.000239</td>
+      <th>-0.874274</th>
+      <th>-0.190149</th>
+      <td>0.000316</td>
     </tr>
     <tr>
-      <th>-0.627100</th>
-      <th>-0.895908</th>
-      <td>-0.000368</td>
+      <th>0.682004</th>
+      <th>-0.664070</th>
+      <td>0.000454</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 <p>Unlike the data measured above, which lies on a grid, here, all the measured data points have an unique combination of the two dependent parameters. When exporting to XArray NaN’s will therefore replace all the missing combinations of <code class="docutils literal notranslate"><span class="pre">dac_ch1</span></code> and <code class="docutils literal notranslate"><span class="pre">dac_ch2</span></code> and the data is unlikely to be useful in this format.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1">#df_sliced = datasaver.dataset.get_data_as_pandas_dataframe()[&#39;dmm_v1&#39;].sort_index()[0:10]</span>
-<span class="c1">#df_sliced.index = df_sliced.index.remove_unused_levels()</span>
-<span class="c1">#df_sliced.to_xarray()</span>
+<span></span><span class="n">datasaver</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">to_xarray_dataset</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
+Dimensions:  (dac_ch1: 5000, dac_ch2: 5000)
+Coordinates:
+  * dac_ch1  (dac_ch1) float64 -0.9985 -0.9981 -0.9976 ... 0.9992 0.9992 0.9995
+  * dac_ch2  (dac_ch2) float64 -0.9995 -0.9994 -0.9992 ... 0.9992 0.9999 0.9999
+Data variables:
+    dmm_v2   (dac_ch1, dac_ch2) float64 nan nan nan nan nan ... nan nan nan nan
+Attributes:
+    sample_name:  no sample
+    exp_name:     performing_meas_using_parameters_and_dataset</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-84ddda84-bde2-489d-8fa0-898be13a260d' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-84ddda84-bde2-489d-8fa0-898be13a260d' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>dac_ch1</span>: 5000</li><li><span class='xr-has-index'>dac_ch2</span>: 5000</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-6f608580-8162-428c-a67e-0321b7710edf' class='xr-section-summary-in' type='checkbox'  checked><label for='section-6f608580-8162-428c-a67e-0321b7710edf' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>dac_ch1</span></div><div class='xr-var-dims'>(dac_ch1)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-0.9985 -0.9981 ... 0.9992 0.9995</div><input id='attrs-c14e25e0-64ae-408f-a561-f0018bf2a889' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c14e25e0-64ae-408f-a561-f0018bf2a889' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d0965b2b-1017-411a-b11d-a91e1fc9e81b' class='xr-var-data-in' type='checkbox'><label for='data-d0965b2b-1017-411a-b11d-a91e1fc9e81b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>name :</span></dt><dd>dac_ch1</dd><dt><span>paramtype :</span></dt><dd>numeric</dd><dt><span>label :</span></dt><dd>Gate ch1</dd><dt><span>unit :</span></dt><dd>V</dd><dt><span>inferred_from :</span></dt><dd>[]</dd><dt><span>depends_on :</span></dt><dd>[]</dd></dl></div><div class='xr-var-data'><pre>array([-0.998476, -0.998082, -0.997612, ...,  0.999201,  0.999208,  0.999542])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>dac_ch2</span></div><div class='xr-var-dims'>(dac_ch2)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-0.9995 -0.9994 ... 0.9999 0.9999</div><input id='attrs-a5280601-37ee-419f-a0bb-6da5a3b92fde' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a5280601-37ee-419f-a0bb-6da5a3b92fde' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-061b1c7e-218b-4150-b780-30637d3eb6a7' class='xr-var-data-in' type='checkbox'><label for='data-061b1c7e-218b-4150-b780-30637d3eb6a7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>name :</span></dt><dd>dac_ch2</dd><dt><span>paramtype :</span></dt><dd>numeric</dd><dt><span>label :</span></dt><dd>Gate ch2</dd><dt><span>unit :</span></dt><dd>V</dd><dt><span>inferred_from :</span></dt><dd>[]</dd><dt><span>depends_on :</span></dt><dd>[]</dd></dl></div><div class='xr-var-data'><pre>array([-0.999514, -0.999449, -0.999224, ...,  0.999239,  0.999877,  0.999912])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-37d9432c-fe4f-434c-ba2d-604fc114ceff' class='xr-section-summary-in' type='checkbox'  checked><label for='section-37d9432c-fe4f-434c-ba2d-604fc114ceff' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>dmm_v2</span></div><div class='xr-var-dims'>(dac_ch1, dac_ch2)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-cdc74c53-b36c-41f9-9584-53b506c88480' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-cdc74c53-b36c-41f9-9584-53b506c88480' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-14fce91b-d83f-49da-9ab9-1d783386d0c6' class='xr-var-data-in' type='checkbox'><label for='data-14fce91b-d83f-49da-9ab9-1d783386d0c6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>name :</span></dt><dd>dmm_v2</dd><dt><span>paramtype :</span></dt><dd>numeric</dd><dt><span>label :</span></dt><dd>Gate v2</dd><dt><span>unit :</span></dt><dd>V</dd><dt><span>inferred_from :</span></dt><dd>[]</dd><dt><span>depends_on :</span></dt><dd>[&#x27;dac_ch1&#x27;, &#x27;dac_ch2&#x27;]</dd></dl></div><div class='xr-var-data'><pre>array([[nan, nan, nan, ..., nan, nan, nan],
+       [nan, nan, nan, ..., nan, nan, nan],
+       [nan, nan, nan, ..., nan, nan, nan],
+       ...,
+       [nan, nan, nan, ..., nan, nan, nan],
+       [nan, nan, nan, ..., nan, nan, nan],
+       [nan, nan, nan, ..., nan, nan, nan]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c62c499b-04ec-49f5-b949-97a68717721e' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c62c499b-04ec-49f5-b949-97a68717721e' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>sample_name :</span></dt><dd>no sample</dd><dt><span>exp_name :</span></dt><dd>performing_meas_using_parameters_and_dataset</dd></dl></div></li></ul></div></div></div>
 </div>
 </div>
 <div class="section" id="Optimiser">
@@ -2966,16 +3326,16 @@ Starting experimental run with id: 44.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- final_simplex: (array([[0.10632979, 0.20303559],
-       [0.10632979, 0.20303559],
-       [0.10632979, 0.20303559]]), array([-1.13425709, -1.13402526, -1.13381122]))
-           fun: -1.134257087421942
-       message: &#39;Optimization terminated successfully.&#39;
-          nfev: 365
-           nit: 145
-        status: 0
-       success: True
-             x: array([0.10632979, 0.20303559])
+ final_simplex: (array([[0.09644852, 0.19973334],
+       [0.09644852, 0.19973334],
+       [0.09644852, 0.19973334]]), array([-1.13453964, -1.13271269, -1.13270783]))
+           fun: -1.1345396394112233
+       message: &#39;Maximum number of function evaluations has been exceeded.&#39;
+          nfev: 402
+           nit: 156
+        status: 1
+       success: False
+             x: array([0.09644852, 0.19973334])
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -2992,8 +3352,14 @@ Starting experimental run with id: 44.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-01-29 16:58:52,941 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/dataset/data_export.py:172: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray
+2021-01-30 10:28:16,413 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/dataset/data_export.py:172: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray
   return np.array(rows)
+
+2021-01-30 10:28:16,417 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/dataset/data_export.py:131: RuntimeWarning: divide by zero encountered in true_divide
+  remainders = np.mod(steps[1:]/steps[0], 1)
+
+2021-01-30 10:28:16,417 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /home/vsts/work/1/s/qcodes/dataset/data_export.py:131: RuntimeWarning: invalid value encountered in remainder
+  remainders = np.mod(steps[1:]/steps[0], 1)
 
 </pre></div></div>
 </div>
@@ -3001,7 +3367,7 @@ Starting experimental run with id: 44.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_103_1.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_103_1.png" />
+<img alt="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_104_1.png" src="../../_images/examples_DataSet_Performing-measurements-using-qcodes-parameters-and-dataset_104_1.png" />
 </div>
 </div>
 </div>
@@ -3114,9 +3480,9 @@ First parameter value list: []
 Added points to measurement, step 1.
 First parameter value list: []
 The run now holds 1 rows
-The run now holds 3 rowsAdded points to measurement, step 2.
+The run now holds 2 rows
+Added points to measurement, step 2.
 First parameter value list: [0, 1, 2]
-
 Added points to measurement, step 3.
 First parameter value list: [0, 1, 2]
 The run now holds 5 rows
@@ -3129,15 +3495,24 @@ Added points to measurement, step 6.
 First parameter value list: [0, 1, 2, 3, 4]
 Added points to measurement, step 7.
 First parameter value list: [0, 1, 2, 3, 4, 5, 6]
-The run now holds 9 rows
 Added points to measurement, step 8.
-First parameter value list: [0, 1, 2, 3, 4, 5, 6]
+First parameter value list: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+The run now holds 9 rows
 Added points to measurement, step 9.
 First parameter value list: [0, 1, 2, 3, 4, 5, 6, 7, 8]
 The run now holds 10 rows
 The run now holds 10 rows
 The run now holds 10 rows
 </pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
