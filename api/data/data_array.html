@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                0.22.0+38.g5f86fa7e14
+                0.22.0+42.gc735d043d6
               </div>
             
           
@@ -278,7 +278,7 @@ already does?)</p></li>
 <li><p><strong>units</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – DEPRECATED, redirects to <code class="docutils literal notranslate"><span class="pre">unit</span></code>.</p></li>
 <li><p><strong>is_setpoint</strong> (<a class="reference external" href="https://docs.python.org/3.7/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – True if this is a setpoint array, False if it
 is measured. Default False.</p></li>
-<li><p><strong>preset_data</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21.dev0)"><em>numpy.ndarray</em></a><em>, </em><a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Sequence" title="qcodes.utils.validators.Sequence"><em>Sequence</em></a><em>]</em><em>]</em>) – Contents of the
+<li><p><strong>preset_data</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><em>numpy.ndarray</em></a><em>, </em><a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Sequence" title="qcodes.utils.validators.Sequence"><em>Sequence</em></a><em>]</em><em>]</em>) – Contents of the
 array, if already known (for example if this is a setpoint
 array). <code class="docutils literal notranslate"><span class="pre">shape</span></code> will be inferred from this array instead of
 from the <code class="docutils literal notranslate"><span class="pre">shape</span></code> argument.</p></li>
@@ -354,7 +354,7 @@ meaning it can still be nested around this data.
 TODO: per above, perhaps remove this distinction entirely?</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>data</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21.dev0)"><em>numpy.ndarray</em></a><em>, </em><a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Sequence" title="qcodes.utils.validators.Sequence"><em>Sequence</em></a><em>]</em><em>]</em>) – If provided,
+<dd class="field-odd"><p><strong>data</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><em>numpy.ndarray</em></a><em>, </em><a class="reference internal" href="../utils/validators.html#qcodes.utils.validators.Sequence" title="qcodes.utils.validators.Sequence"><em>Sequence</em></a><em>]</em><em>]</em>) – If provided,
 we fill the array with this data. Otherwise the new
 array will be filled with NaN.</p>
 </dd>
