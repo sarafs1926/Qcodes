@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                0.22.0+44.g51f1b30c93
+                0.22.0+50.g9d5476e1db
               </div>
             
           
@@ -542,7 +542,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/vsts/.qcodes/logs/210201-16531-qcodes.log
+Qcodes Logfile : /home/vsts/.qcodes/logs/210201-16488-qcodes.log
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -876,7 +876,7 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/210201-16531-qcodes.log
    &#39;unit&#39;: &#39;yunit&#39;}}}
 </pre></div></div>
 </div>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
@@ -897,6 +897,25 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/210201-16531-qcodes.log
 <span class="n">mystate</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;location&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2021-02-01 10:30:25,445 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:8: DeprecationWarning: `np.object` is a deprecated alias for the builtin `object`. To silence this warning, use `object` by itself. Doing this will not modify any behavior and is safe.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+
+
+2021-02-01 10:30:25,447 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:10: DeprecationWarning: `np.object` is a deprecated alias for the builtin `object`. To silence this warning, use `object` by itself. Doing this will not modify any behavior and is safe.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  # Remove the CWD from sys.path while we load stuff.
+
+2021-02-01 10:30:25,448 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /usr/share/miniconda/envs/qcodes/lib/python3.7/site-packages/ipykernel_launcher.py:12: DeprecationWarning: `np.object` is a deprecated alias for the builtin `object`. To silence this warning, use `object` by itself. Doing this will not modify any behavior and is safe.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  if sys.path[0] == &#39;&#39;:
+
+</pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
@@ -955,16 +974,16 @@ Qcodes Logfile : /home/vsts/.qcodes/logs/210201-16531-qcodes.log
   &#39;full_name&#39;: &#39;&#39;,
   &#39;is_setpoint&#39;: True,
   &#39;unit&#39;: &#39;&#39;},
- &#39;y&#39;: {&#39;data&#39;: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+ &#39;y&#39;: {&#39;data&#39;: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   &#39;name&#39;: &#39;&#39;,
   &#39;full_name&#39;: &#39;&#39;,
   &#39;is_setpoint&#39;: True,
   &#39;unit&#39;: &#39;&#39;},
  &#39;z&#39;: {&#39;data&#39;: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-   [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-   [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-   [3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-   [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]],
+   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
   &#39;name&#39;: &#39;&#39;,
   &#39;full_name&#39;: &#39;&#39;,
   &#39;is_setpoint&#39;: False,
